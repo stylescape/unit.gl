@@ -1,7 +1,6 @@
-// webpack.dev.js
-
 import webpack from "webpack";
 import paths from './webpack.paths.js'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 
 // Config | Development
@@ -26,28 +25,17 @@ export const configDevelopment = {
             directory: paths.public + "/"
         },
     },
-    // module: {
-    //     rules: [
-    //         // Styles: Inject CSS into the head with source maps
-    //         {
-    //             test: /\.(sass|scss|css)$/,
-    //             use: [
-    //                 "style-loader",
-    //                 {
-    //                     loader: "css-loader",
-    //                     options: { sourceMap: true, importLoaders: 1, modules: false },
-    //                 },
-    //                 { loader: "postcss-loader", options: { sourceMap: true } },
-    //                 { loader: "sass-loader", options: { sourceMap: true } },
-    //             ],
-    //         },
-    //     ],
-    // },
+
 
     plugins: [
         // Only update what has changed on hot reload
-        new webpack.HotModuleReplacementPlugin()
-    ]
+        new webpack.HotModuleReplacementPlugin(),
+        // Serve test page
+        new HtmlWebpackPlugin({
+          template: './test/index.html',
+        }),
+    ],
+
 };
 
 export default configDevelopment
