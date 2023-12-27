@@ -1,10 +1,19 @@
 // webpack.config.js
 
-// Import necessary dependencies and configuration files
+
+// ============================================================================
+// Imports
+// ============================================================================
+
 import { merge } from "webpack-merge";
 import configCommon from "./webpack.common.js";
 import configDevelopment from "./webpack.dev.js";
 import configProduction from "./webpack.prod.js";
+
+
+// ============================================================================
+// Constants
+// ============================================================================
 
 /**
  * Merge Webpack Configuration
@@ -20,18 +29,23 @@ import configProduction from "./webpack.prod.js";
 //  export const config = (env, args) => {
 const config = (env, args) => {
     switch (args.mode) {
-        case 'development':
-            console.info('Merging common configuration with development settings...');
+
+        case "development":
+            console.info("Merging common configuration with development settings...");
             return merge(configCommon, configDevelopment);
 
-        case 'production':
-            console.info('Merging common configuration with production settings...');
+        case "production":
+            console.info("Merging common configuration with production settings...");
             return merge(configCommon, configProduction);
 
         default:
-            throw new Error('No matching configuration was found! Please specify "development" or "production" mode.');
+            throw new Error("No matching configuration was found! Please specify 'development' or 'production' mode.");
     }
 };
 
-// Config | Export
+
+// ============================================================================
+// Exports
+// ============================================================================
+
 export default config
