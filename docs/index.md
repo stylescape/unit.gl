@@ -1,14 +1,12 @@
 <header>
 <p align="center">
-    <img src="assets/image/logo_dark.png" width="20%" height="20%" alt="Stylescape Logo">
+    <img src="assets/image/logo_dark.png" width="20%" height="20%" alt="unit.gl Logo">
 </p>
-<h1 align='center' style='border-bottom: none;'>Stylescape</h1>
+<h1 align='center' style='border-bottom: none;'>unit.gl</h1>
 <!-- <h3 align='center'></h3> -->
 </header>
 <br/>
 
+**unit.gl** is a multichannel identity framework.
 
-**Stylescape** is a multichannel identity framework.
-
-
-**Stylescape** is an open-source project by [Scape Agency](https://www.scape.agency "Scape Agency website").
+**unit.gl** is an open-source project by [Scape Agency](https://www.scape.agency "Scape Agency website").
