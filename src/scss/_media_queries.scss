@@ -1,0 +1,77 @@
+
+// Media Query Mixins
+// ============================================================================
+
+// Create mixins for media queries to simplify their usage throughout your stylesheets.
+
+
+@mixin media-xs {
+    @media (min-width: $media_xs) { @content; }
+}
+  
+@mixin media-sm {
+    @media (min-width: $media_sm) { @content; }
+}
+  
+  // Continue for other breakpoints...
+
+  
+// Orientation Queries:
+// ============================================================================
+// Add media queries for different orientations, which can be crucial for devices like tablets and smartphones.
+
+  @mixin orientation-landscape {
+    @media (orientation: landscape) { @content; }
+  }
+  
+  @mixin orientation-portrait {
+    @media (orientation: portrait) { @content; }
+  }
+
+
+// High-Density Display Support:
+// ============================================================================
+
+// Consider adding media queries for high-density (Retina) displays.
+  @mixin retina {
+    @media only screen and (-webkit-min-device-pixel-ratio: 2),
+           only screen and (min-resolution: 192dpi) { @content; }
+  }
+  
+
+//   Example Usage in Stylesheets:
+// Demonstrate how to use these mixins in your CSS rules.
+  .example-class {
+    @include media-xs {
+      // Styles for extra small devices
+    }
+  
+    @include media-sm {
+      // Styles for small devices
+    }
+  
+    // Continue for other breakpoints...
+  
+    @include orientation-landscape {
+      // Styles for landscape orientation
+    }
+  
+    @include retina {
+      // Styles for Retina displays
+    }
+  }
+  
+
+
+// Syntax
+// @media media type and (condition: breakpoint) {
+//   // CSS rules
+// }
+
+// @media screen, print {
+//     /* … */
+//   }
+
+// @media (min-width: 30em) and (orientation: landscape) {
+//     /* … */
+//   }

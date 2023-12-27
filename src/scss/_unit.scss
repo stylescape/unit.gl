@@ -20,30 +20,40 @@
 @use 'sass:math';
 
 
+// Kyū Measurement System for Responsive Typography
+// $q-base: Base size of a Kyū, set to 1/16th of a Rem.
+// $q-sizes: 
+// --q-<size>: CSS custom properties representing Kyū sizes.
+// fluid-font-size mixin: Applies fluid typography using Kyū sizes.
 
 
-// @function strip-unit($number) {
-//   @if type-of($number) == 'number' and not unitless($number) {
-//     // @return $number / ($number * 0 + 1);
-//     @return calc($number / ($number * 0 + 1));
-//   }
-//   @return $number;
+// Kyū base size definition
+// A Kyū is 1/16th of a Rem
+$q_base: 0.0625rem !default;
+$q: 0.0625rem !default;
+$q_unit: 1.0000rem !default;
+// $q_unit: rem !default;
+// @if $q_unit != rem and $q_unit != px {
+//   @error "`#{$q_unit}` is not a valid unit for $q_unit. Use `px` or `rem`.";
 // }
-@function strip-unit($value) {
-    @return math.div($value, $value * 0 + 1);
-}
 
-// A Kyu is 1/16th of a Rem
-$q:         0.0625rem !default;
-$q_unit:    1.0000rem !default;
+// Define a range of Kyū sizes for responsive design
+// Map of Kyū sizes for various design needs (xs, sm, md, lg, xl).
+// $q-sizes: (
+//   xs: 0.5 * $q-base,  // Extra Small
+//   sm: 1 * $q-base,    // Small
+//   md: 2 * $q-base,    // Medium
+//   lg: 3 * $q-base,    // Large
+//   xl: 4 * $q-base     // Extra Large
+// ) !default;
+
+
 
 :root {
     --q: $q;
 }
 
-// @if $q_unit != rem and $q_unit != px {
-//   @error "`#{$q_unit}` is not a valid unit for $q_unit. Use `px` or `rem`.";
-// }
+
 
 $q_min: 0.75px !default;
 $q_max: 1.50px !default;
@@ -51,44 +61,3 @@ $q_dif: calc($q_max - $q_min);
 
 $font_min: calc(($q_unit / $q) * $q_min) !default;
 $font_max: calc(($q_unit / $q) * $q_max) !default;
-
-// @if $view_unit != px and $view_unit != em and $view_unit != rem {
-//   @error "`#{$view_unit}` is not a valid unit for $view_unit. Use `px`, `em` or `rem`.";
-// }
-
-@mixin fluid_type($min-vw, $max-vw, $min-font-size, $max-font-size) {
-    $u1: unit($min-vw);
-    $u2: unit($max-vw);
-    $u3: unit($min-font-size);
-    $u4: unit($max-font-size);
-
-    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
-        & {
-            font-size: $min-font-size;
-            @media screen and (min-width: $min-vw) {
-                font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
-            }
-            @media screen and (min-width: $max-vw) {
-                font-size: $max-font-size;
-            }
-        }
-    }
-}
-
-
-html {
-    @include fluid-type($media_min, $media_max, $font_min, $font_max);
-}
-
-
-
-// html {
-//   @include fluid-type($min_width, $max_width, $min_font, $max_font);
-// }
-// html{
-//   font-size: calc($q_min + q_dif * (100vw ))
-// }
-// html {
-//   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
-// }
-//   font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));

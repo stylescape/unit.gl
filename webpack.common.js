@@ -4,16 +4,23 @@
 // ============================================================================
 // Imports
 // ============================================================================
-
+import path from "path"
 import paths from "./webpack.paths.js";
 import params from "./webpack.params.js";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import { fileURLToPath } from "url";
 
 
 // ============================================================================
 // Constants
 // ============================================================================
+
+// Convert the current file's URL to a file path
+const __filename = fileURLToPath(import.meta.url);
+
+// Derive the directory name of the current module
+const __dirname = path.dirname(__filename);
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
@@ -45,8 +52,11 @@ const configCommon = {
     // Entry points for the application
     // Where webpack looks to start building the bundle
     entry: {
-        index: `${paths.src}/ts/index.ts`
+        index: `${paths.src}/ts/index.ts`,
+        index_scss: `${paths.src}/scss/index.scss`,
         // index: paths.src + "/ts/index.ts"
+        // index_scss: "./src/scss/index.scss",
+
     },
 
 
@@ -58,8 +68,8 @@ const configCommon = {
         libraryTarget: "umd",
         libraryExport: "default",
         // Output directory
-        // path: path.resolve(__dirname, "dist"),
-        path: paths.build,
+        path: path.resolve(__dirname, "dist"),
+        // path: paths.build,
         // Filename pattern
         filename: "js/[name].bundle.js",
         // Public URL of the output directory when referenced in a browser

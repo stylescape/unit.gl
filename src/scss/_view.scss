@@ -15,135 +15,7 @@
 
 // ============================================================================
 // Base | View
-// Media Queries for Responsive Design
 // ============================================================================
-
-
-
-// Breakpoint Ranges
-// ============================================================================
-
-// Defines breakpoints for responsive layouts and associated container widths
-// Breakpoints align with commonly used device categories for optimal viewing
-
-// 320px — 480px: Mobile devices
-// 481px — 768px: iPads, Tablets
-// 769px — 1024px: Small screens, laptops
-// 1025px — 1200px: Desktops, large screens
-// 1201px and more —  Extra large screens, TV
-
-$media_xs: 320px !default; // Extra small devices (Mobile)
-$media_sm: 481px !default; // Small devices (iPads, Tablets)
-$media_md: 769px !default; // Medium devices (Small screens, laptops)
-$media_lg: 1025px !default; // Large devices (Desktops, large screens)
-$media_xl: 1201px !default; // Extra large devices (Extra large screens, TV)
-
-$media_xs: 320px !default; // Extra small devices (Mobile)
-$media_sm: 640px !default; // Small devices (Tablets)
-$media_md: 768px !default; // Medium devices (Small laptops)
-$media_lg: 992px !default; // Large devices (Laptops, Desktops)
-$media_xl: 1200px !default; // Extra large devices (Large screens, TVs)
-$media_dif: calc($media_xl - $media_xs);
-
-// Media query breakpoints
-// Includes a range from extra small (mobile) to extra large (TV screens)
-
-$grid-breakpoints: (
-  xs: $media_xs,
-  sm: $media_sm,
-  md: $media_md,
-  lg: $media_lg,
-  xl: $media_xl
-) !default;
-
-
-// Container Widths
-// ============================================================================
-
-// Container max-widths based on breakpoints
-// Ensures container sizes adapt to different screen sizes
-
-$container-min-widths: (
-  xs: $media_xs,
-  sm: $media_sm,
-  md: $media_md,
-  lg: $media_lg,
-  xl: $media_xl
-) !default;
-
-$container-max-widths: (
-  xs: ($media_xs - 30px), // 30px less than the breakpoint
-  sm: ($media_sm - 30px),
-  md: ($media_md - 30px),
-  lg: ($media_lg - 30px),
-  xl: ($media_xl - 30px)
-) !default;
-
-
-
-// Media Query Mixins
-// ============================================================================
-
-// Create mixins for media queries to simplify their usage throughout your stylesheets.
-
-
-@mixin media-xs {
-    @media (min-width: $media_xs) { @content; }
-}
-  
-@mixin media-sm {
-    @media (min-width: $media_sm) { @content; }
-}
-  
-  // Continue for other breakpoints...
-
-  
-// Orientation Queries:
-// ============================================================================
-// Add media queries for different orientations, which can be crucial for devices like tablets and smartphones.
-
-  @mixin orientation-landscape {
-    @media (orientation: landscape) { @content; }
-  }
-  
-  @mixin orientation-portrait {
-    @media (orientation: portrait) { @content; }
-  }
-
-
-// High-Density Display Support:
-// ============================================================================
-
-// Consider adding media queries for high-density (Retina) displays.
-  @mixin retina {
-    @media only screen and (-webkit-min-device-pixel-ratio: 2),
-           only screen and (min-resolution: 192dpi) { @content; }
-  }
-  
-
-//   Example Usage in Stylesheets:
-// Demonstrate how to use these mixins in your CSS rules.
-  .example-class {
-    @include media-xs {
-      // Styles for extra small devices
-    }
-  
-    @include media-sm {
-      // Styles for small devices
-    }
-  
-    // Continue for other breakpoints...
-  
-    @include orientation-landscape {
-      // Styles for landscape orientation
-    }
-  
-    @include retina {
-      // Styles for Retina displays
-    }
-  }
-  
-
 
 // Syntax
 // @media media type and (condition: breakpoint) {
@@ -157,3 +29,45 @@ $container-max-widths: (
 // @media (min-width: 30em) and (orientation: landscape) {
 //     /* … */
 //   }
+
+// 320px — 480px: Mobile devices
+// 481px — 768px: iPads, Tablets
+// 769px — 1024px: Small screens, laptops
+// 1025px — 1200px: Desktops, large screens
+// 1201px and more —  Extra large screens, TV
+
+$media_min: 320px !default;  // Mobile
+$media_med: 640px !default;  // Tablet
+$media_max: 960px !default;  // Screen
+$media_dif: calc($media_max - $media_min);
+
+$media_s: 320px;  // Mobile
+$media_m: 640px;  // Tablet
+$media_l: 960px;  // Screen
+
+
+$view_width_min: 320px !default;
+$view_width_med: 640px !default;
+$view_width_max: 960px !default;
+$view_width_dif: calc($view_width_max - $view_width_min);
+
+
+// // scss-docs-start grid-breakpoints
+// $grid-breakpoints: (
+//   xs: 0,
+//   sm: 576px,
+//   md: 768px,
+//   lg: 992px,
+//   xl: 1200px,
+//   xxl: 1400px
+// ) !default;
+// // scss-docs-end grid-breakpoints
+
+
+// $container-max-widths: (
+//   sm: 540px,
+//   md: 720px,
+//   lg: 960px,
+//   xl: 1140px,
+//   xxl: 1320px
+// ) !default;

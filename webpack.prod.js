@@ -60,23 +60,23 @@ export const configProduction = {
     // ========================================================================
     // Module rules for handling different file types.
     // Determine how modules within the project are treated.
-    module: {
-        rules: [
+    // module: {
+    //     rules: [
 
-            // CSS and SCSS Rules
-            // ----------------------------------------------------------------
-            // Handles importing CSS and SCSS files. Use MiniCssExtractPlugin
-            // in production and style-loader in development
-            {
-                test: /\.(scss|css)$/,
-                exclude: /node_modules/,
-                use: [
-                    // Extract CSS into separate files
-                    MiniCssExtractPlugin.loader,
-                ]
-            },
-        ],
-    },
+    //         // CSS and SCSS Rules
+    //         // ----------------------------------------------------------------
+    //         // Handles importing CSS and SCSS files. Use MiniCssExtractPlugin
+    //         // in production and style-loader in development
+    //         {
+    //             test: /\.(scss|css)$/,
+    //             exclude: /node_modules/,
+    //             use: [
+    //                 // Extract CSS into separate files
+    //                 MiniCssExtractPlugin.loader,
+    //             ]
+    //         },
+    //     ],
+    // },
 
 
     // Configuration | Plugins

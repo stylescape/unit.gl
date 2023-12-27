@@ -48,17 +48,17 @@ export const configDevelopment = {
     // ========================================================================
     // Module rules for handling different file types.
     // Determine how modules within the project are treated.
-    module: {
-        rules: [
-            {
-                test: /\.(scss|css)$/,
-                use: [
-                    // Injects styles into the DOM for hot reloading
-                    "style-loader",
-                ]
-            },
-        ],
-    },
+    // module: {
+    //     rules: [
+    //         {
+    //             test: /\.(scss|css)$/,
+    //             use: [
+    //                 // Injects styles into the DOM for hot reloading
+    //                 "style-loader",
+    //             ]
+    //         },
+    //     ],
+    // },
 
 
     // Plugins
