@@ -15,29 +15,29 @@
 
 // Function to calculate ISO paper sizes
 @function iso-paper-size($number) {
-  $base-width: 841mm;
-  $base-height: 1189mm;
+    $base-width:   841mm;
+    $base-height: 1189mm;
 
-  @for $i from 0 through $number {
-    $base-width: $base-width / if($i > 0, 2, 1);
-    $base-height: $base-height / if($i > 0 and $i % 2 == 0, 2, 1);
-  }
+    @for $i from 0 through $number {
+        $base-width: $base-width / if($i > 0, 2, 1);
+        $base-height: $base-height / if($i > 0 and $i % 2 == 0, 2, 1);
+    }
 
-  @return (width: $base-width, height: $base-height);
+    @return (width: $base-width, height: $base-height);
 }
 
 // Define ISO paper sizes using the function
-$paper-size-a0: iso-paper-size(0);
-$paper-size-a1: iso-paper-size(1);
-$paper-size-a2: iso-paper-size(2);
-$paper-size-a3: iso-paper-size(3);
-$paper-size-a4: iso-paper-size(4);
-$paper-size-a5: iso-paper-size(5);
-$paper-size-a6: iso-paper-size(6);
-$paper-size-a7: iso-paper-size(7);
-$paper-size-a8: iso-paper-size(8);
-$paper-size-a9: iso-paper-size(9);
-$paper-size-a10: iso-paper-size(10);
+$paper-size-a0:     iso-paper-size(0);
+$paper-size-a1:     iso-paper-size(1);
+$paper-size-a2:     iso-paper-size(2);
+$paper-size-a3:     iso-paper-size(3);
+$paper-size-a4:     iso-paper-size(4);
+$paper-size-a5:     iso-paper-size(5);
+$paper-size-a6:     iso-paper-size(6);
+$paper-size-a7:     iso-paper-size(7);
+$paper-size-a8:     iso-paper-size(8);
+$paper-size-a9:     iso-paper-size(9);
+$paper-size-a10:    iso-paper-size(10);
 
 // Usage Example
 .page {

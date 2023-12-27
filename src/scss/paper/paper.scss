@@ -1,13 +1,499 @@
 // Copyright 2020 Scape Agency BV
 
-// Licensed under the Apache License, Version 2.0 (the "License");
+// Licensed under the Apache License, Version 2.00 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 
-// http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.00
 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+
+$digital_media_sizes: (
+
+    // Screen Resolutions
+    'hd': (width: 1280px, height: 720px),                // HD Resolution
+    'full_hd': (width: 1920px, height: 1080px),          // Full HD Resolution
+    'ultra_hd': (width: 3840px, height: 2160px),         // Ultra HD (4K) Resolution
+    'retina_hd': (width: 750px, height: 1334px),         // iPhone Retina HD
+
+    // Web Banners
+    'banner_leaderboard': (width: 728px, height: 90px),  // Leaderboard Web Banner
+    'banner_square': (width: 250px, height: 250px),      // Square Web Banner
+    'banner_full': (width: 970px, height: 90px),         // Full-Width Web Banner
+
+    // Social Media Sizes
+    'facebook_post': (width: 1200px, height: 630px),     // Facebook Post
+    'instagram_post': (width: 1080px, height: 1080px),   // Instagram Post
+    'twitter_header': (width: 1500px, height: 500px),    // Twitter Header
+
+    // Device Specific Sizes
+    'iphone_x': (width: 1125px, height: 2436px),         // iPhone X Resolution
+    'ipad_pro': (width: 2048px, height: 2732px),         // iPad Pro Resolution
+
+    // Video Formats
+    'video_720p': (width: 1280px, height: 720px),          // 720p HD Video
+    'video_1080p': (width: 1920px, height: 1080px),        // 1080p Full HD Video
+    'video_4k': (width: 3840px, height: 2160px),           // 4K Ultra HD Video
+    'video_cinemascope': (width: 2560px, height: 1080px),  // Cinemascope Video
+
+    // Digital Billboards
+    'digital_billboard_small': (width: 480px, height: 320px), // Small Digital Billboard
+    'digital_billboard_large': (width: 960px, height: 640px), // Large Digital Billboard
+
+    // Responsive Web Design Breakpoints
+    'responsive_xs': (width: 480px, height: auto),         // Extra Small Device
+    'responsive_sm': (width: 768px, height: auto),         // Small Device
+    'responsive_md': (width: 1024px, height: auto),        // Medium Device
+    'responsive_lg': (width: 1200px, height: auto),        // Large Device
+    'responsive_xl': (width: 1440px, height: auto),        // Extra Large Device
+
+    // E-Book Formats
+    'ebook_standard': (width: 600px, height: 800px),       // Standard E-Book Size
+    'ebook_large': (width: 1024px, height: 1366px),        // Large E-Book Size
+
+
+    // Gaming Console Resolutions
+    'console_hd': (width: 1920px, height: 1080px),      // HD Console Resolution
+    'console_4k': (width: 3840px, height: 2160px),      // 4K Console Resolution
+    'console_switch': (width: 1280px, height: 720px),   // Nintendo Switch Resolution
+
+    // Streaming Platform Video Sizes
+    'streaming_720p': (width: 1280px, height: 720px),   // Streaming HD
+    'streaming_1080p': (width: 1920px, height: 1080px), // Streaming Full HD
+    'streaming_4k': (width: 3840px, height: 2160px),    // Streaming 4K
+
+    // Mobile Application Sizes
+    'mobile_small': (width: 320px, height: 568px),      // Small Mobile Screen
+    'mobile_medium': (width: 375px, height: 667px),     // Medium Mobile Screen
+    'mobile_large': (width: 414px, height: 896px),      // Large Mobile Screen
+
+    // Smartwatch Screen Sizes
+    'smartwatch_small': (width: 180px, height: 180px),  // Small Smartwatch Screen
+    'smartwatch_large': (width: 390px, height: 390px),  // Large Smartwatch Screen
+
+    // Digital Signage Sizes
+    'signage_small': (width: 1024px, height: 768px),    // Small Digital Signage
+    'signage_large': (width: 1920px, height: 1080px),   // Large Digital Signage
+
+    // Additional series if needed...
+);
+
+@mixin apply-digital-media-size($size) {
+    @if map-has-key($digital_media_sizes, $size) {
+      $size-map: map-get($digital_media_sizes, $size);
+      width: map-get($size-map, width);
+      height: map-get($size-map, height);
+    } @else {
+      @warn "Invalid digital media size: #{$size}.";
+    }
+  }
+  
+  // Usage for Leaderboard Web Banner
+  .web-banner {
+    &.leaderboard {
+      @include apply-digital-media-size('banner_leaderboard');
+    }
+  }
+  
+  // Usage for Instagram Post
+  .social-post {
+    &.instagram {
+      @include apply-digital-media-size('instagram_post');
+    }
+  }
+  
+// Paper Sizes
+// ============================================================================
+
+$paper_sizes: (
+
+    // Q Series
+    // ------------------------------------------------------------------------
+    'q0':                   (width:  841.00mm, height: 1189.00mm),  // Q0
+    'q1':                   (width:  594.00mm, height:  841.00mm),  // Q1
+    'q2':                   (width:  420.00mm, height:  594.00mm),  // Q2
+    'q3':                   (width:  297.00mm, height:  420.00mm),  // Q3
+    'q4':                   (width:  210.00mm, height:  297.00mm),  // Q4
+    'q5':                   (width:  148.00mm, height:  210.00mm),  // Q5
+    'q6':                   (width:  105.00mm, height:  148.00mm),  // Q6
+    'q7':                   (width:   74.00mm, height:  105.00mm),  // Q7
+    'q8':                   (width:   52.00mm, height:   74.00mm),  // Q8
+    'q9':                   (width:   37.00mm, height:   52.00mm),  // Q9
+    'q10':                  (width:   26.00mm, height:   37.00mm),  // Q10
+
+    // ANSI Series
+    // ------------------------------------------------------------------------
+    'ansi_a':               (width:    8.50in, height:   11.00in),  // ANSI A (Letter)
+    'ansi_b':               (width:   11.00in, height:   17.00in),  // ANSI B (Ledger)
+    'ansi_c':               (width:   17.00in, height:   22.00in),  // ANSI C
+    'ansi_d':               (width:   22.00in, height:   34.00in),  // ANSI D
+    'ansi_e':               (width:   34.00in, height:   44.00in),  // ANSI E
+
+    // Arch Series
+    // ------------------------------------------------------------------------
+    'arch_a':               (width:    9.00in, height:   12.00in),  // Arch A
+    'arch_b':               (width:   12.00in, height:   18.00in),  // Arch B
+    'arch_c':               (width:   18.00in, height:   24.00in),  // Arch C
+    'arch_d':               (width:   24.00in, height:   36.00in),  // Arch D
+    'arch_e':               (width:   36.00in, height:   48.00in)   // Arch E
+
+    // DIN A Series
+    // ------------------------------------------------------------------------
+    'din_a0':               (width:  841.00mm, height: 1189.00mm),  // DIN A0
+    'din_a1':               (width:  594.00mm, height:  841.00mm),  // DIN A1
+    'din_a2':               (width:  420.00mm, height:  594.00mm),  // DIN A2
+    'din_a3':               (width:  297.00mm, height:  420.00mm),  // DIN A3
+    'din_a4':               (width:  210.00mm, height:  297.00mm),  // DIN A4
+    'din_a5':               (width:  148.00mm, height:  210.00mm),  // DIN A5
+    'din_a6':               (width:  105.00mm, height:  148.00mm),  // DIN A6
+    'din_a7':               (width:   74.00mm, height:  105.00mm),  // DIN A7
+    'din_a8':               (width:   52.00mm, height:   74.00mm),  // DIN A8
+    'din_a9':               (width:   37.00mm, height:   52.00mm),  // DIN A9
+    'din_a10':              (width:   26.00mm, height:   37.00mm),  // DIN A10
+
+    // ISO A Series
+    // ------------------------------------------------------------------------
+    'iso_a0':               (width:  841.00mm, height: 1189.00mm),  // ISO A0
+    'iso_a1':               (width:  594.00mm, height:  841.00mm),  // ISO A1
+    'iso_a2':               (width:  420.00mm, height:  594.00mm),  // ISO A2
+    'iso_a3':               (width:  297.00mm, height:  420.00mm),  // ISO A3
+    'iso_a4':               (width:  210.00mm, height:  297.00mm),  // ISO A4
+    'iso_a5':               (width:  148.00mm, height:  210.00mm),  // ISO A5
+    'iso_a6':               (width:  105.00mm, height:  148.00mm),  // ISO A6
+    'iso_a7':               (width:   74.00mm, height:  105.00mm),  // ISO A7
+    'iso_a8':               (width:   52.00mm, height:   74.00mm),  // ISO A8
+    'iso_a9':               (width:   37.00mm, height:   52.00mm),  // ISO A9
+    'iso_a10':              (width:   26.00mm, height:   37.00mm),  // ISO A10
+
+    // ISO B Series
+    // ------------------------------------------------------------------------
+    'iso_b0':               (width: 1000.00mm, height: 1414.00mm),  // ISO B0
+    'iso_b1':               (width:  707.00mm, height: 1000.00mm),  // ISO B1
+    'iso_b2':               (width:  500.00mm, height:  707.00mm),  // ISO B2
+    'iso_b3':               (width:  353.00mm, height:  500.00mm),  // ISO B3
+    'iso_b4':               (width:  250.00mm, height:  353.00mm),  // ISO B4
+    'iso_b5':               (width:  176.00mm, height:  250.00mm),  // ISO B5
+    'iso_b6':               (width:  125.00mm, height:  176.00mm),  // ISO B6
+    'iso_b7':               (width:   88.00mm, height:  125.00mm),  // ISO B7
+    'iso_b8':               (width:   62.00mm, height:   88.00mm),  // ISO B8
+    'iso_b9':               (width:   44.00mm, height:   62.00mm),  // ISO B9
+    'iso_b10':              (width:   31.00mm, height:   44.00mm),  // ISO B10
+
+    // ISO C Series (International Envelope Sizes)
+    // ------------------------------------------------------------------------
+    'iso_c0':               (width:  917.00mm, height: 1297.00mm),  // ISO C0
+    'iso_c1':               (width:  648.00mm, height:  917.00mm),  // ISO C1
+    'iso_c2':               (width:  458.00mm, height:  648.00mm),  // ISO C2
+    'iso_c3':               (width:  324.00mm, height:  458.00mm),  // ISO C3
+    'iso_c4':               (width:  229.00mm, height:  324.00mm),  // ISO C4
+    'iso_c5':               (width:  162.00mm, height:  229.00mm),  // ISO C5
+    'iso_c6':               (width:  114.00mm, height:  162.00mm),  // ISO C6
+    'iso_c7':               (width:   81.00mm, height:  114.00mm),  // ISO C7
+    'iso_c8':               (width:   57.00mm, height:   81.00mm),  // ISO C8
+    'iso_c9':               (width:   40.00mm, height:   57.00mm),  // ISO C9
+    'iso_c10':              (width:   28.00mm, height:   40.00mm),  // ISO C10
+
+    // ISO RA Series (ISO 217:2013)
+    // ------------------------------------------------------------------------
+    'iso_ra0':              (width:  860.00mm, height: 1220.00mm),  // ISO RA0
+    'iso_ra1':              (width:  610.00mm, height:  860.00mm),  // ISO RA1
+    'iso_ra2':              (width:  430.00mm, height:  610.00mm),  // ISO RA2
+    'iso_ra3':              (width:  305.00mm, height:  430.00mm),  // ISO RA3
+    'iso_ra4':              (width:  215.00mm, height:  305.00mm),  // ISO RA4
+    
+    // ISO SRA Series (ISO 217:2013)
+    // ------------------------------------------------------------------------
+    'iso_sra0':             (width:  900.00mm, height: 1280.00mm),  // ISO SRA0
+    'iso_sra1':             (width:  640.00mm, height:  900.00mm),  // ISO SRA1
+    'iso_sra2':             (width:  450.00mm, height:  640.00mm),  // ISO SRA2
+    'iso_sra3':             (width:  320.00mm, height:  450.00mm),  // ISO SRA3
+    'iso_sra4':             (width:  225.00mm, height:  320.00mm),  // ISO SRA4
+
+    // JIS A Series
+    // ------------------------------------------------------------------------
+    'jis_a0':               (width:  841.00mm, height: 1189.00mm),  // JIS A0
+    'jis_a1':               (width:  594.00mm, height:  841.00mm),  // JIS A1
+    'jis_a2':               (width:  420.00mm, height:  594.00mm),  // JIS A2
+    'jis_a3':               (width:  297.00mm, height:  420.00mm),  // JIS A3
+    'jis_a4':               (width:  210.00mm, height:  297.00mm),  // JIS A4
+    'jis_a5':               (width:  148.00mm, height:  210.00mm),  // JIS A5
+    'jis_a6':               (width:  105.00mm, height:  148.00mm),  // JIS A6
+    'jis_a7':               (width:   74.00mm, height:  105.00mm),  // JIS A7
+    'jis_a8':               (width:   52.00mm, height:   74.00mm),  // JIS A8
+    'jis_a9':               (width:   37.00mm, height:   52.00mm),  // JIS A9
+    'jis_a10':              (width:   26.00mm, height:   37.00mm),  // JIS A10
+
+    // JIS B Series
+    // ------------------------------------------------------------------------
+    'jis_b0':               (width: 1030.00mm, height: 1456.00mm),  // JIS B0
+    'jis_b1':               (width:  728.00mm, height: 1030.00mm),  // JIS B1
+    'jis_b2':               (width:  515.00mm, height:  728.00mm),  // JIS B2
+    'jis_b3':               (width:  364.00mm, height:  515.00mm),  // JIS B3
+    'jis_b4':               (width:  257.00mm, height:  364.00mm),  // JIS B4
+    'jis_b5':               (width:  182.00mm, height:  257.00mm),  // JIS B5
+    'jis_b6':               (width:  128.00mm, height:  182.00mm),  // JIS B6
+    'jis_b7':               (width:   91.00mm, height:  128.00mm),  // JIS B7
+    'jis_b8':               (width:   64.00mm, height:   91.00mm),  // JIS B8
+    'jis_b9':               (width:   45.00mm, height:   64.00mm),  // JIS B9
+    'jis_b10':              (width:   32.00mm, height:   45.00mm),  // JIS B10
+
+    // JIS C Series
+    // ------------------------------------------------------------------------
+    'jis_c0':               (width:  917.00mm, height: 1297.00mm),  // JIS C0
+    'jis_c1':               (width:  648.00mm, height:  917.00mm),  // JIS C1
+    'jis_c2':               (width:  458.00mm, height:  648.00mm),  // JIS C2
+    'jis_c3':               (width:  324.00mm, height:  458.00mm),  // JIS C3
+    'jis_c4':               (width:  229.00mm, height:  324.00mm),  // JIS C4
+    'jis_c5':               (width:  162.00mm, height:  229.00mm),  // JIS C5
+    'jis_c6':               (width:  114.00mm, height:  162.00mm),  // JIS C6
+    'jis_c7':               (width:   81.00mm, height:  114.00mm),  // JIS C7
+    'jis_c8':               (width:   57.00mm, height:   81.00mm),  // JIS C8
+    'jis_c9':               (width:   40.00mm, height:   57.00mm),  // JIS C9
+    'jis_c10':              (width:   28.00mm, height:   40.00mm),  // JIS C10
+
+    // Photographic Paper Sizes
+    // ------------------------------------------------------------------------
+    'photo_4x6':    (width: 4in, height: 6in),     // 4" x 6"
+    'photo_5x7':    (width: 5in, height: 7in),     // 5" x 7"
+    'photo_8x10':   (width: 8in, height: 10in),    // 8" x 10"
+    'photo_11x14':  (width: 11in, height: 14in),   // 11" x 14"
+    'photo_16x20':  (width: 16in, height: 20in),   // 16" x 20"
+
+    // Photo Print Sizes
+    // ------------------------------------------------------------------------
+    'photo_square': (width: 5in, height: 5in),      // Square Photo
+    'photo_panoramic': (width: 10in, height: 4in),  // Panoramic Photo
+
+    // US Paper Sizes
+    // ------------------------------------------------------------------------
+    'us_letter':            (width:    8.50in, height:   11.00in),  // Letter
+    'us_legal':             (width:    8.50in, height:   14.00in),  // Legal
+    'us_ledger':            (width:   11.00in, height:   17.00in),  // Ledger/Tabloid
+    'us_junior':            (width:    5.00in, height:    8.00in),  // Junior Legal
+    'us_half-letter':       (width:    5.50in, height:    8.50in),  // Half Letter
+    'us_government-letter': (width:    8.00in, height:   10.50in),  // Government Letter
+    'us_executive':         (width:    7.25in, height:   10.50in),  // Executive
+    'us_statement':         (width:    5.50in, height:    8.50in),  // Statement
+    'us_folio':             (width:    8.50in, height:   13.00in),  // Folio
+    'us_quarto':            (width:    8.00in, height:   10.00in),  // Quarto
+    'us_tabloid-extra':     (width:   12.00in, height:   18.00in),  // Tabloid Extra
+
+    // Large Format Sizes (Common in Posters and Large Prints)
+    // ------------------------------------------------------------------------
+    'large_poster': (width: 24in, height: 36in),   // Large Poster
+    'x_large_poster': (width: 36in, height: 48in), // Extra Large Poster
+    'movie_poster': (width: 27in, height: 40in),   // Movie Poster Standard
+
+    // Book Sizes (Common in Publishing)
+    // ------------------------------------------------------------------------
+    'book_small': (width: 5in, height: 8in),       // Small Book
+    'book_medium': (width: 6in, height: 9in),      // Medium Book
+    'book_large': (width: 7in, height: 10in),      // Large Book
+
+    // Business Card Standard Sizes
+    // ------------------------------------------------------------------------
+    'business_card_us': (width: 3.5in, height: 2in),   // US Standard Business Card
+    'business_card_eu': (width: 85mm, height: 55mm),   // EU Standard Business Card
+    'business_card_iso': (width: 90mm, height: 55mm),  // ISO Standard Business Card
+    
+    // Engineering Drawing Sizes
+    // ------------------------------------------------------------------------
+    'engineering_a': (width: 9in, height: 12in),    // Engineering A
+    'engineering_b': (width: 12in, height: 18in),   // Engineering B
+    'engineering_c': (width: 18in, height: 24in),   // Engineering C
+    'engineering_d': (width: 24in, height: 36in),   // Engineering D
+    'engineering_e': (width: 36in, height: 48in),   // Engineering E
+
+    // Index Card Sizes
+    // ------------------------------------------------------------------------
+    'index_card_3x5': (width: 3in, height: 5in),    // 3" x 5" Index Card
+    'index_card_4x6': (width: 4in, height: 6in),    // 4" x 6" Index Card
+    'index_card_5x8': (width: 5in, height: 8in),    // 5" x 8" Index Card
+
+    // Graphic Design Sizes
+    // ------------------------------------------------------------------------
+    'graphic_design_small': (width: 6in, height: 9in),     // Small Graphic Design
+    'graphic_design_medium': (width: 8in, height: 10in),   // Medium Graphic Design
+    'graphic_design_large': (width: 11in, height: 17in),   // Large Graphic Design
+
+    // Greeting Card Sizes
+    // ------------------------------------------------------------------------
+    'greeting_card_small': (width: 4in, height: 6in),      // Small Greeting Card
+    'greeting_card_standard': (width: 5in, height: 7in),   // Standard Greeting Card
+    'greeting_card_large': (width: 6in, height: 8in),      // Large Greeting Card
+
+    // Art Canvas Sizes
+    // ------------------------------------------------------------------------
+    'canvas_small': (width: 8in, height: 10in),            // Small Canvas
+    'canvas_medium': (width: 18in, height: 24in),          // Medium Canvas
+    'canvas_large': (width: 24in, height: 36in),           // Large Canvas
+    // Artist Canvas Sizes
+    'canvas_square': (width: 12in, height: 12in),         // Square Canvas
+    'canvas_landscape': (width: 24in, height: 18in),      // Landscape Canvas
+    'canvas_portrait': (width: 18in, height: 24in),       // Portrait Canvas
+
+    // Scrapbooking Paper Sizes
+    // ------------------------------------------------------------------------
+    'scrapbook_standard': (width: 12in, height: 12in),     // Standard Scrapbooking Paper
+    'scrapbook_large': (width: 15in, height: 15in),        // Large Scrapbooking Paper
+
+    // Academic Paper Sizes
+    // ------------------------------------------------------------------------
+    'thesis_standard': (width: 8.5in, height: 11in),       // Standard Thesis Paper
+    'thesis_large': (width: 11in, height: 17in),           // Large Thesis Paper
+
+    // Photography Paper Sizes
+    // ------------------------------------------------------------------------
+    'photo_20x30': (width: 20in, height: 30in),            // 20" x 30" Photo
+    'photo_24x36': (width: 24in, height: 36in),            // 24" x 36" Photo
+    'photo_30x40': (width: 30in, height: 40in),            // 30" x 40" Photo
+
+    // Poster Sizes
+    // ------------------------------------------------------------------------
+    'poster_small': (width: 11in, height: 17in),           // Small Poster
+    'poster_medium': (width: 18in, height: 24in),          // Medium Poster
+    'poster_large': (width: 24in, height: 36in),           // Large Poster
+
+    // Commercial Printing Sizes
+    // ------------------------------------------------------------------------
+    'brochure_8x10': (width: 8in, height: 10in),           // 8" x 10" Brochure
+    'brochure_11x17': (width: 11in, height: 17in),         // 11" x 17" Brochure
+
+    // Billboard Sizes
+    // ------------------------------------------------------------------------
+    'billboard_small': (width: 48in, height: 14ft),        // Small Billboard
+    'billboard_large': (width: 14ft, height: 48ft),        // Large Billboard
+
+    // Packaging Sizes
+    // ------------------------------------------------------------------------
+    'packaging_small': (width: 6in, height: 9in),         // Small Packaging
+    'packaging_medium': (width: 12in, height: 18in),      // Medium Packaging
+    'packaging_large': (width: 24in, height: 36in),       // Large Packaging
+
+    // Custom Print Sizes
+    // ------------------------------------------------------------------------
+    'custom_small': (width: 7in, height: 10in),           // Small Custom Print
+    'custom_large': (width: 17in, height: 22in),          // Large Custom Print
+
+    // Banner Sizes
+    // ------------------------------------------------------------------------
+    'banner_small': (width: 2ft, height: 4ft),            // Small Banner
+    'banner_medium': (width: 3ft, height: 6ft),           // Medium Banner
+    'banner_large': (width: 4ft, height: 8ft),            // Large Banner
+
+    // Special Edition Book Sizes
+    // ------------------------------------------------------------------------
+    'book_collectors': (width: 9in, height: 12in),        // Collectors Edition Book
+    'book_coffee_table': (width: 12in, height: 15in),     // Coffee Table Book
+
+    // Digital Media Sizes
+    // ------------------------------------------------------------------------
+    'digital_standard': (width: 1920px, height: 1080px),   // Standard Digital (e.g., HD)
+    'digital_4k': (width: 3840px, height: 2160px),         // 4K Resolution
+
+    // Giclée Art Print Sizes
+    // ------------------------------------------------------------------------
+    'giclee_small': (width: 8in, height: 10in),            // Small Giclée Print
+    'giclee_medium': (width: 18in, height: 24in),          // Medium Giclée Print
+    'giclee_large': (width: 24in, height: 36in),           // Large Giclée Print
+
+    // Vinyl Record Cover Sizes
+    // ------------------------------------------------------------------------
+    'vinyl_standard': (width: 12in, height: 12in),         // Standard Vinyl Record Cover
+    'vinyl_gatefold': (width: 24in, height: 12in),         // Gatefold Vinyl Record Cover
+
+    // Direct Mail Sizes
+    // ------------------------------------------------------------------------
+    'direct_mail_small': (width: 4in, height: 6in),        // Small Direct Mail
+    'direct_mail_large': (width: 6in, height: 9in),        // Large Direct Mail
+
+    // Textile Print Sizes
+    // ------------------------------------------------------------------------
+    'textile_tshirt': (width: 12in, height: 16in),         // T-Shirt Print
+    'textile_banner': (width: 3ft, height: 5ft),            // Textile Banner
+
+
+    // Event Ticket Sizes
+    'ticket_standard': (width: 2in, height: 5.5in),    // Standard Event Ticket
+    'ticket_large': (width: 3.5in, height: 8.5in),     // Large Event Ticket
+
+    // Advertising Flyer Sizes
+    'flyer_small': (width: 4.25in, height: 5.5in),     // Small Flyer
+    'flyer_medium': (width: 5.5in, height: 8.5in),     // Medium Flyer
+    'flyer_large': (width: 8.5in, height: 11in),       // Large Flyer
+
+    // Educational Material Sizes
+    'flashcard': (width: 3in, height: 5in),            // Flashcard
+    'workbook': (width: 8in, height: 10in),            // Workbook
+
+    // Restaurant Menu Sizes
+    'menu_small': (width: 4in, height: 8in),           // Small Menu
+    'menu_large': (width: 8.5in, height: 14in),        // Large Menu
+
+    // Blueprint Sizes
+    'blueprint_small': (width: 18in, height: 24in),    // Small Blueprint
+    'blueprint_large': (width: 36in, height: 48in),    // Large Blueprint
+
+
+    // Real Estate Marketing Materials
+    'real_estate_brochure': (width: 8.5in, height: 11in),  // Standard Real Estate Brochure
+    'property_listing_sheet': (width: 11in, height: 17in), // Property Listing Sheet
+
+    // Academic Journal Sizes
+    'journal_standard': (width: 6in, height: 9in),         // Standard Academic Journal
+    'journal_large': (width: 7in, height: 10in),           // Large Academic Journal
+
+    // Wall Calendar Sizes
+    'calendar_small': (width: 8.5in, height: 11in),        // Small Wall Calendar
+    'calendar_large': (width: 12in, height: 12in),         // Large Wall Calendar
+
+    // Comic Book Sizes
+    'comic_book': (width: 6.625in, height: 10.25in),       // Standard Comic Book
+
+    // Music Sheet Sizes
+    'music_sheet': (width: 9in, height: 12in),             // Standard Music Sheet
+
+    // Playing Card Sizes
+    'playing_card': (width: 2.5in, height: 3.5in),         // Standard Playing Card
+
+    // Table Tent Sizes
+    'table_tent': (width: 4in, height: 6in),               // Table Tent for Events and Promotions
+
+
+    // Specialty Printing Sizes
+    'album_cover': (width: 12.375in, height: 12.375in), // Vinyl Album Cover
+    'cd_insert': (width: 4.75in, height: 4.75in),       // CD Insert
+
+    // Merchandise Sizes
+    'tshirt_front': (width: 12in, height: 16in),      // T-Shirt Front Print
+    'tote_bag': (width: 15in, height: 15in),          // Tote Bag
+
+
+    // Additional series if needed...
+);
+
+
+
+@mixin apply-paper-size($size) {
+    @if map-has-key($paper-sizes, $size) {
+        $size-map: map-get($paper-sizes, $size);
+        width: map-get($size-map, width);
+        height: map-get($size-map, height);
+    } @else {
+        @warn "Invalid paper size: #{$size}.";
+    }
+  }
+  
+// Usage
+.page {
+    &.iso-a4 {
+        @include apply-paper-size('iso-a4');
+    }
+  // Add similar classes for other sizes...
+}
+  
