@@ -70,3 +70,7 @@ In Japan, since Motoki Shōzō began his work with movable type printing, anothe
 // https://trentwalton.com/2012/06/19/fluid-type/
 // https://tbrown.org/notes/2012/02/03/molten-leading-or-fluid-line-height/
 // https://css-tricks.com/snippets/sass/strip-unit-function/
+
+
+
+https://art-design-glossary.musabi.ac.jp/kyu-ha-point/

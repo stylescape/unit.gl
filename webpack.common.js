@@ -1,19 +1,23 @@
 // webpack.common.js
 
+// Import necessary dependencies and configuration files
 import paths from "./webpack.paths.js";
 
 /**
  * Common Webpack Configuration
  * 
  * This configuration file is the base for both development and production
- * environments.
- * It includes configurations that are common across both environments.
+ * environments. It includes configurations that are common across both.
  */
 const configCommon = {
 
     // Target environment
-    target: "web",
+    // ========================================================================
+    // target: "web",
+    target: ['web', 'es5'],
 
+    // Entry points
+    // ========================================================================
     // Entry points for the application
     // Where webpack looks to start building the bundle
     entry: {
@@ -26,6 +30,9 @@ const configCommon = {
     // Module rules for handling different file types
     // Determine how modules within the project are treated
     module: {
+        // entry: './js/index.js',
+        // ...
+        // target: ['web', 'es5'],
         rules: [
 
             // TypeScript Rules
@@ -40,20 +47,36 @@ const configCommon = {
                     // Transpiles TypeScript to JavaScript with Babel.
                     // This allows for the use of the latest JavaScript
                     // features and ensures compatibility with older browsers.
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: [
-                                // Preset for compiling ES6+ syntax
-                                '@babel/preset-env',
-                                // Preset for handling TypeScript
-                                '@babel/preset-typescript'
-                            ],
-                            plugins: [
-                                // Add any necessary Babel plugins here
-                            ],
-                        },
-                    },
+                    // {
+                    //     loader: 'babel-loader',
+                    //     options: {
+                    //         presets: [
+                    //             // Preset for compiling ES6+ syntax
+                    //             // Preset for compiling modern JavaScript to a more compatible version
+                    //             ['@babel/preset-env', {
+                    //                 targets: "> 0.25%, not dead", // Define target environments
+                    //                 useBuiltIns: 'usage', // Only include polyfills and transforms needed for target environments
+                    //                 corejs: 3, // Specify the core-js version for polyfills
+                    //                 // modules: true // Preserve ECMAScript modules for tree shaking in Webpack
+                    //                 modules: false // Preserve ECMAScript modules for tree shaking in Webpack
+                    //             }],
+
+
+                    //             // Preset for handling TypeScript
+                    //             '@babel/preset-typescript'
+                    //         ],
+                    //         caller: {
+                    //             supportsStaticESM: true
+                    //         },
+                    //         plugins: [
+                    //             // Add any necessary Babel plugins here
+                    //             // Enables dynamic import syntax in JavaScript (important for code splitting in ESM)
+                    //             '@babel/plugin-syntax-dynamic-import',
+                                
+                    //             // Other plugins that your project might need
+                    //         ],
+                    //     },
+                    // },
                     // TypeScript Loader
                     // Handles the TypeScript compilation
                     {

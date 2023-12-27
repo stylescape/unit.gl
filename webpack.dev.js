@@ -8,8 +8,12 @@ export const configDevelopment = {
 
     // Set the mode to development or production
     mode: "development",
+
     // Control how source maps are generated
     // devtool: "inline-source-map",
+
+    // Development Server configuration
+    // ========================================================================
     // Spin up a server for quick development
     devServer: {
         historyApiFallback: true,
@@ -26,13 +30,14 @@ export const configDevelopment = {
         },
     },
 
-
+    // Plugins
+    // ========================================================================
     plugins: [
         // Only update what has changed on hot reload
         new webpack.HotModuleReplacementPlugin(),
         // Serve test page
         new HtmlWebpackPlugin({
-          template: './test/index.html',
+            template: './test/index.html',
         }),
     ],
 

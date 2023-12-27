@@ -1,6 +1,6 @@
 {
     "name": "unit.gl",
-    "description": "",
+    "description": "A Sass-based layout engine for fluid typography and responsive design, utilizing the Kyu unit measurement system.",
     "version": "0.0.1",
     "config": {
         "version_short": "0.0"
@@ -20,9 +20,9 @@
         "web"
     ],
     "homepage": "https://www.unit.gl/",
-    "author": "Lars van Vianen",
+    "author": "Lars van Vianen <lars@vianen.com> (https://vianen.com)",
     "contributors": [
-        "Scape Agency"
+        "Scape Agency <info@scape.agency>"
     ],
     "license": "Apache-2.0",
     "repository": {
@@ -40,9 +40,9 @@
     ],
     "main": "src/scss/index.scss",
     "type": "module",
-    "module": "",
-    "sass": "",
-    "style": "",
+    "module": "dist/js/unit.gl.js",
+    "style": "dist/css/unit.gl.css",
+    "sass": "src/scss/index.scss",
     "scripts": {
         "format": "npx prettier --write .",
         "lint": "eslint 'src/**/*.ts' || true",
@@ -97,8 +97,10 @@
     },
     "jspm": {
         "registry": "npm",
-        "main": "",
-        "directories": {},
+        "main": "dist/js/unit.gl.js",
+        "directories": {
+            "lib": "src"
+        },
         "shim": {},
         "dependencies": {},
         "peerDependencies": {}
