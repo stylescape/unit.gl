@@ -1,0 +1,39 @@
+
+
+//  Responsive Margins and Padding
+//  Create mixins to handle responsive margins and padding which adjust based on the screen size.
+ 
+ 
+
+
+
+@mixin responsive-margin($property, $sizes) {
+    @each $size, $value in $sizes {
+      @media (min-width: $size) {
+        #{$property}: $value;
+      }
+    }
+  }
+  
+  @mixin responsive-padding($property, $sizes) {
+    @each $size, $value in $sizes {
+      @media (min-width: $size) {
+        #{$property}: $value;
+      }
+    }
+  }
+  
+
+
+
+  // Proportional Padding and Margin
+  // Mixins to apply proportional padding and margin, based on the size of the container.
+
+  @mixin proportional-padding($top: 0, $right: $top, $bottom: $top, $left: $right) {
+    padding: percentage($top) percentage($right) percentage($bottom) percentage($left);
+  }
+  
+  @mixin proportional-margin($top: 0, $right: $top, $bottom: $top, $left: $right) {
+    margin: percentage($top) percentage($right) percentage($bottom) percentage($left);
+  }
+  

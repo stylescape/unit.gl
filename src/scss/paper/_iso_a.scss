@@ -1,0 +1,121 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// Function to calculate ISO paper sizes
+@function iso-paper-size($number) {
+  $base-width: 841mm;
+  $base-height: 1189mm;
+
+  @for $i from 0 through $number {
+    $base-width: $base-width / if($i > 0, 2, 1);
+    $base-height: $base-height / if($i > 0 and $i % 2 == 0, 2, 1);
+  }
+
+  @return (width: $base-width, height: $base-height);
+}
+
+// Define ISO paper sizes using the function
+$paper-size-a0: iso-paper-size(0);
+$paper-size-a1: iso-paper-size(1);
+$paper-size-a2: iso-paper-size(2);
+$paper-size-a3: iso-paper-size(3);
+$paper-size-a4: iso-paper-size(4);
+$paper-size-a5: iso-paper-size(5);
+$paper-size-a6: iso-paper-size(6);
+$paper-size-a7: iso-paper-size(7);
+$paper-size-a8: iso-paper-size(8);
+$paper-size-a9: iso-paper-size(9);
+$paper-size-a10: iso-paper-size(10);
+
+// Usage Example
+.page {
+  &.a4 {
+    width: map-get($paper-size-a4, width);
+    height: map-get($paper-size-a4, height);
+    // Additional styles...
+  }
+
+  // Add similar classes for other sizes...
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ISO Paper Sizes in millimeters
+$paper-size-a0: (width: 841mm, height: 1189mm);
+$paper-size-a1: (width: 594mm, height: 841mm);
+$paper-size-a2: (width: 420mm, height: 594mm);
+$paper-size-a3: (width: 297mm, height: 420mm);
+$paper-size-a4: (width: 210mm, height: 297mm);
+$paper-size-a5: (width: 148mm, height: 210mm);
+$paper-size-a6: (width: 105mm, height: 148mm);
+$paper-size-a7: (width: 74mm, height: 105mm);
+$paper-size-a8: (width: 52mm, height: 74mm);
+$paper-size-a9: (width: 37mm, height: 52mm);
+$paper-size-a10: (width: 26mm, height: 37mm);
+
+// Usage Example
+.page {
+    &.a4 {
+      width: map-get($paper-size-a4, width);
+      height: map-get($paper-size-a4, height);
+      // Additional styles...
+    }
+}
+
+
+.printable-area-a4 {
+    width: map-get($paper-a4, width);
+    height: map-get($paper-a4, height);
+    // Additional styles...
+  }
+
+
+
+
+.page {
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+    &.a4 {
+      width: map-get($paper-a4, width);
+      height: map-get($paper-a4, height);
+    }
+  
+    &.letter {
+      width: map-get($paper-letter, width);
+      height: map-get($paper-letter, height);
+    }
+  
+    // Additional styles...
+  }

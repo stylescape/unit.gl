@@ -1,0 +1,33 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+
+// Function to calculate ISO C-series paper sizes
+@function iso-paper-size-c($number) {
+  $base-width: 917mm; // Approximate base width for C0
+  $base-height: 1297mm; // Approximate base height for C0
+
+  @for $i from 0 through $number {
+    $base-width: $base-width / if($i > 0, sqrt(2), 1);
+    $base-height: $base-height / if($i > 0 and $i % 2 == 0, sqrt(2), 1);
+  }
+
+  @return (width: $base-width, height: $base-height);
+}
+
+// Define ISO C-series paper sizes using the function
+$paper-size-c0: iso-paper-size-c(0);
+$paper-size-c1: iso-paper-size-c(1);
+// Continue for C2, C3, etc.

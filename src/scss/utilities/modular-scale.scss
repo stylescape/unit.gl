@@ -1,0 +1,8 @@
+
+
+//  Modular Scale Function
+//  A function to calculate sizes (like font-size, spacing) based on a modular scale which is great for maintaining harmonious proportions.
+@function modular-scale($step, $base: 1em, $ratio: 1.618) {
+    @return $base * pow($ratio, $step);
+  }
+  

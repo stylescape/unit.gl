@@ -1,0 +1,17 @@
+
+
+
+
+
+
+// Viewport Width (vw) and Height (vh) Mixins
+// Mixins for responsive units based on viewport size can be very handy for fluid layouts.
+
+@mixin vw($property, $size, $vw-context: 100vw) {
+    #{$property}: ($size / $vw-context) * 100vw;
+  }
+  
+  @mixin vh($property, $size, $vh-context: 100vh) {
+    #{$property}: ($size / $vh-context) * 100vh;
+  }
+  

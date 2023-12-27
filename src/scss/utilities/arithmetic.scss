@@ -1,0 +1,23 @@
+
+
+
+// Unitless Arithmetic Functions
+// Functions to perform arithmetic operations while handling units correctly.
+
+
+@function add($value1, $value2) {
+    @if unitless($value1) or unitless($value2) {
+      @warn "One or more values are unitless";
+      @return null;
+    }
+    @return $value1 + $value2;
+  }
+  
+  @function subtract($value1, $value2) {
+    @if unitless($value1) or unitless($value2) {
+      @warn "One or more values are unitless";
+      @return null;
+    }
+    @return $value1 - $value2;
+  }
+  

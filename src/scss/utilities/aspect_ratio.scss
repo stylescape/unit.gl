@@ -1,0 +1,37 @@
+
+
+
+
+
+
+// Aspect Ratio Box
+// A mixin to create a container with a specific aspect ratio, useful for responsive design, especially for videos and images.
+
+@mixin aspect-ratio-box($width, $height) {
+    position: relative;
+    &:before {
+      display: block;
+      content: "";
+      width: 100%;
+      padding-top: ($height / $width) * 100%;
+    }
+    > .content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+  
+
+
+
+//   Golden Ratio Function
+//   A simple function to calculate sizes using the golden ratio, which can be used for spacing, sizing elements, etc.
+
+  @function golden-ratio($size, $increment: 1) {
+    $golden-ratio: 1.618;
+    @return $size * pow($golden-ratio, $increment);
+  }
+  

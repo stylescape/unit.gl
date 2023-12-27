@@ -1,0 +1,44 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+
+// Japanese B-series Paper Sizes (JIS B-series)
+$paper-size-jis-b0: (width: 1030mm, height: 1456mm);
+$paper-size-jis-b1: (width: 728mm, height: 1030mm);
+$paper-size-jis-b2: (width: 515mm, height: 728mm);
+$paper-size-jis-b3: (width: 364mm, height: 515mm);
+$paper-size-jis-b4: (width: 257mm, height: 364mm);
+// Continue for B5, B6, etc.
+
+
+
+
+
+.page {
+    &.jis-b4 {
+      width: map-get($paper-size-jis-b4, width);
+      height: map-get($paper-size-jis-b4, height);
+    }
+    &.ansi-a {
+      width: map-get($paper-size-ansi-a, width);
+      height: map-get($paper-size-ansi-a, height);
+    }
+    &.arch-b {
+      width: map-get($paper-size-arch-b, width);
+      height: map-get($paper-size-arch-b, height);
+    }
+    // Add similar classes for other sizes...
+  }
+  

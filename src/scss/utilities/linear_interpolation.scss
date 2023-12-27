@@ -1,0 +1,15 @@
+
+
+
+
+
+
+
+
+// Linear Interpolation Function
+// A function to interpolate linearly between two values across a range, useful for fluid scaling.
+
+@function linear-interpolation($value1, $value2, $lower-bound, $upper-bound, $actual) {
+    @return $value1 + ($value2 - $value1) * (($actual - $lower-bound) / ($upper-bound - $lower-bound));
+  }
+  

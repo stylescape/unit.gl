@@ -1,0 +1,19 @@
+
+
+
+
+// Vertical Rhythm Function
+// Functions to maintain consistent vertical rhythm (spacing and heights) across your layout.
+
+
+
+$base-font-size: 16px; // Base font size
+$line-height: 24px; // Base line height
+
+@function rhythm($lines: 1) {
+  @return $lines * $line-height;
+}
+
+@function font-size-to-line-height($font-size) {
+  @return floor($font-size / $line-height) * $line-height;
+}
