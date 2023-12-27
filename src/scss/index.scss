@@ -1,4 +1,4 @@
-// Copyright 2023 Scape Agency BV
+// Copyright 2020 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,15 +16,15 @@
 @charset "utf-8";
 
 /**
-* Stylescape
+* unit.gl
 *
-* @description     Layout Engine
+* @description     Unit System
 * @author          Scape Agency (https://www.scape.agency)
 * @version         v1.0.0
-* @copyright       2020-2023 Scape Agency (https://www.scape.agency)
-* @website         https://www.style.scape/
-* @repository      https://github.com/scape-agency/stylescape/
-* @license         Apache 2.0 License (https://github.com/scape-agency/stylescape/blob/main/LICENSE)
+* @copyright       2020-2024 Scape Agency (https://www.scape.agency)
+* @website         https://www.unit.gl/
+* @repository      https://github.com/scape-agency/unit.gl/
+* @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
 */
 
 @use "sass:math";

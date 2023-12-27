@@ -1,0 +1,293 @@
+// Copyright 2020 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// 1. Print Media Query Mixin
+// A mixin for defining print-specific styles, which is useful for styling elements differently when they're printed.
+
+
+@mixin print {
+  @media print {
+    @content;
+  }
+}
+// Usage:
+
+
+@include print {
+  // Print-specific styles here
+}
+// 2. Avoid Page Breaks Mixin
+// Prevent page breaks inside an element during printing.
+
+
+@mixin avoid-page-break {
+  @media print {
+    page-break-inside: avoid;
+  }
+}
+// 3. Adjust Font Size for Printing
+// Provide a mixin to adjust font sizes specifically for print media.
+
+
+@mixin print-font-size($size) {
+  @media print {
+    font-size: $size;
+  }
+}
+// 4. Print Layout Utilities
+// Utility classes for common print adjustments like hiding elements in print, changing text color, etc.
+
+
+@include print {
+  .print-hide {
+    display: none;
+  }
+
+  .print-black-text {
+    color: black;
+  }
+
+  // Other utility classes...
+}
+// 5. Print Header and Footer
+// Functionality to create header and footer content for each printed page.
+
+
+@mixin print-header-footer($header-content, $footer-content) {
+  @media print {
+    @page {
+      @top-center {
+        content: $header-content;
+      }
+      @bottom-center {
+        content: $footer-content;
+      }
+    }
+  }
+}
+
+// 6. Print Quality Settings
+// Set the print quality (like color or black-and-white).
+
+
+@mixin print-quality($quality: color) {
+  @media print {
+    color-adjust: $quality; // 'economy' for black-and-white
+  }
+}
+
+// 7. Full-Width Print Layout
+// Ensure elements stretch full width when printed, removing constraints from screen layouts.
+
+
+@mixin full-width-print {
+  @media print {
+    width: 100vw;
+    position: relative;
+    left: calc(-50vw + 50%);
+  }
+}
+
+
+
+
+// 8. Control Page Breaks
+// Define mixins to control page breaks before and after elements. This is useful for ensuring that sections don't get split across pages.
+
+
+@mixin page-break-before($break-type: auto) {
+  @media print {
+    page-break-before: $break-type; // Options: auto, always, avoid, left, right
+  }
+}
+
+@mixin page-break-after($break-type: auto) {
+  @media print {
+    page-break-after: $break-type;
+  }
+}
+// 9. Print-Only Images
+// Specify different images for print, such as high-resolution versions or black-and-white images for better print quality.
+
+
+@mixin print-image($print-image-url) {
+  @media screen {
+    // Screen-specific styles
+  }
+  @media print {
+    content: url($print-image-url);
+  }
+}
+// 10. Hide Specific Elements in Print
+// Sometimes, specific elements like buttons or interactive content are not relevant for print. This utility helps in hiding them.
+
+
+.print-hide {
+  @media print {
+    display: none !important;
+  }
+}
+// 11. Scale Elements for Print
+// A mixin to scale elements for print, ensuring they fit onto a printed page.
+
+
+@mixin scale-for-print($scale-factor: 1) {
+  @media print {
+    transform: scale($scale-factor);
+    transform-origin: top left;
+  }
+}
+// 12. Force Color Printing
+// Ensure that certain elements retain their color when printing, even if the printer's default is black and white.
+
+
+.force-color-print {
+  @media print {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+// 13. Landscape Printing
+// Force a page or section to be printed in landscape orientation.
+
+
+@mixin landscape-print {
+  @media print {
+    @page {
+      size: landscape;
+    }
+  }
+}
+// 14. Print Margins
+// Set custom margins for the printed page, useful for ensuring adequate space for binding or notes.
+
+
+@mixin print-margins($top, $right, $bottom, $left) {
+  @media print {
+    @page {
+      margin: $top $right $bottom $left;
+    }
+  }
+}
+// 15. Link URL Printing
+// For documents where the printed version should show the URLs for links.
+
+
+a[href]:after {
+  @media print {
+    content: " (" attr(href) ")";
+  }
+}
+
+
+
+
+
+
+// 16. Selective Content Printing
+// A mixin to mark specific content sections for printing, allowing users to print only parts of a page.
+
+
+@mixin print-section {
+  @media screen {
+    display: none;
+  }
+  @media print {
+    display: block;
+  }
+}
+// 17. Monochrome Printing
+// A mixin to apply monochrome (black and white) styling for printing, which is useful for saving ink and improving readability.
+
+
+@mixin monochrome-print {
+  @media print {
+    filter: grayscale(100%);
+  }
+}
+// 18. Footer Content on Each Page
+// Define footer content that repeats on every printed page.
+
+
+@mixin print-footer($content) {
+  @media print {
+    @page {
+      @bottom-center {
+        content: $content;
+      }
+    }
+  }
+}
+// 19. Table Print Styles
+// Enhance tables for printing, such as ensuring table headers repeat on each page and optimizing layout.
+
+
+@mixin print-table {
+  @media print {
+    thead {
+      display: table-header-group;
+    }
+    tr, td {
+      page-break-inside: avoid;
+    }
+  }
+}
+// 20. Background Printing
+// Enable or adjust background colors and images for printing, as they are often disabled by default.
+
+
+@mixin print-background {
+  @media print {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+    background: white; // or any preferred color
+  }
+}
+// 21. Custom Paper Size Printing
+// Provide a mixin to set custom paper sizes for specific sections or the entire document.
+
+
+@mixin custom-paper-size($width, $height) {
+  @media print {
+    @page {
+      size: $width $height;
+    }
+  }
+}
+// 22. Printable QR Code
+// Generate a QR code for URLs in the print version, useful for providing easy access to online resources.
+
+
+@mixin printable-qr-code($url, $size: 50px) {
+  @media print {
+    &::after {
+      content: url('https://api.qrserver.com/v1/create-qr-code/?size=#{$size}x#{$size}&data=#{$url}');
+    }
+  }
+}
+// 23. Print Dialog Shortcut
+// Provide a class or function that triggers the print dialog when an element is clicked, enhancing user interaction for printing.
+
+
+.print-trigger {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+  &:active {
+    // Call JavaScript to trigger the print dialog
+    // e.g., onClick="window.print();"
+  }
+}

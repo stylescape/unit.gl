@@ -1,4 +1,4 @@
-// Copyright 2023 Scape Agency BV
+// Copyright 2020 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,14 +25,7 @@ $paper-size-arch-e: (width: 36in, height: 48in);
 
 
 .page {
-    &.jis-b4 {
-      width: map-get($paper-size-jis-b4, width);
-      height: map-get($paper-size-jis-b4, height);
-    }
-    &.ansi-a {
-      width: map-get($paper-size-ansi-a, width);
-      height: map-get($paper-size-ansi-a, height);
-    }
+
     &.arch-b {
       width: map-get($paper-size-arch-b, width);
       height: map-get($paper-size-arch-b, height);
