@@ -17,47 +17,70 @@
 // Base | Unit
 // ============================================================================
 
-@use 'sass:math';
+@use "sass:math";
+
 
 
 // Kyū Measurement System for Responsive Typography
-// $q-base: Base size of a Kyū, set to 1/16th of a Rem.
-// $q-sizes: 
-// --q-<size>: CSS custom properties representing Kyū sizes.
-// fluid-font-size mixin: Applies fluid typography using Kyū sizes.
+// Defines a base size and provides a mixin for fluid typography.
 
 
-// Kyū base size definition
-// A Kyū is 1/16th of a Rem
-$q_base: 0.0625rem !default;
-$q: 0.0625rem !default;
+// Kyū base size definition (A Kyū is 1/16th of a Rem).
+// 1rem equals the font size of the html element, which for most browsers has
+// a default value of 16px.
+$q_base: 0.0625rem !default;  // 1px, or 0.25mm
 $q_unit: 1.0000rem !default;
-// $q_unit: rem !default;
-// @if $q_unit != rem and $q_unit != px {
-//   @error "`#{$q_unit}` is not a valid unit for $q_unit. Use `px` or `rem`.";
-// }
 
-// Define a range of Kyū sizes for responsive design
-// Map of Kyū sizes for various design needs (xs, sm, md, lg, xl).
-// $q-sizes: (
-//   xs: 0.5 * $q-base,  // Extra Small
-//   sm: 1 * $q-base,    // Small
-//   md: 2 * $q-base,    // Medium
-//   lg: 3 * $q-base,    // Large
-//   xl: 4 * $q-base     // Extra Large
-// ) !default;
+
+// Minimum and maximum Kyū sizes
+$q_min: 0.75px !default;
+$q_max: 1.50px !default;
 
 
 
-:root {
-    --q: $q;
+
+
+// Calculate dynamic Kyū size using clamp function
+// $q_size: scale_dynamic_clamp($media_xs, $media_sl, $q_min, $q_max);
+$q: scale_dynamic_clamp($media_xs, $media_sl, $q_min, $q_max);
+
+// Function to calculate multiples of 'q'
+@function q($multiplier) {
+    @return $q * $multiplier;
+}
+
+// Mixin to apply multiples of 'q'
+@mixin q($multiplier, $property) {
+    #{$property}: q($multiplier);
 }
 
 
 
-$q_min: 0.75px !default;
-$q_max: 1.50px !default;
-$q_dif: calc($q_max - $q_min);
 
+
+
+
+// Calculate dynamic font size
+$font_size: calc(($q_unit / $q_base) * $q) !default;
+
+// Corresponding minimum and maximum font sizes
 $font_min: calc(($q_unit / $q) * $q_min) !default;
 $font_max: calc(($q_unit / $q) * $q_max) !default;
+
+
+
+
+// Apply
+// ============================================================================
+
+// Apply Fluid Typography
+html {
+    font-size: $font_size;
+}
+
+
+// Root custom properties for Kyū sizes
+// :root {
+//     // --q: $q;
+//     --q_base: #{$q_base};
+// }

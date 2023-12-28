@@ -14,15 +14,75 @@
 
 
 // ============================================================================
-// Base | View
+// Media | Screen
 // ============================================================================
 
-$media_min: 320px !default;  // Mobile
-$media_med: 640px !default;  // Tablet
-$media_max: 960px !default;  // Screen
-$media_dif: calc($media_max - $media_min);
+// 320px — 480px: Mobile devices
+// 481px — 768px: iPads, Tablets
+// 769px — 1024px: Small screens, laptops
+// 1025px — 1200px: Desktops, large screens
+// 1201px and more —  Extra large screens, TV
 
-$view_width_min: 320px !default;
-$view_width_med: 640px !default;
-$view_width_max: 960px !default;
-$view_width_dif: calc($view_width_max - $view_width_min);
+
+$base_screen_unit: 16px !default; // Base unit size (16px)
+
+
+@function calc_breakpoint($multiplier) {
+    @return $base_screen_unit * $multiplier;
+}
+
+
+// Define breakpoints using the function
+$breakpoints: (
+    xs: calc_breakpoint(20),   //  320px - Extra small devices (Mobile)
+    sm: calc_breakpoint(30),   //  480px - Small devices (Tablets)
+    md: calc_breakpoint(48),   //  768px - Medium devices (Laptops)
+    lg: calc_breakpoint(64),   // 1024px - Large devices (Desktops)
+    xl: calc_breakpoint(80),   // 1280px - Extra large devices (TV)
+    sl: calc_breakpoint(90),   // 1440px - Super large devices (Large TV)
+) !default;
+
+
+// Expose individual breakpoints for easier direct access
+$media_xs: map-get($breakpoints, xs) !default;
+$media_sm: map-get($breakpoints, sm) !default;
+$media_md: map-get($breakpoints, md) !default;
+$media_lg: map-get($breakpoints, lg) !default;
+$media_xl: map-get($breakpoints, xl) !default;
+$media_sl: map-get($breakpoints, sl) !default;
+
+$media_dif: calc($media_sl - $media_xs);
+
+// $media_min: 320px !default;  // Mobile
+// $media_med: 640px !default;  // Tablet
+// $media_max: 960px !default;  // Screen
+
+@mixin breakpoint($size) {
+    @if map-has-key($breakpoints, $size) {
+        @media (min-width: map-get($breakpoints, $size)) {
+            @content;
+        }
+    } @else {
+        @warn "Invalid breakpoint: #{$size}.";
+    }
+}
+
+
+// Example
+// @include breakpoint(md) {
+//     // Styles for medium screens and up
+// }
+  
+
+// Syntax
+// @media media type and (condition: breakpoint) {
+//   // CSS rules
+// }
+
+// @media screen, print {
+//     /* … */
+//   }
+
+// @media (min-width: 30em) and (orientation: landscape) {
+//     /* … */
+//   }
