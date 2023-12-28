@@ -83,31 +83,32 @@ export const configProduction = {
     // ========================================================================
 
     plugins: [
+        // Clean the output directory before build.
+        // Removes/cleans build folders and unused assets when rebuilding
+        // new CleanWebpackPlugin(),
         // Extracts CSS into separate files for production
         new MiniCssExtractPlugin(
             {
-                // filename: "css/stylescape.css",
-                filename: "[name].[contenthash].css"
+                filename: "css/stylescape.css",
+                // filename: "[name].[contenthash].css"
             }
         ),
-        // Clean the output directory before build.
-        // Removes/cleans build folders and unused assets when rebuilding
-        new CleanWebpackPlugin(),
+
         // Copies files from target to destination folder
-        new CopyWebpackPlugin(
-            {
-                patterns: [
-                    {
-                        from: "src/font",
-                        to: "font",
-                        globOptions: {
-                            ignore: ["*.DS_Store"],
-                        },
-                        noErrorOnMissing: true,
-                    }
-                ]
-            }
-        ),
+        // new CopyWebpackPlugin(
+        //     {
+        //         patterns: [
+        //             {
+        //                 from: "src/font",
+        //                 to: "font",
+        //                 globOptions: {
+        //                     ignore: ["*.DS_Store"],
+        //                 },
+        //                 noErrorOnMissing: true,
+        //             }
+        //         ]
+        //     }
+        // ),
     ],
 
 

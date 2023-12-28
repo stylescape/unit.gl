@@ -23,6 +23,16 @@
 
 $rhythm_base: q(4);
 
+$line_height_ratio: 1.5;
+
+$font_size_scalar:  4;
+$line_height_scalar:  calc($line_height_ratio * $font_size_scalar);
+
+
+
+$font_size_base:    calc($font_size_scalar * $rhythm_base); // Base font size
+$line_height_base:  calc($line_height_scalar * $rhythm_base); // Base line height (1.5 times the font size is a good start)
+
 
 
 $basepoint: (
@@ -62,19 +72,19 @@ $typographic_scale: (
     17: q(72), // +8
 ) !default;
 
-    'display': $q-base * 96,  // For large display text
-    'h1': $q-base * 48,       // For primary headings
-    'h2': $q-base * 36,       // For secondary headings
-    'h3': $q-base * 24,       // For tertiary headings
-    'h4': $q-base * 20,       // For quaternary headings
-    'h5': $q-base * 18,       // For quinary headings
-    'h6': $q-base * 16,       // For senary headings
-    'body-large': $q-base * 14, // For large body text
-    'body': $q-base * 12,     // For main body text
-    'body-small': $q-base * 10, // For small body text
-    'caption': $q-base * 8,   // For captions and overlines
-    'overline': $q-base * 6   // For the smallest size, like legal text
-) !default;
+//     'display': $q-base * 96,  // For large display text
+//     'h1': $q-base * 48,       // For primary headings
+//     'h2': $q-base * 36,       // For secondary headings
+//     'h3': $q-base * 24,       // For tertiary headings
+//     'h4': $q-base * 20,       // For quaternary headings
+//     'h5': $q-base * 18,       // For quinary headings
+//     'h6': $q-base * 16,       // For senary headings
+//     'body-large': $q-base * 14, // For large body text
+//     'body': $q-base * 12,     // For main body text
+//     'body-small': $q-base * 10, // For small body text
+//     'caption': $q-base * 8,   // For captions and overlines
+//     'overline': $q-base * 6   // For the smallest size, like legal text
+// ) !default;
 
 
 
@@ -107,14 +117,6 @@ $typographic_scale: (
 // $rhythm_base: 4;
 
 
-$font_size_scalar:  16;
-$line_height_scalar:  24;
-
-$line_height_ratio: 1.5;
-
-
-$font_size_base:    q($font_size_scalar); // Base font size
-$line_height_base:  q($line_height_scalar); // Base line height (1.5 times the font size is a good start)
 
 
 
