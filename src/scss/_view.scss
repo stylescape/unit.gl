@@ -57,6 +57,9 @@ $media_dif: calc($media_sl - $media_xs);
 // $media_med: 640px !default;  // Tablet
 // $media_max: 960px !default;  // Screen
 
+// Media Query Mixins
+// ============================================================================
+
 @mixin breakpoint($size) {
     @if map-has-key($breakpoints, $size) {
         @media (min-width: map-get($breakpoints, $size)) {
@@ -67,6 +70,32 @@ $media_dif: calc($media_sl - $media_xs);
     }
 }
 
+@mixin media_xs {
+    @media (min-width: $media_xs) { @content; }
+}
+  
+@mixin media_sm {
+    @media (min-width: $media_sm) { @content; }
+}
+
+
+@mixin media_md {
+    @media (min-width: $media_md) { @content; }
+}
+  
+@mixin media_lg {
+    @media (min-width: $media_lg) { @content; }
+}
+  
+
+@mixin media_xl {
+    @media (min-width: $media_xl) { @content; }
+}
+  
+@mixin media_sl {
+    @media (min-width: $media_sl) { @content; }
+}
+  
 
 // Example
 // @include breakpoint(md) {
