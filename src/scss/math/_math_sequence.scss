@@ -1,0 +1,278 @@
+// Copyright 2020 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// Number Sequences
+// ============================================================================
+
+
+// Fibonacci Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth Fibonacci number using a recursive approach.
+/// In mathematics, the Fibonacci numbers form a sequence such that each number
+/// is the sum of the two preceding ones, usually starting with 0 and 1.
+/// @param {Number} $n - The position in the Fibonacci sequence to calculate.
+/// @return {Number} - The nth Fibonacci number.
+@function sequence_fibonacci($n) {
+
+    // Return null for negative index to avoid unnecessary recursion
+    @if $n < 0 {
+        @warn "Index #{$n} is not valid for Fibonacci sequence.";
+        @return null;
+    }
+
+    // Base cases
+    @if $n == 0 {
+        @return 0;
+    } @else if $n == 1 {
+        @return 1;
+    } @else {
+        // Recursive case
+        @return sequence_fibonacci($n - 1) + sequence_fibonacci($n - 2);
+    }
+
+}
+
+
+// Lucas Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth Lucas number using a recursive approach.
+/// In mathematics, the Lucas numbers are an integer sequence named after the
+/// mathematician François Édouard Anatole Lucas (1842–1891), who studied both
+/// that sequence and the closely related Fibonacci numbers. Lucas numbers and
+/// Fibonacci numbers form complementary instances of Lucas sequences
+/// @param {Number} $n - The position in the Lucas sequence to calculate.
+/// @return {Number} - The nth Lucas number.
+@function sequence_lucas($n) {
+
+    // Return null for negative index to avoid unnecessary recursion
+    @if $n < 0 {
+        @warn "Index #{$n} is not valid for Lucas sequence.";
+        @return null;
+    }
+
+    // Base cases
+    @if $n == 0 {
+        @return 2;
+    } @else if $n == 1 {
+        @return 1;
+    } @else {
+        // Recursive case
+        @return sequence_lucas($n - 1) + sequence_lucas($n - 2);
+    }
+
+}
+
+
+// Prime Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Checks if a number is a prime number.
+/// Prime numbers are natural numbers greater than 1 that are not a product
+/// of two smaller natural numbers.
+/// This function returns true if the number is prime, otherwise false.
+/// @param {Number} $n - The number to check.
+/// @return {Boolean} - `true` if the number is prime, `false` otherwise.
+@function is_prime($n) {
+    @if $n <= 1 {
+        @return false;
+    }
+    @for $i from 2 through math.sqrt($n) {
+        @if $n % $i == 0 {
+            @return false;
+        }
+    }
+    @return true;
+}
+
+
+// Catalan Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the factorial of a number.
+/// @param {Number} $n - The number to calculate factorial for.
+/// @return {Number} - The factorial of $n.
+@function factorial($n) {
+    $result: 1;
+    @for $i from 1 through $n {
+        $result: $result * $i;
+    }
+    @return $result;
+}
+
+/// Calculates the nth Catalan number.
+/// Catalan numbers are a sequence of natural numbers that have found
+/// applications in various combinatorial problems. The nth Catalan number
+/// is calculated using the formula C(n) = (2n)! / (n+1)!n!.
+/// @param {Number} $n - The position in the Catalan series to calculate.
+/// @return {Number} - The nth Catalan number.
+@function sequence_catalan($n) {
+    @return factorial(2 * $n) / (factorial($n + 1) * factorial($n));
+}
+
+
+// Harmonic Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth term of the harmonic series.
+/// The harmonic series is the sum of reciprocals of the positive integers.
+/// For simplicity, we calculate the nth term as 1/n.
+/// @param {Number} $n - The position in the harmonic series to calculate.
+/// @return {Number} - The nth term of the harmonic series.
+@function sequence_harmonic($n) {
+    @if $n <= 0 {
+        @warn "Index #{$n} is not valid for harmonic series.";
+        @return null;
+    }
+    @return 1 / $n;
+}
+
+
+// Geometric Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth term of a geometric series with a ratio of 2.
+/// The geometric series is a series with a constant ratio between successive
+/// terms. Here we calculate the nth term for a series with a ratio of 2 
+/// (doubling each term).
+/// @param {Number} $n - The position in the geometric series to calculate.
+/// @return {Number} - The nth term of the geometric series.
+@function sequence_geometric($n) {
+    @if $n < 0 {
+        @warn "Negative index #{$n} is not valid for geometric series.";
+        @return null;
+    }
+    @return pow(2, $n - 1);
+}
+
+
+// Superfactorial Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the superfactorial of a number.
+/// The superfactorial of a number n is the product of the first n factorials.
+/// @param {Number} $n - The number to calculate superfactorial for.
+/// @return {Number} - The superfactorial of $n.
+@function sequence_superfactorial($n) {
+    $result: 1;
+    @for $i from 1 through $n {
+        $factorial: 1;
+        @for $j from 1 through $i {
+            $factorial: $factorial * $j;
+        }
+        $result: $result * $factorial;
+    }
+    @return $result;
+}
+
+
+// Triangular Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth triangular number.
+/// In mathematics, a triangular number or triangle number counts objects arranged
+/// in an equilateral triangle. The nth triangular number is the number of dots
+/// Triangular numbers are the sum of the first n natural numbers. The nth
+/// triangular number is n(n + 1)/2.
+/// composing a triangle with n dots on a side.
+/// @param {Number} $n - The position in the triangular series to calculate.
+/// @return {Number} - The nth triangular number.
+@function sequence_triangular($n) {
+
+    // Return null for non-positive index to avoid invalid numbers
+    @if $n <= 0 {
+        @warn "Index #{$n} is not valid for triangular series.";
+        @return null;
+    }
+
+    // Calculate the nth triangular number
+    @return $n * ($n + 1) / 2;
+
+}
+
+
+// Square Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth square number.
+/// Square numbers are numbers that can be expressed as the product of an
+/// integer with itself. The nth square number is n².
+/// @param {Number} $n - The position in the square series to calculate.
+/// @return {Number} - The nth square number.
+@function sequence_square($n) {
+    @if $n < 0 {
+        @warn "Negative index #{$n} is not valid for square series.";
+        @return null;
+    }
+    @return $n * $n;
+}
+
+
+// Pentagonal Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth pentagonal number.
+/// In mathematics, a pentagonal number is a figurate number that extends the
+/// concept of triangular and square numbers to the pentagon.
+/// @param {Number} $n - The position in the pentagonal series to calculate.
+/// @return {Number} - The nth pentagonal number.
+@function sequence_pentagonal($n) {
+
+    // Return null for non-positive index to avoid invalid numbers
+    @if $n <= 0 {
+        @warn "Index #{$n} is not valid for pentagonal series.";
+        @return null;
+    }
+
+    // Calculate the nth pentagonal number
+    @return (3 * $n * $n - $n) / 2;
+
+}
+
+
+// Hexagonal Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth hexagonal number.
+/// Hexagonal numbers are figurate numbers that represent a hexagon. The nth
+/// hexagonal number is given by 2n² - n.
+/// @param {Number} $n - The position in the hexagonal series to calculate.
+/// @return {Number} - The nth hexagonal number.
+@function sequence_hexagonal($n) {
+    @if $n <= 0 {
+        @warn "Index #{$n} is not valid for hexagonal series.";
+        @return null;
+    }
+    @return 2 * $n * $n - $n;
+}
+
+
+// Cube Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth cube number.
+/// Cube numbers are the numbers raised to the power of three.
+/// The nth cube number is n³.
+/// @param {Number} $n - The position in the cube series to calculate.
+/// @return {Number} - The nth cube number.
+@function sequence_cube($n) {
+    @if $n < 0 {
+        @warn "Negative index #{$n} is not valid for cube series.";
+        @return null;
+    }
+    @return $n * $n * $n;
+}

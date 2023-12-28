@@ -1,0 +1,14 @@
+
+
+
+
+
+
+
+/// Golden Ratio Function
+/// A simple function to calculate sizes using the golden ratio, which can be
+/// used for spacing, sizing elements, etc.
+@function golden-ratio($size, $increment: 1) {
+    $golden-ratio: 1.618;
+    @return $size * pow($golden-ratio, $increment);
+}

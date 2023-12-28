@@ -277,11 +277,31 @@ $paper_sizes: (
     'index_card_4x6': (width: 4in, height: 6in),    // 4" x 6" Index Card
     'index_card_5x8': (width: 5in, height: 8in),    // 5" x 8" Index Card
 
+    // Commercial Printing Sizes
+    // ------------------------------------------------------------------------
+    'brochure_8x10': (width: 8in, height: 10in),           // 8" x 10" Brochure
+    'brochure_11x17': (width: 11in, height: 17in),         // 11" x 17" Brochure
+
     // Advertising Flyer Sizes
     // ------------------------------------------------------------------------
     'flyer_small': (width: 4.25in, height: 5.5in),     // Small Flyer
     'flyer_medium': (width: 5.5in, height: 8.5in),     // Medium Flyer
     'flyer_large': (width: 8.5in, height: 11in),       // Large Flyer
+
+
+    // Academic Paper Sizes
+    // ------------------------------------------------------------------------
+    'journal_standard': (width: 6in, height: 9in),         // Standard Academic Journal
+    'journal_large': (width: 7in, height: 10in),           // Large Academic Journal
+    'thesis_standard': (width: 8.5in, height: 11in),       // Standard Thesis Paper
+    'thesis_large': (width: 11in, height: 17in),           // Large Thesis Paper
+
+
+    // Other Standard Sizes
+    // ------------------------------------------------------------------------
+    'comic_book': (width: 6.625in, height: 10.25in),       // Standard Comic Book
+    'music_sheet': (width: 9in, height: 12in),             // Standard Music Sheet
+    'playing_card': (width: 2.5in, height: 3.5in),         // Standard Playing Card
 
 ) !default;
 

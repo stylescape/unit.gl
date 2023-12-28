@@ -1,0 +1,10 @@
+// Z-index Layers
+$z-layers: (
+  'guides': 1000,
+  // Add more layers as needed
+);
+
+// Retrieve z-index from the layers map
+@function z($layer) {
+  @return map-get($z-layers, $layer);
+}

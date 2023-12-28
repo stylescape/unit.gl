@@ -46,7 +46,7 @@ $q: scale_dynamic_clamp($media_xs, $media_sl, $q_min, $q_max);
 
 // Function to calculate multiples of 'q'
 @function q($multiplier) {
-    @return $q * $multiplier;
+    @return calc($q * $multiplier);
 }
 
 // Mixin to apply multiples of 'q'
@@ -54,33 +54,7 @@ $q: scale_dynamic_clamp($media_xs, $media_sl, $q_min, $q_max);
     #{$property}: q($multiplier);
 }
 
-
-
-
-
-
-
-// Calculate dynamic font size
-$font_size: calc(($q_unit / $q_base) * $q) !default;
-
-// Corresponding minimum and maximum font sizes
-$font_min: calc(($q_unit / $q) * $q_min) !default;
-$font_max: calc(($q_unit / $q) * $q_max) !default;
-
-
-
-
-// Apply
-// ============================================================================
-
-// Apply Fluid Typography
-html {
-    font-size: $font_size;
-}
-
-
 // Root custom properties for Kyū sizes
-// :root {
-//     // --q: $q;
-//     --q_base: #{$q_base};
-// }
+:root {
+    --q: $q;
+}
