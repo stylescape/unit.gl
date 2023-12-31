@@ -74,3 +74,12 @@ In Japan, since Motoki Shōzō began his work with movable type printing, anothe
 
 
 https://art-design-glossary.musabi.ac.jp/kyu-ha-point/
+
+
+https://www.layoutgridcalculator.com/type-scale/
+https://spencermortensen.com/articles/typographic-scale/
+https://typescale.com/
+https://retinart.net/typography/typographicscale/
+https://medium.com/@tilougarou/the-typographic-scale-reworked-a1b441b2beb2
+https://www.smashingmagazine.com/2014/09/balancing-line-length-font-size-responsive-web-design/
+https://ec.europa.eu/component-library/eu/guidelines/typography/#:~:text=Line%20height,-Line%2Dheight%2C%20relevant&text=Ideal%20line%2Dheight%20for%20standard,height%20ratio%20of%201%3A1.2.
