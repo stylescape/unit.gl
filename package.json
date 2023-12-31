@@ -1,6 +1,6 @@
 {
     "name": "unit.gl",
-    "description": "A Sass-based layout engine for fluid typography and responsive design, utilizing the Kyu unit measurement system.",
+    "description": "Layout Engine.",
     "version": "0.0.1",
     "config": {
         "version_short": "0.0"
