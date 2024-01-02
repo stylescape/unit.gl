@@ -1,6 +1,6 @@
 {
   "name": "unit.gl",
-  "version": "0.0.10",
+  "version": "0.0.14",
   "description": "Layout Engine.",
   "keywords": [
     "unit.gl",
@@ -20,11 +20,11 @@
   "homepage": "https://www.unit.gl/",
   "main": "index.js",
   "files": [
-    "svg/**/*.{svg}",
+    "svg/**/*.svg",
     "js/**/*.{js,map}",
     "ts/**/*.ts",
     "css/**/*.{css,map}",
-    "scss/**/*.{scss}",
+    "scss/**/*.scss",
     "font/**/*.{eot,otf,ttf,woff,woff2}",
     "!.DS_Store"
   ]

@@ -21,38 +21,40 @@ jobs:
 
     steps:
 
-    - 
-      uses: actions/checkout@v4
+      - 
+        name: Checkout
+        uses: actions/checkout@v4
 
-    - 
-      uses: actions/setup-node@v4
-      with:
-        node-version: 16
+      - 
+        name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
 
-    # - run: npm ci
-    # - run: npm run lint
+      # - run: npm ci
+      # - run: npm run lint
 
 
 
-    - 
-      name: NPM Install & Build
-      run: |
-        npm install
-        npm run build
+      - 
+        name: NPM Install & Build
+        run: |
+          npm install
+          npm run build
 
-    # npm run build --if-present
-    # npm test
+      # npm run build --if-present
+      # npm test
 
-    - 
-      name: Zip lib & node_modules
-      run: zip -9qry "build.zip" "./" -i "node_modules/*" -i "lib/*"
+      - 
+        name: Zip lib & node_modules
+        run: zip -9qry "build.zip" "./" -i "node_modules/*" -i "lib/*"
 
-    - 
-      name: Upload build.zip
-      uses: actions/upload-artifact@v4
-      with:
-        name: build.zip
-        path: build.zip
+      - 
+        name: Upload build.zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: build.zip
+          path: build.zip
 
 
 # =============================================================================
@@ -70,6 +72,7 @@ jobs:
     steps:
 
       - 
+        name: Checkout
         uses: actions/checkout@master
 
       - 
@@ -115,9 +118,11 @@ jobs:
     steps:
 
       - 
+        name: Checkout
         uses: actions/checkout@v4
 
       - 
+        name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 16
@@ -136,12 +141,18 @@ jobs:
       - 
         name: Publish NPM
         run: |
-          cd dist
-          ls
-          npm publish --access public
+          npm publish dist --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
 
+      # - 
+      #   name: Publish NPM
+      #   run: |
+      #     cd dist
+      #     ls
+      #     npm publish --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
 
 # =============================================================================
 # Publish to GitHub Packages
