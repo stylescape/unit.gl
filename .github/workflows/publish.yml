@@ -38,14 +38,13 @@ jobs:
         with:
           node-version: 18.x
 
-      - name: Check if version has been updated
-        id: check
-        uses: EndBug/version-check@v2
-        
+      # - name: Check if version has been updated
+      #   id: check
+      #   uses: EndBug/version-check@v2
 
       - 
         name: NPM Install
-        if: steps.check.outputs.changed == 'true'
+        # if: steps.check.outputs.changed == 'true'
         run: |
           npm clean-install
 
