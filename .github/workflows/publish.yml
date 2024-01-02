@@ -138,21 +138,21 @@ jobs:
         name: Unzip build.zip
         run: unzip -q build.zip
 
-      - 
-        name: Publish NPM
-        run: |
-          npm publish dist --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
-
       # - 
       #   name: Publish NPM
       #   run: |
-      #     cd dist
-      #     ls
-      #     npm publish --access public
+      #     npm publish dist --access public
       #   env:
       #     NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
+
+      - 
+        name: Publish NPM
+        run: |
+          cd dist
+          ls
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
 
 # =============================================================================
 # Publish to GitHub Packages
