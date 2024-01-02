@@ -136,7 +136,7 @@ jobs:
 
       - 
         name: Unzip build.zip
-        run: unzip -q build.zip
+        run: unzip -q -o build.zip
 
       # - 
       #   name: Publish NPM
