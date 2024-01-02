@@ -3,7 +3,8 @@ name: Publish
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'publish'
+      # - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
 
@@ -37,9 +38,10 @@ jobs:
       name: NPM Install & Build
       run: |
         npm install
-        npm run build --if-present
+        npm run build
 
-      # npm test
+    # npm run build --if-present
+    # npm test
 
     - 
       name: Zip lib & node_modules
@@ -135,6 +137,7 @@ jobs:
         name: Publish NPM
         run: |
           cd dist
+          ls
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
