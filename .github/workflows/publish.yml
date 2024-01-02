@@ -47,7 +47,7 @@ jobs:
 
       - 
         name: Zip lib & node_modules
-        run: zip -9qry "build.zip" "./" -i "node_modules/*" -i "lib/*"
+        run: zip -9qry "build.zip" "./" -i "node_modules/*" -i "dist/*"
 
       - 
         name: Upload build.zip
