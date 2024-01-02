@@ -104,6 +104,8 @@ jobs:
 
   publish-npm:
 
+    name: Publish NPM
+
     needs: build
 
     runs-on: ubuntu-latest
@@ -130,10 +132,10 @@ jobs:
         run: unzip -q build.zip
 
       - 
+        name: Publish NPM
         run: |
           cd dist
           npm publish --access public
-        # run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
 

@@ -96,13 +96,13 @@ async function main() {
         // Process with expanded style
         await styleProcessor.processStyles(
             path.join(CONFIG.path.scss_input, 'index.scss'),
-            path.join(CONFIG.path.css_output, 'icon.gl.css'),
+            path.join(CONFIG.path.css_output, 'unit.gl.css'),
             'expanded'
         );
         // Process with compressed style
         await styleProcessor.processStyles(
             path.join(CONFIG.path.scss_input, 'index.scss'),
-            path.join(CONFIG.path.css_output, 'icon.gl.min.css'),
+            path.join(CONFIG.path.css_output, 'unit.gl.min.css'),
             'compressed'
         );
         console.log('SASS Processing completed.');
@@ -187,7 +187,7 @@ async function main() {
 
         await fileRenamer.renameFile(
             path.join(CONFIG.path.js_output, 'index.js'),
-            path.join(CONFIG.path.js_output, 'icon.gl.js'),
+            path.join(CONFIG.path.js_output, 'unit.gl.js'),
         )
 
         // Minify JavaScript
@@ -198,8 +198,8 @@ async function main() {
         // const outputMinJsFile = './path/to/your/script.min.js';
 
         await jsMinifier.minifyFile(
-            path.join(CONFIG.path.js_output, 'icon.gl.js'),
-            path.join(CONFIG.path.js_output, 'icon.gl.min.js'),
+            path.join(CONFIG.path.js_output, 'unit.gl.js'),
+            path.join(CONFIG.path.js_output, 'unit.gl.min.js'),
             // inputJsFile,
             // outputMinJsFile
         )
