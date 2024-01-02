@@ -17,16 +17,16 @@
 // Base | Reset
 // ============================================================================
 
-
 @mixin reset_bleed {
-  margin:               0;
-  margin-block-start:   0;
-  margin-block-end:     0;
-  margin-inline-start:  0;
-  margin-inline-end:    0;
-  padding:              0;
+    margin:               0;
+    margin-block-start:   0;
+    margin-block-end:     0;
+    margin-inline-start:  0;
+    margin-inline-end:    0;
+    padding:              0;
 }
 
+*,
 a,
 abbr,
 acronym,
@@ -150,13 +150,9 @@ var,
 video,
 wbr 
 { 
-  @include reset_bleed;
+    @include reset_bleed;
 }
 
-// *{
-//     padding: 0px;
-//     margin: 0px;
-// }
 
 // html, body, div, span, applet, object, iframe,
 // h1, h2, h3, h4, h5, h6, p, blockquote, pre,

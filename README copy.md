@@ -15,17 +15,6 @@ Unit.gl is a resizing engine developed by Stylescape, primarily focused on respo
 
 6. **Legacy of the Gō Unit**: In Japanese typography, another historical unit, the gō, was used to express character size, particularly during the early movable type printing era. Though no longer in use, the legacy of the gō unit is reflected in standard character sizes in modern PC software, such as a 5-gō character equating to a standard 10.5-point character in Microsoft Word.
 
-For more detailed information, you can refer to Bootstrap's documentation on RFS at [getbootstrap.com](https://getbootstrap.com/docs/5.0/getting-started/rfs/) or the GitHub repository for RFS at [github.com/twbs/rfs](https://github.com/twbs/rfs/tree/v9.0.3).
-
-
-
-
-
-
-
-
-
-
 
 
 
