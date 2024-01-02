@@ -40,8 +40,8 @@ function main() {
             console.log('Starting Directory creation...');
             yield directoryCreator.createDirectories('.', directories);
             console.log('Processing SASS...');
-            yield styleProcessor.processStyles(path.join(CONFIG.path.scss_input, 'index.scss'), path.join(CONFIG.path.css_output, 'icon.gl.css'), 'expanded');
-            yield styleProcessor.processStyles(path.join(CONFIG.path.scss_input, 'index.scss'), path.join(CONFIG.path.css_output, 'icon.gl.min.css'), 'compressed');
+            yield styleProcessor.processStyles(path.join(CONFIG.path.scss_input, 'index.scss'), path.join(CONFIG.path.css_output, 'unit.gl.css'), 'expanded');
+            yield styleProcessor.processStyles(path.join(CONFIG.path.scss_input, 'index.scss'), path.join(CONFIG.path.css_output, 'unit.gl.min.css'), 'compressed');
             console.log('SASS Processing completed.');
             try {
                 yield directoryCopier.copyFiles(CONFIG.path.ts_input, CONFIG.path.ts_output);
@@ -71,8 +71,8 @@ function main() {
             catch (error) {
                 console.error('An error occurred:', error);
             }
-            yield fileRenamer.renameFile(path.join(CONFIG.path.js_output, 'index.js'), path.join(CONFIG.path.js_output, 'icon.gl.js'));
-            yield jsMinifier.minifyFile(path.join(CONFIG.path.js_output, 'icon.gl.js'), path.join(CONFIG.path.js_output, 'icon.gl.min.js'))
+            yield fileRenamer.renameFile(path.join(CONFIG.path.js_output, 'index.js'), path.join(CONFIG.path.js_output, 'unit.gl.js'));
+            yield jsMinifier.minifyFile(path.join(CONFIG.path.js_output, 'unit.gl.js'), path.join(CONFIG.path.js_output, 'unit.gl.min.js'))
                 .then(() => console.log('JavaScript minification completed.'))
                 .catch(console.error);
         }
