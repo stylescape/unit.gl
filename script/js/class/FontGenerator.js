@@ -6,7 +6,7 @@ class FontGenerator {
             const config = {
                 inputDir: sourceDirectory,
                 outputDir: outputDiectory,
-                name: 'icon.gl',
+                name: 'unit.gl',
                 fontTypes: [
                     FontAssetType.TTF,
                     FontAssetType.WOFF,
@@ -26,11 +26,11 @@ class FontGenerator {
                     json: { indent: 4 },
                 },
                 pathOptions: {
-                    json: './dist/font/icon.gl.json',
-                    css: './dist/font/icon.gl.css',
-                    scss: './dist/font/icon.gl.scss',
-                    woff: './dist/font/icon.gl.woff',
-                    woff2: './dist/font/icon.gl.woff2',
+                    json: './dist/font/unit.gl.json',
+                    css: './dist/font/unit.gl.css',
+                    scss: './dist/font/unit.gl.scss',
+                    woff: './dist/font/unit.gl.woff',
+                    woff2: './dist/font/unit.gl.woff2',
                 },
                 selector: '.igl',
                 prefix: 'igl',

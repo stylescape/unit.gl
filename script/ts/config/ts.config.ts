@@ -64,7 +64,7 @@ const tsConfig = {
     // noUncheckedIndexedAccess?: boolean;
     // out?: string;
     // outDir?: string;
-    // outFile: 'icon.gl.js' // string;
+    // outFile: 'unit.gl.js' // string;
     // paths?: MapLike<string[]>;
     // preserveConstEnums?: boolean;
     // noImplicitOverride?: boolean;

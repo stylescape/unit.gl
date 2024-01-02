@@ -74,7 +74,7 @@ const svgspriteConfig: svgSprite.Config = {
         symbol: {        // Create a «symbol» sprite
             // dest: ".",
             // inline: true, // Prepare for inline embedding
-            sprite: "icon.gl.svg"
+            sprite: "unit.gl.svg"
         },
         stack: true, // Create a «stack» sprite
         // symbol: true // Symbol sprite mode

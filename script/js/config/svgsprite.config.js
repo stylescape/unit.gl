@@ -35,7 +35,7 @@ const svgspriteConfig = {
         view: true,
         defs: true,
         symbol: {
-            sprite: "icon.gl.svg"
+            sprite: "unit.gl.svg"
         },
         stack: true,
     }

@@ -38,7 +38,7 @@ class FontGenerator {
             outputDir: outputDiectory, // (required)
 
             // RunnerOptionalOptions
-            name: 'icon.gl',
+            name: 'unit.gl',
             fontTypes: [
                 FontAssetType.TTF,      // TTF = "ttf"
                 FontAssetType.WOFF,     // WOFF = "woff"
@@ -79,11 +79,11 @@ class FontGenerator {
             // }
             },
         pathOptions: {
-            json:   './dist/font/icon.gl.json',
-            css:    './dist/font/icon.gl.css',
-            scss:   './dist/font/icon.gl.scss',
-            woff:   './dist/font/icon.gl.woff',
-            woff2:  './dist/font/icon.gl.woff2',
+            json:   './dist/font/unit.gl.json',
+            css:    './dist/font/unit.gl.css',
+            scss:   './dist/font/unit.gl.scss',
+            woff:   './dist/font/unit.gl.woff',
+            woff2:  './dist/font/unit.gl.woff2',
         },
         // codepoints: {
         //     'chevron-left':     57344, // decimal representation of 0xe000
@@ -99,8 +99,8 @@ class FontGenerator {
         // tag: string;
         // Use our custom Handlebars templates
         // templates: {
-        //     css: './build/font/icon.gl.css.hbs',
-        //     scss: './build/font/icon.gl.scss.hbs'
+        //     css: './build/font/unit.gl.css.hbs',
+        //     scss: './build/font/unit.gl.scss.hbs'
         // }, 
         prefix: 'igl',
         fontsUrl: './fonts',
