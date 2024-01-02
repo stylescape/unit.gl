@@ -1,7 +1,7 @@
 {
     "name": "unit.gl",
     "description": "Layout Engine.",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "config": {
         "version_short": "0.0"
     },
@@ -111,8 +111,8 @@
         "dist/css/**/*.{css,map}",
         "dist/font/**/*.{eot,otf,ttf,woff,woff2}",
         "src/ts/**/*.ts",
-        "src/scss/**/*.scss",
-        "dist/scss/**/*.scss",
+        "src/scss/**/*.{scss}",
+        "dist/scss/**/*.{scss}",
         "src/font/**/*.{ttf,woff,woff2}",
         "!.DS_Store"
     ],
