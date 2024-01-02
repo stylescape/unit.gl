@@ -1,0 +1,414 @@
+// Copyright 2020 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.00 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.00
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// Paper Module
+// ============================================================================
+
+
+// Paper Size Map
+// ============================================================================
+
+$paper_sizes: (
+
+    // Q Series
+    // ------------------------------------------------------------------------
+    "q0":                   (width:  720.00mm, height: 1080.00mm),  // Q0
+    "q1":                   (width:  540.00mm, height:  720.00mm),  // Q1
+    "q2":                   (width:  360.00mm, height:  540.00mm),  // Q2
+    "q3":                   (width:  270.00mm, height:  360.00mm),  // Q3
+    "q4":                   (width:  180.00mm, height:  270.00mm),  // Q4
+    "q5":                   (width:  135.00mm, height:  180.00mm),  // Q5
+    "q6":                   (width:   90.00mm, height:  135.00mm),  // Q6
+    "q7":                   (width:   62.50mm, height:   90.00mm),  // Q7
+    "q8":                   (width:   45.00mm, height:   62.50mm),  // Q8
+    "q9":                   (width:   31.25mm, height:   45.00mm),  // Q9
+    "q10":                  (width:   22.50mm, height:   31.25mm),  // Q10
+
+    // ANSI Series
+    // ------------------------------------------------------------------------
+    "ansi_a":               (width:    8.50in, height:   11.00in),  // ANSI A (Letter)
+    "ansi_b":               (width:   11.00in, height:   17.00in),  // ANSI B (Ledger)
+    "ansi_c":               (width:   17.00in, height:   22.00in),  // ANSI C
+    "ansi_d":               (width:   22.00in, height:   34.00in),  // ANSI D
+    "ansi_e":               (width:   34.00in, height:   44.00in),  // ANSI E
+
+    // Arch Series (Engineering Drawing Sizes)
+    // ------------------------------------------------------------------------
+    "arch_a":               (width:    9.00in, height:   12.00in),  // Arch A
+    "arch_b":               (width:   12.00in, height:   18.00in),  // Arch B
+    "arch_c":               (width:   18.00in, height:   24.00in),  // Arch C
+    "arch_d":               (width:   24.00in, height:   36.00in),  // Arch D
+    "arch_e":               (width:   36.00in, height:   48.00in),  // Arch E
+
+    // DIN A Series
+    // ------------------------------------------------------------------------
+    "din_a0":               (width:  841.00mm, height: 1189.00mm),  // DIN A0
+    "din_a1":               (width:  594.00mm, height:  841.00mm),  // DIN A1
+    "din_a2":               (width:  420.00mm, height:  594.00mm),  // DIN A2
+    "din_a3":               (width:  297.00mm, height:  420.00mm),  // DIN A3
+    "din_a4":               (width:  210.00mm, height:  297.00mm),  // DIN A4
+    "din_a5":               (width:  148.00mm, height:  210.00mm),  // DIN A5
+    "din_a6":               (width:  105.00mm, height:  148.00mm),  // DIN A6
+    "din_a7":               (width:   74.00mm, height:  105.00mm),  // DIN A7
+    "din_a8":               (width:   52.00mm, height:   74.00mm),  // DIN A8
+    "din_a9":               (width:   37.00mm, height:   52.00mm),  // DIN A9
+    "din_a10":              (width:   26.00mm, height:   37.00mm),  // DIN A10
+
+    // ISO A Series
+    // ------------------------------------------------------------------------
+    "iso_a0":               (width:  841.00mm, height: 1189.00mm),  // ISO A0
+    "iso_a1":               (width:  594.00mm, height:  841.00mm),  // ISO A1
+    "iso_a2":               (width:  420.00mm, height:  594.00mm),  // ISO A2
+    "iso_a3":               (width:  297.00mm, height:  420.00mm),  // ISO A3
+    "iso_a4":               (width:  210.00mm, height:  297.00mm),  // ISO A4
+    "iso_a5":               (width:  148.00mm, height:  210.00mm),  // ISO A5
+    "iso_a6":               (width:  105.00mm, height:  148.00mm),  // ISO A6
+    "iso_a7":               (width:   74.00mm, height:  105.00mm),  // ISO A7
+    "iso_a8":               (width:   52.00mm, height:   74.00mm),  // ISO A8
+    "iso_a9":               (width:   37.00mm, height:   52.00mm),  // ISO A9
+    "iso_a10":              (width:   26.00mm, height:   37.00mm),  // ISO A10
+
+    // ISO B Series
+    // ------------------------------------------------------------------------
+    "iso_b0":               (width: 1000.00mm, height: 1414.00mm),  // ISO B0
+    "iso_b1":               (width:  707.00mm, height: 1000.00mm),  // ISO B1
+    "iso_b2":               (width:  500.00mm, height:  707.00mm),  // ISO B2
+    "iso_b3":               (width:  353.00mm, height:  500.00mm),  // ISO B3
+    "iso_b4":               (width:  250.00mm, height:  353.00mm),  // ISO B4
+    "iso_b5":               (width:  176.00mm, height:  250.00mm),  // ISO B5
+    "iso_b6":               (width:  125.00mm, height:  176.00mm),  // ISO B6
+    "iso_b7":               (width:   88.00mm, height:  125.00mm),  // ISO B7
+    "iso_b8":               (width:   62.00mm, height:   88.00mm),  // ISO B8
+    "iso_b9":               (width:   44.00mm, height:   62.00mm),  // ISO B9
+    "iso_b10":              (width:   31.00mm, height:   44.00mm),  // ISO B10
+
+    // ISO C Series (International Envelope Sizes)
+    // ------------------------------------------------------------------------
+    "iso_c0":               (width:  917.00mm, height: 1297.00mm),  // ISO C0
+    "iso_c1":               (width:  648.00mm, height:  917.00mm),  // ISO C1
+    "iso_c2":               (width:  458.00mm, height:  648.00mm),  // ISO C2
+    "iso_c3":               (width:  324.00mm, height:  458.00mm),  // ISO C3
+    "iso_c4":               (width:  229.00mm, height:  324.00mm),  // ISO C4
+    "iso_c5":               (width:  162.00mm, height:  229.00mm),  // ISO C5
+    "iso_c6":               (width:  114.00mm, height:  162.00mm),  // ISO C6
+    "iso_c7":               (width:   81.00mm, height:  114.00mm),  // ISO C7
+    "iso_c8":               (width:   57.00mm, height:   81.00mm),  // ISO C8
+    "iso_c9":               (width:   40.00mm, height:   57.00mm),  // ISO C9
+    "iso_c10":              (width:   28.00mm, height:   40.00mm),  // ISO C10
+
+    // ISO RA Series (ISO 217:2013)
+    // ------------------------------------------------------------------------
+    "iso_ra0":              (width:  860.00mm, height: 1220.00mm),  // ISO RA0
+    "iso_ra1":              (width:  610.00mm, height:  860.00mm),  // ISO RA1
+    "iso_ra2":              (width:  430.00mm, height:  610.00mm),  // ISO RA2
+    "iso_ra3":              (width:  305.00mm, height:  430.00mm),  // ISO RA3
+    "iso_ra4":              (width:  215.00mm, height:  305.00mm),  // ISO RA4
+    
+    // ISO SRA Series (ISO 217:2013)
+    // ------------------------------------------------------------------------
+    "iso_sra0":             (width:  900.00mm, height: 1280.00mm),  // ISO SRA0
+    "iso_sra1":             (width:  640.00mm, height:  900.00mm),  // ISO SRA1
+    "iso_sra2":             (width:  450.00mm, height:  640.00mm),  // ISO SRA2
+    "iso_sra3":             (width:  320.00mm, height:  450.00mm),  // ISO SRA3
+    "iso_sra4":             (width:  225.00mm, height:  320.00mm),  // ISO SRA4
+
+    // JIS A Series
+    // ------------------------------------------------------------------------
+    "jis_a0":               (width:  841.00mm, height: 1189.00mm),  // JIS A0
+    "jis_a1":               (width:  594.00mm, height:  841.00mm),  // JIS A1
+    "jis_a2":               (width:  420.00mm, height:  594.00mm),  // JIS A2
+    "jis_a3":               (width:  297.00mm, height:  420.00mm),  // JIS A3
+    "jis_a4":               (width:  210.00mm, height:  297.00mm),  // JIS A4
+    "jis_a5":               (width:  148.00mm, height:  210.00mm),  // JIS A5
+    "jis_a6":               (width:  105.00mm, height:  148.00mm),  // JIS A6
+    "jis_a7":               (width:   74.00mm, height:  105.00mm),  // JIS A7
+    "jis_a8":               (width:   52.00mm, height:   74.00mm),  // JIS A8
+    "jis_a9":               (width:   37.00mm, height:   52.00mm),  // JIS A9
+    "jis_a10":              (width:   26.00mm, height:   37.00mm),  // JIS A10
+
+    // JIS B Series
+    // ------------------------------------------------------------------------
+    "jis_b0":               (width: 1030.00mm, height: 1456.00mm),  // JIS B0
+    "jis_b1":               (width:  728.00mm, height: 1030.00mm),  // JIS B1
+    "jis_b2":               (width:  515.00mm, height:  728.00mm),  // JIS B2
+    "jis_b3":               (width:  364.00mm, height:  515.00mm),  // JIS B3
+    "jis_b4":               (width:  257.00mm, height:  364.00mm),  // JIS B4
+    "jis_b5":               (width:  182.00mm, height:  257.00mm),  // JIS B5
+    "jis_b6":               (width:  128.00mm, height:  182.00mm),  // JIS B6
+    "jis_b7":               (width:   91.00mm, height:  128.00mm),  // JIS B7
+    "jis_b8":               (width:   64.00mm, height:   91.00mm),  // JIS B8
+    "jis_b9":               (width:   45.00mm, height:   64.00mm),  // JIS B9
+    "jis_b10":              (width:   32.00mm, height:   45.00mm),  // JIS B10
+
+    // JIS C Series
+    // ------------------------------------------------------------------------
+    "jis_c0":               (width:  917.00mm, height: 1297.00mm),  // JIS C0
+    "jis_c1":               (width:  648.00mm, height:  917.00mm),  // JIS C1
+    "jis_c2":               (width:  458.00mm, height:  648.00mm),  // JIS C2
+    "jis_c3":               (width:  324.00mm, height:  458.00mm),  // JIS C3
+    "jis_c4":               (width:  229.00mm, height:  324.00mm),  // JIS C4
+    "jis_c5":               (width:  162.00mm, height:  229.00mm),  // JIS C5
+    "jis_c6":               (width:  114.00mm, height:  162.00mm),  // JIS C6
+    "jis_c7":               (width:   81.00mm, height:  114.00mm),  // JIS C7
+    "jis_c8":               (width:   57.00mm, height:   81.00mm),  // JIS C8
+    "jis_c9":               (width:   40.00mm, height:   57.00mm),  // JIS C9
+    "jis_c10":              (width:   28.00mm, height:   40.00mm),  // JIS C10
+
+    // PA (Alternate) Series
+    // ------------------------------------------------------------------------
+    "pa0":                  (width:  840.00mm, height: 1120.00mm),  // PA0
+    "pa1":                  (width:  560.00mm, height:  840.00mm),  // PA1
+    "pa2":                  (width:  420.00mm, height:  560.00mm),  // PA2
+    "pa3":                  (width:  280.00mm, height:  420.00mm),  // PA3
+    "pa4":                  (width:  210.00mm, height:  280.00mm),  // PA4
+    "pa5":                  (width:  140.00mm, height:  210.00mm),  // PA5
+    "pa6":                  (width:  105.00mm, height:  140.00mm),  // PA6
+    "pa7":                  (width:   70.00mm, height:  105.00mm),  // PA7
+    "pa8":                  (width:   52.00mm, height:   70.00mm),  // PA8
+    "pa9":                  (width:   35.00mm, height:   52.00mm),  // PA9
+    "pa10":                 (width:   26.00mm, height:   35.00mm),  // PA10
+
+    // Photographic Paper Sizes (ISO 1008)
+    // ------------------------------------------------------------------------
+    "photo_3x3":            (width:    3.00in, height:    3.00in),  //  3" x  3"
+    "photo_4x5":            (width:    4.00in, height:    5.00in),  //  4" x  5"
+    "photo_5x7":            (width:    5.00in, height:    7.00in),  //  5" x  7"
+    "photo_8x10":           (width:    8.00in, height:   10.00in),  //  8" x 10"
+    "photo_10x12":          (width:   10.00in, height:   12.00in),  // 10" x 12"
+    "photo_16x20":          (width:   16.00in, height:   20.00in),  // 16" x 20"
+
+    // Photographic Paper Sizes (US)
+    // ------------------------------------------------------------------------
+    "photo_2r":             (width:    2.50in, height:    3.50in),  // 2R (Wallet)
+    "photo_3r":             (width:    3.50in, height:    5.00in),  // 3R
+    "photo_4r":             (width:    4.00in, height:    6.00in),  // 4R
+    "photo_5r":             (width:    5.00in, height:    7.00in),  // 5R
+    "photo_6r":             (width:    6.00in, height:    8.00in),  // 6R
+    "photo_8r":             (width:    8.00in, height:   10.00in),  // 8R
+    "photo_8r_plus":        (width:    8.00in, height:   12.00in),  // 8R+
+    "photo_10r":            (width:   10.00in, height:   12.00in),  // 10R
+    "photo_10r_plus":       (width:   10.00in, height:   15.00in),  // 10R+
+    "photo_11r":            (width:   11.00in, height:   14.00in),  // 11R
+    "photo_11r_plus":       (width:   11.00in, height:   17.00in),  // 11R+
+    "photo_12r":            (width:   12.00in, height:   15.00in),  // 12R
+    "photo_12r_plus":       (width:   12.00in, height:   18.00in),  // 12R+
+    "photo_14r":            (width:   14.00in, height:   17.00in),  // 14R
+    "photo_16r":            (width:   16.00in, height:   20.00in),  // 16R
+    "photo_16r_plus":       (width:   16.00in, height:   24.00in),  // 16R+
+    "photo_20r":            (width:   20.00in, height:   24.00in),  // 20R
+    "photo_20r_plus":       (width:   20.00in, height:   28.00in),  // 20R+
+    "photo_22r":            (width:   20.00in, height:   29.50in),  // 22R
+    "photo_24r":            (width:   24.00in, height:   31.50in),  // 24R
+    "photo_24r_plus":       (width:   24.00in, height:   35.50in),  // 24R+
+    "photo_30r":            (width:   30.00in, height:   40.00in),  // 30R
+
+    // US Paper Sizes
+    // ------------------------------------------------------------------------
+    "us_letter":            (width:    8.50in, height:   11.00in),  // US Letter
+    "us_legal":             (width:    8.50in, height:   14.00in),  // US Legal
+    "us_ledger":            (width:   11.00in, height:   17.00in),  // US Ledger/Tabloid
+    "us_junior":            (width:    5.00in, height:    8.00in),  // US Junior Legal
+    "us_half_letter":       (width:    5.50in, height:    8.50in),  // US Half Letter
+    "us_government_letter": (width:    8.00in, height:   10.50in),  // US Government Letter
+    "us_executive":         (width:    7.25in, height:   10.50in),  // US Executive
+    "us_statement":         (width:    5.50in, height:    8.50in),  // US Statement
+    "us_folio":             (width:    8.50in, height:   13.00in),  // US Folio
+    "us_quarto":            (width:    8.00in, height:   10.00in),  // US Quarto
+    "us_tabloid_extra":     (width:   12.00in, height:   18.00in),  // US Tabloid Extra
+
+    // US Poster Sizes
+    // ------------------------------------------------------------------------
+    'poster_small':         (width:   11.00in, height:   17.00in),  // Small Poster
+    'poster_medium':        (width:   18.00in, height:   24.00in),  // Medium Poster
+    'poster_large':         (width:   24.00in, height:   36.00in),  // Large Poster
+    'poster_movie':         (width:   27.00in, height:   40.00in),  // Movie Poster
+    'poster_xlarge':        (width:   36.00in, height:   48.00in),  // Extra Large Poster
+
+    // Art Canvas Sizes
+    // ------------------------------------------------------------------------
+    "canvas_8x10":          (width:    8.00in, height:   10.00in),  //  8" x 10" (4:5 ratio)
+    "canvas_10x14":         (width:   10.00in, height:   14.00in),  // 10" x 14"
+    "canvas_10x24":         (width:   10.00in, height:   24.00in),  // 10" x 24" (5:12 ratio)
+    "canvas_12x12":         (width:   12.00in, height:   12.00in),  // 12" x 12" (1:1 ratio)
+    "canvas_12x36":         (width:   12.00in, height:   36.00in),  // 12" x 36" (1:3 ratio)
+    "canvas_16x16":         (width:   16.00in, height:   16.00in),  // 16" x 16" (1:1 ratio)
+    "canvas_16x20":         (width:   16.00in, height:   20.00in),  // 16" x 20" (4:5 ratio)
+    "canvas_18x24":         (width:   18.00in, height:   24.00in),  // 18" x 24" (3:4 ratio)
+    "canvas_20x30":         (width:   20.00in, height:   30.00in),  // 20" x 30" (2:3 ratio)
+    "canvas_20x60":         (width:   20.00in, height:   60.00in),  // 20" x 60" (1:3 ratio)
+    "canvas_24x36":         (width:   24.00in, height:   36.00in),  // 24" x 36" (2:3 ratio)
+    "canvas_30x40":         (width:   30.00in, height:   40.00in),  // 30" x 40" (3:4 ratio)
+    "canvas_30x90":         (width:   30.00in, height:   90.00in),  // 30" x 90" (1:3 ratio)
+    "canvas_36x48":         (width:   36.00in, height:   48.00in),  // 36" x 48" (3:4 ratio)
+    "canvas_40x40":         (width:   40.00in, height:   40.00in),  // 40" x 40" (1:1 ratio)
+    "canvas_40x60":         (width:   40.00in, height:   60.00in),  // 40" x 60" (2:3 ratio)
+    "canvas_48x72":         (width:   48.00in, height:   72.00in),  // 48" x 72" (2:3 ratio)
+
+    // Book Sizes (Common in Publishing)
+    // ------------------------------------------------------------------------
+    'book_small': (width: 5in, height: 8in),       // Small Book
+    'book_medium': (width: 6in, height: 9in),      // Medium Book
+    'book_large': (width: 7in, height: 10in),      // Large Book
+    'book_collectors': (width: 9in, height: 12in),        // Collectors Edition Book
+    'book_coffee_table': (width: 12in, height: 15in),     // Coffee Table Book
+
+    // Business Card Standard Sizes
+    // ------------------------------------------------------------------------
+    'business_card_us': (width: 3.5in, height: 2in),   // US Standard Business Card
+    'business_card_eu': (width: 85mm, height: 55mm),   // EU Standard Business Card
+    'business_card_iso': (width: 90mm, height: 55mm),  // ISO Standard Business Card
+    
+    // Index Card Sizes
+    // ------------------------------------------------------------------------
+    'index_card_3x5': (width: 3in, height: 5in),    // 3" x 5" Index Card
+    'index_card_4x6': (width: 4in, height: 6in),    // 4" x 6" Index Card
+    'index_card_5x8': (width: 5in, height: 8in),    // 5" x 8" Index Card
+
+    // Commercial Printing Sizes
+    // ------------------------------------------------------------------------
+    'brochure_8x10': (width: 8in, height: 10in),           // 8" x 10" Brochure
+    'brochure_11x17': (width: 11in, height: 17in),         // 11" x 17" Brochure
+
+    // Advertising Flyer Sizes
+    // ------------------------------------------------------------------------
+    'flyer_small': (width: 4.25in, height: 5.5in),     // Small Flyer
+    'flyer_medium': (width: 5.5in, height: 8.5in),     // Medium Flyer
+    'flyer_large': (width: 8.5in, height: 11in),       // Large Flyer
+
+
+    // Academic Paper Sizes
+    // ------------------------------------------------------------------------
+    'journal_standard': (width: 6in, height: 9in),         // Standard Academic Journal
+    'journal_large': (width: 7in, height: 10in),           // Large Academic Journal
+    'thesis_standard': (width: 8.5in, height: 11in),       // Standard Thesis Paper
+    'thesis_large': (width: 11in, height: 17in),           // Large Thesis Paper
+
+
+    // Other Standard Sizes
+    // ------------------------------------------------------------------------
+    'comic_book': (width: 6.625in, height: 10.25in),       // Standard Comic Book
+    'music_sheet': (width: 9in, height: 12in),             // Standard Music Sheet
+    'playing_card': (width: 2.5in, height: 3.5in),         // Standard Playing Card
+
+) !default;
+
+
+// Apply Function
+// ============================================================================
+
+@mixin set_paper_size($size) {
+    @if map-has-key($paper-sizes, $size) {
+        $size-map: map-get($paper-sizes, $size);
+        width: map-get($size-map, width);
+        height: map-get($size-map, height);
+    } @else {
+        @warn "Invalid paper size: #{$size}.";
+    }
+}
+
+
+$paper_size_ansi_a: map-get($paper_sizes, 'ansi_a');
+$paper_size_ansi_b: map-get($paper_sizes, 'ansi_b');
+$paper_size_ansi_c: map-get($paper_sizes, 'ansi_c');
+$paper_size_ansi_d: map-get($paper_sizes, 'ansi_d');
+$paper_size_ansi_e: map-get($paper_sizes, 'ansi_e');
+
+$paper_size_ansi_a_width: map-get($paper_size_ansi_a, width);
+$paper_size_ansi_a_height: map-get($paper_size_ansi_a, height);
+
+.paper {
+    &.ansi_a {
+      width: map-get($paper_size_ansi_a, width);
+      height: map-get($paper_size_ansi_a, height);
+    }
+
+    // Add similar classes for other sizes...
+}
+  
+// Usage
+// ============================================================================
+
+.paper {
+
+    // Q Series
+    // ------------------------------------------------------------------------
+    &.q0    { @include set_paper_size("q0"); }
+    &.q1    { @include set_paper_size("q1"); }
+    &.q2    { @include set_paper_size("q2"); }
+    &.q3    { @include set_paper_size("q3"); }
+    &.q4    { @include set_paper_size("q4"); }
+    &.q5    { @include set_paper_size("q5"); }
+    &.q6    { @include set_paper_size("q6"); }
+    &.q7    { @include set_paper_size("q7"); }
+    &.q8    { @include set_paper_size("q8"); }
+    &.q9    { @include set_paper_size("q9"); }
+    &.q10   { @include set_paper_size("q10"); }
+
+    // ISO A Series
+    // ------------------------------------------------------------------------
+    &.iso_a0    { @include set_paper_size("iso_a0"); }
+    &.iso_a1    { @include set_paper_size("iso_a1"); }
+    &.iso_a2    { @include set_paper_size("iso_a2"); }
+    &.iso_a3    { @include set_paper_size("iso_a3"); }
+    &.iso_a4    { @include set_paper_size("iso_a4"); }
+    &.iso_a5    { @include set_paper_size("iso_a5"); }
+    &.iso_a6    { @include set_paper_size("iso_a6"); }
+    &.iso_a7    { @include set_paper_size("iso_a7"); }
+    &.iso_a8    { @include set_paper_size("iso_a8"); }
+    &.iso_a9    { @include set_paper_size("iso_a9"); }
+    &.iso_a10   { @include set_paper_size("iso_a10"); }
+
+}
+
+// Function to calculate ISO paper sizes
+// @function iso-paper-size($number) {
+//     $base-width:   841mm;
+//     $base-height: 1189mm;
+
+//     @for $i from 0 through $number {
+//         $base-width: $base-width / if($i > 0, 2, 1);
+//         $base-height: $base-height / if($i > 0 and $i % 2 == 0, 2, 1);
+//     }
+
+//     @return (width: $base-width, height: $base-height);
+// }
+
+
+// Function to calculate ISO B-series paper sizes
+// @function iso-paper-size-b($number) {
+//     $base-width: 1000mm; // Approximate base width for B0
+//     $base-height: 1414mm; // Approximate base height for B0
+  
+//     @for $i from 0 through $number {
+//       $base-width: $base-width / if($i > 0, sqrt(2), 1);
+//       $base-height: $base-height / if($i > 0 and $i % 2 == 0, sqrt(2), 1);
+//     }
+  
+//     @return (width: $base-width, height: $base-height);
+//   }
+
+// Function to calculate ISO C-series paper sizes
+// @function iso-paper-size-c($number) {
+//     $base-width: 917mm; // Approximate base width for C0
+//     $base-height: 1297mm; // Approximate base height for C0
+  
+//     @for $i from 0 through $number {
+//       $base-width: $base-width / if($i > 0, sqrt(2), 1);
+//       $base-height: $base-height / if($i > 0 and $i % 2 == 0, sqrt(2), 1);
+//     }
+  
+//     @return (width: $base-width, height: $base-height);
+//   }

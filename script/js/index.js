@@ -39,15 +39,6 @@ function main() {
             console.log(`Directory cleaned: ${CONFIG.path.dist}`);
             console.log('Starting Directory creation...');
             yield directoryCreator.createDirectories('.', directories);
-            console.log('Starting SVG processing...');
-            yield svgPackager.processSvgFiles(CONFIG.path.svg_input, CONFIG.path.svg_output, CONFIG.path.ts_output_icons, CONFIG.path.json_output);
-            console.log('SVG processing completed.');
-            console.log('Starting font generation...');
-            yield fontGenerator.generateFonts(CONFIG.path.font_input, CONFIG.path.font_output);
-            console.log('Font generation completed.');
-            console.log('Starting SVG Sprite generation...');
-            yield spriteGenerator.generateSprite(CONFIG.path.sprite_input, CONFIG.path.sprite_output);
-            console.log('SVG Sprite generation completed.');
             console.log('Processing SASS...');
             yield styleProcessor.processStyles(path.join(CONFIG.path.scss_input, 'index.scss'), path.join(CONFIG.path.css_output, 'icon.gl.css'), 'expanded');
             yield styleProcessor.processStyles(path.join(CONFIG.path.scss_input, 'index.scss'), path.join(CONFIG.path.css_output, 'icon.gl.min.css'), 'compressed');

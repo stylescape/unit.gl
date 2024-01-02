@@ -4,12 +4,7 @@ export const CONFIG = {
         src:      './src',
         dist:      './dist',
 
-        svg_input:          './src/svg',
-        svg_output:         './dist/svg',
-        sprite_input:       './dist/svg',
-        sprite_output:      './dist/sprite',
-        font_input:         './dist/svg',
-        font_output:        './dist/font',
+
         scss_input:         './src/scss',
         scss_output:        './dist/scss',
         css_output:         './dist/css',

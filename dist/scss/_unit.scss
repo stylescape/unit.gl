@@ -1,0 +1,60 @@
+// Copyright 2020 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// Base | Unit
+// ============================================================================
+
+@use "sass:math";
+
+
+
+// Kyū Measurement System for Responsive Typography
+// Defines a base size and provides a mixin for fluid typography.
+
+
+// Kyū base size definition (A Kyū is 1/16th of a Rem).
+// 1rem equals the font size of the html element, which for most browsers has
+// a default value of 16px.
+$q_base: 0.0625rem !default;  // 1px, or 0.25mm
+$q_unit: 1.0000rem !default;
+
+
+// Minimum and maximum Kyū sizes
+$q_min: 0.75px !default;
+$q_max: 1.50px !default;
+
+
+
+
+
+// Calculate dynamic Kyū size using clamp function
+// $q_size: scale_dynamic_clamp($media_xs, $media_sl, $q_min, $q_max);
+$q: scale_dynamic_clamp($media_xs, $media_sl, $q_min, $q_max);
+
+// Function to calculate multiples of 'q'
+@function q($multiplier) {
+    @return calc($q * $multiplier);
+}
+
+// Mixin to apply multiples of 'q'
+@mixin q($multiplier, $property) {
+    #{$property}: q($multiplier);
+}
+
+// Root custom properties for Kyū sizes
+:root {
+    --q: $q;
+}

@@ -1,0 +1,107 @@
+// Copyright 2020 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// Shorthand helper mixins
+
+
+
+
+
+// Dimensions
+// ----------------------------------------------------------------------------
+
+@mixin width($value) {
+    @include q($value, width);
+}
+
+@mixin height($value) {
+    @include q($value, height);
+}
+
+
+// Typography
+// ----------------------------------------------------------------------------
+
+@mixin font-size($value) {
+    @include q($value, font-size);
+}
+
+@mixin line-height($value) {
+    @include q($value, line-height);
+}
+
+@mixin letter-spacing($value) {
+    @include q($value, letter-spacing);
+}
+
+
+// Border
+// ----------------------------------------------------------------------------
+
+@mixin border-width($value) {
+    @include q($value, border-width);
+}
+
+@mixin border-radius($value) {
+    @include q($value, border-radius);
+}
+
+
+// Padding
+// ----------------------------------------------------------------------------
+
+@mixin padding($value) {
+    @include q($value, padding);
+}
+
+@mixin padding-top($value) {
+    @include q($value, padding-top);
+}
+
+@mixin padding-right($value) {
+    @include q($value, padding-right);
+}
+
+@mixin padding-bottom($value) {
+    @include q($value, padding-bottom);
+}
+
+@mixin padding-left($value) {
+    @include q($value, padding-left);
+}
+
+
+// Margin
+// ----------------------------------------------------------------------------
+
+@mixin margin($value) {
+    @include q($value, margin);
+}
+
+@mixin margin-top($value) {
+    @include q($value, margin-top);
+}
+
+@mixin margin-right($value) {
+    @include q($value, margin-right);
+}
+
+@mixin margin-bottom($value) {
+    @include q($value, margin-bottom);
+}
+
+@mixin margin-left($value) {
+    @include q($value, margin-left);
+}

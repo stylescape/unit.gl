@@ -90,38 +90,6 @@ async function main() {
         await directoryCreator.createDirectories('.', directories);
 
 
-        // SVG
-        // --------------------------------------------------------------------
-        console.log('Starting SVG processing...');
-        await svgPackager.processSvgFiles(
-            CONFIG.path.svg_input,
-            CONFIG.path.svg_output,
-            CONFIG.path.ts_output_icons,
-            CONFIG.path.json_output,
-        );
-        console.log('SVG processing completed.');
-
-
-        // Font
-        // --------------------------------------------------------------------
-        console.log('Starting font generation...');
-        await fontGenerator.generateFonts(
-            CONFIG.path.font_input,
-            CONFIG.path.font_output,
-        );
-        console.log('Font generation completed.');
-
-
-        // Sprite
-        // --------------------------------------------------------------------
-        console.log('Starting SVG Sprite generation...');
-        await spriteGenerator.generateSprite(
-            CONFIG.path.sprite_input,
-            CONFIG.path.sprite_output,
-        );
-        console.log('SVG Sprite generation completed.');
-
-
         // SASS
         // --------------------------------------------------------------------
         console.log('Processing SASS...');
