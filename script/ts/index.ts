@@ -21,19 +21,32 @@
 
 // Import necessary modules and classes
 import path from 'path';
-import FontGenerator from './class/FontGenerator.js';
-import SvgPackager from "./class/SvgPackager.js";
-import StyleProcessor from "./class/StyleProcessor.js";
-import SvgSpriteGenerator from "./class/SvgSpriteGenerator.js";
-import PackageCreator from './class/PackageCreator.js';
-import VersionWriter from './class/VersionWriter.js';
-import FileCopier from './class/FileCopier.js'; 
-import FileRenamer from './class/FileRenamer.js'; 
-import DirectoryCreator from './class/DirectoryCreator.js';
-import DirectoryCopier from './class/DirectoryCopier.js';
-import DirectoryCleaner from './class/DirectoryCleaner.js'; // Adjust the path as needed
-import TypeScriptCompiler from './class/TypeScriptCompiler.js';
-import JavaScriptMinifier from './class/JavaScriptMinifier.js';
+
+import {
+    DirectoryCleaner,
+    DirectoryCopier,
+    DirectoryCreator,
+    FileCopier,
+    FileRenamer,
+    StyleProcessor,
+    SvgPackager,
+    SvgSpriteGenerator,
+    PackageCreator,
+    VersionWriter,
+    TypeScriptCompiler,
+    JavaScriptMinifier
+} from 'pack.gl';
+
+
+
+// import StyleProcessor from "./class/StyleProcessor.js";
+// import SvgSpriteGenerator from "./class/SvgSpriteGenerator.js";
+// import PackageCreator from './class/PackageCreator.js';
+// import VersionWriter from './class/VersionWriter.js';
+// import TypeScriptCompiler from './class/TypeScriptCompiler.js';
+// import JavaScriptMinifier from './class/JavaScriptMinifier.js';
+
+
 
 // Import necessary configurations
 import { CONFIG } from './config/config.js';
@@ -49,15 +62,11 @@ import tensorConfig from "./config/terser.config.js"
 
 // Initialize instances of necessary classes
 const directories = Object.values(CONFIG.path);
-const spriteGenerator = new SvgSpriteGenerator(svgspriteConfig);
 const tsCompiler = new TypeScriptCompiler(tsConfig);
 const jsMinifier = new JavaScriptMinifier(tensorConfig);
 const packageCreator = new PackageCreator(packageConfig);
-const svgPackager = new SvgPackager();
-const fontGenerator = new FontGenerator();
 const styleProcessor = new StyleProcessor();
 const versionWriter = new VersionWriter();
-const fileCopier = new FileCopier();
 const fileRenamer = new FileRenamer();
 const directoryCopier = new DirectoryCopier();
 const directoryCleaner = new DirectoryCleaner();
