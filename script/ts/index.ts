@@ -39,15 +39,6 @@ import {
 
 
 
-// import StyleProcessor from "./class/StyleProcessor.js";
-// import SvgSpriteGenerator from "./class/SvgSpriteGenerator.js";
-// import PackageCreator from './class/PackageCreator.js';
-// import VersionWriter from './class/VersionWriter.js';
-// import TypeScriptCompiler from './class/TypeScriptCompiler.js';
-// import JavaScriptMinifier from './class/JavaScriptMinifier.js';
-
-
-
 // Import necessary configurations
 import { CONFIG } from './config/config.js';
 import svgspriteConfig from "./config/svgsprite.config.js";
