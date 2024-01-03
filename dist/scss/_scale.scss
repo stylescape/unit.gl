@@ -17,7 +17,8 @@
 
 
 
-$rhythm_base: q(4);
+// $rhythm_base: q(4);
+$rhythm_base: $q *4;
 
 $line_height_ratio: 1.5;
 

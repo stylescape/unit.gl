@@ -1,7 +1,7 @@
 {
     "name": "unit.gl",
     "description": "Layout Engine.",
-    "version": "0.0.22",
+    "version": "0.0.23",
     "config": {
         "version_short": "0.0"
     },
@@ -50,6 +50,7 @@
         "build": "npm run build-compile && npm run icons-process",
         "build-compile2": "tsc -p tsconfig.build.json",
         "build-compile": "tsc -p script/tsconfig.json",
+        "start": "npm run webpack-start",
         "webpack-build": "npm run webpack-prod",
         "webpack-build2": "npm run webpack-prod && npm run webpack-dev",
         "webpack-dev": "webpack --mode development --config webpack.config.js",

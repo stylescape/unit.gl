@@ -28,21 +28,8 @@
 // Kyū base size definition (A Kyū is 1/16th of a Rem).
 // 1rem equals the font size of the html element, which for most browsers has
 // a default value of 16px.
-$q_base: 0.0625rem !default;  // 1px, or 0.25mm
-$q_unit: 1.0000rem !default;
+$q: 0.0625rem !default;  // 1px, or 0.25mm
 
-
-// Minimum and maximum Kyū sizes
-$q_min: 0.75px !default;
-$q_max: 1.50px !default;
-
-
-
-
-
-// Calculate dynamic Kyū size using clamp function
-// $q_size: scale_dynamic_clamp($media_xs, $media_sl, $q_min, $q_max);
-$q: scale_dynamic_clamp($media_xs, $media_sl, $q_min, $q_max);
 
 // Function to calculate multiples of 'q'
 @function q($multiplier) {
@@ -54,7 +41,51 @@ $q: scale_dynamic_clamp($media_xs, $media_sl, $q_min, $q_max);
     #{$property}: q($multiplier);
 }
 
+
 // Root custom properties for Kyū sizes
 :root {
     --q: $q;
 }
+
+
+
+
+
+
+
+// Minimum and maximum Kyū sizes
+$q_min: 0.75px !default;
+$q_max: 1.50px !default;
+
+// Minimum and maximum Kyū sizes
+$font_min: calc((1rem / $q) * $q_min) !default;
+$font_max: calc((1rem / $q) * $q_max) !default;
+
+
+@mixin fluid_type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+    $u1: unit($min-vw);
+    $u2: unit($max-vw);
+    $u3: unit($min-font-size);
+    $u4: unit($max-font-size);
+
+    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+        & {
+            font-size: $min-font-size;
+            @media screen and (min-width: $min-vw) {
+                font-size: calc(#{$min-font-size} + #{unit_strip($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{unit_strip($max-vw - $min-vw)}));
+            }
+            @media screen and (min-width: $max-vw) {
+                font-size: $max-font-size;
+            }
+        }
+    }
+}
+
+
+html {
+    @include fluid-type($media_xs, $media_sl, $font_min, $font_max);
+}
+
+
+
+

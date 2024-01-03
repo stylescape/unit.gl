@@ -1,7 +1,7 @@
 /**
 * unit.gl
 *
-* @description     Unit System
+* @description     Layout Engine
 * @author          Scape Agency (https://www.scape.agency)
 * @version         v1.0.0
 * @copyright       2020-2024 Scape Agency (https://www.scape.agency)
@@ -144,6 +144,47 @@ wbr {
   padding: 0;
 }
 
+html {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%; /* Prevent adjustments of font size after orientation changes in iOS */
+  word-break: normal;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+     tab-size: 4;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+*,
+::before,
+::after {
+  background-repeat: no-repeat; /* Set `background-repeat: no-repeat` to all elements and pseudo elements */
+  box-sizing: inherit;
+}
+
+::before,
+::after {
+  text-decoration: inherit; /* Inherit text-decoration and vertical align to ::before and ::after pseudo elements */
+  vertical-align: inherit;
+}
+
+* {
+  padding: 0; /* Reset `padding` and `margin` of all elements */
+  margin: 0;
+}
+
 .paper.ansi_a {
   width: 8.5in;
   height: 11in;
@@ -243,44 +284,16 @@ wbr {
 }
 
 html {
-  font-size: calc(4 * clamp(0.75px, 0.75px + calc((1.5 - 0.75) / (1440 - 320)) * (100vw - 320px), 1.5px) * 4);
-  line-height: calc(6 * clamp(0.75px, 0.75px + calc((1.5 - 0.75) / (1440 - 320)) * (100vw - 320px), 1.5px) * 4);
+  font-size: 12px;
 }
-
-.guide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  pointer-events: none;
-  z-index: 9999;
+@media screen and (min-width: 320px) {
+  html {
+    font-size: calc(12px + 12 * (100vw - 320px) / 1120);
+  }
 }
-
-.guide_graph {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background-size: calc(clamp(0.75px, 0.75px + calc((1.5 - 0.75) / (1440 - 320)) * (100vw - 320px), 1.5px) * 4) calc(clamp(0.75px, 0.75px + calc((1.5 - 0.75) / (1440 - 320)) * (100vw - 320px), 1.5px) * 4);
-  background-image: repeating-linear-gradient(to bottom, rgba(50, 50, 50, 0.25) 0 1px, transparent 1px 100%), repeating-linear-gradient(to right, rgba(50, 50, 50, 0.25) 0 1px, transparent 1px 100%);
-}
-
-.guide_baseline {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background-size: 100% calc(6 * clamp(0.75px, 0.75px + calc((1.5 - 0.75) / (1440 - 320)) * (100vw - 320px), 1.5px) * 4);
-  background-image: repeating-linear-gradient(to bottom, cyan 0 1px, transparent 1px 100%);
+@media screen and (min-width: 1440px) {
+  html {
+    font-size: 24px;
+  }
 }
 /*# sourceMappingURL=to.css.map */
