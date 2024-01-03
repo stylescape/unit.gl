@@ -34,7 +34,8 @@ import {
     PackageCreator,
     VersionWriter,
     TypeScriptCompiler,
-    JavaScriptMinifier
+    JavaScriptMinifier,
+    gl_installer,
 } from 'pack.gl';
 
 
@@ -59,7 +60,6 @@ const packageCreator = new PackageCreator(packageConfig);
 const styleProcessor = new StyleProcessor();
 const versionWriter = new VersionWriter();
 const fileRenamer = new FileRenamer();
-const directoryCopier = new DirectoryCopier();
 const directoryCleaner = new DirectoryCleaner();
 const directoryCreator = new DirectoryCreator();
 
@@ -77,7 +77,9 @@ async function main() {
 
     try {
 
+        await gl_installer();
 
+        
         // Dirs Clean
         // --------------------------------------------------------------------
         directoryCleaner.cleanDirectory(CONFIG.path.dist);
@@ -85,6 +87,8 @@ async function main() {
 
         // Dirs Create
         // --------------------------------------------------------------------
+        const directoryCopier = new DirectoryCopier();
+
         console.log('Starting Directory creation...');
         // Assuming the base path is the current directory
         await directoryCreator.createDirectories('.', directories);

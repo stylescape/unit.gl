@@ -1,6 +1,6 @@
 import { __awaiter } from "tslib";
 import path from 'path';
-import { DirectoryCleaner, DirectoryCopier, DirectoryCreator, FileRenamer, StyleProcessor, PackageCreator, VersionWriter, TypeScriptCompiler, JavaScriptMinifier } from 'pack.gl';
+import { DirectoryCleaner, DirectoryCopier, DirectoryCreator, FileRenamer, StyleProcessor, PackageCreator, VersionWriter, TypeScriptCompiler, JavaScriptMinifier, gl_installer, } from 'pack.gl';
 import { CONFIG } from './config/config.js';
 import packageConfig from "./config/package.config.js";
 import tsConfig from "./config/ts.config.js";
@@ -12,14 +12,15 @@ const packageCreator = new PackageCreator(packageConfig);
 const styleProcessor = new StyleProcessor();
 const versionWriter = new VersionWriter();
 const fileRenamer = new FileRenamer();
-const directoryCopier = new DirectoryCopier();
 const directoryCleaner = new DirectoryCleaner();
 const directoryCreator = new DirectoryCreator();
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            yield gl_installer();
             directoryCleaner.cleanDirectory(CONFIG.path.dist);
             console.log(`Directory cleaned: ${CONFIG.path.dist}`);
+            const directoryCopier = new DirectoryCopier();
             console.log('Starting Directory creation...');
             yield directoryCreator.createDirectories('.', directories);
             console.log('Processing SASS...');
