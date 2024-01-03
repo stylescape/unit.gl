@@ -36,32 +36,29 @@ import {
     TypeScriptCompiler,
     JavaScriptMinifier,
     gl_installer,
+    StylizedLogger,
+    readPackageJson,
 } from 'pack.gl';
-
-
-
-// Import necessary configurations
-import { CONFIG } from './config/config.js';
-import svgspriteConfig from "./config/svgsprite.config.js";
-import packageConfig from "./config/package.config.js"
-import tsConfig from "./config/ts.config.js"
-import tensorConfig from "./config/terser.config.js"
 
 
 // ============================================================================
 // Constants
 // ============================================================================
 
-// Initialize instances of necessary classes
-const directories = Object.values(CONFIG.path);
-const tsCompiler = new TypeScriptCompiler(tsConfig);
-const jsMinifier = new JavaScriptMinifier(tensorConfig);
-const packageCreator = new PackageCreator(packageConfig);
-const styleProcessor = new StyleProcessor();
-const versionWriter = new VersionWriter();
-const fileRenamer = new FileRenamer();
-const directoryCleaner = new DirectoryCleaner();
-const directoryCreator = new DirectoryCreator();
+const CONFIG = {
+    path: {
+        src:                './src',
+        dist:               './dist',
+        scss_input:         './src/scss',
+        scss_output:        './dist/scss',
+        css_output:         './dist/css',
+        json_output:        './dist',
+        ts_input:           './src/ts',
+        ts_output:          './dist/ts',
+        ts_output_icons:    './src/ts/icons',
+        js_output:          './dist/js',
+    },
+};
 
 
 // ============================================================================
@@ -77,140 +74,129 @@ async function main() {
 
     try {
 
+
+        // Init Logger
+        // --------------------------------------------------------------------
+
+        const logger = new StylizedLogger();
+
+
+        // Install .gl libraries
+        // --------------------------------------------------------------------
+
+        logger.header('Install .gl libraries');
         await gl_installer();
 
-        
+
         // Dirs Clean
         // --------------------------------------------------------------------
+
+        const directoryCleaner = new DirectoryCleaner();
+        logger.header('Clean Directories');
         directoryCleaner.cleanDirectory(CONFIG.path.dist);
-        console.log(`Directory cleaned: ${CONFIG.path.dist}`);
-
-        // Dirs Create
-        // --------------------------------------------------------------------
-        const directoryCopier = new DirectoryCopier();
-
-        console.log('Starting Directory creation...');
-        // Assuming the base path is the current directory
-        await directoryCreator.createDirectories('.', directories);
-
-
-        // SASS
-        // --------------------------------------------------------------------
-        console.log('Processing SASS...');
-        // Process with expanded style
-        await styleProcessor.processStyles(
-            path.join(CONFIG.path.scss_input, 'index.scss'),
-            path.join(CONFIG.path.css_output, 'unit.gl.css'),
-            'expanded'
-        );
-        // Process with compressed style
-        await styleProcessor.processStyles(
-            path.join(CONFIG.path.scss_input, 'index.scss'),
-            path.join(CONFIG.path.css_output, 'unit.gl.min.css'),
-            'compressed'
-        );
-        console.log('SASS Processing completed.');
-
-
-        // Copy Files
-        // --------------------------------------------------------------------
-
-        // Define the source file and destination directory
-        // const srcFile = './path/to/source/file.txt';
-        // const destDir = './path/to/destination/directory';
-
-        // // Copy the file
-        // try {
-        //     await fileCopier.copyFileToDirectory(srcFile, destDir);
-        //     console.log('File copying completed successfully.');
-        // } catch (error) {
-        //     console.error('Error while copying file:', error);
-        // }
-
-
-        // Copy Dirs
-        // --------------------------------------------------------------------
-        try {
-            await directoryCopier.copyFiles(
-                CONFIG.path.ts_input,
-                CONFIG.path.ts_output,
-            );
-            console.log('Files copied successfully.');
-        } catch (error) {
-            console.error('Error while copying files:', error);
-        }
-        try {
-            await directoryCopier.copyFiles(
-                CONFIG.path.scss_input,
-                CONFIG.path.scss_output,
-            );
-            console.log('Files copied successfully.');
-        } catch (error) {
-            console.error('Error while copying files:', error);
-        }
-
-        // Version
-        // --------------------------------------------------------------------
-        await versionWriter.writeVersionToFile('VERSION', packageConfig.version);
+        logger.body(`Directory cleaned: ${CONFIG.path.dist}`);
 
 
         // Package JSON
         // --------------------------------------------------------------------
 
-        await packageCreator.createPackageJson(CONFIG.path.dist);
+        const localPackageConfig = await readPackageJson('./package.json');
+        const packageCreator = new PackageCreator(localPackageConfig);
+        const packageConfig = packageCreator.config
+        packageCreator.createPackageJson(CONFIG.path.dist);
+
+
+        // SASS
+        // --------------------------------------------------------------------
+
+        const styleProcessor = new StyleProcessor();
+        logger.header('Processing SASS...');
+        // Process with expanded style
+        await styleProcessor.processStyles(
+            path.join(CONFIG.path.scss_input, 'index.scss'),
+            path.join(CONFIG.path.css_output, `${packageConfig.name}.css`),
+            'expanded'
+        );
+        // Process with compressed style
+        await styleProcessor.processStyles(
+            path.join(CONFIG.path.scss_input, 'index.scss'),
+            path.join(CONFIG.path.css_output, `${packageConfig.name}.min.css`),
+            'compressed'
+        );
+        logger.body('SASS Processing completed.');
+
+
+        // Copy Files
+        // --------------------------------------------------------------------
+
+        const fileCopier = new FileCopier();
+        fileCopier.copyFileToDirectory(
+            path.join('.', 'README.md'),
+            CONFIG.path.dist,
+        )
+        fileCopier.copyFileToDirectory(
+            path.join('.', 'LICENSE'),
+            CONFIG.path.dist,
+        )
+        fileCopier.copyFileToDirectory(
+            path.join('.', 'LICENSE-CODE'),
+            CONFIG.path.dist,
+        )
+
+
+        // Copy Dirs
+        // --------------------------------------------------------------------
+
+        const directoryCopier = new DirectoryCopier();
+        await directoryCopier.recursiveCopy(
+            CONFIG.path.ts_input,
+            CONFIG.path.ts_output,
+        );
+        console.log('Files copied successfully.');
+        await directoryCopier.recursiveCopy(
+            CONFIG.path.scss_input,
+            CONFIG.path.scss_output,
+        );
+        console.log('Files copied successfully.');
+
+
+        // Version
+        // --------------------------------------------------------------------
+
+        const versionWriter = new VersionWriter();
+        await versionWriter.writeVersionToFile('VERSION', packageConfig.version);
 
 
         // Compile TypeScript to JavaScript
         // --------------------------------------------------------------------
-
-
-        try {
-            // Other code...
+        const tsCompiler = new TypeScriptCompiler();
+        const tsFiles = [
+            path.join(CONFIG.path.ts_input, 'index.ts'),
+        ];
+        const outputDir = './dist/js';
+        // console.log('Starting TypeScript compilation...');
+        await tsCompiler.compile(tsFiles, outputDir);
+        // console.log('TypeScript compilation completed.');
     
-            // TypeScript compilation
-            const tsFiles = [
-                path.join(CONFIG.path.ts_input, 'index.ts'),
-                // './src/ts/index.ts',
-                // './src/ts/file1.ts',
-                // './src/ts/file2.ts'
-            ]; // Replace with actual file paths
-            const outputDir = './dist/js';
-            
-            console.log('Starting TypeScript compilation...');
-            tsCompiler.compile(tsFiles, outputDir);
-            console.log('TypeScript compilation completed.');
-    
-            // Other code...
-        } catch (error) {
-            console.error('An error occurred:', error);
-        }
-
 
         // Rename Ts
         // --------------------------------------------------------------------
 
-        await fileRenamer.renameFile(
-            path.join(CONFIG.path.js_output, 'index.js'),
-            path.join(CONFIG.path.js_output, 'unit.gl.js'),
-        )
+        // await fileRenamer.renameFile(
+        //     path.join(CONFIG.path.js_output, 'index.js'),
+        //     path.join(CONFIG.path.js_output, `${packageConfig.name}.js`),
+        // )
+
 
         // Minify JavaScript
         // --------------------------------------------------------------------
-
-
-        // const inputJsFile = './path/to/your/script.js';
-        // const outputMinJsFile = './path/to/your/script.min.js';
-
+        const jsMinifier = new JavaScriptMinifier();
         await jsMinifier.minifyFile(
-            path.join(CONFIG.path.js_output, 'unit.gl.js'),
-            path.join(CONFIG.path.js_output, 'unit.gl.min.js'),
-            // inputJsFile,
-            // outputMinJsFile
+            path.join(CONFIG.path.js_output, 'index.js'),
+            path.join(CONFIG.path.js_output, `${packageConfig.name}.min.js`),
         )
         .then(() => console.log('JavaScript minification completed.'))
         .catch(console.error);
-
-
         
 
     } catch (error) {
