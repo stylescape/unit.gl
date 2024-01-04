@@ -1,6 +1,6 @@
 import { __awaiter } from "tslib";
 import path from 'path';
-import { DirectoryCleaner, DirectoryCopier, FileCopier, StyleProcessor, PackageCreator, VersionWriter, TypeScriptCompiler, JavaScriptMinifier, gl_installer, StylizedLogger, readPackageJson, } from 'pack.gl';
+import { DirectoryCleaner, DirectoryCopier, FileCopier, StyleProcessor, PackageCreator, VersionWriter, TypeScriptCompiler, JavaScriptMinifier, StylizedLogger, gl_installer, readPackageJson, } from 'pack.gl';
 const CONFIG = {
     path: {
         src: './src',
@@ -37,7 +37,6 @@ function main() {
             const fileCopier = new FileCopier();
             fileCopier.copyFileToDirectory(path.join('.', 'README.md'), CONFIG.path.dist);
             fileCopier.copyFileToDirectory(path.join('.', 'LICENSE'), CONFIG.path.dist);
-            fileCopier.copyFileToDirectory(path.join('.', 'LICENSE-CODE'), CONFIG.path.dist);
             const directoryCopier = new DirectoryCopier();
             yield directoryCopier.recursiveCopy(CONFIG.path.ts_input, CONFIG.path.ts_output);
             console.log('Files copied successfully.');

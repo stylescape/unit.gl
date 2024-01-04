@@ -8,14 +8,14 @@
 ---
 
 <div>
-    <img align="right" src="https://raw.githubusercontent.com/scape-agency/brand/master/src/logo/unit.gl.png" width="96" alt="Scape Agency Logo">
+    <img align="right" src="https://raw.githubusercontent.com/scape-agency/brand/master/src/logo/unit.gl.png" width="96" alt="unit.gl logo">
     <h1 align="left">unit.gl</h1>
     <h3 align="left">Stylescape Layout Engine</h3>
 </div>
 
 ---
 
-<img align="right" width="50%" src="/res/unit.gl.png"  alt="unit.gl">
+<img align="right" width="50%" src="https://raw.githubusercontent.com/scape-agency/unit.gl/main/res/unit.gl.png" alt="unit.gl cover">
 
 ### Contents
 

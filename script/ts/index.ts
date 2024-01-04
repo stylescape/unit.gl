@@ -25,18 +25,14 @@ import path from 'path';
 import {
     DirectoryCleaner,
     DirectoryCopier,
-    DirectoryCreator,
     FileCopier,
-    FileRenamer,
     StyleProcessor,
-    SvgPackager,
-    SvgSpriteGenerator,
     PackageCreator,
     VersionWriter,
     TypeScriptCompiler,
     JavaScriptMinifier,
-    gl_installer,
     StylizedLogger,
+    gl_installer,
     readPackageJson,
 } from 'pack.gl';
 
@@ -136,10 +132,6 @@ async function main() {
         )
         fileCopier.copyFileToDirectory(
             path.join('.', 'LICENSE'),
-            CONFIG.path.dist,
-        )
-        fileCopier.copyFileToDirectory(
-            path.join('.', 'LICENSE-CODE'),
             CONFIG.path.dist,
         )
 
