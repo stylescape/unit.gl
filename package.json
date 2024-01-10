@@ -40,7 +40,8 @@
         }
     ],
     "type": "module",
-    "main": "src/scss/index.ts",
+    "main": "src/ts/index.ts",
+    "sass": "src/scss/index.scss",
     "module": "dist/js/unit.gl.js",
     "style": "dist/css/unit.gl.css",
     "scripts": {
