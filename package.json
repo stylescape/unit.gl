@@ -1,7 +1,7 @@
 {
     "name": "unit.gl",
     "description": "Layout Engine.",
-    "version": "0.0.27",
+    "version": "0.0.28",
     "config": {
         "version_short": "0.0"
     },
@@ -48,8 +48,8 @@
         "lint": "eslint 'src/**/*.ts' || true",
         "prettify": "prettier --write 'src/**/*.ts'",
         "build": "npm run build-compile && npm run build-process",
-        "build-compile": "tsc -p script/tsconfig.json",
-        "build-process": "node script/js/index.js",
+        "build-compile": "tsc -p bin/tsconfig.json",
+        "build-process": "node bin/js/index.js",
         "webpack-build": "npm run webpack-prod",
         "webpack-dev": "webpack --mode development --config webpack.config.js",
         "webpack-prod": "webpack --mode production --config webpack.config.js",
