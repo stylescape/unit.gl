@@ -106,7 +106,7 @@
         "webpack-merge": "^5.9.0"
     },
     "files": [
-        "src/scss/**"
-
+        "src/**",
+        "dist/**"
     ]
 }
