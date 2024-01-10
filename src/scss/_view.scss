@@ -42,7 +42,6 @@ $breakpoints: (
     sl: calc_breakpoint(90),   // 1440px - Super large devices (Large TV)
 ) !default;
 
-
 // Expose individual breakpoints for easier direct access
 $media_xs: map-get($breakpoints, xs) !default;
 $media_sm: map-get($breakpoints, sm) !default;
