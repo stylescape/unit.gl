@@ -13,7 +13,6 @@
 // limitations under the License.
 
 
-@charset "utf-8";
 
 /**
 * unit.gl
@@ -27,8 +26,9 @@
 * @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
 */
 
-@use "sass:math";
+@charset "utf-8";
 
+@use "sass:math";
 
 
 @import "_reset";

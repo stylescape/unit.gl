@@ -296,4 +296,249 @@ html {
     font-size: 24px;
   }
 }
+
+.ratio_1x1 {
+  aspect-ratio: 1;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_1x2 {
+  aspect-ratio: 0.5;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_2x1 {
+  aspect-ratio: 2;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_1x3 {
+  aspect-ratio: 0.3333333333;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_3x1 {
+  aspect-ratio: 3;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_1x4 {
+  aspect-ratio: 0.25;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_4x1 {
+  aspect-ratio: 4;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_3x2 {
+  aspect-ratio: 1.5;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_2x3 {
+  aspect-ratio: 0.6666666667;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_4x3 {
+  aspect-ratio: 1.3333333333;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_3x4 {
+  aspect-ratio: 0.75;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_16x9 {
+  aspect-ratio: 1.7777777778;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_16x10 {
+  aspect-ratio: 1.6;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_p_1x1 {
+  padding-bottom: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_p_1x2 {
+  padding-bottom: 200%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_p_2x1 {
+  padding-bottom: 50%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_p_1x3 {
+  padding-bottom: 300%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_p_3x1 {
+  padding-bottom: 33.33%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_p_1x4 {
+  padding-bottom: 400%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_p_4x1 {
+  padding-bottom: 25%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_p_3x2 {
+  padding-bottom: 66.67%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_p_2x3 {
+  padding-bottom: 150%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_p_4x3 {
+  padding-bottom: 75%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_p_3x4 {
+  padding-bottom: 133.33%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_p_16x9 {
+  padding-bottom: 56.25%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ratio_p_16x10 {
+  padding-bottom: 62.5%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.guide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.guide_graph {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-size: 0.25rem 0.25rem;
+  background-image: repeating-linear-gradient(to bottom, rgba(50, 50, 50, 0.25) 0 1px, transparent 1px 100%), repeating-linear-gradient(to right, rgba(50, 50, 50, 0.25) 0 1px, transparent 1px 100%);
+}
+
+.guide_baseline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-size: 100% 1.5rem;
+  background-image: repeating-linear-gradient(to bottom, cyan 0 1px, transparent 1px 100%);
+}
 /*# sourceMappingURL=to.css.map */
