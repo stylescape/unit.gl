@@ -38,11 +38,11 @@
             "url": "https://github.com/sponsors/scape-foundation"
         }
     ],
-    "main": "src/scss/index.ts",
     "type": "module",
+    "main": "src/scss/index.ts",
+    "sass": "src/scss/index.scss",
     "module": "dist/js/unit.gl.js",
     "style": "dist/css/unit.gl.css",
-    "sass": "src/scss/index.scss",
     "scripts": {
         "format": "npx prettier --write .",
         "lint": "eslint 'src/**/*.ts' || true",
@@ -110,14 +110,24 @@
         "webpack-merge": "^5.9.0"
     },
     "files": [
-        "dist/svg/**/*.{svg}",
-        "dist/js/**/*.{js,map}",
-        "dist/css/**/*.{css,map}",
-        "dist/font/**/*.{eot,otf,ttf,woff,woff2}",
+        "ts/**/*.ts",
         "src/ts/**/*.ts",
+        "dist/ts/**/*.ts",
+        "js/**/*.{js,map}",
+        "src/js/**/*.{js,map}",
+        "dist/js/**/*.{js,map}",
+        "scss/**/*.{scss}",
         "src/scss/**/*.{scss}",
         "dist/scss/**/*.{scss}",
-        "src/font/**/*.{ttf,woff,woff2}",
+        "css/**/*.{css,map}",
+        "src/css/**/*.{css,map}",
+        "dist/css/**/*.{css,map}",
+        "svg/**/*.{svg}",
+        "src/svg/**/*.{svg}",
+        "dist/svg/**/*.{svg}",
+        "font/**/*.{eot,otf,ttf,woff,woff2}",
+        "src/font/**/*.{eot,otf,ttf,woff,woff2}",
+        "dist/font/**/*.{eot,otf,ttf,woff,woff2}",
         "!.DS_Store"
     ]
 }
