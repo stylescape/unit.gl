@@ -38,7 +38,7 @@
             "url": "https://github.com/sponsors/scape-foundation"
         }
     ],
-    "main": "src/scss/index.scss",
+    "main": "src/scss/index.ts",
     "type": "module",
     "module": "dist/js/unit.gl.js",
     "style": "dist/css/unit.gl.css",
@@ -119,18 +119,5 @@
         "dist/scss/**/*.{scss}",
         "src/font/**/*.{ttf,woff,woff2}",
         "!.DS_Store"
-    ],
-    "hugo-bin": {
-        "buildTags": "extended"
-    },
-    "jspm": {
-        "registry": "npm",
-        "main": "dist/js/unit.gl.js",
-        "directories": {
-            "lib": "src"
-        },
-        "shim": {},
-        "dependencies": {},
-        "peerDependencies": {}
-    }
+    ]
 }
