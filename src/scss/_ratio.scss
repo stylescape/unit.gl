@@ -17,6 +17,28 @@
 // Layout | Ratio
 // ============================================================================
 
+// Aspect Ratio Box:
+// Creates a container with a specific aspect ratio.
+// @mixin aspect-ratio($width, $height) {
+//   position: relative;
+//   &:before {
+//       content: '';
+//       display: block;
+//       padding-top: calc(($height / $width) * 100%);
+//   }
+//   > * {
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//       right: 0;
+//       bottom: 0;
+//   }
+// }
+
+// .ratio-box {
+//   @include aspect-ratio(16, 9);
+// }
+
 @mixin ratio ($val01, $val02) {
     aspect-ratio: calc($val01 / $val02);
     width: 100%;
