@@ -15,8 +15,6 @@
 
 
 
-
-
 // Device Attribute Map
 $devices: (
     // iPhones
@@ -64,7 +62,7 @@ $devices: (
     // ------------------------------------------------------------------------
     "macbook-air":      ("min-width": 1440px, "max-width": 2560px, "pixel-ratio": 2),
     "macbook-pro":      ("min-width": 1680px, "max-width": 3072px, "pixel-ratio": 2),
-    "imac":             ("min-width": 1920px, "max-width": 5120px, "pixel-ratio": 2)
+    "imac":             ("min-width": 1920px, "max-width": 5120px, "pixel-ratio": 2),
 
     // Additional Devices
     // ------------------------------------------------------------------------
@@ -75,33 +73,8 @@ $devices: (
     "xiaomi-mi9":       ("min-width":  393px, "max-width":  851px, "pixel-ratio": 3),
     "surface-book":     ("min-width": 1500px, "max-width": 2000px, "pixel-ratio": 2),
     "dell-xps":         ("min-width": 1920px, "max-width": 3840px, "pixel-ratio": 2),
-    "lenovo-thinkpad":  ("min-width": 1440px, "max-width": 2560px, "pixel-ratio": 2)
+    "lenovo-thinkpad":  ("min-width": 1440px, "max-width": 2560px, "pixel-ratio": 2),
 
 );
 
 
-/// Generalized Media Query Mixin
-/// Creates a media query based on device attributes defined in $devices map.
-/// @param $device - The key name of the device in the $devices map.
-/// Usage Example:
-/// @include device-media-query('iphone-6-7-8') {// Styles specific to iPhone 6, 7, 8}
-@mixin device-media-query($device) {
-    // Retrieve the device attributes from the map
-    $attributes: map-get($devices, $device);
-    
-    // Extract individual attributes with default fallbacks
-    $min-width: if(map-has-key($attributes, "min-width"), map-get($attributes, "min-width"), null);
-    $max-width: if(map-has-key($attributes, "max-width"), map-get($attributes, "max-width"), null);
-    $pixel-ratio: if(map-has-key($attributes, "pixel-ratio"), map-get($attributes, "pixel-ratio"), 1); // Default to 1
-
-    // Construct the media query string
-    $media-query: "only screen";
-    $media-query: if($min-width != null, $media-query + " and (min-device-width: #{$min-width})", $media-query);
-    $media-query: if($max-width != null, $media-query + " and (max-device-width: #{$max-width})", $media-query);
-    $media-query: if($pixel-ratio != 1, $media-query + " and (-webkit-device-pixel-ratio: #{$pixel-ratio})", $media-query);
-
-    // Apply the media query
-    @media #{$media-query} {
-        @content;
-    }
-}

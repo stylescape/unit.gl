@@ -13,6 +13,7 @@
 // limitations under the License.
 
 
+@use "../variables" as *;
 
 
 
@@ -61,14 +62,11 @@
 /// Mixin for targeting specific aspect ratios
 /// @param $width - Width of the aspect ratio
 /// @param $height - Height of the aspect ratio
-@mixin aspect-ratio($width, $height) {
-    @media (aspect-ratio: #{$width}/#{$height}) {
-        @content;
-    }
-}
-
-
-
+// @mixin aspect-ratio($width, $height) {
+//     @media (aspect-ratio: #{$width}/#{$height}) {
+//         @content;
+//     }
+// }
 
 
 
