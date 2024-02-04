@@ -1,10 +1,10 @@
-// Copyright 2020 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 
-// Licensed under the Apache License, Version 2.00 (the "License");
+// Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 
-// http://www.apache.org/licenses/LICENSE-2.00
+// http://www.apache.org/licenses/LICENSE-2.0
 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,8 +13,7 @@
 // limitations under the License.
 
 
-
-
+@use "unit" as *;
 
 
 // $rhythm_base: q(4);
@@ -66,13 +65,6 @@ $typographic_scale: (
 //     'caption': $q-base * 8,   // For captions and overlines
 //     'overline': $q-base * 6   // For the smallest size, like legal text
 // ) !default;
-
-
-
-
-
-
-
 
 
 
@@ -151,6 +143,4 @@ $baseline: (
     11: baseline(11),
     12: baseline(12),
 ) !default;
-
-
 

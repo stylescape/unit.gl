@@ -11,3 +11,29 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+
+
+/// Layer Map
+/// Z-index Layers
+$layers: (
+  'guides': 1000,
+
+  // 
+  "max":                  9999,
+  "mid":                     0,
+  "min":                 -9999,
+
+  // Add more layers as needed
+
+) !default;
+
+
+/// Layer Function
+/// Retrieve z-index from the layers map
+@function z($layer) {
+    @if not map-has-key($layers, $layer) {
+        @warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
+    }
+    @return map-get($layers, $layer);
+}

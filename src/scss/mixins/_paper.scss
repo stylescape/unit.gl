@@ -13,36 +13,23 @@
 // limitations under the License.
 
 
-/**
-* unit.gl
-*
-* @description     Layout Engine
-* @author          Scape Agency (https://www.scape.agency)
-* @version         v1.0.0
-* @copyright       2020-2024 Scape Agency (https://www.scape.agency)
-* @website         https://www.unit.gl/
-* @repository      https://github.com/scape-agency/unit.gl/
-* @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
-*/
+// ============================================================================
+// Paper Module
+// ============================================================================
 
-@charset "utf-8";
+@use "../variables" as *;
 
-@use "sass:math";
+// Apply Function
+// ============================================================================
 
-@forward "variables";
-@forward "mixins";
-
-
+@mixin set_paper_size($size) {
+    @if map-has-key($paper-sizes, $size) {
+        $size-map: map-get($paper-sizes, $size);
+        width: map-get($size-map, width);
+        height: map-get($size-map, height);
+    } @else {
+        @warn "Invalid paper size: #{$size}.";
+    }
+}
 
 
-@forward "reset";
-@forward "global";
-
-
-
-@forward "helper";
-@forward "guide";
-
-
-
-@forward "classes";

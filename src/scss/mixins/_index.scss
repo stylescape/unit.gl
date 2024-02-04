@@ -1,4 +1,4 @@
-// Copyright 2020 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,27 +14,6 @@
 
 
 
-
-/// Layer Map
-/// Z-index Layers
-$layers: (
-  'guides': 1000,
-
-  // 
-  "max":                  9999,
-  "mid":                     0,
-  "min":                 -9999,
-
-  // Add more layers as needed
-
-) !default;
-
-
-/// Layer Function
-/// Retrieve z-index from the layers map
-@function z($layer) {
-    @if not map-has-key($layers, $layer) {
-        @warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
-    }
-    @return map-get($layers, $layer);
-}
+@forward "paper";
+@forward "view";
+@forward "ratio";

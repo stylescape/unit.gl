@@ -1,10 +1,10 @@
-// Copyright 2020 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 
-// Licensed under the Apache License, Version 2.00 (the "License");
+// Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 
-// http://www.apache.org/licenses/LICENSE-2.00
+// http://www.apache.org/licenses/LICENSE-2.0
 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -306,109 +306,3 @@ $paper_sizes: (
 ) !default;
 
 
-// Apply Function
-// ============================================================================
-
-@mixin set_paper_size($size) {
-    @if map-has-key($paper-sizes, $size) {
-        $size-map: map-get($paper-sizes, $size);
-        width: map-get($size-map, width);
-        height: map-get($size-map, height);
-    } @else {
-        @warn "Invalid paper size: #{$size}.";
-    }
-}
-
-
-$paper_size_ansi_a: map-get($paper_sizes, 'ansi_a');
-$paper_size_ansi_b: map-get($paper_sizes, 'ansi_b');
-$paper_size_ansi_c: map-get($paper_sizes, 'ansi_c');
-$paper_size_ansi_d: map-get($paper_sizes, 'ansi_d');
-$paper_size_ansi_e: map-get($paper_sizes, 'ansi_e');
-
-$paper_size_ansi_a_width: map-get($paper_size_ansi_a, width);
-$paper_size_ansi_a_height: map-get($paper_size_ansi_a, height);
-
-.paper {
-    &.ansi_a {
-      width: map-get($paper_size_ansi_a, width);
-      height: map-get($paper_size_ansi_a, height);
-    }
-
-    // Add similar classes for other sizes...
-}
-  
-// Usage
-// ============================================================================
-
-.paper {
-
-    // Q Series
-    // ------------------------------------------------------------------------
-    &.q0    { @include set_paper_size("q0"); }
-    &.q1    { @include set_paper_size("q1"); }
-    &.q2    { @include set_paper_size("q2"); }
-    &.q3    { @include set_paper_size("q3"); }
-    &.q4    { @include set_paper_size("q4"); }
-    &.q5    { @include set_paper_size("q5"); }
-    &.q6    { @include set_paper_size("q6"); }
-    &.q7    { @include set_paper_size("q7"); }
-    &.q8    { @include set_paper_size("q8"); }
-    &.q9    { @include set_paper_size("q9"); }
-    &.q10   { @include set_paper_size("q10"); }
-
-    // ISO A Series
-    // ------------------------------------------------------------------------
-    &.iso_a0    { @include set_paper_size("iso_a0"); }
-    &.iso_a1    { @include set_paper_size("iso_a1"); }
-    &.iso_a2    { @include set_paper_size("iso_a2"); }
-    &.iso_a3    { @include set_paper_size("iso_a3"); }
-    &.iso_a4    { @include set_paper_size("iso_a4"); }
-    &.iso_a5    { @include set_paper_size("iso_a5"); }
-    &.iso_a6    { @include set_paper_size("iso_a6"); }
-    &.iso_a7    { @include set_paper_size("iso_a7"); }
-    &.iso_a8    { @include set_paper_size("iso_a8"); }
-    &.iso_a9    { @include set_paper_size("iso_a9"); }
-    &.iso_a10   { @include set_paper_size("iso_a10"); }
-
-}
-
-// Function to calculate ISO paper sizes
-// @function iso-paper-size($number) {
-//     $base-width:   841mm;
-//     $base-height: 1189mm;
-
-//     @for $i from 0 through $number {
-//         $base-width: $base-width / if($i > 0, 2, 1);
-//         $base-height: $base-height / if($i > 0 and $i % 2 == 0, 2, 1);
-//     }
-
-//     @return (width: $base-width, height: $base-height);
-// }
-
-
-// Function to calculate ISO B-series paper sizes
-// @function iso-paper-size-b($number) {
-//     $base-width: 1000mm; // Approximate base width for B0
-//     $base-height: 1414mm; // Approximate base height for B0
-  
-//     @for $i from 0 through $number {
-//       $base-width: $base-width / if($i > 0, sqrt(2), 1);
-//       $base-height: $base-height / if($i > 0 and $i % 2 == 0, sqrt(2), 1);
-//     }
-  
-//     @return (width: $base-width, height: $base-height);
-//   }
-
-// Function to calculate ISO C-series paper sizes
-// @function iso-paper-size-c($number) {
-//     $base-width: 917mm; // Approximate base width for C0
-//     $base-height: 1297mm; // Approximate base height for C0
-  
-//     @for $i from 0 through $number {
-//       $base-width: $base-width / if($i > 0, sqrt(2), 1);
-//       $base-height: $base-height / if($i > 0 and $i % 2 == 0, sqrt(2), 1);
-//     }
-  
-//     @return (width: $base-width, height: $base-height);
-//   }
