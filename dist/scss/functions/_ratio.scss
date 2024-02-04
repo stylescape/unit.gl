@@ -155,7 +155,7 @@ $ratio: (
     @return $base * pow($ratio, $increment);
   }
   
-  $ratio: map-get($ratio, $ratio-name);
+//   $ratio: map-get($ratio, $ratio-name);
   
   
   // body {

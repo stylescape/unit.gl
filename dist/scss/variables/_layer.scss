@@ -17,12 +17,31 @@
 /// Layer Map
 /// Z-index Layers
 $layers: (
-  'guides': 1000,
+
+    // Guides
+    "guides":              9998,
+    "guide_baseline":      3000,
+    "guide_graph":         3100,
+
+    // Overlays
+    "modal":               7000,
+
+    // Interface
+    "ribbon":               5000,
+    "interface":            4000,
+    "control":              3000,
+
+    // Content
+    "content":              2000,
+
+    // Canvas
+    "canvas":              -1000,
+    // "canvas":              5000,
 
   // 
-  "max":                  9999,
-  "mid":                     0,
-  "min":                 -9999,
+  "max": 9999,
+  "mid": 0,
+  "min": -9999,
 
   // Add more layers as needed
 
