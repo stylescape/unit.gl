@@ -1,14 +1,179 @@
-/**
-* unit.gl
-*
-* @description     Layout Engine
-* @author          Scape Agency (https://www.scape.agency)
-* @version         v1.0.0
-* @copyright       2020-2024 Scape Agency (https://www.scape.agency)
-* @website         https://www.unit.gl/
-* @repository      https://github.com/scape-agency/unit.gl/
-* @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
-*/
+*,
+a,
+abbr,
+acronym,
+address,
+applet,
+area,
+article,
+aside,
+audio,
+b,
+base,
+basefont,
+bb,
+bdo,
+big,
+blockquote,
+body,
+br,
+button,
+canvas,
+caption,
+center,
+cite,
+code,
+col,
+colgroup,
+command,
+datalist,
+dd,
+del,
+details,
+dfn,
+dialog,
+dir,
+div,
+dl,
+dt,
+em,
+embed,
+eventsource,
+fieldset,
+figcaption,
+figure,
+font,
+footer,
+form,
+frame,
+frameset,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+head,
+header,
+hgroup,
+hr,
+html,
+i,
+iframe,
+img,
+input,
+ins,
+isindex,
+kbd,
+keygen,
+label,
+legend,
+li,
+link,
+map,
+mark,
+menu,
+meta,
+meter,
+nav,
+noframes,
+noscript,
+object,
+ol,
+optgroup,
+option,
+output,
+p,
+param,
+pre,
+progress,
+q,
+rp,
+rt,
+ruby,
+s,
+samp,
+script,
+section,
+select,
+small,
+source,
+span,
+strike,
+strong,
+style,
+sub,
+sup,
+table,
+tbody,
+td,
+textarea,
+tfoot,
+th,
+thead,
+time,
+title,
+tr,
+track,
+tt,
+u,
+ul,
+var,
+video,
+wbr {
+  margin: 0;
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
+  -webkit-margin-start: 0;
+          margin-inline-start: 0;
+  -webkit-margin-end: 0;
+          margin-inline-end: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%; /* Prevent adjustments of font size after orientation changes in iOS */
+  word-break: normal;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+     tab-size: 4;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+*,
+::before,
+::after {
+  background-repeat: no-repeat; /* Set `background-repeat: no-repeat` to all elements and pseudo elements */
+  box-sizing: inherit;
+}
+
+::before,
+::after {
+  text-decoration: inherit; /* Inherit text-decoration and vertical align to ::before and ::after pseudo elements */
+  vertical-align: inherit;
+}
+
+* {
+  padding: 0; /* Reset `padding` and `margin` of all elements */
+  margin: 0;
+}
+
 :root {
   --q: $q;
 }
@@ -18,7 +183,7 @@ html {
 }
 @media screen and (min-width: 320px) {
   html {
-    font-size: calc(12px + unit_strip(12px) * (100vw - 320px) / unit_strip(1120px));
+    font-size: calc(12px + 12 * (100vw - 320px) / 1120);
   }
 }
 @media screen and (min-width: 1440px) {
@@ -27,39 +192,6 @@ html {
   }
 }
 
-/**
-* unit.gl
-*
-* @description     Layout Engine
-* @author          Scape Agency (https://www.scape.agency)
-* @version         v1.0.0
-* @copyright       2020-2024 Scape Agency (https://www.scape.agency)
-* @website         https://www.unit.gl/
-* @repository      https://github.com/scape-agency/unit.gl/
-* @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
-*/
-/**
-* unit.gl
-*
-* @description     Layout Engine
-* @author          Scape Agency (https://www.scape.agency)
-* @version         v1.0.0
-* @copyright       2020-2024 Scape Agency (https://www.scape.agency)
-* @website         https://www.unit.gl/
-* @repository      https://github.com/scape-agency/unit.gl/
-* @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
-*/
-/**
-* unit.gl
-*
-* @description     Layout Engine
-* @author          Scape Agency (https://www.scape.agency)
-* @version         v1.0.0
-* @copyright       2020-2024 Scape Agency (https://www.scape.agency)
-* @website         https://www.unit.gl/
-* @repository      https://github.com/scape-agency/unit.gl/
-* @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
-*/
 .ratio_1x1 {
   aspect-ratio: 1;
   width: 100%;
@@ -268,39 +400,6 @@ html {
   display: inline-block;
 }
 
-/**
-* unit.gl
-*
-* @description     Layout Engine
-* @author          Scape Agency (https://www.scape.agency)
-* @version         v1.0.0
-* @copyright       2020-2024 Scape Agency (https://www.scape.agency)
-* @website         https://www.unit.gl/
-* @repository      https://github.com/scape-agency/unit.gl/
-* @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
-*/
-/**
-* unit.gl
-*
-* @description     Layout Engine
-* @author          Scape Agency (https://www.scape.agency)
-* @version         v1.0.0
-* @copyright       2020-2024 Scape Agency (https://www.scape.agency)
-* @website         https://www.unit.gl/
-* @repository      https://github.com/scape-agency/unit.gl/
-* @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
-*/
-/**
-* unit.gl
-*
-* @description     Layout Engine
-* @author          Scape Agency (https://www.scape.agency)
-* @version         v1.0.0
-* @copyright       2020-2024 Scape Agency (https://www.scape.agency)
-* @website         https://www.unit.gl/
-* @repository      https://github.com/scape-agency/unit.gl/
-* @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
-*/
 .guide {
   position: absolute;
   top: 0;
@@ -337,225 +436,4 @@ html {
   background-size: 100% 1.5rem;
   background-image: repeating-linear-gradient(to bottom, cyan 0 1px, transparent 1px 100%);
 }
-
-/**
-* unit.gl
-*
-* @description     Layout Engine
-* @author          Scape Agency (https://www.scape.agency)
-* @version         v1.0.0
-* @copyright       2020-2024 Scape Agency (https://www.scape.agency)
-* @website         https://www.unit.gl/
-* @repository      https://github.com/scape-agency/unit.gl/
-* @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
-*/
-/**
-* unit.gl
-*
-* @description     Layout Engine
-* @author          Scape Agency (https://www.scape.agency)
-* @version         v1.0.0
-* @copyright       2020-2024 Scape Agency (https://www.scape.agency)
-* @website         https://www.unit.gl/
-* @repository      https://github.com/scape-agency/unit.gl/
-* @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
-*/
-*,
-a,
-abbr,
-acronym,
-address,
-applet,
-area,
-article,
-aside,
-audio,
-b,
-base,
-basefont,
-bb,
-bdo,
-big,
-blockquote,
-body,
-br,
-button,
-canvas,
-caption,
-center,
-cite,
-code,
-col,
-colgroup,
-command,
-datalist,
-dd,
-del,
-details,
-dfn,
-dialog,
-dir,
-div,
-dl,
-dt,
-em,
-embed,
-eventsource,
-fieldset,
-figcaption,
-figure,
-font,
-footer,
-form,
-frame,
-frameset,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-head,
-header,
-hgroup,
-hr,
-html,
-i,
-iframe,
-img,
-input,
-ins,
-isindex,
-kbd,
-keygen,
-label,
-legend,
-li,
-link,
-map,
-mark,
-menu,
-meta,
-meter,
-nav,
-noframes,
-noscript,
-object,
-ol,
-optgroup,
-option,
-output,
-p,
-param,
-pre,
-progress,
-q,
-rp,
-rt,
-ruby,
-s,
-samp,
-script,
-section,
-select,
-small,
-source,
-span,
-strike,
-strong,
-style,
-sub,
-sup,
-table,
-tbody,
-td,
-textarea,
-tfoot,
-th,
-thead,
-time,
-title,
-tr,
-track,
-tt,
-u,
-ul,
-var,
-video,
-wbr {
-  margin: 0;
-  -webkit-margin-before: 0;
-          margin-block-start: 0;
-  -webkit-margin-after: 0;
-          margin-block-end: 0;
-  -webkit-margin-start: 0;
-          margin-inline-start: 0;
-  -webkit-margin-end: 0;
-          margin-inline-end: 0;
-  padding: 0;
-}
-
-/**
-* unit.gl
-*
-* @description     Layout Engine
-* @author          Scape Agency (https://www.scape.agency)
-* @version         v1.0.0
-* @copyright       2020-2024 Scape Agency (https://www.scape.agency)
-* @website         https://www.unit.gl/
-* @repository      https://github.com/scape-agency/unit.gl/
-* @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
-*/
-html {
-  box-sizing: border-box;
-  -webkit-text-size-adjust: 100%; /* Prevent adjustments of font size after orientation changes in iOS */
-  word-break: normal;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-     tab-size: 4;
-  height: 100%;
-}
-
-body {
-  min-height: 100%;
-  margin: 0;
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-*,
-::before,
-::after {
-  background-repeat: no-repeat; /* Set `background-repeat: no-repeat` to all elements and pseudo elements */
-  box-sizing: inherit;
-}
-
-::before,
-::after {
-  text-decoration: inherit; /* Inherit text-decoration and vertical align to ::before and ::after pseudo elements */
-  vertical-align: inherit;
-}
-
-* {
-  padding: 0; /* Reset `padding` and `margin` of all elements */
-  margin: 0;
-}
-
-/**
-* unit.gl
-*
-* @description     Layout Engine
-* @author          Scape Agency (https://www.scape.agency)
-* @version         v1.0.0
-* @copyright       2020-2024 Scape Agency (https://www.scape.agency)
-* @website         https://www.unit.gl/
-* @repository      https://github.com/scape-agency/unit.gl/
-* @license         Apache 2.0 License (https://github.com/scape-agency/unit.gl/blob/main/LICENSE)
-*/
 /*# sourceMappingURL=to.css.map */

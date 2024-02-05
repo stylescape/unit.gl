@@ -19,8 +19,8 @@
 // ============================================================================
 
 @use "sass:math";
-
 @use "view" as *;
+@use "../functions" as *;
 
 
 // Kyū Measurement System for Responsive Typography
@@ -50,7 +50,6 @@ $q: 0.0625rem !default;  // 1px, or 0.25mm
 }
 
 
-
 // Minimum and maximum Kyū sizes
 $q_min: 0.75px !default;
 $q_max: 1.50px !default;
@@ -59,6 +58,20 @@ $q_max: 1.50px !default;
 $font_min: calc((1rem / $q) * $q_min) !default;
 $font_max: calc((1rem / $q) * $q_max) !default;
 
+// @mixin fluid_type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+//     // Assign font-size for the starting viewport width
+//     font-size: $min-font-size;
+
+//     // Apply fluid scaling between the minimum and maximum viewport widths
+//     @media screen and (min-width: $min-vw) {
+//         font-size: calc(#{$min-font-size} + #{unitless($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{unitless($max-vw - $min-vw)}));
+//     }
+
+//     // Fix the font-size at the maximum size beyond the maximum viewport width
+//     @media screen and (min-width: $max-vw) {
+//         font-size: $max-font-size;
+//     }
+// }
 
 @mixin fluid_type($min-vw, $max-vw, $min-font-size, $max-font-size) {
     $u1: unit($min-vw);
@@ -80,8 +93,9 @@ $font_max: calc((1rem / $q) * $q_max) !default;
 }
 
 
+
 html {
-    @include fluid-type($media_xs, $media_sl, $font_min, $font_max);
+    @include fluid_type($media_xs, $media_sl, $font_min, $font_max);
 }
 
 

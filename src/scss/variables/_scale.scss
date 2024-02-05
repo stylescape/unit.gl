@@ -74,7 +74,7 @@ $typographic_scale: (
 $basepoint_scale: 4;
 
 @function basepoint($value) {
-  @return calc($q * $value * $basepoint_scale);
+    @return calc($q * $value * $basepoint_scale);
 }
 
 $basepoint_01: basepoint( 1) !default;
