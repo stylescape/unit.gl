@@ -17,6 +17,7 @@
 // Base | Reset
 // ============================================================================
 
+// Reset margin and padding for all elements
 @mixin reset_bleed {
     margin:               0;
     margin-block-start:   0;
@@ -24,8 +25,15 @@
     margin-inline-start:  0;
     margin-inline-end:    0;
     padding:              0;
+    border: 0; // Ensures no borders are applied unless explicitly defined
+    font-size: 100%; // Prevent scaling issues by setting default font size
+    font: inherit; // Ensures fonts are consistently inherited from parent elements
+    vertical-align: baseline; // Aligns elements to the baseline to avoid layout shifts
 }
 
+
+
+// Apply the reset mixin to all elements
 *,
 a,
 abbr,
@@ -153,6 +161,12 @@ wbr
     @include reset_bleed;
 }
 
+// HTML5 display-role reset for older browsers
+// Ensures HTML5 elements are displayed correctly in older browsers
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, main {
+    display: block;
+}
 
 // html, body, div, span, applet, object, iframe,
 // h1, h2, h3, h4, h5, h6, p, blockquote, pre,
