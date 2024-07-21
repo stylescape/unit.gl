@@ -43,7 +43,6 @@ const configCommon = {
 
     // Configuration | Target Environment
     // ========================================================================
-    // target: "web",
     target: ["web", "es5"],
 
 
@@ -56,7 +55,6 @@ const configCommon = {
         index_scss: `${paths.src}/scss/index.scss`,
         // index: paths.src + "/ts/index.ts"
         // index_scss: "./src/scss/index.scss",
-
     },
 
 
