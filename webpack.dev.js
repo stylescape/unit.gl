@@ -19,14 +19,15 @@ export const configDevelopment = {
 
     // Configuration | Mode
     // ========================================================================
+
     // Set the mode to development or production
     mode: "development",
 
 
     // Development Server Configuration
     // ========================================================================
-    // Spin up a server for quick development
 
+    // Spin up a server for quick development
     devServer: {
         historyApiFallback: true, // Fallback to index.html for Single Page Applications
         watchFiles: [ // Watch for changes in these directories
