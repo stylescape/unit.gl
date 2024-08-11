@@ -28,10 +28,10 @@
     "license": "Apache-2.0",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/scape-agency/unit.gl.git"
+        "url": "git+https://github.com/stylescape/unit.gl.git"
     },
     "bugs": {
-        "url": "https://github.com/scape-agency/unit.gl/issues"
+        "url": "https://github.com/stylescape/unit.gl/issues"
     },
     "funding": [
         {
