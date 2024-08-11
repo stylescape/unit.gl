@@ -2,7 +2,7 @@ cff-version: 1.2.0
 title: unit.gl
 version: 0.0.1
 date-released: 2024-07-01
-url: "https://github.com/scape-agency/unit.gl"
+url: "https://github.com/stylescape/unit.gl"
 message: >-
   If you use unit.gl, please cite it using
   the metadata from this file.
