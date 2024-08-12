@@ -18,8 +18,6 @@
 // ============================================================================
 
 
-
-
 // Modular Scale Ratios Map
 // This map contains common ratios used in modular scale calculations.
 $ratio: (
@@ -126,8 +124,6 @@ $ratio: (
     $golden-ratio: 1.618;
     @return $size * pow($golden-ratio, $increment);
 }
-
-
 
 
 // Modular Scale Function
