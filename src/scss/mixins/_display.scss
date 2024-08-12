@@ -74,7 +74,8 @@
 // Mixin for High-Density (Retina) Displays
 // ============================================================================
 /// This mixin targets high-density displays like Retina screens.
-/// It covers various methods to detect high pixel density to ensure broad compatibility.
+/// It covers various methods to detect high pixel density to ensure broad
+/// compatibility.
 /// Usage: 
 /// @include retina { /* styles for retina displays */ }
 @mixin retina {
