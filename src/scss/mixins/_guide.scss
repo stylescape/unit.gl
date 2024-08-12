@@ -38,7 +38,7 @@ $guide_color_2: rgba(178, 51, 170, 0.5);
 
 // Mixins for Guide Visualization
 // @mixin guide($z-index: z('guides')) {
-  @mixin guide($z-index: 9999) {
+@mixin guide($z-index: 9999) {
     position: absolute;
     top: 0;
     left: 0;
@@ -47,7 +47,7 @@ $guide_color_2: rgba(178, 51, 170, 0.5);
     margin: 0;
     pointer-events: none;
     z-index: $z-index;
-  }
+}
 
 .guide { @include guide; }
 
@@ -56,26 +56,26 @@ $guide_color_2: rgba(178, 51, 170, 0.5);
     @include guide;
     background-size: $size $size;
     background-image: repeating-linear-gradient(
-                        to bottom,
-                        $color 0 1px,
-                        transparent 1px 100%
-                      ),
-                      repeating-linear-gradient(
-                        to right,
-                        $color 0 1px,
-                        transparent 1px 100%
-                      );
-  }
+        to bottom,
+        $color 0 1px,
+        transparent 1px 100%
+    ),
+    repeating-linear-gradient(
+        to right,
+        $color 0 1px,
+        transparent 1px 100%
+    );
+}
 
-  @mixin guide_baseline($size, $color: cyan) {
+@mixin guide_baseline($size, $color: cyan) {
     @include guide;
     background-size: 100% $size;
     background-image: repeating-linear-gradient(
-                        to bottom,
-                        $color 0 1px,
-                        transparent 1px 100%
-                      );
-  }
+        to bottom,
+        $color 0 1px,
+        transparent 1px 100%
+    );
+}
 // .guide_graph { @include guide_graph; }
 
 
@@ -95,19 +95,24 @@ $guide_color_2: rgba(178, 51, 170, 0.5);
 
 
   
-  @mixin baseline-grid($column-width, $baseline-height, $column-color: rgba(200, 0, 0, 0.2), $baseline-color: rgba(56, 255, 255, 0.8)) {
+@mixin baseline-grid(
+    $column-width,
+    $baseline-height,
+    $column-color: rgba(200, 0, 0, 0.2),
+    $baseline-color: rgba(56, 255, 255, 0.8)
+) {
     background-image: linear-gradient(
-                        to right,
-                        $column-color 0 $column-width,
-                        transparent $column-width transparent
-                      ),
-                      linear-gradient(
-                        to bottom,
-                        transparent calc(100% - 1px),
-                        $baseline-color 100%
-                      );
+        to right,
+        $column-color 0 $column-width,
+        transparent $column-width transparent
+    ),
+    linear-gradient(
+        to bottom,
+        transparent calc(100% - 1px),
+        $baseline-color 100%
+    );
     background-size: $column-width 100%, 100% $baseline-height;
-  }
+}
 
 
 html {
@@ -116,14 +121,11 @@ html {
 }
 
 .guide_graph {
-  @include guide_graph($rhythm_base);
-
+    @include guide_graph($rhythm_base);
 }
 
-
 .guide_baseline {
-  @include guide_baseline($line_height_base);
-
+    @include guide_baseline($line_height_base);
 }
 
 // .guide_baseline { @include guide_baseline; }
@@ -148,7 +150,6 @@ html {
 //         // background-size: 60px 100%, 100% 22px;
 //         // background-position: 10px 0px;
 // }
-
 
 
 // // .guide_graph {
