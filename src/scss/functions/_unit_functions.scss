@@ -1,0 +1,213 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// Unit | Functions
+// ============================================================================
+
+
+/// Strip Unit Function
+/// Function to remove the unit from a numerical value
+/// Ensures compatibility with various SCSS versions
+/// @param $value - The numerical value with or without a unit
+/// @return - The raw numerical value without its unit
+@function unit_strip($value) {
+    // Check if the input is a number with a unit
+    @if type-of($value) == "number" and not unitless($value) {
+        // Convert the value to a string
+        $value-str: inspect($value);
+        // Remove the unit part from the string
+        $value-no-unit: str-slice(
+            $value-str,
+            1,
+            str-index($value-str, unit($value)) - 1
+        );
+        // Return the number without its unit
+        @return $value-no-unit;
+    } @else if type-of($value) != "number" {
+        // Handle non-number inputs gracefully
+        // @warn "Input `#{$value}` is not a number. Returning value as-is.";
+        @return $value;
+    }
+    // Return the value as-is for unitless numbers or non-number inputs
+    @return $value;
+}
+
+
+/// Linear Interpolation Function
+/// Interpolates linearly between two values across a range, useful for
+/// fluid scaling.
+/// @param $start - Starting value at the lower bound (can include units)
+/// @param $end - Ending value at the upper bound (can include units)
+/// @param $min - Lower bound for interpolation (must be unitless or in 'px')
+/// @param $max - Upper bound for interpolation (must be unitless or in 'px')
+/// @param $actual - Current value to interpolate (default is 100vw)
+/// @return - Interpolated value (in the same units as $start and $end)
+@function linear_interpolation($start, $end, $min, $max, $actual: 100vw) {
+
+    // Validate parameters
+    @if unitless($min) == false and unit($min) != 'px' {
+        @error "Parameter `$min` must be unitless or in 'px'.";
+    }
+    @if unitless($max) == false and unit($max) != 'px' {
+        @error "Parameter `$max` must be unitless or in 'px'.";
+    }
+    @if $max <= $min {
+        @error "Parameter `$max` must be greater than `$min`.";
+    }
+
+    // Convert all values to a common unit for calculation
+    $unit: 1#{unit($start)};
+
+    // Convert coordinate values to unitless for calculations
+    $x0: #{unit_strip($min)};
+    $x1: #{unit_strip($max)};
+    $y0: #{unit_strip($start)};
+    $y1: #{unit_strip($end)};
+
+    // Calculate the slope of the line
+    $slope: #{calc(($y1 - $y0) / ($x1 - $x0))};
+
+    // Calculate the interval
+    $interval: calc($actual - $min);
+
+    // Calculate and return the interpolated value
+    $value: calc($start + $slope * $interval);
+
+    // Return the `calc` expression
+    @return $value;
+
+}
+
+
+/// Function: scale_dynamic_clamp
+/// Calculates font size using clamp-based responsive typography
+/// @param $_font_size_min - Minimum font size
+/// @param $_font_size_max - Maximum font size
+/// @param $_viewport_width_min - Minimum viewport width where scaling starts
+/// @param $_viewport_width_max - Maximum viewport width where scaling stops
+/// @return - Calculated size using clamp
+@function scale_dynamic_clamp(
+    $_viewport_width_min,
+    $_viewport_width_max,
+    $_font_size_min,
+    $_font_size_max,
+) {
+    @return clamp(
+        $_font_size_min,
+        linear_interpolation(
+            $_font_size_min,
+            $_font_size_max,
+            $_viewport_width_min,
+            $_viewport_width_max
+        ),
+        $_font_size_max
+    );
+}
+
+
+
+
+
+// Fluid Typography Mixin
+// ============================================================================
+/// Mixin: fluid_type
+/// Creates fluid typography rules to scale font sizes responsively between a
+/// minimum and maximum viewport width.
+// /// @param $_viewport_width_min - Minimum viewport width where scaling starts
+// /// @param $_viewport_width_max - Maximum viewport width where scaling stops
+// /// @param $_font_size_min - Minimum font size
+// /// @param $_font_size_max - Maximum font size
+// @mixin fluid_type(
+//     $_viewport_width_min,
+//     $_viewport_width_max,
+//     $_font_size_min,
+//     $_font_size_max,
+// ) {
+
+//     // Ensure the units are consistent
+//     $u1: unit($_viewport_width_min);
+//     $u2: unit($_viewport_width_max);
+//     $u3: unit($_font_size_min);
+//     $u4: unit($_font_size_max);
+
+//     // $u1: $_viewport_width_min;
+//     // $u2: $_viewport_width_max;
+//     // $u3: $_font_size_min;
+//     // $u4: $_font_size_max;
+
+//     @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+//         font-size: $_font_size_min * 16;
+//         // Apply fluid font-size between the min and max viewport widths
+//         @media screen and (min-width: $_viewport_width_min) {
+//             font-size: linear_interpolation(
+//                 $_font_size_min,
+//                 $_font_size_max,
+//                 $_viewport_width_min,
+//                 $_viewport_width_max
+//             ) * 16;
+//         }
+//         // Set to max font-size for viewports wider than the max viewport width
+//         @media screen and (min-width: $_viewport_width_max) {
+//             font-size: $_font_size_max * 16;
+//         }
+//     } @else {
+//         @warn "Inconsistent units provided for fluid typography.";
+//     }
+// }
+
+
+
+@function scale_dynamic(
+    $_viewport_width_min,
+    $_viewport_width_max,
+    $_font_size_min,
+    $_font_size_max,
+    $_current_width,
+    ) {
+    // Ensure the units are consistent
+    // $u1: unit($_viewport_width_min);
+    // $u2: unit($_viewport_width_max);
+    // $u3: unit($_font_size_min);
+    // $u4: unit($_font_size_max);
+    $u1: $_viewport_width_min;
+    $u2: $_viewport_width_max;
+    $u3: $_font_size_min;
+    $u4: $_font_size_max;
+
+    // Validate unit consistency
+    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+        // Check if the current width is within the specified range
+        @if $_current_width >= $_viewport_width_min and $_current_width <= $_viewport_width_max {
+        // Calculate and return the interpolated font size
+        @return linear_interpolation(
+            $_font_size_min,
+            $_font_size_max,
+            $_viewport_width_min,
+            $_viewport_width_max,
+            100vw
+        );
+        } @else if $_current_width < $_viewport_width_min {
+            // Return the minimum font size
+            @return $_font_size_min;
+        } @else {
+            // Return the maximum font size
+            @return $_font_size_max;
+        }
+    } @else {
+        @warn "Inconsistent units provided for fluid typography.";
+        @return null;
+    }
+}
