@@ -25,15 +25,39 @@
     $attributes: map-get($devices, $device);
     
     // Extract individual attributes with default fallbacks
-    $min-width: if(map-has-key($attributes, "min-width"), map-get($attributes, "min-width"), null);
-    $max-width: if(map-has-key($attributes, "max-width"), map-get($attributes, "max-width"), null);
-    $pixel-ratio: if(map-has-key($attributes, "pixel-ratio"), map-get($attributes, "pixel-ratio"), 1); // Default to 1
+    $min-width: if(
+        map-has-key($attributes, "min-width"),
+        map-get($attributes, "min-width"),
+        null
+    );
+    $max-width: if(
+        map-has-key($attributes, "max-width"),
+        map-get($attributes, "max-width"),
+        null
+    );
+    $pixel-ratio: if(
+        map-has-key($attributes, "pixel-ratio"),
+        map-get($attributes, "pixel-ratio"),
+        1
+    ); // Default to 1
 
     // Construct the media query string
     $media-query: "only screen";
-    $media-query: if($min-width != null, $media-query + " and (min-device-width: #{$min-width})", $media-query);
-    $media-query: if($max-width != null, $media-query + " and (max-device-width: #{$max-width})", $media-query);
-    $media-query: if($pixel-ratio != 1, $media-query + " and (-webkit-device-pixel-ratio: #{$pixel-ratio})", $media-query);
+    $media-query: if(
+        $min-width != null,
+        $media-query + " and (min-device-width: #{$min-width})",
+        $media-query
+    );
+    $media-query: if(
+        $max-width != null,
+        $media-query + " and (max-device-width: #{$max-width})",
+        $media-query
+    );
+    $media-query: if(
+        $pixel-ratio != 1,
+        $media-query + " and (-webkit-device-pixel-ratio: #{$pixel-ratio})",
+        $media-query
+    );
 
     // Apply the media query
     @media #{$media-query} {
