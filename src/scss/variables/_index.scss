@@ -19,27 +19,94 @@
 // ============================================================================
 // VARIABLES MODULE
 // ============================================================================
-//
-// This module forwards SCSS partials that define variables for use throughout
-// the project. Each forwarded file contains a specific category of variables,
-// promoting modularity and easy maintenance.
-//
-// Forwarded Modules:
-// - layer: Contains variables related to layout layers and z-indexing.
-// - paper: Defines color palettes, textures, and backgrounds.
-// - unit: Includes units of measurement, spacing, and sizes.
-// - scale: Manages scaling factors for typography and responsive elements.
-// - view: Handles viewport-specific variables, such as breakpoints.
-// - device: Device-specific configurations for responsive design.
+
+/**
+ * @fileoverview Variables Module
+ * @description
+ * This module consolidates and forwards SCSS partials that define variables
+ * for consistent use throughout the project. Each forwarded file encapsulates
+ * a specific category of variables, ensuring modularity, clarity, and ease of
+ * maintenance.
+ * 
+ * Forwarded Modules Overview:
+ * - `layer`: Variables related to layout layers and z-indexing.
+ * - `paper`: Defines color palettes, textures, and backgrounds.
+ * - `unit`: Measurement units, spacing, and size-related variables.
+ * - `scale`: Scaling factors for typography and responsive elements.
+ * - `view`: Variables tied to viewport-specific breakpoints.
+ * - `device`: Device-specific configurations to enhance responsive design.
+ * - `color`: Centralized color definitions for consistent theming.
+ * - `ratio`: Aspect ratio configurations for responsive elements.
+ * 
+ * @group Variables
+ * @access public
+ */
+
+ 
+// ============================================================================
+// FORWARDED MODULES
 // ============================================================================
 
-@forward "layer";  // Layer and z-index variables
-@forward "paper";  // Color and background variables
+/**
+ * @forward "layer"
+ * @description
+ * Forwards variables related to layout layers and z-indexing, ensuring consistent
+ * layering and stacking order throughout the project.
+ */
+@forward "layer";  // Layout layers and z-index variables
 
-@forward "unit";   // Measurement and spacing units
+/**
+ * @forward "paper"
+ * @description
+ * Forwards variables defining color palettes, textures, and backgrounds. These
+ * are essential for maintaining a consistent visual identity across the project.
+ */
+@forward "paper";  // Color palettes, textures, and backgrounds
 
-@forward "scale";  // Scaling factors for responsive design
+/**
+ * @forward "unit"
+ * @description
+ * Forwards variables related to measurement units, spacing, and size definitions.
+ * Useful for maintaining consistent sizing across different components.
+ */
+@forward "unit";   // Measurement units and spacing
 
-@forward "view";   // Viewport and breakpoint variables
+/**
+ * @forward "scale"
+ * @description
+ * Forwards variables managing scaling factors for typography and responsive elements,
+ * ensuring that elements scale proportionally across different viewports.
+ */
+@forward "scale";  // Typography scaling and responsive element sizing
 
-@forward "device"; // Device-specific variables for responsive design
+/**
+ * @forward "view"
+ * @description
+ * Forwards viewport-specific variables, such as breakpoints, to facilitate
+ * responsive design practices.
+ */
+@forward "view";   // Viewport-specific variables and breakpoints
+
+/**
+ * @forward "device"
+ * @description
+ * Forwards device-specific configurations that aid in creating responsive designs
+ * tailored to various devices.
+ */
+@forward "device"; // Device-specific responsive design variables
+
+/**
+ * @forward "color"
+ * @description
+ * Forwards centralized color definitions, providing a consistent color scheme
+ * across the project.
+ */
+@forward "color";  // Centralized color definitions for the project
+
+/**
+ * @forward "ratio"
+ * @description
+ * Forwards aspect ratio configurations that ensure responsive elements maintain
+ * their intended proportions across different devices and viewports.
+ */
+@forward "ratio";  // Aspect ratio configurations for responsive elements
