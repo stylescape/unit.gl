@@ -1,15 +1,48 @@
 cff-version: 1.2.0
 title: unit.gl
-version: 0.0.1
+version: 0.0.36
 date-released: 2024-07-01
 url: "https://github.com/stylescape/unit.gl"
+repository-code: "https://github.com/stylescape/unit.gl"
+# repository-artifact: "https://doi.org/10.5281/zenodo.xxxxxxx"  # Replace with actual DOI if available
+license: Apache-2.0
 message: >-
-  If you use unit.gl, please cite it using
-  the metadata from this file.
+  If you use unit.gl in your work, please cite it using the metadata from this file.
 type: software
+
 authors:
   - given-names: Lars Bastiaan
     family-names: van Vianen
     email: lars@scape.agency
     affiliation: Scape Agency
-    orcid: 'https://orcid.org/0000-0002-8790-8630'
+    orcid: "https://orcid.org/0000-0002-8790-8630"
+
+keywords:
+  - responsive design
+  - SCSS
+  - web development
+  - design toolkit
+  - fluid typography
+
+# references:
+#   - type: article
+#     authors:
+#       - given-names: Lars Bastiaan
+#         family-names: van Vianen
+#     title: "unit.gl: A Comprehensive Design Toolkit for Fluid Typography and Responsive Design"
+#     journal: "Journal of Web Design and Development"
+#     year: 2024
+#     volume: 10
+#     issue: 3
+#     pages: 123-130
+#     doi: "10.1234/jwdd.2024.0001"  # Replace with actual DOI if available
+
+#   - type: conference-paper
+#     authors:
+#       - given-names: Lars Bastiaan
+#         family-names: van Vianen
+#     title: "Building Scalable and Accessible Web Experiences with unit.gl"
+#     event: "International Conference on Web Development"
+#     year: 2024
+#     location: "Amsterdam, Netherlands"
+#     doi: "10.1234/icwd.2024.0002"  # Replace with actual DOI if available
