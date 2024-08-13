@@ -1,7 +1,7 @@
 {
     "name": "unit.gl",
-    "description": "Layout Engine.",
-    "version": "0.0.35",
+    "description": "Dynamic Layout Engine.",
+    "version": "0.0.36",
     "config": {
         "version_short": "0.0"
     },
@@ -21,7 +21,7 @@
         "web"
     ],
     "homepage": "https://www.unit.gl/",
-    "author": "Lars van Vianen <lars@vianen.com> (https://vianen.com)",
+    "author": "Lars van Vianen <lars@vianen.com> (https://www.vianen.com)",
     "contributors": [
         "Scape Agency <info@scape.agency>"
     ],
@@ -67,44 +67,32 @@
         "@types/webpack": "^5.28.1",
         "autoprefixer": "^10.4.15",
         "babel-loader": "^9.1.3",
-        "block.gl": "^0.0.1",
         "clean-webpack-plugin": "^4.0.0",
         "copy-webpack-plugin": "^12.0.2",
         "css-loader": "^7.1.2",
         "css-minimizer-webpack-plugin": "^5.0.0",
-        "deep.gl": "^0.0.1",
         "del": "^7.1.0",
-        "eslint": "^9.8.0",
-        "eslint-config-prettier": "^9.0.0",
-        "eslint-import-resolver-webpack": "^0.13.2",
-        "eslint-plugin-prettier": "^5.0.1",
         "fs-extra": "^11.2.0",
         "glob": "^11.0.0",
-        "grid.gl": "^0.0.1",
         "html-webpack-plugin": "^5.5.3",
-        "hue.gl": "^0.0.11",
-        "icon.gl": "^0.0.20",
         "lodash": "^4.17.21",
-        "loop.gl": "^0.0.1",
         "mini-css-extract-plugin": "^2.7.6",
-        "pack.gl": "^0.0.40",
-        "page.gl": "^0.0.3",
         "postcss-loader": "^8.1.1",
         "postcss-preset-env": "^10.0.0",
         "prettier": "^3.0.3",
         "sass": "^1.66.1",
         "sass-loader": "^16.0.0",
         "style-loader": "^4.0.0",
-        "terser": "^5.26.0",
-        "terser-webpack-plugin": "^5.3.9",
         "ts-loader": "^9.4.3",
         "ts-node": "^10.9.1",
         "typescript": "^5.3.3",
         "webpack": "^5.89.0",
         "webpack-cli": "^5.1.4",
         "webpack-dev-server": "^5.0.4",
-        "webpack-merge": "^6.0.1"
+        "webpack-merge": "^6.0.1",
+        "pack.gl": "^0.0.40"
     },
+
     "files": [
         "src/**",
         "dist/**"
