@@ -8,7 +8,7 @@
     "editor.detectIndentation": false,                  // Ensure consistent indentation
     "editor.cursorSmoothCaretAnimation": true,          // Smooth cursor animation for a better visual experience
     "editor.minimap.enabled": true,                     // Enable the minimap for code overview
-    "editor.rulers": [80, 120],                         // Show rulers at 80 and 120 characters for code readability
+    "editor.rulers": [79, 80, 119, 120],                // Show rulers at 80 and 120 characters for code readability
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true,                     // Automatically fix ESLint issues on save
         "source.organizeImports": true                    // Automatically organize imports on save
@@ -24,7 +24,7 @@
     "files.exclude": {
         "**/.git": true,                                  // Hide .git folder in file explorer
         "**/.DS_Store": true,                             // Hide .DS_Store files (macOS specific)
-        "**/node_modules": true,                          // Hide node_modules folder in file explorer
+        "**/node_modules": false,                          // Hide node_modules folder in file explorer
         "**/dist": true                                   // Hide dist folder in file explorer
     },
     "eslint.validate": [
