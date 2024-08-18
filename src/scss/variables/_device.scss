@@ -1,37 +1,65 @@
-/// Device Attribute Map
+// ============================================================================
+// Poster
+// ============================================================================
 
-
+////
+/// 
+/// Device Variables Module
+/// ===========================================================================
+///
 /// This file defines a map of device attributes, including screen dimensions
 /// and pixel ratios, for a variety of devices. This map is structured for
 /// easy access and modification, ensuring responsive designs that cater to
 /// a wide range of devices.
 /// 
+/// @group Color
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
 /// @example scss - Usage Example
 ///   @media (min-width: map-get($devices, "iphone-x")["min-width"]) {
 ///       // Styles specific to iPhone X
 ///   }
+/// 
+////
+
 
 // ============================================================================
-// DEVICE ATTRIBUTE MAP
-// ============================================================================
-//
-// This map contains attributes for various devices, including screen dimensions
-// and pixel ratios. It is structured for easy access and modification,
-// ensuring responsive designs that cater to a wide range of devices.
-//
-// Usage Example:
-// @media (min-width: map-get($devices, "iphone-x")["min-width"]) {
-//     // Styles specific to iPhone X
-// }
+// Use
 // ============================================================================
 
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+
+/// 
+/// Device Attribute Map
+/// ===========================================================================
+/// 
 /// A map containing attributes for various devices. Each entry includes the
 /// device's minimum and maximum screen widths, as well as the pixel ratio.
-/// The map is divided into categories for smartphones, tablets, and desktops/laptops.
+/// The map is divided into categories for smartphones, tablets, and
+/// desktops/laptops.
+/// 
+/// This map contains attributes for various devices, including screen
+/// dimensions and pixel ratios. It is structured for easy access and
+/// modification, ensuring responsive designs that cater to a wide range
+/// of devices.
+///
 /// @type Map
-/// @group Device Attributes
 /// @access public
 /// @property iPhones - iPhones with varying screen sizes and pixel densities.
+/// 
+/// @example scss - Usage Example
+///     @media (min-width: map-get($devices, "iphone-x")["min-width"]) {
+///         // Styles specific to iPhone X
+///     }
+///
 $devices: (
 
     // Phones
