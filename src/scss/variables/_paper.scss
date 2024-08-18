@@ -1,32 +1,48 @@
+// ============================================================================
+// Poster
+// ============================================================================
 
 ////
+/// 
+/// Paper Variables Module
+/// ===========================================================================
+/// 
+/// This module defines standard paper sizes, organized into various series and
+/// categories. These sizes are stored in the `$paper_sizes` map, making them
+/// easily accessible throughout the project for consistent layout and design.
+///
 /// @group Paper
-/// @author Lars van Vianen
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+/// @example
+///   .element {
+///     width: map-get($paper_sizes, 'a4')['width'];
+///     height: map-get($paper_sizes, 'a4')['height'];
+///   }
+/// 
 ////
 
 
 // ============================================================================
-// PAPER MODULE
-// ============================================================================
-//
-// This module defines standard paper sizes, organized into various series and
-// categories. These sizes are stored in the `$paper_sizes` map, making them
-// easily accessible throughout the project for consistent layout and design.
-//
-// Usage Example:
-//   .element {
-//     width: map-get($paper_sizes, 'a4')['width'];
-//     height: map-get($paper_sizes, 'a4')['height'];
-//   }
-//
+// Use
 // ============================================================================
 
 
-// Paper Size Map
+// ============================================================================
+// Variables
 // ============================================================================
 
 
+///
+/// Paper Size Map
+/// ============================================================================
+///
 /// A map of standard paper sizes, categorized by various series.
+/// 
 /// @name $paper_sizes
 /// @type Map
 /// @prop {Map} q0 [width: 720.00mm, height: 1080.00mm] - Q0 paper size.
