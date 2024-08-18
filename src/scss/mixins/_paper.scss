@@ -1,27 +1,49 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
 ////
+/// 
+/// Paper Mixins Module
+/// ===========================================================================
+/// 
+/// This module provides utilities for applying standard paper sizes to
+/// elements. The sizes are defined in the $paper-sizes map and can be applied
+/// using the `set-paper-size` mixin.
+/// 
 /// @group Paper
 /// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
 ////
 
+
 // ============================================================================
-// PAPER MODULE
-// ============================================================================
-//
-// This module provides utilities for applying standard paper sizes to elements.
-// The sizes are defined in the $paper-sizes map and can be applied using the
-// `set-paper-size` mixin.
+// Use
 // ============================================================================
 
 @use "../variables" as *;
 
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+/// 
 /// Applies the width and height of the specified paper size to the
 /// element. The paper sizes must be predefined in the $paper-sizes map.
 /// @name set_paper_size
 /// @param {String} $size - The key representing the paper size in the $paper-sizes map.
+/// 
 /// @example scss - Usage
 ///   .document {
 ///     @include set-paper-size('A4');
 ///   }
+/// 
 @mixin set_paper_size($size) {
     @if map-has-key($paper-sizes, $size) {
         $size-map: map-get($paper-sizes, $size);
