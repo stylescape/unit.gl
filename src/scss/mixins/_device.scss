@@ -1,21 +1,47 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
 ////
+/// 
+/// Device Mixins Module
+/// ===========================================================================
+/// 
 /// @group Device
 /// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
 ////
 
 
+// ============================================================================
+// Use
+// ============================================================================
 
 @use "../variables" as *;
 
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+/// 
 /// Creates a media query based on device attributes defined in the `$devices`
 /// map. The media query supports min-width, max-width, and pixel-ratio.
+/// 
 /// @name device_media_query
 /// @param {String} $device - The key name of the device in the $devices map.
 /// @content Styles to be applied within the media query.
+/// 
 /// @example scss - Usage
 ///     @include device-media-query('iphone-6') {
 ///         // Styles specific to iPhone 6
 ///     }
+/// 
 @mixin device_media_query($device) {
     // Retrieve the device attributes from the $devices map
     $attributes: map-get($devices, $device);
