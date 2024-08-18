@@ -36,6 +36,9 @@ import {
     readPackageJson,
 } from 'pack.gl';
 
+import SassDocGenerator from './SassDocGenerator.js';
+
+// import ColorScheme from './hue/color/ColorScheme.js';
 
 // ============================================================================
 // Constants
@@ -159,16 +162,16 @@ async function main() {
         await versionWriter.writeVersionToFile('VERSION', packageConfig.version);
 
 
-        // Compile TypeScript to JavaScript
-        // --------------------------------------------------------------------
-        const tsCompiler = new TypeScriptCompiler();
-        const tsFiles = [
-            path.join(CONFIG.path.ts_input, 'index.ts'),
-        ];
-        const outputDir = './dist/js';
-        // console.log('Starting TypeScript compilation...');
-        await tsCompiler.compile(tsFiles, outputDir);
-        // console.log('TypeScript compilation completed.');
+        // // Compile TypeScript to JavaScript
+        // // --------------------------------------------------------------------
+        // const tsCompiler = new TypeScriptCompiler();
+        // const tsFiles = [
+        //     path.join(CONFIG.path.ts_input, 'index.ts'),
+        // ];
+        // const outputDir = './dist/js';
+        // // console.log('Starting TypeScript compilation...');
+        // await tsCompiler.compile(tsFiles, outputDir);
+        // // console.log('TypeScript compilation completed.');
     
 
         // Rename Ts
@@ -180,16 +183,50 @@ async function main() {
         // )
 
 
-        // Minify JavaScript
-        // --------------------------------------------------------------------
-        const jsMinifier = new JavaScriptMinifier();
-        await jsMinifier.minifyFile(
-            path.join(CONFIG.path.js_output, 'index.js'),
-            path.join(CONFIG.path.js_output, `${packageConfig.name}.min.js`),
-        )
-        .then(() => console.log('JavaScript minification completed.'))
-        .catch(console.error);
-        
+        // // Minify JavaScript
+        // // --------------------------------------------------------------------
+        // const jsMinifier = new JavaScriptMinifier();
+        // await jsMinifier.minifyFile(
+        //     path.join(CONFIG.path.js_output, 'index.js'),
+        //     path.join(CONFIG.path.js_output, `${packageConfig.name}.min.js`),
+        // )
+        // .then(() => console.log('JavaScript minification completed.'))
+        // .catch(console.error);
+
+
+
+        // Create an instance of the SassDocGenerator
+        const sassDocGenerator = new SassDocGenerator();
+
+        // Define the source paths where your SASS/SCSS files are located
+        const sourcePaths = ['src/scss'];
+
+        // Define the destination directory where the generated documentation will be saved
+        const destDir = 'docs/sass';
+
+        // Additional SassDoc options (optional)
+        const options = {
+            theme: 'default', // Example option to specify a theme
+            display: {
+                access: ['public', 'private'], // Document both public and private items
+                alias: true,
+                watermark: true,
+            },
+        };
+
+        // Generate the documentation
+        sassDocGenerator.generateDocumentation(sourcePaths, destDir, options)
+            .then(() => {
+                console.log('Documentation generation complete.');
+            })
+            .catch(error => {
+                console.error('Error generating documentation:', error);
+            });
+
+
+
+
+
 
     } catch (error) {
         console.error('An error occurred:', error);
