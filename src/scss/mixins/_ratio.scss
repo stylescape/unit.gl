@@ -1,23 +1,24 @@
-// Copyright 2024 Scape Agency BV
+////
+/// @group Ratio
+/// @author Scape Agency
+////
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
 @use "../variables" as *;
 
+// ============================================================================
+// LAYOUT | RATIO
+// ============================================================================
+//
+// This module provides mixins for creating aspect ratio containers. These
+// containers maintain a specific width-to-height ratio, ensuring that elements
+// scale proportionally across different screen sizes.
+//
+// There are two approaches provided: one using the `aspect-ratio` CSS property,
+// and another using padding percentages for broader browser support.
+// ============================================================================
 
-// ============================================================================
-// Layout | Ratio
-// ============================================================================
+
 
 // Aspect Ratio Box:
 // Creates a container with a specific aspect ratio.
@@ -41,6 +42,7 @@
 //   @include aspect-ratio(16, 9);
 // }
 
+/// @group Ratio
 @mixin ratio ($val01, $val02) {
     aspect-ratio: calc($val01 / $val02);
     width: 100%;
@@ -82,6 +84,7 @@
 // . 
 // ----------------------------------------------------------------------------
 
+/// @group Ratio
 @mixin ratio_p ($val01) {
     padding-bottom: $val01;
     width: 100%;
