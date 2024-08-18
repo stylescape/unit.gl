@@ -1,105 +1,254 @@
-// Copyright 2024 Scape Agency BV
-
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+////
+/// @group Helper
+/// @author Scape Agency
+////
 
 
 @use "../variables" as *;
 
+// ============================================================================
+// MIXINS | DIMENSIONS, TYPOGRAPHY, SPACING, AND BORDERS
+// ============================================================================
+//
+// This module provides a collection of utility mixins for common CSS properties 
+// like width, height, font size, padding, margin, and border properties. 
+// These mixins leverage a `q()` function (presumably defined elsewhere) to 
+// standardize the application of units across the project, promoting consistency 
+// and scalability.
+// ============================================================================
 
-
-// Dimensions
+// DIMENSIONS
 // ----------------------------------------------------------------------------
 
-@mixin width($value) {
+
+/// Sets the width of an element using the provided value.
+/// @name set-width
+/// @group Dimensions
+/// @param {Length} $value - The width value to apply.
+/// @example scss - Usage
+///   .box {
+///     @include set-width(100px);
+///   }
+@mixin set-width($value) {
     @include q($value, width);
 }
 
-@mixin height($value) {
+
+/// Sets the height of an element using the provided value.
+/// @name set-height
+/// @group Dimensions
+/// @param {Length} $value - The height value to apply.
+/// @example scss - Usage
+///   .box {
+///     @include set-height(200px);
+///   }
+@mixin set-height($value) {
     @include q($value, height);
 }
 
-
-// Typography
+// TYPOGRAPHY
 // ----------------------------------------------------------------------------
 
-@mixin font-size($value) {
+
+/// Sets the font size of an element using the provided value.
+/// @name set-font-size
+/// @group Typography
+/// @param {Length} $value - The font size value to apply.
+/// @example scss - Usage
+///   .text {
+///     @include set-font-size(16px);
+///   }
+@mixin set-font-size($value) {
     @include q($value, font-size);
 }
 
-@mixin line-height($value) {
+
+/// Sets the line height of an element using the provided value.
+/// @name set-line-height
+/// @group Typography
+/// @param {Length} $value - The line height value to apply.
+/// @example scss - Usage
+///   .text {
+///     @include set-line-height(1.5);
+///   }
+@mixin set-line-height($value) {
     @include q($value, line-height);
 }
 
-@mixin letter-spacing($value) {
+
+/// Sets the letter spacing of an element using the provided value.
+/// @name set-letter-spacing
+/// @group Typography
+/// @param {Length} $value - The letter spacing value to apply.
+/// @example scss - Usage
+///   .text {
+///     @include set-letter-spacing(0.1em);
+///   }
+@mixin set-letter-spacing($value) {
     @include q($value, letter-spacing);
 }
 
-
-// Border
+// BORDERS
 // ----------------------------------------------------------------------------
 
-@mixin border-width($value) {
+
+/// Sets the border width of an element using the provided value.
+/// @name set-border-width
+/// @group Borders
+/// @param {Length} $value - The border width value to apply.
+/// @example scss - Usage
+///   .box {
+///     @include set-border-width(2px);
+///   }
+@mixin set-border-width($value) {
     @include q($value, border-width);
 }
 
-@mixin border-radius($value) {
+
+/// Sets the border radius of an element using the provided value.
+/// @name set-border-radius
+/// @group Borders
+/// @param {Length} $value - The border radius value to apply.
+/// @example scss - Usage
+///   .box {
+///     @include set-border-radius(8px);
+///   }
+@mixin set-border-radius($value) {
     @include q($value, border-radius);
 }
 
-
-// Padding
+// PADDING
 // ----------------------------------------------------------------------------
 
-@mixin padding($value) {
+
+/// Sets the padding of an element using the provided value.
+/// @name set-padding
+/// @group Spacing
+/// @param {Length} $value - The padding value to apply.
+/// @example scss - Usage
+///   .box {
+///     @include set-padding(10px);
+///   }
+@mixin set-padding($value) {
     @include q($value, padding);
 }
 
-@mixin padding-top($value) {
+
+/// Sets the top padding of an element using the provided value.
+/// @name set-padding-top
+/// @group Spacing
+/// @param {Length} $value - The padding-top value to apply.
+/// @example scss - Usage
+///   .box {
+///     @include set-padding-top(10px);
+///   }
+@mixin set-padding-top($value) {
     @include q($value, padding-top);
 }
 
-@mixin padding-right($value) {
+
+/// Sets the right padding of an element using the provided value.
+/// @name set-padding-right
+/// @group Spacing
+/// @param {Length} $value - The padding-right value to apply.
+/// @example scss - Usage
+///   .box {
+///     @include set-padding-right(10px);
+///   }
+@mixin set-padding-right($value) {
     @include q($value, padding-right);
 }
 
-@mixin padding-bottom($value) {
+
+/// Sets the bottom padding of an element using the provided value.
+/// @name set-padding-bottom
+/// @group Spacing
+/// @param {Length} $value - The padding-bottom value to apply.
+/// @example scss - Usage
+///   .box {
+///     @include set-padding-bottom(10px);
+///   }
+@mixin set-padding-bottom($value) {
     @include q($value, padding-bottom);
 }
 
-@mixin padding-left($value) {
+
+/// Sets the left padding of an element using the provided value.
+/// @name set-padding-left
+/// @group Spacing
+/// @param {Length} $value - The padding-left value to apply.
+/// @example scss - Usage
+///   .box {
+///     @include set-padding-left(10px);
+///   }
+@mixin set-padding-left($value) {
     @include q($value, padding-left);
 }
 
-
-// Margin
+// MARGIN
 // ----------------------------------------------------------------------------
 
-@mixin margin($value) {
+
+/// Sets the margin of an element using the provided value.
+/// @name set-margin
+/// @group Spacing
+/// @param {Length} $value - The margin value to apply.
+/// @example scss - Usage
+///   .box {
+///     @include set-margin(10px);
+///   }
+@mixin set-margin($value) {
     @include q($value, margin);
 }
 
-@mixin margin-top($value) {
+
+/// Sets the top margin of an element using the provided value.
+/// @name set-margin-top
+/// @group Spacing
+/// @param {Length} $value - The margin-top value to apply.
+/// @example scss - Usage
+///   .box {
+///     @include set-margin-top(10px);
+///   }
+@mixin set-margin-top($value) {
     @include q($value, margin-top);
 }
 
-@mixin margin-right($value) {
+
+/// Sets the right margin of an element using the provided value.
+/// @name set-margin-right
+/// @group Spacing
+/// @param {Length} $value - The margin-right value to apply.
+/// @example scss - Usage
+///   .box {
+///     @include set-margin-right(10px);
+///   }
+@mixin set-margin-right($value) {
     @include q($value, margin-right);
 }
 
-@mixin margin-bottom($value) {
+
+/// Sets the bottom margin of an element using the provided value.
+/// @name set-margin-bottom
+/// @group Spacing
+/// @param {Length} $value - The margin-bottom value to apply.
+/// @example scss - Usage
+///   .box {
+///     @include set-margin-bottom(10px);
+///   }
+@mixin set-margin-bottom($value) {
     @include q($value, margin-bottom);
 }
 
-@mixin margin-left($value) {
+
+/// Sets the left margin of an element using the provided value.
+/// @name set-margin-left
+/// @group Spacing
+/// @param {Length} $value - The margin-left value to apply.
+/// @example scss - Usage
+///     .box {
+///         @include set-margin-left(10px);
+///     }
+@mixin set-margin-left($value) {
     @include q($value, margin-left);
 }
