@@ -25,7 +25,7 @@
     "contributors": [
         "Scape Agency <info@scape.agency>"
     ],
-    "license": "Apache-2.0",
+    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/stylescape/unit.gl.git"
