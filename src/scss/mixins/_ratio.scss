@@ -1,23 +1,40 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
 ////
+/// 
+/// Ratio Mixins Module
+/// ===========================================================================
+/// 
+/// This module provides mixins for creating aspect ratio containers.
+/// These containers maintain a specific width-to-height ratio, ensuring
+/// that elements scale proportionally across different screen sizes.
+///
+/// There are two approaches provided: one using the `aspect-ratio` CSS
+/// property, and another using padding percentages for broader browser
+/// support.
+/// 
 /// @group Ratio
 /// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
 ////
 
+
+// ============================================================================
+// Use
+// ============================================================================
 
 @use "../variables" as *;
 
-// ============================================================================
-// LAYOUT | RATIO
-// ============================================================================
-//
-// This module provides mixins for creating aspect ratio containers. These
-// containers maintain a specific width-to-height ratio, ensuring that elements
-// scale proportionally across different screen sizes.
-//
-// There are two approaches provided: one using the `aspect-ratio` CSS property,
-// and another using padding percentages for broader browser support.
-// ============================================================================
 
+// ============================================================================
+// Mixins
+// ============================================================================
 
 
 // Aspect Ratio Box:
@@ -42,7 +59,7 @@
 //   @include aspect-ratio(16, 9);
 // }
 
-/// @group Ratio
+
 @mixin ratio ($val01, $val02) {
     aspect-ratio: calc($val01 / $val02);
     width: 100%;
@@ -81,10 +98,7 @@
 .ratio_16x10 { @include ratio_16x10; }
 
 
-// . 
-// ----------------------------------------------------------------------------
 
-/// @group Ratio
 @mixin ratio_p ($val01) {
     padding-bottom: $val01;
     width: 100%;
