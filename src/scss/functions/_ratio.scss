@@ -1,168 +1,66 @@
-// Copyright 2024 Scape Agency BV
-
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+////
+/// @group Ratio
+/// @author Scape Agency
+////
 
 
 // ============================================================================
-// Math | Ratio's
+// Ratio Functions Module
 // ============================================================================
-
-
-// Modular Scale Ratios Map
-// This map contains common ratios used in modular scale calculations.
-$ratio: (
-
-    // Musical Minor Interval
-    // ------------------------------------------------------------------------
-    "minor_second":         1.067,  // Minor second interval
-    "minor_third":          1.2,    // Minor third interval
-    "minor_fourth":         1.334,  // Minor fourth interval (also known as diminished fifth)
-    "minor_fifth":           1.5,    // Minor fifth interval
-    "minor_sixth":          1.6,    // Minor sixth interval
-    "minor_seventh":        1.778,  // Minor seventh interval
-    "minor_octave":         2,      // Minor octave interval
-
-    // Musical Major Interval
-    // ------------------------------------------------------------------------
-    "major_second":         1.125,  // Major second interval
-    "major_third":          1.25,   // Major third interval
-    "major_fourth":         1.333,  // Major fourth interval (perfect fourth)
-    "major_fifth":           1.5,    // Major fifth interval (perfect fifth)
-    "major_sixth":          1.667,  // Major sixth interval
-    "major_seventh":        1.875,  // Major seventh interval
-    "major_octave":         2,      // Major octave interval (perfect octave)
-
-    // Musical Perfect Interval
-    // ------------------------------------------------------------------------
-    "perfect_unison":       1,      // Perfect unison, the same note
-    "perfect_second":       1.125,  // Perfect second interval
-    "perfect_third":        1.25,   // Perfect third interval
-    "perfect_fourth":       1.333,  // Perfect fourth interval
-    "perfect_fifth":         1.5,    // Perfect fifth interval
-    "perfect_sixth":        1.667,  // Perfect sixth interval
-    "perfect_seventh":      1.875,  // Perfect seventh interval
-    "perfect_octave":       2,      // Perfect octave, double the frequency
-    "perfect_ninth":        2.25,   // Perfect ninth interval
-    "perfect_tenth":        2.5,    // Perfect tenth interval
-    "perfect_eleventh":     2.667,  // Perfect eleventh interval
-    "perfect_twelfth":      3,      // Perfect twelfth interval
-    "perfect_thirteenth":   3.333,  // Perfect thirteenth interval
-    "perfect_fourteenth":   3.667,  // Perfect fourteenth interval
-    "perfect_fifteenth":     4,      // Perfect fifteenth interval, double octave
-    "double_octave":        4,      // Twice the frequency of the perfect octave
-    "triple_octave":        8,      // Three times the frequency of the perfect octave
-
-    // Musical Augmented Interval
-    // ------------------------------------------------------------------------
-    "augmented_unison":     1.059,  // Slightly higher than perfect unison
-    "augmented_second":     1.122,  // Slightly higher than major second
-    "augmented_third":      1.189,  // Slightly higher than major third
-    "augmented_fourth":     1.414,  // Augmented fourth, also known as tritone
-    "augmented_fifth":       1.587,  // Slightly higher than perfect fifth
-    "augmented_sixth":      1.682,  // Slightly higher than major sixth
-    "augmented_seventh":    1.782,  // Slightly higher than major seventh
-    "augmented_octave":     2.059,  // Slightly higher than perfect octave
-
-    // Musical Diminished Interval
-    // ------------------------------------------------------------------------
-    "diminished_unison":    0.943,  // A diminished unison, slightly less than a perfect unison
-    "diminished_second":    1.053,  // Diminished second interval, slightly less than a minor second
-    "diminished_third":     1.122,  // Diminished third interval, slightly less than a minor third
-    "diminished_fourth":    1.260,  // Diminished fourth, slightly less than a perfect fourth
-    "diminished_fifth":      1.414,  // Tritone, halfway between a perfect fourth and perfect fifth
-    "diminished_sixth":     1.587,  // Diminished sixth interval, slightly less than a major sixth
-    "diminished_seventh":   1.782,  // Diminished seventh interval, slightly less than a major seventh
-    "diminished_octave":    1.961,  // A diminished octave, slightly less than a perfect octave
-
-    // Root
-    // ------------------------------------------------------------------------
-    "root_two":             1.414,  // Square root of 2
-    "root_three":           1.732,  // Square root of 3
-    "root_four":            2,      // Square root of 4
-    "root_five":             2.236,  // Square root of 5
-
-    // Special
-    // ------------------------------------------------------------------------
-    "golden_ratio":         1.618,
-    "silver_ratio":         2.414,  // Analogous to the golden ratio
-    "bronze_ratio":         1.927,  // Analogous to silver and golden ratios
-    "pythagorean":          1.732,  // Pythagorean constant, square root of 3
-    "phi":                  1.618,  // Another name for the golden ratio
-    "pi":                   3.142,  // Mathematical Pi value
-    "euler":                2.718,  // Euler's number
-    "square":               1.414,  // Square root of 2
-    "fibonacci":             1.618,  // Fibonacci sequence ratio
-    "plastic_number":       1.324,  // Plastic constant, another unique irrational number
-    "feigenbaum":           4.669,  // Feigenbaum constant in chaos theory
-    "apollonian":           1.306,  // Apollonian gasket, related to circle packing
-    "cosmic_ratio":         1.273,  // Based on cosmic geometry
-    "parthenon_ratio":      1.618,  // Ratio used in the Parthenon's architecture
-    "le_corbusier":         1.618,  // Le Corbusier's modulor ratio
-    "vesica_piscis":        1.732,  // Ratio from the vesica piscis shape
-    "egyptian_fraction":    1.571,  // Ancient Egyptian architecture ratio
-    "harmonic_mean":        1.455,  // Harmonic mean, a type of average
-    "gauss_constant":       0.834,  // Gauss's constant related to the arithmetic-geometric mean
-    "super_golden":         2.058,  // Super golden ratio, a higher order of the golden ratio
-
-) !default;
-
+// This module provides functions for calculating sizes based on well-known 
+// mathematical ratios, such as the golden ratio. These functions are useful 
+// for maintaining harmonious proportions in design elements like spacing, 
+// typography, and layout.
+// ============================================================================
 
 /// Golden Ratio Function
-/// A simple function to calculate sizes using the golden ratio, which can be
-/// used for spacing, sizing elements, etc.
-@function golden-ratio($size, $increment: 1) {
+/// Calculates a size using the golden ratio (approximately 1.618), which is
+/// widely used in design for its aesthetically pleasing proportions.
+/// 
+/// @name ratio_golden
+/// @param {Number} $size - The base size to scale.
+/// @param {Number} $increment - The exponent applied to the golden ratio, default is 1.
+/// @return {Number} - The calculated size based on the golden ratio.
+/// @example scss - Usage Example
+///   // Increase size using the golden ratio
+///   .element {
+///     width: golden_ratio(16px, 1); // Output: 25.888px
+///   }
+///
+///   // Decrease size using the golden ratio
+///   .small-element {
+///     width: golden_ratio(16px, -1); // Output: 9.888px
+///   }
+@function ratio_golden($size, $increment: 1) {
     $golden-ratio: 1.618;
+
+    // Validate the input size
+    @if not unitless($size) and type-of($size) != 'number' {
+        @error "The size parameter must be a valid number or unitless value.";
+    }
+
+    // Validate the increment
+    @if type-of($increment) != 'number' {
+        @error "The increment parameter must be a valid number.";
+    }
+
+    // Return the size scaled by the golden ratio raised to the increment
     @return $size * pow($golden-ratio, $increment);
 }
 
-
-// Modular Scale Function
-/// Calculates sizes (like font-size, spacing) based on a modular scale.
-/// This is useful for maintaining harmonious proportions in typography and layout.
-/// @param $increment - The step on the scale, can be positive or negative.
-/// @param $base - The base value to scale from, defaults to 1em (typographic base size).
-/// @param $ratio - The ratio to use for scaling, defaults to the Golden Ratio.
-/// @return - The calculated value based on the modular scale.
-@function modular-scale($increment: 1, $base: 1em, $ratio: 1.618) {
-    // Validate inputs
-    @if type-of($increment) != 'number' {
-        @error "Step must be a number.";
-    }
-  
-    @if type-of($base) != 'number' and not unitless($base) {
-        @error "Base must be a number with or without units.";
-    }
-  
-    @if type-of($ratio) != 'number' or $ratio <= 0 {
-        @error "Ratio must be a positive number.";
-    }
-  
-    // Calculate the modular scale value
-    @return $base * pow($ratio, $increment);
-  }
-  
-//   $ratio: map-get($ratio, $ratio-name);
-  
-  
-  // body {
-  //   font-size: modular-scale(0); // Equal to the base size, 1em
-  // }
-  
-  // h1 {
-  //   font-size: modular-scale(2); // Larger than the base size
-  // }
-  
-  // .small-text {
-  //   font-size: modular-scale(-1); // Smaller than the base size
-  // }
-  
+// Example Usage of Modular Scale
+// ----------------------------------------------------------------------------
+// Below are examples of how to use the `golden_ratio` function in a real-world
+// scenario, such as adjusting font sizes, margins, and other CSS properties.
+//
+// body {
+//   font-size: modular-scale(0); // Equal to the base size, 1em
+// }
+//
+// h1 {
+//   font-size: modular-scale(2); // Larger than the base size
+// }
+//
+// .small-text {
+//   font-size: modular-scale(-1); // Smaller than the base size
+// }
