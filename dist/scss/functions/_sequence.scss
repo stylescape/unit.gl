@@ -1,0 +1,246 @@
+////
+/// @group Math
+/// @author Scape Agency
+////
+
+// ============================================================================
+// MATH | NUMBER SEQUENCES
+// ============================================================================
+// This module provides various functions to calculate terms in well-known 
+// mathematical sequences such as Fibonacci, Lucas, Prime numbers, and more. 
+// Each function is designed to compute the nth term in the respective sequence 
+// using a straightforward algorithm.
+// ============================================================================
+
+
+// Fibonacci Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth Fibonacci number using a recursive approach.
+/// Fibonacci numbers form a sequence where each number is the sum of the two 
+/// preceding ones, starting with 0 and 1.
+/// @name sequence_fibonacci
+/// @param {Number} $n - The position in the Fibonacci sequence to calculate.
+/// @return {Number} - The nth Fibonacci number.
+ @function sequence_fibonacci($n) {
+    @if $n < 0 {
+        @warn "Index #{$n} is not valid for the Fibonacci sequence.";
+        @return null;
+    }
+    @if $n == 0 { @return 0; }
+    @else if $n == 1 { @return 1; }
+    @else {
+        @return sequence_fibonacci($n - 1) + sequence_fibonacci($n - 2);
+    }
+}
+
+
+// Lucas Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth Lucas number using a recursive approach.
+/// Lucas numbers form a sequence similar to Fibonacci numbers but start with 
+/// 2 and 1 instead of 0 and 1.
+/// @name sequence_lucas
+/// @param {Number} $n - The position in the Lucas sequence to calculate.
+/// @return {Number} - The nth Lucas number.
+@function sequence_lucas($n) {
+    @if $n < 0 {
+        @warn "Index #{$n} is not valid for the Lucas sequence.";
+        @return null;
+    }
+    @if $n == 0 { @return 2; }
+    @else if $n == 1 { @return 1; }
+    @else {
+        @return sequence_lucas($n - 1) + sequence_lucas($n - 2);
+    }
+}
+
+
+// Prime Number Check
+// ----------------------------------------------------------------------------
+
+/// Checks if a number is prime.
+/// A prime number is a natural number greater than 1 that has no positive 
+/// divisors other than 1 and itself.
+/// @name is_prime
+/// @param {Number} $n - The number to check.
+/// @return {Boolean} - `true` if the number is prime, `false` otherwise.
+@function is_prime($n) {
+    @if $n <= 1 { @return false; }
+    @for $i from 2 through math.sqrt($n) {
+        @if $n % $i == 0 {
+            @return false;
+        }
+    }
+    @return true;
+}
+
+
+// Catalan Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the factorial of a number.
+/// Factorial is the product of all positive integers up to a given number.
+/// @name factorial
+/// @param {Number} $n - The number to calculate the factorial for.
+/// @return {Number} - The factorial of $n.
+@function factorial($n) {
+    $result: 1;
+    @for $i from 1 through $n {
+        $result: $result * $i;
+    }
+    @return $result;
+}
+
+/// Calculates the nth Catalan number.
+/// Catalan numbers are a sequence of natural numbers with applications in 
+/// combinatorial mathematics, such as counting certain types of lattice paths.
+/// @name sequence_catalan
+/// @param {Number} $n - The position in the Catalan sequence to calculate.
+/// @return {Number} - The nth Catalan number.
+@function sequence_catalan($n) {
+    @return factorial(2 * $n) / (factorial($n + 1) * factorial($n));
+}
+
+
+// Harmonic Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth term of the harmonic series.
+/// The harmonic series is the sum of the reciprocals of the positive integers.
+/// @name sequence_harmonic
+/// @param {Number} $n - The position in the harmonic series to calculate.
+/// @return {Number} - The nth term of the harmonic series.
+@function sequence_harmonic($n) {
+    @if $n <= 0 {
+        @warn "Index #{$n} is not valid for the harmonic series.";
+        @return null;
+    }
+    @return 1 / $n;
+}
+
+
+// Geometric Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth term of a geometric series with a ratio of 2.
+/// A geometric series has a constant ratio between successive terms. 
+/// This function calculates the nth term for a series where each term doubles.
+/// @name sequence_geometric
+/// @param {Number} $n - The position in the geometric series to calculate.
+/// @return {Number} - The nth term of the geometric series.
+@function sequence_geometric($n) {
+    @if $n < 0 {
+        @warn "Negative index #{$n} is not valid for the geometric series.";
+        @return null;
+    }
+    @return pow(2, $n - 1);
+}
+
+
+// Superfactorial Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the superfactorial of a number.
+/// The superfactorial of a number n is the product of the first n factorials.
+/// @name sequence_superfactorial
+/// @param {Number} $n - The number to calculate the superfactorial for.
+/// @return {Number} - The superfactorial of $n.
+@function sequence_superfactorial($n) {
+    $result: 1;
+    @for $i from 1 through $n {
+        $factorial: 1;
+        @for $j from 1 through $i {
+            $factorial: $factorial * $j;
+        }
+        $result: $result * $factorial;
+    }
+    @return $result;
+}
+
+
+// Triangular Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth triangular number.
+/// Triangular numbers are the sum of the first n natural numbers.
+/// @name sequence_triangular
+/// @param {Number} $n - The position in the triangular series to calculate.
+/// @return {Number} - The nth triangular number.
+@function sequence_triangular($n) {
+    @if $n <= 0 {
+        @warn "Index #{$n} is not valid for the triangular series.";
+        @return null;
+    }
+    @return $n * ($n + 1) / 2;
+}
+
+
+// Square Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth square number.
+/// Square numbers are numbers that can be expressed as the product of an 
+/// integer with itself (n²).
+/// @name sequence_square
+/// @param {Number} $n - The position in the square series to calculate.
+/// @return {Number} - The nth square number.
+@function sequence_square($n) {
+    @if $n < 0 {
+        @warn "Negative index #{$n} is not valid for the square series.";
+        @return null;
+    }
+    @return $n * $n;
+}
+
+
+// Pentagonal Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth pentagonal number.
+/// Pentagonal numbers are figurate numbers that represent a pentagon.
+/// @name sequence_pentagonal
+/// @param {Number} $n - The position in the pentagonal series to calculate.
+/// @return {Number} - The nth pentagonal number.
+@function sequence_pentagonal($n) {
+    @if $n <= 0 {
+        @warn "Index #{$n} is not valid for the pentagonal series.";
+        @return null;
+    }
+    @return (3 * $n * $n - $n) / 2;
+}
+
+
+// Hexagonal Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth hexagonal number.
+/// Hexagonal numbers are figurate numbers that represent a hexagon.
+/// @name sequence_hexagonal
+/// @param {Number} $n - The position in the hexagonal series to calculate.
+/// @return {Number} - The nth hexagonal number.
+@function sequence_hexagonal($n) {
+    @if $n <= 0 {
+        @warn "Index #{$n} is not valid for the hexagonal series.";
+        @return null;
+    }
+    @return 2 * $n * $n - $n;
+}
+
+
+// Cube Number Sequence
+// ----------------------------------------------------------------------------
+
+/// Calculates the nth cube number.
+/// Cube numbers are numbers raised to the power of three (n³).
+/// @name sequence_cube
+/// @param {Number} $n - The position in the cube series to calculate.
+/// @return {Number} - The nth cube number.
+@function sequence_cube($n) {
+    @if $n < 0 {
+        @warn "Negative index #{$n} is not valid for the cube series.";
+        @return null;
+    }
+    @return $n * $n * $n;
+}

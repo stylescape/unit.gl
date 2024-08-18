@@ -1,6 +1,7 @@
 import { __awaiter } from "tslib";
 import path from 'path';
-import { DirectoryCleaner, DirectoryCopier, FileCopier, StyleProcessor, PackageCreator, VersionWriter, TypeScriptCompiler, JavaScriptMinifier, StylizedLogger, readPackageJson, } from 'pack.gl';
+import { DirectoryCleaner, DirectoryCopier, FileCopier, StyleProcessor, PackageCreator, VersionWriter, StylizedLogger, readPackageJson, } from 'pack.gl';
+import SassDocGenerator from './SassDocGenerator.js';
 const CONFIG = {
     path: {
         src: './src',
@@ -43,16 +44,24 @@ function main() {
             console.log('Files copied successfully.');
             const versionWriter = new VersionWriter();
             yield versionWriter.writeVersionToFile('VERSION', packageConfig.version);
-            const tsCompiler = new TypeScriptCompiler();
-            const tsFiles = [
-                path.join(CONFIG.path.ts_input, 'index.ts'),
-            ];
-            const outputDir = './dist/js';
-            yield tsCompiler.compile(tsFiles, outputDir);
-            const jsMinifier = new JavaScriptMinifier();
-            yield jsMinifier.minifyFile(path.join(CONFIG.path.js_output, 'index.js'), path.join(CONFIG.path.js_output, `${packageConfig.name}.min.js`))
-                .then(() => console.log('JavaScript minification completed.'))
-                .catch(console.error);
+            const sassDocGenerator = new SassDocGenerator();
+            const sourcePaths = ['src/scss'];
+            const destDir = 'docs/sass';
+            const options = {
+                theme: 'default',
+                display: {
+                    access: ['public', 'private'],
+                    alias: true,
+                    watermark: true,
+                },
+            };
+            sassDocGenerator.generateDocumentation(sourcePaths, destDir, options)
+                .then(() => {
+                console.log('Documentation generation complete.');
+            })
+                .catch(error => {
+                console.error('Error generating documentation:', error);
+            });
         }
         catch (error) {
             console.error('An error occurred:', error);

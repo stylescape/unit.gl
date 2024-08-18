@@ -1,0 +1,36 @@
+
+
+// ============================================================================
+// MODULE FORWARDING
+// ============================================================================
+//
+// This file centralizes the forwarding of various SCSS partials/modules used
+// across the project. By aggregating these forwards, it simplifies imports
+// in other parts of the codebase, promoting better modularity and organization.
+//
+// Forwarded Modules:
+//   - paper: Contains paper sizes and related utilities.
+//   - view: Manages viewport-specific variables, such as breakpoints.
+//   - ratio: Includes mixins and functions for aspect ratio calculations.
+//   - device: Device-specific configurations for responsive design.
+//   - display: Display-related settings and utilities, including typography.
+//   - guide: Utilities for creating visual guides and overlays.
+//   - helper: General helper functions and mixins for common tasks.
+//
+// ============================================================================
+
+
+/// Module Forwarding
+/// This module forwards several other modules to streamline imports
+/// and maintain a clean, modular structure. Each forwarded module contains 
+/// specific functionalities, from managing viewports to handling aspect ratios.
+
+
+// Forwarding modules for global access
+@forward "paper";   // Handles paper sizes and related utilities
+@forward "view";    // Manages viewport and breakpoint variables
+@forward "ratio";   // Provides aspect ratio utilities
+@forward "device";  // Device-specific responsive configurations
+@forward "display"; // Typography and display settings
+@forward "guide";   // Visual guide and overlay utilities
+@forward "helper";  // General-purpose helper functions and mixins

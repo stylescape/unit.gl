@@ -1,0 +1,150 @@
+// ============================================================================
+// COPYRIGHT NOTICE
+// ============================================================================
+//
+// © 2024 Scape Agency BV. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// You may not use this file except in compliance with the License.
+// You may obtain a copy of the License at:
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// Z-Index Layer Map
+
+/// This map defines the z-index layers used throughout the project to manage
+/// the stacking order of various interface elements. Adjustments can be made
+/// by modifying the values associated with each layer.
+/// @group Layers
+/// @access public
+/// 
+/// @example scss - Usage Example
+///   .element {
+///     z-index: z('modal');
+///   }
+/// 
+/// @todo Add more layers as needed, ensuring consistent and clear naming.
+
+
+// ============================================================================
+// Z-INDEX LAYER MAP
+// ============================================================================
+
+
+/// @type Map
+/// A map defining the z-index layers used to manage the stacking order of UI elements.
+/// Each key in the map represents a specific layer, with an associated numeric
+/// value indicating its z-index.
+/// 
+/// - **Guides**: High-priority overlays for design guides.
+/// - **Overlays**: Elements like modals that need to appear above other content.
+/// - **Interface Elements**: General UI components, ribbons, and controls.
+/// - **Content**: Main content areas, typically stacked below UI elements.
+/// - **Background Layers**: Base layers like canvases, typically behind content.
+/// - **Special Values**: Special z-index values for maximum, minimum, and baseline.
+
+ $layers: (
+
+    // ========================================================================
+    // Guides
+    // ========================================================================
+    
+    
+    /// High-priority guide overlays for design and debugging.
+    /// @name guides
+    /// @type Number
+    "guides":              9998,  // High priority guide overlays
+
+ 
+    /// Baseline guide used for text alignment and visual rhythm.
+    /// @name guide_baseline
+    /// @type Number
+    "guide_baseline":      3000,  // Baseline guide for text alignment
+
+ 
+    /// Graphical guides, such as grid overlays, used in design.
+    /// @name guide_graph
+    /// @type Number
+    "guide_graph":         3100,  // Graphical guides, such as grids
+
+    // ========================================================================
+    // Overlays
+    // ========================================================================
+
+ 
+    /// Z-index for modals and dialog boxes, ensuring they appear above other content.
+    /// @name modal
+    /// @type Number
+    "modal":               7000,  // Modals and dialog boxes
+
+    // ========================================================================
+    // Interface Elements
+    // ========================================================================
+
+ 
+    /// Z-index for top ribbons and banners that overlay other UI elements.
+    /// @name ribbon
+    /// @type Number
+    "ribbon":              5000,  // Top ribbons, banners
+
+ 
+    /// General interface elements like headers, footers, and sidebars.
+    /// @name interface
+    /// @type Number
+    "interface":           4000,  // General interface elements
+
+ 
+    /// Controls like buttons, sliders, and other interactive elements.
+    /// @name control
+    /// @type Number
+    "control":             3000,  // Controls like buttons, sliders
+
+    // ========================================================================
+    // Content
+    // ========================================================================
+
+    
+    /// Main content area, typically stacked below UI elements.
+    /// @name content
+    /// @type Number
+    "content":             2000,  // Main content area
+
+    // ========================================================================
+    // Background Layers
+    // ========================================================================
+
+    
+    /// Background canvas or base layer, typically the lowest layer.
+    /// @name canvas
+    /// @type Number
+    "canvas":             -1000,  // Background canvas or base layer
+
+    // ========================================================================
+    // Special Values
+    // ========================================================================
+    
+    /// Maximum possible z-index value.
+    /// @name max
+    /// @type Number
+    "max": 9999,  // Maximum possible z-index
+
+    
+    /// Default, baseline z-index value.
+    /// @name mid
+    /// @type Number
+    "mid": 0,  // Default, baseline z-index
+
+    
+    /// Minimum possible z-index value.
+    /// @name min
+    /// @type Number
+    "min":m-9999,  // Minimum possible z-index
+
+) !default;

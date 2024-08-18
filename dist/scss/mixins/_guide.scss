@@ -1,0 +1,189 @@
+////
+/// @group Guides
+/// @author Scape Agency
+////
+
+
+// ============================================================================
+// UTILITIES | GUIDES
+// ============================================================================
+//
+// This module provides mixins for creating visual guides, such as grid overlays
+// and baseline grids, to assist in design alignment and consistency.
+//
+// Dependencies:
+//   - "../variables" for accessing project-specific variables.
+// ============================================================================
+
+@use "../variables" as *;
+
+
+// Guide Mixin
+// ============================================================================
+
+/// Creates a full-page guide overlay with a high z-index to ensure 
+/// visibility over other elements.
+/// @name guide
+/// @example scss - Usage
+///   .guide {
+///     @include guide;
+///   }
+ @mixin guide {
+    z-index: z("guides");
+// @mixin guide($z-index: 9999) {
+//     z-index: $z-index;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    pointer-events: none;
+    opacity: 100%;
+    // background-size: $baseline_04 $baseline_04;
+}
+
+
+// Guide Graph Mixin
+// ============================================================================
+
+/// Generates a grid overlay with customizable grid size and color,
+/// useful for ensuring consistent spacing and alignment in your designs.
+/// @name guide_graph
+/// @param {Length} $size - The size of the grid cells.
+/// @param {Color} $color - The color of the grid lines. Defaults to `$guide_color`.
+/// @example scss - Usage
+///     .guide_graph {
+///         @include guide_graph(10px, #ccc);
+///     }
+@mixin guide_graph(
+    $size,
+    $color: $guide_color,
+) {
+    @include guide;
+    background-size: $size $size;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        $color 0 1px,
+        transparent 1px 100%
+    ),
+    repeating-linear-gradient(
+        to right,
+        $color 0 1px,
+        transparent 1px 100%
+    );
+}
+
+
+// Guide Baseline Mixin
+// ============================================================================
+
+/// Creates a baseline grid overlay, essential for maintaining 
+/// a consistent vertical rhythm across your designs.
+/// @name guide_baseline
+/// @param {Length} $size - The height of the baseline grid.
+/// @param {Color} $color - The color of the baseline lines. Defaults to cyan.
+/// @example scss - Usage
+///   .guide_baseline {
+///     @include guide_baseline(20px, cyan);
+///   }
+@mixin guide_baseline(
+    $size,
+    $color: $guide_color,
+) {
+    @include guide;
+    background-size: 100% $size;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        $color 0 1px,
+        transparent 1px 100%
+    );
+}
+
+
+// Baseline Grid Mixin
+// ============================================================================
+
+/// Provides a customizable baseline grid overlay with both vertical
+/// and horizontal grid lines, useful for designing layouts with consistent
+/// column widths and baseline spacing.
+/// @name guide_baseline
+/// @param {Length} $column_width - The width of each column in the grid.
+/// @param {Length} $baseline_height - The height of each baseline.
+/// @param {Color} $column_color - The color of the column lines. Defaults to rgba(200, 0, 0, 0.2).
+/// @param {Color} $baseline_color - The color of the baseline lines. Defaults to rgba(56, 255, 255, 0.8).
+/// @example scss - Usage
+///   .guide_baseline {
+///     @include guide_baseline(60px, 20px);
+///   }
+@mixin guide_baseline(
+    $column_width,
+    $baseline_height,
+    $column_color: rgba(200, 0, 0, 0.2),
+    $baseline_color: $guide_color,
+) {
+    background-image: linear-gradient(
+        to right,
+        $column_color 0 $column_width,
+        transparent $column_width transparent
+    ),
+    linear-gradient(
+        to bottom,
+        transparent calc(100% - 1px),
+        $baseline_color 100%
+    );
+    background-size: $column_width 100%, 100% $baseline_height;
+}
+
+
+// Centered Guide Mixin
+// ============================================================================
+
+/// Creates a centered guide box useful for ensuring elements are
+/// aligned to the center of the viewport.
+/// @name guide_centered
+/// @param {Length} $width - The width of the centered guide box.
+/// @param {Length} $height - The height of the centered guide box.
+/// @param {Color} $color - The color of the guide box border. Defaults to red.
+/// @example scss - Usage
+///   .guide_centered {
+///     @include guide_centered(100px, 100px, red);
+///   }
+@mixin guide_centered(
+    $width,
+    $height,
+    $color: red
+) {
+    @include guide;
+    width: $width;
+    height: $height;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid $color;
+}
+
+
+// Margin Guide Mixin
+// ============================================================================
+
+/// Visualizes the margins around content, helping to ensure
+/// consistent spacing.
+/// @name guide_margin
+/// @param {Length} $margin - The size of the margin to visualize.
+/// @param {Color} $color - The color of the margin area. Defaults to rgba(0, 255, 0, 0.1).
+/// @example scss - Usage
+///     .guide_margin {
+///         @include guide_margin(20px, rgba(0, 255, 0, 0.1));
+///     }
+@mixin guide_margin(
+    $margin,
+    $color: rgba(0, 255, 0, 0.1)
+) {
+    @include guide;
+    top: $margin;
+    left: $margin;
+    right: $margin;
+    bottom: $margin;
+    background-color: $color;
+}
