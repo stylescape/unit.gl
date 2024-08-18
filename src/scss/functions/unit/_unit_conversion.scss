@@ -1,9 +1,39 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Unit Functions Module
+/// ===========================================================================
+/// 
+/// @group Unit
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+
+// ============================================================================
+// Functions
+// ============================================================================
+
 
 
 
 
 /// Unit Conversion Functions
-/// Create functions to convert between different measurement units, such as pixels to rem, em to pixels, etc.
+/// ---------------------------------------------------------------------------
+/// Create functions to convert between different measurement units, such as
+/// pixels to rem, em to pixels, etc.
 
 @function px-to-rem($size, $base: 16px) {
     @return $size / $base * 1rem;
