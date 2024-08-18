@@ -1,21 +1,41 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Functions Module
+/// ===========================================================================
+/// 
+/// This module serves as a central hub for all core SCSS functions used across
+/// the project. By forwarding various function modules, it allows for
+/// consistent access to utilities like mathematical operations, ratio
+/// calculations, scaling utilities, sequence generation, and unit handling.
+///
+/// Forwarded Modules:
+/// - math:    Core mathematical operations and utilities.
+/// - ratio:   Functions for handling and calculating various ratios.
+/// - scale:   Utilities for implementing modular scales in responsive design.
+/// - sequence: Functions for generating and working with numeric sequences.
+/// - unit:    Functions for unit conversions and calculations.
+/// 
+/// @group Functions
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
 
 
 // ============================================================================
-// FUNCTIONS MODULE
+// Use
 // ============================================================================
-//
-// This module serves as a central hub for all core SCSS functions used across 
-// the project. By forwarding various function modules, it allows for consistent 
-// access to utilities like mathematical operations, ratio calculations, 
-// scaling utilities, sequence generation, and unit handling.
-//
-// Forwarded Modules:
-// - math:    Core mathematical operations and utilities.
-// - ratio:   Functions for handling and calculating various ratios.
-// - scale:   Utilities for implementing modular scales in responsive design.
-// - sequence: Functions for generating and working with numeric sequences.
-// - unit:    Functions for unit conversions and calculations.
-//
+
+
+// ============================================================================
+// Forward
 // ============================================================================
 
 @forward "math";              // Core mathematical operations and utilities
