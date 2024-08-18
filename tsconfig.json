@@ -124,7 +124,7 @@
       "src/**/*.ts",
       "src/index.ts.xxx",
       "src/index.ts.xxx"
-  ],
+, "tmp/Color.ts"  ],
 
   "exclude": [
       "**/*.spec.ts",
