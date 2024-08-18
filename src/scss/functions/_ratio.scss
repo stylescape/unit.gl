@@ -1,19 +1,41 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
 ////
+/// 
+/// Ratio Functions Module
+/// ===========================================================================
+/// 
+/// This module provides functions for calculating sizes based on well-known 
+/// mathematical ratios, such as the golden ratio. These functions are useful 
+/// for maintaining harmonious proportions in design elements like spacing, 
+/// typography, and layout.
+/// 
 /// @group Ratio
 /// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
 ////
 
 
 // ============================================================================
-// Ratio Functions Module
-// ============================================================================
-// This module provides functions for calculating sizes based on well-known 
-// mathematical ratios, such as the golden ratio. These functions are useful 
-// for maintaining harmonious proportions in design elements like spacing, 
-// typography, and layout.
+// Use
 // ============================================================================
 
+
+// ============================================================================
+// Functions
+// ============================================================================
+
+
+///
 /// Golden Ratio Function
+/// ---------------------------------------------------------------------------
+/// 
 /// Calculates a size using the golden ratio (approximately 1.618), which is
 /// widely used in design for its aesthetically pleasing proportions.
 /// 
@@ -21,6 +43,7 @@
 /// @param {Number} $size - The base size to scale.
 /// @param {Number} $increment - The exponent applied to the golden ratio, default is 1.
 /// @return {Number} - The calculated size based on the golden ratio.
+/// 
 /// @example scss - Usage Example
 ///   // Increase size using the golden ratio
 ///   .element {
@@ -31,6 +54,7 @@
 ///   .small-element {
 ///     width: golden_ratio(16px, -1); // Output: 9.888px
 ///   }
+/// 
 @function ratio_golden($size, $increment: 1) {
     $golden-ratio: 1.618;
 
@@ -47,20 +71,3 @@
     // Return the size scaled by the golden ratio raised to the increment
     @return $size * pow($golden-ratio, $increment);
 }
-
-// Example Usage of Modular Scale
-// ----------------------------------------------------------------------------
-// Below are examples of how to use the `golden_ratio` function in a real-world
-// scenario, such as adjusting font sizes, margins, and other CSS properties.
-//
-// body {
-//   font-size: modular-scale(0); // Equal to the base size, 1em
-// }
-//
-// h1 {
-//   font-size: modular-scale(2); // Larger than the base size
-// }
-//
-// .small-text {
-//   font-size: modular-scale(-1); // Smaller than the base size
-// }
