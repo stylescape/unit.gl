@@ -1,24 +1,33 @@
 // ============================================================================
-// MODULAR SCALE RATIOS MAP
-// ============================================================================
-//
-//   This map defines a variety of ratios used in modular scale calculations for 
-//   responsive typography, layout design, and other scaling needs. These ratios 
-//   are drawn from musical intervals, mathematical constants, and design principles.
-//
-// @example scss
-//   $scale-factor: map-get($ratio, "golden_ratio");
-//   $font-size: calc($base-font-size * $scale-factor);
-//
+// Poster
 // ============================================================================
 
 ////
-/// This is a poster comment.
-/// It will apply annotations to all items from file.
+/// 
+/// Ratio Variables Module
+/// ===========================================================================
+/// 
 /// @group Ratio
-/// @author Lars van Vianen
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
 ////
 
+
+// ============================================================================
+// Use
+// ============================================================================
+
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+
+/// 
 /// A map of common ratios used for modular scale calculations, organized by
 /// categories such as musical intervals, mathematical constants, and special
 /// ratios used in design and architecture.
@@ -26,6 +35,7 @@
 /// responsive typography, layout design, and other scaling needs. These ratios 
 /// are drawn from musical intervals, mathematical constants, and design
 /// principles.
+/// 
 /// @name $ratio_map
 /// @type Map
 /// @access public
