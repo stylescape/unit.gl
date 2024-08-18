@@ -1,27 +1,33 @@
-// Copyright 2024 Scape Agency BV
-
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+////
+/// @group View
+/// @author Scape Agency
+////
 
 
 @use "../variables" as *;
 
 // ============================================================================
-// Media | Screen
+// MEDIA | SCREEN
+// ============================================================================
+//
+// This module provides a set of mixins for applying media queries based on
+// predefined breakpoints. These mixins allow for a clean, semantic way to 
+// handle responsive design across different screen sizes.
+//
+// Dependencies:
+//   - "../variables" for access to the $breakpoints map and related variables.
+//
 // ============================================================================
 
-// Media Query Mixins
-// ============================================================================
-
+/// Applies styles for the specified breakpoint. If the breakpoint 
+/// is not found, a warning is issued.
+/// @name breakpoint
+/// @group Media Queries
+/// @param {String} $size - The name of the breakpoint as defined in the $breakpoints map.
+/// @example scss - Usage
+///   @include breakpoint(md) {
+///     // Styles for medium screens and up
+///   }
 @mixin breakpoint($size) {
     @if map-has-key($breakpoints, $size) {
         @media (min-width: map-get($breakpoints, $size)) {
@@ -32,48 +38,100 @@
     }
 }
 
+
+/// Applies styles for extra-small devices and up (min-width: 320px).
+/// @name media_xs
+/// @group Media Queries
+/// @example scss - Usage
+///   @include media_xs {
+///     // Styles for extra-small devices and up
+///   }
 @mixin media_xs {
-    @media (min-width: $media_xs) { @content; }
+    @media (min-width: $media_xs) { 
+        @content; 
+    }
 }
-  
+
+
+/// Applies styles for small devices and up (min-width: 480px).
+/// @name media_sm
+/// @group Media Queries
+/// @example scss - Usage
+///   @include media_sm {
+///     // Styles for small devices and up
+///   }
 @mixin media_sm {
-    @media (min-width: $media_sm) { @content; }
+    @media (min-width: $media_sm) { 
+        @content; 
+    }
 }
 
 
+/// Applies styles for medium devices and up (min-width: 768px).
+/// @name media_md
+/// @group Media Queries
+/// @example scss - Usage
+///   @include media_md {
+///     // Styles for medium devices and up
+///   }
 @mixin media_md {
-    @media (min-width: $media_md) { @content; }
+    @media (min-width: $media_md) { 
+        @content; 
+    }
 }
-  
+
+
+/// Applies styles for large devices and up (min-width: 1024px).
+/// @name media_lg
+/// @group Media Queries
+/// @example scss - Usage
+///   @include media_lg {
+///     // Styles for large devices and up
+///   }
 @mixin media_lg {
-    @media (min-width: $media_lg) { @content; }
+    @media (min-width: $media_lg) { 
+        @content; 
+    }
 }
-  
 
+
+/// Applies styles for extra-large devices and up (min-width: 1280px).
+/// @name media_xl
+/// @group Media Queries
+/// @example scss - Usage
+///   @include media_xl {
+///     // Styles for extra-large devices and up
+///   }
 @mixin media_xl {
-    @media (min-width: $media_xl) { @content; }
+    @media (min-width: $media_xl) { 
+        @content; 
+    }
 }
-  
-@mixin media_sl {
-    @media (min-width: $media_sl) { @content; }
-}
-  
 
-// Example
+
+/// Applies styles for super-large devices and up (min-width: 1440px).
+/// @name media_sl
+/// @group Media Queries
+/// @example scss - Usage
+///   @include media_sl {
+///     // Styles for super-large devices and up
+///   }
+@mixin media_sl {
+    @media (min-width: $media_sl) { 
+        @content; 
+    }
+}
+
+// Example Usage:
 // @include breakpoint(md) {
 //     // Styles for medium screens and up
 // }
-  
 
-// Syntax
+// Syntax Examples:
 // @media media type and (condition: breakpoint) {
 //   // CSS rules
 // }
 
-// @media screen, print {
-//     /* … */
-//   }
-
-// @media (min-width: 30em) and (orientation: landscape) {
-//     /* … */
-//   }
+// @media screen and (min-width: 30em) and (orientation: landscape) {
+//     /* …
+// }
