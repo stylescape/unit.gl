@@ -1,34 +1,34 @@
-// Copyright 2024 Scape Agency BV
-
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+////
+/// @group Display
+/// @author Scape Agency
+////
 
 
 @use "../variables" as *;
 
-
-
-
-// Mixins for Media Queries Based on Device Orientation
 // ============================================================================
-// These mixins provide a convenient way to apply styles based on the orientation of the device.
-// Useful for responsive designs that need to adapt to landscape or portrait modes, especially on tablets and smartphones.
+// MIXINS | MEDIA QUERIES BASED ON DEVICE ORIENTATION AND DENSITY
+// ============================================================================
+//
+// These mixins provide a convenient way to apply styles based on device
+// orientation and display characteristics such as aspect ratio and pixel
+// density. They are essential for creating responsive designs that adapt
+// seamlessly to different device configurations, especially on mobile devices.
+// ============================================================================
 
-/// Mixin for landscape orientation with optional breakpoint
-/// Use this mixin to apply styles when the device is in landscape mode.
-/// @param $min-width (optional) - The minimum width at which the styles should apply
-/// Example usage:
-/// @include orientation-landscape(1024px) { /* styles */ }
-@mixin orientation-landscape($min-width: null) {
+
+// ============================================================================
+
+/// Applies styles when the device is in landscape mode. An optional
+/// minimum width can be specified to target specific breakpoints.
+/// @name display-orientation-landscape
+/// @group Media Queries
+/// @param {Length} $min-width (optional) - The minimum width at which the styles should apply.
+/// @example scss - Usage
+///     @include display-orientation-landscape(1024px) {
+///         // Styles for landscape orientation and min-width 1024px
+///     }
+@mixin display_orientation_landscape($min-width: null) {
     @if $min-width {
         @media (orientation: landscape) and (min-width: $min-width) {
             @content;
@@ -40,12 +40,20 @@
     }
 }
 
-/// Mixin for portrait orientation with optional breakpoint
-/// Use this mixin to apply styles when the device is in portrait mode.
-/// @param $min-width (optional) - The minimum width at which the styles should apply
-/// Example usage:
-/// @include orientation-portrait { /* styles */ }
-@mixin orientation-portrait($min-width: null) {
+
+// Mixin for portrait orientation with optional breakpoint
+// ============================================================================
+
+/// Applies styles when the device is in portrait mode. An optional
+/// minimum width can be specified to target specific breakpoints.
+/// @name display-orientation-portrait
+/// @group Media Queries
+/// @param {Length} $min-width (optional) - The minimum width at which the styles should apply.
+/// @example scss - Usage
+///     @include display-orientation-portrait(768px) {
+///         // Styles for portrait orientation and min-width 768px
+///     }
+@mixin display_orientation_portrait($min-width: null) {
     @if $min-width {
         @media (orientation: portrait) and (min-width: $min-width) {
             @content;
@@ -58,27 +66,51 @@
 }
 
 
+// Mixin for targeting specific aspect ratios
+// ============================================================================
 
-/// Mixin for targeting specific aspect ratios
-/// @param $width - Width of the aspect ratio
-/// @param $height - Height of the aspect ratio
-// @mixin aspect-ratio($width, $height) {
-//     @media (aspect-ratio: #{$width}/#{$height}) {
-//         @content;
-//     }
-// }
-
-
+/// Applies styles based on a specific aspect ratio. This mixin is 
+/// useful for targeting devices or elements that have a particular
+/// aspect ratio, ensuring that your design adapts perfectly to 
+/// screens of varying shapes and sizes.
+/// @name aspect_ratio
+/// @group Media Queries
+/// @param {Number} $width - The width component of the aspect ratio.
+/// @param {Number} $height - The height component of the aspect ratio.
+/// @example scss - Basic Usage
+///   @include aspect_ratio(16, 9) {
+///     // Styles for devices with a 16:9 aspect ratio
+///     .video {
+///       max-width: 100%;
+///     }
+///   }
+/// @example scss - Complex Usage
+///   // Apply styles for both 16:9 and 4:3 aspect ratios
+///   @include aspect_ratio(16, 9), aspect_ratio(4, 3) {
+///     // Styles for devices with either a 16:9 or 4:3 aspect ratio
+///     .content {
+///       padding: 20px;
+///     }
+///   }
+@mixin aspect_ratio($width, $height) {
+    @media (aspect-ratio: #{$width} / #{$height}) {
+        @content;
+    }
+}
 
 
 // Mixin for High-Density (Retina) Displays
 // ============================================================================
-/// This mixin targets high-density displays like Retina screens.
-/// It covers various methods to detect high pixel density to ensure broad
-/// compatibility.
-/// Usage: 
-/// @include retina { /* styles for retina displays */ }
-@mixin retina {
+
+/// Targets high-density displays, such as Retina screens, using various
+/// methods to ensure broad compatibility across devices.
+/// @name display_retina
+/// @group Media Queries
+/// @example scss - Usage
+///   @include display-retina {
+///     // Styles for high-density displays
+///   }
+@mixin display_retina {
     // Webkit-based browsers
     @media only screen and (-webkit-min-device-pixel-ratio: 2),
            // Standard way to target high-resolution displays
