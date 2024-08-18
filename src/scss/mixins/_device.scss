@@ -1,63 +1,51 @@
-// Copyright 2024 Scape Agency BV
+////
+/// @group Device
+/// @author Scape Agency
+////
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
 
 @use "../variables" as *;
 
-/// Generalized Media Query Mixin
-/// Creates a media query based on device attributes defined in $devices map.
-/// @param $device - The key name of the device in the $devices map.
-/// Usage Example:
-/// @include device-media-query('iphone-6-7-8') {// Styles specific to iPhone 6, 7, 8}
-@mixin device-media-query($device) {
-    // Retrieve the device attributes from the map
+/// Creates a media query based on device attributes defined in the `$devices`
+/// map. The media query supports min-width, max-width, and pixel-ratio.
+/// @name device_media_query
+/// @param {String} $device - The key name of the device in the $devices map.
+/// @content Styles to be applied within the media query.
+/// @example scss - Usage
+///     @include device-media-query('iphone-6') {
+///         // Styles specific to iPhone 6
+///     }
+@mixin device_media_query($device) {
+    // Retrieve the device attributes from the $devices map
     $attributes: map-get($devices, $device);
-    
+
+    // Validate that the device exists in the $devices map
+    @if $attributes == null {
+        @warn "Device `#{$device}` not found in $devices map.";
+        // @return;
+    }
+
     // Extract individual attributes with default fallbacks
-    $min-width: if(
-        map-has-key($attributes, "min-width"),
-        map-get($attributes, "min-width"),
-        null
-    );
-    $max-width: if(
-        map-has-key($attributes, "max-width"),
-        map-get($attributes, "max-width"),
-        null
-    );
-    $pixel-ratio: if(
-        map-has-key($attributes, "pixel-ratio"),
-        map-get($attributes, "pixel-ratio"),
-        1
-    ); // Default to 1
+    $min-width: map-get($attributes, "min-width");
+    $max-width: map-get($attributes, "max-width");
+    $pixel-ratio: map-get($attributes, "pixel-ratio", 1); // Default to 1
 
     // Construct the media query string
     $media-query: "only screen";
-    $media-query: if(
-        $min-width != null,
-        $media-query + " and (min-device-width: #{$min-width})",
-        $media-query
-    );
-    $media-query: if(
-        $max-width != null,
-        $media-query + " and (max-device-width: #{$max-width})",
-        $media-query
-    );
-    $media-query: if(
-        $pixel-ratio != 1,
-        $media-query + " and (-webkit-device-pixel-ratio: #{$pixel-ratio})",
-        $media-query
-    );
+
+    @if $min-width != null {
+        $media-query: "#{$media-query} and (min-width: #{$min-width})";
+    }
+
+    @if $max-width != null {
+        $media-query: "#{$media-query} and (max-width: #{$max-width})";
+    }
+
+    @if $pixel-ratio != 1 {
+        $media-query: "#{$media-query} and (-webkit-device-pixel-ratio: #{$pixel-ratio})";
+        $media-query: "#{$media-query} and (min-resolution: #{($pixel-ratio * 96)}dpi)";
+    }
 
     // Apply the media query
     @media #{$media-query} {
