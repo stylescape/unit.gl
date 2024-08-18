@@ -1,24 +1,42 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
 ////
+/// 
+/// Helper Mixins Module
+/// ===========================================================================
+/// 
+/// This module provides a collection of utility mixins for common CSS
+/// properties like width, height, font size, padding, margin, and border
+/// properties. These mixins leverage a `q()` function (presumably defined
+/// elsewhere) to standardize the application of units across the project,
+/// promoting consistency and scalability.
+/// 
 /// @group Helper
 /// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
 ////
 
+
+// ============================================================================
+// Use
+// ============================================================================
 
 @use "../variables" as *;
 
+
 // ============================================================================
-// MIXINS | DIMENSIONS, TYPOGRAPHY, SPACING, AND BORDERS
-// ============================================================================
-//
-// This module provides a collection of utility mixins for common CSS properties 
-// like width, height, font size, padding, margin, and border properties. 
-// These mixins leverage a `q()` function (presumably defined elsewhere) to 
-// standardize the application of units across the project, promoting consistency 
-// and scalability.
+// Mixins
 // ============================================================================
 
-// DIMENSIONS
-// ----------------------------------------------------------------------------
+
+// Dimensions
+// ============================================================================
 
 
 /// Sets the width of an element using the provided value.
