@@ -1,23 +1,46 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Math Functions Module
+/// ===========================================================================
+/// 
+/// These functions allow for arithmetic operations on values with or without 
+/// units, ensuring compatibility and proper handling of CSS units. When units 
+/// are mismatched, a warning is issued, and the operation returns null.
+///
+/// Functions:
+/// - add: Adds two values, handling units appropriately.
+/// - subtract: Subtracts one value from another, with unit handling.
+/// 
+/// @group Math
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
 
 
 // ============================================================================
-// UNITLESS ARITHMETIC FUNCTIONS
-// ============================================================================
-//
-// These functions allow for arithmetic operations on values with or without 
-// units, ensuring compatibility and proper handling of CSS units. When units 
-// are mismatched, a warning is issued, and the operation returns null.
-//
-// Functions:
-// - add: Adds two values, handling units appropriately.
-// - subtract: Subtracts one value from another, with unit handling.
-//
+// Use
 // ============================================================================
 
+
+// ============================================================================
+// Functions
+// ============================================================================
+
+
+/// 
 /// Adds two values, handling units appropriately.
 /// 
 /// This function performs arithmetic addition on two values, ensuring that
-/// units are properly handled. If both values are unitless, they are added directly.
+/// units are properly handled. If both values are unitless, they are added
+/// directly.
 /// If one value has a unit and the other is unitless, the unitless value is 
 /// treated as having the same unit as the other value. If both values have 
 /// units, they must be the same unit; otherwise, a warning is issued and 
@@ -26,7 +49,11 @@
 /// @param {Number} $value1 - The first value, which may or may not include units.
 /// @param {Number} $value2 - The second value, which may or may not include units.
 /// @return {Number} - The sum of the two values, or null if the units are incompatible.
-@function add($value1, $value2) {
+/// 
+@function add(
+    $value1,
+    $value2
+) {
     @if unitless($value1) and unitless($value2) {
         @return $value1 + $value2;
     } @else if unitless($value1) {
@@ -45,7 +72,8 @@
 /// Subtracts one value from another, handling units appropriately.
 /// 
 /// This function performs arithmetic subtraction on two values, ensuring that
-/// units are properly handled. If both values are unitless, they are subtracted directly.
+/// units are properly handled. If both values are unitless, they are
+/// subtracted directly.
 /// If one value has a unit and the other is unitless, the unitless value is 
 /// treated as having the same unit as the other value. If both values have 
 /// units, they must be the same unit; otherwise, a warning is issued and 
@@ -55,7 +83,10 @@
 /// @param {Number} $value2 - The second value, which may or may not include units.
 /// @return {Number} - The difference between the two values, or null if the units are incompatible.
 /// 
-@function subtract($value1, $value2) {
+@function subtract(
+    $value1,
+    $value2
+) {
     @if unitless($value1) and unitless($value2) {
         @return $value1 - $value2;
     } @else if unitless($value1) {
