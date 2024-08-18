@@ -1,12 +1,41 @@
 // ============================================================================
-// Unit | Functions
+// Poster
 // ============================================================================
 
+////
+/// 
+/// Unit Functions Module
+/// ===========================================================================
+/// 
+/// @group Unit
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+
+// ============================================================================
+// Functions
+// ============================================================================
+
+
+/// 
 /// Strip Unit Function
+/// ---------------------------------------------------------------------------
+/// 
 /// Removes the unit from a numerical value, ensuring compatibility with various SCSS versions.
 /// 
 /// @param {Number} $value - The numerical value with or without a unit.
 /// @return {Number} - The raw numerical value without its unit, or the original value if unitless or non-numerical.
+/// 
 @function unit_strip($value) {
     // Check if the input is a number with a unit
     @if type-of($value) == "number" and not unitless($value) {
@@ -30,8 +59,12 @@
 }
 
 
+///
 /// Linear Interpolation Function
-/// Interpolates linearly between two values across a range, useful for fluid scaling.
+/// ---------------------------------------------------------------------------
+/// 
+/// Interpolates linearly between two values across a range, useful for
+/// fluid scaling.
 /// 
 /// @param {Number} $start - Starting value at the lower bound (can include units).
 /// @param {Number} $end - Ending value at the upper bound (can include units).
@@ -39,6 +72,7 @@
 /// @param {Number} $max - Upper bound for interpolation (must be unitless or in 'px').
 /// @param {Number} $actual - Current value to interpolate (default is 100vw).
 /// @return {Number} - Interpolated value (in the same units as $start and $end).
+/// 
 @function linear_interpolation($start, $end, $min, $max, $actual: 100vw) {
 
     // Validate parameters
@@ -76,7 +110,10 @@
 }
 
 
-/// Clamp-based Responsive Typography Function
+///
+///  Clamp-based Responsive Typography Function
+/// ---------------------------------------------------------------------------
+/// 
 /// Calculates font size using clamp-based responsive typography.
 /// 
 /// @param {Number} $_font_size_min - Minimum font size.
@@ -84,6 +121,7 @@
 /// @param {Number} $_viewport_width_min - Minimum viewport width where scaling starts.
 /// @param {Number} $_viewport_width_max - Maximum viewport width where scaling stops.
 /// @return {Number} - Calculated size using clamp.
+/// 
 @function scale_dynamic_clamp(
     $_viewport_width_min,
     $_viewport_width_max,
@@ -104,8 +142,8 @@
 
 
 
-// Fluid Typography Mixin
-// ============================================================================
+/// Fluid Typography Mixin
+/// ---------------------------------------------------------------------------
 /// Mixin: fluid_type
 /// Creates fluid typography rules to scale font sizes responsively between a
 /// minimum and maximum viewport width.
@@ -152,8 +190,12 @@
 // }
 
 
+///
 /// Dynamic Scaling Function
-/// Calculates font size dynamically based on viewport width, allowing for fluid scaling.
+/// ---------------------------------------------------------------------------
+/// 
+/// Calculates font size dynamically based on viewport width, allowing for
+/// fluid scaling.
 /// 
 /// @param {Number} $_viewport_width_min - Minimum viewport width where scaling starts.
 /// @param {Number} $_viewport_width_max - Maximum viewport width where scaling stops.
@@ -161,6 +203,7 @@
 /// @param {Number} $_font_size_max - Maximum font size.
 /// @param {Number} $_current_width - Current viewport width.
 /// @return {Number} - The calculated font size based on the current width, or null if units are inconsistent.
+/// 
 @function scale_dynamic(
     $_viewport_width_min,
     $_viewport_width_max,
