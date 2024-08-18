@@ -1,18 +1,44 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
 ////
+/// 
+/// Layer Functions Module
+/// ===========================================================================
+/// 
 /// @group Layer
 /// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
 ////
 
 
-/// ============================================================================
-/// Z-INDEX LAYER FUNCTION
-/// ============================================================================
+// ============================================================================
+// Use
+// ============================================================================
+
+
+// ============================================================================
+// Functions
+// ============================================================================
+
+
+
+///
+/// Z-Index Layer Function
+/// ---------------------------------------------------------------------------
+/// 
 /// This function retrieves the z-index value from the $layers map based on
 /// the provided layer name. If the layer is not found, a warning is issued.
 ///
 /// @name z
 /// @param {String} $layer - The name of the layer to retrieve the z-index for.
 /// @return {Number | Null} - The z-index value associated with the layer, or null if not found.
+/// 
 @function z($layer) {
     @if not map-has-key($layers, $layer) {
         @warn "Layer `#{$layer}` not found in the $layers map. z-index property omitted.";
