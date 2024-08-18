@@ -1,30 +1,46 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
 ////
+/// 
+/// Guide Class Module
+/// ===========================================================================
+/// 
+/// This module creates utility classes for visual guides, such as grid
+/// overlays and baseline grids, using predefined mixins. These classes can
+/// be applied directly in your HTML for rapid prototyping or debugging.
+/// 
+/// Dependencies:
+/// - Mixins from the Guides module
+/// 
 /// @group Guides
 /// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
 ////
 
+
 // ============================================================================
-// UTILITIES | GUIDE CLASSES
-// ============================================================================
-//
-// This module creates utility classes for visual guides, such as grid overlays
-// and baseline grids, using predefined mixins. These classes can be applied 
-// directly in your HTML for rapid prototyping or debugging.
-//
-// Dependencies:
-//   - Mixins from the Guides module
+// Use
 // ============================================================================
 
 @use "../variables" as *;
 @use "./guides" as *;
 
-// ----------------------------------------------------------------------------
-// Utility Classes
-// ----------------------------------------------------------------------------
 
+// ============================================================================
+// Classes
+// ============================================================================
 
+/// 
 /// Applies a full-page guide overlay with a high z-index.
+/// 
 /// @name guide_overlay
+/// 
 .guide {
     @include guide;
 }
@@ -32,55 +48,79 @@
     @include guide;
 }
 
+/// 
 /// Applies a grid overlay with a customizable grid size and color.
+/// 
 /// @name guide_graph
+/// 
 /// @example HTML
 ///   <div class="guide_graph"></div>
+/// 
 .guide_graph {
     @include guide_graph($rhythm_base); // Default size, customize as needed
 }
 
 
+/// 
 /// Applies a baseline grid overlay to maintain vertical rhythm.
+/// 
 /// @name guide_baseline
+/// 
 /// @example HTML
 ///   <div class="guide_baseline"></div>
+/// 
 .guide_baseline {
     @include guide_baseline($line_height_base); // Default size, customize as needed
 }
 
 
+/// 
 /// Applies a full baseline grid with both vertical and horizontal lines.
+/// 
 /// @name baseline_grid
+/// 
 /// @example HTML
 ///   <div class="baseline-grid"></div>
+/// 
 .baseline_grid {
     @include baseline_grid(60px, 24px); // Default sizes, customize as needed
 }
 
 
+/// 
 /// Creates a centered guide box for alignment checks.
+/// 
 /// @name guide_centered
+/// 
 /// @example HTML
 ///   <div class="guide_centered"></div>
+/// 
 .guide_centered {
     @include guide_centered(200px, 200px); // Default size, customize as needed
 }
 
 
+/// 
 /// Visualizes the margin area around content.
+/// 
 /// @name guide_margin
+/// 
 /// @example HTML
 ///   <div class="guide_margin"></div>
+/// 
 .guide_margin {
     @include guide_margin(20px); // Default margin size, customize as needed
 }
 
 
+/// 
 /// Visualizes a larger margin area around content.
-/// @name guide_margin-wide
+/// 
+/// @name guide_margin)_wide
+/// 
 /// @example HTML
-///   <div class="guide_margin-wide"></div>
+///   <div class="guide_margin_wide"></div>
+/// 
 .guide_margin_wide {
     @include guide_margin(40px); // Wider margin size, customize as needed
 }
