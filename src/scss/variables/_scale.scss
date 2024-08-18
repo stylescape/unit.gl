@@ -1,74 +1,116 @@
 // ============================================================================
-// TYPOGRAPHY & SPACING VARIABLES
+// Poster
 // ============================================================================
-//
-// This module defines the base typographic and spacing scales used throughout
-// the project, leveraging a rhythm-based approach for consistent vertical 
-// spacing and typographic hierarchy. The Kyū Point and Baseline scales provide 
-// a flexible system for responsive design.
-//
-// Dependencies:
-//   - "unit" module for unit conversion and scaling functions.
-//
+
+////
+/// 
+/// Scale Variables Module
+/// ===========================================================================
+/// 
+/// This module defines the base typographic and spacing scales used throughout
+/// the project, leveraging a rhythm-based approach for consistent vertical 
+/// spacing and typographic hierarchy. The Kyū Point and Baseline scales 
+/// provide a flexible system for responsive design.
+/// 
+/// @group Scale
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @requires "unit" - module for unit conversion and scaling functions.
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
 // ============================================================================
 
 @use "unit" as *;
 
 
+// ============================================================================
+// Variables
+// ============================================================================
+
+
+/// 
 /// The base rhythm unit used for vertical spacing and typography.
+/// 
 /// @name $rhythm_base
 /// @type Length
+/// 
 $rhythm_base: $q * 4 !default;
 
 
+/// 
 /// The ratio of line height to font size, defining the line height.
+/// 
 /// @name $line_height_ratio
 /// @type Number
+/// 
 $line_height_ratio: 1.5 !default;
 
 
+/// 
 /// A scalar to define the base font size relative to the rhythm base.
+/// 
 /// @name $font_size_scalar
 /// @type Number
+/// 
 $font_size_scalar: 4 !default;
 
 
+/// 
 /// A scalar to define the base line height, calculated from the line height
 /// ratio and font size scalar.
+/// 
 /// @name $line_height_scalar
 /// @type Length
+/// 
 $line_height_scalar: calc($line_height_ratio * $font_size_scalar) !default;
 
 
+/// 
 /// The base font size, calculated as a multiple of the rhythm base.
+/// 
 /// @type Length
 /// @name $font_size_base
+/// 
 $font_size_base: calc($font_size_scalar * $rhythm_base) !default;
 
 
+/// 
 /// The base line height, calculated from the line height scalar and rhythm
 /// base.
+/// 
 /// @type Length
 /// @name $line_height_base
+/// 
 $line_height_base: calc($line_height_scalar * $rhythm_base) !default;
 
-// Typographic Scale Map
-// ----------------------------------------------------------------------------
 
+/// 
+/// Typographic Scale Map
+/// ---------------------------------------------------------------------------
+/// 
 /// A modular scale for typography, based on rhythm units. Each step in the
 /// scale is a multiple of the rhythm base.
+/// 
 /// @type Map
 /// @name $typographic_scale
+/// 
 $typographic_scale: (
-    1: q(4),
-    2: q(6),  // +2 units
-    3: q(8),  // +2 units
-    4: q(10), // +2 units
-    5: q(12), // +2 units
-    6: q(14), // +2 units
-    7: q(16), // +2 units
-    8: q(20), // +4 units
-    9: q(24), // +4 units
+     1: q(4),
+     2: q(6),  // +2 units
+     3: q(8),  // +2 units
+     4: q(10), // +2 units
+     5: q(12), // +2 units
+     6: q(14), // +2 units
+     7: q(16), // +2 units
+     8: q(20), // +4 units
+     9: q(24), // +4 units
     10: q(28), // +4 units
     11: q(32), // +4 units
     12: q(36), // +4 units
@@ -79,27 +121,37 @@ $typographic_scale: (
     17: q(72)  // +8 units
 ) !default;
 
-// Kyu Point Scale
-// ----------------------------------------------------------------------------
 
+///
+///  Kyū Point Scale
+/// ---------------------------------------------------------------------------
+/// 
 /// The base scaling factor for the Kyū point scale.
+/// 
 /// @type Number
 /// @name $basepoint_scale
+/// 
 $basepoint_scale: 4 !default;
 
 
+/// 
 /// Calculates a Kyū point value based on the basepoint scale.
+/// 
 /// @name basepoint
 /// @param {Number} $value - The multiplier to apply to the base point scale.
 /// @return {Length} The calculated Kyū point value.
+/// 
 @function basepoint($value) {
     @return calc($q * $value * $basepoint_scale);
 }
 
 
+/// 
 /// A scale of Kyū points, used for fine-tuned spacing and sizing.
+/// 
 /// @type Map
 /// @name $basepoint
+/// 
 $basepoint: (
     1: basepoint(1),
     2: basepoint(2),
@@ -115,27 +167,37 @@ $basepoint: (
     12: basepoint(12)
 ) !default;
 
-// Kyu Baseline Scale
-// ----------------------------------------------------------------------------
-
+///
+/// Kyū Baseline Scale
+/// ---------------------------------------------------------------------------
+/// 
 /// The base scaling factor for the Kyū baseline grid.
+/// 
 /// @type Number
 /// @name $baseline_scale
+/// 
 $baseline_scale: 5 !default;
 
 
+/// 
 /// Calculates a baseline grid value based on the baseline scale.
+/// 
 /// @name baseline
+/// @type Function
 /// @param {Number} $value - The multiplier to apply to the baseline scale.
 /// @return {Length} The calculated baseline grid value.
+/// 
 @function baseline($value) {
     @return calc($q * $value * $baseline_scale);
 }
 
+/// 
 /// A scale for the baseline grid, used for consistent vertical rhythm in
 /// layouts.
-/// @type Map
+/// 
 /// @name $baseline
+/// @type Map
+/// 
 $baseline: (
     1: baseline(1),
     2: baseline(2),
@@ -152,14 +214,17 @@ $baseline: (
 ) !default;
 
 
-// Musical Scales Map
-// ----------------------------------------------------------------------------
-
+/// 
+/// Musical Scales Map
+/// ---------------------------------------------------------------------------
+/// 
 /// A map representing various musical scales by their degree.
 /// These scales can be used to inform design decisions, such as rhythm-based
 /// spacing or modular scale ratios in typography.
+/// 
 /// @name scale_musical
 /// @type Map
+/// 
 $scale_musical: (
     "monotonic":    1,   // Single tone scale
     "ditonic":      2,   // Two-tone scale
@@ -174,17 +239,16 @@ $scale_musical: (
 ) !default;
 
 
-
-
-
-// Classic Typographic Scale
-// ----------------------------------------------------------------------------
-
+/// Classic Typographic Scale
+/// ---------------------------------------------------------------------------
+/// 
 /// A classic typographic scale that has historical significance,
 /// often used in design software and by typographers since the Renaissance.
 /// This scale ensures harmonious and aesthetically pleasing text sizing.
+/// 
 /// @name typographic_scale_classic
 /// @type Map
+/// 
 $typographic_scale_classic: (
     1:  q( 6),  // 6q
     2:  q( 7),  // 7q  (+1)
