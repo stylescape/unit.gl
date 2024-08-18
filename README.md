@@ -25,7 +25,6 @@
 
 </div>
 
-**Stylescape Layout Engine.**
 
 ## Introduction
 
