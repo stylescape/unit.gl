@@ -67,6 +67,7 @@ $q: 0.0625rem !default;  // 1px, or 0.25mm
 /// @name q
 /// @param {Number} $multiplier - The multiplier to apply to the base Kyū unit.
 /// @param {String} $property - The CSS property to which the calculated value is applied.
+/// 
 /// @example scss - Usage
 ///   .element {
 ///     @include q(4, 'padding');  // Applies padding using 4 times the base Kyū unit
@@ -122,6 +123,7 @@ $font_max: calc((1rem / $q) * $q_max) !default;
 /// @param {Length} $max-vw - The maximum viewport width where the fluid scaling ends.
 /// @param {Length} $min-font-size - The minimum font size for the smallest viewport.
 /// @param {Length} $max-font-size - The maximum font size for the largest viewport.
+/// 
 /// @example scss - Usage
 ///   html {
 ///     @include fluid_type(320px, 1440px, 1rem, 2rem);
