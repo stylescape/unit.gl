@@ -62,7 +62,7 @@
 
 ///
 /// Mixin for portrait orientation with optional breakpoint
-/// ===========================================================================
+/// ---------------------------------------------------------------------------
 /// 
 /// Applies styles when the device is in portrait mode. An optional
 /// minimum width can be specified to target specific breakpoints.
@@ -90,7 +90,7 @@
 
 /// 
 /// Mixin for targeting specific aspect ratios
-/// ===========================================================================
+/// ---------------------------------------------------------------------------
 /// 
 /// Applies styles based on a specific aspect ratio. This mixin is 
 /// useful for targeting devices or elements that have a particular
@@ -127,7 +127,7 @@
 
 /// 
 /// Mixin for High-Density (Retina) Displays
-/// ===========================================================================
+/// ---------------------------------------------------------------------------
 /// 
 /// Targets high-density displays, such as Retina screens, using various
 /// methods to ensure broad compatibility across devices.
