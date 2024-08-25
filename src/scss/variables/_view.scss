@@ -58,19 +58,6 @@ $base_screen_unit: 16px !default;
 
 
 /// 
-/// A function to calculate breakpoints based on a multiplier of the base
-/// screen unit.
-/// 
-/// @name calc_breakpoint
-/// @param {Number} $multiplier - The multiplier to apply to the base unit.
-/// @return {Length} The calculated breakpoint value in pixels.
-/// 
-@function calc_breakpoint($multiplier) {
-     @return $base_screen_unit * $multiplier;
-}
-
-
-/// 
 /// A map defining the breakpoints for responsive design. Each key represents
 /// a different device category, with the value calculated using the base
 /// screen unit.
@@ -82,8 +69,8 @@ $base_screen_unit: 16px !default;
 /// - **xl**: 1280px (Extra large devices like TVs)
 /// - **sl**: 1440px (Super large devices like large TVs)
 /// 
-/// @type Map
 /// @name $breakpoints
+/// @type Map
 /// 
 $breakpoints: (
      xs: calc_breakpoint(20),   //  320px - Extra small devices (Mobile)
@@ -98,8 +85,8 @@ $breakpoints: (
 /// 
 /// Exposes the value of the `xs` breakpoint for direct access.
 /// 
-/// @type Length
 /// @name $media_xs
+/// @type Length
 /// 
 $media_xs: map-get($breakpoints, xs) !default;
 
@@ -107,8 +94,8 @@ $media_xs: map-get($breakpoints, xs) !default;
 /// 
 /// Exposes the value of the `sm` breakpoint for direct access.
 /// 
-/// @type Length
 /// @name $media_sm
+/// @type Length
 /// 
 $media_sm: map-get($breakpoints, sm) !default;
 
@@ -116,8 +103,8 @@ $media_sm: map-get($breakpoints, sm) !default;
 /// 
 /// Exposes the value of the `md` breakpoint for direct access.
 /// 
-/// @type Length
 /// @name $media_md
+/// @type Length
 /// 
 $media_md: map-get($breakpoints, md) !default;
 
@@ -125,8 +112,8 @@ $media_md: map-get($breakpoints, md) !default;
 /// 
 /// Exposes the value of the `lg` breakpoint for direct access.
 /// 
-/// @type Length
 /// @name $media_lg
+/// @type Length
 /// 
 $media_lg: map-get($breakpoints, lg) !default;
 
@@ -134,8 +121,8 @@ $media_lg: map-get($breakpoints, lg) !default;
 /// 
 /// Exposes the value of the `xl` breakpoint for direct access.
 /// 
-/// @type Length
 /// @name $media_xl
+/// @type Length
 /// 
 $media_xl: map-get($breakpoints, xl) !default;
 
@@ -143,8 +130,8 @@ $media_xl: map-get($breakpoints, xl) !default;
 /// 
 /// Exposes the value of the `sl` breakpoint for direct access.
 /// 
-/// @type Length
 /// @name $media_sl
+/// @type Length
 /// 
 $media_sl: map-get($breakpoints, sl) !default;
 
@@ -152,8 +139,8 @@ $media_sl: map-get($breakpoints, sl) !default;
 /// 
 /// Calculates the difference between the `sl` and `xs` breakpoints.
 /// 
-/// @type Length
 /// @name $media_dif
+/// @type Length
 /// 
 $media_dif: calc($media_sl - $media_xs);
 
