@@ -35,7 +35,7 @@
 
 /// 
 /// Guide Mixin
-/// ===========================================================================
+/// ---------------------------------------------------------------------------
 /// 
 /// Creates a full-page guide overlay with a high z-index to ensure 
 /// visibility over other elements.
@@ -65,7 +65,7 @@
 
 /// 
 /// Guide Graph Mixin
-/// ===========================================================================
+/// ---------------------------------------------------------------------------
 /// 
 /// Generates a grid overlay with customizable grid size and color,
 /// useful for ensuring consistent spacing and alignment in your designs.
@@ -100,7 +100,7 @@
 
 /// 
 /// Guide Baseline Mixin
-/// ===========================================================================
+/// ---------------------------------------------------------------------------
 /// 
 /// Creates a baseline grid overlay, essential for maintaining 
 /// a consistent vertical rhythm across your designs.
@@ -128,8 +128,9 @@
 }
 
 
+///
 /// Baseline Grid Mixin
-/// ===========================================================================
+/// ---------------------------------------------------------------------------
 /// 
 /// Provides a customizable baseline grid overlay with both vertical
 /// and horizontal grid lines, useful for designing layouts with consistent
@@ -166,8 +167,9 @@
 }
 
 
+///
 /// Centered Guide Mixin
-/// ===========================================================================
+/// ---------------------------------------------------------------------------
 /// 
 /// Creates a centered guide box useful for ensuring elements are
 /// aligned to the center of the viewport.
@@ -197,8 +199,9 @@
 }
 
 
+/// 
 /// Margin Guide Mixin
-/// ===========================================================================
+/// ---------------------------------------------------------------------------
 /// 
 /// Visualizes the margins around content, helping to ensure
 /// consistent spacing.
