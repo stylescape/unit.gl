@@ -75,8 +75,8 @@ $line_height_scalar: calc($line_height_ratio * $font_size_scalar) !default;
 /// 
 /// The base font size, calculated as a multiple of the rhythm base.
 /// 
-/// @type Length
 /// @name $font_size_base
+/// @type Length
 /// 
 $font_size_base: calc($font_size_scalar * $rhythm_base) !default;
 
@@ -85,8 +85,8 @@ $font_size_base: calc($font_size_scalar * $rhythm_base) !default;
 /// The base line height, calculated from the line height scalar and rhythm
 /// base.
 /// 
-/// @type Length
 /// @name $line_height_base
+/// @type Length
 /// 
 $line_height_base: calc($line_height_scalar * $rhythm_base) !default;
 
@@ -98,8 +98,8 @@ $line_height_base: calc($line_height_scalar * $rhythm_base) !default;
 /// A modular scale for typography, based on rhythm units. Each step in the
 /// scale is a multiple of the rhythm base.
 /// 
-/// @type Map
 /// @name $typographic_scale
+/// @type Map
 /// 
 $typographic_scale: (
      1: q(4),
@@ -128,8 +128,8 @@ $typographic_scale: (
 /// 
 /// The base scaling factor for the Kyū point scale.
 /// 
-/// @type Number
 /// @name $basepoint_scale
+/// @type Number
 /// 
 $basepoint_scale: 4 !default;
 
@@ -149,8 +149,8 @@ $basepoint_scale: 4 !default;
 /// 
 /// A scale of Kyū points, used for fine-tuned spacing and sizing.
 /// 
-/// @type Map
 /// @name $basepoint
+/// @type Map
 /// 
 $basepoint: (
     1: basepoint(1),
@@ -167,14 +167,15 @@ $basepoint: (
     12: basepoint(12)
 ) !default;
 
+
 ///
 /// Kyū Baseline Scale
 /// ---------------------------------------------------------------------------
 /// 
 /// The base scaling factor for the Kyū baseline grid.
 /// 
-/// @type Number
 /// @name $baseline_scale
+/// @type Number
 /// 
 $baseline_scale: 5 !default;
 
