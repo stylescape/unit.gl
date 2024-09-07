@@ -57,5 +57,12 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stylescape/unit.gl.git"
+  },
+  "exports": {
+    ".": {
+      "sass": "./src/scss/index.scss",
+      "import": "./dist/js/index.mjs",
+      "default": "./dist/js/index.js"
+    }
   }
 }
