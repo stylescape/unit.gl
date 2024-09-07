@@ -17,7 +17,7 @@
     "framework",
     "web"
   ],
-  "license": "Apache-2.0",
+  "license": "MIT",
   "homepage": "https://www.unit.gl/",
   "funding": [
     {
