@@ -46,6 +46,7 @@
 // ============================================================================
 
 /// Forwarding modules for global access
+@forward "unit";
 @forward "paper";   // Handles paper sizes and related utilities
 @forward "view";    // Manages viewport and breakpoint variables
 @forward "ratio";   // Provides aspect ratio utilities
