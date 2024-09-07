@@ -1,0 +1,87 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Device Mixins Module
+/// ===========================================================================
+/// 
+/// @group Unit
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../variables" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+/// 
+/// This mixin applies a CSS property with a value calculated in Kyū units.
+/// 
+/// @name q
+/// @param {Number} $multiplier - The multiplier to apply to the base Kyū unit.
+/// @param {String} $property - The CSS property to which the calculated value is applied.
+/// 
+/// @example scss - Usage
+///   .element {
+///     @include q(4, 'padding');  // Applies padding using 4 times the base Kyū unit
+///   }
+/// 
+@mixin q($multiplier, $property) {
+    #{$property}: q($multiplier);
+}
+
+
+/// 
+/// A mixin for fluid typography that scales font sizes between a specified
+/// minimum and maximum viewport width, ensuring a smooth transition.
+/// 
+/// @name fluid_type
+/// @param {Length} $min-vw - The minimum viewport width where the fluid scaling starts.
+/// @param {Length} $max-vw - The maximum viewport width where the fluid scaling ends.
+/// @param {Length} $min-font-size - The minimum font size for the smallest viewport.
+/// @param {Length} $max-font-size - The maximum font size for the largest viewport.
+/// 
+/// @example scss - Usage
+///   html {
+///     @include fluid_type(320px, 1440px, 1rem, 2rem);
+///   }
+/// 
+@mixin fluid_type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+    $u1: unit($min-vw);
+    $u2: unit($max-vw);
+    $u3: unit($min-font-size);
+    $u4: unit($max-font-size);
+
+    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+        & {
+            font-size: $min-font-size;
+
+            @media screen and (min-width: $min-vw) {
+                font-size: calc(
+                    #{$min-font-size} + #{unit_strip($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{unit_strip($max-vw - $min-vw)})
+                );
+            }
+
+            @media screen and (min-width: $max-vw) {
+                font-size: $max-font-size;
+            }
+        }
+    } @else {
+        @warn "Units do not match across all parameters in fluid_type mixin.";
+    }
+}
