@@ -56,14 +56,6 @@
 
 
 /// 
-/// Forwards variables related to measurement units, spacing, and size
-/// definitions. Useful for maintaining consistent sizing across different
-/// components.
-/// 
-@forward "unit";  // Measurement units and spacing
-
-
-/// 
 /// Forwards variables managing scaling factors for typography and responsive
 /// elements, ensuring that elements scale proportionally across different
 /// viewports.
@@ -97,3 +89,11 @@
 /// maintain their intended proportions across different devices and viewports.
 /// 
 @forward "ratio";  // Aspect ratio configurations for responsive elements
+
+/// 
+/// Forwards variables related to measurement units, spacing, and size
+/// definitions. Useful for maintaining consistent sizing across different
+/// components.
+/// 
+@forward "unit";  // Measurement units and spacing
+
