@@ -57,6 +57,7 @@
 $base_screen_unit: 16px !default;
 
 
+
 /// 
 /// A map defining the breakpoints for responsive design. Each key represents
 /// a different device category, with the value calculated using the base
@@ -72,13 +73,22 @@ $base_screen_unit: 16px !default;
 /// @name $breakpoints
 /// @type Map
 /// 
+// $breakpoints: (
+//      xs: calc_breakpoint($base_screen_unit, 20),   //  320px - Extra small devices (Mobile)
+//      sm: calc_breakpoint($base_screen_unit, 30),   //  480px - Small devices (Tablets)
+//      md: calc_breakpoint($base_screen_unit, 48),   //  768px - Medium devices (Laptops)
+//      lg: calc_breakpoint($base_screen_unit, 64),   // 1024px - Large devices (Desktops)
+//      xl: calc_breakpoint($base_screen_unit, 80),   // 1280px - Extra large devices (TV)
+//      sl: calc_breakpoint($base_screen_unit, 90),   // 1440px - Super large devices (Large TV)
+// ) !default;
+
 $breakpoints: (
-     xs: calc_breakpoint(20),   //  320px - Extra small devices (Mobile)
-     sm: calc_breakpoint(30),   //  480px - Small devices (Tablets)
-     md: calc_breakpoint(48),   //  768px - Medium devices (Laptops)
-     lg: calc_breakpoint(64),   // 1024px - Large devices (Desktops)
-     xl: calc_breakpoint(80),   // 1280px - Extra large devices (TV)
-     sl: calc_breakpoint(90),   // 1440px - Super large devices (Large TV)
+     xs: 320px,   //  320px - Extra small devices (Mobile)
+     sm: 480px,   //  480px - Small devices (Tablets)
+     md: 768px,   //  768px - Medium devices (Laptops)
+     lg: 1024px,   // 1024px - Large devices (Desktops)
+     xl: 1280px,   // 1280px - Extra large devices (TV)
+     sl: 1440px,   // 1440px - Super large devices (Large TV)
 ) !default;
 
 
