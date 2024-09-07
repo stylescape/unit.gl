@@ -81,25 +81,3 @@ $guide_color_light: rgba(255, 255, 255, 0.2);
 /// Dark color for use on lighter backgrounds
 /// 
 $guide_color_dark: rgba(0, 0, 0, 0.2);
-
-///
-/// Color Set for Easy Adjustments
-/// ---------------------------------------------------------------------------
-/// 
-$guide_colors: (
-    "primary":    $guide_color_primary,
-    "secondary":  $guide_color_secondary,
-    "tertiary":   $guide_color_tertiary,
-    "quaternary": $guide_color_quaternary,
-    "light":      $guide_color_light,
-    "dark":       $guide_color_dark,
-);
-
-
-/// 
-/// Function to Retrieve Guide Colors (Optional for Flexibility)
-/// ---------------------------------------------------------------------------
-/// 
-@function guide_color($name) {
-    @return map-get($guide_colors, $name);
-}
