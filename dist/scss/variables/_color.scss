@@ -1,0 +1,83 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Color Variables Module
+/// ===========================================================================
+/// 
+/// These colors are used for visual guides such as grid overlays, baselines, 
+/// and alignment guides. The colors are defined with varying levels of opacity 
+/// to ensure they are visible yet non-intrusive on the design.
+/// 
+/// @group Color
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+$guide_color: rgba(50, 50, 50, 0.25);
+$guide_color_2: rgba(178, 51, 170, 0.5);
+
+
+///
+/// Primary Guide Color
+/// ---------------------------------------------------------------------------
+/// 
+/// Neutral gray for general guide overlays
+/// 
+$guide_color_primary: rgba(50, 50, 50, 0.25);
+
+///
+/// Secondary Guide Color
+/// ---------------------------------------------------------------------------
+/// 
+/// Highlight color for key guides or emphasis
+/// 
+$guide_color_secondary: rgba(178, 51, 170, 0.5);
+
+///
+/// Tertiary Guide Color (Extended)
+/// ---------------------------------------------------------------------------
+///
+/// A warm orange for alternate guide markings
+/// 
+$guide_color_tertiary: rgba(255, 102, 0, 0.3);
+
+///
+/// Quaternary Guide Color (Extended)
+/// ---------------------------------------------------------------------------
+/// 
+/// A cool blue for additional grid or alignment lines
+/// 
+$guide_color_quaternary: rgba(0, 102, 255, 0.3);
+
+/// 
+/// Light Guide Color (Extended)
+/// ---------------------------------------------------------------------------
+/// 
+/// Light color for subtle or background guides
+/// 
+$guide_color_light: rgba(255, 255, 255, 0.2);
+
+///
+/// Dark Guide Color (Extended)
+/// ---------------------------------------------------------------------------
+/// 
+/// Dark color for use on lighter backgrounds
+/// 
+$guide_color_dark: rgba(0, 0, 0, 0.2);

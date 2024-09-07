@@ -1,0 +1,40 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// View Functions Module
+/// ===========================================================================
+/// 
+/// @group View
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+
+// ============================================================================
+// Functions
+// ============================================================================
+
+
+/// 
+/// A function to calculate breakpoints based on a multiplier of the base
+/// screen unit.
+/// 
+/// @name calc_breakpoint
+/// @param {Number} $multiplier - The multiplier to apply to the base unit.
+/// @return {Length} The calculated breakpoint value in pixels.
+/// 
+@function calc_breakpoint($base_screen_unit, $multiplier) {
+    @return $base_screen_unit * $multiplier;
+}

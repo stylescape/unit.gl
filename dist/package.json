@@ -1,6 +1,6 @@
 {
   "name": "unit.gl",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "description": "Dynamic Layout Engine.",
   "keywords": [
     "unit.gl",
@@ -60,9 +60,8 @@
   },
   "exports": {
     ".": {
-      "sass": "./src/scss/index.scss",
-      "import": "./dist/js/index.mjs",
-      "default": "./dist/js/index.js"
+      "sass": "./scss/index.scss",
+      "typescript": "./ts/index.scss"
     }
   }
 }

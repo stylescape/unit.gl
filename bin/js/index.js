@@ -1,7 +1,6 @@
 import { __awaiter } from "tslib";
 import path from 'path';
 import { DirectoryCleaner, DirectoryCopier, FileCopier, StyleProcessor, PackageCreator, VersionWriter, StylizedLogger, readPackageJson, } from 'pack.gl';
-import SassDocGenerator from './SassDocGenerator.js';
 const CONFIG = {
     path: {
         src: './src',
@@ -44,24 +43,6 @@ function main() {
             console.log('Files copied successfully.');
             const versionWriter = new VersionWriter();
             yield versionWriter.writeVersionToFile('VERSION', packageConfig.version);
-            const sassDocGenerator = new SassDocGenerator();
-            const sourcePaths = ['src/scss'];
-            const destDir = 'docs/sass';
-            const options = {
-                theme: 'default',
-                display: {
-                    access: ['public', 'private'],
-                    alias: true,
-                    watermark: true,
-                },
-            };
-            sassDocGenerator.generateDocumentation(sourcePaths, destDir, options)
-                .then(() => {
-                console.log('Documentation generation complete.');
-            })
-                .catch(error => {
-                console.error('Error generating documentation:', error);
-            });
         }
         catch (error) {
             console.error('An error occurred:', error);

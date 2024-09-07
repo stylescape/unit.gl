@@ -1,0 +1,162 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// View Variables Module
+/// ===========================================================================
+/// 
+/// This module defines the breakpoints for responsive design, categorized by
+/// device types. It leverages a base unit to calculate breakpoint values for
+/// consistency across various screen sizes.
+///
+/// Breakpoint Categories:
+/// - xs: Extra small devices (e.g., Mobile phones)
+/// - sm: Small devices (e.g., Tablets)
+/// - md: Medium devices (e.g., Laptops)
+/// - lg: Large devices (e.g., Desktops)
+/// - xl: Extra large devices (e.g., TVs)
+/// - sl: Super large devices (e.g., Large TVs)
+///
+/// Base Unit:
+/// - The base screen unit is set to 16px, which serves as the foundation for
+///   calculating breakpoints.
+///
+/// Example Usage:
+///   @media (min-width: map-get($breakpoints, md)) {
+///       // Styles for medium devices and up
+///   }
+/// 
+/// @group View
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+
+/// 
+/// Base unit size used for calculating breakpoints. Defaults to 16px.
+/// 
+/// @name $base_screen_unit
+/// @type Length
+/// 
+$base_screen_unit: 16px !default;
+
+
+
+/// 
+/// A map defining the breakpoints for responsive design. Each key represents
+/// a different device category, with the value calculated using the base
+/// screen unit.
+/// 
+/// - **xs**: 320px (Extra small devices like mobile phones)
+/// - **sm**: 480px (Small devices like tablets)
+/// - **md**: 768px (Medium devices like laptops)
+/// - **lg**: 1024px (Large devices like desktops)
+/// - **xl**: 1280px (Extra large devices like TVs)
+/// - **sl**: 1440px (Super large devices like large TVs)
+/// 
+/// @name $breakpoints
+/// @type Map
+/// 
+// $breakpoints: (
+//      xs: calc_breakpoint($base_screen_unit, 20),   //  320px - Extra small devices (Mobile)
+//      sm: calc_breakpoint($base_screen_unit, 30),   //  480px - Small devices (Tablets)
+//      md: calc_breakpoint($base_screen_unit, 48),   //  768px - Medium devices (Laptops)
+//      lg: calc_breakpoint($base_screen_unit, 64),   // 1024px - Large devices (Desktops)
+//      xl: calc_breakpoint($base_screen_unit, 80),   // 1280px - Extra large devices (TV)
+//      sl: calc_breakpoint($base_screen_unit, 90),   // 1440px - Super large devices (Large TV)
+// ) !default;
+
+$breakpoints: (
+     xs: 320px,   //  320px - Extra small devices (Mobile)
+     sm: 480px,   //  480px - Small devices (Tablets)
+     md: 768px,   //  768px - Medium devices (Laptops)
+     lg: 1024px,   // 1024px - Large devices (Desktops)
+     xl: 1280px,   // 1280px - Extra large devices (TV)
+     sl: 1440px,   // 1440px - Super large devices (Large TV)
+) !default;
+
+
+/// 
+/// Exposes the value of the `xs` breakpoint for direct access.
+/// 
+/// @name $media_xs
+/// @type Length
+/// 
+$media_xs: map-get($breakpoints, xs) !default;
+
+
+/// 
+/// Exposes the value of the `sm` breakpoint for direct access.
+/// 
+/// @name $media_sm
+/// @type Length
+/// 
+$media_sm: map-get($breakpoints, sm) !default;
+
+
+/// 
+/// Exposes the value of the `md` breakpoint for direct access.
+/// 
+/// @name $media_md
+/// @type Length
+/// 
+$media_md: map-get($breakpoints, md) !default;
+
+
+/// 
+/// Exposes the value of the `lg` breakpoint for direct access.
+/// 
+/// @name $media_lg
+/// @type Length
+/// 
+$media_lg: map-get($breakpoints, lg) !default;
+
+
+/// 
+/// Exposes the value of the `xl` breakpoint for direct access.
+/// 
+/// @name $media_xl
+/// @type Length
+/// 
+$media_xl: map-get($breakpoints, xl) !default;
+
+
+/// 
+/// Exposes the value of the `sl` breakpoint for direct access.
+/// 
+/// @name $media_sl
+/// @type Length
+/// 
+$media_sl: map-get($breakpoints, sl) !default;
+
+
+/// 
+/// Calculates the difference between the `sl` and `xs` breakpoints.
+/// 
+/// @name $media_dif
+/// @type Length
+/// 
+$media_dif: calc($media_sl - $media_xs);
+
+
+// Uncomment below if you want to use the following predefined breakpoints for various devices:
+
+// $media_min: 320px !default;  // Mobile
+// $media_med: 640px !default;  // Tablet
+// $media_max: 960px !default;  // Screen

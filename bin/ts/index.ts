@@ -178,33 +178,33 @@ async function main() {
 
 
 
-        // Create an instance of the SassDocGenerator
-        const sassDocGenerator = new SassDocGenerator();
+        // // Create an instance of the SassDocGenerator
+        // const sassDocGenerator = new SassDocGenerator();
 
-        // Define the source paths where your SASS/SCSS files are located
-        const sourcePaths = ['src/scss'];
+        // // Define the source paths where your SASS/SCSS files are located
+        // const sourcePaths = ['src/scss'];
 
-        // Define the destination directory where the generated documentation will be saved
-        const destDir = 'docs/sass';
+        // // Define the destination directory where the generated documentation will be saved
+        // const destDir = 'docs/sass';
 
-        // Additional SassDoc options (optional)
-        const options = {
-            theme: 'default', // Example option to specify a theme
-            display: {
-                access: ['public', 'private'], // Document both public and private items
-                alias: true,
-                watermark: true,
-            },
-        };
+        // // Additional SassDoc options (optional)
+        // const options = {
+        //     theme: 'default', // Example option to specify a theme
+        //     display: {
+        //         access: ['public', 'private'], // Document both public and private items
+        //         alias: true,
+        //         watermark: true,
+        //     },
+        // };
 
-        // Generate the documentation
-        sassDocGenerator.generateDocumentation(sourcePaths, destDir, options)
-            .then(() => {
-                console.log('Documentation generation complete.');
-            })
-            .catch(error => {
-                console.error('Error generating documentation:', error);
-            });
+        // // Generate the documentation
+        // sassDocGenerator.generateDocumentation(sourcePaths, destDir, options)
+        //     .then(() => {
+        //         console.log('Documentation generation complete.');
+        //     })
+        //     .catch(error => {
+        //         console.error('Error generating documentation:', error);
+        //     });
 
 
 

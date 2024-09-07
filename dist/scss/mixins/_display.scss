@@ -1,0 +1,151 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Display Mixins Module
+/// ===========================================================================
+/// 
+/// These mixins provide a convenient way to apply styles based on device
+/// orientation and display characteristics such as aspect ratio and pixel
+/// density. They are essential for creating responsive designs that adapt
+/// seamlessly to different device configurations, especially on mobile
+/// devices.
+/// 
+/// @group Display
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../variables" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+/// 
+/// Applies styles when the device is in landscape mode. An optional
+/// minimum width can be specified to target specific breakpoints.
+/// 
+/// @name display-orientation-landscape
+/// @param {Length} $min-width (optional) - The minimum width at which the styles should apply.
+/// 
+/// @example scss - Usage
+///     @include display-orientation-landscape(1024px) {
+///         // Styles for landscape orientation and min-width 1024px
+///     }
+/// 
+@mixin display_orientation_landscape($min-width: null) {
+    @if $min-width {
+        @media (orientation: landscape) and (min-width: $min-width) {
+            @content;
+        }
+    } @else {
+        @media (orientation: landscape) {
+            @content; // The styles inside this mixin are applied in landscape mode
+        }
+    }
+}
+
+
+///
+/// Mixin for portrait orientation with optional breakpoint
+/// ---------------------------------------------------------------------------
+/// 
+/// Applies styles when the device is in portrait mode. An optional
+/// minimum width can be specified to target specific breakpoints.
+/// 
+/// @name display-orientation-portrait
+/// @param {Length} $min-width (optional) - The minimum width at which the styles should apply.
+/// 
+/// @example scss - Usage
+///     @include display-orientation-portrait(768px) {
+///         // Styles for portrait orientation and min-width 768px
+///     }
+/// 
+@mixin display_orientation_portrait($min-width: null) {
+    @if $min-width {
+        @media (orientation: portrait) and (min-width: $min-width) {
+            @content;
+        }
+    } @else {
+        @media (orientation: portrait) {
+            @content;
+        }
+    }
+}
+
+
+/// 
+/// Mixin for targeting specific aspect ratios
+/// ---------------------------------------------------------------------------
+/// 
+/// Applies styles based on a specific aspect ratio. This mixin is 
+/// useful for targeting devices or elements that have a particular
+/// aspect ratio, ensuring that your design adapts perfectly to 
+/// screens of varying shapes and sizes.
+/// 
+/// @name aspect_ratio
+/// @param {Number} $width - The width component of the aspect ratio.
+/// @param {Number} $height - The height component of the aspect ratio.
+/// 
+/// @example scss - Basic Usage
+///   @include aspect_ratio(16, 9) {
+///     // Styles for devices with a 16:9 aspect ratio
+///     .video {
+///       max-width: 100%;
+///     }
+///   }
+/// 
+/// @example scss - Complex Usage
+///   // Apply styles for both 16:9 and 4:3 aspect ratios
+///   @include aspect_ratio(16, 9), aspect_ratio(4, 3) {
+///     // Styles for devices with either a 16:9 or 4:3 aspect ratio
+///     .content {
+///       padding: 20px;
+///     }
+///   }
+/// 
+@mixin aspect_ratio($width, $height) {
+    @media (aspect-ratio: #{$width} / #{$height}) {
+        @content;
+    }
+}
+
+
+/// 
+/// Mixin for High-Density (Retina) Displays
+/// ---------------------------------------------------------------------------
+/// 
+/// Targets high-density displays, such as Retina screens, using various
+/// methods to ensure broad compatibility across devices.
+/// 
+/// @name display_retina
+/// 
+/// @example scss - Usage
+///   @include display-retina {
+///     // Styles for high-density displays
+///   }
+/// 
+@mixin display_retina {
+    // Webkit-based browsers
+    @media only screen and (-webkit-min-device-pixel-ratio: 2),
+           // Standard way to target high-resolution displays
+           only screen and (min-resolution: 192dpi),
+           // For devices with a high-resolution in dots per inch
+           only screen and (min-resolution: 2dppx) {
+        @content; // Styles for high-density displays
+    }
+}
