@@ -22,6 +22,7 @@
 // ============================================================================
 
 @use "../variables" as *;
+@use "../functions" as *;
 
 
 // ============================================================================
@@ -51,34 +52,40 @@
 /// minimum and maximum viewport width, ensuring a smooth transition.
 /// 
 /// @name fluid_type
-/// @param {Length} $min-vw - The minimum viewport width where the fluid scaling starts.
-/// @param {Length} $max-vw - The maximum viewport width where the fluid scaling ends.
-/// @param {Length} $min-font-size - The minimum font size for the smallest viewport.
-/// @param {Length} $max-font-size - The maximum font size for the largest viewport.
+/// @param {Length} $min_vw - The minimum viewport width where the fluid scaling starts.
+/// @param {Length} $max_vw - The maximum viewport width where the fluid scaling ends.
+/// @param {Length} $min_font_size - The minimum font size for the smallest viewport.
+/// @param {Length} $max_font_size - The maximum font size for the largest viewport.
 /// 
 /// @example scss - Usage
 ///   html {
 ///     @include fluid_type(320px, 1440px, 1rem, 2rem);
 ///   }
 /// 
-@mixin fluid_type($min-vw, $max-vw, $min-font-size, $max-font-size) {
-    $u1: unit($min-vw);
-    $u2: unit($max-vw);
-    $u3: unit($min-font-size);
-    $u4: unit($max-font-size);
+@mixin fluid_type(
+    $min_vw,
+    $max_vw,
+    $min_font_size,
+    $max_font_size
+) {
+
+    $u1: unit($min_vw);
+    $u2: unit($max_vw);
+    $u3: unit($min_font_size);
+    $u4: unit($max_font_size);
 
     @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
         & {
-            font-size: $min-font-size;
+            font-size: $min_font_size;
 
-            @media screen and (min-width: $min-vw) {
+            @media screen and (min-width: $min_vw) {
                 font-size: calc(
-                    #{$min-font-size} + #{unit_strip($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{unit_strip($max-vw - $min-vw)})
+                    #{$min_font_size} + #{unit_strip($max_font_size - $min_font_size)} * ((100vw - #{$min_vw}) / #{unit_strip($max_vw - $min_vw)})
                 );
             }
 
-            @media screen and (min-width: $max-vw) {
-                font-size: $max-font-size;
+            @media screen and (min-width: $max_vw) {
+                font-size: $max_font_size;
             }
         }
     } @else {
