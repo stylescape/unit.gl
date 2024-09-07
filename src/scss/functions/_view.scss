@@ -35,6 +35,6 @@
 /// @param {Number} $multiplier - The multiplier to apply to the base unit.
 /// @return {Length} The calculated breakpoint value in pixels.
 /// 
-@function calc_breakpoint($multiplier) {
+@function calc_breakpoint($base_screen_unit, $multiplier) {
     @return $base_screen_unit * $multiplier;
 }
