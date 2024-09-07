@@ -35,19 +35,19 @@
 /// Create functions to convert between different measurement units, such as
 /// pixels to rem, em to pixels, etc.
 
-@function px-to-rem($size, $base: 16px) {
+@function px_to_rem($size, $base: 16px) {
     @return $size / $base * 1rem;
 }
 
-@function rem-to-px($size, $base: 16px) {
+@function rem_to_px($size, $base: 16px) {
     @return $size * $base;
 }
 
-@function em-to-px($size, $context: 16px) {
+@function em_to_px($size, $context: 16px) {
     @return $size * $context;
 }
 
-@function px-to-em($size, $context: 16px) {
+@function px_to_em($size, $context: 16px) {
     @return $size / $context * 1em;
 }
 
@@ -64,13 +64,13 @@ $base-font-size: 16px !default;
 }
 
 /// Convert pixels to rem
-@function px-to-rem($size) {
+@function px_to_rem($size) {
     $validated-size: validate-px($size);
     @return $validated-size / $base-font-size * 1rem;
 }
 
 /// Convert rem to pixels
-@function rem-to-px($size) {
+@function rem_to_px($size) {
     @if unit($size) != 'rem' {
         @error "Expected a rem value, but got `#{$size}`.";
     }
@@ -78,7 +78,7 @@ $base-font-size: 16px !default;
 }
 
 /// Convert em to pixels
-@function em-to-px($size, $context: $base-font-size) {
+@function em_to_px($size, $context: $base-font-size) {
     $validated-context: validate-px($context);
     @if unit($size) != 'em' {
         @error "Expected an em value, but got `#{$size}`.";
@@ -87,7 +87,7 @@ $base-font-size: 16px !default;
 }
 
 /// Convert pixels to em
-@function px-to-em($size, $context: $base-font-size) {
+@function px_to_em($size, $context: $base-font-size) {
     $validated-size: validate-px($size);
     $validated-context: validate-px($context);
     @return $validated-size / $validated-context * 1em;
