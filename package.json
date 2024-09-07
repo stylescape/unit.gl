@@ -1,7 +1,7 @@
 {
     "name": "unit.gl",
     "description": "Dynamic Layout Engine.",
-    "version": "0.0.36",
+    "version": "0.0.37",
     "config": {
         "version_short": "0.0"
     },
@@ -99,9 +99,8 @@
     ],
     "exports": {
         ".": {
-            "sass": "./src/scss/index.scss",
-            "import": "./dist/js/index.mjs",
-            "default": "./dist/js/index.js"
+            "sass": "./scss/index.scss",
+            "typescript": "./ts/index.scss"
         }
     }
 }
