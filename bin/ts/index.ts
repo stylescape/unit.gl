@@ -19,9 +19,6 @@ import {
     readPackageJson,
 } from 'pack.gl';
 
-// import SassDocGenerator from './SassDocGenerator.js';
-
-// import ColorScheme from './hue/color/ColorScheme.js';
 
 // ============================================================================
 // Constants
