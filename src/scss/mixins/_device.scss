@@ -44,7 +44,9 @@
 ///         // Styles specific to iPhone 6
 ///     }
 /// 
-@mixin device_media_query($device) {
+@mixin device_media_query(
+    $device
+) {
     // Retrieve the device attributes from the $devices map
     $attributes: map-get($devices, $device);
 
@@ -80,3 +82,4 @@
         @content;
     }
 }
+
