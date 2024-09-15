@@ -49,7 +49,9 @@
 ///         // Styles for landscape orientation and min-width 1024px
 ///     }
 /// 
-@mixin display_orientation_landscape($min-width: null) {
+@mixin display_orientation_landscape(
+    $min-width: null
+) {
     @if $min-width {
         @media (orientation: landscape) and (min-width: $min-width) {
             @content;
@@ -77,7 +79,9 @@
 ///         // Styles for portrait orientation and min-width 768px
 ///     }
 /// 
-@mixin display_orientation_portrait($min-width: null) {
+@mixin display_orientation_portrait(
+    $min-width: null
+) {
     @if $min-width {
         @media (orientation: portrait) and (min-width: $min-width) {
             @content;
@@ -86,43 +90,6 @@
         @media (orientation: portrait) {
             @content;
         }
-    }
-}
-
-
-/// 
-/// Mixin for targeting specific aspect ratios
-/// ---------------------------------------------------------------------------
-/// 
-/// Applies styles based on a specific aspect ratio. This mixin is 
-/// useful for targeting devices or elements that have a particular
-/// aspect ratio, ensuring that your design adapts perfectly to 
-/// screens of varying shapes and sizes.
-/// 
-/// @name aspect_ratio
-/// @param {Number} $width - The width component of the aspect ratio.
-/// @param {Number} $height - The height component of the aspect ratio.
-/// 
-/// @example scss - Basic Usage
-///   @include aspect_ratio(16, 9) {
-///     // Styles for devices with a 16:9 aspect ratio
-///     .video {
-///       max-width: 100%;
-///     }
-///   }
-/// 
-/// @example scss - Complex Usage
-///   // Apply styles for both 16:9 and 4:3 aspect ratios
-///   @include aspect_ratio(16, 9), aspect_ratio(4, 3) {
-///     // Styles for devices with either a 16:9 or 4:3 aspect ratio
-///     .content {
-///       padding: 20px;
-///     }
-///   }
-/// 
-@mixin aspect_ratio($width, $height) {
-    @media (aspect-ratio: #{$width} / #{$height}) {
-        @content;
     }
 }
 
@@ -149,5 +116,46 @@
            // For devices with a high-resolution in dots per inch
            only screen and (min-resolution: 2dppx) {
         @content; // Styles for high-density displays
+    }
+}
+
+
+
+/// 
+/// Mixin for targeting specific aspect ratios
+/// ---------------------------------------------------------------------------
+/// 
+/// Applies styles based on a specific aspect ratio. This mixin is 
+/// useful for targeting devices or elements that have a particular
+/// aspect ratio, ensuring that your design adapts perfectly to 
+/// screens of varying shapes and sizes.
+/// 
+/// @name display_ratio
+/// @param {Number} $width - The width component of the aspect ratio.
+/// @param {Number} $height - The height component of the aspect ratio.
+/// 
+/// @example scss - Basic Usage
+///   @include aspect_ratio(16, 9) {
+///     // Styles for devices with a 16:9 aspect ratio
+///     .video {
+///       max-width: 100%;
+///     }
+///   }
+/// 
+/// @example scss - Complex Usage
+///   // Apply styles for both 16:9 and 4:3 aspect ratios
+///   @include aspect_ratio(16, 9), aspect_ratio(4, 3) {
+///     // Styles for devices with either a 16:9 or 4:3 aspect ratio
+///     .content {
+///       padding: 20px;
+///     }
+///   }
+///
+@mixin display_ratio(
+    $width,
+    $height
+) {
+    @media (aspect-ratio: #{$width} / #{$height}) {
+        @content;
     }
 }
