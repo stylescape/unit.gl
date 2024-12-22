@@ -86,7 +86,7 @@
         "prettier": "^3.0.3",
         "sass": "^1.66.1",
         "sass-loader": "^16.0.1",
-        "sassdoc": "^1.10.12",
+        "sassdoc": "^2.7.4",
         "style-loader": "^4.0.0",
         "ts-loader": "^9.4.3",
         "ts-node": "^10.9.1",
