@@ -3,12 +3,12 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// View Mixins Module
 /// ===========================================================================
-/// 
+///
 /// This module provides a set of mixins for applying media queries based on
-/// predefined breakpoints. These mixins allow for a clean, semantic way to 
+/// predefined breakpoints. These mixins allow for a clean, semantic way to
 /// handle responsive design across different screen sizes.
 ///
 /// @group View
@@ -18,35 +18,32 @@
 /// @todo None
 /// @require "../variables" - for access to the $breakpoints map and related variables.
 /// @access public
-/// 
+///
 ////
-
 
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../variables" as *;
-
+@use '../variables' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
 
-
-/// 
-/// Applies styles for the specified breakpoint. If the breakpoint 
+///
+/// Applies styles for the specified breakpoint. If the breakpoint
 /// is not found, a warning is issued.
-/// 
+///
 /// @name breakpoint
 /// @param {String} $size - The name of the breakpoint as defined in the $breakpoints map.
 /// @content
-/// 
+///
 /// @example scss - Usage
 ///   @include breakpoint(md) {
 ///     // Styles for medium screens and up
 ///   }
-/// 
+///
 @mixin breakpoint($size) {
     @if map-has-key($breakpoints, $size) {
         @media (min-width: map-get($breakpoints, $size)) {
@@ -57,102 +54,96 @@
     }
 }
 
-
-/// 
+///
 /// Applies styles for extra-small devices and up (min-width: 320px).
-/// 
+///
 /// @name media_xs
 /// @example scss - Usage
 ///     @include media_xs {
 ///         // Styles for extra-small devices and up
 ///     }
-/// 
+///
 @mixin media_xs {
-    @media (min-width: $media_xs) { 
-        @content; 
+    @media (min-width: $media_xs) {
+        @content;
     }
 }
 
-
-/// 
+///
 /// Applies styles for small devices and up (min-width: 480px).
-/// 
+///
 /// @name media_sm
 /// @example scss - Usage
 ///   @include media_sm {
 ///     // Styles for small devices and up
 ///   }
-/// 
+///
 @mixin media_sm {
-    @media (min-width: $media_sm) { 
-        @content; 
+    @media (min-width: $media_sm) {
+        @content;
     }
 }
 
-
-/// 
+///
 /// Applies styles for medium devices and up (min-width: 768px).
-/// 
+///
 /// @name media_md
-/// 
+///
 /// @example scss - Usage
 ///   @include media_md {
 ///     // Styles for medium devices and up
 ///   }
-/// 
+///
 @mixin media_md {
-    @media (min-width: $media_md) { 
-        @content; 
+    @media (min-width: $media_md) {
+        @content;
     }
 }
 
-
-/// 
+///
 /// Applies styles for large devices and up (min-width: 1024px).
-/// 
+///
 /// @name media_lg
-/// 
+///
 /// @example scss - Usage
 ///   @include media_lg {
 ///     // Styles for large devices and up
 ///   }
-/// 
+///
 @mixin media_lg {
-    @media (min-width: $media_lg) { 
-        @content; 
+    @media (min-width: $media_lg) {
+        @content;
     }
 }
 
-
-/// 
+///
 /// Applies styles for extra-large devices and up (min-width: 1280px).
-/// 
+///
 /// @name media_xl
-/// 
+///
 /// @example scss - Usage
 ///   @include media_xl {
 ///     // Styles for extra-large devices and up
 ///   }
-/// 
+///
 @mixin media_xl {
-    @media (min-width: $media_xl) { 
-        @content; 
+    @media (min-width: $media_xl) {
+        @content;
     }
 }
 
-
-/// 
+///
 /// Applies styles for super-large devices and up (min-width: 1440px).
-/// 
+///
 /// @name media_sl
-/// 
+///
 /// @example scss - Usage
 ///   @include media_sl {
 ///     // Styles for super-large devices and up
 ///   }
-/// 
+///
 @mixin media_sl {
-    @media (min-width: $media_sl) { 
-        @content; 
+    @media (min-width: $media_sl) {
+        @content;
     }
 }

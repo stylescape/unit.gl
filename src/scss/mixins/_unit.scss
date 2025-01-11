@@ -3,73 +3,63 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Device Mixins Module
 /// ===========================================================================
-/// 
+///
 /// @group Unit
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
-
 
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../functions" as *;
-@use "../variables" as *;
-@use "../maps" as *;
-
+@use '../functions' as *;
+@use '../variables' as *;
+@use '../maps' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
 
-
-/// 
+///
 /// This mixin applies a CSS property with a value calculated in Kyū units.
-/// 
+///
 /// @name q
 /// @param {Number} $multiplier - The multiplier to apply to the base Kyū unit.
 /// @param {String} $property - The CSS property to which the calculated value is applied.
-/// 
+///
 /// @example scss - Usage
 ///   .element {
 ///     @include q(4, 'padding');  // Applies padding using 4 times the base Kyū unit
 ///   }
-/// 
+///
 @mixin q($multiplier, $property) {
     #{$property}: q($multiplier);
 }
 
-
-/// 
+///
 /// A mixin for fluid typography that scales font sizes between a specified
 /// minimum and maximum viewport width, ensuring a smooth transition.
-/// 
+///
 /// @name fluid_type
 /// @param {Length} $min_vw - The minimum viewport width where the fluid scaling starts.
 /// @param {Length} $max_vw - The maximum viewport width where the fluid scaling ends.
 /// @param {Length} $min_font_size - The minimum font size for the smallest viewport.
 /// @param {Length} $max_font_size - The maximum font size for the largest viewport.
-/// 
+///
 /// @example scss - Usage
 ///   html {
 ///     @include fluid_type(320px, 1440px, 1rem, 2rem);
 ///   }
-/// 
-@mixin fluid_type(
-    $min_vw,
-    $max_vw,
-    $min_font_size,
-    $max_font_size
-) {
-
+///
+@mixin fluid_type($min_vw, $max_vw, $min_font_size, $max_font_size) {
     $u1: unit($min_vw);
     $u2: unit($max_vw);
     $u3: unit($min_font_size);
@@ -81,7 +71,8 @@
 
             @media screen and (min-width: $min_vw) {
                 font-size: calc(
-                    #{$min_font_size} + #{unit_strip($max_font_size - $min_font_size)} * ((100vw - #{$min_vw}) / #{unit_strip($max_vw - $min_vw)})
+                    #{$min_font_size} + #{unit_strip($max_font_size - $min_font_size)} *
+                        ((100vw - #{$min_vw}) / #{unit_strip($max_vw - $min_vw)})
                 );
             }
 

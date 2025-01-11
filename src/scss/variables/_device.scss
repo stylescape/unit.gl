@@ -3,7 +3,7 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Device Variables Module
 /// ===========================================================================
 ///
@@ -11,41 +11,38 @@
 /// and pixel ratios, for a variety of devices. This map is structured for
 /// easy access and modification, ensuring responsive designs that cater to
 /// a wide range of devices.
-/// 
+///
 /// @group Color
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 /// @example scss - Usage Example
 ///   @media (min-width: map-get($devices, "iphone-x")["min-width"]) {
 ///       // Styles specific to iPhone X
 ///   }
-/// 
+///
 ////
-
 
 // ============================================================================
 // Use
 // ============================================================================
 
-
 // ============================================================================
 // Variables
 // ============================================================================
 
-
-/// 
+///
 /// Device Attribute Map
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// A map containing attributes for various devices. Each entry includes the
 /// device's minimum and maximum screen widths, as well as the pixel ratio.
 /// The map is divided into categories for smartphones, tablets, and
 /// desktops/laptops.
-/// 
+///
 /// This map contains attributes for various devices, including screen
 /// dimensions and pixel ratios. It is structured for easy access and
 /// modification, ensuring responsive designs that cater to a wide range
@@ -54,114 +51,220 @@
 /// @type Map
 /// @access public
 /// @property iPhones - iPhones with varying screen sizes and pixel densities.
-/// 
+///
 /// @example scss - Usage Example
 ///     @media (min-width: map-get($devices, "iphone-x")["min-width"]) {
 ///         // Styles specific to iPhone X
 ///     }
 ///
 $devices: (
-
     // Phones
     // ========================================================================
-
     // iPhones
     // ------------------------------------------------------------------------
-
-    
     /// iPhones
     /// iPhones with varying screen sizes and pixel densities.
-    "iphone-5":         ("min-width": 320px,  "max-width": 568px,  "pixel-ratio": 2.0),
-    "iphone-6":         ("min-width": 375px,  "max-width": 667px,  "pixel-ratio": 2.0),
-    "iphone-7":         ("min-width": 375px,  "max-width": 667px,  "pixel-ratio": 2.0),
-    "iphone-8":         ("min-width": 375px,  "max-width": 667px,  "pixel-ratio": 2.0),
-    "iphone-x":         ("min-width": 375px,  "max-width": 812px,  "pixel-ratio": 3.0),
-    "iphone-11":        ("min-width": 414px,  "max-width": 896px,  "pixel-ratio": 2.0),
-    "iphone-12":        ("min-width": 390px,  "max-width": 844px,  "pixel-ratio": 3.0),
-    "iphone-13":        ("min-width": 428px,  "max-width": 926px,  "pixel-ratio": 3.0),
-
+    'iphone-5': (
+            'min-width': 320px,
+            'max-width': 568px,
+            'pixel-ratio': 2,
+        ),
+    'iphone-6': (
+        'min-width': 375px,
+        'max-width': 667px,
+        'pixel-ratio': 2,
+    ),
+    'iphone-7': (
+        'min-width': 375px,
+        'max-width': 667px,
+        'pixel-ratio': 2,
+    ),
+    'iphone-8': (
+        'min-width': 375px,
+        'max-width': 667px,
+        'pixel-ratio': 2,
+    ),
+    'iphone-x': (
+        'min-width': 375px,
+        'max-width': 812px,
+        'pixel-ratio': 3,
+    ),
+    'iphone-11': (
+        'min-width': 414px,
+        'max-width': 896px,
+        'pixel-ratio': 2,
+    ),
+    'iphone-12': (
+        'min-width': 390px,
+        'max-width': 844px,
+        'pixel-ratio': 3,
+    ),
+    'iphone-13': (
+        'min-width': 428px,
+        'max-width': 926px,
+        'pixel-ratio': 3,
+    ),
     // Samsung Galaxy
     // ------------------------------------------------------------------------
-    
     /// iPhones
     /// iPhones with varying screen sizes and pixel densities.
-    "samsung-s10":      ("min-width": 360px,  "max-width": 760px,  "pixel-ratio": 3.0),
-    "samsung-s20":      ("min-width": 320px,  "max-width": 720px,  "pixel-ratio": 4.0),
-    "samsung-s21":      ("min-width": 320px,  "max-width": 780px,  "pixel-ratio": 3.0),
-
+    'samsung-s10': (
+            'min-width': 360px,
+            'max-width': 760px,
+            'pixel-ratio': 3,
+        ),
+    'samsung-s20': (
+        'min-width': 320px,
+        'max-width': 720px,
+        'pixel-ratio': 4,
+    ),
+    'samsung-s21': (
+        'min-width': 320px,
+        'max-width': 780px,
+        'pixel-ratio': 3,
+    ),
     // Samsung Galaxy Fold
     // ------------------------------------------------------------------------
-    
     /// Samsung Galaxy Fold
     /// Samsung Galaxy Fold devices with foldable screens.
-    "galaxy-fold":      ("min-width": 280px,  "max-width": 653px,  "pixel-ratio": 3.0),
-
+    'galaxy-fold': (
+            'min-width': 280px,
+            'max-width': 653px,
+            'pixel-ratio': 3,
+        ),
     // Google Pixel
     // ------------------------------------------------------------------------
-    
     /// Google Pixel
     /// Google Pixel devices with varying screen sizes and pixel densities.
-    "google-pixel":     ("min-width": 411px,  "max-width": 731px,  "pixel-ratio": 2.6),
-    "google-pixel-5":   ("min-width": 393px,  "max-width": 851px,  "pixel-ratio": 3.0),
-
-    
+    'google-pixel': (
+            'min-width': 411px,
+            'max-width': 731px,
+            'pixel-ratio': 2.6,
+        ),
+    'google-pixel-5': (
+        'min-width': 393px,
+        'max-width': 851px,
+        'pixel-ratio': 3,
+    ),
     /// Other Smartphones
     /// Other popular smartphones with varying screen sizes and pixel densities.
-    "lg-g6":            ("min-width": 360px,  "max-width": 720px,  "pixel-ratio": 4.0),
-    "oneplus-7t":       ("min-width": 412px,  "max-width": 732px,  "pixel-ratio": 2.5),
-    "sony-xperia-1":    ("min-width": 384px,  "max-width": 643px,  "pixel-ratio": 3.0),
-    "huawei-p30":       ("min-width": 360px,  "max-width": 780px,  "pixel-ratio": 3.0),
-    "xiaomi-mi9":       ("min-width": 393px,  "max-width": 851px,  "pixel-ratio": 3.0),
- 
+    'lg-g6': (
+            'min-width': 360px,
+            'max-width': 720px,
+            'pixel-ratio': 4,
+        ),
+    'oneplus-7t': (
+        'min-width': 412px,
+        'max-width': 732px,
+        'pixel-ratio': 2.5,
+    ),
+    'sony-xperia-1': (
+        'min-width': 384px,
+        'max-width': 643px,
+        'pixel-ratio': 3,
+    ),
+    'huawei-p30': (
+        'min-width': 360px,
+        'max-width': 780px,
+        'pixel-ratio': 3,
+    ),
+    'xiaomi-mi9': (
+        'min-width': 393px,
+        'max-width': 851px,
+        'pixel-ratio': 3,
+    ),
     // Tablets
     // ========================================================================
-
     // iPads
     // ------------------------------------------------------------------------
-
-    
     /// iPads
     /// Various models of Apple's iPad, including iPad, iPad Pro, iPad Mini, and iPad Air.
-    "ipad":             ("min-width": 768px,  "max-width": 1024px, "pixel-ratio": 2.0),
-    "ipad-pro":         ("min-width": 1024px, "max-width": 1366px, "pixel-ratio": 2.0),
-    "ipad-mini":        ("min-width": 768px,  "max-width": 1024px, "pixel-ratio": 2.0),
-    "ipad-air":         ("min-width": 820px,  "max-width": 1180px, "pixel-ratio": 2.0),
-
+    'ipad': (
+            'min-width': 768px,
+            'max-width': 1024px,
+            'pixel-ratio': 2,
+        ),
+    'ipad-pro': (
+        'min-width': 1024px,
+        'max-width': 1366px,
+        'pixel-ratio': 2,
+    ),
+    'ipad-mini': (
+        'min-width': 768px,
+        'max-width': 1024px,
+        'pixel-ratio': 2,
+    ),
+    'ipad-air': (
+        'min-width': 820px,
+        'max-width': 1180px,
+        'pixel-ratio': 2,
+    ),
     // Microsoft Surface
     // ------------------------------------------------------------------------
-    
     /// Microsoft Surface
     /// Microsoft's Surface devices, including Surface Duo and Surface Pro.
-    "surface-duo":      ("min-width": 540px,  "max-width": 720px,  "pixel-ratio": 2.5),
-    "surface-pro":      ("min-width": 768px,  "max-width": 1366px, "pixel-ratio": 2.0),
-
+    'surface-duo': (
+            'min-width': 540px,
+            'max-width': 720px,
+            'pixel-ratio': 2.5,
+        ),
+    'surface-pro': (
+        'min-width': 768px,
+        'max-width': 1366px,
+        'pixel-ratio': 2,
+    ),
     // Desktops & Laptops
     // ========================================================================
-
     // Desktops & Larger Tablets
     // ------------------------------------------------------------------------
-    
     /// Desktops & Larger Tablets
     /// Larger devices like desktops and large tablets.
-    "amazon-fire-hd":   ("min-width": 800px,  "max-width": 1280px, "pixel-ratio": 1.5),
-    "microsoft-laptop": ("min-width": 1504px, "max-width": 2256px, "pixel-ratio": 1.5),
-    
+    'amazon-fire-hd': (
+            'min-width': 800px,
+            'max-width': 1280px,
+            'pixel-ratio': 1.5,
+        ),
+    'microsoft-laptop': (
+        'min-width': 1504px,
+        'max-width': 2256px,
+        'pixel-ratio': 1.5,
+    ),
     // Mac Devices
     // ------------------------------------------------------------------------
-    
     /// Mac Devices
     /// Various Apple Mac devices, including MacBook Air, MacBook Pro, and iMac.
-    "macbook-air":      ("min-width": 1440px, "max-width": 2560px, "pixel-ratio": 2.0),
-    "macbook-pro":      ("min-width": 1680px, "max-width": 3072px, "pixel-ratio": 2.0),
-    "imac":             ("min-width": 1920px, "max-width": 5120px, "pixel-ratio": 2.0),
-
+    'macbook-air': (
+            'min-width': 1440px,
+            'max-width': 2560px,
+            'pixel-ratio': 2,
+        ),
+    'macbook-pro': (
+        'min-width': 1680px,
+        'max-width': 3072px,
+        'pixel-ratio': 2,
+    ),
+    'imac': (
+        'min-width': 1920px,
+        'max-width': 5120px,
+        'pixel-ratio': 2,
+    ),
     // Additional Devices
     // ------------------------------------------------------------------------
-    
     /// Other Laptops
     /// Other popular laptops, including Surface Book, Dell XPS, and Lenovo ThinkPad.
-    "surface-book":     ("min-width": 1500px, "max-width": 2000px, "pixel-ratio": 2.0),
-    "dell-xps":         ("min-width": 1920px, "max-width": 3840px, "pixel-ratio": 2.0),
-    "lenovo-thinkpad":  ("min-width": 1440px, "max-width": 2560px, "pixel-ratio": 2.0)
-
+    'surface-book': (
+            'min-width': 1500px,
+            'max-width': 2000px,
+            'pixel-ratio': 2,
+        ),
+    'dell-xps': (
+        'min-width': 1920px,
+        'max-width': 3840px,
+        'pixel-ratio': 2,
+    ),
+    'lenovo-thinkpad': (
+        'min-width': 1440px,
+        'max-width': 2560px,
+        'pixel-ratio': 2,
+    )
 );

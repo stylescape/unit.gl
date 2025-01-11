@@ -3,10 +3,10 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Functions Module
 /// ===========================================================================
-/// 
+///
 /// This module serves as a central hub for all core SCSS functions used across
 /// the project. By forwarding various function modules, it allows for
 /// consistent access to utilities like mathematical operations, ratio
@@ -18,28 +18,26 @@
 /// - scale:   Utilities for implementing modular scales in responsive design.
 /// - sequence: Functions for generating and working with numeric sequences.
 /// - unit:    Functions for unit conversions and calculations.
-/// 
+///
 /// @group Functions
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
-
 
 // ============================================================================
 // Use
 // ============================================================================
 
-
 // ============================================================================
 // Forward
 // ============================================================================
 
-@forward "math";              // Core mathematical operations and utilities
-@forward "ratio";             // Functions for handling and calculating ratios
-@forward "scale";             // Scaling utilities for responsive design
-@forward "sequence";          // Functions for numeric sequence generation
-@forward "unit";              // Functions for unit conversion and calculations
+@forward 'math'; // Core mathematical operations and utilities
+@forward 'ratio'; // Functions for handling and calculating ratios
+@forward 'scale'; // Scaling utilities for responsive design
+@forward 'sequence'; // Functions for numeric sequence generation
+@forward 'unit'; // Functions for unit conversion and calculations
