@@ -1,11 +1,36 @@
-class Spacing {
+// ============================================================================
+// Import
+// ============================================================================
+
+import { default as Unit, default as UnitType } from "./Unit";
+
+
+// ============================================================================
+// Classes
+// ============================================================================
+
+export default class Spacing {
+
+    // Parameters
+    // ========================================================================
+
     top: Unit;
     right: Unit;
     bottom: Unit;
     left: Unit;
 
-    constructor(top: Unit, right: Unit, bottom: Unit, left: Unit) {
-        if (top.unit !== right.unit || top.unit !== bottom.unit || top.unit !== left.unit) {
+    // Constructor
+    // ========================================================================
+
+    constructor(
+        top: Unit,
+        right: Unit,
+        bottom: Unit,
+        left: Unit
+    ) {
+        if (
+            top.unit !== right.unit || top.unit !== bottom.unit || top.unit !== left.unit
+        ) {
             throw new Error('All sides must have the same unit');
         }
         this.top = top;
@@ -13,6 +38,9 @@ class Spacing {
         this.bottom = bottom;
         this.left = left;
     }
+
+    // Methods
+    // ========================================================================
 
     add(other: Spacing): Spacing {
         return new Spacing(
