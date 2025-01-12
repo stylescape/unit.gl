@@ -1,6 +1,26 @@
+// ============================================================================
+// Import
+// ============================================================================
+
+import Unit from "./Unit";
+
+
+// ============================================================================
+// Types
+// ============================================================================
+
 type AngleUnit = 'deg' | 'rad';
 
-class Transform {
+// ============================================================================
+// Classes
+// ============================================================================
+
+
+export default class Transform {
+
+    // Parameters
+    // ========================================================================
+
     translateX: Unit;
     translateY: Unit;
     rotate: number;
@@ -8,7 +28,17 @@ class Transform {
     scaleX: number;
     scaleY: number;
 
-    constructor(translateX: Unit, translateY: Unit, rotate: number, rotateUnit: AngleUnit, scaleX: number, scaleY: number) {
+    // Constructor
+    // ========================================================================
+
+    constructor(
+        translateX: Unit,
+        translateY: Unit,
+        rotate: number,
+        rotateUnit: AngleUnit,
+        scaleX: number,
+        scaleY: number
+    ) {
         this.translateX = translateX;
         this.translateY = translateY;
         this.rotate = rotate;
@@ -16,6 +46,9 @@ class Transform {
         this.scaleX = scaleX;
         this.scaleY = scaleY;
     }
+
+    // Methods
+    // ========================================================================
 
     setTranslation(translateX: Unit, translateY: Unit): void {
         this.translateX = translateX;
