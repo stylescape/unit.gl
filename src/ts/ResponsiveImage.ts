@@ -1,11 +1,30 @@
-class ResponsiveImage {
+// ============================================================================
+// Import
+// ============================================================================
+
+
+// ============================================================================
+// Classes
+// ============================================================================
+
+export default class ResponsiveImage {
+
+    // Parameters
+    // ========================================================================
+
     sources: Map<number, string>; // Map of breakpoint to image URL
     altText: string;
+
+    // Constructor
+    // ========================================================================
 
     constructor(altText: string) {
         this.sources = new Map<number, string>();
         this.altText = altText;
     }
+
+    // Methods
+    // ========================================================================
 
     addSource(breakpoint: number, url: string): void {
         this.sources.set(breakpoint, url);
