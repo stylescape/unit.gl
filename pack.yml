@@ -1,8 +1,6 @@
 
 ---
 
-# pack.yml
-
 stages:
 
   # - name: CleanBuildDirectory
