@@ -1,12 +1,35 @@
+// ============================================================================
+// Import
+// ============================================================================
+
+
+// ============================================================================
+// Types
+// ============================================================================
+
 type FlexDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 type FlexWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
-class FlexContainer {
+// ============================================================================
+// Classes
+// ============================================================================
+
+
+
+export default class FlexContainer {
+
+    // Parameters
+    // ========================================================================
+
     flexDirection: FlexDirection;
     flexWrap: FlexWrap;
     justifyContent: Justify;
     alignItems: Align;
     alignContent: Align;
+
+
+    // Constructor
+    // ========================================================================
 
     constructor(
         flexDirection: FlexDirection = 'row',
@@ -21,6 +44,10 @@ class FlexContainer {
         this.alignItems = alignItems;
         this.alignContent = alignContent;
     }
+
+
+    // Methods
+    // ========================================================================
 
     setDirection(direction: FlexDirection): void {
         this.flexDirection = direction;
