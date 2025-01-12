@@ -1,10 +1,34 @@
-class BoxModel {
+// ============================================================================
+// Import
+// ============================================================================
+
+import Border from "./Border";
+import Size from "./Size";
+
+
+// ============================================================================
+// Classes
+// ============================================================================
+
+export default class BoxModel {
+
+    // Parameters
+    // ========================================================================
+
     margin: Margin;
     padding: Padding;
     border: Border;
     size: Size;
 
-    constructor(margin: Margin, padding: Padding, border: Border, size: Size) {
+    // Constructor
+    // ========================================================================
+
+    constructor(
+        margin: Margin,
+        padding: Padding,
+        border: Border,
+        size: Size
+    ) {
         if (
             margin.top.unit !== size.width.unit ||
             padding.top.unit !== size.width.unit ||
@@ -17,6 +41,10 @@ class BoxModel {
         this.border = border;
         this.size = size;
     }
+
+
+    // Methods
+    // ========================================================================
 
     setMargin(margin: Margin): void {
         this.margin = margin;
