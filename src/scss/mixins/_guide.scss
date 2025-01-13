@@ -24,9 +24,9 @@
 // Use
 // ============================================================================
 
-@use '../functions' as *;
-@use '../variables' as *;
-@use '../maps' as *;
+@use "../functions" as *;
+@use "../variables" as *;
+@use "../maps" as *;
 
 // ============================================================================
 // Mixins
@@ -47,7 +47,7 @@
 ///   }
 ///
 @mixin guide {
-    z-index: z('guides');
+    z-index: z("guides");
     // @mixin guide($z-index: 9999) {
     //     z-index: $z-index;
     position: absolute;
@@ -80,7 +80,11 @@
 @mixin guide_graph($size, $color: $guide_color) {
     @include guide;
     background-size: $size $size;
-    background-image: repeating-linear-gradient(to bottom, $color 0 1px, transparent 1px 100%),
+    background-image: repeating-linear-gradient(
+            to bottom,
+            $color 0 1px,
+            transparent 1px 100%
+        ),
         repeating-linear-gradient(to right, $color 0 1px, transparent 1px 100%);
 }
 
@@ -103,7 +107,11 @@
 @mixin guide_baseline($size, $color: $guide_color) {
     @include guide;
     background-size: 100% $size;
-    background-image: repeating-linear-gradient(to bottom, $color 0 1px, transparent 1px 100%);
+    background-image: repeating-linear-gradient(
+        to bottom,
+        $color 0 1px,
+        transparent 1px 100%
+    );
 }
 
 ///
@@ -136,7 +144,11 @@
             $column_color 0 $column_width,
             transparent $column_width transparent
         ),
-        linear-gradient(to bottom, transparent calc(100% - 1px), $baseline_color 100%);
+        linear-gradient(
+            to bottom,
+            transparent calc(100% - 1px),
+            $baseline_color 100%
+        );
     background-size:
         $column_width 100%,
         100% $baseline_height;

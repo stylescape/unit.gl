@@ -1,6 +1,6 @@
-@use '../dev' as *;
-@use '../variables' as *;
-@use '../mixins' as *;
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../mixins" as *;
 
 // ============================================================================
 // Utilities | Guides
@@ -13,8 +13,15 @@
 @mixin guide_graph {
     @include guide;
     background-size: 4 * $q 4 * $q;
-    background-image: repeating-linear-gradient(rgb(66, 61, 61) 0 1px, transparent 1px 100%),
-        repeating-linear-gradient(90deg, rgb(66, 61, 61) 0 1px, transparent 1px 100%);
+    background-image: repeating-linear-gradient(
+            rgb(66, 61, 61) 0 1px,
+            transparent 1px 100%
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgb(66, 61, 61) 0 1px,
+            transparent 1px 100%
+        );
 }
 
 .guide_graph {
@@ -30,7 +37,10 @@
 
     background-size: map-get($baseline, 4) map-get($baseline, 4);
     @include guide;
-    background-image: repeating-linear-gradient(cyan 0 1px, transparent 1px 100%);
+    background-image: repeating-linear-gradient(
+        cyan 0 1px,
+        transparent 1px 100%
+    );
 }
 
 .guide_baseline {
@@ -42,14 +52,26 @@
 
     background-image:
     // -webkit-linear-gradient(0deg, rgba(200,0,0,.2) 40px, transparent 40px),
-        -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 95%, rgba(56, 255, 255, 0.8) 100%);
+        -webkit-linear-gradient(
+        top,
+        rgba(0, 0, 0, 0) 95%,
+        rgba(56, 255, 255, 0.8) 100%
+    );
 
     background-image:
         // -moz-linear-gradient(0deg, rgba(200,0,0,.2) 40px, transparent 40px),
-        -moz-linear-gradient(top, rgba(0, 0, 0, 0) 95%, rgba(56, 255, 255, 0.8) 100%);
+        -moz-linear-gradient(
+        top,
+        rgba(0, 0, 0, 0) 95%,
+        rgba(56, 255, 255, 0.8) 100%
+    );
     background-image:
         // -o-linear-gradient(0deg, rgba(200,0,0,.2) 40px, transparent 40px),
-        -o-linear-gradient(top, rgba(0, 0, 0, 0) 95%, rgba(56, 255, 255, 0.8) 100%);
+        -o-linear-gradient(
+        top,
+        rgba(0, 0, 0, 0) 95%,
+        rgba(56, 255, 255, 0.8) 100%
+    );
 
     background-size:
         100% 100%,
@@ -88,13 +110,25 @@ $baseline: 22px;
     $column-width: calc($body-width / $columns);
 
     background-image:
-        -webkit-linear-gradient(0deg, $column-color $column-width, transparent $gutter-width),
+        -webkit-linear-gradient(
+            0deg,
+            $column-color $column-width,
+            transparent $gutter-width
+        ),
         -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 95%, $baseline-color 100%);
     background-image:
-        -moz-linear-gradient(0deg, $column-color $column-width, transparent $gutter-width),
+        -moz-linear-gradient(
+            0deg,
+            $column-color $column-width,
+            transparent $gutter-width
+        ),
         -moz-linear-gradient(top, rgba(0, 0, 0, 0) 95%, $baseline-color 100%);
     background-image:
-        -o-linear-gradient(0deg, $column-color $column-width, transparent $gutter-width),
+        -o-linear-gradient(
+            0deg,
+            $column-color $column-width,
+            transparent $gutter-width
+        ),
         -o-linear-gradient(top, rgba(0, 0, 0, 0) 95%, $baseline-color 100%);
     background-size:
         ($column-width + $gutter-width) 100%,

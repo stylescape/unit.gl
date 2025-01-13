@@ -44,11 +44,11 @@
 // ============================================================================
 
 /// Forwarding modules for global access
-@forward 'unit';
-@forward 'paper'; // Handles paper sizes and related utilities
-@forward 'view'; // Manages viewport and breakpoint variables
-@forward 'ratio'; // Provides aspect ratio utilities
-@forward 'device'; // Device-specific responsive configurations
-@forward 'display'; // Typography and display settings
-@forward 'guide'; // Visual guide and overlay utilities
-@forward 'helper'; // General-purpose helper functions and mixins
+@forward "unit";
+@forward "paper"; // Handles paper sizes and related utilities
+@forward "view"; // Manages viewport and breakpoint variables
+@forward "ratio"; // Provides aspect ratio utilities
+@forward "device"; // Device-specific responsive configurations
+@forward "display"; // Typography and display settings
+@forward "guide"; // Visual guide and overlay utilities
+@forward "helper"; // General-purpose helper functions and mixins

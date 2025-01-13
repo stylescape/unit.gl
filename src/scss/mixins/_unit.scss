@@ -20,9 +20,9 @@
 // Use
 // ============================================================================
 
-@use '../functions' as *;
-@use '../variables' as *;
-@use '../maps' as *;
+@use "../functions" as *;
+@use "../variables" as *;
+@use "../maps" as *;
 
 // ============================================================================
 // Mixins
@@ -71,8 +71,14 @@
 
             @media screen and (min-width: $min_vw) {
                 font-size: calc(
-                    #{$min_font_size} + #{unit_strip($max_font_size - $min_font_size)} *
-                        ((100vw - #{$min_vw}) / #{unit_strip($max_vw - $min_vw)})
+                    #{$min_font_size} + #{unit_strip(
+                            $max_font_size - $min_font_size
+                        )} *
+                        (
+                            (100vw - #{$min_vw}) / #{unit_strip(
+                                    $max_vw - $min_vw
+                                )}
+                        )
                 );
             }
 

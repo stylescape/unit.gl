@@ -27,8 +27,8 @@
 // Use
 // ============================================================================
 
-@use '../variables' as *;
-@use '../mixins' as *;
+@use "../variables" as *;
+@use "../mixins" as *;
 
 // ============================================================================
 // Classes
@@ -67,7 +67,9 @@
 ///   <div class="guide_baseline"></div>
 ///
 .guide_baseline {
-    @include guide_baseline($line_height_base); // Default size, customize as needed
+    @include guide_baseline(
+        $line_height_base
+    ); // Default size, customize as needed
 }
 
 ///
