@@ -9,14 +9,11 @@ import {
     DirectoryCleaner,
     DirectoryCopier,
     FileCopier,
-    StyleProcessor,
     PackageCreator,
-    VersionWriter,
-    TypeScriptCompiler,
-    JavaScriptMinifier,
+    StyleProcessor,
     StylizedLogger,
-    gl_installer,
-    readPackageJson,
+    VersionWriter,
+    readPackageJson
 } from 'pack.gl';
 
 
@@ -74,6 +71,7 @@ async function main() {
         logger.header('Clean Directories');
         directoryCleaner.cleanDirectory(CONFIG.path.dist);
         logger.body(`Directory cleaned: ${CONFIG.path.dist}`);
+
 
 
         // Package JSON
@@ -152,7 +150,7 @@ async function main() {
         // // console.log('Starting TypeScript compilation...');
         // await tsCompiler.compile(tsFiles, outputDir);
         // // console.log('TypeScript compilation completed.');
-    
+
 
         // Rename Ts
         // --------------------------------------------------------------------
