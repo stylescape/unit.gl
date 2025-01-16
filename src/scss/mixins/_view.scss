@@ -16,7 +16,8 @@
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
 /// @todo None
-/// @require "../variables" - for access to the $breakpoints map and related variables.
+/// @require "../variables" - for access to the $breakpoints map and related
+/// variables.
 /// @access public
 ///
 ////
@@ -36,7 +37,8 @@
 /// is not found, a warning is issued.
 ///
 /// @name breakpoint
-/// @param {String} $size - The name of the breakpoint as defined in the $breakpoints map.
+/// @param {String} $size - The name of the breakpoint as defined in the
+/// $breakpoints map.
 /// @content
 ///
 /// @example scss - Usage
