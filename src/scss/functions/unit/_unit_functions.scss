@@ -35,14 +35,18 @@
 ///
 @function unit_strip($value) {
     // Check if the input is a number with a unit
-    @if type-of($value) == 'number' and not unitless($value) {
+    @if type-of($value) == "number" and not unitless($value) {
         // Convert the value to a string
         $value-str: inspect($value);
         // Remove the unit part from the string
-        $value-no-unit: str-slice($value-str, 1, str-index($value-str, unit($value)) - 1);
+        $value-no-unit: str-slice(
+            $value-str,
+            1,
+            str-index($value-str, unit($value)) - 1
+        );
         // Return the number without its unit
         @return $value-no-unit;
-    } @else if type-of($value) != 'number' {
+    } @else if type-of($value) != "number" {
         // Handle non-number inputs gracefully
         // @warn "Input `#{$value}` is not a number. Returning value as-is.";
         @return $value;
@@ -67,10 +71,10 @@
 ///
 @function linear_interpolation($start, $end, $min, $max, $actual: 100vw) {
     // Validate parameters
-    @if unitless($min) == false and unit($min) != 'px' {
+    @if unitless($min) == false and unit($min) != "px" {
         @error "Parameter `$min` must be unitless or in 'px'.";
     }
-    @if unitless($max) == false and unit($max) != 'px' {
+    @if unitless($max) == false and unit($max) != "px" {
         @error "Parameter `$max` must be unitless or in 'px'.";
     }
     @if $max <= $min {
@@ -210,7 +214,11 @@
     // Validate unit consistency
     @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
         // Check if the current width is within the specified range
-        @if $_current_width >= $_viewport_width_min and $_current_width <= $_viewport_width_max {
+        @if $_current_width >=
+            $_viewport_width_min and
+            $_current_width <=
+            $_viewport_width_max
+        {
             // Calculate and return the interpolated font size
             @return linear_interpolation(
                 $_font_size_min,
