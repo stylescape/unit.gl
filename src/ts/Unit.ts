@@ -7,7 +7,7 @@
 // Types
 // ============================================================================
 
-type UnitType = 'px' | 'em' | '%' | 'rem' | 'mm' | 'cm' | 'in';
+type UnitType = "px" | "em" | "%" | "rem" | "mm" | "cm" | "in";
 
 
 // ============================================================================
@@ -58,13 +58,13 @@ export default class Unit {
     convert(toUnit: UnitType): Unit {
         // Example conversion: assumes 1in = 96px, 1cm = 37.7953px, etc.
         const conversionRates: { [key in UnitType]?: number } = {
-            'px': 1,
-            'em': 16,
-            'rem': 16,
-            'in': 96,
-            'cm': 37.7953,
-            'mm': 3.77953,
-            '%': 1 // Conversion for percentages might be contextual
+            "px": 1,
+            "em": 16,
+            "rem": 16,
+            "in": 96,
+            "cm": 37.7953,
+            "mm": 3.77953,
+            "%": 1 // Conversion for percentages might be contextual
         };
 
         if (!conversionRates[this.unit] || !conversionRates[toUnit]) {
