@@ -50,7 +50,7 @@ $base-font-size: 16px !default;
 
 /// Validate that the input is a pixel value
 @function validate-px($value) {
-    @if unit($value) != 'px' {
+    @if unit($value) != "px" {
         @error "Expected a pixel value, but got `#{$value}`.";
     }
     @return $value;
@@ -64,7 +64,7 @@ $base-font-size: 16px !default;
 
 /// Convert rem to pixels
 @function rem_to_px($size) {
-    @if unit($size) != 'rem' {
+    @if unit($size) != "rem" {
         @error "Expected a rem value, but got `#{$size}`.";
     }
     @return $size * $base-font-size;
@@ -73,7 +73,7 @@ $base-font-size: 16px !default;
 /// Convert em to pixels
 @function em_to_px($size, $context: $base-font-size) {
     $validated-context: validate-px($context);
-    @if unit($size) != 'em' {
+    @if unit($size) != "em" {
         @error "Expected an em value, but got `#{$size}`.";
     }
     @return $size * $validated-context;
