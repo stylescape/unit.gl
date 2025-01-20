@@ -26,9 +26,9 @@
 // Use
 // ============================================================================
 
-@use '../functions' as *;
-@use '../variables' as *;
-@use '../maps' as *;
+@use "../functions" as *;
+@use "../variables" as *;
+@use "../maps" as *;
 
 // ============================================================================
 // Mixins
@@ -53,7 +53,9 @@
         }
     } @else {
         @media (orientation: landscape) {
-            @content; // The styles inside this mixin are applied in landscape mode
+            // The styles inside this mixin are applied in landscape mode
+            @content;
+        }
     }
 }
 
