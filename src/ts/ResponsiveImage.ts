@@ -31,7 +31,7 @@ export default class ResponsiveImage {
     }
 
     getSource(viewportWidth: number): string {
-        let selectedSource = '';
+        let selectedSource = "";
         this.sources.forEach((url, breakpoint) => {
             if (viewportWidth >= breakpoint) {
                 selectedSource = url;

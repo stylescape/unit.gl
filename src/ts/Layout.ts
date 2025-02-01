@@ -9,8 +9,8 @@ import Unit from "./Unit";
 // Types
 // ============================================================================
 
-type Align = 'start' | 'center' | 'end' | 'stretch';
-type Justify = 'start' | 'center' | 'end' | 'space-between' | 'space-around';
+type Align = "start" | "center" | "end" | "stretch";
+type Justify = "start" | "center" | "end" | "space-between" | "space-around";
 
 // ============================================================================
 // Classes
@@ -27,7 +27,7 @@ export default class Layout {
     height: Unit;
     align: Align;
     justify: Justify;
-    direction: 'row' | 'column';
+    direction: "row" | "column";
 
     // Constructor
     // ========================================================================
@@ -35,7 +35,7 @@ export default class Layout {
     constructor(
         width: Unit,
         height: Unit,
-        align: Align = 'stretch', justify: Justify = 'start', direction: 'row' | 'column' = 'row') {
+        align: Align = "stretch", justify: Justify = "start", direction: "row" | "column" = "row") {
         this.width = width;
         this.height = height;
         this.align = align;
@@ -54,7 +54,7 @@ export default class Layout {
         this.justify = justify;
     }
 
-    setDirection(direction: 'row' | 'column'): void {
+    setDirection(direction: "row" | "column"): void {
         this.direction = direction;
     }
 

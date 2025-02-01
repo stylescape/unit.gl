@@ -8,7 +8,7 @@ import Unit from "./Unit";
 // Types
 // ============================================================================
 
-type BorderStyle = 'solid' | 'dashed' | 'dotted' | 'double' | 'none';
+type BorderStyle = "solid" | "dashed" | "dotted" | "double" | "none";
 
 
 // ============================================================================

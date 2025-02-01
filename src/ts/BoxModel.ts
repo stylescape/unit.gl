@@ -34,7 +34,7 @@ export default class BoxModel {
             padding.top.unit !== size.width.unit ||
             border.width.unit !== size.width.unit
         ) {
-            throw new Error('All units in BoxModel must match');
+            throw new Error("All units in BoxModel must match");
         }
         this.margin = margin;
         this.padding = padding;

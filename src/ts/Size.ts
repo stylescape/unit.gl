@@ -22,7 +22,7 @@ export default class Size {
 
     constructor(width: Unit, height: Unit) {
         if (width.unit !== height.unit) {
-            throw new Error('Width and height must have the same unit');
+            throw new Error("Width and height must have the same unit");
         }
         this.width = width;
         this.height = height;

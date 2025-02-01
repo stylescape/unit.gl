@@ -31,7 +31,7 @@ export default class Spacing {
         if (
             top.unit !== right.unit || top.unit !== bottom.unit || top.unit !== left.unit
         ) {
-            throw new Error('All sides must have the same unit');
+            throw new Error("All sides must have the same unit");
         }
         this.top = top;
         this.right = right;
