@@ -20,6 +20,8 @@
 // Use
 // ============================================================================
 
+@use "sass:math";
+
 @use "../functions" as *;
 @use "../variables" as *;
 @use "../maps" as *;
@@ -59,11 +61,21 @@
 ///     @include fluid_type(320px, 1440px, 1rem, 2rem);
 ///   }
 ///
-@mixin fluid_type($min_vw, $max_vw, $min_font_size, $max_font_size) {
-    $u1: unit($min_vw);
-    $u2: unit($max_vw);
-    $u3: unit($min_font_size);
-    $u4: unit($max_font_size);
+@mixin fluid_type(
+    $min_vw,
+    $max_vw,
+    $min_font_size,
+    $max_font_size,
+) {
+    // $u1: unit($min_vw);
+    // $u2: unit($max_vw);
+    // $u3: unit($min_font_size);
+    // $u4: unit($max_font_size);
+
+    $u1: math.unit($min_vw);
+    $u2: math.unit($max_vw);
+    $u3: math.unit($min_font_size);
+    $u4: math.unit($max_font_size);
 
     @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
         & {

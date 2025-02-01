@@ -20,6 +20,10 @@
 // Use
 // ============================================================================
 
+@use "sass:meta";
+@use "sass:math";
+@use "sass:string";
+
 // ============================================================================
 // Functions
 // ============================================================================
@@ -35,22 +39,31 @@
 ///
 @function unit_strip($value) {
     // Check if the input is a number with a unit
-    @if type-of($value) == "number" and not unitless($value) {
+    // @if type-of($value) == "number" and not unitless($value) {
+    // @if meta.type-of($value)=="number" and not unitless($value) {
+    @if meta.type-of($value)=="number" and not math.is-unitless($value) {
+
         // Convert the value to a string
-        $value-str: inspect($value);
+        // $value-str: inspect($value);
+        $value-str: meta.inspect($value);
+
         // Remove the unit part from the string
-        $value-no-unit: str-slice(
+        $value-no-unit: string.slice(
             $value-str,
             1,
-            str-index($value-str, unit($value)) - 1
+            string.index($value-str, math.unit($value)) - 1
         );
+
         // Return the number without its unit
         @return $value-no-unit;
+
     } @else if type-of($value) != "number" {
+
         // Handle non-number inputs gracefully
         // @warn "Input `#{$value}` is not a number. Returning value as-is.";
         @return $value;
     }
+
     // Return the value as-is for unitless numbers or non-number inputs
     @return $value;
 }
@@ -69,7 +82,14 @@
 /// @param {Number} $actual - Current value to interpolate (default is 100vw).
 /// @return {Number} - Interpolated value (in the same units as $start and $end).
 ///
-@function linear_interpolation($start, $end, $min, $max, $actual: 100vw) {
+@function linear_interpolation(
+    $start,
+    $end,
+    $min,
+    $max,
+    $actual: 100vw
+) {
+
     // Validate parameters
     @if unitless($min) == false and unit($min) != "px" {
         @error "Parameter `$min` must be unitless or in 'px'.";

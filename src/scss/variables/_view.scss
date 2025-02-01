@@ -24,7 +24,7 @@
 ///   calculating breakpoints.
 ///
 /// Example Usage:
-///   @media (min-width: map-get($breakpoints, md)) {
+///   @media (min-width: map.get($breakpoints, md)) {
 ///       // Styles for medium devices and up
 ///   }
 ///
@@ -40,6 +40,8 @@
 // ============================================================================
 // Use
 // ============================================================================
+
+@use "sass:map";
 
 // ============================================================================
 // Variables
@@ -100,7 +102,7 @@ $breakpoints: (
 /// @name $media_xs
 /// @type Length
 ///
-$media_xs: map-get($breakpoints, xs) !default;
+$media_xs: map.get($breakpoints, xs) !default;
 
 ///
 /// Exposes the value of the `sm` breakpoint for direct access.
@@ -108,7 +110,7 @@ $media_xs: map-get($breakpoints, xs) !default;
 /// @name $media_sm
 /// @type Length
 ///
-$media_sm: map-get($breakpoints, sm) !default;
+$media_sm: map.get($breakpoints, sm) !default;
 
 ///
 /// Exposes the value of the `md` breakpoint for direct access.
@@ -116,7 +118,7 @@ $media_sm: map-get($breakpoints, sm) !default;
 /// @name $media_md
 /// @type Length
 ///
-$media_md: map-get($breakpoints, md) !default;
+$media_md: map.get($breakpoints, md) !default;
 
 ///
 /// Exposes the value of the `lg` breakpoint for direct access.
@@ -124,7 +126,7 @@ $media_md: map-get($breakpoints, md) !default;
 /// @name $media_lg
 /// @type Length
 ///
-$media_lg: map-get($breakpoints, lg) !default;
+$media_lg: map.get($breakpoints, lg) !default;
 
 ///
 /// Exposes the value of the `xl` breakpoint for direct access.
@@ -132,7 +134,7 @@ $media_lg: map-get($breakpoints, lg) !default;
 /// @name $media_xl
 /// @type Length
 ///
-$media_xl: map-get($breakpoints, xl) !default;
+$media_xl: map.get($breakpoints, xl) !default;
 
 ///
 /// Exposes the value of the `sl` breakpoint for direct access.
@@ -140,7 +142,7 @@ $media_xl: map-get($breakpoints, xl) !default;
 /// @name $media_sl
 /// @type Length
 ///
-$media_sl: map-get($breakpoints, sl) !default;
+$media_sl: map.get($breakpoints, sl) !default;
 
 ///
 /// Calculates the difference between the `sl` and `xs` breakpoints.
