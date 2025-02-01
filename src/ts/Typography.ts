@@ -9,7 +9,7 @@ import Unit from "./Unit";
 // Types
 // ============================================================================
 
-type FontWeight = 'normal' | 'bold' | number;
+type FontWeight = "normal" | "bold" | number;
 
 
 // ============================================================================
@@ -25,17 +25,17 @@ export default class Typography {
     fontWeight: FontWeight;
     lineHeight: Unit;
     letterSpacing: Unit;
-    textAlign: 'left' | 'right' | 'center' | 'justify';
+    textAlign: "left" | "right" | "center" | "justify";
 
     // Constructor
     // ========================================================================
 
     constructor(
         fontSize: Unit,
-        fontWeight: FontWeight = 'normal',
+        fontWeight: FontWeight = "normal",
         lineHeight: Unit,
         letterSpacing: Unit,
-        textAlign: 'left' | 'right' | 'center' | 'justify' = 'left'
+        textAlign: "left" | "right" | "center" | "justify" = "left"
     ) {
         this.fontSize = fontSize;
         this.fontWeight = fontWeight;
@@ -64,7 +64,7 @@ export default class Typography {
         this.letterSpacing = letterSpacing;
     }
 
-    setTextAlign(textAlign: 'left' | 'right' | 'center' | 'justify'): void {
+    setTextAlign(textAlign: "left" | "right" | "center" | "justify"): void {
         this.textAlign = textAlign;
     }
 
