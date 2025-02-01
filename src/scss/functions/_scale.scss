@@ -42,8 +42,13 @@
 /// @param {Number} $ratio - The ratio to use for scaling, defaults to the Golden Ratio (1.618).
 /// @return {Number} - The calculated value based on the modular scale.
 ///
-@function modular_scale($increment: 1, $base: 1em, $ratio: 1.618) {
-    // Validate inputs
+@function modular_scale(
+    $increment: 1,
+    $base: 1em,
+    $ratio: 1.618
+) {
+
+        // Validate inputs
     @if type-of($increment) != "number" {
         @error "Step must be a number.";
     }

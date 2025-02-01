@@ -39,8 +39,6 @@
 ///
 @function unit_strip($value) {
     // Check if the input is a number with a unit
-    // @if type-of($value) == "number" and not unitless($value) {
-    // @if meta.type-of($value)=="number" and not unitless($value) {
     @if meta.type-of($value)=="number" and not math.is-unitless($value) {
 
         // Convert the value to a string
