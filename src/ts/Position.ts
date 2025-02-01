@@ -25,7 +25,7 @@ export default class Position {
         y: Unit
     ) {
         if (x.unit !== y.unit) {
-            throw new Error('X and Y must have the same unit');
+            throw new Error("X and Y must have the same unit");
         }
         this.x = x;
         this.y = y;
