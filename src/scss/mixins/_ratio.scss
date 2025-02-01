@@ -41,7 +41,7 @@
 // @mixin aspect-ratio($width, $height) {
 //   position: relative;
 //   &:before {
-//       content: '';
+//       content: "";
 //       display: block;
 //       padding-top: calc(($height / $width) * 100%);
 //   }

@@ -37,7 +37,7 @@
 ///
 /// @example scss - Usage
 ///   .element {
-///     @include q(4, 'padding');  // Applies padding using 4 times the base Kyū unit
+///     @include q(4, "padding");  // Applies padding using 4 times the base Kyū unit
 ///   }
 ///
 @mixin q($multiplier, $property) {
