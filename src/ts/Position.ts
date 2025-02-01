@@ -49,4 +49,5 @@ export default class Position {
     toString(): string {
         return `Position: (${this.x.toString()}, ${this.y.toString()})`;
     }
+
 }

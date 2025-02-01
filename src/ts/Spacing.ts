@@ -84,13 +84,23 @@ export default class Spacing {
 }
 
 class Margin extends Spacing {
-    constructor(top: Unit, right: Unit, bottom: Unit, left: Unit) {
+    constructor(
+        top: Unit,
+        right: Unit,
+        bottom: Unit,
+        left: Unit,
+    ) {
         super(top, right, bottom, left);
     }
 }
 
 class Padding extends Spacing {
-    constructor(top: Unit, right: Unit, bottom: Unit, left: Unit) {
+    constructor(
+        top: Unit,
+        right: Unit,
+        bottom: Unit,
+        left: Unit,
+    ) {
         super(top, right, bottom, left);
     }
 }
