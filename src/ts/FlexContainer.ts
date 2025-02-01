@@ -7,8 +7,8 @@
 // Types
 // ============================================================================
 
-type FlexDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
-type FlexWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
+type FlexDirection = "row" | "row-reverse" | "column" | "column-reverse";
+type FlexWrap = "nowrap" | "wrap" | "wrap-reverse";
 
 // ============================================================================
 // Classes
@@ -32,11 +32,11 @@ export default class FlexContainer {
     // ========================================================================
 
     constructor(
-        flexDirection: FlexDirection = 'row',
-        flexWrap: FlexWrap = 'nowrap',
-        justifyContent: Justify = 'start',
-        alignItems: Align = 'stretch',
-        alignContent: Align = 'stretch'
+        flexDirection: FlexDirection = "row",
+        flexWrap: FlexWrap = "nowrap",
+        justifyContent: Justify = "start",
+        alignItems: Align = "stretch",
+        alignContent: Align = "stretch"
     ) {
         this.flexDirection = flexDirection;
         this.flexWrap = flexWrap;
