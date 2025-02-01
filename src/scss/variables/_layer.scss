@@ -3,17 +3,17 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Layer Variables Module
 /// ===========================================================================
-/// 
+///
 /// @group Layer
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -27,33 +27,33 @@
 // ============================================================================
 
 
-/// 
+///
 /// Z-Index Layer Map
 /// ---------------------------------------------------------------------------
 ///
 /// A map defining the z-index layers used to manage the stacking order of UI
 /// elements. Each key in the map represents a specific layer, with an
 /// associated numeric value indicating its z-index.
-/// 
+///
 /// This map defines the z-index layers used throughout the project to manage
 /// the stacking order of various interface elements. Adjustments can be made
 /// by modifying the values associated with each layer.
-/// 
+///
 /// - **Guides**: High-priority overlays for design guides.
 /// - **Overlays**: Elements like modals that need to appear above other content.
 /// - **Interface Elements**: General UI components, ribbons, and controls.
 /// - **Content**: Main content areas, typically stacked below UI elements.
 /// - **Background Layers**: Base layers like canvases, typically behind content.
 /// - **Special Values**: Special z-index values for maximum, minimum, and baseline.
-/// 
+///
 /// @name layers
 /// @type Map
-/// 
+///
 /// @example scss - Usage Example
 ///   .element {
 ///     z-index: z('modal');
 ///   }
-/// 
+///
 /// @todo Add more layers as needed, ensuring consistent and clear naming.
 ///
 $layers: (
@@ -61,19 +61,19 @@ $layers: (
     // ========================================================================
     // Guides
     // ========================================================================
-    
+
     /// High-priority guide overlays for design and debugging.
     /// @name guides
     /// @type Number
     "guides":              9998,  // High priority guide overlays
 
- 
+
     /// Baseline guide used for text alignment and visual rhythm.
     /// @name guide_baseline
     /// @type Number
     "guide_baseline":      3000,  // Baseline guide for text alignment
 
- 
+
     /// Graphical guides, such as grid overlays, used in design.
     /// @name guide_graph
     /// @type Number
@@ -83,7 +83,7 @@ $layers: (
     // Overlays
     // ========================================================================
 
- 
+
     /// Z-index for modals and dialog boxes, ensuring they appear above other content.
     /// @name modal
     /// @type Number
@@ -93,19 +93,19 @@ $layers: (
     // Interface Elements
     // ========================================================================
 
- 
+
     /// Z-index for top ribbons and banners that overlay other UI elements.
     /// @name ribbon
     /// @type Number
     "ribbon":              5000,  // Top ribbons, banners
 
- 
+
     /// General interface elements like headers, footers, and sidebars.
     /// @name interface
     /// @type Number
     "interface":           4000,  // General interface elements
 
- 
+
     /// Controls like buttons, sliders, and other interactive elements.
     /// @name control
     /// @type Number
@@ -115,7 +115,7 @@ $layers: (
     // Content
     // ========================================================================
 
-    
+
     /// Main content area, typically stacked below UI elements.
     /// @name content
     /// @type Number
@@ -125,7 +125,7 @@ $layers: (
     // Background Layers
     // ========================================================================
 
-    
+
     /// Background canvas or base layer, typically the lowest layer.
     /// @name canvas
     /// @type Number
@@ -134,19 +134,19 @@ $layers: (
     // ========================================================================
     // Special Values
     // ========================================================================
-    
+
     /// Maximum possible z-index value.
     /// @name max
     /// @type Number
     "max": 9999,  // Maximum possible z-index
 
-    
+
     /// Default, baseline z-index value.
     /// @name mid
     /// @type Number
     "mid": 0,  // Default, baseline z-index
 
-    
+
     /// Minimum possible z-index value.
     /// @name min
     /// @type Number
