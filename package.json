@@ -1,9 +1,9 @@
 {
     "name": "unit.gl",
     "description": "Dynamic Layout Engine.",
-    "version": "0.0.41",
+    "version": "0.1.1",
     "config": {
-        "version_short": "0.0"
+        "version_short": "0.1"
     },
     "keywords": [
         "unit.gl",
@@ -45,13 +45,14 @@
     "module": "dist/js/unit.gl.js",
     "style": "dist/css/unit.gl.css",
     "scripts": {
-        "pack-build": "npx pack --config ./pack.yml",
-        "pack-watch": "npx pack --config ./pack.yml --live",
+        "kist-build": "npx kist --config ./kist.yml",
+        "kist-watch": "npx kist --config ./kist.yml --live",
         "start": "node dist/index.js",
         "format": "npx prettier --write .",
         "lint": "eslint 'src/**/*.ts' || true",
         "prettify": "prettier --write 'src/**/*.ts'",
-        "build": "npm run build-compile && npm run build-process",
+        "build": "npm run kist-build",
+        "build2": "npm run build-compile && npm run build-process",
         "build-compile": "tsc -p bin/tsconfig.json",
         "build-process": "node bin/js/index.js",
         "webpack-build": "npm run webpack-prod",
@@ -81,7 +82,7 @@
         "eslint-config-prettier": "^10.0.1",
         "html-webpack-plugin": "^5.6.0",
         "mini-css-extract-plugin": "^2.7.6",
-        "pack.gl": "^0.1.2",
+        "kist": "^0.1.31",
         "postcss-loader": "^8.1.1",
         "postcss-preset-env": "^10.0.0",
         "prettier": "^3.1.1",
