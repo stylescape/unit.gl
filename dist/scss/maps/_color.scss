@@ -3,28 +3,28 @@
 // ============================================================================
 
 ////
-/// 
-/// Color Variables Module
+///
+/// Color Maps Module
 /// ===========================================================================
-/// 
-/// These colors are used for visual guides such as grid overlays, baselines, 
-/// and alignment guides. The colors are defined with varying levels of opacity 
+///
+/// These colors are used for visual guides such as grid overlays, baselines,
+/// and alignment guides. The colors are defined with varying levels of opacity
 /// to ensure they are visible yet non-intrusive on the design.
-/// 
+///
 /// @group Color
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
-
 
 // ============================================================================
 // Use
 // ============================================================================
 
+@use "../variables" as *;
 
 // ============================================================================
 // Maps
@@ -32,12 +32,12 @@
 
 /// Color Set for Easy Adjustments
 /// ---------------------------------------------------------------------------
-/// 
+///
 $guide_colors: (
-    "primary":    $guide_color_primary,
-    "secondary":  $guide_color_secondary,
-    "tertiary":   $guide_color_tertiary,
+    "primary": $guide_color_primary,
+    "secondary": $guide_color_secondary,
+    "tertiary": $guide_color_tertiary,
     "quaternary": $guide_color_quaternary,
-    "light":      $guide_color_light,
-    "dark":       $guide_color_dark,
+    "light": $guide_color_light,
+    "dark": $guide_color_dark
 );

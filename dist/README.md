@@ -4,7 +4,6 @@
 <h1 align="center" style='border-bottom: none;'>unit.gl</h1>
 <h3 align="center">Dynamic Layout Engine</h3>
 
-
 <br/>
 
 <div align="center">

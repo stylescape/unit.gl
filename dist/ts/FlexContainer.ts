@@ -1,19 +1,42 @@
-type FlexDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
-type FlexWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
+// ============================================================================
+// Import
+// ============================================================================
 
-class FlexContainer {
+
+// ============================================================================
+// Types
+// ============================================================================
+
+type FlexDirection = "row" | "row-reverse" | "column" | "column-reverse";
+type FlexWrap = "nowrap" | "wrap" | "wrap-reverse";
+
+// ============================================================================
+// Classes
+// ============================================================================
+
+
+
+export default class FlexContainer {
+
+    // Parameters
+    // ========================================================================
+
     flexDirection: FlexDirection;
     flexWrap: FlexWrap;
     justifyContent: Justify;
     alignItems: Align;
     alignContent: Align;
 
+
+    // Constructor
+    // ========================================================================
+
     constructor(
-        flexDirection: FlexDirection = 'row',
-        flexWrap: FlexWrap = 'nowrap',
-        justifyContent: Justify = 'start',
-        alignItems: Align = 'stretch',
-        alignContent: Align = 'stretch'
+        flexDirection: FlexDirection = "row",
+        flexWrap: FlexWrap = "nowrap",
+        justifyContent: Justify = "start",
+        alignItems: Align = "stretch",
+        alignContent: Align = "stretch"
     ) {
         this.flexDirection = flexDirection;
         this.flexWrap = flexWrap;
@@ -21,6 +44,10 @@ class FlexContainer {
         this.alignItems = alignItems;
         this.alignContent = alignContent;
     }
+
+
+    // Methods
+    // ========================================================================
 
     setDirection(direction: FlexDirection): void {
         this.flexDirection = direction;

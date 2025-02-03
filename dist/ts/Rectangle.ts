@@ -1,14 +1,37 @@
-class Rectangle {
+// ============================================================================
+// Import
+// ============================================================================
+
+import Position from "./Position";
+import Size from "./Size";
+
+
+// ============================================================================
+// Classes
+// ============================================================================
+
+export default class Rectangle {
+
+    // Parameters
+    // ========================================================================
+
     position: Position;
     size: Size;
 
+    // Constructor
+    // ========================================================================
+
     constructor(position: Position, size: Size) {
         if (position.x.unit !== size.width.unit || position.y.unit !== size.height.unit) {
-            throw new Error('Position and Size units must match');
+            throw new Error("Position and Size units must match");
         }
         this.position = position;
         this.size = size;
     }
+
+
+    // Methods
+    // ========================================================================
 
     move(newPosition: Position): Rectangle {
         return new Rectangle(newPosition, this.size);

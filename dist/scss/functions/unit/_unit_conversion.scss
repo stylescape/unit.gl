@@ -3,61 +3,68 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Unit Functions Module
 /// ===========================================================================
-/// 
+///
 /// @group Unit
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
-
 
 // ============================================================================
 // Use
 // ============================================================================
 
 
+/// Base font-size for the document
+$base-font-size: 16px !default;
+
+
 // ============================================================================
 // Functions
 // ============================================================================
-
-
-
-
 
 /// Unit Conversion Functions
 /// ---------------------------------------------------------------------------
 /// Create functions to convert between different measurement units, such as
 /// pixels to rem, em to pixels, etc.
 
-@function px_to_rem($size, $base: 16px) {
+@function px_to_rem(
+    $size,
+    $base: 16px
+) {
     @return $size / $base * 1rem;
 }
 
-@function rem_to_px($size, $base: 16px) {
+@function rem_to_px(
+    $size,
+    $base: 16px
+) {
     @return $size * $base;
 }
 
-@function em_to_px($size, $context: 16px) {
+@function em_to_px(
+    $size,
+    $context: 16px
+) {
     @return $size * $context;
 }
 
-@function px_to_em($size, $context: 16px) {
+@function px_to_em(
+    $size,
+    $context: 16px
+) {
     @return $size / $context * 1em;
 }
 
-
-/// Base font-size for the document
-$base-font-size: 16px !default;
-
 /// Validate that the input is a pixel value
-@function validate-px($value) {
-    @if unit($value) != 'px' {
+@function validate_px($value) {
+    @if unit($value) != "px" {
         @error "Expected a pixel value, but got `#{$value}`.";
     }
     @return $value;
@@ -65,30 +72,36 @@ $base-font-size: 16px !default;
 
 /// Convert pixels to rem
 @function px_to_rem($size) {
-    $validated-size: validate-px($size);
-    @return $validated-size / $base-font-size * 1rem;
+    $validated_size: validate_px($size);
+    @return $validated_size / $base-font-size * 1rem;
 }
 
 /// Convert rem to pixels
 @function rem_to_px($size) {
-    @if unit($size) != 'rem' {
+    @if unit($size) != "rem" {
         @error "Expected a rem value, but got `#{$size}`.";
     }
     @return $size * $base-font-size;
 }
 
 /// Convert em to pixels
-@function em_to_px($size, $context: $base-font-size) {
-    $validated-context: validate-px($context);
-    @if unit($size) != 'em' {
+@function em_to_px(
+    $size,
+    $context: $base-font-size
+) {
+    $validated_context: validate_px($context);
+    @if unit($size) != "em" {
         @error "Expected an em value, but got `#{$size}`.";
     }
-    @return $size * $validated-context;
+    @return $size * $validated_context;
 }
 
 /// Convert pixels to em
-@function px_to_em($size, $context: $base-font-size) {
-    $validated-size: validate-px($size);
-    $validated-context: validate-px($context);
-    @return $validated-size / $validated-context * 1em;
+@function px_to_em(
+    $size,
+    $context: $base-font-size
+) {
+    $validated_size: validate_px($size);
+    $validated_context: validate_px($context);
+    @return $validated_size / $validated_context * 1em;
 }

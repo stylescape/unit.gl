@@ -3,47 +3,44 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Ratio Functions Module
 /// ===========================================================================
-/// 
-/// This module provides functions for calculating sizes based on well-known 
-/// mathematical ratios, such as the golden ratio. These functions are useful 
-/// for maintaining harmonious proportions in design elements like spacing, 
+///
+/// This module provides functions for calculating sizes based on well-known
+/// mathematical ratios, such as the golden ratio. These functions are useful
+/// for maintaining harmonious proportions in design elements like spacing,
 /// typography, and layout.
-/// 
+///
 /// @group Ratio
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
-
 
 // ============================================================================
 // Use
 // ============================================================================
 
-
 // ============================================================================
 // Functions
 // ============================================================================
 
-
 ///
 /// Golden Ratio Function
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// Calculates a size using the golden ratio (approximately 1.618), which is
 /// widely used in design for its aesthetically pleasing proportions.
-/// 
+///
 /// @name ratio_golden
 /// @param {Number} $size - The base size to scale.
 /// @param {Number} $increment - The exponent applied to the golden ratio, default is 1.
 /// @return {Number} - The calculated size based on the golden ratio.
-/// 
+///
 /// @example scss - Usage Example
 ///   // Increase size using the golden ratio
 ///   .element {
@@ -54,17 +51,17 @@
 ///   .small-element {
 ///     width: golden_ratio(16px, -1); // Output: 9.888px
 ///   }
-/// 
+///
 @function ratio_golden($size, $increment: 1) {
     $golden-ratio: 1.618;
 
     // Validate the input size
-    @if not unitless($size) and type-of($size) != 'number' {
+    @if not unitless($size) and type-of($size) != "number" {
         @error "The size parameter must be a valid number or unitless value.";
     }
 
     // Validate the increment
-    @if type-of($increment) != 'number' {
+    @if type-of($increment) != "number" {
         @error "The increment parameter must be a valid number.";
     }
 

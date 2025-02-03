@@ -3,17 +3,17 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Ratio Variables Module
 /// ===========================================================================
-/// 
+///
 /// @group Ratio
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -21,24 +21,22 @@
 // Use
 // ============================================================================
 
-
 // ============================================================================
 // Variables
 // ============================================================================
 
-
-/// 
+///
 /// A map of common ratios used for modular scale calculations, organized by
 /// categories such as musical intervals, mathematical constants, and special
 /// ratios used in design and architecture.
-/// This map defines a variety of ratios used in modular scale calculations for 
-/// responsive typography, layout design, and other scaling needs. These ratios 
+/// This map defines a variety of ratios used in modular scale calculations for
+/// responsive typography, layout design, and other scaling needs. These ratios
 /// are drawn from musical intervals, mathematical constants, and design
 /// principles.
-/// 
+///
 /// @name $ratio_map
 /// @type Map
-/// 
+///
 /// @prop {Number} minor_second [1.067] - Minor second interval.
 /// @prop {Number} minor_third [1.2] - Minor third interval.
 /// @prop {Number} minor_fourth [1.334] - Minor fourth interval (also known as diminished fifth).
@@ -95,7 +93,7 @@
 /// @prop {Number} bronze_ratio [1.927] - Analogous to silver and golden ratios.
 /// @prop {Number} phi [1.618] - Another name for the golden ratio.
 /// @prop {Number} pi [3.142] - Mathematical Pi value.
-/// @prop {Number} euler [2.718] - Euler's number.
+/// @prop {Number} euler [2.718] - Euler"s number.
 /// @prop {Number} pythagorean [1.732] - Pythagorean constant, square root of 3.
 /// @prop {Number} square [1.414] - Square root of 2.
 /// @prop {Number} fibonacci [1.618] - Fibonacci sequence ratio.
@@ -105,120 +103,180 @@
 /// @prop {Number} cosmic_ratio [1.273] - Based on cosmic geometry.
 /// @prop {Number} egyptian_fraction [1.571] - Ancient Egyptian architecture ratio.
 /// @prop {Number} harmonic_mean [1.455] - Harmonic mean, a type of average.
-/// @prop {Number} gauss_constant [0.834] - Gauss's constant related to the arithmetic-geometric mean.
+/// @prop {Number} gauss_constant [0.834] - Gauss"s constant related to the arithmetic-geometric mean.
 /// @prop {Number} super_golden [2.058] - Super golden ratio, a higher order of the golden ratio.
 /// @prop {Number} parthenon_ratio [1.618] - Ratio used in the architecture of the Parthenon.
 /// @prop {Number} le_corbusier [1.618] - Le Corbusier’s modulor ratio, used in modernist architecture.
 /// @prop {Number} vesica_piscis [1.732] - Ratio derived from the vesica piscis shape, often used in sacred geometry.
 $ratio_map: (
-
     // Musical Intervals
     // ========================================================================
     // Commonly used in creating harmonious designs based on musical theory.
-
     // Musical Minor Interval
     // ------------------------------------------------------------------------
-    "minor_second":         1.067,  // Minor second interval
-    "minor_third":          1.2,    // Minor third interval
-    "minor_fourth":         1.334,  // Minor fourth interval (also known as diminished fifth)
-    "minor_fifth":          1.5,    // Minor fifth interval
-    "minor_sixth":          1.6,    // Minor sixth interval
-    "minor_seventh":        1.778,  // Minor seventh interval
-    "minor_octave":         2,      // Minor octave interval
+    "minor_second": 1.067,
+    // Minor second interval
+    "minor_third": 1.2,
+    // Minor third interval
+    "minor_fourth": 1.334,
+    // Minor fourth interval (also known as diminished fifth)
+    "minor_fifth": 1.5,
+    // Minor fifth interval
+    "minor_sixth": 1.6,
+    // Minor sixth interval
+    "minor_seventh": 1.778,
+    // Minor seventh interval
+    "minor_octave": 2,
 
+    // Minor octave interval
     // Musical Major Interval
     // ------------------------------------------------------------------------
-    "major_second":         1.125,  // Major second interval
-    "major_third":          1.25,   // Major third interval
-    "major_fourth":         1.333,  // Major fourth interval (perfect fourth)
-    "major_fifth":          1.5,    // Major fifth interval (perfect fifth)
-    "major_sixth":          1.667,  // Major sixth interval
-    "major_seventh":        1.875,  // Major seventh interval
-    "major_octave":         2,      // Major octave interval (perfect octave)
+    "major_second": 1.125,
+    // Major second interval
+    "major_third": 1.25,
+    // Major third interval
+    "major_fourth": 1.333,
+    // Major fourth interval (perfect fourth)
+    "major_fifth": 1.5,
+    // Major fifth interval (perfect fifth)
+    "major_sixth": 1.667,
+    // Major sixth interval
+    "major_seventh": 1.875,
+    // Major seventh interval
+    "major_octave": 2,
 
+    // Major octave interval (perfect octave)
     // Musical Perfect Interval
     // ------------------------------------------------------------------------
-    "perfect_unison":       1,      // Perfect unison, the same note
-    "perfect_second":       1.125,  // Perfect second interval
-    "perfect_third":        1.25,   // Perfect third interval
-    "perfect_fourth":       1.333,  // Perfect fourth interval
-    "perfect_fifth":        1.5,    // Perfect fifth interval
-    "perfect_sixth":        1.667,  // Perfect sixth interval
-    "perfect_seventh":      1.875,  // Perfect seventh interval
-    "perfect_octave":       2,      // Perfect octave, double the frequency
-    "perfect_ninth":        2.25,   // Perfect ninth interval
-    "perfect_tenth":        2.5,    // Perfect tenth interval
-    "perfect_eleventh":     2.667,  // Perfect eleventh interval
-    "perfect_twelfth":      3,      // Perfect twelfth interval
-    "perfect_thirteenth":   3.333,  // Perfect thirteenth interval
-    "perfect_fourteenth":   3.667,  // Perfect fourteenth interval
-    "perfect_fifteenth":    4,      // Perfect fifteenth interval, double octave
-    "double_octave":        4,      // Twice the frequency of the perfect octave
-    "triple_octave":        8,      // Three times the frequency of the perfect octave
+    "perfect_unison": 1,
+    // Perfect unison, the same note
+    "perfect_second": 1.125,
+    // Perfect second interval
+    "perfect_third": 1.25,
+    // Perfect third interval
+    "perfect_fourth": 1.333,
+    // Perfect fourth interval
+    "perfect_fifth": 1.5,
+    // Perfect fifth interval
+    "perfect_sixth": 1.667,
+    // Perfect sixth interval
+    "perfect_seventh": 1.875,
+    // Perfect seventh interval
+    "perfect_octave": 2,
+    // Perfect octave, double the frequency
+    "perfect_ninth": 2.25,
+    // Perfect ninth interval
+    "perfect_tenth": 2.5,
+    // Perfect tenth interval
+    "perfect_eleventh": 2.667,
+    // Perfect eleventh interval
+    "perfect_twelfth": 3,
+    // Perfect twelfth interval
+    "perfect_thirteenth": 3.333,
+    // Perfect thirteenth interval
+    "perfect_fourteenth": 3.667,
+    // Perfect fourteenth interval
+    "perfect_fifteenth": 4,
+    // Perfect fifteenth interval, double octave
+    "double_octave": 4,
+    // Twice the frequency of the perfect octave
+    "triple_octave": 8,
 
+    // Three times the frequency of the perfect octave
     // Musical Augmented Interval
     // ------------------------------------------------------------------------
-    "augmented_unison":     1.059,  // Slightly higher than perfect unison
-    "augmented_second":     1.122,  // Slightly higher than major second
-    "augmented_third":      1.189,  // Slightly higher than major third
-    "augmented_fourth":     1.414,  // Augmented fourth, also known as tritone
-    "augmented_fifth":      1.587,  // Slightly higher than perfect fifth
-    "augmented_sixth":      1.682,  // Slightly higher than major sixth
-    "augmented_seventh":    1.782,  // Slightly higher than major seventh
-    "augmented_octave":     2.059,  // Slightly higher than perfect octave
+    "augmented_unison": 1.059,
+    // Slightly higher than perfect unison
+    "augmented_second": 1.122,
+    // Slightly higher than major second
+    "augmented_third": 1.189,
+    // Slightly higher than major third
+    "augmented_fourth": 1.414,
+    // Augmented fourth, also known as tritone
+    "augmented_fifth": 1.587,
+    // Slightly higher than perfect fifth
+    "augmented_sixth": 1.682,
+    // Slightly higher than major sixth
+    "augmented_seventh": 1.782,
+    // Slightly higher than major seventh
+    "augmented_octave": 2.059,
 
+    // Slightly higher than perfect octave
     // Musical Diminished Interval
     // ------------------------------------------------------------------------
-    "diminished_unison":    0.943,  // A diminished unison, slightly less than a perfect unison
-    "diminished_second":    1.053,  // Diminished second interval, slightly less than a minor second
-    "diminished_third":     1.122,  // Diminished third interval, slightly less than a minor third
-    "diminished_fourth":    1.260,  // Diminished fourth, slightly less than a perfect fourth
-    "diminished_fifth":     1.414,  // Tritone, halfway between a perfect fourth and perfect fifth
-    "diminished_sixth":     1.587,  // Diminished sixth interval, slightly less than a major sixth
-    "diminished_seventh":   1.782,  // Diminished seventh interval, slightly less than a major seventh
-    "diminished_octave":    1.961,  // A diminished octave, slightly less than a perfect octave
+    "diminished_unison": 0.943,
+    // A diminished unison, slightly less than a perfect unison
+    "diminished_second": 1.053,
+    // Diminished second interval, slightly less than a minor second
+    "diminished_third": 1.122,
+    // Diminished third interval, slightly less than a minor third
+    "diminished_fourth": 1.26,
+    // Diminished fourth, slightly less than a perfect fourth
+    "diminished_fifth": 1.414,
+    // Tritone, halfway between a perfect fourth and perfect fifth
+    "diminished_sixth": 1.587,
+    // Diminished sixth interval, slightly less than a major sixth
+    "diminished_seventh": 1.782,
+    // Diminished seventh interval, slightly less than a major seventh
+    "diminished_octave": 1.961,
 
-
+    // A diminished octave, slightly less than a perfect octave
     // Mathematical Constants
     // ========================================================================
     // These ratios are derived from important mathematical constants.
-
     // Root
     // ------------------------------------------------------------------------
-    "root_two":             1.414,  // Square root of 2
-    "root_three":           1.732,  // Square root of 3
-    "root_four":            2,      // Square root of 4
-    "root_five":            2.236,  // Square root of 5
-    "golden_ratio":         1.618,
-    "silver_ratio":         2.414,  // Analogous to the golden ratio
-    "bronze_ratio":         1.927,  // Analogous to silver and golden ratios
-    "phi":                  1.618,  // Another name for the golden ratio
-    "pi":                   3.142,  // Mathematical Pi value
-    "euler":                2.718,  // Euler's number
+    "root_two": 1.414,
+    // Square root of 2
+    "root_three": 1.732,
+    // Square root of 3
+    "root_four": 2,
+    // Square root of 4
+    "root_five": 2.236,
+    // Square root of 5
+    "golden_ratio": 1.618,
+    "silver_ratio": 2.414,
+    // Analogous to the golden ratio
+    "bronze_ratio": 1.927,
+    // Analogous to silver and golden ratios
+    "phi": 1.618,
+    // Another name for the golden ratio
+    "pi": 3.142,
+    // Mathematical Pi value
+    "euler": 2.718,
 
+    // Euler"s number
     // Special Ratios
     // ========================================================================
     // Unique ratios derived from specific design, architectural, or theoretical contexts.
-
     // Special
     // ------------------------------------------------------------------------
-    "pythagorean":          1.732,  // Pythagorean constant, square root of 3
-    "square":               1.414,  // Square root of 2
-    "fibonacci":            1.618,  // Fibonacci sequence ratio
-    "plastic_number":       1.324,  // Plastic constant, another unique irrational number
-    "feigenbaum":           4.669,  // Feigenbaum constant in chaos theory
-    "apollonian":           1.306,  // Apollonian gasket, related to circle packing
-    "cosmic_ratio":         1.273,  // Based on cosmic geometry
-    "egyptian_fraction":    1.571,  // Ancient Egyptian architecture ratio
-    "harmonic_mean":        1.455,  // Harmonic mean, a type of average
-    "gauss_constant":       0.834,  // Gauss's constant related to the arithmetic-geometric mean
-    "super_golden":         2.058,  // Super golden ratio, a higher order of the golden ratio
+    "pythagorean": 1.732,
+    // Pythagorean constant, square root of 3
+    "square": 1.414,
+    // Square root of 2
+    "fibonacci": 1.618,
+    // Fibonacci sequence ratio
+    "plastic_number": 1.324,
+    // Plastic constant, another unique irrational number
+    "feigenbaum": 4.669,
+    // Feigenbaum constant in chaos theory
+    "apollonian": 1.306,
+    // Apollonian gasket, related to circle packing
+    "cosmic_ratio": 1.273,
+    // Based on cosmic geometry
+    "egyptian_fraction": 1.571,
+    // Ancient Egyptian architecture ratio
+    "harmonic_mean": 1.455,
+    // Harmonic mean, a type of average
+    "gauss_constant": 0.834,
+    // Gauss"s constant related to the arithmetic-geometric mean
+    "super_golden": 2.058,
 
+    // Super golden ratio, a higher order of the golden ratio
     // Design & Architecture Ratios
     // ------------------------------------------------------------------------
-
-    "parthenon_ratio":      1.618,
-    "le_corbusier":         1.618,
-    "vesica_piscis":        1.732
-
+    "parthenon_ratio": 1.618,
+    "le_corbusier": 1.618,
+    "vesica_piscis": 1.732
 ) !default;
