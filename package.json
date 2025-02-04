@@ -1,7 +1,7 @@
 {
     "name": "unit.gl",
     "description": "Dynamic Layout Engine.",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "config": {
         "version_short": "0.1"
     },
@@ -45,8 +45,7 @@
     "module": "dist/js/unit.gl.js",
     "style": "dist/css/unit.gl.css",
     "scripts": {
-        "kist-build": "npx kist --config ./kist.yml",
-        "kist-watch": "npx kist --config ./kist.yml --live",
+
         "start": "node dist/index.js",
         "format": "npx prettier --write .",
         "lint": "eslint 'src/**/*.ts' || true",
@@ -55,6 +54,8 @@
         "build2": "npm run build-compile && npm run build-process",
         "build-compile": "tsc -p bin/tsconfig.json",
         "build-process": "node bin/js/index.js",
+        "kist-build": "npx kist --config ./kist.yml",
+        "kist-watch": "npx kist --config ./kist.yml --live",
         "webpack-build": "npm run webpack-prod",
         "webpack-dev": "webpack --mode development --config webpack/webpack.config.js",
         "webpack-prod": "webpack --mode production --config webpack/webpack.config.js",
