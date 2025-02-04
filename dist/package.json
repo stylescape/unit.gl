@@ -1,6 +1,6 @@
 {
   "name": "unit.gl",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Dynamic Layout Engine.",
   "keywords": [
     "unit.gl",
@@ -42,5 +42,25 @@
     "tex/**/*.tex",
     "ts/**/*.ts",
     "!.DS_Store"
-  ]
+  ],
+  "author": "Lars van Vianen <lars@vianen.com> (https://www.vianen.com)",
+  "contributors": [
+    "Scape Agency <info@scape.agency>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stylescape/unit.gl.git"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/scape-foundation"
+    }
+  ],
+  "exports": {
+    ".": {
+      "sass": "./scss/index.scss",
+      "typescript": "./ts/index.scss"
+    }
+  }
 }
