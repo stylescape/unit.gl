@@ -122,6 +122,11 @@ stages:
                         - keywords
                         - license
                         - homepage
+                        - author
+                        - contributors
+                        - repository
+                        - funding
+                        - exports
                     # customConfig:
                     #     private: true
                     #     scripts:
@@ -140,4 +145,4 @@ stages:
                     -   path: "./CITATION.cff"
                         key: "version: "
                     -   path: "./VERSION"
-                        key: "v"
+                        # key: ""
