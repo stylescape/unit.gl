@@ -60,7 +60,7 @@
   "exports": {
     ".": {
       "sass": "./scss/index.scss",
-      "typescript": "./ts/index.scss"
+      "typescript": "./ts/index.ts"
     }
   }
 }
