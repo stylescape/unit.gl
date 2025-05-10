@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Aspect Ratio Test</title>
+    <link rel="stylesheet" href="/css/unit.gl.css" />
+    <style>
+        .demo-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+            padding: 2rem;
+        }
+
+        .demo-box {
+            position: relative;
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+
+
+        .demo-box::after {
+            content: attr(data-label);
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 0.25rem 0.5rem;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+
+        .demo-box>* {
+            background: repeating-linear-gradient(45deg,
+                    rgba(0, 0, 0, 0.05),
+                    rgba(0, 0, 0, 0.05) 10px,
+                    transparent 10px,
+                    transparent 20px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 style="padding: 1rem; font-family: sans-serif;">Aspect Ratio Mixins Test</h1>
+
+    <section class="demo-container">
+        <div class="demo-box ratio_16x9" data-label="16:9 Native">
+            <div></div>
+        </div>
+
+        <div class="demo-box ratio_1x1" data-label="1:1 Native">
+            <div></div>
+        </div>
+
+        <div class="demo-box ratio_4x3" data-label="4:3 Native">
+            <div></div>
+        </div>
+
+    </section>
+
+</body>
+
+</html>
