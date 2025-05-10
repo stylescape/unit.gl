@@ -16,8 +16,8 @@
 ///
 /// @example
 ///   .element {
-///     width: map-get($paper_sizes, "a4")["width"];
-///     height: map-get($paper_sizes, "a4")["height"];
+///     width: map.get($paper_sizes, "a4")["width"];
+///     height: map.get($paper_sizes, "a4")["height"];
 ///   }
 ///
 ////

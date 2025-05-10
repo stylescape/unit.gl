@@ -46,7 +46,7 @@
 ///
 @mixin device_media_query($device) {
     // Retrieve the device attributes from the $devices map
-    $attributes: map-get($devices, $device);
+    $attributes: map.get($devices, $device);
 
     // Validate that the device exists in the $devices map
     @if $attributes == null {
@@ -55,9 +55,9 @@
     }
 
     // Extract individual attributes with default fallbacks
-    $min-width: map-get($attributes, "min-width");
-    $max-width: map-get($attributes, "max-width");
-    $pixel-ratio: map-get($attributes, "pixel-ratio", 1); // Default to 1
+    $min-width: map.get($attributes, "min-width");
+    $max-width: map.get($attributes, "max-width");
+    $pixel-ratio: map.get($attributes, "pixel-ratio", 1); // Default to 1
 
     // Construct the media query string
     $media-query: "only screen";

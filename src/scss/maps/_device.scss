@@ -16,7 +16,7 @@
 /// @access public
 ///
 /// @example scss - Usage Example
-///   @media (min-width: map-get($devices, "iphone_x")["min-width"]) {
+///   @media (min-width: map.get($devices, "iphone_x")["min-width"]) {
 ///       // Styles specific to iPhone X
 ///   }
 ///
@@ -49,11 +49,11 @@
 /// @property iPhones - iPhones with varying screen sizes and pixel densities.
 ///
 /// @example scss - Usage Example
-///     @media (min-width: map-get($devices, "iphone_x")["min-width"]) {
+///     @media (min-width: map.get($devices, "iphone_x")["min-width"]) {
 ///         // Styles specific to iPhone X
 ///     }
 ///
-$devices: (
+$device_map: (
     // Phones
     // ========================================================================
     // iPhones

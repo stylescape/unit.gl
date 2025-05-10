@@ -36,17 +36,6 @@
 // ============================================================================
 
 ///
-/// Forwards variables related to layout layers and z-indexing, ensuring
-/// consistent layering and stacking order throughout the project.
-///
-@forward "layer"; // Layout layers and z-index variables
-
-///
-/// Forwards variables defining paper sizes etc.
-///
-@forward "paper";
-
-///
 /// Forwards variables managing scaling factors for typography and responsive
 /// elements, ensuring that elements scale proportionally across different
 /// viewports.
@@ -60,22 +49,10 @@
 @forward "view"; // Viewport-specific variables and breakpoints
 
 ///
-/// Forwards device-specific configurations that aid in creating responsive
-/// designs tailored to various devices.
-///
-@forward "device"; // Device-specific responsive design variables
-
-///
 /// Forwards centralized color definitions, providing a consistent color scheme
 /// across the project.
 ///
 @forward "color"; // Centralized color definitions for the project
-
-///
-/// Forwards aspect ratio configurations that ensure responsive elements
-/// maintain their intended proportions across different devices and viewports.
-///
-@forward "ratio"; // Aspect ratio configurations for responsive elements
 
 ///
 /// Forwards variables related to measurement units, spacing, and size
