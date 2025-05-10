@@ -4,8 +4,17 @@ import path from 'path';
 import { promisify } from 'util';
 import { defineConfig } from 'vite';
 
+
+import { createRequire } from 'module';
+import serveStatic from 'serve-static';
+const require = createRequire(import.meta.url);
+const pathToDist = path.resolve('dist');
+
+
 const execAsync = promisify(exec);
 const rootDir = process.cwd();
+
+
 
 const watchGlobs = [
   'src/scss/**/*',
@@ -43,31 +52,43 @@ export default defineConfig({
     root: '.',
     publicDir: false,
     server: {
-      port: 3000,
-      open: true,
-      fs: { strict: false },
+        port: 3000,
+        open: true,
+        fs: { strict: false },
     },
     plugins: [
-      {
-        name: 'serve-kist-html',
-        configureServer(server) {
-          runKist(server);
+        {
+            name: 'serve-kist-html',
+            configureServer(server) {
+                runKist(server);
 
-          server.middlewares.use((req, res, next) => {
-            if (req.url === '/' || req.url === '/index.html') {
-              req.url = '/dist/html/index.html';
-            }
-            next();
-          });
+                server.middlewares.use('/css', serveStatic(path.join(pathToDist, 'css')));
 
-          server.watcher.on('change', (file) => {
-            const relativePath = path.relative(process.cwd(), file);
-            if (micromatch.isMatch(relativePath, watchGlobs)) {
-              console.log(`[Kist] File changed: ${relativePath}`);
-              runKist(server);
-            }
-          });
+
+                // Serve / as index.html
+                server.middlewares.use((req, res, next) => {
+                    if (req.url === '/') req.url = '/index.html';
+                    next();
+                });
+
+                // Serve all static HTML/CSS/JS from dist/html
+                server.middlewares.use(serveStatic(path.resolve('dist/html')));
+
+                // server.middlewares.use((req, res, next) => {
+                //     if (req.url === '/' || req.url === '/index.html') {
+                //     req.url = '/dist/html/index.html';
+                //     }
+                //     next();
+                // });
+
+                server.watcher.on('change', (file) => {
+                    const relativePath = path.relative(process.cwd(), file);
+                    if (micromatch.isMatch(relativePath, watchGlobs)) {
+                    console.log(`[Kist] File changed: ${relativePath}`);
+                    runKist(server);
+                    }
+                });
+            },
         },
-      },
     ],
 });
