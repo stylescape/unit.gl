@@ -1,7 +1,3 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Ratio Functions Module
@@ -38,7 +34,8 @@
 ///
 /// @name ratio_golden
 /// @param {Number} $size - The base size to scale.
-/// @param {Number} $increment - The exponent applied to the golden ratio, default is 1.
+/// @param {Number} $increment - The exponent applied to the golden ratio,
+/// default is 1.
 /// @return {Number} - The calculated size based on the golden ratio.
 ///
 /// @example scss - Usage Example

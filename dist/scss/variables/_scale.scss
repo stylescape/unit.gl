@@ -1,7 +1,3 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Scale Variables Module
@@ -21,7 +17,6 @@
 /// @access public
 ///
 ////
-
 
 // ============================================================================
 // Use
@@ -125,7 +120,8 @@ $typographic_scale: (
     // +8 units
     16: q(64),
     // +8 units
-    17: q(72), // +8 units
+    17: q(72),
+    // +8 units
 ) !default;
 
 ///
@@ -168,7 +164,7 @@ $basepoint: (
     9: basepoint(9),
     10: basepoint(10),
     11: basepoint(11),
-    12: basepoint(12),
+    12: basepoint(12)
 ) !default;
 
 ///
@@ -213,7 +209,7 @@ $baseline: (
     9: baseline(9),
     10: baseline(10),
     11: baseline(11),
-    12: baseline(12),
+    12: baseline(12)
 ) !default;
 
 ///
@@ -246,7 +242,8 @@ $scale_musical: (
     // Eight-tone scale
     "nonatonic": 9,
     // Nine-tone scale
-    "dodecatonic": 12, // Twelve-tone scale, covers all semitones in an octave
+    "dodecatonic": 12,
+    // Twelve-tone scale, covers all semitones in an octave
 ) !default;
 
 /// Classic Typographic Scale
@@ -294,5 +291,6 @@ $typographic_scale_classic: (
     // 72q (+12)
     17: q(84),
     // 84q (+12)
-    18: q(96), // 96q (+12)
+    18: q(96),
+    // 96q (+12)
 ) !default;

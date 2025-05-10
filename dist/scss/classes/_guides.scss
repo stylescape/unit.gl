@@ -1,3 +1,21 @@
+////
+///
+/// Device Mixins Module
+/// ===========================================================================
+///
+/// @group Guides
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
 @use "../dev" as *;
 @use "../variables" as *;
 @use "../mixins" as *;
@@ -134,8 +152,4 @@ $baseline: 22px;
         ($column-width + $gutter-width) 100%,
         100% $baseline;
     background-position: 10px 0px; // Use to offset and center your grid
-}
-
-// Example call
-.baseline-grid {
 }

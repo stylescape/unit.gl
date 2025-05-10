@@ -1,7 +1,3 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Layer Functions Module
@@ -33,7 +29,8 @@
 ///
 /// @name z
 /// @param {String} $layer - The name of the layer to retrieve the z-index for.
-/// @return {Number | Null} - The z-index value associated with the layer, or null if not found.
+/// @return {Number | Null} - The z-index value associated with the layer,
+/// or null if not found.
 ///
 @function z($layer) {
     @if not map-has-key($layers, $layer) {

@@ -1,7 +1,3 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Device Mixins Module
@@ -61,12 +57,7 @@
 ///     @include fluid_type(320px, 1440px, 1rem, 2rem);
 ///   }
 ///
-@mixin fluid_type(
-    $min_vw,
-    $max_vw,
-    $min_font_size,
-    $max_font_size,
-) {
+@mixin fluid_type($min_vw, $max_vw, $min_font_size, $max_font_size) {
     // $u1: unit($min_vw);
     // $u2: unit($max_vw);
     // $u3: unit($min_font_size);

@@ -35,14 +35,18 @@ export default class Unit {
 
     add(other: Unit): Unit {
         if (this.unit !== other.unit) {
-            throw new Error(`Cannot add units of different types: ${this.unit} and ${other.unit}`);
+            throw new Error(
+                `Cannot add units of different types: ${this.unit} and ${other.unit}`
+            );
         }
         return new Unit(this.value + other.value, this.unit);
     }
 
     subtract(other: Unit): Unit {
         if (this.unit !== other.unit) {
-            throw new Error(`Cannot subtract units of different types: ${this.unit} and ${other.unit}`);
+            throw new Error(
+                `Cannot subtract units of different types: ${this.unit} and ${other.unit}`
+            );
         }
         return new Unit(this.value - other.value, this.unit);
     }
@@ -68,7 +72,9 @@ export default class Unit {
         };
 
         if (!conversionRates[this.unit] || !conversionRates[toUnit]) {
-            throw new Error(`Conversion from ${this.unit} to ${toUnit} is not supported`);
+            throw new Error(
+                `Conversion from ${this.unit} to ${toUnit} is not supported`
+            );
         }
 
         const convertedValue = (this.value * conversionRates[this.unit]!) / conversionRates[toUnit]!;

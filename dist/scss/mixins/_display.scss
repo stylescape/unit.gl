@@ -1,7 +1,3 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Display Mixins Module
@@ -39,7 +35,8 @@
 /// minimum width can be specified to target specific breakpoints.
 ///
 /// @name display-orientation-landscape
-/// @param {Length} $min-width (optional) - The minimum width at which the styles should apply.
+/// @param {Length} $min-width (optional) - The minimum width at which the
+/// styles should apply.
 ///
 /// @example scss - Usage
 ///     @include display-orientation-landscape(1024px) {
@@ -67,7 +64,8 @@
 /// minimum width can be specified to target specific breakpoints.
 ///
 /// @name display-orientation-portrait
-/// @param {Length} $min-width (optional) - The minimum width at which the styles should apply.
+/// @param {Length} $min-width (optional) - The minimum width at which the
+/// styles should apply.
 ///
 /// @example scss - Usage
 ///     @include display-orientation-portrait(768px) {
