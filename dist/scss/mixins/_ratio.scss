@@ -3,13 +3,12 @@
 /// Ratio Mixins Module
 /// ===========================================================================
 ///
-/// This module provides mixins for creating aspect ratio containers.
-/// These containers maintain a specific width-to-height ratio, ensuring
-/// that elements scale proportionally across different screen sizes.
+/// Provides mixins and utility classes for maintaining consistent aspect ratios
+/// across devices. Includes native CSS `aspect-ratio` support with a fallback
+/// using `padding-top` for broader browser compatibility.
 ///
-/// There are two approaches provided: one using the `aspect-ratio` CSS
-/// property, and another using padding percentages for broader browser
-/// support.
+/// Built from a shared `$ratio-map`, this module auto-generates both semantic
+/// mixins (e.g. `aspect_ratio_16x9`) and utility classes (e.g. `.ratio_16x9`).
 ///
 /// @file _ratio.scss
 /// @title Ratio Mixins Module
@@ -81,82 +80,9 @@
     }
 }
 
-///
-/// @mixin aspect_ratio_percentage
-/// Creates a block with a proportional height based on a percentage,
-/// simulating an aspect ratio for older or constrained contexts.
-///
-/// @param {Number|Percentage} $padding - The vertical padding-bottom percentage.
-///   For example, `56.25%` creates a 16:9 ratio, `75%` creates a 4:3 ratio.
-///
-/// @example scss - 16:9 ratio
-///   .image-placeholder {
-///     @include aspect_ratio_percentageercentage(56.25%);
-///   }
-///
-@mixin aspect_ratio_percentage($padding) {
-    position: relative;
-    width: 100%;
-    padding-bottom: $padding;
-    overflow: hidden;
-    display: inline-block;
-}
-
-// @mixin aspect_ratio($val01, $val02) {
-//     aspect-ratio: calc($val01 / $val02);
-//     width: 100%;
-//     position: relative;
-//     overflow: hidden;
-//     display: inline-block;
-//     // vertical-align: top;
-// }
-
-// https://github.com/twbs/bootstrap/blob/main/scss/helpers/_ratio.scss
-// Credit: Nicolas Gallagher and SUIT CSS.
-
-// .ratio {
-//     position: relative;
-//     width: 100%;
-
-//     &::before {
-//         display: block;
-//         padding-top: var(--#{$prefix}aspect-ratio);
-//         content: "";
-//     }
-
-//     > * {
-//         position: absolute;
-//         top: 0;
-//         left: 0;
-//         width: 100%;
-//         height: 100%;
-//     }
-// }
-
-// @each $key, $ratio in $aspect-ratios {
-//     .ratio-#{$key} {
-//         --#{$prefix}aspect-ratio: #{$ratio};
-//     }
-// }
-
-// @mixin aspect-ratio($width, $height) {
-//     position: relative;
-
-//     &::before {
-//         display: block;
-//         content: "";
-//         width: 100%;
-//         padding-top: calc((#{$height} / #{$width}) * 100%);
-//     }
-
-//     > * {
-//         position: absolute;
-//         top: 0;
-//         right: 0;
-//         bottom: 0;
-//         left: 0;
-//     }
-// }
+// ============================================================================
+// Semantic Mixins
+// ============================================================================
 
 @mixin aspect_ratio_1x1 {
     @include aspect_ratio(1, 1);
@@ -196,126 +122,4 @@
 }
 @mixin aspect_ratio_16x10 {
     @include aspect_ratio(16, 10);
-}
-
-.ratio_1x1 {
-    @include aspect_ratio_1x1;
-}
-.ratio_1x2 {
-    @include aspect_ratio_1x2;
-}
-.ratio_2x1 {
-    @include aspect_ratio_2x1;
-}
-.ratio_1x3 {
-    @include aspect_ratio_1x3;
-}
-.ratio_3x1 {
-    @include aspect_ratio_3x1;
-}
-.ratio_1x4 {
-    @include aspect_ratio_1x4;
-}
-.ratio_4x1 {
-    @include aspect_ratio_4x1;
-}
-.ratio_3x2 {
-    @include aspect_ratio_3x2;
-}
-.ratio_2x3 {
-    @include aspect_ratio_2x3;
-}
-.ratio_4x3 {
-    @include aspect_ratio_4x3;
-}
-.ratio_3x4 {
-    @include aspect_ratio_3x4;
-}
-.ratio_16x9 {
-    @include aspect_ratio_16x9;
-}
-.ratio_16x10 {
-    @include aspect_ratio_16x10;
-}
-
-// ============================================================================
-
-@mixin aspect_ratio_percentage_1x1 {
-    @include aspect_ratio_percentage(100%);
-}
-@mixin aspect_ratio_percentage_1x2 {
-    @include aspect_ratio_percentage(200%);
-}
-@mixin aspect_ratio_percentage_2x1 {
-    @include aspect_ratio_percentage(50%);
-}
-@mixin aspect_ratio_percentage_1x3 {
-    @include aspect_ratio_percentage(300%);
-}
-@mixin aspect_ratio_percentage_3x1 {
-    @include aspect_ratio_percentage(33.33%);
-}
-@mixin aspect_ratio_percentage_1x4 {
-    @include aspect_ratio_percentage(400%);
-}
-@mixin aspect_ratio_percentage_4x1 {
-    @include aspect_ratio_percentage(25%);
-}
-@mixin aspect_ratio_percentage_2x3 {
-    @include aspect_ratio_percentage(150%);
-}
-@mixin aspect_ratio_percentage_3x2 {
-    @include aspect_ratio_percentage(66.67%);
-}
-@mixin aspect_ratio_percentage_3x4 {
-    @include aspect_ratio_percentage(133.33%);
-}
-@mixin aspect_ratio_percentage_4x3 {
-    @include aspect_ratio_percentage(75%);
-}
-@mixin aspect_ratio_percentage_16x9 {
-    @include aspect_ratio_percentage(56.25%);
-}
-@mixin aspect_ratio_percentage_16x10 {
-    @include aspect_ratio_percentage(62.5%);
-}
-
-.ratio_p_1x1 {
-    @include aspect_ratio_percentage_1x1;
-}
-.ratio_p_1x2 {
-    @include aspect_ratio_percentage_1x2;
-}
-.ratio_p_2x1 {
-    @include aspect_ratio_percentage_2x1;
-}
-.ratio_p_1x3 {
-    @include aspect_ratio_percentage_1x3;
-}
-.ratio_p_3x1 {
-    @include aspect_ratio_percentage_3x1;
-}
-.ratio_p_1x4 {
-    @include aspect_ratio_percentage_1x4;
-}
-.ratio_p_4x1 {
-    @include aspect_ratio_percentage_4x1;
-}
-.ratio_p_3x2 {
-    @include aspect_ratio_percentage_3x2;
-}
-.ratio_p_2x3 {
-    @include aspect_ratio_percentage_2x3;
-}
-.ratio_p_4x3 {
-    @include aspect_ratio_percentage_4x3;
-}
-.ratio_p_3x4 {
-    @include aspect_ratio_percentage_3x4;
-}
-.ratio_p_16x9 {
-    @include aspect_ratio_percentage_16x9;
-}
-.ratio_p_16x10 {
-    @include aspect_ratio_percentage_16x10;
 }

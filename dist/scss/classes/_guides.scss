@@ -53,7 +53,7 @@
     // background-repeat: repeat-y;
     background-repeat: repeat;
 
-    background-size: map-get($baseline, 4) map-get($baseline, 4);
+    background-size: map.get($baseline, 4) map.get($baseline, 4);
     @include guide;
     background-image: repeating-linear-gradient(
         cyan 0 1px,

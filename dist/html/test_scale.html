@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kyū Scale Test | unit.gl</title>
+    <link rel="stylesheet" href="/css/unit.gl.css" />
+
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            padding: 2rem;
+            background: #fff;
+            color: #000;
+            max-width: 64rem;
+            padding: 2rem;
+            margin: 0 auto;
+        }
+
+
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .scale-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .scale-line {
+            background: #f9f9f9;
+            border-left: 4px solid #eee;
+            padding: 0.75rem 1rem;
+            position: relative;
+        }
+
+        .scale-line::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0.5rem;
+            top: 0.5rem;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            background: #e0e0e0;
+            color: #444;
+            padding: 0.2rem 0.4rem;
+            margin-left: 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+        }
+
+        a {
+            color: #007acc;
+            text-decoration: none;
+            border-bottom: 1px dotted #007acc;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            background: #e0e0e0;
+            color: #444;
+            padding: 0.2rem 0.4rem;
+            margin-left: 0.5rem;
+            border-radius: 0.25rem;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h1>Scale Test</h1>
+<p>Visual tests for typographic and rhythmic scales.</p>
+
+
+<section>
+    <h2>Typographic Scale</h2>
+    <div class="scale-demo">
+        <div class="scale-line" style="font-size: var(--q4);" data-label="q4">
+            The quick brown fox jumps.
+        </div>
+        <div class="scale-line" style="font-size: var(--q6);" data-label="q6">
+            The quick brown fox jumps.
+        </div>
+        <div class="scale-line" style="font-size: var(--q8);" data-label="q8">
+            The quick brown fox jumps.
+        </div>
+        <div class="scale-line" style="font-size: var(--q10);" data-label="q10">
+            The quick brown fox jumps.
+        </div>
+        <div class="scale-line" style="font-size: var(--q12);" data-label="q12">
+            The quick brown fox jumps.
+        </div>
+        <div class="scale-line" style="font-size: var(--q16);" data-label="q16">
+            The quick brown fox jumps.
+        </div>
+        <div class="scale-line" style="font-size: var(--q24);" data-label="q24">
+            The quick brown fox jumps.
+        </div>
+        <div class="scale-line" style="font-size: var(--q36);" data-label="q36">
+            The quick brown fox jumps.
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Baseline Scale (Vertical Rhythm)</h2>
+    <div class="scale-demo">
+        <div class="scale-line" style="height: calc(var(--q) * 5);" data-label="baseline(1)">
+            The quick brown fox jumps.
+        </div>
+        <div class="scale-line" style="height: calc(var(--q) * 10);" data-label="baseline(2)">
+            The quick brown fox jumps.
+        </div>
+        <div class="scale-line" style="height: calc(var(--q) * 15);" data-label="baseline(3)">
+            The quick brown fox jumps.
+        </div>
+        <div class="scale-line" style="height: calc(var(--q) * 20);" data-label="baseline(4)">
+            The quick brown fox jumps.
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Basepoint Scale</h2>
+    <div class="scale-demo">
+        <div class="scale-line" style="width: calc(var(--q) * 4);" data-label="basepoint(1)">
+            The quick brown fox jumps.
+        </div>
+        <div class="scale-line" style="width: calc(var(--q) * 8);" data-label="basepoint(2)">
+            The quick brown fox jumps.
+        </div>
+        <div class="scale-line" style="width: calc(var(--q) * 12);" data-label="basepoint(3)">
+            The quick brown fox jumps.
+        </div>
+        <div class="scale-line" style="width: calc(var(--q) * 16);" data-label="basepoint(4)">
+            The quick brown fox jumps.
+        </div>
+    </div>
+</section>
+
+
+</body>
+
+</html>

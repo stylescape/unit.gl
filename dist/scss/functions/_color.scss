@@ -29,5 +29,5 @@
 /// ---------------------------------------------------------------------------
 ///
 @function guide_color($name) {
-    @return map-get($guide_colors, $name);
+    @return map.get($guide_color_map, $name);
 }

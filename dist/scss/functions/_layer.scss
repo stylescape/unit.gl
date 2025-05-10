@@ -37,5 +37,5 @@
         @warn "Layer `#{$layer}` not found in the $layers map. z-index property omitted.";
         @return null;
     }
-    @return map-get($layers, $layer);
+    @return map.get($layers, $layer);
 }
