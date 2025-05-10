@@ -11,6 +11,16 @@
 /// property, and another using padding percentages for broader browser
 /// support.
 ///
+/// @file _ratio.scss
+/// @title Ratio Mixins Module
+/// @version 0.1.0
+/// @description Provides utility mixins for maintaining consistent aspect ratios
+///              across devices. Supports modern `aspect-ratio` CSS as well as
+///              padding-based fallbacks for broader browser compatibility.
+///
+///              Includes predefined common ratios (e.g., 1:1, 16:9) as mixins and
+///              utility classes, enabling both declarative and semantic usage.
+///
 /// @group Ratio
 /// @author Scape Agency
 /// @link https://unit.gl
@@ -24,6 +34,8 @@
 // Use
 // ============================================================================
 
+@use "sass:math";
+
 @use "../functions" as *;
 @use "../variables" as *;
 @use "../maps" as *;
@@ -32,205 +44,72 @@
 // Mixins
 // ============================================================================
 
-// Aspect Ratio Box:
-// Creates a container with a specific aspect ratio.
-// @mixin aspect-ratio($width, $height) {
-//   position: relative;
-//   &:before {
-//       content: "";
-//       display: block;
-//       padding-top: calc(($height / $width) * 100%);
-//   }
-//   > * {
-//       position: absolute;
-//       top: 0;
-//       left: 0;
-//       right: 0;
-//       bottom: 0;
-//   }
-// }
-
-// .ratio-box {
-//   @include aspect-ratio(16, 9);
-// }
-
-@mixin ratio($val01, $val02) {
-    aspect-ratio: calc($val01 / $val02);
-    width: 100%;
+///
+/// @mixin aspect_ratio
+/// Creates a responsive container that maintains a specific aspect ratio.
+/// Uses the native `aspect-ratio` property where supported,
+/// with a `padding-top` fallback for broader browser compatibility.
+///
+/// @param {Number} $width - The horizontal component of the aspect ratio.
+/// @param {Number} $height - The vertical component of the aspect ratio.
+///
+/// @example scss - 16:9 container
+///   .video-wrapper {
+///     @include aspect_ratio(16, 9);
+///   }
+///
+@mixin aspect_ratio($width, $height) {
     position: relative;
+    width: 100%;
+    aspect-ratio: math.div($width, $height); // Native CSS support
+
+    // Fallback for legacy browsers
+    &::before {
+        content: "";
+        display: block;
+        padding-top: calc((#{$height} / #{$width}) * 100%);
+    }
+
+    > * {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+///
+/// @mixin aspect_ratio_percentage
+/// Creates a block with a proportional height based on a percentage,
+/// simulating an aspect ratio for older or constrained contexts.
+///
+/// @param {Number|Percentage} $padding - The vertical padding-bottom percentage.
+///   For example, `56.25%` creates a 16:9 ratio, `75%` creates a 4:3 ratio.
+///
+/// @example scss - 16:9 ratio
+///   .image-placeholder {
+///     @include aspect_ratio_percentageercentage(56.25%);
+///   }
+///
+@mixin aspect_ratio_percentage($padding) {
+    position: relative;
+    width: 100%;
+    padding-bottom: $padding;
     overflow: hidden;
     display: inline-block;
-    // vertical-align: top;
 }
 
-@mixin ratio_1x1 {
-    @include ratio(1, 1);
-}
-@mixin ratio_1x2 {
-    @include ratio(1, 2);
-}
-@mixin ratio_2x1 {
-    @include ratio(2, 1);
-}
-@mixin ratio_1x3 {
-    @include ratio(1, 3);
-}
-@mixin ratio_3x1 {
-    @include ratio(3, 1);
-}
-@mixin ratio_1x4 {
-    @include ratio(1, 4);
-}
-@mixin ratio_4x1 {
-    @include ratio(4, 1);
-}
-@mixin ratio_3x2 {
-    @include ratio(3, 2);
-}
-@mixin ratio_2x3 {
-    @include ratio(2, 3);
-}
-@mixin ratio_4x3 {
-    @include ratio(4, 3);
-}
-@mixin ratio_3x4 {
-    @include ratio(3, 4);
-}
-@mixin ratio_16x9 {
-    @include ratio(16, 9);
-}
-@mixin ratio_16x10 {
-    @include ratio(16, 10);
-}
-
-.ratio_1x1 {
-    @include ratio_1x1;
-}
-.ratio_1x2 {
-    @include ratio_1x2;
-}
-.ratio_2x1 {
-    @include ratio_2x1;
-}
-.ratio_1x3 {
-    @include ratio_1x3;
-}
-.ratio_3x1 {
-    @include ratio_3x1;
-}
-.ratio_1x4 {
-    @include ratio_1x4;
-}
-.ratio_4x1 {
-    @include ratio_4x1;
-}
-.ratio_3x2 {
-    @include ratio_3x2;
-}
-.ratio_2x3 {
-    @include ratio_2x3;
-}
-.ratio_4x3 {
-    @include ratio_4x3;
-}
-.ratio_3x4 {
-    @include ratio_3x4;
-}
-.ratio_16x9 {
-    @include ratio_16x9;
-}
-.ratio_16x10 {
-    @include ratio_16x10;
-}
-
-@mixin ratio_p($val01) {
-    padding-bottom: $val01;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-    // vertical-align: top;
-}
-
-@mixin ratio_p_1x1 {
-    @include ratio_p(100%);
-}
-@mixin ratio_p_1x2 {
-    @include ratio_p(200%);
-}
-@mixin ratio_p_2x1 {
-    @include ratio_p(50%);
-}
-@mixin ratio_p_1x3 {
-    @include ratio_p(300%);
-}
-@mixin ratio_p_3x1 {
-    @include ratio_p(33.33%);
-}
-@mixin ratio_p_1x4 {
-    @include ratio_p(400%);
-}
-@mixin ratio_p_4x1 {
-    @include ratio_p(25%);
-}
-@mixin ratio_p_2x3 {
-    @include ratio_p(150%);
-}
-@mixin ratio_p_3x2 {
-    @include ratio_p(66.67%);
-}
-@mixin ratio_p_3x4 {
-    @include ratio_p(133.33%);
-}
-@mixin ratio_p_4x3 {
-    @include ratio_p(75%);
-}
-@mixin ratio_p_16x9 {
-    @include ratio_p(56.25%);
-}
-@mixin ratio_p_16x10 {
-    @include ratio_p(62.5%);
-}
-
-.ratio_p_1x1 {
-    @include ratio_p_1x1;
-}
-.ratio_p_1x2 {
-    @include ratio_p_1x2;
-}
-.ratio_p_2x1 {
-    @include ratio_p_2x1;
-}
-.ratio_p_1x3 {
-    @include ratio_p_1x3;
-}
-.ratio_p_3x1 {
-    @include ratio_p_3x1;
-}
-.ratio_p_1x4 {
-    @include ratio_p_1x4;
-}
-.ratio_p_4x1 {
-    @include ratio_p_4x1;
-}
-.ratio_p_3x2 {
-    @include ratio_p_3x2;
-}
-.ratio_p_2x3 {
-    @include ratio_p_2x3;
-}
-.ratio_p_4x3 {
-    @include ratio_p_4x3;
-}
-.ratio_p_3x4 {
-    @include ratio_p_3x4;
-}
-.ratio_p_16x9 {
-    @include ratio_p_16x9;
-}
-.ratio_p_16x10 {
-    @include ratio_p_16x10;
-}
+// @mixin aspect_ratio($val01, $val02) {
+//     aspect-ratio: calc($val01 / $val02);
+//     width: 100%;
+//     position: relative;
+//     overflow: hidden;
+//     display: inline-block;
+//     // vertical-align: top;
+// }
 
 // https://github.com/twbs/bootstrap/blob/main/scss/helpers/_ratio.scss
 // Credit: Nicolas Gallagher and SUIT CSS.
@@ -278,3 +157,165 @@
 //         left: 0;
 //     }
 // }
+
+@mixin aspect_ratio_1x1 {
+    @include aspect_ratio(1, 1);
+}
+@mixin aspect_ratio_1x2 {
+    @include aspect_ratio(1, 2);
+}
+@mixin aspect_ratio_2x1 {
+    @include aspect_ratio(2, 1);
+}
+@mixin aspect_ratio_1x3 {
+    @include aspect_ratio(1, 3);
+}
+@mixin aspect_ratio_3x1 {
+    @include aspect_ratio(3, 1);
+}
+@mixin aspect_ratio_1x4 {
+    @include aspect_ratio(1, 4);
+}
+@mixin aspect_ratio_4x1 {
+    @include aspect_ratio(4, 1);
+}
+@mixin aspect_ratio_3x2 {
+    @include aspect_ratio(3, 2);
+}
+@mixin aspect_ratio_2x3 {
+    @include aspect_ratio(2, 3);
+}
+@mixin aspect_ratio_4x3 {
+    @include aspect_ratio(4, 3);
+}
+@mixin aspect_ratio_3x4 {
+    @include aspect_ratio(3, 4);
+}
+@mixin aspect_ratio_16x9 {
+    @include aspect_ratio(16, 9);
+}
+@mixin aspect_ratio_16x10 {
+    @include aspect_ratio(16, 10);
+}
+
+.ratio_1x1 {
+    @include aspect_ratio_1x1;
+}
+.ratio_1x2 {
+    @include aspect_ratio_1x2;
+}
+.ratio_2x1 {
+    @include aspect_ratio_2x1;
+}
+.ratio_1x3 {
+    @include aspect_ratio_1x3;
+}
+.ratio_3x1 {
+    @include aspect_ratio_3x1;
+}
+.ratio_1x4 {
+    @include aspect_ratio_1x4;
+}
+.ratio_4x1 {
+    @include aspect_ratio_4x1;
+}
+.ratio_3x2 {
+    @include aspect_ratio_3x2;
+}
+.ratio_2x3 {
+    @include aspect_ratio_2x3;
+}
+.ratio_4x3 {
+    @include aspect_ratio_4x3;
+}
+.ratio_3x4 {
+    @include aspect_ratio_3x4;
+}
+.ratio_16x9 {
+    @include aspect_ratio_16x9;
+}
+.ratio_16x10 {
+    @include aspect_ratio_16x10;
+}
+
+// ============================================================================
+
+@mixin aspect_ratio_percentage_1x1 {
+    @include aspect_ratio_percentage(100%);
+}
+@mixin aspect_ratio_percentage_1x2 {
+    @include aspect_ratio_percentage(200%);
+}
+@mixin aspect_ratio_percentage_2x1 {
+    @include aspect_ratio_percentage(50%);
+}
+@mixin aspect_ratio_percentage_1x3 {
+    @include aspect_ratio_percentage(300%);
+}
+@mixin aspect_ratio_percentage_3x1 {
+    @include aspect_ratio_percentage(33.33%);
+}
+@mixin aspect_ratio_percentage_1x4 {
+    @include aspect_ratio_percentage(400%);
+}
+@mixin aspect_ratio_percentage_4x1 {
+    @include aspect_ratio_percentage(25%);
+}
+@mixin aspect_ratio_percentage_2x3 {
+    @include aspect_ratio_percentage(150%);
+}
+@mixin aspect_ratio_percentage_3x2 {
+    @include aspect_ratio_percentage(66.67%);
+}
+@mixin aspect_ratio_percentage_3x4 {
+    @include aspect_ratio_percentage(133.33%);
+}
+@mixin aspect_ratio_percentage_4x3 {
+    @include aspect_ratio_percentage(75%);
+}
+@mixin aspect_ratio_percentage_16x9 {
+    @include aspect_ratio_percentage(56.25%);
+}
+@mixin aspect_ratio_percentage_16x10 {
+    @include aspect_ratio_percentage(62.5%);
+}
+
+.ratio_p_1x1 {
+    @include aspect_ratio_percentage_1x1;
+}
+.ratio_p_1x2 {
+    @include aspect_ratio_percentage_1x2;
+}
+.ratio_p_2x1 {
+    @include aspect_ratio_percentage_2x1;
+}
+.ratio_p_1x3 {
+    @include aspect_ratio_percentage_1x3;
+}
+.ratio_p_3x1 {
+    @include aspect_ratio_percentage_3x1;
+}
+.ratio_p_1x4 {
+    @include aspect_ratio_percentage_1x4;
+}
+.ratio_p_4x1 {
+    @include aspect_ratio_percentage_4x1;
+}
+.ratio_p_3x2 {
+    @include aspect_ratio_percentage_3x2;
+}
+.ratio_p_2x3 {
+    @include aspect_ratio_percentage_2x3;
+}
+.ratio_p_4x3 {
+    @include aspect_ratio_percentage_4x3;
+}
+.ratio_p_3x4 {
+    @include aspect_ratio_percentage_3x4;
+}
+.ratio_p_16x9 {
+    @include aspect_ratio_percentage_16x9;
+}
+.ratio_p_16x10 {
+    @include aspect_ratio_percentage_16x10;
+}

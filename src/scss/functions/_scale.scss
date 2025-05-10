@@ -33,9 +33,12 @@
 /// scale. This helps maintain harmonious proportions across a design.
 ///
 /// @name modular_scale
-/// @param {Number} $increment - The step on the scale, can be positive or negative.
-/// @param {Number} $base - The base value to scale from, defaults to 1em (typographic base size).
-/// @param {Number} $ratio - The ratio to use for scaling, defaults to the Golden Ratio (1.618).
+/// @param {Number} $increment - The step on the scale, can be positive or
+/// negative.
+/// @param {Number} $base - The base value to scale from, defaults to 1em
+/// (typographic base size).
+/// @param {Number} $ratio - The ratio to use for scaling, defaults to the
+/// olden Ratio (1.618).
 /// @return {Number} - The calculated value based on the modular scale.
 ///
 @function modular_scale($increment: 1, $base: 1em, $ratio: 1.618) {

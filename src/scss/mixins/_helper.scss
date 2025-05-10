@@ -80,7 +80,7 @@
 ///     @include set_font-size(16px);
 ///   }
 ///
-@mixin set_font-size($value) {
+@mixin set_font_size($value) {
     @include q($value, font-size);
 }
 
@@ -112,7 +112,7 @@
 ///     @include set_letter-spacing(0.1em);
 ///   }
 ///
-@mixin set_letter-spacing($value) {
+@mixin set_letter_spacing($value) {
     @include q($value, letter-spacing);
 }
 
