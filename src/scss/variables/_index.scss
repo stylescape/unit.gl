@@ -1,7 +1,3 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Variables Module
@@ -31,68 +27,59 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
-
 
 // ============================================================================
 // Forward
 // ============================================================================
 
-
 ///
 /// Forwards variables related to layout layers and z-indexing, ensuring
 /// consistent layering and stacking order throughout the project.
 ///
-@forward "layer";  // Layout layers and z-index variables
-
+@forward "layer"; // Layout layers and z-index variables
 
 ///
 /// Forwards variables defining paper sizes etc.
 ///
 @forward "paper";
 
-
 ///
 /// Forwards variables managing scaling factors for typography and responsive
 /// elements, ensuring that elements scale proportionally across different
 /// viewports.
 ///
-@forward "scale";  // Typography scaling and responsive element sizing
-
+@forward "scale"; // Typography scaling and responsive element sizing
 
 ///
 /// Forwards viewport-specific variables, such as breakpoints, to facilitate
 /// responsive design practices.
 ///
-@forward "view";  // Viewport-specific variables and breakpoints
-
+@forward "view"; // Viewport-specific variables and breakpoints
 
 ///
 /// Forwards device-specific configurations that aid in creating responsive
 /// designs tailored to various devices.
 ///
-@forward "device";  // Device-specific responsive design variables
-
+@forward "device"; // Device-specific responsive design variables
 
 ///
 /// Forwards centralized color definitions, providing a consistent color scheme
 /// across the project.
 ///
-@forward "color";  // Centralized color definitions for the project
-
+@forward "color"; // Centralized color definitions for the project
 
 ///
 /// Forwards aspect ratio configurations that ensure responsive elements
 /// maintain their intended proportions across different devices and viewports.
 ///
-@forward "ratio";  // Aspect ratio configurations for responsive elements
+@forward "ratio"; // Aspect ratio configurations for responsive elements
 
 ///
 /// Forwards variables related to measurement units, spacing, and size
 /// definitions. Useful for maintaining consistent sizing across different
 /// components.
 ///
-@forward "unit";  // Measurement units and spacing
+@forward "unit"; // Measurement units and spacing
