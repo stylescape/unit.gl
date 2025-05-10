@@ -35,15 +35,8 @@ stages:
 
         steps:
 
-            # Dirs Clean
-            # -----------------------------------------------------------------
-            -
-                name: CleanBuildDirStep
-                action: DirectoryCleanAction
-                options:
-                    dirPath: "./dist"
 
-            # Dirs Clean
+            # Process SCSS to CSS
             # -----------------------------------------------------------------
             -   name: ProcessMainStyles
                 action: StyleProcessingAction
@@ -59,25 +52,27 @@ stages:
                     outputFile: "./dist/css/unit.gl.css"
                     styleOption: "expanded"
 
-            # Copy Files
+
+            # RenderTemplates
             # -----------------------------------------------------------------
+
             -
-                name: CopyLICENSE
-                action: FileCopyAction
+                name: RenderTemplates
+                action: TemplateRenderAction
                 options:
-                    srcFile: "./LICENSE"
-                    destDir: "./dist"
-            -
-                name: CopyREADME
-                action: FileCopyAction
-                options:
-                    srcFile: "./README.md"
-                    destDir: "./dist"
+                    templatesDir: "./src/jinja"
+                    outputDir: "./src/html"
+                    renderAllFromDir: true
+                context:
+                    name: "kist"
+                    version: "1.0.0"
+                    author: "Lars van Vianen"
+
 
             # Copy Dirs
             # -----------------------------------------------------------------
             -
-                name: CopySrcSCSS
+                name: CopySrcHTML
                 action: DirectoryCopyAction
                 options:
                     srcDir: "./src/scss"
@@ -86,63 +81,6 @@ stages:
                 name: CopySrcTS
                 action: DirectoryCopyAction
                 options:
-                    srcDir: "./src/ts"
-                    destDir: "./dist/ts"
+                    srcDir: "./src/html"
+                    destDir: "./dist/html"
 
-            # Compile TS to JS
-            # -----------------------------------------------------------------
-
-            # -
-            #     name: Compile TS to JS
-            #     action: TypeScriptCompilerAction
-            #     options:
-            #         tsConfigPath: "./tsconfig.json"
-            #         filePaths:
-            #             - "src/ts/index.ts"
-            #             # - "src/utils.ts"
-            #         outputDir: "./dist/js"
-            #         compilerOptions:
-            #             target: "ES2020"
-            #             module: "CommonJS"
-
-            # Package.json
-            # -----------------------------------------------------------------
-            -
-                name: Package.json
-                action: PackageManagerAction
-                options:
-                    packageJsonPath: "./package.json"
-                    outputDir: "./dist"
-                    fields:
-                        - name
-                        - version
-                        - bin
-                        - dependencies
-                        - description
-                        - keywords
-                        - license
-                        - homepage
-                        - author
-                        - contributors
-                        - repository
-                        - funding
-                        - exports
-                    # customConfig:
-                    #     private: true
-                    #     scripts:
-                    #     start: "node index.js"
-                    #     build: "npm run build"
-                    #     devDependencies:
-                    #     typescript: "^5.0.0"
-
-            # Replace Version
-            # -----------------------------------------------------------------
-            -
-                name: ReplaceVersion
-                action: VersionWriteAction
-                options:
-                    files:
-                    -   path: "./CITATION.cff"
-                        key: "version: "
-                    -   path: "./VERSION"
-                        key: "v"
