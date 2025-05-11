@@ -1,7 +1,7 @@
 {
     "name": "unit.gl",
     "description": "Dynamic Layout Engine.",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "config": {
         "version_short": "0.1"
     },
@@ -50,7 +50,7 @@
         "dev": "vite"
     },
     "devDependencies": {
-        "kist": "^0.1.36",
+        "kist": "^0.1.37",
         "micromatch": "^4.0.8",
         "nunjucks": "^3.2.4",
         "sass": "^1.87.0",
