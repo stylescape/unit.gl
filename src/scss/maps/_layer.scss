@@ -51,22 +51,24 @@
 ///
 $layer_map: (
     // ========================================================================
-    // Guides
+    // Guides & Development Overlays
     // ========================================================================
+    ///
     /// High-priority guide overlays for design and debugging.
     /// @name guides
     /// @type Number
+    ///
     "guides": 9998,
 
     /// Baseline guide used for text alignment and visual rhythm.
     /// @name guide_baseline
     /// @type Number
-    "guide_baseline": 3000,
+    "guide_baseline": 9998,
 
     /// Graphical guides, such as grid overlays, used in design.
     /// @name guide_graph
     /// @type Number
-    "guide_graph": 3100,
+    "guide_graph": 9998,
 
     // ========================================================================
     // Overlays
@@ -80,19 +82,25 @@ $layer_map: (
     // ========================================================================
     // Interface Elements
     // ========================================================================
+    ///
     /// Z-index for top ribbons and banners that overlay other UI elements.
     /// @name ribbon
     /// @type Number
+    ///
     "ribbon": 5000,
 
+    ///
     /// General interface elements like headers, footers, and sidebars.
     /// @name interface
     /// @type Number
+    ///
     "interface": 4000,
 
+    ///
     /// Controls like buttons, sliders, and other interactive elements.
     /// @name control
     /// @type Number
+    ///
     "control": 3000,
 
     // ========================================================================
@@ -114,18 +122,29 @@ $layer_map: (
     // ========================================================================
     // Special Values
     // ========================================================================
+    ///
     /// Maximum possible z-index value.
+    /// Highest layer (use sparingly)
+    ///
     /// @name max
     /// @type Number
+    ///
     "max": 9999,
 
+    ///
     /// Default, baseline z-index value.
+    ///
     /// @name mid
     /// @type Number
+    ///
     "mid": 0,
 
+    ///
     /// Minimum possible z-index value.
+    /// Forcefully behind everything
+    ///
     /// @name min
     /// @type Number
+    ///
     "min": -9999
 ) !default;

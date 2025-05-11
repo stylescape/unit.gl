@@ -3,12 +3,104 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Aspect Ratio Test</title>
     <link rel="stylesheet" href="/css/unit.gl.css" />
+    <script type="module" src="/js/unit.gl.js"></script>
+
     <style>
+        body {
+            font-family: system-ui, sans-serif;
+            font-size: 1rem;
+            line-height: 1.25rem;
+            padding: 2rem;
+            background: #fff;
+            color: #000;
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+
+
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .scale-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .scale-line {
+            background: #f9f9f9;
+            border-left: 4px solid #eee;
+            padding: 0.75rem 1rem;
+            position: relative;
+        }
+
+        .scale-line::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0.5rem;
+            top: 0.5rem;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            background: #e0e0e0;
+            color: #444;
+            padding: 0.2rem 0.4rem;
+            margin-left: 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+        }
+
+        a {
+            color: #007acc;
+            text-decoration: none;
+            border-bottom: 1px dotted #007acc;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            background: #e0e0e0;
+            color: #444;
+            padding: 0.2rem 0.4rem;
+            margin-left: 0.5rem;
+            border-radius: 0.25rem;
+        }
+
         .demo-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid_template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 1rem;
             padding: 2rem;
         }
@@ -40,27 +132,66 @@
                     transparent 10px,
                     transparent 20px);
         }
+
+        .grid_layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: z("guides");
+        }
+
+        .grid-status {
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+            background: #eee;
+            color: #444;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+        }
     </style>
+
 </head>
 
 <body>
 
-    <h1 style="padding: 1rem; font-family: sans-serif;">Aspect Ratio Mixins Test</h1>
+<h1>Aspect Ratio Test</h1>
+<p>Visual tests for aspect ratios.</p>
 
-    <section class="demo-container">
-        <div class="demo-box ratio_16x9" data-label="16:9 Native">
-            <div></div>
-        </div>
+    <!-- Grids -->
+    <div class="grid_layer guide_graph_centered" data-grid="graph"></div>
+    <div class="grid_layer guide_baseline" data-grid="baseline"></div>
 
-        <div class="demo-box ratio_1x1" data-label="1:1 Native">
-            <div></div>
-        </div>
 
-        <div class="demo-box ratio_4x3" data-label="4:3 Native">
-            <div></div>
-        </div>
 
-    </section>
+    <!-- Buttons -->
+    <button data-toggle="baseline">
+        ☰ Toggle Baseline <span class="grid-status" data-status="baseline">✓ On</span>
+    </button>
+    <button data-toggle="graph">
+        ⊞ Toggle Graph <span class="grid-status" data-status="graph">✓ On</span>
+    </button>
+    <button data-toggle="modular">
+        ⌘ Toggle Modular <span class="grid-status" data-status="modular">✓ On</span>
+    </button>
+
+
+
+
+<section class="demo-container">
+    <div class="demo-box ratio_16x9" data-label="16:9 Native">
+        <div></div>
+    </div>
+
+    <div class="demo-box ratio_1x1" data-label="1:1 Native">
+        <div></div>
+    </div>
+
+    <div class="demo-box ratio_4x3" data-label="4:3 Native">
+        <div></div>
+    </div>
+
+</section>
 
 </body>
 
