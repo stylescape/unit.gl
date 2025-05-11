@@ -128,7 +128,7 @@ stages:
                 name: Compile TS to JS
                 action: TypeScriptCompilerAction
                 options:
-                    tsConfigPath: "./tsconfig.json"
+                    tsConfigPath: "./tsconfig.pro.json"
                     filePaths:
                         - "src/ts/index.ts"
                         # - "src/utils.ts"
@@ -136,6 +136,19 @@ stages:
                     compilerOptions:
                         target: "ES2020"
                         module: "CommonJS"
+            -
+                name: Rename README File
+                action: FileRenameAction
+                options:
+                    srcPath: "./dist/js/index.js.map"
+                    targetPath: "./dist/js/unit.gl.js.map"
+
+            -
+                name: Rename README File
+                action: FileRenameAction
+                options:
+                    srcPath: "./dist/js/index.js"
+                    targetPath: "./dist/js/unit.gl.js"
 
             # Package.json
             # -----------------------------------------------------------------
