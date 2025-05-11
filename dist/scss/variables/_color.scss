@@ -24,9 +24,14 @@
 // Variables
 // ============================================================================
 
-$guide_color: rgba(50, 50, 50, 0.25);
-$guide_color_2: rgba(178, 51, 170, 0.5);
+$guide_baseline_primary: rgb(0, 200, 255);
+$guide_baseline_secondary: rgb(125, 181, 203);
 
+$guide_color: rgb(0, 200, 255);
+
+$guide_graph_primary: rgba(111, 124, 126, 0.483);
+
+$guide_bleed_primary: rgba(178, 51, 170, 0.5);
 ///
 /// Primary Guide Color
 /// ---------------------------------------------------------------------------

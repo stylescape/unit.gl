@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>unit.gl Test Page</title>
     <link rel="stylesheet" href="/css/unit.gl.css" />
+    <script type="module" src="/js/unit.gl.js"></script>
 
     <style>
         body {
             font-family: system-ui, sans-serif;
+            font-size: 1rem;
+            line-height: 1.25rem;
             padding: 2rem;
             background: #fff;
             color: #000;
             max-width: 64rem;
-            padding: 2rem;
             margin: 0 auto;
         }
 
@@ -95,6 +97,58 @@
             margin-left: 0.5rem;
             border-radius: 0.25rem;
         }
+
+        .demo-container {
+            display: grid;
+            grid_template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+            padding: 2rem;
+        }
+
+        .demo-box {
+            position: relative;
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+
+
+        .demo-box::after {
+            content: attr(data-label);
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 0.25rem 0.5rem;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+
+        .demo-box>* {
+            background: repeating-linear-gradient(45deg,
+                    rgba(0, 0, 0, 0.05),
+                    rgba(0, 0, 0, 0.05) 10px,
+                    transparent 10px,
+                    transparent 20px);
+        }
+
+        .grid_layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: z("guides");
+        }
+
+        .grid-status {
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+            background: #eee;
+            color: #444;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+        }
     </style>
 
 </head>
@@ -102,6 +156,25 @@
 <body>
 
     <h1>unit.gl Test</h1>
+
+    <!-- Grids -->
+    <div class="grid_layer guide_graph_centered" data-grid="graph"></div>
+    <div class="grid_layer guide_baseline" data-grid="baseline"></div>
+
+
+
+    <!-- Buttons -->
+    <button data-toggle="baseline">
+        ☰ Toggle Baseline <span class="grid-status" data-status="baseline">✓ On</span>
+    </button>
+    <button data-toggle="graph">
+        ⊞ Toggle Graph <span class="grid-status" data-status="graph">✓ On</span>
+    </button>
+    <button data-toggle="modular">
+        ⌘ Toggle Modular <span class="grid-status" data-status="modular">✓ On</span>
+    </button>
+
+
 
     <p>Replace this with your test content.</p>
 

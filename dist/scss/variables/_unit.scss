@@ -55,6 +55,7 @@ $q_min: 0.75px !default;
 ///
 /// @type Length
 /// @name $q_max
+///
 $q_max: 1.5px !default;
 
 ///
@@ -72,6 +73,7 @@ $font_min: calc((1rem / $q) * $q_min) !default;
 ///
 /// @type Length
 /// @name $font_max
+///
 $font_max: calc((1rem / $q) * $q_max) !default;
 
 ///

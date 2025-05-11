@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Aspect Ratio Test</title>
+    <title>Guide Baseline Grid | unit.gl</title>
     <link rel="stylesheet" href="/css/unit.gl.css" />
     <script type="module" src="/js/unit.gl.js"></script>
 
@@ -151,12 +151,54 @@
         }
     </style>
 
+<style>
+    .grid-demo {
+        position: relative;
+        min-height: 60vh;
+        color: #222;
+    }
+
+    .demo-text {
+        position: relative;
+        z-index: 1;
+        max-width: 40rem;
+    }
+
+    .demo-box {
+        margin-bottom: 4rem;
+        border: 1px solid #ddd;
+        position: relative;
+    }
+
+    #toggle-baseline {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 10000;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.875rem;
+        background: #222;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+    }
+
+    #toggle-baseline:hover {
+        opacity: 1;
+    }
+</style>
+
 </head>
 
 <body>
 
-<h1>Aspect Ratio Test</h1>
-<p>Visual tests for aspect ratios.</p>
+<h1>Guide Baseline Grid</h1>
+<p>Demonstrates vertical rhythm using the <code>@include guide_baseline</code> mixin and the
+    <code>.guide_baseline</code> utility class.
+</p>
 
     <!-- Grids -->
     <div class="grid_layer guide_graph_centered" data-grid="graph"></div>
@@ -178,20 +220,30 @@
 
 
 
-<section class="demo-container">
-    <div class="demo-box ratio_16x9" data-label="16:9 Native">
-        <div></div>
-    </div>
 
-    <div class="demo-box ratio_1x1" data-label="1:1 Native">
-        <div></div>
+<section class="demo-box grid-demo guide_baseline">
+    <div class="demo-text">
+        <h2>Default Baseline</h2>
+        <p>
+            This block uses the <code>.guide_baseline</code> utility class with the default baseline unit and color.
+            The baseline overlay is rendered underneath the text to help align type and spacing.
+        </p>
+        <p>The quick brown fox jumps over the lazy dog. Line breaks should align with the rhythm grid.</p>
     </div>
-
-    <div class="demo-box ratio_4x3" data-label="4:3 Native">
-        <div></div>
-    </div>
-
 </section>
+
+<section class="demo-box grid-demo guide_baseline_custom">
+    <div class="demo-text">
+        <h2>Custom Baseline: baseline(2), magenta</h2>
+        <p>
+            This block uses a custom mixin call with <code>baseline(2)</code> height and a magenta grid line.
+        </p>
+        <p>The quick brown fox jumps over the lazy dog. Try adjusting the font size and spacing to test rhythm
+            consistency.</p>
+    </div>
+</section>
+
+
 
 </body>
 

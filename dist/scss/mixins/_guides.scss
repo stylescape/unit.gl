@@ -24,10 +24,6 @@
 // Utilities | Guides
 // ============================================================================
 
-.guide {
-    @include guide;
-}
-
 @mixin guide_graph {
     @include guide;
     background-size: 4 * $q 4 * $q;
@@ -40,14 +36,6 @@
             rgb(66, 61, 61) 0 1px,
             transparent 1px 100%
         );
-}
-
-.guide_graph {
-    @include guide_graph;
-}
-
-.guide_baseline {
-    @include guide_baseline;
 }
 
 .baseline_grid {

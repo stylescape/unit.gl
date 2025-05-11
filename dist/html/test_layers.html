@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Aspect Ratio Test</title>
+    <title>Layering System Demo | unit.gl</title>
     <link rel="stylesheet" href="/css/unit.gl.css" />
     <script type="module" src="/js/unit.gl.js"></script>
 
@@ -151,12 +151,64 @@
         }
     </style>
 
+<style>
+  .layer-demo {
+    position: relative;
+    height: 400px;
+    border: 1px solid #ddd;
+    margin-bottom: 2rem;
+    background: #f7f7f7;
+    overflow: hidden;
+  }
+
+  .layer-box {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    padding: 1rem;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  .layer-controls {
+    margin-bottom: 1rem;
+  }
+
+  .layer-controls button {
+    margin-right: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+
+  .z-guides         { z-index: 9998; background: rgba(0, 200, 255, 0.8); top: 20px; left: 20px; }
+  .z-modal          { z-index: 7000; background: rgba(255, 0, 0, 0.8); top: 60px; left: 60px; }
+  .z-interface      { z-index: 4000; background: rgba(0, 200, 100, 0.8); top: 100px; left: 100px; }
+  .z-content        { z-index: 2000; background: rgba(100, 100, 255, 0.8); top: 140px; left: 140px; }
+  .z-canvas         { z-index: -1000; background: rgba(0, 0, 0, 0.2); top: 180px; left: 180px; }
+</style>
+
 </head>
 
 <body>
 
-<h1>Aspect Ratio Test</h1>
-<p>Visual tests for aspect ratios.</p>
+<h1>Layering System Demo</h1>
+<p>Demonstrates the z-index stack defined in <code>$layer-map</code>. Use the buttons below to toggle each layer.</p>
 
     <!-- Grids -->
     <div class="grid_layer guide_graph_centered" data-grid="graph"></div>
@@ -178,20 +230,39 @@
 
 
 
-<section class="demo-container">
-    <div class="demo-box ratio_16x9" data-label="16:9 Native">
-        <div></div>
-    </div>
+<div class="layer-controls">
+    <button onclick="toggleLayer('guides')">Toggle guides</button>
+    <button onclick="toggleLayer('modal')">Toggle modal</button>
+    <button onclick="toggleLayer('interface')">Toggle interface</button>
+    <button onclick="toggleLayer('content')">Toggle content</button>
+    <button onclick="toggleLayer('canvas')">Toggle canvas</button>
+</div>
 
-    <div class="demo-box ratio_1x1" data-label="1:1 Native">
-        <div></div>
+<div class="layer-demo">
+    <div class="layer-box z-guides" id="layer-guides">
+      guides<br><small>z(guides)</small>
     </div>
-
-    <div class="demo-box ratio_4x3" data-label="4:3 Native">
-        <div></div>
+    <div class="layer-box z-modal" id="layer-modal">
+      modal<br><small>z(modal)</small>
     </div>
+    <div class="layer-box z-interface" id="layer-interface">
+      interface<br><small>z(interface)</small>
+    </div>
+    <div class="layer-box z-content" id="layer-content">
+      content<br><small>z(content)</small>
+    </div>
+    <div class="layer-box z-canvas" id="layer-canvas">
+      canvas<br><small>z(canvas)</small>
+    </div>
+</div>
 
-</section>
+<script>
+  function toggleLayer(id) {
+    const el = document.getElementById('layer-' + id);
+    el.classList.toggle('hidden');
+  }
+</script>
+
 
 </body>
 
