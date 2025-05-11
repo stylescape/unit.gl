@@ -1,0 +1,81 @@
+{% extends "base.html.jinja" %}
+
+{% block title %}Guide Baseline Grid | unit.gl{% endblock %}
+
+{% block header %}
+<h1>Guide Baseline Grid</h1>
+<p>Demonstrates vertical rhythm using the <code>@include guide_baseline</code> mixin and the
+    <code>.guide_baseline</code> utility class.
+</p>
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    .grid-demo {
+        position: relative;
+        min-height: 60vh;
+        color: #222;
+    }
+
+    .demo-text {
+        position: relative;
+        z-index: 1;
+        max-width: 40rem;
+    }
+
+    .demo-box {
+        margin-bottom: 4rem;
+        border: 1px solid #ddd;
+        position: relative;
+    }
+
+    #toggle-baseline {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 10000;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.875rem;
+        background: #222;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+    }
+
+    #toggle-baseline:hover {
+        opacity: 1;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+<section class="demo-box grid-demo guide_baseline">
+    <div class="demo-text">
+        <h2>Default Baseline</h2>
+        <p>
+            This block uses the <code>.guide_baseline</code> utility class with the default baseline unit and color.
+            The baseline overlay is rendered underneath the text to help align type and spacing.
+        </p>
+        <p>The quick brown fox jumps over the lazy dog. Line breaks should align with the rhythm grid.</p>
+    </div>
+</section>
+
+<section class="demo-box grid-demo guide_baseline_custom">
+    <div class="demo-text">
+        <h2>Custom Baseline: baseline(2), magenta</h2>
+        <p>
+            This block uses a custom mixin call with <code>baseline(2)</code> height and a magenta grid line.
+        </p>
+        <p>The quick brown fox jumps over the lazy dog. Try adjusting the font size and spacing to test rhythm
+            consistency.</p>
+    </div>
+</section>
+
+
+{% endblock %}
