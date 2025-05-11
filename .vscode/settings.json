@@ -354,6 +354,7 @@
 
     "files.associations": {
         "*.jinja": "jinja",
+        "*.html.jinja": "jinja-html",
         "*.njk": "jinja",
 
         "*.cff": "yaml",
