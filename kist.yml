@@ -52,8 +52,37 @@ stages:
                     outputFile: "./dist/css/unit.gl.css"
                     styleOption: "expanded"
 
+            # Compile TS to JS
+            # -----------------------------------------------------------------
 
-            # RenderTemplates
+
+            -
+                name: Compile TS to JS
+                action: TypeScriptCompilerAction
+                options:
+                    tsConfigPath: "./tsconfig.pro.json"
+                    filePaths:
+                        - "src/ts/index.ts"
+                        # - "src/utils.ts"
+                    outputDir: "./dist/js"
+                    compilerOptions:
+                        target: "ES2020"
+                        module: "CommonJS"
+            -
+                name: Rename README File
+                action: FileRenameAction
+                options:
+                    srcPath: "./dist/js/index.js.map"
+                    targetPath: "./dist/js/unit.gl.js.map"
+
+            -
+                name: Rename README File
+                action: FileRenameAction
+                options:
+                    srcPath: "./dist/js/index.js"
+                    targetPath: "./dist/js/unit.gl.js"
+
+            # Render Templates
             # -----------------------------------------------------------------
 
             -
@@ -69,7 +98,7 @@ stages:
                     author: "Lars van Vianen"
 
 
-            # Copy Dirs
+            # Copy HTML
             # -----------------------------------------------------------------
             -
                 name: CopySrcHTML
