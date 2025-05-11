@@ -56,4 +56,4 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updateAllGridHeights);
     window.addEventListener('scroll', updateAllGridHeights);
 });
-//# sourceMappingURL=Grid.js.map
+//# sourceMappingURL=grids.js.map
