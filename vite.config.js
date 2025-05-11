@@ -17,8 +17,9 @@ const rootDir = process.cwd();
 
 
 const watchGlobs = [
-  'src/scss/**/*',
-  'src/jinja/**/*',
+    'src/ts/**/*',
+    'src/scss/**/*',
+    'src/jinja/**/*',
   'kist.yml'
 ];
 
@@ -63,6 +64,7 @@ export default defineConfig({
                 runKist(server);
 
                 server.middlewares.use('/css', serveStatic(path.join(pathToDist, 'css')));
+                server.middlewares.use('/js', serveStatic(path.join(pathToDist, 'js')));
 
 
                 // Serve / as index.html
