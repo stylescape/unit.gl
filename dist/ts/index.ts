@@ -1,9 +1,8 @@
-import './grids.js';
+// import './grids.js';
 
-// Additional imports could go here:
-// import './typography';
-// import './debug';
-// import './viewport-tools';
+import { GridManager } from './GridManager.js';
+
+new GridManager(); // auto-initializes
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('[unit.gl] Test site initialized');
