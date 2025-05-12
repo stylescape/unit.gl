@@ -25,30 +25,30 @@ export class GridManager {
 
   private updateAllGridHeights(): void {
     const height = Math.max(
+      document.documentElement.scrollHeight,
       document.body.scrollHeight,
-      document.documentElement.scrollHeight
+      document.documentElement.offsetHeight,
+      document.body.offsetHeight
     );
 
-    document.querySelectorAll<HTMLElement>('.grid_layer').forEach(layer => {
+    document.querySelectorAll<HTMLElement>('.guide--layer').forEach(layer => {
       if (layer.offsetHeight !== height) {
         layer.style.height = `${height}px`;
       }
     });
   }
 
-  private updateStatusIndicator(id: string, isHidden: boolean): void {
-    const badge = document.querySelector<HTMLSpanElement>(`[data-status="${id}"]`);
-    if (badge) {
-      badge.textContent = isHidden ? '✕ Off' : '✓ On';
-    }
-  }
-
   private applyVisibilityState(): void {
-    document.querySelectorAll<GridLayer>('.grid_layer').forEach(layer => {
+    document.querySelectorAll<GridLayer>('.guide--layer').forEach(layer => {
       const id = layer.dataset.grid;
-      const hidden = !!this.visibilityMap[id];
-      layer.classList.toggle('is-hidden', hidden);
-      this.updateStatusIndicator(id, hidden);
+      const isActive = !!this.visibilityMap[id];
+      layer.classList.toggle('active', isActive);
+    });
+
+    document.querySelectorAll<ToggleButton>('button[data-toggle]').forEach(button => {
+      const id = button.dataset.toggle;
+      const isActive = !!this.visibilityMap[id];
+      button.classList.toggle('active', isActive);
     });
   }
 
@@ -59,10 +59,10 @@ export class GridManager {
       if (!layer) return;
 
       button.addEventListener('click', () => {
-        const isNowHidden = layer.classList.toggle('is-hidden');
-        this.visibilityMap[id] = isNowHidden;
+        const isNowActive = layer.classList.toggle('active');
+        button.classList.toggle('active', isNowActive);
+        this.visibilityMap[id] = isNowActive;
         this.saveVisibility();
-        this.updateStatusIndicator(id, isNowHidden);
       });
     });
   }

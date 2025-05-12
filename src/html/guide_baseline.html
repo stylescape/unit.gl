@@ -133,21 +133,13 @@
                     transparent 20px);
         }
 
-        .grid_layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: z("guides");
-        }
 
-        .grid-status {
-            font-size: 0.75rem;
-            margin-left: 0.5rem;
-            background: #eee;
-            color: #444;
-            padding: 0.15rem 0.4rem;
-            border-radius: 4px;
+
+
+        button[data-toggle] {
+            &.active {
+                background-color: #ddd;
+            }
         }
     </style>
 
@@ -196,13 +188,13 @@
 <body>
 
 <h1>Guide Baseline Grid</h1>
-<p>Demonstrates vertical rhythm using the <code>@include guide_baseline</code> mixin and the
-    <code>.guide_baseline</code> utility class.
+<p>Demonstrates vertical rhythm using the <code>@include guide--baseline</code> mixin and the
+    <code>.guide--baseline</code> utility class.
 </p>
 
     <!-- Grids -->
-    <div class="grid_layer guide_graph_centered" data-grid="graph"></div>
-    <div class="grid_layer guide_baseline" data-grid="baseline"></div>
+    <div class="guide--layer guide--graph_centered" data-grid="graph"></div>
+    <div class="guide--layer guide--baseline" data-grid="baseline"></div>
 
     <!-- Buttons -->
     <button data-toggle="baseline">
@@ -219,18 +211,18 @@
 
 
 
-<section class="demo-box grid-demo guide_baseline">
+<section class="demo-box grid-demo guide--baseline">
     <div class="demo-text">
         <h2>Default Baseline</h2>
         <p>
-            This block uses the <code>.guide_baseline</code> utility class with the default baseline unit and color.
+            This block uses the <code>.guide--baseline</code> utility class with the default baseline unit and color.
             The baseline overlay is rendered underneath the text to help align type and spacing.
         </p>
         <p>The quick brown fox jumps over the lazy dog. Line breaks should align with the rhythm grid.</p>
     </div>
 </section>
 
-<section class="demo-box grid-demo guide_baseline_custom">
+<section class="demo-box grid-demo guide--baseline_custom">
     <div class="demo-text">
         <h2>Custom Baseline: baseline(2), magenta</h2>
         <p>

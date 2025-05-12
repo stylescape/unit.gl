@@ -61,14 +61,14 @@ $layer_map: (
     "guides": 9998,
 
     /// Baseline guide used for text alignment and visual rhythm.
-    /// @name guide_baseline
+    /// @name guide--baseline
     /// @type Number
-    "guide_baseline": 9998,
+    "guide--baseline": 9998,
 
     /// Graphical guides, such as grid overlays, used in design.
-    /// @name guide_graph
+    /// @name guide--graph
     /// @type Number
-    "guide_graph": 9998,
+    "guide--graph": 9998,
 
     // ========================================================================
     // Overlays

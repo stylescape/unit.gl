@@ -418,13 +418,25 @@ main {
   margin: 0;
   pointer-events: none;
   opacity: 1;
+  min-height: 100vh;
   background-attachment: local;
 }
-.guide.is-hidden {
-  display: none !important;
+
+.guide--layer {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+.guide--layer.active {
+  display: block !important;
 }
 
-.guide_graph {
+.guide--graph {
   z-index: 9999;
   position: absolute;
   top: 0;
@@ -434,16 +446,14 @@ main {
   margin: 0;
   pointer-events: none;
   opacity: 1;
+  min-height: 100vh;
   background-attachment: local;
   background-repeat: repeat;
   background-size: 1.25rem 1.25rem;
   background-image: repeating-linear-gradient(to right, rgba(111, 124, 126, 0.483) 0, rgba(111, 124, 126, 0.483) 1px, transparent 1px, transparent 1.25rem), repeating-linear-gradient(to bottom, rgba(111, 124, 126, 0.483) 0, rgba(111, 124, 126, 0.483) 1px, transparent 1px, transparent 1.25rem);
 }
-.guide_graph.is-hidden {
-  display: none !important;
-}
 
-.guide_graph_centered {
+.guide--graph_centered {
   z-index: 9999;
   position: absolute;
   top: 0;
@@ -453,17 +463,15 @@ main {
   margin: 0;
   pointer-events: none;
   opacity: 1;
+  min-height: 100vh;
   background-attachment: local;
   background-repeat: repeat;
   background-size: 1.25rem 1.25rem;
   background-position: calc(50% - 15rem / 2) 0;
   background-image: repeating-linear-gradient(to right, rgba(111, 124, 126, 0.483) 0, rgba(111, 124, 126, 0.483) 1px, transparent 1px, transparent 1.25rem), repeating-linear-gradient(to bottom, rgba(111, 124, 126, 0.483) 0, rgba(111, 124, 126, 0.483) 1px, transparent 1px, transparent 1.25rem);
 }
-.guide_graph_centered.is-hidden {
-  display: none !important;
-}
 
-.guide_baseline {
+.guide--baseline {
   z-index: 9999;
   position: absolute;
   top: 0;
@@ -473,18 +481,11 @@ main {
   margin: 0;
   pointer-events: none;
   opacity: 1;
+  min-height: 100vh;
   background-attachment: local;
   background-repeat: repeat;
   background-size: 100% 1.25rem;
   background-image: repeating-linear-gradient(to bottom, rgb(0, 200, 255) 0 1px, transparent 1px 100%);
-}
-.guide_baseline.is-hidden {
-  display: none !important;
-}
-
-html,
-body {
-  height: 100%;
 }
 
 html {

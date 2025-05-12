@@ -47,23 +47,29 @@
 ///
 @mixin guide {
     z-index: if(meta.function-exists("z"), z("guides"), 9999);
-    // z-index: z("guides");
     position: absolute;
-    // position: fixed;
     top: 0;
     left: 0;
-    // width: 100vw;
-    // height: 100vh;
     width: 100%;
     height: 100%;
     margin: 0;
     pointer-events: none;
     opacity: 1;
-
+    min-height: 100vh;
     background-attachment: local;
+}
 
-    &.is-hidden {
-        display: none !important;
+@mixin guide--layer {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    pointer-events: none;
+    z-index: if(meta.function-exists("z"), z("guides"), 9999);
+    &.active {
+        display: block !important;
     }
 }
 
@@ -74,17 +80,17 @@
 /// Creates a centered guide box useful for ensuring elements are
 /// aligned to the center of the viewport.
 ///
-/// @name guide_centered
+/// @name guide--centered
 /// @param {Length} $width - The width of the centered guide box.
 /// @param {Length} $height - The height of the centered guide box.
 /// @param {Color} $color - The color of the guide box border. Defaults to red.
 ///
 /// @example scss - Usage
-///   .guide_centered {
-///     @include guide_centered(100px, 100px, red);
+///   .guide--centered {
+///     @include guide--centered(100px, 100px, red);
 ///   }
 ///
-@mixin guide_centered($width, $height, $color: red) {
+@mixin guide--centered($width, $height, $color: red) {
     @include guide;
     width: $width;
     height: $height;
@@ -101,20 +107,20 @@
 /// Generates a grid overlay with customizable grid size and color,
 /// useful for ensuring consistent spacing and alignment in your designs.
 ///
-/// @name guide_graph
+/// @name guide--graph
 /// @param {Length} $size - The size of the grid cells.
-/// @param {Color} $color - The color of the grid lines. Defaults to `$guide_color`.
+/// @param {Color} $color - The color of the grid lines. Defaults to `$guide--color`.
 ///
 /// @example scss - Usage
-///     .guide_graph {
-///         @include guide_graph(10px, #ccc);
+///     .guide--graph {
+///         @include guide--graph(10px, #ccc);
 ///     }
 ///
-@mixin guide_graph(
+@mixin guide--graph(
     $column_width: baseline(4),
     $row_height: baseline(4),
-    $column_color: $guide_graph_primary,
-    $baseline_color: $guide_graph_primary
+    $column_color: $guide--graph_primary,
+    $baseline_color: $guide--graph_primary
 ) {
     @include guide;
 
@@ -137,12 +143,12 @@
         );
 }
 
-@mixin guide_graph_centered(
+@mixin guide--graph_centered(
     $columns: 12,
     $column_width: baseline(4),
     $row_height: baseline(4),
-    $column_color: $guide_graph_primary,
-    $baseline_color: $guide_graph_primary
+    $column_color: $guide--graph_primary,
+    $baseline_color: $guide--graph_primary
 ) {
     @include guide;
 
@@ -171,42 +177,6 @@
         );
 }
 
-// @mixin guide_graph_centered(
-//     $content_width: 200%,
-//     $column_width: baseline(4),
-//     $row_height: baseline(4),
-//     $column_color: $guide_graph_primary,
-//     $baseline_color: $guide_graph_primary
-// ) {
-//     @include guide;
-
-//     // Centered horizontal layout
-//     width: $content_width;
-//     max-width: none;
-//     left: 50%;
-//     transform: translateX(-50%);
-
-//     // Let JavaScript dynamically adjust full height
-//     min-height: 100vh;
-//     background-repeat: repeat;
-//     background-size: $column_width $row_height;
-
-//     background-image: repeating-linear-gradient(
-//             to right,
-//             $column_color 0,
-//             $column_color 1px,
-//             transparent 1px,
-//             transparent $column_width
-//         ),
-//         repeating-linear-gradient(
-//             to bottom,
-//             $baseline_color 0,
-//             $baseline_color 1px,
-//             transparent 1px,
-//             transparent $row_height
-//         );
-// }
-
 ///
 /// Guide Baseline Mixin
 /// ---------------------------------------------------------------------------
@@ -214,16 +184,16 @@
 /// Creates a baseline grid overlay, essential for maintaining
 /// a consistent vertical rhythm across your designs.
 ///
-/// @name guide_baseline
+/// @name guide--baseline
 /// @param {Length} $size - The height of the baseline grid.
 /// @param {Color} $color - The color of the baseline lines. Defaults to cyan.
 ///
 /// @example scss - Usage
-///   .guide_baseline {
-///     @include guide_baseline(20px, cyan);
+///   .guide--baseline {
+///     @include guide--baseline(20px, cyan);
 ///   }
 ///
-@mixin guide_baseline($size: baseline(4), $color: $guide_baseline_primary) {
+@mixin guide--baseline($size: baseline(4), $color: $guide--baseline_primary) {
     @include guide;
     background-repeat: repeat;
     background-size: 100% $size;
@@ -235,20 +205,6 @@
     );
 }
 
-// @mixin guide_baseline {
-//     @include guide;
-//     // background: repeating-linear-gradient(#e66465, #e66465 20px, #9198e5 20px, #9198e5 25px);
-//     // background: repeating-linear-gradient(transparent, transparent 20px, transparent 20px, transparent 25px);
-//     // background-repeat: repeat-y;
-//     background-repeat: repeat;
-
-//     background-size: map.get($baseline, 4) map.get($baseline, 4);
-//     @include guide;
-//     background-image: repeating-linear-gradient(
-//         cyan 0 1px,
-//         transparent 1px 100%
-//     );
-// }
 ///
 /// Baseline Grid Mixin
 /// ---------------------------------------------------------------------------
@@ -257,22 +213,22 @@
 /// and horizontal grid lines, useful for designing layouts with consistent
 /// column widths and baseline spacing.
 ///
-/// @name guide_baseline
+/// @name guide--baseline
 /// @param {Length} $column_width - The width of each column in the grid.
 /// @param {Length} $baseline_height - The height of each baseline.
 /// @param {Color} $column_color - The color of the column lines. Defaults to rgba(200, 0, 0, 0.2).
 /// @param {Color} $baseline_color - The color of the baseline lines. Defaults to rgba(56, 255, 255, 0.8).
 ///
 /// @example scss - Usage
-///   .guide_baseline {
-///     @include guide_baseline(60px, 20px);
+///   .guide--baseline {
+///     @include guide--baseline(60px, 20px);
 ///   }
 ///
 @mixin grid_baseline(
     $column_width,
     $baseline_height,
     $column_color: rgba(200, 0, 0, 0.2),
-    $baseline_color: $guide_color
+    $baseline_color: $guide--color
 ) {
     background-image: linear-gradient(
             to right,
@@ -296,16 +252,16 @@
 /// Visualizes the margins around content, helping to ensure
 /// consistent spacing.
 ///
-/// @name guide_margin
+/// @name guide--margin
 /// @param {Length} $margin - The size of the margin to visualize.
 /// @param {Color} $color - The color of the margin area. Defaults to rgba(0, 255, 0, 0.1).
 ///
 /// @example scss - Usage
-///     .guide_margin {
-///         @include guide_margin(20px, rgba(0, 255, 0, 0.1));
+///     .guide--margin {
+///         @include guide--margin(20px, rgba(0, 255, 0, 0.1));
 ///     }
 ///
-@mixin guide_margin($margin, $color: rgba(0, 255, 0, 0.1)) {
+@mixin guide--margin($margin, $color: rgba(0, 255, 0, 0.1)) {
     @include guide;
     top: $margin;
     left: $margin;

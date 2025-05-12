@@ -18,25 +18,23 @@ export class GridManager {
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.visibilityMap));
     }
     updateAllGridHeights() {
-        const height = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-        document.querySelectorAll('.grid_layer').forEach(layer => {
+        const height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, document.documentElement.offsetHeight, document.body.offsetHeight);
+        document.querySelectorAll('.guide--layer').forEach(layer => {
             if (layer.offsetHeight !== height) {
                 layer.style.height = `${height}px`;
             }
         });
     }
-    updateStatusIndicator(id, isHidden) {
-        const badge = document.querySelector(`[data-status="${id}"]`);
-        if (badge) {
-            badge.textContent = isHidden ? '✕ Off' : '✓ On';
-        }
-    }
     applyVisibilityState() {
-        document.querySelectorAll('.grid_layer').forEach(layer => {
+        document.querySelectorAll('.guide--layer').forEach(layer => {
             const id = layer.dataset.grid;
-            const hidden = !!this.visibilityMap[id];
-            layer.classList.toggle('is-hidden', hidden);
-            this.updateStatusIndicator(id, hidden);
+            const isActive = !!this.visibilityMap[id];
+            layer.classList.toggle('active', isActive);
+        });
+        document.querySelectorAll('button[data-toggle]').forEach(button => {
+            const id = button.dataset.toggle;
+            const isActive = !!this.visibilityMap[id];
+            button.classList.toggle('active', isActive);
         });
     }
     setupToggleButtons() {
@@ -46,10 +44,10 @@ export class GridManager {
             if (!layer)
                 return;
             button.addEventListener('click', () => {
-                const isNowHidden = layer.classList.toggle('is-hidden');
-                this.visibilityMap[id] = isNowHidden;
+                const isNowActive = layer.classList.toggle('active');
+                button.classList.toggle('active', isNowActive);
+                this.visibilityMap[id] = isNowActive;
                 this.saveVisibility();
-                this.updateStatusIndicator(id, isNowHidden);
             });
         });
     }

@@ -28,6 +28,6 @@
 /// Function to Retrieve Guide Colors (Optional for Flexibility)
 /// ---------------------------------------------------------------------------
 ///
-@function guide_color($name) {
-    @return map.get($guide_color_map, $name);
+@function guide--color($name) {
+    @return map.get($guide--color_map, $name);
 }

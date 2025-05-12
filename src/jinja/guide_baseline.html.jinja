@@ -4,8 +4,8 @@
 
 {% block header %}
 <h1>Guide Baseline Grid</h1>
-<p>Demonstrates vertical rhythm using the <code>@include guide_baseline</code> mixin and the
-    <code>.guide_baseline</code> utility class.
+<p>Demonstrates vertical rhythm using the <code>@include guide--baseline</code> mixin and the
+    <code>.guide--baseline</code> utility class.
 </p>
 {% endblock %}
 
@@ -55,18 +55,18 @@
 {% block content %}
 
 
-<section class="demo-box grid-demo guide_baseline">
+<section class="demo-box grid-demo guide--baseline">
     <div class="demo-text">
         <h2>Default Baseline</h2>
         <p>
-            This block uses the <code>.guide_baseline</code> utility class with the default baseline unit and color.
+            This block uses the <code>.guide--baseline</code> utility class with the default baseline unit and color.
             The baseline overlay is rendered underneath the text to help align type and spacing.
         </p>
         <p>The quick brown fox jumps over the lazy dog. Line breaks should align with the rhythm grid.</p>
     </div>
 </section>
 
-<section class="demo-box grid-demo guide_baseline_custom">
+<section class="demo-box grid-demo guide--baseline_custom">
     <div class="demo-text">
         <h2>Custom Baseline: baseline(2), magenta</h2>
         <p>

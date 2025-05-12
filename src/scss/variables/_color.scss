@@ -24,21 +24,21 @@
 // Variables
 // ============================================================================
 
-$guide_baseline_primary: rgb(0, 200, 255);
-$guide_baseline_secondary: rgb(125, 181, 203);
+$guide--baseline_primary: rgb(0, 200, 255);
+$guide--baseline_secondary: rgb(125, 181, 203);
 
-$guide_color: rgb(0, 200, 255);
+$guide--color: rgb(0, 200, 255);
 
-$guide_graph_primary: rgba(111, 124, 126, 0.483);
+$guide--graph_primary: rgba(111, 124, 126, 0.483);
 
-$guide_bleed_primary: rgba(178, 51, 170, 0.5);
+$guide--bleed_primary: rgba(178, 51, 170, 0.5);
 ///
 /// Primary Guide Color
 /// ---------------------------------------------------------------------------
 ///
 /// Neutral gray for general guide overlays
 ///
-$guide_color_primary: rgba(50, 50, 50, 0.25);
+$guide--color_primary: rgba(50, 50, 50, 0.25);
 
 ///
 /// Secondary Guide Color
@@ -46,7 +46,7 @@ $guide_color_primary: rgba(50, 50, 50, 0.25);
 ///
 /// Highlight color for key guides or emphasis
 ///
-$guide_color_secondary: rgba(178, 51, 170, 0.5);
+$guide--color_secondary: rgba(178, 51, 170, 0.5);
 
 ///
 /// Tertiary Guide Color (Extended)
@@ -54,7 +54,7 @@ $guide_color_secondary: rgba(178, 51, 170, 0.5);
 ///
 /// A warm orange for alternate guide markings
 ///
-$guide_color_tertiary: rgba(255, 102, 0, 0.3);
+$guide--color_tertiary: rgba(255, 102, 0, 0.3);
 
 ///
 /// Quaternary Guide Color (Extended)
@@ -62,7 +62,7 @@ $guide_color_tertiary: rgba(255, 102, 0, 0.3);
 ///
 /// A cool blue for additional grid or alignment lines
 ///
-$guide_color_quaternary: rgba(0, 102, 255, 0.3);
+$guide--color_quaternary: rgba(0, 102, 255, 0.3);
 
 ///
 /// Light Guide Color (Extended)
@@ -70,7 +70,7 @@ $guide_color_quaternary: rgba(0, 102, 255, 0.3);
 ///
 /// Light color for subtle or background guides
 ///
-$guide_color_light: rgba(255, 255, 255, 0.2);
+$guide--color_light: rgba(255, 255, 255, 0.2);
 
 ///
 /// Dark Guide Color (Extended)
@@ -78,4 +78,4 @@ $guide_color_light: rgba(255, 255, 255, 0.2);
 ///
 /// Dark color for use on lighter backgrounds
 ///
-$guide_color_dark: rgba(0, 0, 0, 0.2);
+$guide--color_dark: rgba(0, 0, 0, 0.2);

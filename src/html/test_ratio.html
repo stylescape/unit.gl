@@ -133,21 +133,13 @@
                     transparent 20px);
         }
 
-        .grid_layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: z("guides");
-        }
 
-        .grid-status {
-            font-size: 0.75rem;
-            margin-left: 0.5rem;
-            background: #eee;
-            color: #444;
-            padding: 0.15rem 0.4rem;
-            border-radius: 4px;
+
+
+        button[data-toggle] {
+            &.active {
+                background-color: #ddd;
+            }
         }
     </style>
 
@@ -159,8 +151,8 @@
 <p>Visual tests for aspect ratios.</p>
 
     <!-- Grids -->
-    <div class="grid_layer guide_graph_centered" data-grid="graph"></div>
-    <div class="grid_layer guide_baseline" data-grid="baseline"></div>
+    <div class="guide--layer guide--graph_centered" data-grid="graph"></div>
+    <div class="guide--layer guide--baseline" data-grid="baseline"></div>
 
     <!-- Buttons -->
     <button data-toggle="baseline">

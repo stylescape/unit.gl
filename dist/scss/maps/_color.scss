@@ -29,11 +29,11 @@
 /// Color Set for Easy Adjustments
 /// ---------------------------------------------------------------------------
 ///
-$guide_color_map: (
-    "primary": $guide_color_primary,
-    "secondary": $guide_color_secondary,
-    "tertiary": $guide_color_tertiary,
-    "quaternary": $guide_color_quaternary,
-    "light": $guide_color_light,
-    "dark": $guide_color_dark
+$guide--color_map: (
+    "primary": $guide--color_primary,
+    "secondary": $guide--color_secondary,
+    "tertiary": $guide--color_tertiary,
+    "quaternary": $guide--color_quaternary,
+    "light": $guide--color_light,
+    "dark": $guide--color_dark
 );

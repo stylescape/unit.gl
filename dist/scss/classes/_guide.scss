@@ -33,45 +33,49 @@
 ///
 /// Applies a full-page guide overlay with a high z-index.
 ///
-/// @name guide_overlay
+/// @name guide--overlay
 ///
 .guide {
     @include guide;
 }
 
+.guide--layer {
+    @include guide--layer;
+}
+
 ///
 /// Applies a grid overlay with a customizable grid size and color.
 ///
-/// @name guide_graph
+/// @name guide--graph
 ///
 /// @example HTML
-///   <div class="guide_graph"></div>
+///   <div class="guide--graph"></div>
 ///
-.guide_graph {
-    @include guide_graph;
+.guide--graph {
+    @include guide--graph;
 }
-.guide_graph_centered {
-    @include guide_graph_centered;
+.guide--graph_centered {
+    @include guide--graph_centered;
 }
 
 ///
 /// Applies a baseline grid overlay to maintain vertical rhythm.
 ///
-/// @name guide_baseline
+/// @name guide--baseline
 ///
 /// @example HTML
-///   <div class="guide_baseline"></div>
+///   <div class="guide--baseline"></div>
 ///
-.guide_baseline {
-    @include guide_baseline; // Default size, customize as needed
+.guide--baseline {
+    @include guide--baseline; // Default size, customize as needed
 }
 
-html,
-body {
-    height: 100%;
-}
+// html,
+// body {
+//     height: 100%;
+// }
 // #baseline-guide {
-//     @include guide_baseline; // uses default size & color
+//     @include guide--baseline; // uses default size & color
 // }
 
 // ///
@@ -89,35 +93,35 @@ body {
 // ///
 // /// Creates a centered guide box for alignment checks.
 // ///
-// /// @name guide_centered
+// /// @name guide--centered
 // ///
 // /// @example HTML
-// ///   <div class="guide_centered"></div>
+// ///   <div class="guide--centered"></div>
 // ///
-// .guide_centered {
-//     @include guide_centered(200px, 200px); // Default size, customize as needed
+// .guide--centered {
+//     @include guide--centered(200px, 200px); // Default size, customize as needed
 // }
 
 // ///
 // /// Visualizes the margin area around content.
 // ///
-// /// @name guide_margin
+// /// @name guide--margin
 // ///
 // /// @example HTML
-// ///   <div class="guide_margin"></div>
+// ///   <div class="guide--margin"></div>
 // ///
-// .guide_margin {
-//     @include guide_margin(20px); // Default margin size, customize as needed
+// .guide--margin {
+//     @include guide--margin(20px); // Default margin size, customize as needed
 // }
 
 // ///
 // /// Visualizes a larger margin area around content.
 // ///
-// /// @name guide_margin)_wide
+// /// @name guide--margin)_wide
 // ///
 // /// @example HTML
-// ///   <div class="guide_margin_wide"></div>
+// ///   <div class="guide--margin_wide"></div>
 // ///
-// .guide_margin_wide {
-//     @include guide_margin(40px); // Wider margin size, customize as needed
+// .guide--margin_wide {
+//     @include guide--margin(40px); // Wider margin size, customize as needed
 // }
