@@ -32,7 +32,7 @@
 // ============================================================================
 
 @each $name, $ratio in maps.$ratio_map {
-    .ratio_#{$name} {
+    .aspect_ratio--#{$name} {
         @include mixins.aspect_ratio(list.nth($ratio, 1), list.nth($ratio, 2));
     }
 }
