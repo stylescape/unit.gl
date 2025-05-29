@@ -31,7 +31,8 @@
 ///
 /// @name q
 /// @param {Number} $multiplier - The multiplier to apply to the base Kyū unit.
-/// @param {String} $property - The CSS property to which the calculated value is applied.
+/// @param {String} $property - The CSS property to which the calculated value
+/// is applied.
 ///
 /// @example scss - Usage
 ///   .element {
@@ -47,10 +48,14 @@
 /// minimum and maximum viewport width, ensuring a smooth transition.
 ///
 /// @name fluid_type
-/// @param {Length} $min_vw - The minimum viewport width where the fluid scaling starts.
-/// @param {Length} $max_vw - The maximum viewport width where the fluid scaling ends.
-/// @param {Length} $min_font_size - The minimum font size for the smallest viewport.
-/// @param {Length} $max_font_size - The maximum font size for the largest viewport.
+/// @param {Length} $min_vw - The minimum viewport width where the fluid
+/// scaling starts.
+/// @param {Length} $max_vw - The maximum viewport width where the fluid
+/// scaling ends.
+/// @param {Length} $min_font_size - The minimum font size for the smallest
+/// viewport.
+/// @param {Length} $max_font_size - The maximum font size for the largest
+/// viewport.
 ///
 /// @example scss - Usage
 ///   html {
