@@ -1,15 +1,15 @@
 {% extends "base.html.jinja" %}
 
-{% block title %}Guide Baseline Grid | unit.gl{% endblock %}
+{%- block title %}Guide Baseline Grid | unit.gl{%- endblock %}
 
-{% block header %}
+{%- block header %}
 <h1>Guide Baseline Grid</h1>
 <p>Demonstrates vertical rhythm using the <code>@include guide--baseline</code> mixin and the
     <code>.guide--baseline</code> utility class.
 </p>
-{% endblock %}
+{%- endblock %}
 
-{% block styles %}
+{%- block styles %}
 {{ super() }}
 <style>
     .grid-demo {
@@ -50,9 +50,9 @@
         opacity: 1;
     }
 </style>
-{% endblock %}
+{%- endblock %}
 
-{% block content %}
+{%- block content %}
 
 
 <section class="demo-box grid-demo guide--baseline">
@@ -78,4 +78,4 @@
 </section>
 
 
-{% endblock %}
+{%- endblock %}

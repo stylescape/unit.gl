@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %}unit.gl Test Page{% endblock %}</title>
+    <title>{%- block title %}unit.gl Test Page{%- endblock %}</title>
     <link rel="stylesheet" href="/css/unit.gl.css" />
     <script type="module" src="/js/unit.gl.js"></script>
 
-    {% block styles %}
+    {%- block styles %}
     <style>
         body {
             font-family: system-ui, sans-serif;
@@ -143,15 +143,15 @@
             }
         }
     </style>
-    {% endblock %}
+    {%- endblock %}
 
 </head>
 
 <body>
 
-    {% block header %}
+    {%- block header %}
     <h1>unit.gl Test</h1>
-    {% endblock %}
+    {%- endblock %}
 
     <!-- Grids -->
     <div class="guide--layer guide--graph_centered" data-grid="graph"></div>
@@ -170,9 +170,9 @@
 
 
 
-    {% block content %}
+    {%- block content %}
     <p>Replace this with your test content.</p>
-    {% endblock %}
+    {%- endblock %}
 
 </body>
 
