@@ -35,26 +35,26 @@
 
 ///
 /// The base unit in the Kyū measurement system. It represents 1/16th of a rem,
-/// which is equivalent to 1px or 0.25mm.
+/// which is equivalent to 1px in digital design or 0.25mm in physical design.
 ///
 /// @name $q
 /// @type Length
 ///
-$q: 0.0625rem !default; // 1px, or 0.25mm
+$q: 0.0625rem !default; // 1px in digital design, or 0.25mm in physical design
 
 ///
 /// The minimum Kyū size used for fluid typography.
 ///
-/// @type Length
 /// @name $q_min
+/// @type Length
 ///
 $q_min: 0.75px !default;
 
 ///
 /// The maximum Kyū size used for fluid typography.
 ///
-/// @type Length
 /// @name $q_max
+/// @type Length
 ///
 $q_max: 1.5px !default;
 
@@ -62,8 +62,8 @@ $q_max: 1.5px !default;
 /// The minimum font size calculated using the minimum Kyū size, based on
 /// the rem unit.
 ///
-/// @type Length
 /// @name $font_min
+/// @type Length
 ///
 $font_min: calc((1rem / $q) * $q_min) !default;
 
@@ -71,8 +71,8 @@ $font_min: calc((1rem / $q) * $q_min) !default;
 /// The maximum font size calculated using the maximum Kyū size, based on
 /// the rem unit.
 ///
-/// @type Length
 /// @name $font_max
+/// @type Length
 ///
 $font_max: calc((1rem / $q) * $q_max) !default;
 

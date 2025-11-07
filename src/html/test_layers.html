@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Layering System Demo | unit.gl</title>
     <link rel="stylesheet" href="/css/unit.gl.css" />
-    <script type="module" src="/js/unit.gl.js"></script>
-
-    <style>
+    <script type="module" src="/js/unit.gl.js"></script>    <style>
         body {
             font-family: system-ui, sans-serif;
             font-size: 1rem;
@@ -142,7 +140,6 @@
             }
         }
     </style>
-
 <style>
   .layer-demo {
     position: relative;
@@ -194,14 +191,10 @@
   .z-content        { z-index: 2000; background: rgba(100, 100, 255, 0.8); top: 140px; left: 140px; }
   .z-canvas         { z-index: -1000; background: rgba(0, 0, 0, 0.2); top: 180px; left: 180px; }
 </style>
-
 </head>
 
-<body>
-
-<h1>Layering System Demo</h1>
+<body><h1>Layering System Demo</h1>
 <p>Demonstrates the z-index stack defined in <code>$layer-map</code>. Use the buttons below to toggle each layer.</p>
-
     <!-- Grids -->
     <div class="guide--layer guide--graph_centered" data-grid="graph"></div>
     <div class="guide--layer guide--baseline" data-grid="baseline"></div>
@@ -216,10 +209,6 @@
     <button data-toggle="modular">
         ⌘ Toggle Modular <span class="grid-status" data-status="modular">✓ On</span>
     </button>
-
-
-
-
 <div class="layer-controls">
     <button onclick="toggleLayer('guides')">Toggle guides</button>
     <button onclick="toggleLayer('modal')">Toggle modal</button>
@@ -252,8 +241,6 @@
     el.classList.toggle('hidden');
   }
 </script>
-
-
 </body>
 
 </html>
