@@ -33,11 +33,13 @@
 ///
 ////
 
+
 // ============================================================================
 // Use
 // ============================================================================
 
 @use "sass:map";
+
 
 // ============================================================================
 // Variables
@@ -147,7 +149,8 @@ $media_sl: map.get($breakpoints, sl) !default;
 ///
 $media_dif: calc($media_sl - $media_xs);
 
-// Uncomment below if you want to use the following predefined breakpoints for various devices:
+// Uncomment below if you want to use the following predefined breakpoints 
+// for various devices:
 
 // $media_min: 320px !default;  // Mobile
 // $media_med: 640px !default;  // Tablet
