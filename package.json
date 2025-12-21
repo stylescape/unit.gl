@@ -1,7 +1,7 @@
 {
     "name": "unit.gl",
     "description": "Dynamic Layout Engine.",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "config": {
         "version_short": "0.1"
     },
@@ -49,6 +49,9 @@
         "watch": "npx kist --config ./kist.yml --live",
         "dev": "vite"
     },
+    "engines": {
+        "node": ">=20.0.0"
+    },
     "devDependencies": {
         "kist": "^0.1.37",
         "micromatch": "^4.0.8",
@@ -57,6 +60,9 @@
         "ts-node": "^10.9.2",
         "typescript": "^5.8.3",
         "vite": "^7.1.7"
+    },
+    "overrides": {
+        "webidl-conversions": "6.1.0"
     },
     "files": [
         "src/**",
