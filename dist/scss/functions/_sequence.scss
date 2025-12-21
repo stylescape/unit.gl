@@ -20,6 +20,7 @@
 // ============================================================================
 // Use
 // ============================================================================
+@use "sass:math";
 
 // ============================================================================
 // Functions
@@ -132,7 +133,7 @@
 /// @return {Number} - The nth Catalan number.
 ///
 @function sequence_catalan($n) {
-    @return factorial(2 * $n) / (factorial($n + 1) * factorial($n));
+    @return math.div(factorial(2 * $n), (factorial($n + 1) * factorial($n)));
 }
 
 ///
@@ -151,7 +152,7 @@
         @warn "Index #{$n} is not valid for the harmonic series.";
         @return null;
     }
-    @return 1 / $n;
+    @return math.div(1, $n);
 }
 
 ///
@@ -171,7 +172,7 @@
         @warn "Negative index #{$n} is not valid for the geometric series.";
         @return null;
     }
-    @return pow(2, $n - 1);
+    @return math.pow(2, $n - 1);
 }
 
 ///
@@ -213,7 +214,7 @@
         @warn "Index #{$n} is not valid for the triangular series.";
         @return null;
     }
-    @return $n * ($n + 1) / 2;
+    @return math.div($n * ($n + 1), 2);
 }
 
 ///
@@ -252,7 +253,7 @@
         @warn "Index #{$n} is not valid for the pentagonal series.";
         @return null;
     }
-    @return (3 * $n * $n - $n) / 2;
+    @return math.div((3 * $n * $n - $n), 2);
 }
 
 ///

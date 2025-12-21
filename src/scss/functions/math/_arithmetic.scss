@@ -23,6 +23,7 @@
 // ============================================================================
 // Use
 // ============================================================================
+@use "sass:math";
 
 // ============================================================================
 // Functions
@@ -47,13 +48,13 @@
 /// incompatible.
 ///
 @function add($value1, $value2) {
-    @if unitless($value1) and unitless($value2) {
+    @if math.is-unitless($value1) and math.is-unitless($value2) {
         @return $value1 + $value2;
-    } @else if unitless($value1) {
-        @return $value1 + unit-strip($value2);
-    } @else if unitless($value2) {
-        @return unit-strip($value1) + $value2;
-    } @else if unit($value1) == unit($value2) {
+    } @else if math.is-unitless($value1) {
+        @return $value1 + unit_strip($value2);
+    } @else if math.is-unitless($value2) {
+        @return unit_strip($value1) + $value2;
+    } @else if math.unit($value1) == math.unit($value2) {
         @return $value1 + $value2;
     } @else {
         @warn "Cannot add values with different units: #{$value1} and #{$value2}";
@@ -80,13 +81,13 @@
 /// units are incompatible.
 ///
 @function subtract($value1, $value2) {
-    @if unitless($value1) and unitless($value2) {
+    @if math.is-unitless($value1) and math.is-unitless($value2) {
         @return $value1 - $value2;
-    } @else if unitless($value1) {
-        @return $value1 - unit-strip($value2);
-    } @else if unitless($value2) {
-        @return unit-strip($value1) - $value2;
-    } @else if unit($value1) == unit($value2) {
+    } @else if math.is-unitless($value1) {
+        @return $value1 - unit_strip($value2);
+    } @else if math.is-unitless($value2) {
+        @return unit_strip($value1) - $value2;
+    } @else if math.unit($value1) == math.unit($value2) {
         @return $value1 - $value2;
     } @else {
         @warn "Cannot subtract values with different units: #{$value1} and #{$value2}";

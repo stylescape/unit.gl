@@ -20,6 +20,7 @@
 // ============================================================================
 // Use
 // ============================================================================
+@use "sass:math";
 
 // ============================================================================
 // Functions
@@ -53,7 +54,7 @@
     $golden-ratio: 1.618;
 
     // Validate the input size
-    @if not unitless($size) and type-of($size) != "number" {
+    @if not math.is-unitless($size) and type-of($size) != "number" {
         @error "The size parameter must be a valid number or unitless value.";
     }
 
@@ -63,5 +64,5 @@
     }
 
     // Return the size scaled by the golden ratio raised to the increment
-    @return $size * pow($golden-ratio, $increment);
+    @return $size * math.pow($golden-ratio, $increment);
 }

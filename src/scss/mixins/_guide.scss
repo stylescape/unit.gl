@@ -27,6 +27,18 @@
 @use "../variables" as *;
 @use "../maps" as *;
 
+// ----------------------------------------------------------------------------
+// Helpers
+// ----------------------------------------------------------------------------
+
+@function guide-z-index() {
+    $value: 9999;
+    @if meta.function-exists("z") {
+        $value: z("guides");
+    }
+    @return $value;
+}
+
 // ============================================================================
 // Mixins
 // ============================================================================
@@ -46,11 +58,7 @@
 ///   }
 ///
 @mixin guide {
-    $__guides-z-index: 9999;
-    @if meta.function-exists("z") {
-        $__guides-z-index: z("guides");
-    }
-    z-index: $__guides-z-index;
+    z-index: guide-z-index();
     position: absolute;
     top: 0;
     left: 0;
@@ -71,11 +79,7 @@
     width: 100%;
     min-height: 100vh;
     pointer-events: none;
-    $__guides-z-index: 9999;
-    @if meta.function-exists("z") {
-        $__guides-z-index: z("guides");
-    }
-    z-index: $__guides-z-index;
+    z-index: guide-z-index();
     &.active {
         display: block !important;
     }
@@ -135,7 +139,8 @@
     background-repeat: repeat;
     background-size: $column_width $row_height;
 
-    background-image: repeating-linear-gradient(
+    background-image:
+        repeating-linear-gradient(
             to right,
             $column_color 0,
             $column_color 1px,
@@ -169,7 +174,8 @@
 
     background-position: $half_offset 0;
 
-    background-image: repeating-linear-gradient(
+    background-image:
+        repeating-linear-gradient(
             to right,
             $column_color 0,
             $column_color 1px,
@@ -238,7 +244,8 @@
     $column_color: rgba(200, 0, 0, 0.2),
     $baseline_color: $guide--color
 ) {
-    background-image: linear-gradient(
+    background-image:
+        linear-gradient(
             to right,
             $column_color 0 $column_width,
             transparent $column_width transparent

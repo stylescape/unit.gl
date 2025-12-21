@@ -20,6 +20,7 @@
 // ============================================================================
 // Use
 // ============================================================================
+@use "sass:math";
 
 // ============================================================================
 // Functions
@@ -47,7 +48,7 @@
         @error "Step must be a number.";
     }
 
-    @if type-of($base) != "number" and not unitless($base) {
+    @if type-of($base) != "number" and not math.is-unitless($base) {
         @error "Base must be a number with or without units.";
     }
 
@@ -56,5 +57,5 @@
     }
 
     // Calculate the modular scale value
-    @return $base * pow($ratio, $increment);
+    @return $base * math.pow($ratio, $increment);
 }

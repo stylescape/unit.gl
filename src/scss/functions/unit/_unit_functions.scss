@@ -75,10 +75,10 @@
 ///
 @function linear_interpolation($start, $end, $min, $max, $actual: 100vw) {
     // Validate parameters
-    @if unitless($min) == false and unit($min) != "px" {
+    @if math.is-unitless($min) == false and math.unit($min) != "px" {
         @error "Parameter `$min` must be unitless or in 'px'.";
     }
-    @if unitless($max) == false and unit($max) != "px" {
+    @if math.is-unitless($max) == false and math.unit($max) != "px" {
         @error "Parameter `$max` must be unitless or in 'px'.";
     }
     @if $max <= $min {
@@ -86,7 +86,7 @@
     }
 
     // Convert all values to a common unit for calculation
-    $unit: 1#{unit($start)};
+    $unit: 1#{math.unit($start)};
 
     // Convert coordinate values to unitless for calculations
     $x0: #{unit_strip($min)};
