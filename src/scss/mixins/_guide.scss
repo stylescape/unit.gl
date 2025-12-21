@@ -22,6 +22,7 @@
 
 @use "sass:map";
 @use "sass:meta";
+@use "sass:color";
 
 @use "../functions" as *;
 @use "../variables" as *;
@@ -241,7 +242,7 @@
 @mixin grid_baseline(
     $column_width,
     $baseline_height,
-    $column_color: rgba(200, 0, 0, 0.2),
+    $column_color: color.change(rgb(200, 0, 0), $alpha: 0.2),
     $baseline_color: $guide--color
 ) {
     background-image:
@@ -276,7 +277,10 @@
 ///         @include guide--margin(20px, rgba(0, 255, 0, 0.1));
 ///     }
 ///
-@mixin guide--margin($margin, $color: rgba(0, 255, 0, 0.1)) {
+@mixin guide--margin(
+    $margin,
+    $color: color.change(rgb(0, 255, 0), $alpha: 0.1)
+) {
     @include guide;
     top: $margin;
     left: $margin;
