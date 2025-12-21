@@ -46,7 +46,11 @@
 ///   }
 ///
 @mixin guide {
-    z-index: if(meta.function-exists("z"), z("guides"), 9999);
+    $__guides-z-index: 9999;
+    @if meta.function-exists("z") {
+        $__guides-z-index: z("guides");
+    }
+    z-index: $__guides-z-index;
     position: absolute;
     top: 0;
     left: 0;
@@ -67,7 +71,11 @@
     width: 100%;
     min-height: 100vh;
     pointer-events: none;
-    z-index: if(meta.function-exists("z"), z("guides"), 9999);
+    $__guides-z-index: 9999;
+    @if meta.function-exists("z") {
+        $__guides-z-index: z("guides");
+    }
+    z-index: $__guides-z-index;
     &.active {
         display: block !important;
     }
