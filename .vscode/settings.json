@@ -6,7 +6,7 @@
     // ========================================================================
 
 
-    "git.autofetch": true,                              
+    "git.autofetch": true,
 
 
 
@@ -96,7 +96,7 @@
     "editor.hideCursorInOverviewRuler": false,
     "editor.hover.above": true,
     "editor.hover.delay": 300,
-    "editor.hover.enabled": true,
+    "editor.hover.enabled": "on",
     "editor.hover.hidingDelay": 300,
     "editor.hover.sticky": true,
     "editor.indentSize": "tabSize",
@@ -273,7 +273,7 @@
     // Minimap
     // ========================================================================
 
-    "editor.minimap.autohide": false,
+    "editor.minimap.autohide": "none",
     "editor.minimap.enabled": true,
     "editor.minimap.maxColumn": 120,
     "editor.minimap.renderCharacters": true,
@@ -423,9 +423,9 @@
 
 
 
-    "workbench.editor.enablePreview": false,            
-    "workbench.colorTheme": "Default Dark Modern",            
-    "workbench.iconTheme": "vscode-icons",              
+    "workbench.editor.enablePreview": false,
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.iconTheme": "vscode-icons",
 
     // ...
 
@@ -1106,7 +1106,32 @@
     "docker.commands.run": "${containerCommand} run --rm -d ${exposedPorts} ${tag}",
     "docker.commands.runInteractive": "${containerCommand} run --rm -it ${exposedPorts} ${tag}",
     "docker.composeCommand": "",
-    "docker.containers.groupBy": "Compose Project Name"
+    "docker.containers.groupBy": "Compose Project Name",
+    "containers.commands.build": "${containerCommand} build --pull --rm -f \"${dockerfile}\" -t ${tag} \"${context}\"",
+    "containers.commands.run": "${containerCommand} run --rm -d ${exposedPorts} ${tag}",
+    "containers.commands.runInteractive": "${containerCommand} run --rm -it ${exposedPorts} ${tag}",
+    "containers.commands.attach": "${containerCommand} exec -it ${containerId} ${shellCommand}",
+    "containers.commands.logs": "${containerCommand} logs --tail 1000 -f ${containerId}",
+    "containers.commands.composeUp": [
+        {
+            "label": "Compose Up",
+            "template": "${composeCommand} ${configurationFile} up ${detached} ${build}"
+        }
+    ],
+    "containers.commands.composeUpSubset": [
+        {
+            "label": "Compose Up",
+            "template": "${composeCommand} ${profileList} ${configurationFile} up ${detached} ${build} ${serviceList}"
+        }
+    ],
+    "containers.commands.composeDown": [
+        {
+            "label": "Compose Down",
+            "template": "${composeCommand} ${configurationFile} down"
+        }
+    ],
+    "containers.containers.groupBy": "Compose Project Name",
+    "containers.composeCommand": ""
 
     // ...
 
