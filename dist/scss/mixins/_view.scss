@@ -21,6 +21,7 @@
 // ============================================================================
 // Use
 // ============================================================================
+@use "sass:map";
 
 @use "../variables" as *;
 
@@ -43,7 +44,7 @@
 ///   }
 ///
 @mixin breakpoint($size) {
-    @if map-has-key($breakpoints, $size) {
+    @if map.has-key($breakpoints, $size) {
         @media (min-width: map.get($breakpoints, $size)) {
             @content;
         }

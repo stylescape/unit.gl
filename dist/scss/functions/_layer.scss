@@ -15,6 +15,7 @@
 // ============================================================================
 // Use
 // ============================================================================
+@use "sass:map";
 
 // ============================================================================
 // Functions
@@ -33,7 +34,7 @@
 /// or null if not found.
 ///
 @function z($layer) {
-    @if not map-has-key($layers, $layer) {
+    @if not map.has-key($layers, $layer) {
         @warn "Layer `#{$layer}` not found in the $layers map. z-index property omitted.";
         @return null;
     }

@@ -19,6 +19,7 @@
 // ============================================================================
 // Use
 // ============================================================================
+@use "sass:map";
 
 @use "../functions" as *;
 @use "../variables" as *;
@@ -41,11 +42,11 @@
 ///   }
 ///
 @mixin set_paper_size($size) {
-    @if map-has-key($paper-sizes, $size) {
+    @if map.has-key($paper-sizes, $size) {
         $size-map: map.get($paper-sizes, $size);
         width: map.get($size-map, width);
         height: map.get($size-map, height);
     } @else {
-        @warn "Invalid paper size: #{$size}. Available sizes are: #{map-keys($paper-sizes)}.";
+        @warn "Invalid paper size: #{$size}. Available sizes are: #{map.keys($paper-sizes)}.";
     }
 }
