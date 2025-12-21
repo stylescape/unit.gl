@@ -33,6 +33,8 @@
 ///
 /// Applies styles in landscape orientation, optionally above a min-width.
 ///
+/// @name display_orientation_landscape
+///
 /// @param {Length|null} $min-width - Optional breakpoint to combine with orientation
 ///
 /// @example scss
@@ -54,6 +56,8 @@
 
 ///
 /// Applies styles in portrait orientation, optionally above a min-width.
+///
+/// @name display_orientation_portrait
 ///
 /// @param {Length|null} $min-width - Optional breakpoint to combine with orientation
 ///
@@ -78,6 +82,8 @@
 /// Applies styles on high-density (Retina) displays.
 /// Targets modern and older syntax for broad support.
 ///
+/// @name display_retina
+///
 /// @example scss
 ///   @include display_retina {
 ///     // high-resolution styles
@@ -93,6 +99,8 @@
 
 ///
 /// Applies styles when the screen matches a specific aspect ratio.
+///
+/// @name display_ratio
 ///
 /// @param {Number} $width - The horizontal component of the aspect ratio
 /// @param {Number} $height - The vertical component of the aspect ratio

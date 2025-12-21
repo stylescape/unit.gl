@@ -30,23 +30,55 @@ $base-font-size: 16px !default;
 
 @use "sass:math";
 
+///
+/// Converts pixels to rem units using a configurable base.
+///
+/// @name px_to_rem
+/// @param {Number} $size - Size in pixels.
+/// @param {Number} $base - Base pixel size to convert against (default: 16px).
+/// @return {Number} - Size expressed in rem.
 @function px_to_rem($size, $base: 16px) {
     @return math.div($size, $base) * 1rem;
 }
 
+///
+/// Converts rem units to pixels using a configurable base.
+///
+/// @name rem_to_px
+/// @param {Number} $size - Size in rem.
+/// @param {Number} $base - Base pixel size to convert against (default: 16px).
+/// @return {Number} - Size expressed in pixels.
 @function rem_to_px($size, $base: 16px) {
     @return $size * $base;
 }
 
+///
+/// Converts `em` units to pixels using a context size.
+///
+/// @name em_to_px
+/// @param {Number} $size - Size in em.
+/// @param {Number} $context - Context pixel size (default: 16px).
+/// @return {Number} - Size expressed in pixels.
 @function em_to_px($size, $context: 16px) {
     @return $size * $context;
 }
 
+///
+/// Converts pixels to `em` units using a context size.
+///
+/// @name px_to_em
+/// @param {Number} $size - Size in pixels.
+/// @param {Number} $context - Context pixel size (default: 16px).
+/// @return {Number} - Size expressed in em.
 @function px_to_em($size, $context: 16px) {
     @return math.div($size, $context) * 1em;
 }
 
 /// Validate that the input is a pixel value
+///
+/// @name validate_px
+/// @param {Number} $value - Value to validate.
+/// @return {Number} - Returns the input when validation passes; throws otherwise.
 @function validate_px($value) {
     @if math.unit($value) != "px" {
         @error "Expected a pixel value, but got `#{$value}`.";
@@ -55,12 +87,20 @@ $base-font-size: 16px !default;
 }
 
 /// Convert pixels to rem
+///
+/// @name px_to_rem
+/// @param {Number} $size - Size in pixels.
+/// @return {Number} - Size expressed in rem.
 @function px_to_rem($size) {
     $validated_size: validate_px($size);
     @return math.div($validated_size, $base-font-size) * 1rem;
 }
 
 /// Convert rem to pixels
+///
+/// @name rem_to_px
+/// @param {Number} $size - Size in rem.
+/// @return {Number} - Size expressed in pixels.
 @function rem_to_px($size) {
     @if math.unit($size) != "rem" {
         @error "Expected a rem value, but got `#{$size}`.";
@@ -69,6 +109,11 @@ $base-font-size: 16px !default;
 }
 
 /// Convert em to pixels
+///
+/// @name em_to_px
+/// @param {Number} $size - Size in em.
+/// @param {Number} $context - Context pixel size.
+/// @return {Number} - Size expressed in pixels.
 @function em_to_px($size, $context: $base-font-size) {
     $validated_context: validate_px($context);
     @if math.unit($size) != "em" {
@@ -78,6 +123,11 @@ $base-font-size: 16px !default;
 }
 
 /// Convert pixels to em
+///
+/// @name px_to_em
+/// @param {Number} $size - Size in pixels.
+/// @param {Number} $context - Context pixel size.
+/// @return {Number} - Size expressed in em.
 @function px_to_em($size, $context: $base-font-size) {
     $validated_size: validate_px($size);
     $validated_context: validate_px($context);

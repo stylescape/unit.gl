@@ -33,6 +33,18 @@
 /// @return {Number | Null} - The z-index value associated with the layer,
 /// or null if not found.
 ///
+/// @example scss - Usage
+///   // Define layers map (typically in variables)
+///   $layers: (
+///     "base": 1,
+///     "modal": 1000,
+///     "guides": 9999
+///   );
+///
+///   .modal {
+///     z-index: z("modal");
+///   }
+///
 @function z($layer) {
     @if not map.has-key($layers, $layer) {
         @warn "Layer `#{$layer}` not found in the $layers map. z-index property omitted.";

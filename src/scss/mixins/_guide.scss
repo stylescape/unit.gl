@@ -32,6 +32,17 @@
 // Helpers
 // ----------------------------------------------------------------------------
 
+///
+/// Guide Z-Index Helper
+/// ---------------------------------------------------------------------------
+///
+/// Resolves the z-index for guide overlays. If the project defines a `z()`
+/// function and a `"guides"` layer in `$layers`, it uses that value; otherwise
+/// it falls back to `9999`.
+///
+/// @name guide-z-index
+/// @return {Number} - The resolved z-index for guide elements.
+///
 @function guide-z-index() {
     $value: 9999;
     @if meta.function-exists("z") {
@@ -72,6 +83,19 @@
     background-attachment: local;
 }
 
+///
+/// Guide Layer Mixin
+/// ---------------------------------------------------------------------------
+///
+/// Provides a single guide layer that can be toggled via the `.active` class.
+/// Useful for composing multiple overlay layers and enabling them selectively.
+///
+/// @name guide--layer
+/// @example scss - Usage
+///   .guide-layer {
+///     @include guide--layer;
+///   }
+///
 @mixin guide--layer {
     display: none;
     position: absolute;
@@ -157,6 +181,25 @@
         );
 }
 
+///
+/// Centered Graph Guide Mixin
+/// ---------------------------------------------------------------------------
+///
+/// Renders a grid overlay centered in the viewport by offsetting the grid so
+/// the middle column aligns with the viewport center.
+///
+/// @name guide--graph_centered
+/// @param {Number} $columns - Number of columns in the grid.
+/// @param {Length} $column_width - Width of each column.
+/// @param {Length} $row_height - Height of each row.
+/// @param {Color} $column_color - Color of the column lines. Defaults to `$guide--graph_primary`.
+/// @param {Color} $baseline_color - Color of the baseline lines. Defaults to `$guide--graph_primary`.
+///
+/// @example scss - Usage
+///   .guide--graph-centered {
+///     @include guide--graph_centered(12, 60px, 20px);
+///   }
+///
 @mixin guide--graph_centered(
     $columns: 12,
     $column_width: baseline(4),
@@ -231,8 +274,8 @@
 /// @name guide--baseline
 /// @param {Length} $column_width - The width of each column in the grid.
 /// @param {Length} $baseline_height - The height of each baseline.
-/// @param {Color} $column_color - The color of the column lines. Defaults to rgba(200, 0, 0, 0.2).
-/// @param {Color} $baseline_color - The color of the baseline lines. Defaults to rgba(56, 255, 255, 0.8).
+/// @param {Color} $column_color - The color of the column lines. Defaults to `color.change(rgb(200, 0, 0), $alpha: 0.2)`.
+/// @param {Color} $baseline_color - The color of the baseline lines. Defaults to `$guide--color`.
 ///
 /// @example scss - Usage
 ///   .guide--baseline {
@@ -270,11 +313,11 @@
 ///
 /// @name guide--margin
 /// @param {Length} $margin - The size of the margin to visualize.
-/// @param {Color} $color - The color of the margin area. Defaults to rgba(0, 255, 0, 0.1).
+/// @param {Color} $color - The color of the margin area. Defaults to `color.change(rgb(0, 255, 0), $alpha: 0.1)`.
 ///
 /// @example scss - Usage
 ///     .guide--margin {
-///         @include guide--margin(20px, rgba(0, 255, 0, 0.1));
+///         @include guide--margin(20px, color.change(rgb(0, 255, 0), $alpha: 0.1));
 ///     }
 ///
 @mixin guide--margin(

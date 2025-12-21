@@ -42,6 +42,12 @@
 /// olden Ratio (1.618).
 /// @return {Number} - The calculated value based on the modular scale.
 ///
+/// @example scss - Usage
+///   // Font sizing using a modular scale
+///   h1 { font-size: modular_scale(3, 1rem, 1.25); }
+///   h2 { font-size: modular_scale(2, 1rem, 1.25); }
+///   p  { margin-bottom: modular_scale(1, 1rem, 1.25); }
+///
 @function modular_scale($increment: 1, $base: 1em, $ratio: 1.618) {
     // Validate inputs
     @if type-of($increment) != "number" {

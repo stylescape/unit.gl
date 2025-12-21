@@ -40,6 +40,7 @@
 /// units, they must be the same unit; otherwise, a warning is issued and
 /// `null` is returned.
 ///
+/// @name add
 /// @param {Number} $value1 - The first value, which may or may not include
 /// units.
 /// @param {Number} $value2 - The second value, which may or may not include
@@ -73,6 +74,7 @@
 /// units, they must be the same unit; otherwise, a warning is issued and
 /// `null` is returned.
 ///
+/// @name subtract
 /// @param {Number} $value1 - The first value, which may or may not include
 /// units.
 /// @param {Number} $value2 - The second value, which may or may not include
