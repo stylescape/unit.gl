@@ -1,0 +1,231 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Q Scale Explorer — unit.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Guides</p>
+<h1>Q Scale Explorer</h1>
+<p class="lead">A hands-on view of <code>q()</code> and the curated <code>$q_steps</code> scale used by the utility
+    classes.</p>
+{%- endblock %}
+
+{%- block content %}
+
+<div class="page--qscale">
+
+    <section>
+        <h2>What is <code>q()</code>?</h2>
+        <p><code>q()</code> is an atomic unit: <code>q(1) = 0.0625rem</code> (1px at a 16px root). The utilities use a
+            curated step map (<code>$q_steps</code>) to stay granular without exploding CSS size.</p>
+
+        <div class="qscale-metrics">
+            <div class="qscale-metrics__item">
+                <div class="qscale-metrics__label">Root font-size</div>
+                <div class="qscale-metrics__value"><span id="qs-root">—</span>px</div>
+            </div>
+            <div class="qscale-metrics__item">
+                <div class="qscale-metrics__label">Selected step</div>
+                <div class="qscale-metrics__value">q(<span id="qs-step">—</span>)</div>
+            </div>
+            <div class="qscale-metrics__item">
+                <div class="qscale-metrics__label">Computed</div>
+                <div class="qscale-metrics__value"><span id="qs-px">—</span>px / <span id="qs-rem">—</span>rem</div>
+            </div>
+            <div class="qscale-metrics__item">
+                <div class="qscale-metrics__label">Utility class</div>
+                <div class="qscale-metrics__value"><code id="qs-class">—</code></div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Pick a Step</h2>
+
+        {% set q_steps = [0,1,2,4,6,8,12,16,20,24,32,40,48,56,64,72,80,96,112,128,144,160,192,224,256] %}
+
+        <div class="qscale-controls">
+            <label class="qscale-slider" for="qs-range">
+                <span class="qscale-slider__label">Step index</span>
+                <input id="qs-range" type="range" min="0" max="{{ q_steps|length - 1 }}" value="7" step="1" />
+            </label>
+
+            <div class="qscale-chips" aria-label="q steps">
+                {% for s in q_steps %}
+                <button class="qscale-chip" type="button" data-step="{{ s }}">{{ s }}</button>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="qscale-demo">
+            <div class="qscale-demo__panel">
+                <div class="qscale-demo__title">Spacing preview</div>
+                <div class="qscale-demo__row">
+                    <div class="qscale-box" id="qs-box" aria-label="visual size"></div>
+                    <div class="qscale-demo__meta">
+                        <div class="qscale-demo__line"><span class="k">Width</span><span class="v" id="qs-w">—</span>
+                        </div>
+                        <div class="qscale-demo__line"><span class="k">Height</span><span class="v" id="qs-h">—</span>
+                        </div>
+                        <div class="qscale-demo__line"><span class="k">Padding</span><span class="v"
+                                id="qs-pad">—</span></div>
+                        <div class="qscale-demo__line"><span class="k">Gap</span><span class="v" id="qs-gap">—</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="qscale-demo__panel">
+                <div class="qscale-demo__title">Utilities mapping</div>
+                <p class="qscale-muted">These are representative utility names generated from <code>$q_steps</code> (see
+                    the Utilities demo for the full matrix).</p>
+                <div class="qscale-util-grid" id="qs-utils">
+                    <div class="qscale-util"><code class="c">.p_q<span id="qs-u-step">—</span></code><span
+                            class="d">padding</span></div>
+                    <div class="qscale-util"><code class="c">.m_q<span id="qs-u-step2">—</span></code><span
+                            class="d">margin</span></div>
+                    <div class="qscale-util"><code class="c">.gap_q<span id="qs-u-step3">—</span></code><span
+                            class="d">gap</span></div>
+                    <div class="qscale-util"><code class="c">.w_q<span id="qs-u-step4">—</span></code><span
+                            class="d">width</span></div>
+                    <div class="qscale-util"><code class="c">.h_q<span id="qs-u-step5">—</span></code><span
+                            class="d">height</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Curated Steps (<code>$q_steps</code>)</h2>
+        <p class="qscale-muted">The scale is intentionally sparse at larger values. It stays expressive for layout while
+            keeping generated CSS predictable.</p>
+
+        <table class="qscale-table">
+            <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>q(step)</th>
+                    <th>At 16px root</th>
+                    <th>Use</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in q_steps %}
+                <tr>
+                    <td><code>{{ s }}</code></td>
+                    <td><code>{{ (s / 16) | round(4) }}rem</code></td>
+                    <td><code>{{ s }}px</code></td>
+                    <td class="qscale-usage">spacing / sizing</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="alert alert--tip" style="margin-top: calc(var(--grid-unit) * 3);">
+            <div class="alert__title">Tip</div>
+            <p>If you need ultra-fine values for a one-off, use <code>q(n)</code> directly in SCSS. Keep utilities for
+                the shared, common ladder.</p>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    const qSteps = [0, 1, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48, 56, 64, 72, 80, 96, 112, 128, 144, 160, 192, 224, 256];
+
+    function rootPx() {
+        const raw = getComputedStyle(document.documentElement).fontSize;
+        const value = Number.parseFloat(raw);
+        return Number.isFinite(value) ? value : 16;
+    }
+
+    function toPx(step) {
+        // q(1) = 1px at 16px root. More generally: q(step) = step/16 rem.
+        return (step * rootPx()) / 16;
+    }
+
+    function toRem(step) {
+        return step / 16;
+    }
+
+    function fmt(n, digits = 2) {
+        return (Math.round(n * (10 ** digits)) / (10 ** digits)).toFixed(digits);
+    }
+
+    function setText(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = String(value);
+    }
+
+    function setStep(step) {
+        const stepNum = Number(step);
+        const px = toPx(stepNum);
+        const rem = toRem(stepNum);
+
+        setText('qs-root', fmt(rootPx(), 2));
+        setText('qs-step', stepNum);
+        setText('qs-px', fmt(px, 2));
+        setText('qs-rem', fmt(rem, 4));
+
+        const className = `.p_q${stepNum}`;
+        const classEl = document.getElementById('qs-class');
+        if (classEl) classEl.textContent = className;
+
+        // Visual: box size responds to the step (with a sane minimum).
+        const size = Math.max(8, px);
+        const pad = Math.max(2, px / 4);
+        const gap = Math.max(2, px / 6);
+
+        const box = document.getElementById('qs-box');
+        if (box) {
+            box.style.width = `${size}px`;
+            box.style.height = `${size}px`;
+            box.style.padding = `${pad}px`;
+            box.style.gap = `${gap}px`;
+        }
+
+        setText('qs-w', `${fmt(size, 0)}px`);
+        setText('qs-h', `${fmt(size, 0)}px`);
+        setText('qs-pad', `${fmt(pad, 0)}px`);
+        setText('qs-gap', `${fmt(gap, 0)}px`);
+
+        setText('qs-u-step', stepNum);
+        setText('qs-u-step2', stepNum);
+        setText('qs-u-step3', stepNum);
+        setText('qs-u-step4', stepNum);
+        setText('qs-u-step5', stepNum);
+
+        // UI state
+        document.querySelectorAll('.qscale-chip').forEach(btn => {
+            btn.classList.toggle('active', Number(btn.dataset.step) === stepNum);
+        });
+
+        const idx = qSteps.indexOf(stepNum);
+        const range = document.getElementById('qs-range');
+        if (range && idx >= 0) range.value = String(idx);
+    }
+
+    function init() {
+        const range = document.getElementById('qs-range');
+        if (range) {
+            range.addEventListener('input', () => {
+                const idx = Number(range.value);
+                setStep(qSteps[idx] ?? qSteps[0]);
+            });
+        }
+
+        document.querySelectorAll('.qscale-chip').forEach(btn => {
+            btn.addEventListener('click', () => setStep(btn.dataset.step));
+        });
+
+        window.addEventListener('resize', () => {
+            const current = Number(document.getElementById('qs-step')?.textContent || 16);
+            setStep(current);
+        });
+
+        setStep(qSteps[7]);
+    }
+
+    init();
+</script>
+
+{%- endblock %}

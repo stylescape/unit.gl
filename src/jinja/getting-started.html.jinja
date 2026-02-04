@@ -1,0 +1,251 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Getting Started — unit.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Documentation</p>
+<h1>Getting Started</h1>
+<p class="lead">Install unit.gl and start building harmonious, mathematically precise layouts in minutes.</p>
+{%- endblock %}
+
+{%- block content %}
+
+<!-- Installation -->
+<section>
+    <h2>Installation</h2>
+
+    <h3>NPM</h3>
+    <p>Install unit.gl as a development dependency:</p>
+
+    <div class="code-block">npm install unit.gl --save-dev</div>
+
+    <h3>Yarn</h3>
+    <div class="code-block">yarn add unit.gl --dev</div>
+
+    <h3>pnpm</h3>
+    <div class="code-block">pnpm add unit.gl -D</div>
+</section>
+
+<!-- Basic Setup -->
+<section>
+    <h2>Basic Setup</h2>
+
+    <p>Import unit.gl into your main SCSS file:</p>
+
+    <div class="code-block"><span class="comment">// Import the entire framework</span>
+        @use "unit.gl" as *;
+
+        <span class="comment">// Or import specific modules</span>
+        @use "unit.gl/scss/variables" as vars;
+        @use "unit.gl/scss/functions" as fn;
+        @use "unit.gl/scss/mixins" as mx;
+    </div>
+
+    <div class="alert alert--tip">
+        <p class="alert__title">Tip</p>
+        <p>Using <code>@use</code> with namespaces helps avoid naming conflicts in larger projects.</p>
+    </div>
+</section>
+
+<!-- Your First Layout -->
+<section>
+    <h2>Your First Layout</h2>
+
+    <p>Here's a minimal example using the q() unit function:</p>
+
+    <div class="code-block">@use "unit.gl" as *;
+
+        <span class="comment">// Use q() for consistent spacing</span>
+        .card {
+        padding: q(16); <span class="comment">// 16px (16 × 0.0625rem)</span>
+        margin-bottom: q(24); <span class="comment">// 24px</span>
+        border-radius: q(4); <span class="comment">// 4px</span>
+        }
+
+        <span class="comment">// Typography with modular scale</span>
+        h1 {
+        font-size: modular_scale(3, 1rem, 1.25); <span class="comment">// ~1.95rem</span>
+        line-height: q(40);
+        }
+
+        <span class="comment">// Responsive container</span>
+        .container {
+        max-width: q(1200);
+        padding: q(16);
+
+        @include view_md {
+        padding: q(32);
+        }
+        }
+    </div>
+</section>
+
+<!-- Understanding the Q Unit -->
+<section>
+    <h2>Understanding the Q Unit</h2>
+
+    <p>The Kyū (Q) is the foundational unit of unit.gl:</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Measurement</th>
+                <th>Value</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1Q</td>
+                <td>0.0625rem</td>
+                <td>Base unit (1/16th of 1rem)</td>
+            </tr>
+            <tr>
+                <td>q(8)</td>
+                <td>0.5rem / 8px</td>
+                <td>8 Q units</td>
+            </tr>
+            <tr>
+                <td>q(16)</td>
+                <td>1rem / 16px</td>
+                <td>Standard spacing unit</td>
+            </tr>
+            <tr>
+                <td>q(24)</td>
+                <td>1.5rem / 24px</td>
+                <td>Medium spacing</td>
+            </tr>
+            <tr>
+                <td>q(32)</td>
+                <td>2rem / 32px</td>
+                <td>Large spacing</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alert">
+        <p class="alert__title">Why Q?</p>
+        <p>The Q unit provides pixel-level precision while remaining rem-based for accessibility. It's designed for both
+            digital screens (1Q = 1px at 16px base) and print (1Q = 0.25mm).</p>
+    </div>
+</section>
+
+<!-- Project Structure -->
+<section>
+    <h2>Recommended Project Structure</h2>
+
+    <div class="code-block">styles/
+        ├── main.scss <span class="comment"># Main entry point</span>
+        ├── _variables.scss <span class="comment"># Custom variable overrides</span>
+        ├── _base.scss <span class="comment"># Base element styles</span>
+        ├── _components.scss <span class="comment"># Component styles</span>
+        └── _utilities.scss <span class="comment"># Local utility classes</span></div>
+
+    <h3>main.scss</h3>
+
+    <div class="code-block"><span class="comment">// 1. Import unit.gl</span>
+        @use "unit.gl" as *;
+
+        <span class="comment">// 2. Override default variables (optional)</span>
+        @use "variables";
+
+        <span class="comment">// 3. Your styles</span>
+        @use "base";
+        @use "components";
+        @use "utilities";
+    </div>
+</section>
+
+<!-- Vite Setup -->
+<section>
+    <h2>Build Tool Setup</h2>
+
+    <h3>Vite</h3>
+
+    <div class="code-block"><span class="comment">// vite.config.js</span>
+        import { defineConfig } from 'vite';
+
+        export default defineConfig({
+        css: {
+        preprocessorOptions: {
+        scss: {
+        api: 'modern-compiler',
+        }
+        }
+        }
+        });</div>
+
+    <h3>Webpack</h3>
+
+    <div class="code-block"><span class="comment">// webpack.config.js</span>
+        module.exports = {
+        module: {
+        rules: [{
+        test: /\.scss$/,
+        use: [
+        'style-loader',
+        'css-loader',
+        {
+        loader: 'sass-loader',
+        options: {
+        api: 'modern-compiler',
+        }
+        }
+        ]
+        }]
+        }
+        };</div>
+</section>
+
+<!-- CSS Output -->
+<section>
+    <h2>Using Pre-built CSS</h2>
+
+    <p>If you don't need SCSS customization, use the pre-built CSS directly:</p>
+
+    <div class="code-block"><span class="comment">&lt;!-- In HTML --&gt;</span>
+        &lt;link rel="stylesheet" href="node_modules/unit.gl/css/unit.gl.css"&gt;
+
+        <span class="comment">&lt;!-- Or minified --&gt;</span>
+        &lt;link rel="stylesheet" href="node_modules/unit.gl/css/unit.gl.min.css"&gt;
+    </div>
+
+    <p>Or import in your JavaScript:</p>
+
+    <div class="code-block"><span class="comment">// In your JS/TS entry file</span>
+        import 'unit.gl/css/unit.gl.css';</div>
+</section>
+
+<!-- Next Steps -->
+<section>
+    <h2>Next Steps</h2>
+
+    <ul>
+        <li>
+            <div class="list-item">
+                <span class="list-item__title"><a href="core-concepts.html">Core Concepts</a></span>
+                <span class="list-item__meta">Understand the Q unit system and design philosophy</span>
+            </div>
+        </li>
+        <li>
+            <div class="list-item">
+                <span class="list-item__title"><a href="functions.html">Functions Reference</a></span>
+                <span class="list-item__meta">Complete API for q(), modular_scale(), and more</span>
+            </div>
+        </li>
+        <li>
+            <div class="list-item">
+                <span class="list-item__title"><a href="test_utilities.html">Utility Classes</a></span>
+                <span class="list-item__meta">Pre-built classes for rapid prototyping</span>
+            </div>
+        </li>
+        <li>
+            <div class="list-item">
+                <span class="list-item__title"><a href="configuration.html">Configuration</a></span>
+                <span class="list-item__meta">Customize variables, breakpoints, and maps</span>
+            </div>
+        </li>
+    </ul>
+</section>
+
+{%- endblock %}

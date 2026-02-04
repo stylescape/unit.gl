@@ -1,81 +1,244 @@
 {% extends "base.html.jinja" %}
 
-{%- block title %}Guide Baseline Grid | unit.gl{%- endblock %}
+{%- block title %}Baseline Grid — unit.gl{%- endblock %}
 
 {%- block header %}
-<h1>Guide Baseline Grid</h1>
-<p>Demonstrates vertical rhythm using the <code>@include guide--baseline</code> mixin and the
-    <code>.guide--baseline</code> utility class.
-</p>
+<p class="eyebrow">Documentation</p>
+<h1>Baseline Grid</h1>
+<p class="lead">Vertical rhythm system using the <code>guide--baseline</code> mixin for consistent typographic
+    alignment.</p>
 {%- endblock %}
 
 {%- block styles %}
 {{ super() }}
 <style>
-    .grid-demo {
+    /* ─────────────────────────────────────────────────────────────────
+       Baseline Grid Demo Specific Styles
+       ───────────────────────────────────────────────────────────────── */
+
+    .baseline-demo {
         position: relative;
-        min-height: 60vh;
-        color: #222;
+        border: 1px solid var(--swiss-gray-300);
+        margin: calc(var(--grid-unit) * 3) 0;
     }
 
-    .demo-text {
+    .baseline-content {
         position: relative;
         z-index: 1;
-        max-width: 40rem;
+        padding: calc(var(--grid-unit) * 3);
     }
 
-    .demo-box {
-        margin-bottom: 4rem;
-        border: 1px solid #ddd;
-        position: relative;
+    .baseline-content h3 {
+        margin-top: 0;
     }
 
-    #toggle-baseline {
+    .baseline-content p {
+        max-width: 45ch;
+    }
+
+    .toggle-btn {
         position: fixed;
-        bottom: 1rem;
-        right: 1rem;
+        bottom: calc(var(--grid-unit) * 3);
+        right: calc(var(--grid-unit) * 3);
         z-index: 10000;
-        padding: 0.4rem 0.8rem;
-        font-size: 0.875rem;
-        background: #222;
-        color: #fff;
+        font-family: var(--font-sans);
+        font-size: 0.6875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: calc(var(--grid-unit) * 1) calc(var(--grid-unit) * 2);
+        background: var(--swiss-black);
+        color: var(--swiss-white);
         border: none;
-        border-radius: 4px;
         cursor: pointer;
-        opacity: 0.8;
         transition: opacity 0.2s;
     }
 
-    #toggle-baseline:hover {
-        opacity: 1;
+    .toggle-btn:hover {
+        opacity: 0.8;
+    }
+
+    .rhythm-example {
+        margin: calc(var(--grid-unit) * 3) 0;
+    }
+
+    .rhythm-block {
+        border-bottom: 1px solid var(--swiss-gray-200);
+        padding: calc(var(--grid-unit) * 2) 0;
+    }
+
+    .rhythm-block h4 {
+        font-size: 1rem;
+        margin: 0 0 calc(var(--grid-unit) * 1);
+    }
+
+    .rhythm-block p {
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--swiss-gray-600);
+    }
+
+    .rhythm-spec {
+        display: flex;
+        align-items: baseline;
+        gap: calc(var(--grid-unit) * 4);
+        margin-top: calc(var(--grid-unit) * 1);
+    }
+
+    .rhythm-spec__item {
+        font-family: var(--font-mono);
+        font-size: 0.625rem;
+        color: var(--swiss-gray-500);
+    }
+
+    .type-sample {
+        margin: calc(var(--grid-unit) * 3) 0;
+        padding: calc(var(--grid-unit) * 3);
+        background: var(--swiss-gray-100);
+        border-left: 4px solid var(--swiss-black);
+    }
+
+    .type-sample p {
+        font-size: 1.125rem;
+        line-height: 1.75;
+        margin: 0 0 calc(var(--grid-unit) * 2);
+    }
+
+    .type-sample p:last-child {
+        margin-bottom: 0;
     }
 </style>
 {%- endblock %}
 
 {%- block content %}
 
+<!-- Default Baseline -->
+<section>
+    <h2>Default Baseline</h2>
+    <p>The baseline grid uses an 8px unit to maintain consistent vertical rhythm across your design.</p>
 
-<section class="demo-box grid-demo guide--baseline">
-    <div class="demo-text">
-        <h2>Default Baseline</h2>
-        <p>
-            This block uses the <code>.guide--baseline</code> utility class with the default baseline unit and color.
-            The baseline overlay is rendered underneath the text to help align type and spacing.
-        </p>
-        <p>The quick brown fox jumps over the lazy dog. Line breaks should align with the rhythm grid.</p>
+    <div class="baseline-demo guide--baseline">
+        <div class="baseline-content">
+            <h3>Typography on Grid</h3>
+            <p>This block uses the <code>.guide--baseline</code> utility class. The baseline overlay shows the
+                underlying rhythm grid that text should align to.</p>
+            <p>The quick brown fox jumps over the lazy dog. Line breaks and spacing should align with the rhythm grid to
+                create visual harmony.</p>
+            <p>Notice how each line of text sits on the baseline, and margins between elements respect the grid unit.
+            </p>
+        </div>
     </div>
 </section>
 
-<section class="demo-box grid-demo guide--baseline_custom">
-    <div class="demo-text">
-        <h2>Custom Baseline: baseline(2), magenta</h2>
-        <p>
-            This block uses a custom mixin call with <code>baseline(2)</code> height and a magenta grid line.
-        </p>
-        <p>The quick brown fox jumps over the lazy dog. Try adjusting the font size and spacing to test rhythm
-            consistency.</p>
+<!-- Custom Baseline -->
+<section>
+    <h2>Custom Baseline</h2>
+    <p>Customize the baseline height and color for different grid densities.</p>
+
+    <div class="baseline-demo guide--baseline_custom">
+        <div class="baseline-content">
+            <h3>2× Baseline Grid</h3>
+            <p>This block uses a custom mixin with <code>baseline(2)</code> height and a different grid color.</p>
+            <p>A larger baseline unit works well for headings and spacious layouts where finer granularity isn't needed.
+            </p>
+        </div>
     </div>
 </section>
 
+<!-- Rhythm Examples -->
+<section>
+    <h2>Vertical Rhythm</h2>
+    <p>Spacing values that maintain baseline alignment.</p>
+
+    <div class="rhythm-example">
+        <div class="rhythm-block">
+            <h4>Heading Level 2</h4>
+            <p>Subheading or description text on the rhythm grid.</p>
+            <div class="rhythm-spec">
+                <span class="rhythm-spec__item">font-size: 24px</span>
+                <span class="rhythm-spec__item">line-height: 32px</span>
+                <span class="rhythm-spec__item">margin-bottom: 16px</span>
+            </div>
+        </div>
+
+        <div class="rhythm-block">
+            <h4>Body Text</h4>
+            <p>Standard paragraph text with comfortable reading line height.</p>
+            <div class="rhythm-spec">
+                <span class="rhythm-spec__item">font-size: 16px</span>
+                <span class="rhythm-spec__item">line-height: 24px</span>
+                <span class="rhythm-spec__item">margin-bottom: 24px</span>
+            </div>
+        </div>
+
+        <div class="rhythm-block">
+            <h4>Caption Text</h4>
+            <p>Smaller text for captions, labels, and meta information.</p>
+            <div class="rhythm-spec">
+                <span class="rhythm-spec__item">font-size: 12px</span>
+                <span class="rhythm-spec__item">line-height: 16px</span>
+                <span class="rhythm-spec__item">margin-bottom: 8px</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Type Sample -->
+<section>
+    <h2>Reading Sample</h2>
+
+    <div class="type-sample">
+        <p>Good typography is invisible. It should not distract the reader from the content but instead guide them
+            through it with ease and comfort.</p>
+        <p>The baseline grid provides a framework for this invisibility. When text aligns consistently, the eye can move
+            naturally from line to line without conscious effort.</p>
+        <p>Josef Müller-Brockmann wrote: "The grid system is an aid, not a guarantee. It permits a number of possible
+            uses and each designer can look for a solution appropriate to his personal style."</p>
+    </div>
+</section>
+
+<!-- Usage -->
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// Apply baseline guide via class</span>
+        &lt;div class="<span class="class">guide--baseline</span>"&gt;
+        Content aligned to baseline grid
+        &lt;/div&gt;
+
+        <span class="comment">// Apply via SCSS mixin</span>
+        @use "unit.gl" as *;
+
+        .my-section {
+        @include guide--baseline;
+        }
+
+        <span class="comment">// Custom baseline height and color</span>
+        .custom-grid {
+        @include guide--baseline(
+        $height: baseline(2),
+        $color: rgba(255, 0, 128, 0.15)
+        );
+        }
+    </div>
+
+    <h3>Best Practices</h3>
+    <ul>
+        <li>Use <code>line-height</code> values that are multiples of the baseline unit</li>
+        <li>Set <code>margin-bottom</code> to maintain rhythm between blocks</li>
+        <li>Avoid arbitrary padding that breaks the vertical flow</li>
+        <li>Test with the grid visible during development</li>
+    </ul>
+</section>
+
+<button class="toggle-btn" id="toggle-baseline" onclick="toggleBaseline()">Toggle Grid</button>
+
+<script>
+    function toggleBaseline() {
+        document.querySelectorAll('.guide--baseline, .guide--baseline_custom').forEach(el => {
+            el.classList.toggle('guide--baseline--hidden');
+        });
+    }
+</script>
 
 {%- endblock %}

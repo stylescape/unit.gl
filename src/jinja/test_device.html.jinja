@@ -1,0 +1,363 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Device Explorer — unit.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Guides</p>
+<h1>Device Explorer</h1>
+<p class="lead">Inspect environment media features and match them against unit.gl’s <code>$devices</code> profile map.
+</p>
+{%- endblock %}
+
+{%- block content %}
+
+<div class="page--device">
+
+    <section>
+        <h2>Current Environment</h2>
+
+        <div class="device-status">
+            <div class="device-status__item">
+                <div class="device-status__label">Viewport</div>
+                <div class="device-status__value"><span id="dev-width">—</span>×<span id="dev-height">—</span>px</div>
+            </div>
+            <div class="device-status__item">
+                <div class="device-status__label">Device Pixel Ratio</div>
+                <div class="device-status__value"><span id="dev-dpr">—</span></div>
+            </div>
+            <div class="device-status__item">
+                <div class="device-status__label">Orientation</div>
+                <div class="device-status__value"><span id="dev-orientation">—</span></div>
+            </div>
+            <div class="device-status__item">
+                <div class="device-status__label">Touch Points</div>
+                <div class="device-status__value"><span id="dev-touch">—</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Media Features</h2>
+
+        <div class="device-features">
+            <div class="device-features__col">
+                <h3>Interaction</h3>
+                <ul class="device-feature-list">
+                    <li><span class="device-feature-list__key">hover</span><span id="mf-hover"
+                            class="device-feature-list__value">—</span></li>
+                    <li><span class="device-feature-list__key">pointer</span><span id="mf-pointer"
+                            class="device-feature-list__value">—</span></li>
+                    <li><span class="device-feature-list__key">any-hover</span><span id="mf-any-hover"
+                            class="device-feature-list__value">—</span></li>
+                    <li><span class="device-feature-list__key">any-pointer</span><span id="mf-any-pointer"
+                            class="device-feature-list__value">—</span></li>
+                </ul>
+            </div>
+
+            <div class="device-features__col">
+                <h3>Preferences</h3>
+                <ul class="device-feature-list">
+                    <li><span class="device-feature-list__key">prefers-color-scheme</span><span id="mf-scheme"
+                            class="device-feature-list__value">—</span></li>
+                    <li><span class="device-feature-list__key">prefers-reduced-motion</span><span id="mf-motion"
+                            class="device-feature-list__value">—</span></li>
+                    <li><span class="device-feature-list__key">prefers-contrast</span><span id="mf-contrast"
+                            class="device-feature-list__value">—</span></li>
+                    <li><span class="device-feature-list__key">forced-colors</span><span id="mf-forced"
+                            class="device-feature-list__value">—</span></li>
+                </ul>
+            </div>
+
+            <div class="device-features__col">
+                <h3>Display</h3>
+                <ul class="device-feature-list">
+                    <li><span class="device-feature-list__key">color-gamut</span><span id="mf-gamut"
+                            class="device-feature-list__value">—</span></li>
+                    <li><span class="device-feature-list__key">display-mode</span><span id="mf-display"
+                            class="device-feature-list__value">—</span></li>
+                    <li><span class="device-feature-list__key">prefers-reduced-transparency</span><span
+                            id="mf-transparency" class="device-feature-list__value">—</span></li>
+                    <li><span class="device-feature-list__key">prefers-reduced-data</span><span id="mf-data"
+                            class="device-feature-list__value">—</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert alert--tip device-tip">
+            <div class="alert__title">Tip</div>
+            <p>Use these media features to progressively enhance: fewer effects under reduced motion, higher contrast
+                tokens when requested, and touch-first UI when pointers are coarse.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Device Profiles (<code>$devices</code> map)</h2>
+
+        <p class="device-muted">This list is a curated set from the SCSS map in <code>src/scss/maps/_device.scss</code>.
+            Matching is approximate: width range + DPR similarity.</p>
+
+        <div class="device-controls">
+            <label class="device-search" for="dev-filter">
+                <span class="device-search__label">Filter</span>
+                <input id="dev-filter" class="device-search__input" type="search"
+                    placeholder="iphone_x, ipad_pro, galaxy_fold…" autocomplete="off" />
+            </label>
+
+            <div class="device-match">
+                <div class="device-match__label">Matches</div>
+                <div class="device-match__value"><span id="dev-matches">—</span></div>
+            </div>
+        </div>
+
+        {% set devices = [
+        {"key": "galaxy_fold", "min": 280, "max": 653, "dpr": 3.0, "type": "phone"},
+        {"key": "iphone_5", "min": 320, "max": 568, "dpr": 2.0, "type": "phone"},
+        {"key": "iphone_6", "min": 375, "max": 667, "dpr": 2.0, "type": "phone"},
+        {"key": "iphone_8", "min": 375, "max": 667, "dpr": 2.0, "type": "phone"},
+        {"key": "iphone_x", "min": 375, "max": 812, "dpr": 3.0, "type": "phone"},
+        {"key": "iphone_11", "min": 414, "max": 896, "dpr": 2.0, "type": "phone"},
+        {"key": "iphone_12", "min": 390, "max": 844, "dpr": 3.0, "type": "phone"},
+        {"key": "iphone_13", "min": 428, "max": 926, "dpr": 3.0, "type": "phone"},
+        {"key": "samsung_s10", "min": 360, "max": 760, "dpr": 3.0, "type": "phone"},
+        {"key": "samsung_s20", "min": 320, "max": 720, "dpr": 4.0, "type": "phone"},
+        {"key": "samsung_s21", "min": 320, "max": 780, "dpr": 3.0, "type": "phone"},
+        {"key": "google_pixel", "min": 411, "max": 731, "dpr": 2.6, "type": "phone"},
+        {"key": "google_pixel_5", "min": 393, "max": 851, "dpr": 3.0, "type": "phone"},
+        {"key": "surface_duo", "min": 540, "max": 720, "dpr": 2.5, "type": "phone"},
+
+        {"key": "ipad", "min": 768, "max": 1024, "dpr": 2.0, "type": "tablet"},
+        {"key": "ipad_mini", "min": 768, "max": 1024, "dpr": 2.0, "type": "tablet"},
+        {"key": "ipad_air", "min": 820, "max": 1180, "dpr": 2.0, "type": "tablet"},
+        {"key": "ipad_pro", "min": 1024, "max": 1366, "dpr": 2.0, "type": "tablet"},
+        {"key": "surface_pro", "min": 768, "max": 1366, "dpr": 2.0, "type": "tablet"},
+
+        {"key": "macbook_air", "min": 1440, "max": 2560, "dpr": 2.0, "type": "desktop"},
+        {"key": "macbook_pro", "min": 1680, "max": 3072, "dpr": 2.0, "type": "desktop"},
+        {"key": "imac", "min": 1920, "max": 5120, "dpr": 2.0, "type": "desktop"},
+        {"key": "dell_xps", "min": 1920, "max": 3840, "dpr": 2.0, "type": "desktop"}
+        ] %}
+
+        <table class="device-table">
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                    <th>DPR</th>
+                    <th>Type</th>
+                    <th>Match</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in devices %}
+                <tr class="device-row" data-key="{{ d.key }}" data-min="{{ d.min }}" data-max="{{ d.max }}"
+                    data-dpr="{{ d.dpr }}" data-type="{{ d.type }}">
+                    <td><code>{{ d.key }}</code></td>
+                    <td><code>{{ d.min }}px</code></td>
+                    <td><code>{{ d.max }}px</code></td>
+                    <td><code>{{ d.dpr }}</code></td>
+                    <td>{{ d.type }}</td>
+                    <td><span class="device-badge" data-role="match">—</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>SCSS Usage</h2>
+
+        <div class="code-block">
+            <pre><code>@use "unit.gl" as *;
+
+// Target a specific device profile from $devices
+@include device_media_query("galaxy_fold") {
+  .panel { padding: q(10); }
+}
+</code></pre>
+        </div>
+
+        <p class="device-muted">Profile keys are underscored (for example <code>iphone_x</code>, <code>ipad_pro</code>,
+            <code>macbook_pro</code>).</p>
+    </section>
+
+</div>
+
+<script>
+    function mq(query) {
+        try {
+            return window.matchMedia(query).matches;
+        } catch (_) {
+            return false;
+        }
+    }
+
+    function setText(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = String(value);
+    }
+
+    function getViewport() {
+        const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        const height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        return { width, height };
+    }
+
+    function classifyOrientation(width, height) {
+        if (mq('(orientation: portrait)')) return 'portrait';
+        if (mq('(orientation: landscape)')) return 'landscape';
+        return width >= height ? 'landscape' : 'portrait';
+    }
+
+    function getColorScheme() {
+        if (mq('(prefers-color-scheme: dark)')) return 'dark';
+        if (mq('(prefers-color-scheme: light)')) return 'light';
+        return 'no-preference';
+    }
+
+    function getReducedMotion() {
+        if (mq('(prefers-reduced-motion: reduce)')) return 'reduce';
+        if (mq('(prefers-reduced-motion: no-preference)')) return 'no-preference';
+        return 'unknown';
+    }
+
+    function getPrefersContrast() {
+        if (mq('(prefers-contrast: more)')) return 'more';
+        if (mq('(prefers-contrast: less)')) return 'less';
+        if (mq('(prefers-contrast: custom)')) return 'custom';
+        if (mq('(prefers-contrast: no-preference)')) return 'no-preference';
+        return 'unknown';
+    }
+
+    function getForcedColors() {
+        if (mq('(forced-colors: active)')) return 'active';
+        if (mq('(forced-colors: none)')) return 'none';
+        return 'unknown';
+    }
+
+    function getHover() {
+        if (mq('(hover: hover)')) return 'hover';
+        if (mq('(hover: none)')) return 'none';
+        return 'unknown';
+    }
+
+    function getPointer() {
+        if (mq('(pointer: fine)')) return 'fine';
+        if (mq('(pointer: coarse)')) return 'coarse';
+        if (mq('(pointer: none)')) return 'none';
+        return 'unknown';
+    }
+
+    function getAnyHover() {
+        if (mq('(any-hover: hover)')) return 'hover';
+        if (mq('(any-hover: none)')) return 'none';
+        return 'unknown';
+    }
+
+    function getAnyPointer() {
+        if (mq('(any-pointer: fine)')) return 'fine';
+        if (mq('(any-pointer: coarse)')) return 'coarse';
+        if (mq('(any-pointer: none)')) return 'none';
+        return 'unknown';
+    }
+
+    function getColorGamut() {
+        if (mq('(color-gamut: rec2020)')) return 'rec2020';
+        if (mq('(color-gamut: p3)')) return 'p3';
+        if (mq('(color-gamut: srgb)')) return 'srgb';
+        return 'unknown';
+    }
+
+    function getDisplayMode() {
+        if (mq('(display-mode: fullscreen)')) return 'fullscreen';
+        if (mq('(display-mode: standalone)')) return 'standalone';
+        if (mq('(display-mode: minimal-ui)')) return 'minimal-ui';
+        if (mq('(display-mode: browser)')) return 'browser';
+        return 'unknown';
+    }
+
+    function getReducedTransparency() {
+        if (mq('(prefers-reduced-transparency: reduce)')) return 'reduce';
+        if (mq('(prefers-reduced-transparency: no-preference)')) return 'no-preference';
+        return 'unknown';
+    }
+
+    function getReducedData() {
+        if (mq('(prefers-reduced-data: reduce)')) return 'reduce';
+        if (mq('(prefers-reduced-data: no-preference)')) return 'no-preference';
+        return 'unknown';
+    }
+
+    function scoreDeviceMatch({ width, dpr }, row) {
+        const min = Number(row.dataset.min || '0');
+        const max = Number(row.dataset.max || '0');
+        const targetDpr = Number(row.dataset.dpr || '1');
+
+        const inRange = width >= min && width <= max;
+        const dprDelta = Math.abs((dpr || 1) - targetDpr);
+        const dprOk = dprDelta <= 0.6;
+
+        if (!inRange) return { match: false, label: '—' };
+        if (!dprOk) return { match: true, label: 'width' };
+        return { match: true, label: 'width + dpr' };
+    }
+
+    function updateUI() {
+        const { width, height } = getViewport();
+        const dpr = Number(window.devicePixelRatio || 1);
+
+        setText('dev-width', width);
+        setText('dev-height', height);
+        setText('dev-dpr', dpr.toFixed(2));
+        setText('dev-orientation', classifyOrientation(width, height));
+        setText('dev-touch', (navigator.maxTouchPoints || 0));
+
+        setText('mf-hover', getHover());
+        setText('mf-pointer', getPointer());
+        setText('mf-any-hover', getAnyHover());
+        setText('mf-any-pointer', getAnyPointer());
+
+        setText('mf-scheme', getColorScheme());
+        setText('mf-motion', getReducedMotion());
+        setText('mf-contrast', getPrefersContrast());
+        setText('mf-forced', getForcedColors());
+
+        setText('mf-gamut', getColorGamut());
+        setText('mf-display', getDisplayMode());
+        setText('mf-transparency', getReducedTransparency());
+        setText('mf-data', getReducedData());
+
+        const filterValue = String(document.getElementById('dev-filter')?.value || '').trim().toLowerCase();
+
+        let matches = 0;
+        document.querySelectorAll('.device-row').forEach(row => {
+            const key = String(row.dataset.key || '').toLowerCase();
+            const visible = !filterValue || key.includes(filterValue);
+            row.classList.toggle('is-filtered', !visible);
+
+            const badge = row.querySelector('[data-role="match"]');
+            if (!visible) {
+                row.classList.remove('is-match');
+                if (badge) badge.textContent = '—';
+                return;
+            }
+
+            const result = scoreDeviceMatch({ width, dpr }, row);
+            row.classList.toggle('is-match', result.match);
+            if (badge) badge.textContent = result.label;
+            if (result.match) matches += 1;
+        });
+
+        setText('dev-matches', matches);
+    }
+
+    window.addEventListener('resize', updateUI);
+    window.addEventListener('orientationchange', updateUI);
+
+    const filterEl = document.getElementById('dev-filter');
+    if (filterEl) filterEl.addEventListener('input', updateUI);
+
+    updateUI();
+</script>
+
+{%- endblock %}

@@ -1,0 +1,119 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Breakpoints — unit.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Guides</p>
+<h1>Breakpoints</h1>
+<p class="lead">A quick, interactive view of unit.gl’s <code>$breakpoints</code> map — now including <code>ss</code>
+    (super-small).</p>
+{%- endblock %}
+
+{%- block content %}
+
+<div class="page--breakpoints">
+
+    <section>
+        <h2>Current Viewport</h2>
+
+        <div class="bp-status">
+            <div class="bp-status__item">
+                <div class="bp-status__label">Viewport</div>
+                <div class="bp-status__value"><span id="bp-width">—</span>px</div>
+            </div>
+            <div class="bp-status__item">
+                <div class="bp-status__label">Active Breakpoint</div>
+                <div class="bp-status__value"><span id="bp-active">—</span></div>
+            </div>
+            <div class="bp-status__item">
+                <div class="bp-status__label">Rule</div>
+                <div class="bp-status__value"><span id="bp-rule">—</span></div>
+            </div>
+        </div>
+
+        <p style="margin-top: calc(var(--grid-unit) * 2);">Resize the window to see which breakpoint is active. The
+            active row is highlighted.</p>
+    </section>
+
+    <section>
+        <h2>Breakpoint Map</h2>
+
+        <table class="bp-table">
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Min Width</th>
+                    <th>Typical Use</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set bps = [
+                {"key": "ss", "min": 280, "desc": "Compact/fold devices"},
+                {"key": "xs", "min": 320, "desc": "Phones"},
+                {"key": "sm", "min": 480, "desc": "Large phones / small tablets"},
+                {"key": "md", "min": 768, "desc": "Tablets / small laptops"},
+                {"key": "lg", "min": 1024, "desc": "Laptops / desktops"},
+                {"key": "xl", "min": 1280, "desc": "Large desktops"},
+                {"key": "sl", "min": 1440, "desc": "Wide screens"}
+                ] %}
+
+                {% for bp in bps %}
+                <tr class="bp-row" data-bp="{{ bp.key }}" data-min="{{ bp.min }}">
+                    <td><code>{{ bp.key }}</code></td>
+                    <td><code>{{ bp.min }}px</code></td>
+                    <td>{{ bp.desc }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="alert alert--tip" style="margin-top: calc(var(--grid-unit) * 3);">
+            <div class="alert__title">Tip</div>
+            <p>In SCSS, use <code>@include breakpoint(ss)</code> or <code>@include media_ss</code> to target super-small
+                screens and up.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Utilities Example</h2>
+
+        <p>This card uses responsive utility classes to increase padding as the viewport grows:</p>
+
+        <div class="bp-demo-card p_q8 ss_p_q10 sm_p_q12 md_p_q16 lg_p_q24 xl_p_q32">
+            <div class="bp-demo-card__title">Responsive padding</div>
+            <div class="bp-demo-card__meta">Classes:
+                <code>.p_q8 .ss_p_q10 .sm_p_q12 .md_p_q16 .lg_p_q24 .xl_p_q32</code></div>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    const breakpoints = [
+        { key: 'sl', min: 1440 },
+        { key: 'xl', min: 1280 },
+        { key: 'lg', min: 1024 },
+        { key: 'md', min: 768 },
+        { key: 'sm', min: 480 },
+        { key: 'xs', min: 320 },
+        { key: 'ss', min: 280 },
+    ];
+
+    function updateBreakpointUI() {
+        const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        const active = breakpoints.find(bp => width >= bp.min) || breakpoints[breakpoints.length - 1];
+
+        document.getElementById('bp-width').textContent = String(width);
+        document.getElementById('bp-active').textContent = active.key;
+        document.getElementById('bp-rule').textContent = `(min-width: ${active.min}px)`;
+
+        document.querySelectorAll('.bp-row').forEach(row => {
+            row.classList.toggle('active', row.dataset.bp === active.key);
+        });
+    }
+
+    window.addEventListener('resize', updateBreakpointUI);
+    updateBreakpointUI();
+</script>
+
+{%- endblock %}

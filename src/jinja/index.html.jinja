@@ -1,36 +1,179 @@
 {% extends "base.html.jinja" %}
 
-{%- block title %}unit.gl Test Index | unit.gl{%- endblock %}
+{%- block title %}unit.gl — Dynamic Layout Engine{%- endblock %}
+
+{%- block header_class %}header--hero{%- endblock %}
 
 {%- block header %}
-<h1>unit.gl Test Pages</h1>
-<p>Welcome to the <code>unit.gl</code> test environment. Below is a list of component test pages demonstrating core
-    utilities, mixins, and responsive logic.</p>
-
+<p class="eyebrow">Dynamic Layout Engine</p>
+<h1>unit.gl</h1>
+<p class="lead">A precision-based design system built on the Kyū (Q) unit — enabling consistent, scalable spacing and
+    typography across digital and print.</p>
+<div class="hero-actions">
+    <a href="/getting-started.html" class="btn btn--primary">Get Started</a>
+    <a href="https://github.com/stylescape/unit.gl" class="btn btn--secondary">View on GitHub</a>
+</div>
 {%- endblock %}
 
 {%- block content %}
 
+<!-- Key Features -->
+<section>
+    <h2>Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-card__icon">Q</div>
+            <h3 class="feature-card__title">The Q Unit</h3>
+            <p class="feature-card__desc">Atomic unit system based on 0.0625rem (1px). Every measurement derives from
+                this precise foundation.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-card__icon">⊞</div>
+            <h3 class="feature-card__title">8-Point Grid</h3>
+            <p class="feature-card__desc">Enforces spatial harmony with consistent multiples. Elements snap to a uniform
+                rhythm.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-card__icon">φ</div>
+            <h3 class="feature-card__title">Modular Scale</h3>
+            <p class="feature-card__desc">Typography system using mathematical ratios. Golden ratio, Major Third, and
+                more.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-card__icon">⬚</div>
+            <h3 class="feature-card__title">Utility Classes</h3>
+            <p class="feature-card__desc">Tailwind-style classes for rapid prototyping. Spacing, sizing, and responsive
+                variants.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-card__icon">◈</div>
+            <h3 class="feature-card__title">Aspect Ratios</h3>
+            <p class="feature-card__desc">Pre-defined ratios for images, videos, and containers. From square to
+                ultrawide.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-card__icon">≡</div>
+            <h3 class="feature-card__title">Layer System</h3>
+            <p class="feature-card__desc">Semantic z-index management. No more magic numbers for stacking contexts.</p>
+        </div>
+    </div>
+</section>
 
+<!-- Quick Start -->
+<section>
+    <h2>Quick Start</h2>
+    <div class="code-block"><span class="comment">// Install via npm</span>
+        npm install unit.gl
 
-{% set pages = {
-"test_ratio": "layout",
-"test_scale": "scale",
-"test_display": "media",
-"test_typography": "type",
-"test_spacing": "rhythm",
-"test_tokens": "variables",
-"guide--baseline": "guides",
-"test_layers": "layers"
-} %}
+        <span class="comment">// Import in your SCSS</span>
+        @use "unit.gl" as *;
 
-<ul>
-    {% for page, tag in pages %}
-    <li>
-        <a href="/{{ page }}.html">{{ page | replace("_", " ") | title }}</a>
-        <span class="tag">{{ tag }}</span>
-    </li>
-    {% endfor %}
-</ul>
+        <span class="comment">// Use the q() function for precise spacing</span>
+        .card {
+        padding: <span class="class">q(16)</span>; <span class="comment">// 1rem (16px)</span>
+        margin: <span class="class">q(8)</span>; <span class="comment">// 0.5rem (8px)</span>
+        gap: <span class="class">q(4)</span>; <span class="comment">// 0.25rem (4px)</span>
+        }
+
+        <span class="comment">// Or use utility classes directly</span>
+        &lt;div class="<span class="class">p_q16 m_q8 gap_q4</span>"&gt;...&lt;/div&gt;
+    </div>
+    <a href="/getting-started.html" class="btn btn--secondary" style="margin-top: 16px;">Full Installation Guide →</a>
+</section>
+
+<!-- Documentation Sections -->
+<section>
+    <h2>Documentation</h2>
+
+    <div class="doc-sections">
+        <div class="doc-section">
+            <h3>Learn</h3>
+            <ul>
+                <li><a href="/getting-started.html">Getting Started</a></li>
+                <li><a href="/core-concepts.html">Core Concepts</a></li>
+                <li><a href="/configuration.html">Configuration</a></li>
+            </ul>
+        </div>
+        <div class="doc-section">
+            <h3>API Reference</h3>
+            <ul>
+                <li><a href="/functions.html">Functions</a></li>
+                <li><a href="/mixins.html">Mixins</a></li>
+                <li><a href="/test_breakpoints.html">Breakpoints</a></li>
+                <li><a href="/test_device.html">Device Explorer</a></li>
+                <li><a href="/test_paper.html">Page Formats</a></li>
+                <li><a href="/test_utilities.html">Utility Classes</a></li>
+            </ul>
+        </div>
+        <div class="doc-section">
+            <h3>Guides</h3>
+            <ul>
+                <li><a href="/test_qscale.html">Q Scale Explorer</a></li>
+                <li><a href="/test_scale.html">Typographic Scale</a></li>
+                <li><a href="/test_ratio.html">Aspect Ratios</a></li>
+                <li><a href="/test_layers.html">Layer System</a></li>
+                <li><a href="/guide_baseline.html">Baseline Grid</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- The Q Unit -->
+<section>
+    <h2>The Q Unit</h2>
+    <p>The foundation of unit.gl is the <strong>Kyū (Q)</strong> — a base unit equal to <code>0.0625rem</code> (1px at
+        16px root). All spacing, sizing, and typography derive from this atomic measurement.</p>
+
+    <div class="number-grid" style="margin-top: 24px;">
+        {% for step in [1, 2, 4, 8, 16, 32, 64, 128] %}
+        <div class="number-cell">
+            <div class="number-cell__value">{{ step }}</div>
+            <div class="number-cell__label">q({{ step }})</div>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="/core-concepts.html" class="btn btn--secondary" style="margin-top: 16px;">Learn More →</a>
+</section>
+
+<!-- Demos -->
+<section>
+    <h2>Live Demos</h2>
+
+    {% set demos = [
+    {"name": "test_breakpoints", "title": "Breakpoints", "tag": "responsive", "desc": "Interactive view of $breakpoints
+    (includes ss)"},
+    {"name": "test_device", "title": "Device Explorer", "tag": "media", "desc": "Detect media features + match $devices
+    profiles"},
+    {"name": "test_paper", "title": "Page Formats", "tag": "print", "desc": "Explore Q-series formats (res/) and
+    format()
+    usage"},
+    {"name": "test_qscale", "title": "Q Scale Explorer", "tag": "units", "desc": "Interactively explore q() and the
+    $q_steps ladder"},
+    {"name": "test_utilities", "title": "Utility Classes", "tag": "interactive", "desc": "Explore spacing, sizing, and
+    responsive utilities"},
+    {"name": "test_scale", "title": "Typographic Scale", "tag": "typography", "desc": "See modular scale ratios in
+    action"},
+    {"name": "test_ratio", "title": "Aspect Ratios", "tag": "layout", "desc": "Visual demonstration of all ratio
+    presets"},
+    {"name": "test_layers", "title": "Layer System", "tag": "z-index", "desc": "Interactive stacking context
+    visualization"},
+    {"name": "guide_baseline", "title": "Baseline Grid", "tag": "guides", "desc": "Toggle alignment guides and grids"}
+    ] %}
+
+    <ul>
+        {% for page in demos %}
+        <li>
+            <div class="list-item">
+                <div>
+                    <a href="/{{ page.name }}.html" class="list-item__title">{{ page.title }}</a>
+                    <span class="tag{% if page.tag == 'interactive' %} tag--red{% endif %}">{{ page.tag }}</span>
+                    <p class="list-item__meta" style="margin-top: 4px; margin-bottom: 0;">{{ page.desc }}</p>
+                </div>
+                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--swiss-gray-400);">→</span>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
 
 {%- endblock %}

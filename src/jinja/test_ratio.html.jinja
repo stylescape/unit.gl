@@ -1,27 +1,306 @@
 {% extends "base.html.jinja" %}
 
-{%- block title %}Aspect Ratio Test{%- endblock %}
+{%- block title %}Aspect Ratios — unit.gl{%- endblock %}
 
+{%- block styles %}
+{{ super() }}
+<style>
+    /* ─────────────────────────────────────────────────────────────────
+       Ratio Demo Specific Styles
+       ───────────────────────────────────────────────────────────────── */
+
+    .ratio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: calc(var(--grid-unit) * 3);
+        margin: calc(var(--grid-unit) * 4) 0;
+    }
+
+    .ratio-card {
+        border: 1px solid var(--swiss-gray-300);
+    }
+
+    .ratio-card__preview {
+        background: var(--swiss-black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ratio-card__inner {
+        color: var(--swiss-white);
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        opacity: 0.6;
+    }
+
+    .ratio-card__info {
+        padding: calc(var(--grid-unit) * 1.5);
+        background: var(--swiss-white);
+    }
+
+    .ratio-card__name {
+        font-weight: 600;
+        font-size: 0.875rem;
+        margin: 0 0 calc(var(--grid-unit) * 0.5);
+    }
+
+    .ratio-card__value {
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        color: var(--swiss-gray-500);
+        margin: 0;
+    }
+
+    .ratio-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: calc(var(--grid-unit) * 3) 0;
+    }
+
+    .ratio-table th,
+    .ratio-table td {
+        text-align: left;
+        padding: calc(var(--grid-unit) * 1.5);
+        border-bottom: 1px solid var(--swiss-gray-200);
+    }
+
+    .ratio-table th {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--swiss-gray-500);
+    }
+
+    .ratio-table td {
+        font-size: 0.875rem;
+    }
+
+    .ratio-table td:first-child {
+        font-weight: 500;
+    }
+
+    .ratio-table code {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        background: var(--swiss-gray-100);
+        padding: 0.2em 0.4em;
+    }
+
+    .use-case-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: calc(var(--grid-unit) * 2);
+        margin: calc(var(--grid-unit) * 3) 0;
+    }
+
+    .use-case {
+        text-align: center;
+    }
+
+    .use-case__box {
+        background: var(--swiss-gray-100);
+        border: 1px solid var(--swiss-gray-300);
+        margin-bottom: calc(var(--grid-unit) * 1);
+    }
+
+    .use-case__label {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .use-case__ratio {
+        font-family: var(--font-mono);
+        font-size: 0.625rem;
+        color: var(--swiss-gray-500);
+    }
+
+    @media (max-width: 640px) {
+        .use-case-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+</style>
+{%- endblock %}
 
 {%- block header %}
-<h1>Aspect Ratio Test</h1>
-<p>Visual tests for aspect ratios.</p>
+<p class="eyebrow">Documentation</p>
+<h1>Aspect Ratios</h1>
+<p class="lead">Predefined aspect ratio classes for images, video, and responsive containers.</p>
 {%- endblock %}
 
 {%- block content %}
 
-<section class="demo-container">
-    <div class="demo-box ratio_16x9" data-label="16:9 Native">
-        <div></div>
-    </div>
+<!-- Common Ratios -->
+<section>
+    <h2>Common Ratios</h2>
+    <p>Standard aspect ratios used in film, photography, print, and digital media.</p>
 
-    <div class="demo-box ratio_1x1" data-label="1:1 Native">
-        <div></div>
+    <div class="ratio-grid">
+        {% set ratios = [
+        ('1:1', 'Square', 1, 1),
+        ('4:3', 'Classic', 4, 3),
+        ('3:2', 'Photo', 3, 2),
+        ('16:9', 'Widescreen', 16, 9),
+        ('21:9', 'Ultrawide', 21, 9),
+        ('9:16', 'Portrait', 9, 16)
+        ] %}
+        {% for name, desc, w, h in ratios %}
+        <div class="ratio-card">
+            <div class="ratio-card__preview" style="aspect-ratio: {{ w }}/{{ h }};">
+                <span class="ratio-card__inner">{{ w }}:{{ h }}</span>
+            </div>
+            <div class="ratio-card__info">
+                <p class="ratio-card__name">{{ desc }}</p>
+                <p class="ratio-card__value">.ratio_{{ w }}x{{ h }}</p>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-
-    <div class="demo-box ratio_4x3" data-label="4:3 Native">
-        <div></div>
-    </div>
-
 </section>
+
+<!-- Reference Table -->
+<section>
+    <h2>Ratio Reference</h2>
+
+    <table class="ratio-table">
+        <thead>
+            <tr>
+                <th>Ratio</th>
+                <th>Class</th>
+                <th>Decimal</th>
+                <th>Common Use</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1:1</td>
+                <td><code>.ratio_1x1</code></td>
+                <td>1.000</td>
+                <td>Social media, thumbnails</td>
+            </tr>
+            <tr>
+                <td>4:3</td>
+                <td><code>.ratio_4x3</code></td>
+                <td>1.333</td>
+                <td>Classic TV, presentations</td>
+            </tr>
+            <tr>
+                <td>3:2</td>
+                <td><code>.ratio_3x2</code></td>
+                <td>1.500</td>
+                <td>35mm photography</td>
+            </tr>
+            <tr>
+                <td>16:9</td>
+                <td><code>.ratio_16x9</code></td>
+                <td>1.778</td>
+                <td>HD video, monitors</td>
+            </tr>
+            <tr>
+                <td>21:9</td>
+                <td><code>.ratio_21x9</code></td>
+                <td>2.333</td>
+                <td>Cinematic, ultrawide</td>
+            </tr>
+            <tr>
+                <td>2:3</td>
+                <td><code>.ratio_2x3</code></td>
+                <td>0.667</td>
+                <td>Portrait photos</td>
+            </tr>
+            <tr>
+                <td>9:16</td>
+                <td><code>.ratio_9x16</code></td>
+                <td>0.563</td>
+                <td>Stories, vertical video</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- Use Cases -->
+<section>
+    <h2>Use Cases</h2>
+    <p>Practical applications for common aspect ratios.</p>
+
+    <div class="use-case-grid">
+        <div class="use-case">
+            <div class="use-case__box" style="aspect-ratio: 1/1;"></div>
+            <div class="use-case__label">Instagram Post</div>
+            <div class="use-case__ratio">1:1</div>
+        </div>
+        <div class="use-case">
+            <div class="use-case__box" style="aspect-ratio: 16/9;"></div>
+            <div class="use-case__label">YouTube Thumbnail</div>
+            <div class="use-case__ratio">16:9</div>
+        </div>
+        <div class="use-case">
+            <div class="use-case__box" style="aspect-ratio: 9/16;"></div>
+            <div class="use-case__label">TikTok / Reels</div>
+            <div class="use-case__ratio">9:16</div>
+        </div>
+        <div class="use-case">
+            <div class="use-case__box" style="aspect-ratio: 4/5;"></div>
+            <div class="use-case__label">Instagram Portrait</div>
+            <div class="use-case__ratio">4:5</div>
+        </div>
+        <div class="use-case">
+            <div class="use-case__box" style="aspect-ratio: 3/2;"></div>
+            <div class="use-case__label">DSLR Photo</div>
+            <div class="use-case__ratio">3:2</div>
+        </div>
+        <div class="use-case">
+            <div class="use-case__box" style="aspect-ratio: 2.35/1;"></div>
+            <div class="use-case__label">Cinemascope</div>
+            <div class="use-case__ratio">2.35:1</div>
+        </div>
+    </div>
+</section>
+
+<!-- Usage -->
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">&lt;!-- Apply ratio class to container --&gt;</span>
+        &lt;div class="<span class="class">ratio_16x9</span>"&gt;
+        &lt;img src="video-thumb.jpg" alt="Video"&gt;
+        &lt;/div&gt;
+
+        <span class="comment">&lt;!-- With responsive images --&gt;</span>
+        &lt;div class="<span class="class">ratio_4x3</span>"&gt;
+        &lt;picture&gt;
+        &lt;source srcset="large.webp" media="(min-width: 1024px)"&gt;
+        &lt;img src="small.jpg" alt="Photo"&gt;
+        &lt;/picture&gt;
+        &lt;/div&gt;
+
+        <span class="comment">&lt;!-- Video embed --&gt;</span>
+        &lt;div class="<span class="class">ratio_16x9</span>"&gt;
+        &lt;iframe src="https://youtube.com/embed/..."&gt;&lt;/iframe&gt;
+        &lt;/div&gt;
+    </div>
+
+    <h3>SCSS Usage</h3>
+
+    <div class="code-block"><span class="comment">// Using ratio variables</span>
+        @use "unit.gl" as *;
+
+        .hero-image {
+        aspect-ratio: $ratio-16x9;
+        }
+
+        .profile-avatar {
+        aspect-ratio: $ratio-1x1;
+        border-radius: 50%;
+        }
+
+        <span class="comment">// Custom ratio with math</span>
+        .golden-container {
+        aspect-ratio: 1 / 1.618; <span class="comment">// Golden ratio</span>
+        }
+    </div>
+</section>
+
 {%- endblock %}

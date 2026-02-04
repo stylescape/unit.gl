@@ -1,0 +1,375 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Core Concepts — unit.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Documentation</p>
+<h1>Core Concepts</h1>
+<p class="lead">The foundational principles behind unit.gl: the Kyū measurement system, modular scales, and design
+    harmony.</p>
+{%- endblock %}
+
+{%- block content %}
+
+<!-- The Kyū Unit -->
+<section>
+    <h2>The Kyū (Q) Unit</h2>
+
+    <p>At the heart of unit.gl is the <strong>Kyū</strong> (級, Japanese for "grade" or "level"), a micro-unit that
+        provides pixel-level precision while remaining scalable and accessible.</p>
+
+    <div class="api-signature">1Q = 0.0625rem = 1/16rem ≈ 1px (at 16px base font size)</div>
+
+    <p>The Q unit bridges the gap between pixel-perfect design and responsive, accessible layouts:</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Context</th>
+                <th>1Q Equals</th>
+                <th>Use Case</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Digital (16px base)</td>
+                <td>1px</td>
+                <td>Screen layouts, web interfaces</td>
+            </tr>
+            <tr>
+                <td>Digital (scaled)</td>
+                <td>Scales with rem</td>
+                <td>Accessible, user-preference aware</td>
+            </tr>
+            <tr>
+                <td>Print</td>
+                <td>0.25mm</td>
+                <td>Physical media, typography</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alert alert--tip">
+        <p class="alert__title">Why REM-based?</p>
+        <p>Using rem ensures your layouts respect user font size preferences, making your designs accessible by default.
+        </p>
+    </div>
+</section>
+
+<!-- The Q Function -->
+<section>
+    <h2>The q() Function</h2>
+
+    <p>The <code>q()</code> function is your primary tool for applying Q units:</p>
+
+    <div class="code-block">@use "unit.gl" as *;
+
+        <span class="comment">// Basic usage</span>
+        .element {
+        padding: q(16); <span class="comment">// 1rem (16 × 0.0625rem)</span>
+        margin: q(8); <span class="comment">// 0.5rem</span>
+        gap: q(24); <span class="comment">// 1.5rem</span>
+        border-width: q(1); <span class="comment">// 0.0625rem (≈1px)</span>
+        }
+
+        <span class="comment">// Negative values</span>
+        .pull-up {
+        margin-top: q(-8); <span class="comment">// -0.5rem</span>
+        }
+
+        <span class="comment">// Calculations</span>
+        .calculated {
+        width: calc(100% - q(32));
+        }
+    </div>
+
+    <h3>Common Values</h3>
+
+    <div class="number-grid" style="margin: calc(var(--grid-unit) * 3) 0;">
+        {% for q in [1, 2, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128] %}
+        <div class="number-cell">
+            <div class="number-cell__value">{{ q }}</div>
+            <div class="number-cell__label">{{ q }}px</div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- 8-Point Grid -->
+<section>
+    <h2>8-Point Grid System</h2>
+
+    <p>unit.gl is designed around an 8-point grid, a widely-adopted standard that provides consistent, harmonious
+        spacing.</p>
+
+    <div style="display: flex; gap: 4px; margin: calc(var(--grid-unit) * 3) 0; align-items: flex-end;">
+        {% for i in [1, 2, 3, 4, 5, 6, 8, 10, 12, 16] %}
+        <div style="width: 40px; text-align: center;">
+            <div style="background: var(--swiss-black); height: {{ i * 8 }}px; margin-bottom: 8px;"></div>
+            <span style="font-family: var(--font-mono); font-size: 0.625rem; color: var(--swiss-gray-500);">{{ i * 8
+                }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="code-block"><span class="comment">// 8-point grid values</span>
+        $spacing-xs: q(4); <span class="comment">// 4px - Micro spacing</span>
+        $spacing-sm: q(8); <span class="comment">// 8px - Small spacing</span>
+        $spacing-md: q(16); <span class="comment">// 16px - Base spacing</span>
+        $spacing-lg: q(24); <span class="comment">// 24px - Medium spacing</span>
+        $spacing-xl: q(32); <span class="comment">// 32px - Large spacing</span>
+        $spacing-2xl: q(48); <span class="comment">// 48px - Extra large</span>
+        $spacing-3xl: q(64); <span class="comment">// 64px - Section spacing</span></div>
+
+    <div class="alert">
+        <p class="alert__title">Why 8?</p>
+        <p>8 is divisible by 2 and 4, making it easy to create half and quarter values. It also aligns with common icon
+            sizes (16, 24, 32px) and touch targets (48px minimum).</p>
+    </div>
+</section>
+
+<!-- Modular Scale -->
+<section>
+    <h2>Modular Scale</h2>
+
+    <p>A modular scale creates harmonious proportions by using a consistent ratio between sizes. unit.gl provides the
+        <code>modular_scale()</code> function for this purpose.</p>
+
+    <div class="api-signature">modular_scale($increment, $base: 1em, $ratio: 1.618)</div>
+
+    <h3>Common Ratios</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ratio</th>
+                <th>Value</th>
+                <th>Musical Term</th>
+                <th>Use Case</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Minor Second</td>
+                <td>1.067</td>
+                <td>Semitone</td>
+                <td>Very subtle scale</td>
+            </tr>
+            <tr>
+                <td>Major Second</td>
+                <td>1.125</td>
+                <td>Whole tone</td>
+                <td>Subtle, conservative</td>
+            </tr>
+            <tr>
+                <td>Minor Third</td>
+                <td>1.200</td>
+                <td>—</td>
+                <td>Moderate contrast</td>
+            </tr>
+            <tr>
+                <td>Major Third</td>
+                <td>1.250</td>
+                <td>—</td>
+                <td>Good for body text</td>
+            </tr>
+            <tr>
+                <td>Perfect Fourth</td>
+                <td>1.333</td>
+                <td>—</td>
+                <td>Balanced contrast</td>
+            </tr>
+            <tr>
+                <td>Perfect Fifth</td>
+                <td>1.500</td>
+                <td>—</td>
+                <td>Strong contrast</td>
+            </tr>
+            <tr>
+                <td>Golden Ratio</td>
+                <td>1.618</td>
+                <td>—</td>
+                <td>Classic, dramatic</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Typography Example</h3>
+
+    <div class="code-block">$ratio: 1.25; <span class="comment">// Major Third</span>
+
+        body { font-size: modular_scale(0, 1rem, $ratio); } <span class="comment">// 1rem</span>
+        h4 { font-size: modular_scale(1, 1rem, $ratio); } <span class="comment">// 1.25rem</span>
+        h3 { font-size: modular_scale(2, 1rem, $ratio); } <span class="comment">// 1.5625rem</span>
+        h2 { font-size: modular_scale(3, 1rem, $ratio); } <span class="comment">// 1.953rem</span>
+        h1 { font-size: modular_scale(4, 1rem, $ratio); } <span class="comment">// 2.441rem</span>
+        .display { font-size: modular_scale(5, 1rem, $ratio); } <span class="comment">// 3.052rem</span></div>
+</section>
+
+<!-- Aspect Ratios -->
+<section>
+    <h2>Aspect Ratios</h2>
+
+    <p>unit.gl includes predefined aspect ratios for images, videos, and containers:</p>
+
+    <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: calc(var(--grid-unit) * 2); margin: calc(var(--grid-unit) * 3) 0;">
+        {% for ratio in ['1x1', '4x3', '3x2', '16x9', '21x9'] %}
+        {% set w, h = ratio.split('x') %}
+        <div>
+            <div style="aspect-ratio: {{ w }}/{{ h }}; background: var(--swiss-black); margin-bottom: 8px;"></div>
+            <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--swiss-gray-500);">{{ ratio
+                }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="code-block"><span class="comment">// Using ratio classes</span>
+        &lt;div class="<span class="class">ratio_16x9</span>"&gt;
+        &lt;img src="video-thumb.jpg" alt="Video"&gt;
+        &lt;/div&gt;
+
+        <span class="comment">// Using SCSS mixin</span>
+        .hero-image {
+        @include ratio(16, 9);
+        }
+    </div>
+</section>
+
+<!-- Layering System -->
+<section>
+    <h2>Layering System</h2>
+
+    <p>unit.gl provides semantic z-index management to prevent "z-index wars":</p>
+
+    <div
+        style="display: flex; flex-direction: column-reverse; gap: 2px; margin: calc(var(--grid-unit) * 3) 0; max-width: 300px;">
+        {% set layers = [('canvas', -1000, '#d4d4d4'), ('content', 2000, '#3b82f6'), ('interface', 4000, '#22c55e'),
+        ('modal', 7000, '#ef4444'), ('guides', 9998, '#0ea5e9')] %}
+        {% for name, z, color in layers %}
+        <div
+            style="background: {{ color }}; color: white; padding: 8px 16px; display: flex; justify-content: space-between; font-size: 0.75rem;">
+            <span>{{ name }}</span>
+            <span style="font-family: var(--font-mono);">z: {{ z }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="code-block"><span class="comment">// Use semantic layer names</span>
+        .modal {
+        z-index: z("modal"); <span class="comment">// 7000</span>
+        }
+
+        .navbar {
+        z-index: z("interface"); <span class="comment">// 4000</span>
+        }
+
+        .tooltip {
+        z-index: z("interface") + 10; <span class="comment">// 4010</span>
+        }</div>
+</section>
+
+<!-- Breakpoints -->
+<section>
+    <h2>Responsive Breakpoints</h2>
+
+    <p>unit.gl uses a mobile-first breakpoint system:</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Min Width</th>
+                <th>CSS Class Prefix</th>
+                <th>Target</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>xs</td>
+                <td>320px</td>
+                <td><code>.xs_*</code></td>
+                <td>Small phones</td>
+            </tr>
+            <tr>
+                <td>sm</td>
+                <td>480px</td>
+                <td><code>.sm_*</code></td>
+                <td>Large phones</td>
+            </tr>
+            <tr>
+                <td>md</td>
+                <td>768px</td>
+                <td><code>.md_*</code></td>
+                <td>Tablets</td>
+            </tr>
+            <tr>
+                <td>lg</td>
+                <td>1024px</td>
+                <td><code>.lg_*</code></td>
+                <td>Laptops</td>
+            </tr>
+            <tr>
+                <td>xl</td>
+                <td>1280px</td>
+                <td><code>.xl_*</code></td>
+                <td>Desktops</td>
+            </tr>
+            <tr>
+                <td>sl</td>
+                <td>1440px</td>
+                <td><code>.sl_*</code></td>
+                <td>Large screens</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block"><span class="comment">// Using breakpoint mixins</span>
+        .card {
+        padding: q(16);
+
+        @include view_md {
+        padding: q(24);
+        }
+
+        @include view_lg {
+        padding: q(32);
+        }
+        }</div>
+</section>
+
+<!-- Design Philosophy -->
+<section>
+    <h2>Design Philosophy</h2>
+
+    <p>unit.gl is built on several key principles:</p>
+
+    <ul>
+        <li>
+            <div class="list-item">
+                <span class="list-item__title">Mathematical Harmony</span>
+                <span class="list-item__meta">Use ratios and scales to create naturally pleasing proportions</span>
+            </div>
+        </li>
+        <li>
+            <div class="list-item">
+                <span class="list-item__title">Consistency Over Convenience</span>
+                <span class="list-item__meta">Constrained values prevent arbitrary choices</span>
+            </div>
+        </li>
+        <li>
+            <div class="list-item">
+                <span class="list-item__title">Accessibility First</span>
+                <span class="list-item__meta">REM-based units respect user preferences</span>
+            </div>
+        </li>
+        <li>
+            <div class="list-item">
+                <span class="list-item__title">Composable Architecture</span>
+                <span class="list-item__meta">Mix functions, mixins, and utilities as needed</span>
+            </div>
+        </li>
+    </ul>
+</section>
+
+{%- endblock %}

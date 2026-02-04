@@ -1,0 +1,479 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Mixins Reference — unit.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">API Reference</p>
+<h1>Mixins</h1>
+<p class="lead">Reusable SCSS mixins for responsive design, ratios, guides, and common patterns.</p>
+{%- endblock %}
+
+{%- block content %}
+
+<!-- View / Breakpoint Mixins -->
+<section>
+    <h2>Responsive Breakpoints</h2>
+    <p>Mobile-first breakpoint mixins using the device map.</p>
+
+    <h3>view()</h3>
+    <p>Apply styles at a specific breakpoint and above.</p>
+
+    <div class="api-signature">@include view($breakpoint) { ... }</div>
+
+    <div class="api-params">
+        <div class="api-param">
+            <span class="api-param__name">$breakpoint</span>
+            <span class="api-param__type">String</span>
+            <span class="api-param__desc">Breakpoint name from $device_map</span>
+        </div>
+    </div>
+
+    <h4>Available Breakpoints</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Min Width</th>
+                <th>Typical Devices</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>xs</code></td>
+                <td>320px</td>
+                <td>Small phones</td>
+            </tr>
+            <tr>
+                <td><code>sm</code></td>
+                <td>576px</td>
+                <td>Large phones</td>
+            </tr>
+            <tr>
+                <td><code>md</code></td>
+                <td>768px</td>
+                <td>Tablets</td>
+            </tr>
+            <tr>
+                <td><code>lg</code></td>
+                <td>1024px</td>
+                <td>Laptops</td>
+            </tr>
+            <tr>
+                <td><code>xl</code></td>
+                <td>1280px</td>
+                <td>Desktops</td>
+            </tr>
+            <tr>
+                <td><code>xxl</code></td>
+                <td>1536px</td>
+                <td>Large screens</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>Examples</h4>
+    <div class="code-block">.container {
+        padding: q(16);
+
+        @include view(md) {
+        padding: q(24);
+        }
+
+        @include view(lg) {
+        padding: q(32);
+        max-width: 1200px;
+        margin: 0 auto;
+        }
+        }
+
+        .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: q(16);
+
+        @include view(sm) {
+        grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include view(lg) {
+        grid-template-columns: repeat(4, 1fr);
+        gap: q(24);
+        }
+        }</div>
+
+    <h3>view_only()</h3>
+    <p>Apply styles only at a specific breakpoint range.</p>
+
+    <div class="api-signature">@include view_only($breakpoint) { ... }</div>
+
+    <div class="code-block">.element {
+        <span class="comment">// Only applies between md and lg breakpoints</span>
+        @include view_only(md) {
+        display: none;
+        }
+        }
+    </div>
+
+    <h3>view_max()</h3>
+    <p>Apply styles below a specific breakpoint.</p>
+
+    <div class="api-signature">@include view_max($breakpoint) { ... }</div>
+
+    <div class="code-block">.sidebar {
+        <span class="comment">// Hide on mobile, show on desktop</span>
+        @include view_max(lg) {
+        display: none;
+        }
+        }
+    </div>
+</section>
+
+<!-- Ratio Mixins -->
+<section>
+    <h2>Aspect Ratio Mixins</h2>
+    <p>Apply aspect ratios to containers.</p>
+
+    <h3>ratio()</h3>
+    <p>Sets an aspect ratio on an element using the modern <code>aspect-ratio</code> property.</p>
+
+    <div class="api-signature">@include ratio($width, $height)</div>
+
+    <div class="api-params">
+        <div class="api-param">
+            <span class="api-param__name">$width</span>
+            <span class="api-param__type">Number</span>
+            <span class="api-param__desc">Width portion of the ratio</span>
+        </div>
+        <div class="api-param">
+            <span class="api-param__name">$height</span>
+            <span class="api-param__type">Number</span>
+            <span class="api-param__desc">Height portion of the ratio</span>
+        </div>
+    </div>
+
+    <div class="code-block">.video-container {
+        @include ratio(16, 9);
+        <span class="comment">// Output: aspect-ratio: 16 / 9;</span>
+        }
+
+        .square {
+        @include ratio(1, 1);
+        }
+
+        .photo {
+        @include ratio(4, 3);
+        }
+    </div>
+
+    <h3>ratio_name()</h3>
+    <p>Apply a named aspect ratio from the ratio map.</p>
+
+    <div class="api-signature">@include ratio_name($name)</div>
+
+    <h4>Available Ratios</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Ratio</th>
+                <th>Use Case</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>square</code></td>
+                <td>1:1</td>
+                <td>Avatars, icons</td>
+            </tr>
+            <tr>
+                <td><code>photo</code></td>
+                <td>4:3</td>
+                <td>Traditional photography</td>
+            </tr>
+            <tr>
+                <td><code>landscape</code></td>
+                <td>3:2</td>
+                <td>35mm film</td>
+            </tr>
+            <tr>
+                <td><code>wide</code></td>
+                <td>16:9</td>
+                <td>Video, presentations</td>
+            </tr>
+            <tr>
+                <td><code>ultrawide</code></td>
+                <td>21:9</td>
+                <td>Cinematic content</td>
+            </tr>
+            <tr>
+                <td><code>golden</code></td>
+                <td>1.618:1</td>
+                <td>Golden ratio</td>
+            </tr>
+            <tr>
+                <td><code>a_series</code></td>
+                <td>1:√2</td>
+                <td>A4, A3 paper</td>
+            </tr>
+            <tr>
+                <td><code>portrait</code></td>
+                <td>2:3</td>
+                <td>Portrait photos</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">.card-image {
+        @include ratio_name("photo");
+        }
+
+        .video-embed {
+        @include ratio_name("wide");
+        }
+
+        .golden-section {
+        @include ratio_name("golden");
+        }</div>
+
+    <h3>ratio_padding()</h3>
+    <p>Legacy padding-based aspect ratio (for broader browser support).</p>
+
+    <div class="api-signature">@include ratio_padding($width, $height)</div>
+
+    <div class="code-block">.legacy-container {
+        @include ratio_padding(16, 9);
+        <span class="comment">// Output:</span>
+        <span class="comment">// position: relative;</span>
+        <span class="comment">// &::before {</span>
+        <span class="comment">// content: "";</span>
+        <span class="comment">// display: block;</span>
+        <span class="comment">// padding-top: 56.25%;</span>
+        <span class="comment">// }</span>
+        }
+    </div>
+</section>
+
+<!-- Guide Mixins -->
+<section>
+    <h2>Guide Mixins</h2>
+    <p>Visual guides for development and layout debugging.</p>
+
+    <h3>guide_baseline()</h3>
+    <p>Adds a baseline grid overlay for vertical rhythm debugging.</p>
+
+    <div class="api-signature">@include guide_baseline($size: q(8), $color: rgba(0, 0, 255, 0.1))</div>
+
+    <div class="api-params">
+        <div class="api-param">
+            <span class="api-param__name">$size</span>
+            <span class="api-param__type">Length</span>
+            <span class="api-param__desc">Grid line spacing (default: q(8))</span>
+        </div>
+        <div class="api-param">
+            <span class="api-param__name">$color</span>
+            <span class="api-param__type">Color</span>
+            <span class="api-param__desc">Guide line color (default: semi-transparent blue)</span>
+        </div>
+    </div>
+
+    <div class="code-block"><span class="comment">// Apply to body for full-page baseline grid</span>
+        body {
+        @include guide_baseline(q(8), rgba(255, 0, 0, 0.1));
+        }
+
+        <span class="comment">// Apply to specific container</span>
+        .content {
+        @include guide_baseline(q(16));
+        }
+    </div>
+
+    <h3>guide_columns()</h3>
+    <p>Overlays a column grid for layout debugging.</p>
+
+    <div class="api-signature">@include guide_columns($columns: 12, $gutter: q(16), $color: rgba(255, 0, 0, 0.1))</div>
+
+    <div class="code-block">.container {
+        @include guide_columns(12, q(24));
+        }</div>
+
+    <h3>guide_margin()</h3>
+    <p>Highlights margin areas.</p>
+
+    <div class="api-signature">@include guide_margin($size: q(16), $color: rgba(255, 165, 0, 0.2))</div>
+
+    <div class="code-block">.page {
+        @include guide_margin(q(32));
+        }</div>
+</section>
+
+<!-- Display Mixins -->
+<section>
+    <h2>Display & Layout Mixins</h2>
+
+    <h3>flex_center()</h3>
+    <p>Centers content using flexbox.</p>
+
+    <div class="api-signature">@include flex_center($direction: row)</div>
+
+    <div class="code-block">.centered {
+        @include flex_center();
+        <span class="comment">// Output:</span>
+        <span class="comment">// display: flex;</span>
+        <span class="comment">// justify-content: center;</span>
+        <span class="comment">// align-items: center;</span>
+        }
+
+        .vertical-center {
+        @include flex_center(column);
+        }
+    </div>
+
+    <h3>absolute_fill()</h3>
+    <p>Makes an element fill its positioned parent.</p>
+
+    <div class="api-signature">@include absolute_fill()</div>
+
+    <div class="code-block">.overlay {
+        @include absolute_fill();
+        <span class="comment">// Output:</span>
+        <span class="comment">// position: absolute;</span>
+        <span class="comment">// top: 0;</span>
+        <span class="comment">// right: 0;</span>
+        <span class="comment">// bottom: 0;</span>
+        <span class="comment">// left: 0;</span>
+        }
+    </div>
+
+    <h3>truncate()</h3>
+    <p>Truncates text with an ellipsis.</p>
+
+    <div class="api-signature">@include truncate($lines: 1)</div>
+
+    <div class="code-block">.single-line {
+        @include truncate();
+        <span class="comment">// Single line with ellipsis</span>
+        }
+
+        .multi-line {
+        @include truncate(3);
+        <span class="comment">// Max 3 lines, then ellipsis</span>
+        }
+    </div>
+
+    <h3>sr_only()</h3>
+    <p>Hides element visually while keeping it accessible to screen readers.</p>
+
+    <div class="api-signature">@include sr_only()</div>
+
+    <div class="code-block">.skip-link {
+        @include sr_only();
+
+        &:focus {
+        <span class="comment">// Make visible when focused</span>
+        position: static;
+        width: auto;
+        height: auto;
+        }
+        }
+    </div>
+</section>
+
+<!-- Device / Format Mixins -->
+<section>
+    <h2>Device & Format Mixins</h2>
+
+    <h3>format()</h3>
+    <p>Applies dimensions from a page/print format.</p>
+
+    <div class="api-signature">@include format($size, $orientation: portrait)</div>
+
+    <h4>Available Formats</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Size</th>
+                <th>Dimensions (portrait)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>a3</td>
+                <td>297mm × 420mm</td>
+            </tr>
+            <tr>
+                <td>a4</td>
+                <td>210mm × 297mm</td>
+            </tr>
+            <tr>
+                <td>a5</td>
+                <td>148mm × 210mm</td>
+            </tr>
+            <tr>
+                <td>letter</td>
+                <td>216mm × 279mm</td>
+            </tr>
+            <tr>
+                <td>legal</td>
+                <td>216mm × 356mm</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">.print-preview {
+        @include format(a4, portrait);
+        }
+
+        .landscape-doc {
+        @include format(letter, landscape);
+        }</div>
+
+    <h3>device()</h3>
+    <p>Applies dimensions from a device preset.</p>
+
+    <div class="api-signature">@include device($name)</div>
+
+    <div class="code-block">.iphone-frame {
+        @include device("iphone-14-pro");
+        }
+
+        .macbook-frame {
+        @include device("macbook-pro-14");
+        }</div>
+</section>
+
+<!-- Utility Generation Mixins -->
+<section>
+    <h2>Utility Generation</h2>
+    <p>Mixins for generating utility classes (used internally by utility classes module).</p>
+
+    <h3>generate_spacing_utilities()</h3>
+    <p>Generates padding and margin utilities for a scale.</p>
+
+    <div class="api-signature">@include generate_spacing_utilities($scale: $q_steps, $prefix: "")</div>
+
+    <div class="code-block"><span class="comment">// Generate utilities for all q-steps</span>
+        @include generate_spacing_utilities();
+
+        <span class="comment">// Generates classes like:</span>
+        <span class="comment">// .p_q0, .p_q1, .p_q2, .p_q4...</span>
+        <span class="comment">// .m_q0, .m_q1, .m_q2, .m_q4...</span>
+        <span class="comment">// .pt_q8, .pb_q8, .pl_q8, .pr_q8...</span>
+    </div>
+
+    <h3>generate_size_utilities()</h3>
+    <p>Generates width and height utilities.</p>
+
+    <div class="api-signature">@include generate_size_utilities($scale: $q_steps)</div>
+
+    <h3>generate_responsive_utilities()</h3>
+    <p>Generates responsive variants for all utility classes.</p>
+
+    <div class="api-signature">@include generate_responsive_utilities()</div>
+
+    <div class="code-block"><span class="comment">// Generates responsive prefixed classes:</span>
+        <span class="comment">// .sm\:p_q16, .md\:p_q16, .lg\:p_q16...</span>
+        <span class="comment">// .sm\:w_q64, .md\:w_q64, .lg\:w_q64...</span>
+    </div>
+</section>
+
+{%- endblock %}

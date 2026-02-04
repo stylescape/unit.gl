@@ -1,46 +1,258 @@
 {% extends "base.html.jinja" %}
 
-{%- block title %}Kyū Scale Test | unit.gl{%- endblock %}
+{%- block title %}Scale System — unit.gl{%- endblock %}
 
+{%- block styles %}
+{{ super() }}
+<style>
+    /* ─────────────────────────────────────────────────────────────────
+       Scale Demo Specific Styles
+       ───────────────────────────────────────────────────────────────── */
+
+    .type-specimen {
+        margin: calc(var(--grid-unit) * 3) 0;
+    }
+
+    .type-line {
+        display: flex;
+        align-items: baseline;
+        padding: calc(var(--grid-unit) * 1.5) 0;
+        border-bottom: 1px solid var(--swiss-gray-200);
+    }
+
+    .type-line__label {
+        font-family: var(--font-mono);
+        font-size: 0.625rem;
+        color: var(--swiss-gray-500);
+        min-width: 100px;
+        flex-shrink: 0;
+    }
+
+    .type-line__size {
+        font-family: var(--font-mono);
+        font-size: 0.625rem;
+        color: var(--swiss-gray-400);
+        min-width: 60px;
+        flex-shrink: 0;
+    }
+
+    .type-line__text {
+        color: var(--swiss-black);
+        font-weight: 400;
+    }
+
+    .rhythm-row {
+        display: flex;
+        align-items: flex-end;
+        gap: calc(var(--grid-unit) * 1);
+        margin: calc(var(--grid-unit) * 3) 0;
+    }
+
+    .rhythm-block {
+        background: var(--swiss-black);
+        width: 48px;
+    }
+
+    .rhythm-block__label {
+        font-family: var(--font-mono);
+        font-size: 0.5625rem;
+        color: var(--swiss-gray-500);
+        text-align: center;
+        margin-top: calc(var(--grid-unit) * 0.5);
+    }
+
+    .width-specimen {
+        margin: calc(var(--grid-unit) * 3) 0;
+    }
+
+    .width-line {
+        display: flex;
+        align-items: center;
+        gap: calc(var(--grid-unit) * 2);
+        padding: calc(var(--grid-unit) * 1.5) 0;
+        border-bottom: 1px solid var(--swiss-gray-200);
+    }
+
+    .width-bar {
+        height: 6px;
+        background: var(--swiss-black);
+    }
+
+    .width-label {
+        font-family: var(--font-mono);
+        font-size: 0.625rem;
+        color: var(--swiss-gray-500);
+        min-width: 100px;
+        flex-shrink: 0;
+    }
+
+    .modular-scale {
+        margin: calc(var(--grid-unit) * 3) 0;
+    }
+
+    .modular-item {
+        display: flex;
+        align-items: center;
+        gap: calc(var(--grid-unit) * 2);
+        padding: calc(var(--grid-unit) * 1.5) 0;
+        border-bottom: 1px solid var(--swiss-gray-200);
+    }
+
+    .modular-item__ratio {
+        font-family: var(--font-mono);
+        font-size: 0.625rem;
+        color: var(--swiss-red);
+        min-width: 120px;
+        flex-shrink: 0;
+    }
+
+    .modular-item__bar {
+        height: 16px;
+        background: var(--swiss-black);
+    }
+
+    .grid-unit-demo {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 1px;
+        background: var(--swiss-gray-300);
+        border: 1px solid var(--swiss-gray-300);
+        margin: calc(var(--grid-unit) * 3) 0;
+        max-width: 320px;
+    }
+
+    .grid-unit-demo__cell {
+        aspect-ratio: 1;
+        background: var(--swiss-gray-100);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-mono);
+        font-size: 0.5rem;
+        color: var(--swiss-gray-500);
+    }
+
+    .grid-unit-demo__cell--filled {
+        background: var(--swiss-black);
+        color: var(--swiss-white);
+    }
+</style>
+{%- endblock %}
 
 {%- block header %}
-<h1>Scale Test</h1>
-<p>Visual tests for typographic and rhythmic scales.</p>
+<p class="eyebrow">Documentation</p>
+<h1>Scale System</h1>
+<p class="lead">Typographic scales, vertical rhythm, and modular measurements based on the Kyū unit.</p>
 {%- endblock %}
 
 {%- block content %}
 
+<!-- Typography Scale -->
 <section>
     <h2>Typographic Scale</h2>
-    <div class="scale-demo">
-        {% for step in [4, 6, 8, 10, 12, 16, 24, 36] %}
-        <div class="scale-line" style="font-size: var(--q{{ step }});" data-label="q{{ step }}">
-            The quick brown fox jumps.
+    <p>Type sizes built on q() multiples. Each step maintains optical harmony through the unit system.</p>
+
+    <div class="type-specimen">
+        {% for step in [8, 10, 12, 14, 16, 20, 24, 32, 40, 48, 64] %}
+        <div class="type-line">
+            <span class="type-line__label">q({{ step }})</span>
+            <span class="type-line__size">{{ step }}px</span>
+            <span class="type-line__text" style="font-size: calc(0.0625rem * {{ step }});">The quick brown fox jumps
+                over the lazy dog</span>
         </div>
         {% endfor %}
     </div>
 </section>
 
+<!-- Vertical Rhythm -->
 <section>
-    <h2>Baseline Scale (Vertical Rhythm)</h2>
-    <div class="scale-demo">
-        {% for i in range(1, 5) %}
-        <div class="scale-line" style="height: calc(var(--q) * {{ i * 5 }});" data-label="baseline({{ i }})">
-            The quick brown fox jumps.
+    <h2>Vertical Rhythm</h2>
+    <p>Height increments for maintaining consistent baseline rhythm across components.</p>
+
+    <div class="rhythm-row">
+        {% for step in [8, 16, 24, 32, 40, 48, 64, 80, 96] %}
+        <div>
+            <div class="rhythm-block" style="height: {{ step }}px;"></div>
+            <div class="rhythm-block__label">{{ step }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="code-block"><span class="comment">// Vertical rhythm using q() function</span>
+        line-height: q(24); <span class="comment">// 24px — 3 baseline units</span>
+        margin-bottom: q(16); <span class="comment">// 16px — 2 baseline units</span>
+        padding: q(8); <span class="comment">// 8px — 1 baseline unit</span></div>
+</section>
+
+<!-- Horizontal Scale -->
+<section>
+    <h2>Horizontal Scale</h2>
+    <p>Width measurements for layout and spacing consistency.</p>
+
+    <div class="width-specimen">
+        {% for step in [16, 24, 32, 48, 64, 96, 128, 160, 192, 256] %}
+        <div class="width-line">
+            <span class="width-label">q({{ step }}) = {{ step }}px</span>
+            <div class="width-bar" style="width: {{ step }}px;"></div>
         </div>
         {% endfor %}
     </div>
 </section>
 
+<!-- Modular Scale -->
 <section>
-    <h2>Basepoint Scale</h2>
-    <div class="scale-demo">
-        {% for i in range(1, 5) %}
-        <div class="scale-line" style="width: calc(var(--q) * {{ i * 4 }});" data-label="basepoint({{ i }})">
-            The quick brown fox jumps.
+    <h2>Modular Scale</h2>
+    <p>Mathematical ratios applied to the base unit for harmonic proportions.</p>
+
+    <div class="modular-scale">
+        {% set ratios = [
+        ('Minor Second', 1.067, 16),
+        ('Major Second', 1.125, 18),
+        ('Minor Third', 1.2, 19),
+        ('Major Third', 1.25, 20),
+        ('Perfect Fourth', 1.333, 21),
+        ('Aug. Fourth', 1.414, 23),
+        ('Perfect Fifth', 1.5, 24),
+        ('Minor Sixth', 1.6, 26),
+        ('Golden Ratio', 1.618, 26),
+        ('Major Sixth', 1.667, 27),
+        ('Octave', 2, 32)
+        ] %}
+        {% for name, ratio, size in ratios %}
+        <div class="modular-item">
+            <span class="modular-item__ratio">{{ name }} ({{ ratio }})</span>
+            <div class="modular-item__bar" style="width: {{ (ratio * 100)|int }}px;"></div>
         </div>
         {% endfor %}
     </div>
+
+    <div class="code-block"><span class="comment">// Using ratio functions with q()</span>
+        font-size: scale(16px, $ratio-golden); <span class="comment">// 25.89px</span>
+        font-size: scale(16px, $ratio-fifth); <span class="comment">// 24px</span>
+        font-size: scale(16px, $ratio-fourth); <span class="comment">// 21.33px</span></div>
+</section>
+
+<!-- 8px Grid -->
+<section>
+    <h2>8-Point Grid</h2>
+    <p>The q(8) unit forms the foundation of an 8-point grid system.</p>
+
+    <div class="grid-unit-demo">
+        {% for i in range(64) %}
+        <div class="grid-unit-demo__cell{% if i < 16 %} grid-unit-demo__cell--filled{% endif %}">{{ i + 1 }}</div>
+        {% endfor %}
+    </div>
+
+    <p style="font-size: 0.875rem; color: var(--swiss-gray-600);">Each cell represents 8×8 pixels (q(8) × q(8)). The
+        filled area shows 2×8 = 16 units.</p>
+
+    <div class="code-block"><span class="comment">// Common 8-point grid values</span>
+        q(8) = 8px <span class="comment">// 1 unit</span>
+        q(16) = 16px <span class="comment">// 2 units</span>
+        q(24) = 24px <span class="comment">// 3 units</span>
+        q(32) = 32px <span class="comment">// 4 units</span>
+        q(48) = 48px <span class="comment">// 6 units</span>
+        q(64) = 64px <span class="comment">// 8 units</span></div>
 </section>
 
 {%- endblock %}

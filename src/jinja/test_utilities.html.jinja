@@ -1,0 +1,462 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Utility Classes — unit.gl{%- endblock %}
+
+{%- block styles %}
+{{ super() }}
+<style>
+    /* ─────────────────────────────────────────────────────────────────
+       Utility Demo Specific Styles
+       ───────────────────────────────────────────────────────────────── */
+
+    .utility-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: calc(var(--grid-unit) * 2);
+        margin: calc(var(--grid-unit) * 3) 0;
+    }
+
+    .utility-box {
+        background: var(--swiss-black);
+        color: var(--swiss-white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-mono);
+        font-size: 0.625rem;
+        font-weight: 500;
+        min-height: 48px;
+        text-align: center;
+    }
+
+    .padding-demo {
+        background: var(--swiss-gray-100);
+        border: 1px solid var(--swiss-gray-300);
+    }
+
+    .padding-inner {
+        background: var(--swiss-black);
+        color: var(--swiss-white);
+        font-family: var(--font-mono);
+        font-size: 0.5625rem;
+        text-align: center;
+        padding: calc(var(--grid-unit) * 1);
+    }
+
+    .margin-demo {
+        background: var(--swiss-gray-100);
+        border: 1px dashed var(--swiss-gray-300);
+        display: inline-block;
+    }
+
+    .margin-inner {
+        background: var(--swiss-black);
+        color: var(--swiss-white);
+        font-family: var(--font-mono);
+        font-size: 0.5625rem;
+        text-align: center;
+        width: 48px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .gap-demo {
+        display: flex;
+        background: var(--swiss-gray-100);
+        border: 1px solid var(--swiss-gray-300);
+        padding: calc(var(--grid-unit) * 1);
+    }
+
+    .gap-item {
+        width: 24px;
+        height: 24px;
+        background: var(--swiss-black);
+    }
+
+    .size-box {
+        background: var(--swiss-black);
+    }
+
+    .border-demo {
+        width: 48px;
+        height: 32px;
+        border-style: solid;
+        border-color: var(--swiss-black);
+        background: var(--swiss-gray-100);
+    }
+
+    .radius-demo {
+        width: 48px;
+        height: 48px;
+        background: var(--swiss-black);
+    }
+
+    .inset-demo {
+        position: relative;
+        width: 80px;
+        height: 60px;
+        background: var(--swiss-gray-100);
+        border: 1px solid var(--swiss-gray-300);
+    }
+
+    .inset-item {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: var(--swiss-red);
+    }
+
+    .responsive-demo {
+        background: var(--swiss-black);
+        color: var(--swiss-white);
+        text-align: center;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .responsive-demo p {
+        margin: 0;
+        max-width: none;
+    }
+
+    .scale-bar {
+        height: 6px;
+        background: var(--swiss-black);
+    }
+
+    .scale-reference {
+        display: flex;
+        align-items: center;
+        gap: calc(var(--grid-unit) * 2);
+        padding: calc(var(--grid-unit) * 1.5) 0;
+        border-bottom: 1px solid var(--swiss-gray-200);
+    }
+
+    .scale-reference__label {
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        color: var(--swiss-gray-500);
+        min-width: 100px;
+    }
+
+    .card-demo {
+        border: 1px solid var(--swiss-black);
+        background: var(--swiss-white);
+        max-width: 320px;
+    }
+
+    .card-demo h4 {
+        font-size: 1rem;
+        margin: 0 0 calc(var(--grid-unit) * 1);
+    }
+
+    .card-demo p {
+        font-size: 0.875rem;
+        color: var(--swiss-gray-600);
+        margin: 0 0 calc(var(--grid-unit) * 2);
+    }
+
+    .btn-demo {
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-demo--primary {
+        background: var(--swiss-black);
+        color: var(--swiss-white);
+    }
+
+    .btn-demo--secondary {
+        background: var(--swiss-white);
+        color: var(--swiss-black);
+        border: 1px solid var(--swiss-black);
+    }
+
+    .breakpoint-tag {
+        display: inline-block;
+        font-family: var(--font-mono);
+        font-size: 0.5625rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background: var(--swiss-gray-100);
+        color: var(--swiss-gray-600);
+        padding: 0.25em 0.5em;
+        margin-right: calc(var(--grid-unit) * 0.5);
+        border: 1px solid var(--swiss-gray-300);
+    }
+</style>
+{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Documentation</p>
+<h1>Utility Classes</h1>
+<p class="lead">Granular utility classes based on the q() unit system. Each class applies a precise multiple of
+    <code>0.0625rem</code>.</p>
+{%- endblock %}
+
+{%- block content %}
+
+<!-- Scale Reference -->
+<section>
+    <h2>Q-Unit Scale</h2>
+    <p>Available multipliers from the curated scale. Each step is carefully chosen for visual harmony.</p>
+
+    <div style="margin-top: calc(var(--grid-unit) * 3);">
+        {% for step in [0, 1, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48, 64, 96, 128, 256] %}
+        <div class="scale-reference">
+            <span class="scale-reference__label">q({{ step }})</span>
+            <span class="scale-reference__label">{{ step }}px</span>
+            <div class="scale-bar w_q{{ step }}" style="max-width: 100%;"></div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Padding -->
+<section>
+    <h2>Padding</h2>
+    <p>Control element padding: <code>.p_q*</code>, <code>.px_q*</code>, <code>.py_q*</code>, <code>.pt_q*</code>,
+        <code>.pr_q*</code>, <code>.pb_q*</code>, <code>.pl_q*</code></p>
+
+    <h3>All Sides</h3>
+    <div class="demo-row">
+        {% for step in [4, 8, 12, 16, 24, 32] %}
+        <div class="demo-item">
+            <div class="padding-demo p_q{{ step }}">
+                <div class="padding-inner">•</div>
+            </div>
+            <span class="demo-item__label">.p_q{{ step }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h3>Horizontal & Vertical</h3>
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="padding-demo px_q16 py_q4">
+                <div class="padding-inner">px+py</div>
+            </div>
+            <span class="demo-item__label">.px_q16 .py_q4</span>
+        </div>
+        <div class="demo-item">
+            <div class="padding-demo px_q8 py_q16">
+                <div class="padding-inner">px+py</div>
+            </div>
+            <span class="demo-item__label">.px_q8 .py_q16</span>
+        </div>
+    </div>
+
+    <div class="code-block">&lt;div class="<span class="class">p_q8</span>"&gt;All sides: 8px&lt;/div&gt;
+        &lt;div class="<span class="class">px_q16 py_q8</span>"&gt;Horizontal: 16px, Vertical: 8px&lt;/div&gt;
+        &lt;div class="<span class="class">pt_q12 pb_q24</span>"&gt;Top: 12px, Bottom: 24px&lt;/div&gt;</div>
+</section>
+
+<!-- Margin -->
+<section>
+    <h2>Margin</h2>
+    <p>Control element margins: <code>.m_q*</code>, <code>.mx_q*</code>, <code>.my_q*</code>, <code>.mt_q*</code>,
+        <code>.mr_q*</code>, <code>.mb_q*</code>, <code>.ml_q*</code></p>
+
+    <div class="demo-row">
+        {% for step in [4, 8, 16, 24] %}
+        <div class="demo-item">
+            <div class="margin-demo">
+                <div class="margin-inner m_q{{ step }}">•</div>
+            </div>
+            <span class="demo-item__label">.m_q{{ step }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="code-block">&lt;div class="<span class="class">m_q8</span>"&gt;All sides: 8px&lt;/div&gt;
+        &lt;div class="<span class="class">mx_q16</span>"&gt;Horizontal margin: 16px&lt;/div&gt;
+        &lt;div class="<span class="class">mt_q12 mb_q24</span>"&gt;Top: 12px, Bottom: 24px&lt;/div&gt;</div>
+</section>
+
+<!-- Gap -->
+<section>
+    <h2>Gap</h2>
+    <p>Control flex/grid gaps: <code>.gap_q*</code>, <code>.gap_col_q*</code>, <code>.gap_row_q*</code></p>
+
+    <div class="demo-row">
+        {% for step in [4, 8, 16, 24, 32] %}
+        <div class="demo-item">
+            <div class="gap-demo gap_q{{ step }}">
+                <div class="gap-item"></div>
+                <div class="gap-item"></div>
+                <div class="gap-item"></div>
+            </div>
+            <span class="demo-item__label">.gap_q{{ step }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="code-block">&lt;div class="<span class="class">gap_q8</span>" style="display: flex;"&gt;...&lt;/div&gt;
+        &lt;div class="<span class="class">gap_col_q16 gap_row_q8</span>" style="display: grid;"&gt;...&lt;/div&gt;
+    </div>
+</section>
+
+<!-- Width & Height -->
+<section>
+    <h2>Width & Height</h2>
+    <p>Control dimensions: <code>.w_q*</code>, <code>.h_q*</code>, <code>.min_w_q*</code>, <code>.max_w_q*</code>,
+        <code>.min_h_q*</code>, <code>.max_h_q*</code></p>
+
+    <h3>Width</h3>
+    <div class="demo-row">
+        {% for step in [32, 48, 64, 96, 128] %}
+        <div class="demo-item">
+            <div class="size-box w_q{{ step }} h_q24"></div>
+            <span class="demo-item__label">.w_q{{ step }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h3>Height</h3>
+    <div class="demo-row">
+        {% for step in [24, 32, 48, 64, 96] %}
+        <div class="demo-item">
+            <div class="size-box w_q24 h_q{{ step }}"></div>
+            <span class="demo-item__label">.h_q{{ step }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="code-block">&lt;div class="<span class="class">w_q64 h_q48</span>"&gt;64×48 pixels&lt;/div&gt;
+        &lt;div class="<span class="class">min_w_q128 max_w_q256</span>"&gt;Min 128px, Max 256px&lt;/div&gt;</div>
+</section>
+
+<!-- Border Width -->
+<section>
+    <h2>Border Width</h2>
+    <p>Control border widths: <code>.border_q*</code>, <code>.border_t_q*</code>, <code>.border_r_q*</code>,
+        <code>.border_b_q*</code>, <code>.border_l_q*</code></p>
+
+    <div class="demo-row">
+        {% for step in [1, 2, 4, 6, 8] %}
+        <div class="demo-item">
+            <div class="border-demo border_q{{ step }}"></div>
+            <span class="demo-item__label">.border_q{{ step }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="code-block">&lt;div class="<span class="class">border_q2</span>" style="border-style: solid;"&gt;2px
+        border&lt;/div&gt;
+        &lt;div class="<span class="class">border_b_q4</span>"&gt;4px bottom border only&lt;/div&gt;</div>
+</section>
+
+<!-- Border Radius -->
+<section>
+    <h2>Border Radius</h2>
+    <p>Control border radius: <code>.rounded_q*</code>, <code>.rounded_t_q*</code>, <code>.rounded_r_q*</code>,
+        <code>.rounded_b_q*</code>, <code>.rounded_l_q*</code></p>
+
+    <div class="demo-row">
+        {% for step in [0, 4, 8, 12, 16, 24, 32] %}
+        <div class="demo-item">
+            <div class="radius-demo rounded_q{{ step }}"></div>
+            <span class="demo-item__label">.rounded_q{{ step }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="code-block">&lt;div class="<span class="class">rounded_q8</span>"&gt;8px radius&lt;/div&gt;
+        &lt;div class="<span class="class">rounded_t_q16</span>"&gt;16px top corners only&lt;/div&gt;</div>
+</section>
+
+<!-- Inset/Position -->
+<section>
+    <h2>Position</h2>
+    <p>Control positioning: <code>.top_q*</code>, <code>.right_q*</code>, <code>.bottom_q*</code>,
+        <code>.left_q*</code>, <code>.inset_q*</code></p>
+
+    <div class="demo-row">
+        {% for step in [4, 8, 16] %}
+        <div class="demo-item">
+            <div class="inset-demo">
+                <div class="inset-item top_q{{ step }} left_q{{ step }}"></div>
+            </div>
+            <span class="demo-item__label">.top_q{{ step }} .left_q{{ step }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="code-block">&lt;div style="position: relative;"&gt;
+        &lt;div class="<span class="class">top_q8 left_q8</span>" style="position: absolute;"&gt;...&lt;/div&gt;
+        &lt;/div&gt;</div>
+</section>
+
+<!-- Responsive -->
+<section>
+    <h2>Responsive Variants</h2>
+    <p>All utilities support responsive breakpoints. Resize the browser to see changes.</p>
+
+    <div style="margin: calc(var(--grid-unit) * 2) 0 calc(var(--grid-unit) * 3);">
+        <span class="breakpoint-tag">ss 280px</span>
+        <span class="breakpoint-tag">xs 320px</span>
+        <span class="breakpoint-tag">sm 480px</span>
+        <span class="breakpoint-tag">md 768px</span>
+        <span class="breakpoint-tag">lg 1024px</span>
+        <span class="breakpoint-tag">xl 1280px</span>
+        <span class="breakpoint-tag">sl 1440px</span>
+    </div>
+
+    <h3>Responsive Padding</h3>
+    <div class="responsive-demo p_q8 ss_p_q10 sm_p_q12 md_p_q16 lg_p_q24 xl_p_q32">
+        <p>Padding grows with viewport</p>
+        <p style="font-size: 0.6875rem; opacity: 0.6; font-family: var(--font-mono);">.p_q8 .ss_p_q10 .sm_p_q12
+            .md_p_q16 .lg_p_q24 .xl_p_q32</p>
+    </div>
+
+    <h3 style="margin-top: calc(var(--grid-unit) * 4);">Responsive Width</h3>
+    <div class="responsive-demo w_q128 sm_w_q160 md_w_q192 lg_w_q224 xl_w_q256 p_q8">
+        <p style="font-size: 0.6875rem; font-family: var(--font-mono);">Width grows</p>
+    </div>
+
+    <div class="code-block"><span class="comment">&lt;!-- Mobile first: starts small, grows on larger screens
+            --&gt;</span>
+        &lt;div class="<span class="class">p_q8 sm_p_q12 md_p_q16 lg_p_q24</span>"&gt;
+        Responsive padding
+        &lt;/div&gt;
+
+        <span class="comment">&lt;!-- Different gaps at different breakpoints --&gt;</span>
+        &lt;div class="<span class="class">gap_q4 md_gap_q8 lg_gap_q16</span>" style="display: flex;"&gt;
+        Responsive gap
+        &lt;/div&gt;
+    </div>
+</section>
+
+<!-- Complete Example -->
+<section>
+    <h2>Complete Example</h2>
+    <p>Combining utilities for a card component:</p>
+
+    <div class="card-demo p_q16 md_p_q24 rounded_q4" style="margin-top: calc(var(--grid-unit) * 3);">
+        <h4 class="m_q0 mb_q8">Card Title</h4>
+        <p class="m_q0 mb_q16">This card uses q() utility classes for all spacing.</p>
+        <div style="display: flex;" class="gap_q8">
+            <button class="btn-demo btn-demo--primary px_q12 py_q6 rounded_q2">Action</button>
+            <button class="btn-demo btn-demo--secondary px_q12 py_q6 rounded_q2">Cancel</button>
+        </div>
+    </div>
+
+    <div class="code-block">&lt;div class="<span class="class">p_q16 md_p_q24 rounded_q4</span>"&gt;
+        &lt;h4 class="<span class="class">m_q0 mb_q8</span>"&gt;Card Title&lt;/h4&gt;
+        &lt;p class="<span class="class">m_q0 mb_q16</span>"&gt;Description...&lt;/p&gt;
+        &lt;div class="<span class="class">gap_q8</span>" style="display: flex;"&gt;
+        &lt;button class="<span class="class">px_q12 py_q6 rounded_q2</span>"&gt;Action&lt;/button&gt;
+        &lt;button class="<span class="class">px_q12 py_q6 rounded_q2</span>"&gt;Cancel&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;</div>
+</section>
+
+{%- endblock %}

@@ -1,0 +1,450 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Configuration — unit.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Customization</p>
+<h1>Configuration</h1>
+<p class="lead">Customize unit.gl by overriding variables, extending maps, and configuring build options.</p>
+{%- endblock %}
+
+{%- block content %}
+
+<!-- Variables Overview -->
+<section>
+    <h2>Variables</h2>
+    <p>unit.gl uses SCSS variables with the <code>!default</code> flag, allowing you to override them before importing
+        the library.</p>
+
+    <h3>Override Pattern</h3>
+    <div class="code-block"><span class="comment">// _your-config.scss</span>
+        <span class="comment">// Override variables BEFORE importing unit.gl</span>
+
+        <span class="comment">// Custom base unit</span>
+        $unit_base: 0.0625rem; <span class="comment">// Default: 0.0625rem (1px)</span>
+
+        <span class="comment">// Custom typography scale</span>
+        $scale_ratio: 1.25; <span class="comment">// Default: 1.618 (golden ratio)</span>
+
+        <span class="comment">// Custom breakpoints</span>
+        $breakpoint_md: 800px; <span class="comment">// Default: 768px</span>
+
+        <span class="comment">// Then import unit.gl</span>
+        @use "unit.gl" with (
+        $unit_base: $unit_base,
+        $scale_ratio: $scale_ratio
+        );
+    </div>
+
+    <div class="alert alert--tip">
+        <strong>Tip:</strong> Use the <code>@use ... with ()</code> syntax for the cleanest configuration pattern.
+    </div>
+</section>
+
+<!-- Unit Configuration -->
+<section>
+    <h2>Unit Configuration</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>$unit_base</code></td>
+                <td><code>0.0625rem</code></td>
+                <td>Base Q unit (1px at 16px root)</td>
+            </tr>
+            <tr>
+                <td><code>$unit_base_px</code></td>
+                <td><code>1px</code></td>
+                <td>Base unit in pixels</td>
+            </tr>
+            <tr>
+                <td><code>$root_font_size</code></td>
+                <td><code>16px</code></td>
+                <td>Assumed browser root font size</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block"><span class="comment">// Using a 4px base unit instead of 1px</span>
+        $unit_base: 0.25rem;
+
+        <span class="comment">// Now q(4) = 1rem = 16px</span>
+        <span class="comment">// q(8) = 2rem = 32px</span>
+    </div>
+</section>
+
+<!-- Scale Configuration -->
+<section>
+    <h2>Scale Configuration</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>$scale_base</code></td>
+                <td><code>1rem</code></td>
+                <td>Base value for modular scale</td>
+            </tr>
+            <tr>
+                <td><code>$scale_ratio</code></td>
+                <td><code>1.618</code></td>
+                <td>Default scale ratio (golden ratio)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Configuring Typography Scale</h3>
+    <div class="code-block"><span class="comment">// Use Major Third for tighter scale</span>
+        $scale_ratio: 1.25;
+
+        <span class="comment">// Or Perfect Fifth for dramatic scale</span>
+        $scale_ratio: 1.5;
+
+        <span class="comment">// Custom type scale</span>
+        $type_scale: (
+        "xs": modular_scale(-2),
+        "sm": modular_scale(-1),
+        "base": modular_scale(0),
+        "md": modular_scale(1),
+        "lg": modular_scale(2),
+        "xl": modular_scale(3),
+        "2xl": modular_scale(4),
+        "3xl": modular_scale(5),
+        );
+    </div>
+</section>
+
+<!-- Q Steps Configuration -->
+<section>
+    <h2>Q Steps Scale</h2>
+    <p>The <code>$q_steps</code> map defines which Q values generate utility classes.</p>
+
+    <h3>Default Scale</h3>
+    <div class="code-block">$q_steps: (
+        0, 1, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48,
+        56, 64, 72, 80, 96, 112, 128, 144, 160, 192, 224, 256
+        ) !default;</div>
+
+    <h3>Customizing</h3>
+    <div class="code-block"><span class="comment">// Minimal scale for smaller CSS output</span>
+        $q_steps: (0, 4, 8, 16, 24, 32, 48, 64);
+
+        <span class="comment">// Extended scale for more precision</span>
+        $q_steps: (
+        0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16,
+        20, 24, 28, 32, 40, 48, 56, 64, 80, 96, 128
+        );
+
+        <span class="comment">// 4px-based scale (multiples of 4)</span>
+        $q_steps: (0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96);
+    </div>
+</section>
+
+<!-- Breakpoint Configuration -->
+<section>
+    <h2>Breakpoint Configuration</h2>
+    <p>Customize responsive breakpoints by overriding the <code>$breakpoints</code> map.</p>
+
+    <h3>Default Breakpoints</h3>
+    <div class="code-block">$breakpoints: (
+        ss: 280px,
+        xs: 320px,
+        sm: 480px,
+        md: 768px,
+        lg: 1024px,
+        xl: 1280px,
+        sl: 1440px,
+        ) !default;</div>
+
+    <h3>Customizing</h3>
+    <div class="code-block"><span class="comment">// Tailwind-style breakpoints</span>
+        $breakpoints: (
+        ss: 280px,
+        xs: 320px,
+        sm: 640px,
+        md: 768px,
+        lg: 1024px,
+        xl: 1280px,
+        sl: 1536px,
+        );
+
+        <span class="comment">// Bootstrap-style breakpoints</span>
+        $breakpoints: (
+        ss: 280px,
+        xs: 320px,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        sl: 1400px,
+        );
+    </div>
+</section>
+
+<!-- Layer Configuration -->
+<section>
+    <h2>Layer Configuration</h2>
+    <p>Customize z-index layers via <code>$layer_map</code>.</p>
+
+    <h3>Default Layers</h3>
+    <div class="code-block">$layer_map: (
+        "canvas": -1000,
+        "background": 0,
+        "content": 2000,
+        "interface": 4000,
+        "modal": 7000,
+        "guides": 9998,
+        "debug": 9999,
+        ) !default;</div>
+
+    <h3>Customizing</h3>
+    <div class="code-block"><span class="comment">// Add custom layers</span>
+        $layer_map: (
+        "canvas": -1000,
+        "background": 0,
+        "content": 1000,
+        "dropdown": 2000,
+        "sticky": 3000,
+        "overlay": 4000,
+        "modal": 5000,
+        "toast": 6000,
+        "tooltip": 7000,
+        "guides": 9998,
+        );
+
+        <span class="comment">// Usage</span>
+        .dropdown { z-index: z("dropdown"); }
+        .toast { z-index: z("toast"); }
+    </div>
+</section>
+
+<!-- Color Configuration -->
+<section>
+    <h2>Color Configuration</h2>
+    <p>Define your color palette using <code>$color_map</code>.</p>
+
+    <div class="code-block">$color_map: (
+        "primary": (
+        "base": #2563eb,
+        "light": #3b82f6,
+        "dark": #1d4ed8,
+        "contrast": #ffffff,
+        ),
+        "secondary": (
+        "base": #64748b,
+        "light": #94a3b8,
+        "dark": #475569,
+        "contrast": #ffffff,
+        ),
+        "success": (
+        "base": #22c55e,
+        "light": #4ade80,
+        "dark": #16a34a,
+        "contrast": #ffffff,
+        ),
+        "danger": (
+        "base": #ef4444,
+        "light": #f87171,
+        "dark": #dc2626,
+        "contrast": #ffffff,
+        ),
+        ) !default;
+
+        <span class="comment">// Usage</span>
+        .btn-primary {
+        background: color("primary");
+        color: color("primary", "contrast");
+
+        &:hover {
+        background: color("primary", "dark");
+        }
+        }
+    </div>
+</section>
+
+<!-- Ratio Configuration -->
+<section>
+    <h2>Ratio Configuration</h2>
+    <p>Extend or customize aspect ratios via <code>$ratio_map</code>.</p>
+
+    <h3>Default Ratios</h3>
+    <div class="code-block">$ratio_map: (
+        "square": (1, 1),
+        "photo": (4, 3),
+        "landscape": (3, 2),
+        "wide": (16, 9),
+        "ultrawide": (21, 9),
+        "golden": (1.618, 1),
+        "a_series": (1, 1.4142),
+        "portrait": (2, 3),
+        ) !default;</div>
+
+    <h3>Customizing</h3>
+    <div class="code-block"><span class="comment">// Add custom ratios</span>
+        $ratio_map: map.merge($ratio_map, (
+        "cinema": (2.35, 1),
+        "imax": (1.43, 1),
+        "instagram": (1, 1),
+        "instagram-story": (9, 16),
+        "twitter": (16, 9),
+        "linkedin": (1.91, 1),
+        ));
+
+        <span class="comment">// Usage</span>
+        .cinema-frame {
+        @include ratio_name("cinema");
+        }
+    </div>
+</section>
+
+<!-- Paper Configuration -->
+<section>
+    <h2>Paper Configuration</h2>
+    <p>Paper sizes for print-oriented designs.</p>
+
+    <h3>Default Paper Sizes</h3>
+    <div class="code-block">$paper_map: (
+        "a3": (297mm, 420mm),
+        "a4": (210mm, 297mm),
+        "a5": (148mm, 210mm),
+        "a6": (105mm, 148mm),
+        "letter": (216mm, 279mm),
+        "legal": (216mm, 356mm),
+        "tabloid": (279mm, 432mm),
+        ) !default;</div>
+
+    <h3>Customizing</h3>
+    <div class="code-block"><span class="comment">// Add custom sizes</span>
+        $paper_map: map.merge($paper_map, (
+        "business-card": (89mm, 51mm),
+        "postcard": (148mm, 105mm),
+        "poster-small": (420mm, 594mm), <span class="comment">// A2</span>
+        ));</div>
+</section>
+
+<!-- Build Configuration -->
+<section>
+    <h2>Build Configuration</h2>
+    <p>Control what gets generated in your CSS output.</p>
+
+    <div class="code-block"><span class="comment">// Disable utility classes generation</span>
+        $generate_utilities: false;
+
+        <span class="comment">// Disable responsive utilities (smaller output)</span>
+        $generate_responsive_utilities: false;
+
+        <span class="comment">// Choose which utility types to generate</span>
+        $generate_spacing_utilities: true;
+        $generate_size_utilities: true;
+        $generate_gap_utilities: true;
+        $generate_ratio_utilities: false; <span class="comment">// Skip ratio utilities</span>
+
+        <span class="comment">// Import after configuration</span>
+        @use "unit.gl";
+    </div>
+</section>
+
+<!-- Full Configuration Example -->
+<section>
+    <h2>Complete Configuration Example</h2>
+    <p>A full example of a customized unit.gl setup.</p>
+
+    <div class="code-block"><span class="comment">// _config.scss</span>
+        <span class="comment">// Complete unit.gl configuration</span>
+
+        @use "sass:map";
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Unit System</span>
+        <span class="comment">// ===================================</span>
+
+        $unit_base: 0.0625rem; <span class="comment">// 1px base</span>
+        $root_font_size: 16px;
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Scale System</span>
+        <span class="comment">// ===================================</span>
+
+        $scale_ratio: 1.25; <span class="comment">// Major Third</span>
+        $scale_base: 1rem;
+
+        $q_steps: (
+        0, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128
+        );
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Breakpoints</span>
+        <span class="comment">// ===================================</span>
+
+        $device_map: (
+        "sm": 640px,
+        "md": 768px,
+        "lg": 1024px,
+        "xl": 1280px,
+        );
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Layers</span>
+        <span class="comment">// ===================================</span>
+
+        $layer_map: (
+        "base": 0,
+        "dropdown": 100,
+        "sticky": 200,
+        "modal": 300,
+        "toast": 400,
+        );
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Colors</span>
+        <span class="comment">// ===================================</span>
+
+        $color_map: (
+        "brand": (
+        "base": #6366f1,
+        "light": #818cf8,
+        "dark": #4f46e5,
+        ),
+        "neutral": (
+        "base": #6b7280,
+        "light": #9ca3af,
+        "dark": #4b5563,
+        ),
+        );
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Build Options</span>
+        <span class="comment">// ===================================</span>
+
+        $generate_utilities: true;
+        $generate_responsive_utilities: true;
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Import unit.gl with configuration</span>
+        <span class="comment">// ===================================</span>
+
+        @forward "unit.gl" with (
+        $unit_base: $unit_base,
+        $scale_ratio: $scale_ratio,
+        $q_steps: $q_steps,
+        $device_map: $device_map,
+        $layer_map: $layer_map,
+        $color_map: $color_map,
+        );
+    </div>
+</section>
+
+{%- endblock %}
