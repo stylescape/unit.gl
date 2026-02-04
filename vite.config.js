@@ -53,7 +53,7 @@ export default defineConfig({
     root: '.',
     publicDir: false,
     server: {
-        port: 3000,
+        port: 3001,
         open: true,
         fs: { strict: false },
     },

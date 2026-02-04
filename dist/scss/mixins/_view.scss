@@ -54,6 +54,21 @@
 }
 
 ///
+/// Applies styles for super-small devices and up (min-width: 280px).
+///
+/// @name media_ss
+/// @example scss - Usage
+///     @include media_ss {
+///         // Styles for super-small devices and up
+///     }
+///
+@mixin media_ss {
+    @media (min-width: $media_ss) {
+        @content;
+    }
+}
+
+///
 /// Applies styles for extra-small devices and up (min-width: 320px).
 ///
 /// @name media_xs

@@ -53,13 +53,13 @@
         "node": ">=20.0.0"
     },
     "devDependencies": {
-        "kist": "^0.1.37",
+        "kist": "^0.1.58",
         "micromatch": "^4.0.8",
         "nunjucks": "^3.2.4",
-        "sass": "^1.87.0",
+        "sass": "^1.97.3",
         "ts-node": "^10.9.2",
-        "typescript": "^5.8.3",
-        "vite": "^7.1.7"
+        "typescript": "^5.9.3",
+        "vite": "^7.3.1"
     },
     "overrides": {
         "webidl-conversions": "6.1.0"
@@ -71,7 +71,25 @@
     "exports": {
         ".": {
             "sass": "./scss/index.scss",
-            "typescript": "./ts/index.ts"
+            "types": "./ts/index.d.ts",
+            "import": "./js/unit.gl.js",
+            "default": "./js/unit.gl.js"
+        },
+        "./utilities": {
+            "sass": "./scss/utilities.scss"
+        },
+        "./guide": {
+            "sass": "./scss/guide.scss"
+        },
+        "./formats": {
+            "sass": "./scss/formats.scss"
+        },
+        "./css/unit.gl.css": "./css/unit.gl.css",
+        "./css/unit.gl.min.css": "./css/unit.gl.min.css"
+    },
+    "typesVersions": {
+        "*": {
+            "*": ["./ts/index.d.ts"]
         }
     }
 }

@@ -19,7 +19,6 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
@@ -27,7 +26,6 @@
 @use "../functions" as *;
 @use "../variables" as *;
 @use "../maps" as *;
-
 
 // ============================================================================
 // Mixins
@@ -42,7 +40,7 @@
 /// @content Styles to be applied within the media query.
 ///
 /// @example scss - Usage
-///     @include device-media-query('iphone-6') {
+///     @include device_media_query('iphone_6') {
 ///         // Styles specific to iPhone 6
 ///     }
 ///

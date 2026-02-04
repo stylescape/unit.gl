@@ -1,0 +1,80 @@
+////
+///
+/// Format Variables
+/// ===========================================================================
+///
+/// A curated, user-extensible page/print format map.
+///
+/// Users can extend formats via Sass module configuration:
+///   @use "unit.gl" with (
+///     $format_overrides: (
+///       "my-format": (100mm, 200mm)
+///     )
+///   );
+///
+/// @group Format
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.3.0
+/// @access public
+///
+////
+
+@use "sass:map";
+
+///
+/// Format map.
+///
+/// Keys are lowercase strings (e.g. "a4", "letter", "q00", "q00+", "q10").
+/// Values are 2-item lists: (width, height) in any CSS length units.
+///
+/// Q-series values are based on the resources in `res/`.
+///
+$format_defaults: (
+    // ISO A series (portrait)
+    "a0": (841mm, 1189mm),
+    "a1": (594mm, 841mm),
+    "a2": (420mm, 594mm),
+    "a3": (297mm, 420mm),
+    "a4": (210mm, 297mm),
+    "a5": (148mm, 210mm),
+    "a6": (105mm, 148mm),
+    // US common sizes (portrait)
+    "letter": (216mm, 279mm),
+    "legal": (216mm, 356mm),
+    "tabloid": (279mm, 432mm),
+    // Q series (portrait) — Q00..Q12
+    // (width, height) in millimeters
+    "q00": (720mm, 1080mm),
+    "q0": (720mm, 1080mm),
+    "q01": (540mm, 720mm),
+    "q1": (540mm, 720mm),
+    "q02": (360mm, 540mm),
+    "q2": (360mm, 540mm),
+    "q03": (270mm, 360mm),
+    "q3": (270mm, 360mm),
+    "q04": (180mm, 270mm),
+    "q4": (180mm, 270mm),
+    "q05": (135mm, 180mm),
+    "q5": (135mm, 180mm),
+    "q06": (90mm, 135mm),
+    "q6": (90mm, 135mm),
+    "q07": (62.5mm, 90mm),
+    "q7": (62.5mm, 90mm),
+    "q08": (45mm, 62.5mm),
+    "q8": (45mm, 62.5mm),
+    "q09": (31.25mm, 45mm),
+    "q9": (31.25mm, 45mm),
+    "q10": (22.5mm, 31.25mm),
+    "q11": (15.625mm, 22.5mm),
+    "q12": (11.25mm, 15.625mm),
+    // Q00 variants
+    "q00+": (1080mm, 1440mm),
+    "q00++": (1440mm, 2160mm)
+);
+
+/// User overrides/extensions for $format_defaults.
+$format_overrides: () !default;
+
+/// Final, user-extensible format map.
+$format_map: map.merge($format_defaults, $format_overrides) !default;

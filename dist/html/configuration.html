@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Configuration — unit.gl</title>
+    <link rel="stylesheet" href="/css/unit.gl.css" />
+    <link rel="stylesheet" href="/css/unit.gl.docs.css" />
+    <script type="module" src="/js/unit.gl.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">    <style>
+        /* ═══════════════════════════════════════════════════════════════
+           Swiss Design System - unit.gl
+           ═══════════════════════════════════════════════════════════════ */
+
+        :root {
+            --swiss-black: #000000;
+            --swiss-white: #ffffff;
+            --swiss-red: #ff0000;
+            --swiss-gray-100: #f5f5f5;
+            --swiss-gray-200: #e8e8e8;
+            --swiss-gray-300: #d4d4d4;
+            --swiss-gray-400: #a3a3a3;
+            --swiss-gray-500: #737373;
+            --swiss-gray-600: #525252;
+            --swiss-gray-700: #404040;
+            --swiss-gray-800: #262626;
+            --swiss-gray-900: #171717;
+
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+            --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+
+            --grid-unit: 8px;
+            --max-width: 1200px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 400;
+            color: var(--swiss-black);
+            background: var(--swiss-white);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Layout
+           ───────────────────────────────────────────────────────────────── */
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 calc(var(--grid-unit) * 4);
+        }
+
+        .header {
+            padding: calc(var(--grid-unit) * 8) 0 calc(var(--grid-unit) * 6);
+            border-bottom: 1px solid var(--swiss-black);
+            margin-bottom: calc(var(--grid-unit) * 6);
+        }
+
+        .header--hero {
+            padding: calc(var(--grid-unit) * 12) 0 calc(var(--grid-unit) * 8);
+        }
+
+        main {
+            padding-bottom: calc(var(--grid-unit) * 12);
+        }
+
+        section {
+            margin-bottom: calc(var(--grid-unit) * 10);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Typography
+           ───────────────────────────────────────────────────────────────── */
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin: 0 0 calc(var(--grid-unit) * 2);
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: calc(var(--grid-unit) * 3);
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-top: calc(var(--grid-unit) * 6);
+            margin-bottom: calc(var(--grid-unit) * 3);
+            padding-bottom: calc(var(--grid-unit) * 2);
+            border-bottom: 2px solid var(--swiss-black);
+        }
+
+        h3 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--swiss-gray-600);
+            margin-top: calc(var(--grid-unit) * 4);
+            margin-bottom: calc(var(--grid-unit) * 2);
+        }
+
+        p {
+            margin: 0 0 calc(var(--grid-unit) * 2);
+            max-width: 65ch;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 1.5;
+            color: var(--swiss-gray-600);
+            max-width: 50ch;
+        }
+
+        .eyebrow {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--swiss-red);
+            margin-bottom: calc(var(--grid-unit) * 1);
+        }
+
+        code {
+            font-family: var(--font-mono);
+            font-size: 0.875em;
+            background: var(--swiss-gray-100);
+            padding: 0.125em 0.375em;
+            border-radius: 2px;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Links
+           ───────────────────────────────────────────────────────────────── */
+
+        a {
+            color: var(--swiss-black);
+            text-decoration: none;
+            border-bottom: 1px solid var(--swiss-black);
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        a:hover {
+            color: var(--swiss-red);
+            border-color: var(--swiss-red);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Tags & Labels
+           ───────────────────────────────────────────────────────────────── */
+
+        .tag {
+            display: inline-block;
+            font-size: 0.625rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background: var(--swiss-black);
+            color: var(--swiss-white);
+            padding: 0.25em 0.625em;
+            margin-left: calc(var(--grid-unit) * 1);
+            vertical-align: middle;
+        }
+
+        .tag--outline {
+            background: transparent;
+            color: var(--swiss-black);
+            border: 1px solid var(--swiss-black);
+        }
+
+        .tag--red {
+            background: var(--swiss-red);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Buttons
+           ───────────────────────────────────────────────────────────────── */
+
+        button,
+        .btn {
+            display: inline-block;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--swiss-white);
+            color: var(--swiss-black);
+            border: 1px solid var(--swiss-black);
+            padding: calc(var(--grid-unit) * 1) calc(var(--grid-unit) * 2);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-decoration: none;
+        }
+
+        button:hover,
+        .btn:hover {
+            background: var(--swiss-black);
+            color: var(--swiss-white);
+            border-color: var(--swiss-black);
+        }
+
+        button.active,
+        .btn.active {
+            background: var(--swiss-black);
+            color: var(--swiss-white);
+        }
+
+        .btn--primary {
+            background: var(--swiss-black);
+            color: var(--swiss-white);
+        }
+
+        .btn--primary:hover {
+            background: var(--swiss-red);
+            border-color: var(--swiss-red);
+        }
+
+        .btn--secondary {
+            background: transparent;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Hero Actions
+           ───────────────────────────────────────────────────────────────── */
+
+        .hero-actions {
+            display: flex;
+            gap: calc(var(--grid-unit) * 2);
+            margin-top: calc(var(--grid-unit) * 4);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Feature Grid & Cards
+           ───────────────────────────────────────────────────────────────── */
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: calc(var(--grid-unit) * 3);
+        }
+
+        .feature-card {
+            background: var(--swiss-gray-50);
+            padding: calc(var(--grid-unit) * 3);
+            border: 1px solid var(--swiss-gray-200);
+        }
+
+        .feature-card__icon {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: calc(var(--grid-unit) * 2);
+            color: var(--swiss-black);
+        }
+
+        .feature-card__title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0 0 calc(var(--grid-unit) * 1);
+        }
+
+        .feature-card__desc {
+            font-size: 0.875rem;
+            color: var(--swiss-gray-600);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Documentation Sections
+           ───────────────────────────────────────────────────────────────── */
+
+        .doc-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: calc(var(--grid-unit) * 4);
+        }
+
+        .doc-section h3 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--swiss-gray-500);
+            margin-bottom: calc(var(--grid-unit) * 2);
+        }
+
+        .doc-section ul {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--grid-unit) * 1);
+        }
+
+        .doc-section li {
+            padding: 0;
+            border: none;
+        }
+
+        .doc-section a {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--swiss-black);
+            border-bottom: none;
+        }
+
+        .doc-section a:hover {
+            color: var(--swiss-red);
+            border-bottom: 1px solid var(--swiss-red);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Grid Toggle Controls
+           ───────────────────────────────────────────────────────────────── */
+
+        .grid-controls {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--grid-unit) * 0.5);
+            background: transparent;
+            padding: 0;
+            border: none;
+        }
+
+        .grid-controls button {
+            font-size: 0.6875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--swiss-gray-600);
+            padding: calc(var(--grid-unit) * 0.5) calc(var(--grid-unit) * 1);
+            border: 1px solid var(--swiss-gray-200);
+            background: var(--swiss-white);
+            border-radius: 0;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .grid-controls button:hover,
+        .grid-controls button:focus {
+            color: var(--swiss-black);
+            border-color: var(--swiss-gray-400);
+            outline: none;
+        }
+
+        .grid-controls button.active {
+            color: var(--swiss-white);
+            background: var(--swiss-black);
+            border-color: var(--swiss-black);
+        }
+
+        .grid-status {
+            display: none;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Lists
+           ───────────────────────────────────────────────────────────────── */
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            padding: calc(var(--grid-unit) * 2) 0;
+            border-bottom: 1px solid var(--swiss-gray-200);
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .list-item__title {
+            font-weight: 500;
+        }
+
+        .list-item__meta {
+            font-size: 0.75rem;
+            color: var(--swiss-gray-500);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Cards & Boxes
+           ───────────────────────────────────────────────────────────────── */
+
+        .card {
+            background: var(--swiss-white);
+            border: 1px solid var(--swiss-black);
+            padding: calc(var(--grid-unit) * 3);
+        }
+
+        .card--filled {
+            background: var(--swiss-gray-100);
+            border: none;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Demo Components
+           ───────────────────────────────────────────────────────────────── */
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: calc(var(--grid-unit) * 3);
+        }
+
+        .demo-box {
+            position: relative;
+            aspect-ratio: 4/3;
+            background: var(--swiss-gray-100);
+            border: 1px solid var(--swiss-gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .demo-box::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: calc(var(--grid-unit) * 1);
+            left: calc(var(--grid-unit) * 1);
+            font-size: 0.625rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--swiss-gray-500);
+        }
+
+        .demo-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(var(--grid-unit) * 3);
+            align-items: flex-end;
+            margin-bottom: calc(var(--grid-unit) * 4);
+        }
+
+        .demo-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: calc(var(--grid-unit) * 1);
+        }
+
+        .demo-item__label {
+            font-family: var(--font-mono);
+            font-size: 0.625rem;
+            color: var(--swiss-gray-500);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Code Blocks
+           ───────────────────────────────────────────────────────────────── */
+
+        .code-block {
+            background: var(--swiss-gray-900);
+            color: var(--swiss-gray-300);
+            padding: calc(var(--grid-unit) * 3);
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: calc(var(--grid-unit) * 3) 0;
+        }
+
+        .code-block .class {
+            color: #7dd3fc;
+        }
+
+        .code-block .value {
+            color: #fda4af;
+        }
+
+        .code-block .comment {
+            color: var(--swiss-gray-500);
+        }
+
+        .code-block .tag-hl {
+            color: #86efac;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Scale Demo
+           ───────────────────────────────────────────────────────────────── */
+
+        .scale-demo {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--grid-unit) * 1);
+        }
+
+        .scale-line {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--grid-unit) * 2);
+            padding: calc(var(--grid-unit) * 1.5) 0;
+            border-bottom: 1px solid var(--swiss-gray-200);
+        }
+
+        .scale-line__label {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            color: var(--swiss-gray-500);
+            min-width: 80px;
+        }
+
+        .scale-line__value {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            color: var(--swiss-gray-400);
+            min-width: 60px;
+        }
+
+        .scale-line__bar {
+            height: 8px;
+            background: var(--swiss-black);
+        }
+
+        .scale-line__text {
+            flex: 1;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Number Grid
+           ───────────────────────────────────────────────────────────────── */
+
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 1px;
+            background: var(--swiss-gray-300);
+            border: 1px solid var(--swiss-gray-300);
+        }
+
+        .number-cell {
+            background: var(--swiss-white);
+            padding: calc(var(--grid-unit) * 2);
+            text-align: center;
+        }
+
+        .number-cell__value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1;
+            margin-bottom: calc(var(--grid-unit) * 0.5);
+        }
+
+        .number-cell__label {
+            font-family: var(--font-mono);
+            font-size: 0.625rem;
+            color: var(--swiss-gray-500);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Navigation
+           ───────────────────────────────────────────────────────────────── */
+
+        .nav-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--swiss-white);
+        }
+
+        .nav {
+            background: var(--swiss-white);
+            border-bottom: 1px solid var(--swiss-gray-200);
+            padding: calc(var(--grid-unit) * 1.5) calc(var(--grid-unit) * 4);
+            max-width: calc(var(--max-width) + var(--grid-unit) * 8);
+            margin: 0 auto;
+        }
+
+        .nav__inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: calc(var(--grid-unit) * 4);
+        }
+
+        .nav__right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: calc(var(--grid-unit) * 1);
+            flex-wrap: wrap;
+        }
+
+        .nav__logo {
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: -0.02em;
+            color: var(--swiss-black);
+            border: none;
+            outline: none;
+        }
+
+        .nav__logo:hover,
+        .nav__logo:focus {
+            color: var(--swiss-red);
+            border: none;
+            outline: none;
+        }
+
+        .nav__links {
+            display: flex;
+            gap: calc(var(--grid-unit) * 0.5);
+            flex-wrap: wrap;
+        }
+
+        .nav__link {
+            font-size: 0.6875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--swiss-gray-600);
+            padding: calc(var(--grid-unit) * 0.5) calc(var(--grid-unit) * 1);
+            border: none;
+            border-radius: 0;
+            outline: none;
+            transition: all 0.15s;
+        }
+
+        .nav__link:hover,
+        .nav__link:focus {
+            color: var(--swiss-black);
+            border: none;
+            outline: none;
+        }
+
+        .nav__link--active {
+            color: var(--swiss-white);
+            background: var(--swiss-black);
+        }
+
+        .nav__link--active:hover {
+            color: var(--swiss-white);
+        }
+
+        /* Dropdown Menu */
+        .nav__dropdown {
+            position: relative;
+        }
+
+        .nav__dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--grid-unit) * 0.5);
+            font-size: 0.6875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--swiss-gray-600);
+            padding: calc(var(--grid-unit) * 0.5) calc(var(--grid-unit) * 1);
+            border: 1px solid var(--swiss-gray-200);
+            background: var(--swiss-white);
+            cursor: pointer;
+            outline: none;
+            transition: all 0.15s;
+        }
+
+        .nav__dropdown-toggle:hover,
+        .nav__dropdown-toggle:focus {
+            color: var(--swiss-black);
+            border-color: var(--swiss-gray-400);
+            outline: none;
+        }
+
+        .nav__dropdown-toggle::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid currentColor;
+            transition: transform 0.15s;
+        }
+
+        .nav__dropdown.open .nav__dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+
+        .nav__dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 180px;
+            background: var(--swiss-white);
+            border: 1px solid var(--swiss-gray-200);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.15s;
+            z-index: 1000;
+        }
+
+        .nav__dropdown.open .nav__dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(4px);
+        }
+
+        .nav__dropdown-menu a {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--swiss-gray-600);
+            padding: calc(var(--grid-unit) * 1) calc(var(--grid-unit) * 1.5);
+            border: none;
+            border-bottom: 1px solid var(--swiss-gray-100);
+            outline: none;
+            transition: all 0.1s;
+        }
+
+        .nav__dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .nav__dropdown-menu a:hover,
+        .nav__dropdown-menu a:focus {
+            color: var(--swiss-black);
+            background: var(--swiss-gray-50);
+            border: none;
+            border-bottom: 1px solid var(--swiss-gray-100);
+            outline: none;
+        }
+
+        .nav__dropdown-menu a:last-child:hover,
+        .nav__dropdown-menu a:last-child:focus {
+            border-bottom: none;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Sidebar Layout
+           ───────────────────────────────────────────────────────────────── */
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: calc(var(--grid-unit) * 6);
+        }
+
+        @media (min-width: 1024px) {
+            .layout {
+                grid-template-columns: 200px 1fr;
+            }
+        }
+
+        .sidebar {
+            position: sticky;
+            top: calc(var(--grid-unit) * 8);
+            align-self: start;
+        }
+
+        .sidebar__section {
+            margin-bottom: calc(var(--grid-unit) * 3);
+        }
+
+        .sidebar__title {
+            font-size: 0.625rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--swiss-gray-400);
+            margin-bottom: calc(var(--grid-unit) * 1);
+        }
+
+        .sidebar__list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar__list li {
+            padding: calc(var(--grid-unit) * 0.5) 0;
+            border-bottom: none;
+        }
+
+        .sidebar__link {
+            font-size: 0.8125rem;
+            color: var(--swiss-gray-600);
+            border: none;
+            display: block;
+            padding: calc(var(--grid-unit) * 0.5) 0;
+        }
+
+        .sidebar__link:hover {
+            color: var(--swiss-black);
+            border: none;
+        }
+
+        .sidebar__link--active {
+            color: var(--swiss-black);
+            font-weight: 600;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Tables
+           ───────────────────────────────────────────────────────────────── */
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: calc(var(--grid-unit) * 3) 0;
+            font-size: 0.875rem;
+        }
+
+        .table th,
+        .table td {
+            text-align: left;
+            padding: calc(var(--grid-unit) * 1.5);
+            border-bottom: 1px solid var(--swiss-gray-200);
+        }
+
+        .table th {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--swiss-gray-500);
+            background: var(--swiss-gray-100);
+        }
+
+        .table td:first-child {
+            font-weight: 500;
+        }
+
+        .table code {
+            font-size: 0.75rem;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Alert Boxes
+           ───────────────────────────────────────────────────────────────── */
+
+        .alert {
+            padding: calc(var(--grid-unit) * 2);
+            margin: calc(var(--grid-unit) * 3) 0;
+            border-left: 4px solid var(--swiss-black);
+            background: var(--swiss-gray-100);
+        }
+
+        .alert--tip {
+            border-left-color: #22c55e;
+        }
+
+        .alert--warning {
+            border-left-color: #f59e0b;
+        }
+
+        .alert--danger {
+            border-left-color: var(--swiss-red);
+        }
+
+        .alert__title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: calc(var(--grid-unit) * 0.5);
+        }
+
+        .alert p {
+            margin: 0;
+            font-size: 0.875rem;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           API Signature
+           ───────────────────────────────────────────────────────────────── */
+
+        .api-signature {
+            background: var(--swiss-gray-900);
+            color: #7dd3fc;
+            padding: calc(var(--grid-unit) * 2);
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            margin: calc(var(--grid-unit) * 2) 0;
+        }
+
+        .api-params {
+            margin: calc(var(--grid-unit) * 2) 0;
+        }
+
+        .api-param {
+            display: grid;
+            grid-template-columns: 140px 100px 1fr;
+            gap: calc(var(--grid-unit) * 2);
+            padding: calc(var(--grid-unit) * 1.5) 0;
+            border-bottom: 1px solid var(--swiss-gray-200);
+            font-size: 0.875rem;
+        }
+
+        .api-param__name {
+            font-family: var(--font-mono);
+            font-weight: 500;
+        }
+
+        .api-param__type {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--swiss-gray-500);
+        }
+
+        .api-param__desc {
+            color: var(--swiss-gray-600);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Footer
+           ───────────────────────────────────────────────────────────────── */
+
+        .footer {
+            border-top: 1px solid var(--swiss-black);
+            padding: calc(var(--grid-unit) * 4) 0;
+            margin-top: calc(var(--grid-unit) * 8);
+        }
+
+        .footer__content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--swiss-gray-500);
+        }
+
+        .footer__links {
+            display: flex;
+            gap: calc(var(--grid-unit) * 2);
+        }
+
+        .footer__link {
+            color: var(--swiss-gray-500);
+            border: none;
+        }
+
+        .footer__link:hover {
+            color: var(--swiss-black);
+            border: none;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────
+           Responsive
+           ───────────────────────────────────────────────────────────────── */
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .header {
+                padding: calc(var(--grid-unit) * 4) 0;
+            }
+
+            .nav__links {
+                display: none;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .api-param {
+                grid-template-columns: 1fr;
+                gap: calc(var(--grid-unit) * 0.5);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <div class="nav-wrapper">
+        <nav class="nav">
+            <div class="nav__inner">
+                <a href="index.html" class="nav__logo">unit.gl</a>
+                <div class="nav__right">
+                    <div class="nav__dropdown" id="nav-dropdown">
+                        <button type="button" class="nav__dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                            Menu
+                        </button>
+                        <div class="nav__dropdown-menu" role="menu">
+                            <a href="getting-started.html" role="menuitem">Getting Started</a>
+                            <a href="core-concepts.html" role="menuitem">Core Concepts</a>
+                            <a href="functions.html" role="menuitem">Functions</a>
+                            <a href="mixins.html" role="menuitem">Mixins</a>
+                            <a href="test_breakpoints.html" role="menuitem">Breakpoints</a>
+                            <a href="test_device.html" role="menuitem">Devices</a>
+                            <a href="test_qscale.html" role="menuitem">Q Scale</a>
+                            <a href="test_paper.html" role="menuitem">Formats</a>
+                            <a href="test_utilities.html" role="menuitem">Utilities</a>
+                            <a href="configuration.html" role="menuitem">Config</a>
+                        </div>
+                    </div>
+
+                    <a href="https://github.com/stylescape/unit.gl" class="nav__link" target="_blank">GitHub</a>
+
+                    <div class="grid-controls" aria-label="Grid overlay controls">
+                        <button type="button" data-toggle="baseline">Baseline</button>
+                        <button type="button" data-toggle="graph">Graph</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Grid Overlays -->
+    <div class="guide--layer guide--graph_centered" data-grid="graph"></div>
+    <div class="guide--layer guide--baseline" data-grid="baseline"></div>
+
+    <div class="container">
+        <header class="header"><p class="eyebrow">Customization</p>
+<h1>Configuration</h1>
+<p class="lead">Customize unit.gl by overriding variables, extending maps, and configuring build options.</p>        </header>
+
+        <main>
+<!-- Variables Overview -->
+<section>
+    <h2>Variables</h2>
+    <p>unit.gl uses SCSS variables with the <code>!default</code> flag, allowing you to override them before importing
+        the library.</p>
+
+    <h3>Override Pattern</h3>
+    <div class="code-block"><span class="comment">// _your-config.scss</span>
+        <span class="comment">// Override variables BEFORE importing unit.gl</span>
+
+        <span class="comment">// Custom base unit</span>
+        $unit_base: 0.0625rem; <span class="comment">// Default: 0.0625rem (1px)</span>
+
+        <span class="comment">// Custom typography scale</span>
+        $scale_ratio: 1.25; <span class="comment">// Default: 1.618 (golden ratio)</span>
+
+        <span class="comment">// Custom breakpoints</span>
+        $breakpoint_md: 800px; <span class="comment">// Default: 768px</span>
+
+        <span class="comment">// Then import unit.gl</span>
+        @use "unit.gl" with (
+        $unit_base: $unit_base,
+        $scale_ratio: $scale_ratio
+        );
+    </div>
+
+    <div class="alert alert--tip">
+        <strong>Tip:</strong> Use the <code>@use ... with ()</code> syntax for the cleanest configuration pattern.
+    </div>
+</section>
+
+<!-- Unit Configuration -->
+<section>
+    <h2>Unit Configuration</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>$unit_base</code></td>
+                <td><code>0.0625rem</code></td>
+                <td>Base Q unit (1px at 16px root)</td>
+            </tr>
+            <tr>
+                <td><code>$unit_base_px</code></td>
+                <td><code>1px</code></td>
+                <td>Base unit in pixels</td>
+            </tr>
+            <tr>
+                <td><code>$root_font_size</code></td>
+                <td><code>16px</code></td>
+                <td>Assumed browser root font size</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block"><span class="comment">// Using a 4px base unit instead of 1px</span>
+        $unit_base: 0.25rem;
+
+        <span class="comment">// Now q(4) = 1rem = 16px</span>
+        <span class="comment">// q(8) = 2rem = 32px</span>
+    </div>
+</section>
+
+<!-- Scale Configuration -->
+<section>
+    <h2>Scale Configuration</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>$scale_base</code></td>
+                <td><code>1rem</code></td>
+                <td>Base value for modular scale</td>
+            </tr>
+            <tr>
+                <td><code>$scale_ratio</code></td>
+                <td><code>1.618</code></td>
+                <td>Default scale ratio (golden ratio)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Configuring Typography Scale</h3>
+    <div class="code-block"><span class="comment">// Use Major Third for tighter scale</span>
+        $scale_ratio: 1.25;
+
+        <span class="comment">// Or Perfect Fifth for dramatic scale</span>
+        $scale_ratio: 1.5;
+
+        <span class="comment">// Custom type scale</span>
+        $type_scale: (
+        "xs": modular_scale(-2),
+        "sm": modular_scale(-1),
+        "base": modular_scale(0),
+        "md": modular_scale(1),
+        "lg": modular_scale(2),
+        "xl": modular_scale(3),
+        "2xl": modular_scale(4),
+        "3xl": modular_scale(5),
+        );
+    </div>
+</section>
+
+<!-- Q Steps Configuration -->
+<section>
+    <h2>Q Steps Scale</h2>
+    <p>The <code>$q_steps</code> map defines which Q values generate utility classes.</p>
+
+    <h3>Default Scale</h3>
+    <div class="code-block">$q_steps: (
+        0, 1, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48,
+        56, 64, 72, 80, 96, 112, 128, 144, 160, 192, 224, 256
+        ) !default;</div>
+
+    <h3>Customizing</h3>
+    <div class="code-block"><span class="comment">// Minimal scale for smaller CSS output</span>
+        $q_steps: (0, 4, 8, 16, 24, 32, 48, 64);
+
+        <span class="comment">// Extended scale for more precision</span>
+        $q_steps: (
+        0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16,
+        20, 24, 28, 32, 40, 48, 56, 64, 80, 96, 128
+        );
+
+        <span class="comment">// 4px-based scale (multiples of 4)</span>
+        $q_steps: (0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96);
+    </div>
+</section>
+
+<!-- Breakpoint Configuration -->
+<section>
+    <h2>Breakpoint Configuration</h2>
+    <p>Customize responsive breakpoints by overriding the <code>$breakpoints</code> map.</p>
+
+    <h3>Default Breakpoints</h3>
+    <div class="code-block">$breakpoints: (
+        ss: 280px,
+        xs: 320px,
+        sm: 480px,
+        md: 768px,
+        lg: 1024px,
+        xl: 1280px,
+        sl: 1440px,
+        ) !default;</div>
+
+    <h3>Customizing</h3>
+    <div class="code-block"><span class="comment">// Tailwind-style breakpoints</span>
+        $breakpoints: (
+        ss: 280px,
+        xs: 320px,
+        sm: 640px,
+        md: 768px,
+        lg: 1024px,
+        xl: 1280px,
+        sl: 1536px,
+        );
+
+        <span class="comment">// Bootstrap-style breakpoints</span>
+        $breakpoints: (
+        ss: 280px,
+        xs: 320px,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        sl: 1400px,
+        );
+    </div>
+</section>
+
+<!-- Layer Configuration -->
+<section>
+    <h2>Layer Configuration</h2>
+    <p>Customize z-index layers via <code>$layer_map</code>.</p>
+
+    <h3>Default Layers</h3>
+    <div class="code-block">$layer_map: (
+        "canvas": -1000,
+        "background": 0,
+        "content": 2000,
+        "interface": 4000,
+        "modal": 7000,
+        "guides": 9998,
+        "debug": 9999,
+        ) !default;</div>
+
+    <h3>Customizing</h3>
+    <div class="code-block"><span class="comment">// Add custom layers</span>
+        $layer_map: (
+        "canvas": -1000,
+        "background": 0,
+        "content": 1000,
+        "dropdown": 2000,
+        "sticky": 3000,
+        "overlay": 4000,
+        "modal": 5000,
+        "toast": 6000,
+        "tooltip": 7000,
+        "guides": 9998,
+        );
+
+        <span class="comment">// Usage</span>
+        .dropdown { z-index: z("dropdown"); }
+        .toast { z-index: z("toast"); }
+    </div>
+</section>
+
+<!-- Color Configuration -->
+<section>
+    <h2>Color Configuration</h2>
+    <p>Define your color palette using <code>$color_map</code>.</p>
+
+    <div class="code-block">$color_map: (
+        "primary": (
+        "base": #2563eb,
+        "light": #3b82f6,
+        "dark": #1d4ed8,
+        "contrast": #ffffff,
+        ),
+        "secondary": (
+        "base": #64748b,
+        "light": #94a3b8,
+        "dark": #475569,
+        "contrast": #ffffff,
+        ),
+        "success": (
+        "base": #22c55e,
+        "light": #4ade80,
+        "dark": #16a34a,
+        "contrast": #ffffff,
+        ),
+        "danger": (
+        "base": #ef4444,
+        "light": #f87171,
+        "dark": #dc2626,
+        "contrast": #ffffff,
+        ),
+        ) !default;
+
+        <span class="comment">// Usage</span>
+        .btn-primary {
+        background: color("primary");
+        color: color("primary", "contrast");
+
+        &:hover {
+        background: color("primary", "dark");
+        }
+        }
+    </div>
+</section>
+
+<!-- Ratio Configuration -->
+<section>
+    <h2>Ratio Configuration</h2>
+    <p>Extend or customize aspect ratios via <code>$ratio_map</code>.</p>
+
+    <h3>Default Ratios</h3>
+    <div class="code-block">$ratio_map: (
+        "square": (1, 1),
+        "photo": (4, 3),
+        "landscape": (3, 2),
+        "wide": (16, 9),
+        "ultrawide": (21, 9),
+        "golden": (1.618, 1),
+        "a_series": (1, 1.4142),
+        "portrait": (2, 3),
+        ) !default;</div>
+
+    <h3>Customizing</h3>
+    <div class="code-block"><span class="comment">// Add custom ratios</span>
+        $ratio_map: map.merge($ratio_map, (
+        "cinema": (2.35, 1),
+        "imax": (1.43, 1),
+        "instagram": (1, 1),
+        "instagram-story": (9, 16),
+        "twitter": (16, 9),
+        "linkedin": (1.91, 1),
+        ));
+
+        <span class="comment">// Usage</span>
+        .cinema-frame {
+        @include ratio_name("cinema");
+        }
+    </div>
+</section>
+
+<!-- Paper Configuration -->
+<section>
+    <h2>Paper Configuration</h2>
+    <p>Paper sizes for print-oriented designs.</p>
+
+    <h3>Default Paper Sizes</h3>
+    <div class="code-block">$paper_map: (
+        "a3": (297mm, 420mm),
+        "a4": (210mm, 297mm),
+        "a5": (148mm, 210mm),
+        "a6": (105mm, 148mm),
+        "letter": (216mm, 279mm),
+        "legal": (216mm, 356mm),
+        "tabloid": (279mm, 432mm),
+        ) !default;</div>
+
+    <h3>Customizing</h3>
+    <div class="code-block"><span class="comment">// Add custom sizes</span>
+        $paper_map: map.merge($paper_map, (
+        "business-card": (89mm, 51mm),
+        "postcard": (148mm, 105mm),
+        "poster-small": (420mm, 594mm), <span class="comment">// A2</span>
+        ));</div>
+</section>
+
+<!-- Build Configuration -->
+<section>
+    <h2>Build Configuration</h2>
+    <p>Control what gets generated in your CSS output.</p>
+
+    <div class="code-block"><span class="comment">// Disable utility classes generation</span>
+        $generate_utilities: false;
+
+        <span class="comment">// Disable responsive utilities (smaller output)</span>
+        $generate_responsive_utilities: false;
+
+        <span class="comment">// Choose which utility types to generate</span>
+        $generate_spacing_utilities: true;
+        $generate_size_utilities: true;
+        $generate_gap_utilities: true;
+        $generate_ratio_utilities: false; <span class="comment">// Skip ratio utilities</span>
+
+        <span class="comment">// Import after configuration</span>
+        @use "unit.gl";
+    </div>
+</section>
+
+<!-- Full Configuration Example -->
+<section>
+    <h2>Complete Configuration Example</h2>
+    <p>A full example of a customized unit.gl setup.</p>
+
+    <div class="code-block"><span class="comment">// _config.scss</span>
+        <span class="comment">// Complete unit.gl configuration</span>
+
+        @use "sass:map";
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Unit System</span>
+        <span class="comment">// ===================================</span>
+
+        $unit_base: 0.0625rem; <span class="comment">// 1px base</span>
+        $root_font_size: 16px;
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Scale System</span>
+        <span class="comment">// ===================================</span>
+
+        $scale_ratio: 1.25; <span class="comment">// Major Third</span>
+        $scale_base: 1rem;
+
+        $q_steps: (
+        0, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128
+        );
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Breakpoints</span>
+        <span class="comment">// ===================================</span>
+
+        $device_map: (
+        "sm": 640px,
+        "md": 768px,
+        "lg": 1024px,
+        "xl": 1280px,
+        );
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Layers</span>
+        <span class="comment">// ===================================</span>
+
+        $layer_map: (
+        "base": 0,
+        "dropdown": 100,
+        "sticky": 200,
+        "modal": 300,
+        "toast": 400,
+        );
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Colors</span>
+        <span class="comment">// ===================================</span>
+
+        $color_map: (
+        "brand": (
+        "base": #6366f1,
+        "light": #818cf8,
+        "dark": #4f46e5,
+        ),
+        "neutral": (
+        "base": #6b7280,
+        "light": #9ca3af,
+        "dark": #4b5563,
+        ),
+        );
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Build Options</span>
+        <span class="comment">// ===================================</span>
+
+        $generate_utilities: true;
+        $generate_responsive_utilities: true;
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Import unit.gl with configuration</span>
+        <span class="comment">// ===================================</span>
+
+        @forward "unit.gl" with (
+        $unit_base: $unit_base,
+        $scale_ratio: $scale_ratio,
+        $q_steps: $q_steps,
+        $device_map: $device_map,
+        $layer_map: $layer_map,
+        $color_map: $color_map,
+        );
+    </div>
+</section>        </main>
+
+        <footer class="footer">
+            <div class="footer__content">
+                <span>unit.gl — Dynamic Layout Engine</span>
+                <div class="footer__links">
+                    <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank">GitHub</a>
+                    <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank">npm</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Grid toggle functionality
+        document.querySelectorAll('.grid-controls button').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const gridType = this.dataset.toggle;
+                const grid = document.querySelector(`[data-grid="${gridType}"]`);
+                if (grid) {
+                    grid.classList.toggle('active');
+                    this.classList.toggle('active');
+                }
+            });
+        });
+
+        // Dropdown menu functionality
+        const dropdown = document.getElementById('nav-dropdown');
+        const toggle = dropdown?.querySelector('.nav__dropdown-toggle');
+
+        toggle?.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const isOpen = dropdown.classList.toggle('open');
+            this.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+            if (dropdown && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+                toggle?.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close dropdown when pressing Escape
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && dropdown?.classList.contains('open')) {
+                dropdown.classList.remove('open');
+                toggle?.setAttribute('aria-expanded', 'false');
+                toggle?.focus();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

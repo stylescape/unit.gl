@@ -1,0 +1,22 @@
+////
+///
+/// unit.gl/guide
+/// ===========================================================================
+///
+/// Modular entrypoint for visual guide overlays (baseline, graph grids).
+/// Use this when you only need the guide/overlay helpers.
+///
+/// @example scss - Usage
+///   @use "unit.gl/guide";
+///
+/// @group Guide
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.3.0
+/// @access public
+///
+////
+
+@forward "variables/guide";
+@forward "mixins/guide";
+@forward "classes/guide";

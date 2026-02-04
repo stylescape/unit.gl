@@ -60,8 +60,7 @@ $device_map: (
     // ------------------------------------------------------------------------
     /// iPhones
     /// iPhones with varying screen sizes and pixel densities.
-    "iphone_5":
-        (
+    "iphone_5": (
             "min-width": 320px,
             "max-width": 568px,
             "pixel-ratio": 2
@@ -105,8 +104,7 @@ $device_map: (
     // ------------------------------------------------------------------------
     /// iPhones
     /// iPhones with varying screen sizes and pixel densities.
-    "samsung_s10":
-        (
+    "samsung_s10": (
             "min-width": 360px,
             "max-width": 760px,
             "pixel-ratio": 3
@@ -125,8 +123,7 @@ $device_map: (
     // ------------------------------------------------------------------------
     /// Samsung Galaxy Fold
     /// Samsung Galaxy Fold devices with foldable screens.
-    "galaxy_fold":
-        (
+    "galaxy_fold": (
             "min-width": 280px,
             "max-width": 653px,
             "pixel-ratio": 3
@@ -135,8 +132,7 @@ $device_map: (
     // ------------------------------------------------------------------------
     /// Google Pixel
     /// Google Pixel devices with varying screen sizes and pixel densities.
-    "google_pixel":
-        (
+    "google_pixel": (
             "min-width": 411px,
             "max-width": 731px,
             "pixel-ratio": 2.6
@@ -148,8 +144,7 @@ $device_map: (
     ),
     /// Other Smartphones
     /// Other popular smartphones with varying screen sizes and pixel densities.
-    "lg_g6":
-        (
+    "lg_g6": (
             "min-width": 360px,
             "max-width": 720px,
             "pixel-ratio": 4
@@ -180,8 +175,7 @@ $device_map: (
     // ------------------------------------------------------------------------
     /// iPads
     /// Various models of Apple"s iPad, including iPad, iPad Pro, iPad Mini, and iPad Air.
-    "ipad":
-        (
+    "ipad": (
             "min-width": 768px,
             "max-width": 1024px,
             "pixel-ratio": 2
@@ -205,8 +199,7 @@ $device_map: (
     // ------------------------------------------------------------------------
     /// Microsoft Surface
     /// Microsoft"s Surface devices, including Surface Duo and Surface Pro.
-    "surface_duo":
-        (
+    "surface_duo": (
             "min-width": 540px,
             "max-width": 720px,
             "pixel-ratio": 2.5
@@ -222,8 +215,7 @@ $device_map: (
     // ------------------------------------------------------------------------
     /// Desktops & Larger Tablets
     /// Larger devices like desktops and large tablets.
-    "amazon-fire-hd":
-        (
+    "amazon-fire-hd": (
             "min-width": 800px,
             "max-width": 1280px,
             "pixel-ratio": 1.5
@@ -237,8 +229,7 @@ $device_map: (
     // ------------------------------------------------------------------------
     /// Mac Devices
     /// Various Apple Mac devices, including MacBook Air, MacBook Pro, and iMac.
-    "macbook_air":
-        (
+    "macbook_air": (
             "min-width": 1440px,
             "max-width": 2560px,
             "pixel-ratio": 2
@@ -259,8 +250,7 @@ $device_map: (
     /// Other Laptops
     /// Other popular laptops, including Surface Book, Dell XPS,
     /// and Lenovo ThinkPad.
-    "surface_book":
-        (
+    "surface_book": (
             "min-width": 1500px,
             "max-width": 2000px,
             "pixel-ratio": 2
@@ -276,3 +266,6 @@ $device_map: (
         "pixel-ratio": 2
     )
 );
+
+// Public alias (used by mixins/docs)
+$devices: $device_map !default;

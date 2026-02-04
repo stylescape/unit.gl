@@ -11,7 +11,7 @@ options:
     mode: development
     live:
         enabled: false
-        port: 3000
+        port: 3001
         root: public
         watchPaths:
             - src/**
@@ -35,13 +35,14 @@ stages:
 
         steps:
 
-            # Dirs Clean
+            # Dirs Clean (tolerant - ignores missing files/dirs)
             # -----------------------------------------------------------------
             -
                 name: CleanBuildDirStep
                 action: DirectoryCleanAction
                 options:
                     dirPath: "./dist"
+                    tolerant: true
 
             # Process SCSS to CSS
             # -----------------------------------------------------------------
@@ -57,6 +58,22 @@ stages:
                 options:
                     inputFile: "./src/scss/index.scss"
                     outputFile: "./dist/css/unit.gl.css"
+                    styleOption: "expanded"
+
+            # Process Docs SCSS to CSS (separate from package CSS)
+            # -----------------------------------------------------------------
+            -   name: ProcessDocsStyles
+                action: StyleProcessingAction
+                options:
+                    inputFile: "./src/scss/docs.scss"
+                    outputFile: "./dist/css/unit.gl.docs.min.css"
+                    styleOption: "compressed"
+            -
+                name: ProcessAdditionalDocsStyles
+                action: StyleProcessingAction
+                options:
+                    inputFile: "./src/scss/docs.scss"
+                    outputFile: "./dist/css/unit.gl.docs.css"
                     styleOption: "expanded"
 
             # Copy Files

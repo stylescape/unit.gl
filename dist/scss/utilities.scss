@@ -1,0 +1,20 @@
+////
+///
+/// unit.gl/utilities
+/// ===========================================================================
+///
+/// Modular entrypoint for utility class generation.
+/// Use this when you only need the Tailwind-like q() utility classes.
+///
+/// @example scss - Usage
+///   @use "unit.gl/utilities";
+///
+/// @group Utilities
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.3.0
+/// @access public
+///
+////
+
+@forward "classes/utilities";
