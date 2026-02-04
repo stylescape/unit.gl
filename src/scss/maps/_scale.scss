@@ -28,8 +28,7 @@ $scale_musical: (
     // Eight-tone scale
     "nonatonic": 9,
     // Nine-tone scale
-    "dodecatonic": 12,
-    // Twelve-tone scale, covers all semitones in an octave
+    "dodecatonic": 12 // Twelve-tone scale, covers all semitones in an octave
 ) !default;
 
 /// Classic Typographic Scale
@@ -77,6 +76,50 @@ $typographic_scale_classic: (
     // 72q (+12)
     17: q(84),
     // 84q (+12)
-    18: q(96),
-    // 96q (+12)
+    18: q(96) // 96q (+12)
+) !default;
+
+/// Curated Q-Unit Steps for Utility Classes
+/// ---------------------------------------------------------------------------
+///
+/// A curated set of multipliers for the q() function designed for granular
+/// spacing, sizing, and positioning utilities. These steps balance granularity
+/// with a manageable output size, similar to Tailwind's curated scale.
+///
+/// Used for generating utility classes like:
+/// - .p_q4 (padding: q(4))
+/// - .m_q8 (margin: q(8))
+/// - .gap_q12 (gap: q(12))
+/// - .w_q16 (width: q(16))
+/// - .h_q20 (height: q(20))
+///
+/// @name q_steps
+/// @type Map
+///
+$q_steps: (
+    0: 0,
+    1: 1,
+    2: 2,
+    4: 4,
+    6: 6,
+    8: 8,
+    12: 12,
+    16: 16,
+    20: 20,
+    24: 24,
+    32: 32,
+    40: 40,
+    48: 48,
+    56: 56,
+    64: 64,
+    72: 72,
+    80: 80,
+    96: 96,
+    112: 112,
+    128: 128,
+    144: 144,
+    160: 160,
+    192: 192,
+    224: 224,
+    256: 256
 ) !default;
