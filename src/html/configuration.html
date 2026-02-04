@@ -1027,12 +1027,14 @@
                             <a href="core-concepts.html" role="menuitem">Core Concepts</a>
                             <a href="functions.html" role="menuitem">Functions</a>
                             <a href="mixins.html" role="menuitem">Mixins</a>
+                            <a href="layers.html" role="menuitem">Layers</a>
                             <a href="test_breakpoints.html" role="menuitem">Breakpoints</a>
                             <a href="test_device.html" role="menuitem">Devices</a>
                             <a href="test_qscale.html" role="menuitem">Q Scale</a>
                             <a href="test_paper.html" role="menuitem">Formats</a>
                             <a href="test_utilities.html" role="menuitem">Utilities</a>
                             <a href="configuration.html" role="menuitem">Config</a>
+                            <a href="background.html" role="menuitem">Background</a>
                         </div>
                     </div>
 
@@ -1203,40 +1205,38 @@
 <!-- Breakpoint Configuration -->
 <section>
     <h2>Breakpoint Configuration</h2>
-    <p>Customize responsive breakpoints by overriding the <code>$breakpoints</code> map.</p>
+    <p>Customize responsive breakpoints by overriding the <code>$breakpoints</code> map. Default values are multiples of
+        40px.</p>
 
     <h3>Default Breakpoints</h3>
     <div class="code-block">$breakpoints: (
-        ss: 280px,
-        xs: 320px,
-        sm: 480px,
-        md: 768px,
-        lg: 1024px,
-        xl: 1280px,
-        sl: 1440px,
+        ss: 280px, <span class="comment">// 7×40 - Compact/fold</span>
+        xs: 320px, <span class="comment">// 8×40 - Phones</span>
+        sm: 480px, <span class="comment">// 12×40 - Large phones</span>
+        md: 800px, <span class="comment">// 20×40 - Tablets</span>
+        lg: 1040px, <span class="comment">// 26×40 - Laptops</span>
+        xl: 1280px, <span class="comment">// 32×40 - Desktops</span>
+        xxl: 1600px, <span class="comment">// 40×40 - Ultrawide</span>
+        sl: 2560px, <span class="comment">// 64×40 - 4K/5K</span>
         ) !default;</div>
 
     <h3>Customizing</h3>
     <div class="code-block"><span class="comment">// Tailwind-style breakpoints</span>
         $breakpoints: (
-        ss: 280px,
-        xs: 320px,
         sm: 640px,
         md: 768px,
         lg: 1024px,
         xl: 1280px,
-        sl: 1536px,
+        2xl: 1536px,
         );
 
         <span class="comment">// Bootstrap-style breakpoints</span>
         $breakpoints: (
-        ss: 280px,
-        xs: 320px,
         sm: 576px,
         md: 768px,
         lg: 992px,
         xl: 1200px,
-        sl: 1400px,
+        xxl: 1400px,
         );
     </div>
 </section>

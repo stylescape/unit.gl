@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mixins Reference — unit.gl</title>
+    <title>Layers — unit.gl</title>
     <link rel="stylesheet" href="/css/unit.gl.css" />
     <link rel="stylesheet" href="/css/unit.gl.docs.css" />
     <script type="module" src="/js/unit.gl.js"></script>
@@ -1054,485 +1054,374 @@
     <div class="guide--layer guide--baseline" data-grid="baseline"></div>
 
     <div class="container">
-        <header class="header"><p class="eyebrow">API Reference</p>
-<h1>Mixins</h1>
-<p class="lead">Reusable SCSS mixins for responsive design, ratios, guides, and common patterns.</p>        </header>
+        <header class="header"><p class="eyebrow">Documentation</p>
+<h1>Layering System</h1>
+<p class="lead">Semantic z-index management for predictable stacking contexts. Replace magic numbers with meaningful
+    layer names.</p>        </header>
 
         <main>
-<!-- View / Breakpoint Mixins -->
+<!-- Introduction -->
 <section>
-    <h2>Responsive Breakpoints</h2>
-    <p>Mobile-first breakpoint mixins using the device map.</p>
+    <h2>Overview</h2>
 
-    <h3>view()</h3>
-    <p>Apply styles at a specific breakpoint and above.</p>
+    <p>Managing z-index values across a large project quickly becomes chaotic. The common approach of using arbitrary
+        numbers like <code>z-index: 9999</code> leads to an arms race where values keep increasing without any logic or
+        system.</p>
 
-    <div class="api-signature">@include view($breakpoint) { ... }</div>
+    <p>unit.gl solves this with a <strong>semantic layering system</strong>. Instead of numbers, you use meaningful
+        names that describe the <em>purpose</em> of each layer. The <code>z()</code> function maps these names to
+        carefully structured z-index values.</p>
 
-    <div class="api-params">
-        <div class="api-param">
-            <span class="api-param__name">$breakpoint</span>
-            <span class="api-param__type">String</span>
-            <span class="api-param__desc">Breakpoint name from $device_map</span>
+    <div class="code-block">@use "unit.gl" as *;
+
+        <span class="comment">// Instead of this...</span>
+        .modal { z-index: 9999; }
+        .header { z-index: 999; }
+        .dropdown { z-index: 100; }
+
+        <span class="comment">// Use semantic names</span>
+        .modal { z-index: z("modal"); } <span class="comment">// 7000</span>
+        .header { z-index: z("interface"); } <span class="comment">// 4000</span>
+        .dropdown { z-index: z("content"); } <span class="comment">// 2000</span>
+    </div>
+</section>
+
+<!-- The Layer Stack -->
+<section>
+    <h2>The Layer Stack</h2>
+
+    <p>The default layer stack provides five semantic layers with well-spaced z-index values. The large gaps (1000–3000
+        units) between layers allow room for relative positioning without conflicts.</p>
+
+    <div class="layer-stack">
+        <div class="layer-stack__item layer-stack__item--guides">
+            <div class="layer-stack__name">guides</div>
+            <div class="layer-stack__value">z-index: 9998</div>
+            <div class="layer-stack__desc">Development overlays, grid guides, debug tools</div>
+        </div>
+        <div class="layer-stack__item layer-stack__item--modal">
+            <div class="layer-stack__name">modal</div>
+            <div class="layer-stack__value">z-index: 7000</div>
+            <div class="layer-stack__desc">Modal dialogs, lightboxes, fullscreen overlays</div>
+        </div>
+        <div class="layer-stack__item layer-stack__item--interface">
+            <div class="layer-stack__name">interface</div>
+            <div class="layer-stack__value">z-index: 4000</div>
+            <div class="layer-stack__desc">Fixed navigation, sticky headers, toolbars</div>
+        </div>
+        <div class="layer-stack__item layer-stack__item--content">
+            <div class="layer-stack__name">content</div>
+            <div class="layer-stack__value">z-index: 2000</div>
+            <div class="layer-stack__desc">Elevated content, cards, dropdowns, tooltips</div>
+        </div>
+        <div class="layer-stack__item layer-stack__item--canvas">
+            <div class="layer-stack__name">canvas</div>
+            <div class="layer-stack__value">z-index: −1000</div>
+            <div class="layer-stack__desc">Background elements, decorative patterns</div>
         </div>
     </div>
+</section>
 
-    <h4>Available Breakpoints</h4>
+<!-- The z() Function -->
+<section>
+    <h2>The z() Function</h2>
+
+    <div class="api-signature">z($layer)</div>
+
+    <p>Returns the z-index value for the specified layer name.</p>
+
+    <h3>Parameters</h3>
+
+    <div class="api-param">
+        <code>$layer</code>
+        <span class="api-param__type">String</span>
+        <span class="api-param__desc">The name of the layer (e.g., "modal", "interface", "content")</span>
+    </div>
+
+    <h3>Returns</h3>
+    <p><code>Number</code> — The z-index value associated with the layer, or <code>null</code> if not found.</p>
+
+    <h3>Example</h3>
+
+    <div class="code-block">@use "unit.gl" as *;
+
+        .modal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: z("modal"); <span class="comment">// 7000</span>
+        }
+
+        .sticky-header {
+        position: sticky;
+        top: 0;
+        z-index: z("interface"); <span class="comment">// 4000</span>
+        }
+
+        .card {
+        position: relative;
+        z-index: z("content"); <span class="comment">// 2000</span>
+        }
+
+        .background-pattern {
+        position: absolute;
+        z-index: z("canvas"); <span class="comment">// -1000</span>
+        }</div>
+</section>
+
+<!-- Layer Reference -->
+<section>
+    <h2>Layer Reference</h2>
+
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Min Width</th>
-                <th>Typical Devices</th>
+                <th>Layer</th>
+                <th>z-index</th>
+                <th>Purpose</th>
+                <th>Common Uses</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><code>ss</code></td>
-                <td>280px</td>
-                <td>Compact/fold devices</td>
+                <td><code>guides</code></td>
+                <td>9998</td>
+                <td>Development overlays</td>
+                <td>Grid guides, alignment helpers, debug panels</td>
             </tr>
             <tr>
-                <td><code>xs</code></td>
-                <td>320px</td>
-                <td>Phones</td>
+                <td><code>guide--baseline</code></td>
+                <td>9998</td>
+                <td>Baseline grid overlay</td>
+                <td>Typography alignment guides</td>
             </tr>
             <tr>
-                <td><code>sm</code></td>
-                <td>480px</td>
-                <td>Large phones / small tablets</td>
+                <td><code>guide--graph</code></td>
+                <td>9998</td>
+                <td>Graph grid overlay</td>
+                <td>Spatial grid visualization</td>
             </tr>
             <tr>
-                <td><code>md</code></td>
-                <td>800px</td>
-                <td>Tablets / small laptops</td>
+                <td><code>modal</code></td>
+                <td>7000</td>
+                <td>Modal dialogs</td>
+                <td>Lightboxes, confirmations, image galleries</td>
             </tr>
             <tr>
-                <td><code>lg</code></td>
-                <td>1040px</td>
-                <td>Laptops / desktops</td>
+                <td><code>ribbon</code></td>
+                <td>5000</td>
+                <td>Banners and ribbons</td>
+                <td>Top banners, announcement bars</td>
             </tr>
             <tr>
-                <td><code>xl</code></td>
-                <td>1280px</td>
-                <td>Large desktops</td>
+                <td><code>interface</code></td>
+                <td>4000</td>
+                <td>Fixed UI elements</td>
+                <td>Sticky headers, navigation bars, toolbars</td>
             </tr>
             <tr>
-                <td><code>xxl</code></td>
-                <td>1600px</td>
-                <td>Ultrawide / QHD</td>
+                <td><code>control</code></td>
+                <td>3000</td>
+                <td>Interactive controls</td>
+                <td>Buttons, sliders, form controls</td>
             </tr>
             <tr>
-                <td><code>sl</code></td>
-                <td>2560px</td>
-                <td>4K / 5K displays</td>
+                <td><code>content</code></td>
+                <td>2000</td>
+                <td>Elevated content</td>
+                <td>Cards, dropdowns, tooltips, popovers</td>
+            </tr>
+            <tr>
+                <td><code>canvas</code></td>
+                <td>−1000</td>
+                <td>Background layer</td>
+                <td>Page backgrounds, decorative elements</td>
+            </tr>
+            <tr>
+                <td><code>max</code></td>
+                <td>9999</td>
+                <td>Maximum layer</td>
+                <td>Use sparingly for critical overlays</td>
+            </tr>
+            <tr>
+                <td><code>mid</code></td>
+                <td>0</td>
+                <td>Baseline</td>
+                <td>Default stacking position</td>
+            </tr>
+            <tr>
+                <td><code>min</code></td>
+                <td>−9999</td>
+                <td>Minimum layer</td>
+                <td>Force elements behind everything</td>
             </tr>
         </tbody>
     </table>
+</section>
 
-    <h4>Examples</h4>
-    <div class="code-block">.container {
-        padding: q(16);
+<!-- Relative Positioning -->
+<section>
+    <h2>Relative Positioning</h2>
 
-        @include view(md) {
-        padding: q(24);
+    <p>Sometimes you need elements to stack relative to a layer rather than exactly on it. Use simple arithmetic with
+        the <code>z()</code> function:</p>
+
+    <div class="code-block"><span class="comment">// Dropdown trigger and menu</span>
+        .dropdown-trigger {
+        z-index: z("content"); <span class="comment">// 2000</span>
         }
 
-        @include view(lg) {
-        padding: q(32);
-        max-width: 1200px;
-        margin: 0 auto;
-        }
+        .dropdown-menu {
+        z-index: z("content") + 10; <span class="comment">// 2010</span>
         }
 
-        .grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: q(16);
-
-        @include view(sm) {
-        grid-template-columns: repeat(2, 1fr);
+        <span class="comment">// Modal with backdrop</span>
+        .modal-backdrop {
+        z-index: z("modal") - 1; <span class="comment">// 6999</span>
         }
 
-        @include view(lg) {
-        grid-template-columns: repeat(4, 1fr);
-        gap: q(24);
+        .modal-dialog {
+        z-index: z("modal"); <span class="comment">// 7000</span>
         }
-        }</div>
 
-    <h3>view_only()</h3>
-    <p>Apply styles only at a specific breakpoint range.</p>
-
-    <div class="api-signature">@include view_only($breakpoint) { ... }</div>
-
-    <div class="code-block">.element {
-        <span class="comment">// Only applies between md and lg breakpoints</span>
-        @include view_only(md) {
-        display: none;
-        }
-        }
+        <span class="comment">// Nested cards</span>
+        .card { z-index: z("content"); }
+        .card__overlay { z-index: z("content") + 1; }
+        .card__actions { z-index: z("content") + 2; }
     </div>
 
-    <h3>view_max()</h3>
-    <p>Apply styles below a specific breakpoint.</p>
+    <div class="alert alert--tip">
+        <p class="alert__title">Tip</p>
+        <p>Use small offsets (+1, +5, +10) for related elements. The large gaps between layers (1000–3000 units) give
+            you plenty of room.</p>
+    </div>
+</section>
 
-    <div class="api-signature">@include view_max($breakpoint) { ... }</div>
+<!-- Customization -->
+<section>
+    <h2>Customization</h2>
 
-    <div class="code-block">.sidebar {
-        <span class="comment">// Hide on mobile, show on desktop</span>
-        @include view_max(lg) {
-        display: none;
+    <p>You can extend or override the default layer map to fit your project's needs:</p>
+
+    <div class="code-block"><span class="comment">// Override $layer_map before importing unit.gl</span>
+        $layer_map: (
+        "canvas": -1000,
+        "background": 0,
+        "content": 2000,
+        "dropdown": 3000, <span class="comment">// Custom layer</span>
+        "sticky": 3500, <span class="comment">// Custom layer</span>
+        "interface": 4000,
+        "overlay": 5000, <span class="comment">// Custom layer</span>
+        "modal": 7000,
+        "toast": 8000, <span class="comment">// Custom layer</span>
+        "tooltip": 8500, <span class="comment">// Custom layer</span>
+        "guides": 9998,
+        );
+
+        @use "unit.gl" as * with ($layer_map: $layer_map);
+
+        <span class="comment">// Now use your custom layers</span>
+        .toast-notification {
+        z-index: z("toast"); <span class="comment">// 8000</span>
         }
+
+        .tooltip {
+        z-index: z("tooltip"); <span class="comment">// 8500</span>
         }
     </div>
 </section>
 
-<!-- Ratio Mixins -->
+<!-- Best Practices -->
 <section>
-    <h2>Aspect Ratio Mixins</h2>
-    <p>Apply aspect ratios to containers.</p>
+    <h2>Best Practices</h2>
 
-    <h3>ratio()</h3>
-    <p>Sets an aspect ratio on an element using the modern <code>aspect-ratio</code> property.</p>
-
-    <div class="api-signature">@include ratio($width, $height)</div>
-
-    <div class="api-params">
-        <div class="api-param">
-            <span class="api-param__name">$width</span>
-            <span class="api-param__type">Number</span>
-            <span class="api-param__desc">Width portion of the ratio</span>
+    <div class="best-practices">
+        <div class="best-practice">
+            <h4>✓ Use semantic names</h4>
+            <p>Always use the <code>z()</code> function with meaningful layer names. Never hardcode z-index values.</p>
         </div>
-        <div class="api-param">
-            <span class="api-param__name">$height</span>
-            <span class="api-param__type">Number</span>
-            <span class="api-param__desc">Height portion of the ratio</span>
+
+        <div class="best-practice">
+            <h4>✓ Respect the hierarchy</h4>
+            <p>Follow the layer order: canvas → content → interface → modal → guides. Don't skip layers without reason.
+            </p>
         </div>
-    </div>
 
-    <div class="code-block">.video-container {
-        @include ratio(16, 9);
-        <span class="comment">// Output: aspect-ratio: 16 / 9;</span>
-        }
-
-        .square {
-        @include ratio(1, 1);
-        }
-
-        .photo {
-        @include ratio(4, 3);
-        }
-    </div>
-
-    <h3>ratio_name()</h3>
-    <p>Apply a named aspect ratio from the ratio map.</p>
-
-    <div class="api-signature">@include ratio_name($name)</div>
-
-    <h4>Available Ratios</h4>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Ratio</th>
-                <th>Use Case</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><code>square</code></td>
-                <td>1:1</td>
-                <td>Avatars, icons</td>
-            </tr>
-            <tr>
-                <td><code>photo</code></td>
-                <td>4:3</td>
-                <td>Traditional photography</td>
-            </tr>
-            <tr>
-                <td><code>landscape</code></td>
-                <td>3:2</td>
-                <td>35mm film</td>
-            </tr>
-            <tr>
-                <td><code>wide</code></td>
-                <td>16:9</td>
-                <td>Video, presentations</td>
-            </tr>
-            <tr>
-                <td><code>ultrawide</code></td>
-                <td>21:9</td>
-                <td>Cinematic content</td>
-            </tr>
-            <tr>
-                <td><code>golden</code></td>
-                <td>1.618:1</td>
-                <td>Golden ratio</td>
-            </tr>
-            <tr>
-                <td><code>a_series</code></td>
-                <td>1:√2</td>
-                <td>A4, A3 paper</td>
-            </tr>
-            <tr>
-                <td><code>portrait</code></td>
-                <td>2:3</td>
-                <td>Portrait photos</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="code-block">.card-image {
-        @include ratio_name("photo");
-        }
-
-        .video-embed {
-        @include ratio_name("wide");
-        }
-
-        .golden-section {
-        @include ratio_name("golden");
-        }</div>
-
-    <h3>ratio_padding()</h3>
-    <p>Legacy padding-based aspect ratio (for broader browser support).</p>
-
-    <div class="api-signature">@include ratio_padding($width, $height)</div>
-
-    <div class="code-block">.legacy-container {
-        @include ratio_padding(16, 9);
-        <span class="comment">// Output:</span>
-        <span class="comment">// position: relative;</span>
-        <span class="comment">// &::before {</span>
-        <span class="comment">// content: "";</span>
-        <span class="comment">// display: block;</span>
-        <span class="comment">// padding-top: 56.25%;</span>
-        <span class="comment">// }</span>
-        }
-    </div>
-</section>
-
-<!-- Guide Mixins -->
-<section>
-    <h2>Guide Mixins</h2>
-    <p>Visual guides for development and layout debugging.</p>
-
-    <h3>guide_baseline()</h3>
-    <p>Adds a baseline grid overlay for vertical rhythm debugging.</p>
-
-    <div class="api-signature">@include guide_baseline($size: q(8), $color: rgba(0, 0, 255, 0.1))</div>
-
-    <div class="api-params">
-        <div class="api-param">
-            <span class="api-param__name">$size</span>
-            <span class="api-param__type">Length</span>
-            <span class="api-param__desc">Grid line spacing (default: q(8))</span>
+        <div class="best-practice">
+            <h4>✓ Use offsets sparingly</h4>
+            <p>When you need relative stacking, use small offsets (+1 to +10). If you need larger gaps, consider adding
+                a custom layer.</p>
         </div>
-        <div class="api-param">
-            <span class="api-param__name">$color</span>
-            <span class="api-param__type">Color</span>
-            <span class="api-param__desc">Guide line color (default: semi-transparent blue)</span>
+
+        <div class="best-practice">
+            <h4>✓ Document custom layers</h4>
+            <p>If you add custom layers to <code>$layer_map</code>, document their purpose and position in the stack.
+            </p>
+        </div>
+
+        <div class="best-practice">
+            <h4>✗ Avoid z-index: 9999</h4>
+            <p>The "make it bigger" approach leads to unmaintainable code. Use the layer system instead.</p>
+        </div>
+
+        <div class="best-practice">
+            <h4>✗ Don't create stacking context chaos</h4>
+            <p>Remember that <code>position: relative/absolute/fixed</code> with z-index creates new stacking contexts.
+                Plan accordingly.</p>
         </div>
     </div>
-
-    <div class="code-block"><span class="comment">// Apply to body for full-page baseline grid</span>
-        body {
-        @include guide_baseline(q(8), rgba(255, 0, 0, 0.1));
-        }
-
-        <span class="comment">// Apply to specific container</span>
-        .content {
-        @include guide_baseline(q(16));
-        }
-    </div>
-
-    <h3>guide_columns()</h3>
-    <p>Overlays a column grid for layout debugging.</p>
-
-    <div class="api-signature">@include guide_columns($columns: 12, $gutter: q(16), $color: rgba(255, 0, 0, 0.1))</div>
-
-    <div class="code-block">.container {
-        @include guide_columns(12, q(24));
-        }</div>
-
-    <h3>guide_margin()</h3>
-    <p>Highlights margin areas.</p>
-
-    <div class="api-signature">@include guide_margin($size: q(16), $color: rgba(255, 165, 0, 0.2))</div>
-
-    <div class="code-block">.page {
-        @include guide_margin(q(32));
-        }</div>
 </section>
 
-<!-- Display Mixins -->
+<!-- Stacking Contexts -->
 <section>
-    <h2>Display & Layout Mixins</h2>
+    <h2>Understanding Stacking Contexts</h2>
 
-    <h3>flex_center()</h3>
-    <p>Centers content using flexbox.</p>
+    <p>Z-index only works within a stacking context. Several CSS properties create new stacking contexts:</p>
 
-    <div class="api-signature">@include flex_center($direction: row)</div>
+    <ul>
+        <li><code>position</code> (relative, absolute, fixed, sticky) with z-index other than auto</li>
+        <li><code>opacity</code> less than 1</li>
+        <li><code>transform</code>, <code>filter</code>, <code>perspective</code></li>
+        <li><code>isolation: isolate</code></li>
+        <li>Flex/Grid items with z-index other than auto</li>
+    </ul>
 
-    <div class="code-block">.centered {
-        @include flex_center();
-        <span class="comment">// Output:</span>
-        <span class="comment">// display: flex;</span>
-        <span class="comment">// justify-content: center;</span>
-        <span class="comment">// align-items: center;</span>
+    <p>A child element cannot escape its parent's stacking context. If a modal is inside a container with
+        <code>z-index: 1</code>, setting the modal to <code>z-index: 9999</code> won't place it above a sibling with
+        <code>z-index: 2</code>.</p>
+
+    <div class="code-block"><span class="comment">// Problem: Modal trapped in stacking context</span>
+        .sidebar {
+        position: relative;
+        z-index: 1; <span class="comment">// Creates stacking context</span>
         }
 
-        .vertical-center {
-        @include flex_center(column);
-        }
-    </div>
-
-    <h3>absolute_fill()</h3>
-    <p>Makes an element fill its positioned parent.</p>
-
-    <div class="api-signature">@include absolute_fill()</div>
-
-    <div class="code-block">.overlay {
-        @include absolute_fill();
-        <span class="comment">// Output:</span>
-        <span class="comment">// position: absolute;</span>
-        <span class="comment">// top: 0;</span>
-        <span class="comment">// right: 0;</span>
-        <span class="comment">// bottom: 0;</span>
-        <span class="comment">// left: 0;</span>
-        }
-    </div>
-
-    <h3>truncate()</h3>
-    <p>Truncates text with an ellipsis.</p>
-
-    <div class="api-signature">@include truncate($lines: 1)</div>
-
-    <div class="code-block">.single-line {
-        @include truncate();
-        <span class="comment">// Single line with ellipsis</span>
+        .sidebar .modal {
+        z-index: z("modal"); <span class="comment">// 7000, but still below main content!</span>
         }
 
-        .multi-line {
-        @include truncate(3);
-        <span class="comment">// Max 3 lines, then ellipsis</span>
+        <span class="comment">// Solution: Move modal outside or use isolation</span>
+        .sidebar {
+        position: relative;
+        <span class="comment">// No z-index, no stacking context</span>
+        }
+
+        .main-content {
+        isolation: isolate; <span class="comment">// Contains its own stacking</span>
         }
     </div>
 
-    <h3>sr_only()</h3>
-    <p>Hides element visually while keeping it accessible to screen readers.</p>
-
-    <div class="api-signature">@include sr_only()</div>
-
-    <div class="code-block">.skip-link {
-        @include sr_only();
-
-        &:focus {
-        <span class="comment">// Make visible when focused</span>
-        position: static;
-        width: auto;
-        height: auto;
-        }
-        }
+    <div class="alert">
+        <p class="alert__title">Key Insight</p>
+        <p>The layer system provides consistent z-index values, but you still need to manage stacking contexts. Place
+            modals and overlays at the root level of your DOM when possible.</p>
     </div>
 </section>
 
-<!-- Device / Format Mixins -->
+<!-- Interactive Demo Link -->
 <section>
-    <h2>Device & Format Mixins</h2>
-
-    <h3>format()</h3>
-    <p>Applies dimensions from a page/print format.</p>
-
-    <div class="api-signature">@include format($size, $orientation: portrait)</div>
-
-    <h4>Available Formats</h4>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Size</th>
-                <th>Dimensions (portrait)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>a3</td>
-                <td>297mm × 420mm</td>
-            </tr>
-            <tr>
-                <td>a4</td>
-                <td>210mm × 297mm</td>
-            </tr>
-            <tr>
-                <td>a5</td>
-                <td>148mm × 210mm</td>
-            </tr>
-            <tr>
-                <td>letter</td>
-                <td>216mm × 279mm</td>
-            </tr>
-            <tr>
-                <td>legal</td>
-                <td>216mm × 356mm</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="code-block">.print-preview {
-        @include format(a4, portrait);
-        }
-
-        .landscape-doc {
-        @include format(letter, landscape);
-        }</div>
-
-    <h3>device()</h3>
-    <p>Applies dimensions from a device preset.</p>
-
-    <div class="api-signature">@include device($name)</div>
-
-    <div class="code-block">.iphone-frame {
-        @include device("iphone-14-pro");
-        }
-
-        .macbook-frame {
-        @include device("macbook-pro-14");
-        }</div>
-</section>
-
-<!-- Utility Generation Mixins -->
-<section>
-    <h2>Utility Generation</h2>
-    <p>Mixins for generating utility classes (used internally by utility classes module).</p>
-
-    <h3>generate_spacing_utilities()</h3>
-    <p>Generates padding and margin utilities for a scale.</p>
-
-    <div class="api-signature">@include generate_spacing_utilities($scale: $q_steps, $prefix: "")</div>
-
-    <div class="code-block"><span class="comment">// Generate utilities for all q-steps</span>
-        @include generate_spacing_utilities();
-
-        <span class="comment">// Generates classes like:</span>
-        <span class="comment">// .p_q0, .p_q1, .p_q2, .p_q4...</span>
-        <span class="comment">// .m_q0, .m_q1, .m_q2, .m_q4...</span>
-        <span class="comment">// .pt_q8, .pb_q8, .pl_q8, .pr_q8...</span>
-    </div>
-
-    <h3>generate_size_utilities()</h3>
-    <p>Generates width and height utilities.</p>
-
-    <div class="api-signature">@include generate_size_utilities($scale: $q_steps)</div>
-
-    <h3>generate_responsive_utilities()</h3>
-    <p>Generates responsive variants for all utility classes.</p>
-
-    <div class="api-signature">@include generate_responsive_utilities()</div>
-
-    <div class="code-block"><span class="comment">// Generates responsive prefixed classes:</span>
-        <span class="comment">// .sm\:p_q16, .md\:p_q16, .lg\:p_q16...</span>
-        <span class="comment">// .sm\:w_q64, .md\:w_q64, .lg\:w_q64...</span>
-    </div>
+    <h2>Interactive Demo</h2>
+    <p>See the layer system in action with our interactive visualization:</p>
+    <p><a href="test_layers.html" class="button">View Layer Demo →</a></p>
 </section>        </main>
 
         <footer class="footer">

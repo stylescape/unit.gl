@@ -1027,12 +1027,14 @@
                             <a href="core-concepts.html" role="menuitem">Core Concepts</a>
                             <a href="functions.html" role="menuitem">Functions</a>
                             <a href="mixins.html" role="menuitem">Mixins</a>
+                            <a href="layers.html" role="menuitem">Layers</a>
                             <a href="test_breakpoints.html" role="menuitem">Breakpoints</a>
                             <a href="test_device.html" role="menuitem">Devices</a>
                             <a href="test_qscale.html" role="menuitem">Q Scale</a>
                             <a href="test_paper.html" role="menuitem">Formats</a>
                             <a href="test_utilities.html" role="menuitem">Utilities</a>
                             <a href="configuration.html" role="menuitem">Config</a>
+                            <a href="background.html" role="menuitem">Background</a>
                         </div>
                     </div>
 
@@ -1054,8 +1056,8 @@
     <div class="container">
         <header class="header"><p class="eyebrow">Guides</p>
 <h1>Breakpoints</h1>
-<p class="lead">A quick, interactive view of unit.gl’s <code>$breakpoints</code> map — now including <code>ss</code>
-    (super-small).</p>        </header>
+<p class="lead">A quick, interactive view of unit.gl's <code>$breakpoints</code> map. All values are multiples of 40px
+    for consistency with the Q-based grid system.</p>        </header>
 
         <main>
 <div class="page--breakpoints">
@@ -1090,6 +1092,7 @@
                 <tr>
                     <th>Key</th>
                     <th>Min Width</th>
+                    <th>Multiple</th>
                     <th>Typical Use</th>
                 </tr>
             </thead>
@@ -1098,45 +1101,58 @@
                 <tr class="bp-row" data-bp="ss" data-min="280">
                     <td><code>ss</code></td>
                     <td><code>280px</code></td>
+                    <td class="bp-mult">7×40</td>
                     <td>Compact/fold devices</td>
                 </tr>
                 <tr class="bp-row" data-bp="xs" data-min="320">
                     <td><code>xs</code></td>
                     <td><code>320px</code></td>
+                    <td class="bp-mult">8×40</td>
                     <td>Phones</td>
                 </tr>
                 <tr class="bp-row" data-bp="sm" data-min="480">
                     <td><code>sm</code></td>
                     <td><code>480px</code></td>
+                    <td class="bp-mult">12×40</td>
                     <td>Large phones / small tablets</td>
                 </tr>
-                <tr class="bp-row" data-bp="md" data-min="768">
+                <tr class="bp-row" data-bp="md" data-min="800">
                     <td><code>md</code></td>
-                    <td><code>768px</code></td>
+                    <td><code>800px</code></td>
+                    <td class="bp-mult">20×40</td>
                     <td>Tablets / small laptops</td>
                 </tr>
-                <tr class="bp-row" data-bp="lg" data-min="1024">
+                <tr class="bp-row" data-bp="lg" data-min="1040">
                     <td><code>lg</code></td>
-                    <td><code>1024px</code></td>
+                    <td><code>1040px</code></td>
+                    <td class="bp-mult">26×40</td>
                     <td>Laptops / desktops</td>
                 </tr>
                 <tr class="bp-row" data-bp="xl" data-min="1280">
                     <td><code>xl</code></td>
                     <td><code>1280px</code></td>
+                    <td class="bp-mult">32×40</td>
                     <td>Large desktops</td>
                 </tr>
-                <tr class="bp-row" data-bp="sl" data-min="1440">
+                <tr class="bp-row" data-bp="xxl" data-min="1600">
+                    <td><code>xxl</code></td>
+                    <td><code>1600px</code></td>
+                    <td class="bp-mult">40×40</td>
+                    <td>Ultrawide / QHD</td>
+                </tr>
+                <tr class="bp-row" data-bp="sl" data-min="2560">
                     <td><code>sl</code></td>
-                    <td><code>1440px</code></td>
-                    <td>Wide screens</td>
+                    <td><code>2560px</code></td>
+                    <td class="bp-mult">64×40</td>
+                    <td>4K / 5K displays</td>
                 </tr>
             </tbody>
         </table>
 
         <div class="alert alert--tip" style="margin-top: calc(var(--grid-unit) * 3);">
-            <div class="alert__title">Tip</div>
-            <p>In SCSS, use <code>@include breakpoint(ss)</code> or <code>@include media_ss</code> to target super-small
-                screens and up.</p>
+            <div class="alert__title">40px Grid Alignment</div>
+            <p>All breakpoints are multiples of 40px, ensuring they align with unit.gl's Q-based spacing system where
+                Q1 = 40mm at screen density.</p>
         </div>
     </section>
 
@@ -1148,7 +1164,8 @@
         <div class="bp-demo-card p_q8 ss_p_q10 sm_p_q12 md_p_q16 lg_p_q24 xl_p_q32">
             <div class="bp-demo-card__title">Responsive padding</div>
             <div class="bp-demo-card__meta">Classes:
-                <code>.p_q8 .ss_p_q10 .sm_p_q12 .md_p_q16 .lg_p_q24 .xl_p_q32</code></div>
+                <code>.p_q8 .ss_p_q10 .sm_p_q12 .md_p_q16 .lg_p_q24 .xl_p_q32</code>
+            </div>
         </div>
     </section>
 
@@ -1156,10 +1173,11 @@
 
 <script>
     const breakpoints = [
-        { key: 'sl', min: 1440 },
+        { key: 'sl', min: 2560 },
+        { key: 'xxl', min: 1600 },
         { key: 'xl', min: 1280 },
-        { key: 'lg', min: 1024 },
-        { key: 'md', min: 768 },
+        { key: 'lg', min: 1040 },
+        { key: 'md', min: 800 },
         { key: 'sm', min: 480 },
         { key: 'xs', min: 320 },
         { key: 'ss', min: 280 },

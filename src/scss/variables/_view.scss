@@ -54,16 +54,17 @@ $base_screen_unit: 16px !default;
 
 ///
 /// A map defining the breakpoints for responsive design. Each key represents
-/// a different device category, with the value calculated using the base
-/// screen unit.
+/// a different device category. All values are multiples of 40px for
+/// consistency with the Q-based grid system.
 ///
-/// - **ss**: 280px (Super small devices like fold/compact phones)
-/// - **xs**: 320px (Extra small devices like mobile phones)
-/// - **sm**: 480px (Small devices like tablets)
-/// - **md**: 768px (Medium devices like laptops)
-/// - **lg**: 1024px (Large devices like desktops)
-/// - **xl**: 1280px (Extra large devices like TVs)
-/// - **sl**: 1440px (Super large devices like large TVs)
+/// - **ss**: 280px (Super small devices like fold/compact phones) - 7×40
+/// - **xs**: 320px (Extra small devices like mobile phones) - 8×40
+/// - **sm**: 480px (Small devices like large phones/small tablets) - 12×40
+/// - **md**: 800px (Medium devices like tablets/laptops) - 20×40
+/// - **lg**: 1040px (Large devices like laptops/desktops) - 26×40
+/// - **xl**: 1280px (Extra large devices like large desktops) - 32×40
+/// - **xxl**: 1600px (Extra extra large devices like ultrawide) - 40×40
+/// - **sl**: 2560px (Super large devices like 4K/5K displays) - 64×40
 ///
 /// @name $breakpoints
 /// @type Map
@@ -81,18 +82,20 @@ $base_screen_unit: 16px !default;
 
 $breakpoints: (
     ss: 280px,
-    //  280px - Super small devices (Fold/Compact)
+    //  7×40 - Super small devices (Fold/Compact)
     xs: 320px,
-    //  320px - Extra small devices (Mobile)
+    //  8×40 - Extra small devices (Mobile)
     sm: 480px,
-    //  480px - Small devices (Tablets)
-    md: 768px,
-    //  768px - Medium devices (Laptops)
-    lg: 1024px,
-    // 1024px - Large devices (Desktops)
+    // 12×40 - Small devices (Large phones/Small tablets)
+    md: 800px,
+    // 20×40 - Medium devices (Tablets/Laptops)
+    lg: 1040px,
+    // 26×40 - Large devices (Laptops/Desktops)
     xl: 1280px,
-    // 1280px - Extra large devices (TV)
-    sl: 1440px // 1440px - Super large devices (Large TV)
+    // 32×40 - Extra large devices (Large desktops)
+    xxl: 1600px,
+    // 40×40 - Extra extra large (Ultrawide/QHD)
+    sl: 2560px // 64×40 - Super large devices (4K/5K displays)
 ) !default;
 
 ///
@@ -142,6 +145,14 @@ $media_lg: map.get($breakpoints, lg) !default;
 /// @type Length
 ///
 $media_xl: map.get($breakpoints, xl) !default;
+
+///
+/// Exposes the value of the `xxl` breakpoint for direct access.
+///
+/// @name $media_xxl
+/// @type Length
+///
+$media_xxl: map.get($breakpoints, xxl) !default;
 
 ///
 /// Exposes the value of the `sl` breakpoint for direct access.
