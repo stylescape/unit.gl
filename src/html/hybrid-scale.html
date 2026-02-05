@@ -1,0 +1,756 @@
+
+    <!DOCTYPE html>
+    <html lang="en" data-theme="light">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description"
+            content="A precision-based design system built on the Kyū (Q) unit for consistent, scalable spacing and typography." />
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+        <title>Hybrid Scale System | unit.gl</title>
+
+        
+        <link rel="stylesheet" href="/css/unit.gl.css" />
+        <link rel="stylesheet" href="/css/unit.gl.docs.css" />
+
+        
+        <script type="module" src="/js/unit.gl.js"></script>
+        <script src="/js/unit.gl.docs.js"></script>
+
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+            rel="stylesheet">    </head>
+
+    <body>
+        
+        <a href="#main" class="skip-link">Skip to main content</a>
+
+        
+
+<div class="nav-wrapper">
+    <nav class="nav" aria-label="Main navigation">
+        <div class="nav__inner">
+            
+            <a href="index.html" class="nav__logo" >
+                <span class="nav__logo-text">unit.gl</span>
+                <span class="nav__version">v0.1</span>
+            </a>
+
+            
+            <button type="button" class="nav__mobile-toggle" id="sidebar-toggle" aria-expanded="false"
+                aria-controls="sidebar" aria-label="Toggle navigation menu">
+                <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2">
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="18" x2="21" y2="18" />
+</svg>
+
+                <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2">
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+</svg>
+
+            </button>
+
+            <div class="nav__right">
+                
+                <div class="grid-controls" aria-label="Grid overlay controls">
+                    <button type="button" data-toggle="baseline" title="Toggle baseline grid" aria-pressed="false">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+    <line x1="0" y1="3.5" x2="14" y2="3.5" />
+    <line x1="0" y1="7" x2="14" y2="7" />
+    <line x1="0" y1="10.5" x2="14" y2="10.5" />
+</svg>
+
+                        <span>Baseline</span>
+                    </button>
+                    <button type="button" data-toggle="graph" title="Toggle graph grid" aria-pressed="false">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+    <rect x="1" y="1" width="12" height="12" />
+    <line x1="7" y1="1" x2="7" y2="13" />
+    <line x1="1" y1="7" x2="13" y2="7" />
+</svg>
+
+                        <span>Graph</span>
+                    </button>
+                </div>
+
+                
+                <button type="button" class="theme-toggle" data-toggle="theme" title="Toggle dark mode"
+                    aria-label="Toggle dark mode">
+                    <svg class="theme-icon theme-icon--light" width="16" height="16" viewBox="0 0 16 16"
+    fill="currentColor">
+    <path
+        d="M8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zm7-5a.75.75 0 00-.75-.75h-1.5a.75.75 0 000 1.5h1.5A.75.75 0 0015 8zM3 8a.75.75 0 00-.75-.75H.75a.75.75 0 000 1.5h1.5A.75.75 0 003 8zm9.536-4.536a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 001.06 1.061l1.061-1.06a.75.75 0 000-1.061zm-9.072 9.072a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 101.06 1.061l1.061-1.06a.75.75 0 000-1.061zm9.072 0a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 101.061-1.06l-1.06-1.061zm-9.072-9.072a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 001.061-1.06l-1.06-1.061z" />
+</svg>
+
+                    <svg class="theme-icon theme-icon--dark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+    <path d="M6.2 1A6.98 6.98 0 008 7a6.98 6.98 0 00-1.8 6A7 7 0 116.2 1z" />
+</svg>
+
+                </button>
+
+                
+                <a href="https://github.com/stylescape/unit.gl" class="nav__github" target="_blank"
+                    rel="noopener noreferrer" title="View on GitHub" aria-label="View on GitHub (opens in new tab)">
+                    <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+    <path
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+</svg>
+
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+        
+
+<div class="guide--layer guide--graph_centered" data-grid="graph"></div>
+<div class="guide--layer guide--baseline" data-grid="baseline"></div>
+
+        <div class="docs-layout">
+            
+
+
+
+
+
+
+<aside class="sidebar" id="sidebar" aria-label="Documentation navigation">
+    <nav class="sidebar__nav">
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">Learn</h3>
+            <ul class="sidebar__list">
+                <li>
+                    <a href="getting-started.html"
+                        class="sidebar__link" >
+                        Getting Started
+                    </a>
+                </li>
+                <li>
+                    <a href="core-concepts.html"
+                        class="sidebar__link" >
+                        Core Concepts
+                    </a>
+                </li>
+                <li>
+                    <a href="configuration.html"
+                        class="sidebar__link" >
+                        Configuration
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">API Reference</h3>
+            <ul class="sidebar__list">
+                <li>
+                    <a href="functions.html"
+                        class="sidebar__link" >
+                        Functions
+                    </a>
+                </li>
+                <li>
+                    <a href="mixins.html"
+                        class="sidebar__link" >
+                        Mixins
+                    </a>
+                </li>
+                <li>
+                    <a href="layers.html"
+                        class="sidebar__link" >
+                        Layers
+                    </a>
+                </li>
+                <li>
+                    <a href="density.html"
+                        class="sidebar__link" >
+                        Density
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">Examples</h3>
+            <ul class="sidebar__list">
+                <li>
+                    <a href="hybrid-scale.html"
+                        class="sidebar__link" >
+                        Hybrid Scale
+                    </a>
+                </li>
+                <li>
+                    <a href="breakpoints.html"
+                        class="sidebar__link" >
+                        Breakpoints
+                    </a>
+                </li>
+                <li>
+                    <a href="device.html"
+                        class="sidebar__link" >
+                        Devices
+                    </a>
+                </li>
+                <li>
+                    <a href="qscale.html"
+                        class="sidebar__link" >
+                        Q Scale
+                    </a>
+                </li>
+                <li>
+                    <a href="paper.html"
+                        class="sidebar__link" >
+                        Formats
+                    </a>
+                </li>
+                <li>
+                    <a href="utilities.html"
+                        class="sidebar__link" >
+                        Utilities
+                    </a>
+                </li>
+                <li>
+                    <a href="ratio.html"
+                        class="sidebar__link" >
+                        Ratios
+                    </a>
+                </li>
+                <li>
+                    <a href="scale.html"
+                        class="sidebar__link" >
+                        Scale
+                    </a>
+                </li>
+                <li>
+                    <a href="lorem.html"
+                        class="sidebar__link" >
+                        Typography
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">About</h3>
+            <ul class="sidebar__list">
+                <li>
+                    <a href="background.html"
+                        class="sidebar__link" >
+                        Background
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</aside>
+
+            <div class="docs-content">
+                <header class="header">                    <p class="eyebrow">unit.gl</p>
+                    <h1>Documentation</h1>                </header>
+
+                <main id="main" role="main">
+                    
+                    <noscript>
+                        <div class="noscript-warning">
+                            <strong>JavaScript Required:</strong> Some interactive features on this page require
+                            JavaScript
+                            to function properly.
+                        </div>
+                    </noscript><main class="docs-main">
+    <article class="docs-content">
+
+        <!-- Header -->
+        <header class="docs-header">
+            <h1 class="docs-title">Hybrid Scale System</h1>
+            <p class="docs-lead">
+                A dual-scale architecture combining typography and vertical rhythm
+                for harmonious design. Built on Q units with mathematical precision
+                using LCM and Highly Composite Numbers.
+            </p>
+        </header>
+
+        <!-- Scale Explorer (Interactive) -->
+        <section class="docs-section">
+            <h2>Scale Explorer</h2>
+            <p>
+                Explore the relationship between Type Scale (4Q) and Line Scale (5Q)
+                interactively. The LCM of 20Q ensures both scales align at regular intervals.
+            </p>
+
+            <div class="scale-explorer">
+                <div class="explorer-controls">
+                    <div class="explorer-slider">
+                        <label for="scaleSlider">Scale Value</label>
+                        <input type="range" id="scaleSlider" min="1" max="24" value="4" step="1">
+                        <span class="slider-value" id="sliderValue">4</span>
+                    </div>
+
+                    <div class="explorer-chips">
+                        <span class="chip-label">Quick Select:</span>
+                        <button class="chip" data-value="1">1</button>
+                        <button class="chip" data-value="2">2</button>
+                        <button class="chip" data-value="3">3</button>
+                        <button class="chip active" data-value="4">4</button>
+                        <button class="chip" data-value="5">5</button>
+                        <button class="chip" data-value="6">6</button>
+                        <button class="chip" data-value="8">8</button>
+                        <button class="chip" data-value="10">10</button>
+                        <button class="chip" data-value="12">12</button>
+                        <button class="chip" data-value="16">16</button>
+                        <button class="chip" data-value="20">20</button>
+                    </div>
+                </div>
+
+                <div class="explorer-display">
+                    <div class="explorer-metrics">
+                        <div class="metric-card type-card">
+                            <h4>Type Scale</h4>
+                            <div class="metric-main" id="typeQ">16Q</div>
+                            <div class="metric-details">
+                                <span id="typePx">16px</span>
+                                <span id="typeMm">4mm</span>
+                                <span id="typeRem">1rem</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card line-card">
+                            <h4>Line Scale</h4>
+                            <div class="metric-main" id="lineQ">20Q</div>
+                            <div class="metric-details">
+                                <span id="linePx">20px</span>
+                                <span id="lineMm">5mm</span>
+                                <span id="lineRem">1.25rem</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card lcm-card">
+                            <h4>LCM Alignment</h4>
+                            <div class="metric-main" id="lcmValue">20Q</div>
+                            <div class="metric-details">
+                                <span id="lcmMultiple">1× LCM</span>
+                                <span id="lcmAligned" class="aligned">✓ Aligned</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="explorer-preview">
+                        <div class="preview-box" id="previewBox">
+                            <span class="preview-label">Visual Size</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Grid Comparison -->
+        <section class="docs-section">
+            <h2>Visual Grid Comparison</h2>
+            <p>
+                See how the Type Scale (4Q) and Line Scale (5Q) create different grids,
+                and where they align at the LCM (20Q) intervals.
+                <strong>Green lines</strong> indicate alignment points.
+            </p>
+
+            <div class="grid-comparison-large">
+                <div class="grid-row">
+                    <div class="grid-label">
+                        <span class="label-title">Type Scale</span>
+                        <span class="label-value">4Q = 4px = 1mm</span>
+                    </div>
+                    <div class="grid-canvas" id="typeGridCanvas"></div>
+                </div>
+
+                <div class="grid-row">
+                    <div class="grid-label">
+                        <span class="label-title">Line Scale</span>
+                        <span class="label-value">5Q = 5px = 1.25mm</span>
+                    </div>
+                    <div class="grid-canvas" id="lineGridCanvas"></div>
+                </div>
+
+                <div class="grid-row combined">
+                    <div class="grid-label">
+                        <span class="label-title">Combined</span>
+                        <span class="label-value">LCM = 20Q = 20px</span>
+                    </div>
+                    <div class="grid-canvas" id="combinedGridCanvas"></div>
+                </div>
+
+                <div class="grid-legend">
+                    <span class="legend-item type"><span class="legend-color"></span> Type (4Q)</span>
+                    <span class="legend-item line"><span class="legend-color"></span> Line (5Q)</span>
+                    <span class="legend-item lcm"><span class="legend-color"></span> LCM (20Q)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mathematical Foundation -->
+        <section class="docs-section">
+            <h2>Mathematical Foundation</h2>
+
+            <div class="math-foundation">
+                <div class="foundation-card">
+                    <h3>LCM (Least Common Multiple)</h3>
+                    <div class="math-formula">
+                        <code>LCM(4, 5) = 20</code>
+                    </div>
+                    <p>
+                        The Type Scale (4Q) and Line Scale (5Q) share a least common multiple
+                        of 20Q. This ensures both scales align perfectly every 20 pixels,
+                        creating natural harmony between typography and vertical rhythm.
+                    </p>
+                    <div class="math-example">
+                        <span>Type: 4, 8, 12, 16, <strong>20</strong>, 24, 28, 32, 36, <strong>40</strong>...</span>
+                        <span>Line: 5, 10, 15, <strong>20</strong>, 25, 30, 35, <strong>40</strong>...</span>
+                    </div>
+                </div>
+
+                <div class="foundation-card hcn-card">
+                    <h3>HCN (Highly Composite Numbers)</h3>
+                    <div class="math-formula">
+                        <code>12, 24, 36, 48, 60, 120, 180, 240, 360, 720...</code>
+                    </div>
+                    <p>
+                        Highly Composite Numbers have more divisors than any smaller positive
+                        integer. The Q format system leverages HCN for maximum flexibility—dimensions
+                        like 720, 1080, and 1440 are divisible by many factors, enabling clean
+                        subdivisions for grids, columns, and modular layouts.
+                    </p>
+                    <div class="hcn-grid">
+                        <div class="hcn-item">
+                            <span class="hcn-number">12</span>
+                            <span class="hcn-divisors">1,2,3,4,6,12</span>
+                            <span class="hcn-count">6 divisors</span>
+                        </div>
+                        <div class="hcn-item">
+                            <span class="hcn-number">24</span>
+                            <span class="hcn-divisors">1,2,3,4,6,8,12,24</span>
+                            <span class="hcn-count">8 divisors</span>
+                        </div>
+                        <div class="hcn-item">
+                            <span class="hcn-number">60</span>
+                            <span class="hcn-divisors">1,2,3,4,5,6,10,12,15,20,30,60</span>
+                            <span class="hcn-count">12 divisors</span>
+                        </div>
+                        <div class="hcn-item">
+                            <span class="hcn-number">120</span>
+                            <span class="hcn-divisors">1,2,3,4,5,6,8,10,12,15,20,24,30,40,60,120</span>
+                            <span class="hcn-count">16 divisors</span>
+                        </div>
+                        <div class="hcn-item highlight">
+                            <span class="hcn-number">720</span>
+                            <span class="hcn-divisors">Q04 Width: 720px ÷ 5 = 144 lines</span>
+                            <span class="hcn-count">30 divisors</span>
+                        </div>
+                        <div class="hcn-item highlight">
+                            <span class="hcn-number">1080</span>
+                            <span class="hcn-divisors">Q04 Height: 1080px ÷ 5 = 216 lines</span>
+                            <span class="hcn-count">18 divisors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scale Relationship Table -->
+        <section class="docs-section">
+            <h2>Scale Relationship</h2>
+            <p>
+                Compare values across both scales. Note how every 5th type unit
+                and every 4th line unit meet at the LCM alignment points.
+            </p>
+
+            <div class="table-responsive">
+                <table class="docs-table scale-table">
+                    <thead>
+                        <tr>
+                            <th>Multiplier</th>
+                            <th>Type Scale (4Q)</th>
+                            <th>Line Scale (5Q)</th>
+                            <th>LCM Aligned</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1×</td>
+                            <td>4Q = 4px = 1mm</td>
+                            <td>5Q = 5px = 1.25mm</td>
+                            <td class="not-aligned">—</td>
+                        </tr>
+                        <tr>
+                            <td>2×</td>
+                            <td>8Q = 8px = 2mm</td>
+                            <td>10Q = 10px = 2.5mm</td>
+                            <td class="not-aligned">—</td>
+                        </tr>
+                        <tr>
+                            <td>3×</td>
+                            <td>12Q = 12px = 3mm</td>
+                            <td>15Q = 15px = 3.75mm</td>
+                            <td class="not-aligned">—</td>
+                        </tr>
+                        <tr>
+                            <td>4×</td>
+                            <td>16Q = 16px = 4mm</td>
+                            <td>20Q = 20px = 5mm</td>
+                            <td class="not-aligned">—</td>
+                        </tr>
+                        <tr class="lcm-row">
+                            <td>5× / 4×</td>
+                            <td>20Q = 20px = 5mm</td>
+                            <td>20Q = 20px = 5mm</td>
+                            <td class="aligned">✓ LCM</td>
+                        </tr>
+                        <tr>
+                            <td>6×</td>
+                            <td>24Q = 24px = 6mm</td>
+                            <td>25Q = 25px = 6.25mm</td>
+                            <td class="not-aligned">—</td>
+                        </tr>
+                        <tr>
+                            <td>8×</td>
+                            <td>32Q = 32px = 8mm</td>
+                            <td>40Q = 40px = 10mm</td>
+                            <td class="not-aligned">—</td>
+                        </tr>
+                        <tr class="lcm-row">
+                            <td>10× / 8×</td>
+                            <td>40Q = 40px = 10mm</td>
+                            <td>40Q = 40px = 10mm</td>
+                            <td class="aligned">✓ 2×LCM</td>
+                        </tr>
+                        <tr class="lcm-row">
+                            <td>15× / 12×</td>
+                            <td>60Q = 60px = 15mm</td>
+                            <td>60Q = 60px = 15mm</td>
+                            <td class="aligned">✓ 3×LCM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Q Format Table -->
+        <section class="docs-section">
+            <h2>Q Format Dimensions</h2>
+            <p>
+                All Q formats use HCN-related dimensions for maximum grid flexibility.
+                Note how width and height values align with highly composite numbers.
+            </p>
+
+            <div class="table-responsive">
+                <table class="docs-table qformat-table">
+                    <thead>
+                        <tr>
+                            <th>Format</th>
+                            <th>Pixels</th>
+                            <th>Line Units</th>
+                            <th>Type Units</th>
+                            <th>HCN Properties</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>Q04</code></td>
+                            <td>720 × 1080</td>
+                            <td>144 × 216</td>
+                            <td>180 × 270</td>
+                            <td><span class="hcn-badge">720 = HCN</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>Q05</code></td>
+                            <td>1080 × 1620</td>
+                            <td>216 × 324</td>
+                            <td>270 × 405</td>
+                            <td><span class="hcn-badge">1080 = 18×60</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>Q06</code></td>
+                            <td>1440 × 2160</td>
+                            <td>288 × 432</td>
+                            <td>360 × 540</td>
+                            <td><span class="hcn-badge">1440 = 2×720</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>Q07</code></td>
+                            <td>2160 × 3240</td>
+                            <td>432 × 648</td>
+                            <td>540 × 810</td>
+                            <td><span class="hcn-badge">2160 = 3×720</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>Q08</code></td>
+                            <td>2880 × 4320</td>
+                            <td>576 × 864</td>
+                            <td>720 × 1080</td>
+                            <td><span class="hcn-badge">2880 = 4×720</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SCSS Functions -->
+        <section class="docs-section">
+            <h2>SCSS Functions</h2>
+
+            <div class="function-grid">
+                <div class="function-card">
+                    <h4><code>type_unit($n)</code></h4>
+                    <p>Returns type-based value: $n × 4Q</p>
+                    <pre><code>font-size: type_unit(4);    // 16Q = 16px
+font-size: type_unit(5);    // 20Q = 20px
+font-size: type_unit(6);    // 24Q = 24px</code></pre>
+                </div>
+
+                <div class="function-card">
+                    <h4><code>line($n)</code></h4>
+                    <p>Returns line-based value: $n × 5Q</p>
+                    <pre><code>line-height: line(4);       // 20Q = 20px
+margin-bottom: line(2);     // 10Q = 10px
+padding: line(3);           // 15Q = 15px</code></pre>
+                </div>
+
+                <div class="function-card">
+                    <h4><code>snap_to_line($value)</code></h4>
+                    <p>Snaps any value to nearest line unit</p>
+                    <pre><code>height: snap_to_line(17px);  // 15px (3 lines)
+height: snap_to_line(23px);  // 25px (5 lines)</code></pre>
+                </div>
+
+                <div class="function-card">
+                    <h4><code>line_height_for_size($size)</code></h4>
+                    <p>Calculates optimal line-height for font size</p>
+                    <pre><code>// For 16px font
+line-height: line_height_for_size(16px);  // 20px</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography Examples -->
+        <section class="docs-section">
+            <h2>Typography Examples</h2>
+            <p>
+                See the hybrid scale in action with typography. Each level uses
+                the type scale for font-size and line scale for line-height.
+            </p>
+
+            <div class="typography-demo">
+                <div class="type-specimen" style="--type-size: 48px; --line-height: 60px;">
+                    <span class="specimen-label">48px / 60px — type(12) / line(12)</span>
+                    <p>Display Heading</p>
+                </div>
+
+                <div class="type-specimen" style="--type-size: 36px; --line-height: 45px;">
+                    <span class="specimen-label">36px / 45px — type(9) / line(9)</span>
+                    <p>Hero Heading</p>
+                </div>
+
+                <div class="type-specimen" style="--type-size: 32px; --line-height: 40px;">
+                    <span class="specimen-label">32px / 40px — type(8) / line(8) ✓ LCM</span>
+                    <p>Large Heading</p>
+                </div>
+
+                <div class="type-specimen" style="--type-size: 24px; --line-height: 30px;">
+                    <span class="specimen-label">24px / 30px — type(6) / line(6)</span>
+                    <p>Section Heading</p>
+                </div>
+
+                <div class="type-specimen" style="--type-size: 20px; --line-height: 25px;">
+                    <span class="specimen-label">20px / 25px — type(5) / line(5) ✓ LCM</span>
+                    <p>Subheading</p>
+                </div>
+
+                <div class="type-specimen" style="--type-size: 16px; --line-height: 25px;">
+                    <span class="specimen-label">16px / 25px — type(4) / line(5)</span>
+                    <p>Body text at the standard readable size with comfortable line spacing for extended reading. The
+                        relationship between type and line scales creates natural vertical rhythm.</p>
+                </div>
+
+                <div class="type-specimen" style="--type-size: 14px; --line-height: 20px;">
+                    <span class="specimen-label">14px / 20px — type(3.5) / line(4) ✓ LCM</span>
+                    <p>Secondary text and captions</p>
+                </div>
+
+                <div class="type-specimen" style="--type-size: 12px; --line-height: 15px;">
+                    <span class="specimen-label">12px / 15px — type(3) / line(3)</span>
+                    <p>Small text, labels, and fine print</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Hybrid? -->
+        <section class="docs-section">
+            <h2>Why Hybrid?</h2>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">📐</div>
+                    <h4>Precision Typography</h4>
+                    <p>The 4Q type scale aligns with print standards (1mm = 4px at 96dpi), enabling pixel-perfect font
+                        sizing.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">📏</div>
+                    <h4>Natural Rhythm</h4>
+                    <p>The 5Q line scale creates comfortable reading rhythm with line-heights that feel natural.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔗</div>
+                    <h4>LCM Harmony</h4>
+                    <p>Every 20Q (20px), both scales align perfectly—creating predictable, harmonious layouts.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧮</div>
+                    <h4>HCN Flexibility</h4>
+                    <p>Highly Composite Numbers enable maximum grid subdivisions—720 divides evenly 30 ways.</p>
+                </div>
+            </div>
+        </section>
+
+    </article>
+</main>
+
+                </main>
+
+                
+
+<footer class="footer">
+    <div class="footer__content">
+        <div class="footer__left">
+            <span class="footer__brand">unit.gl</span>
+            <span class="footer__tagline">Dynamic Layout Engine</span>
+        </div>
+        <div class="footer__right">
+            <div class="footer__links">
+                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank">GitHub</a>
+                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank">npm</a>
+                <a href="https://www.scape.agency" class="footer__link" target="_blank">Scape Agency</a>
+            </div>
+            <span class="footer__copyright">© 2024 Scape Agency. MIT License.</span>
+        </div>
+    </div>
+</footer>
+            </div>
+        </div>
+
+    </body>
+
+    </html>

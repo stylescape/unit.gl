@@ -61,11 +61,6 @@
 ///
 @forward "unit"; // Measurement units and spacing
 
-///
-/// Forwards page/print formats used by the `format()` mixin.
-///
-@forward "format";
-
 //////
 /// Forwards variables that define layout layers and z-indexing to manage the
 /// stacking order of elements within the design.

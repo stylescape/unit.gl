@@ -36253,6 +36253,21 @@ html {
   }
 }
 
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  box-sizing: inherit;
+}
+
+::before,
+::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+
 html {
   box-sizing: border-box;
   -webkit-text-size-adjust: 100%;
@@ -36271,24 +36286,6 @@ body {
 html,
 body {
   height: 100%;
-  margin: 0;
-}
-
-*,
-::before,
-::after {
-  background-repeat: no-repeat;
-  box-sizing: inherit;
-}
-
-::before,
-::after {
-  text-decoration: inherit;
-  vertical-align: inherit;
-}
-
-* {
-  padding: 0;
   margin: 0;
 }
 /*# sourceMappingURL=to.css.map */

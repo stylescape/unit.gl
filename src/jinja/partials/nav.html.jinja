@@ -1,44 +1,12 @@
 {#
-Navigation partial
+Navigation partial - Top bar only (sidebar handles docs navigation)
 
 Variables:
 - version: Version string to display (default: "v0.1")
 - current_page: Current page filename for active state (e.g., 'index.html')
-- nav_items: Optional custom navigation items
 #}
-{% from "partials/icons.html.jinja" import icon_sun, icon_moon, icon_baseline, icon_graph, icon_chevron_down,
-icon_github, icon_menu, icon_close %}
-
-{# Navigation Structure Data #}
-{% set default_nav = {
-'learn': [
-{'href': 'getting-started.html', 'label': 'Getting Started'},
-{'href': 'core-concepts.html', 'label': 'Core Concepts'},
-{'href': 'configuration.html', 'label': 'Configuration'}
-],
-'api': [
-{'href': 'functions.html', 'label': 'Functions'},
-{'href': 'mixins.html', 'label': 'Mixins'},
-{'href': 'layers.html', 'label': 'Layers'},
-{'href': 'density.html', 'label': 'Density'}
-],
-'demos': [
-{'href': 'test_hybrid_scale.html', 'label': 'Hybrid Scale'},
-{'href': 'test_breakpoints.html', 'label': 'Breakpoints'},
-{'href': 'test_device.html', 'label': 'Devices'},
-{'href': 'test_qscale.html', 'label': 'Q Scale'},
-{'href': 'test_paper.html', 'label': 'Formats'},
-{'href': 'test_utilities.html', 'label': 'Utilities'},
-{'href': 'test_ratio.html', 'label': 'Ratios'},
-{'href': 'test_scale.html', 'label': 'Scale'},
-{'href': 'test_lorem.html', 'label': 'Typography'}
-],
-'about': [
-{'href': 'background.html', 'label': 'Background'}
-]
-} %}
-
-{% set nav = nav_items | default(default_nav) %}
+{% from "partials/icons.html.jinja" import icon_sun, icon_moon, icon_baseline, icon_graph, icon_github, icon_menu,
+icon_close %}
 
 <div class="nav-wrapper">
     <nav class="nav" aria-label="Main navigation">
@@ -49,14 +17,14 @@ icon_github, icon_menu, icon_close %}
                 <span class="nav__version">{{ version | default('v0.1') }}</span>
             </a>
 
-            {# Mobile Menu Toggle #}
-            <button type="button" class="nav__mobile-toggle" id="nav-mobile-toggle" aria-expanded="false"
-                aria-controls="nav-menu" aria-label="Toggle navigation menu">
+            {# Mobile Sidebar Toggle #}
+            <button type="button" class="nav__mobile-toggle" id="sidebar-toggle" aria-expanded="false"
+                aria-controls="sidebar" aria-label="Toggle navigation menu">
                 {{ icon_menu() }}
                 {{ icon_close() }}
             </button>
 
-            <div class="nav__right" id="nav-menu">
+            <div class="nav__right">
                 {# Grid Controls #}
                 <div class="grid-controls" aria-label="Grid overlay controls">
                     <button type="button" data-toggle="baseline" title="Toggle baseline grid" aria-pressed="false">
@@ -75,44 +43,6 @@ icon_github, icon_menu, icon_close %}
                     {{ icon_sun() }}
                     {{ icon_moon() }}
                 </button>
-
-                {# Docs Dropdown #}
-                <div class="nav__dropdown" id="nav-dropdown">
-                    <button type="button" class="nav__dropdown-toggle" aria-expanded="false" aria-haspopup="true">
-                        <span>Docs</span>
-                        {{ icon_chevron_down() }}
-                    </button>
-                    <div class="nav__dropdown-menu" role="menu">
-                        <div class="nav__dropdown-section">
-                            <span class="nav__dropdown-label">Learn</span>
-                            {% for item in nav.learn %}
-                            <a href="{{ item.href }}" role="menuitem" {% if current_page==item.href
-                                %}aria-current="page" class="is-active" {% endif %}>{{ item.label }}</a>
-                            {% endfor %}
-                        </div>
-                        <div class="nav__dropdown-section">
-                            <span class="nav__dropdown-label">API</span>
-                            {% for item in nav.api %}
-                            <a href="{{ item.href }}" role="menuitem" {% if current_page==item.href
-                                %}aria-current="page" class="is-active" {% endif %}>{{ item.label }}</a>
-                            {% endfor %}
-                        </div>
-                        <div class="nav__dropdown-section">
-                            <span class="nav__dropdown-label">Demos</span>
-                            {% for item in nav.demos %}
-                            <a href="{{ item.href }}" role="menuitem" {% if current_page==item.href
-                                %}aria-current="page" class="is-active" {% endif %}>{{ item.label }}</a>
-                            {% endfor %}
-                        </div>
-                        <div class="nav__dropdown-section">
-                            <span class="nav__dropdown-label">About</span>
-                            {% for item in nav.about %}
-                            <a href="{{ item.href }}" role="menuitem" {% if current_page==item.href
-                                %}aria-current="page" class="is-active" {% endif %}>{{ item.label }}</a>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
 
                 {# GitHub Link #}
                 <a href="https://github.com/stylescape/unit.gl" class="nav__github" target="_blank"

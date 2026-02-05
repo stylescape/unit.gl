@@ -58,6 +58,12 @@
 @forward "scale";
 
 ///
+/// Forwards page/print format definitions (ISO A series, US common sizes,
+/// Q series paper formats) for use with the format() mixin.
+///
+@forward "format"; // Page and print format definitions
+
+///
 /// Forwards density bucket definitions for handling different display
 /// pixel densities across devices (retina, hdpi, etc.).
 ///

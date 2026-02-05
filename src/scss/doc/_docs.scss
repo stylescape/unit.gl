@@ -160,10 +160,11 @@ body {
         color var(--transition-base);
 
     // Prevent scroll when mobile nav is open
-    &.nav-open {
+    &.nav-open,
+    &.sidebar-open {
         overflow: hidden;
 
-        @media (min-width: #{q(768)}) {
+        @media (min-width: #{q(900)}) {
             overflow: auto;
         }
     }
@@ -1346,26 +1347,111 @@ li:last-child {
 }
 
 // ============================================================================
-// Sidebar Layout
+// Docs Layout (Sidebar + Content)
+// ============================================================================
+
+.docs-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: calc(100vh - #{q(60)}); // Account for top nav
+
+    @media (min-width: #{q(900)}) {
+        grid-template-columns: #{q(240)} 1fr;
+    }
+
+    @media (min-width: #{q(1200)}) {
+        grid-template-columns: #{q(280)} 1fr;
+    }
+}
+
+.docs-content {
+    max-width: var(--max-width);
+    padding: 0 calc(var(--grid-unit) * 4);
+
+    @media (min-width: #{q(900)}) {
+        padding: 0 calc(var(--grid-unit) * 6);
+    }
+}
+
+// ============================================================================
+// Sidebar Navigation
 // ============================================================================
 
 .sidebar {
+    display: none; // Hidden on mobile by default
     position: sticky;
-    top: calc(var(--grid-unit) * 8);
-    align-self: start;
+    top: #{q(60)}; // Below the top nav
+    height: calc(100vh - #{q(60)});
+    overflow-y: auto;
+    padding: calc(var(--grid-unit) * 4) calc(var(--grid-unit) * 3);
+    border-right: 1px solid var(--color-border);
+    background: var(--color-bg-subtle);
+
+    @media (min-width: #{q(900)}) {
+        display: block;
+    }
+
+    // Scrollbar styling
+    &::-webkit-scrollbar {
+        width: #{q(6)};
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--color-border);
+        border-radius: #{q(3)};
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--color-text-subtle);
+    }
+}
+
+// Mobile sidebar (overlay)
+.sidebar.is-open {
+    display: block;
+    position: fixed;
+    top: #{q(60)};
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    z-index: 900;
+    border-right: none;
+    background: var(--color-bg);
+
+    @media (min-width: #{q(900)}) {
+        position: sticky;
+        right: auto;
+        bottom: auto;
+        height: calc(100vh - #{q(60)});
+        border-right: 1px solid var(--color-border);
+        background: var(--color-bg-subtle);
+    }
+}
+
+.sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--grid-unit) * 1);
 }
 
 .sidebar__section {
     margin-bottom: calc(var(--grid-unit) * 3);
 }
 
-.sidebar__title {
+.sidebar__heading {
     font-size: #{q(10)};
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--color-text-subtle);
-    margin-bottom: calc(var(--grid-unit) * 1);
+    margin: 0 0 calc(var(--grid-unit) * 1.5) 0;
+    padding-bottom: calc(var(--grid-unit) * 1);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .sidebar__list {
@@ -1375,27 +1461,47 @@ li:last-child {
 }
 
 .sidebar__list li {
-    padding: calc(var(--grid-unit) * 0.5) 0;
-    border-bottom: none;
+    margin: 0;
 }
 
 .sidebar__link {
-    font-size: #{q(13)};
-    color: var(--color-text-muted);
-    border: none;
     display: block;
-    padding: calc(var(--grid-unit) * 0.5) 0;
-    transition: color var(--transition-fast);
-}
-
-.sidebar__link:hover {
-    color: var(--color-text);
+    font-size: #{q(13)};
+    font-weight: 400;
+    color: var(--color-text-muted);
+    padding: calc(var(--grid-unit) * 0.75) calc(var(--grid-unit) * 1);
+    margin: 0 calc(var(--grid-unit) * -1);
     border: none;
-}
+    border-radius: #{q(4)};
+    transition: all var(--transition-fast);
 
-.sidebar__link--active {
-    color: var(--color-text);
-    font-weight: 600;
+    &:hover {
+        color: var(--color-text);
+        background: var(--color-bg-muted);
+        border: none;
+    }
+
+    &:focus {
+        outline: #{q(2)} solid var(--color-accent);
+        outline-offset: #{q(-2)};
+    }
+
+    &.is-active {
+        color: var(--color-accent);
+        font-weight: 500;
+        background: var(--color-bg-muted);
+
+        &::before {
+            content: "";
+            display: inline-block;
+            width: #{q(4)};
+            height: #{q(4)};
+            background: var(--color-accent);
+            border-radius: 50%;
+            margin-right: calc(var(--grid-unit) * 1);
+            vertical-align: middle;
+        }
+    }
 }
 
 // ============================================================================

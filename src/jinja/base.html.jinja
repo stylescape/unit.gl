@@ -27,7 +27,7 @@ Blocks available:
 
         {# Scripts #}
         <script type="module" src="/js/unit.gl.js"></script>
-        <script src="/js/unit.gl.demo.js"></script>
+        <script src="/js/unit.gl.docs.js"></script>
 
         {# Fonts #}
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,30 +49,36 @@ Blocks available:
         {# Grid Overlays #}
         {%- include "partials/grid-overlays.html.jinja" %}
 
-        <div class="container">
-            <header class="header {%- block header_class %}{%- endblock %}">
-                {%- block header %}
-                <p class="eyebrow">unit.gl</p>
-                <h1>Documentation</h1>
-                {%- endblock %}
-            </header>
+        <div class="docs-layout">
+            {# Sidebar Navigation #}
+            {%- include "partials/sidebar.html.jinja" %}
 
-            <main id="main" role="main">
-                {# Fallback for users without JavaScript #}
-                <noscript>
-                    <div class="noscript-warning">
-                        <strong>JavaScript Required:</strong> Some interactive features on this page require JavaScript
-                        to function properly.
-                    </div>
-                </noscript>
-                {%- block content %}
-                <p>Replace this with your content.</p>
-                {%- endblock %}
-            </main>
+            <div class="docs-content">
+                <header class="header {%- block header_class %}{%- endblock %}">
+                    {%- block header %}
+                    <p class="eyebrow">unit.gl</p>
+                    <h1>Documentation</h1>
+                    {%- endblock %}
+                </header>
 
-            {# Footer #}
-            {%- include "partials/footer.html.jinja" %}
-            {%- block footer_extra %}{%- endblock %}
+                <main id="main" role="main">
+                    {# Fallback for users without JavaScript #}
+                    <noscript>
+                        <div class="noscript-warning">
+                            <strong>JavaScript Required:</strong> Some interactive features on this page require
+                            JavaScript
+                            to function properly.
+                        </div>
+                    </noscript>
+                    {%- block content %}
+                    <p>Replace this with your content.</p>
+                    {%- endblock %}
+                </main>
+
+                {# Footer #}
+                {%- include "partials/footer.html.jinja" %}
+                {%- block footer_extra %}{%- endblock %}
+            </div>
         </div>
 
     </body>

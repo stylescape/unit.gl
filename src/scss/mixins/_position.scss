@@ -1,0 +1,179 @@
+////
+///
+/// Position Mixins Module
+/// ===========================================================================
+///
+/// Provides utility class generators for CSS positioning properties and
+/// transform translations using the Q-unit system. These utilities are
+/// designed for precise pixel-perfect positioning in layouts.
+///
+/// ## Key Features
+/// - Inset utilities for positioned elements (absolute, fixed, sticky)
+/// - Individual top/right/bottom/left positioning
+/// - Axis-based positioning (x = horizontal, y = vertical)
+/// - Transform translate utilities for offset positioning
+/// - Negative translate values for reverse positioning
+///
+/// ## Utility Generators
+/// - `inset-utilities($steps)` - Generate `.inset_q*`, `.top_q*`, etc.
+/// - `translate-utilities($steps)` - Generate `.translate_x_q*`, `.translate_y_q*`, etc.
+///
+/// ## Use Cases
+/// - Absolute positioning of overlays and modals
+/// - Offset positioning of tooltips and popovers
+/// - Precise element placement in complex layouts
+/// - Animation starting/ending positions
+///
+/// @group Mixins-Position
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "sass:map";
+@use "sass:list";
+@use "../maps" as maps;
+@use "../variables" as variables;
+
+// ============================================================================
+// Inset Utility Generator
+// ============================================================================
+
+///
+/// Inset (Positioning) Utility Classes Generator
+/// ---------------------------------------------------------------------------
+///
+/// Generates utility classes for CSS inset properties (top, right, bottom, left).
+/// These are used with positioned elements (position: absolute/fixed/sticky).
+///
+/// The `inset` shorthand sets all four sides, while individual classes allow
+/// precise control over specific edges.
+///
+/// @name inset-utilities
+/// @param {Map} $steps [maps.$q_steps] - Map of step names to Q-unit multipliers
+/// @output CSS classes:
+///   - `.inset_q{key}` - All four sides
+///   - `.top_q{key}` - Top only
+///   - `.right_q{key}` - Right only
+///   - `.bottom_q{key}` - Bottom only
+///   - `.left_q{key}` - Left only
+///   - `.inset_x_q{key}` - Horizontal (left + right)
+///   - `.inset_y_q{key}` - Vertical (top + bottom)
+///
+/// @example scss - Usage
+///   @include inset-utilities();
+///
+/// @example css - Generated output
+///   .inset_q16 { top: 16q; right: 16q; bottom: 16q; left: 16q; }
+///   .top_q8 { top: 8q; }
+///   .inset_x_q24 { left: 24q; right: 24q; }
+///
+/// @example html - Usage in markup
+///   <div class="absolute inset_q0">Full coverage overlay</div>
+///   <div class="absolute top_q16 right_q16">Top-right badge</div>
+///   <div class="absolute inset_x_q24 bottom_q0">Bottom bar with margins</div>
+///
+/// @see maps.$q_steps
+///
+@mixin inset-utilities($steps: maps.$q_steps) {
+    @each $key, $value in $steps {
+        /// All four sides (inset shorthand)
+        .inset_q#{$key} {
+            top: variables.q($value);
+            right: variables.q($value);
+            bottom: variables.q($value);
+            left: variables.q($value);
+        }
+
+        /// Individual side positioning
+        .top_q#{$key} {
+            top: variables.q($value);
+        }
+        .right_q#{$key} {
+            right: variables.q($value);
+        }
+        .bottom_q#{$key} {
+            bottom: variables.q($value);
+        }
+        .left_q#{$key} {
+            left: variables.q($value);
+        }
+
+        /// Axis-based positioning
+        .inset_x_q#{$key} {
+            left: variables.q($value);
+            right: variables.q($value);
+        }
+        .inset_y_q#{$key} {
+            top: variables.q($value);
+            bottom: variables.q($value);
+        }
+    }
+}
+
+// ============================================================================
+// Translate Utility Generator
+// ============================================================================
+
+///
+/// Translate Utility Classes Generator
+/// ---------------------------------------------------------------------------
+///
+/// Generates utility classes for CSS transform: translate() functions.
+/// Useful for offsetting elements without affecting document flow.
+///
+/// Includes both positive and negative variants for each axis.
+/// Negative variants use a leading dash (e.g., `.-translate_x_q8`).
+///
+/// @name translate-utilities
+/// @param {Map} $steps [maps.$q_steps] - Map of step names to Q-unit multipliers
+/// @output CSS classes:
+///   - `.translate_x_q{key}` - Translate right (+X)
+///   - `.translate_y_q{key}` - Translate down (+Y)
+///   - `.-translate_x_q{key}` - Translate left (-X)
+///   - `.-translate_y_q{key}` - Translate up (-Y)
+///
+/// @example scss - Usage
+///   @include translate-utilities();
+///
+/// @example css - Generated output
+///   .translate_x_q16 { transform: translateX(16q); }
+///   .translate_y_q8 { transform: translateY(8q); }
+///   .-translate_x_q16 { transform: translateX(calc(-1 * 16q)); }
+///   .-translate_y_q8 { transform: translateY(calc(-1 * 8q)); }
+///
+/// @example html - Usage in markup
+///   <div class="translate_x_q16">Shifted right by 16q</div>
+///   <div class="-translate_y_q8">Shifted up by 8q</div>
+///
+/// @see maps.$q_steps
+///
+@mixin translate-utilities($steps: maps.$q_steps) {
+    @each $key, $value in $steps {
+        /// Positive X translation (shift right)
+        .translate_x_q#{$key} {
+            transform: translateX(variables.q($value));
+        }
+
+        /// Positive Y translation (shift down)
+        .translate_y_q#{$key} {
+            transform: translateY(variables.q($value));
+        }
+
+        /// Negative X translation (shift left)
+        .-translate_x_q#{$key} {
+            transform: translateX(calc(-1 * variables.q($value)));
+        }
+
+        /// Negative Y translation (shift up)
+        .-translate_y_q#{$key} {
+            transform: translateY(calc(-1 * variables.q($value)));
+        }
+    }
+}

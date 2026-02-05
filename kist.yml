@@ -154,12 +154,12 @@ stages:
                         target: "ES2020"
                         module: "CommonJS"
             -
-                name: Compile Demo TS to JS
+                name: Compile Docs TS to JS
                 action: TypeScriptCompilerAction
                 options:
                     tsConfigPath: "./tsconfig.pro.json"
                     filePaths:
-                        - "src/ts/demo.ts"
+                        - "src/ts/docs.ts"
                     outputDir: "./dist/js"
                     compilerOptions:
                         target: "ES2020"
@@ -179,18 +179,18 @@ stages:
                     targetPath: "./dist/js/unit.gl.js"
 
             -
-                name: Rename demo.js.map File
+                name: Rename docs.js.map File
                 action: FileRenameAction
                 options:
-                    srcPath: "./dist/js/demo.js.map"
-                    targetPath: "./dist/js/unit.gl.demo.js.map"
+                    srcPath: "./dist/js/docs.js.map"
+                    targetPath: "./dist/js/unit.gl.docs.js.map"
 
             -
-                name: Rename demo.js File
+                name: Rename docs.js File
                 action: FileRenameAction
                 options:
-                    srcPath: "./dist/js/demo.js"
-                    targetPath: "./dist/js/unit.gl.demo.js"
+                    srcPath: "./dist/js/docs.js"
+                    targetPath: "./dist/js/unit.gl.docs.js"
 
             # Package.json
             # -----------------------------------------------------------------

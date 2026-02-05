@@ -1,27 +1,55 @@
 ////
 ///
-/// Tags Module
+/// Tags Module - Central Index
 /// ===========================================================================
+///
+/// This module aggregates base HTML element styles (tag selectors) that form
+/// the foundation of the unit.gl design system. These styles provide sensible
+/// defaults and resets for core HTML elements.
+///
+/// ## Architecture
+/// The tags module is organized into functional groups:
+///
+/// ### Core Resets
+/// - `global` - Universal resets and box-sizing inheritance
+/// - `unit` - Fluid typography and Q-unit based element sizing
+///
+/// ## Philosophy
+/// Tag-level styles should:
+/// - Provide sensible cross-browser defaults
+/// - Establish the baseline for the Q-unit system
+/// - Be minimal and non-opinionated where possible
+/// - Serve as a foundation for component-level styling
+///
+/// ## Usage
+/// Import this module in your main stylesheet:
+/// ```scss
+/// @use "tags";
+/// // Applies global resets and base element styles
+/// ```
 ///
 /// @group Tags
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
-
 
 // ============================================================================
 // Use
 // ============================================================================
 
-
 // ============================================================================
-// Forward
+// Forward - Base Element Styles
 // ============================================================================
 
-/// Forwarding modules for global access
+/// Fluid typography and Q-unit based element sizing
+/// Applies responsive font scaling to the html element
+/// @see _unit.scss
 @forward "unit";
+
+/// Universal resets, box-sizing, and global defaults
+/// Provides consistent baseline across browsers
+/// @see _global.scss
 @forward "global";

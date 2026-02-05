@@ -1,0 +1,181 @@
+////
+///
+/// Typography Mixins Module
+/// ===========================================================================
+///
+/// Provides mixins for setting typography properties using the Q-unit system.
+/// These mixins ensure consistent typography sizing across your design system.
+///
+/// ## Key Features
+/// - Q-unit based font sizing for precise typography
+/// - Line height control for vertical rhythm
+/// - Letter spacing for fine-tuned kerning
+/// - Combined type setter for font-size + line-height
+///
+/// ## Available Mixins
+/// - `set_font_size($value)` - Set font-size in Q-units
+/// - `set_line_height($value)` - Set line-height in Q-units
+/// - `set_letter_spacing($value)` - Set letter-spacing in Q-units
+/// - `set_type($font-size, $line-height)` - Set both font-size and line-height
+///
+/// ## Typography Scale Recommendations
+/// Using the 5Q line scale for vertical rhythm:
+/// - Body text: 16Q font-size, 25Q line-height (5 line units)
+/// - H1: 40Q font-size, 50Q line-height (10 line units)
+/// - H2: 32Q font-size, 40Q line-height (8 line units)
+/// - H3: 24Q font-size, 35Q line-height (7 line units)
+///
+/// @group Mixins-Typography
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../functions" as *;
+@use "../variables" as *;
+@use "../maps" as *;
+
+// ============================================================================
+// Font Size Mixin
+// ============================================================================
+
+///
+/// Set Font Size
+/// ---------------------------------------------------------------------------
+///
+/// Sets the font-size of an element using the Q-unit function.
+/// Values are converted to Q-units for precise typographic sizing.
+///
+/// @name set_font_size
+/// @param {Number} $value - The font-size value in Q-units
+/// @output `font-size` property with Q-unit value
+///
+/// @example scss - Body text
+///   body {
+///     @include set_font_size(16); // 16q = 4mm
+///   }
+///
+/// @example scss - Heading
+///   h1 {
+///     @include set_font_size(40); // 40q = 10mm
+///   }
+///
+/// @see q
+/// @see set_type
+///
+@mixin set_font_size($value) {
+    @include q($value, font-size);
+}
+
+// ============================================================================
+// Line Height Mixin
+// ============================================================================
+
+///
+/// Set Line Height
+/// ---------------------------------------------------------------------------
+///
+/// Sets the line-height of an element using the Q-unit function.
+/// Use values aligned with the 5Q line scale for proper vertical rhythm.
+///
+/// @name set_line_height
+/// @param {Number} $value - The line-height value in Q-units
+/// @output `line-height` property with Q-unit value
+///
+/// @example scss - Standard line height
+///   p {
+///     @include set_line_height(25); // 25q = 5 line units
+///   }
+///
+/// @example scss - Tight line height
+///   .headline {
+///     @include set_line_height(40); // 40q = 8 line units
+///   }
+///
+/// @see q
+/// @see line_height_for_size
+///
+@mixin set_line_height($value) {
+    @include q($value, line_height);
+}
+
+// ============================================================================
+// Letter Spacing Mixin
+// ============================================================================
+
+///
+/// Set Letter Spacing
+/// ---------------------------------------------------------------------------
+///
+/// Sets the letter-spacing of an element using the Q-unit function.
+/// Useful for fine-tuning text kerning, especially for headings and labels.
+///
+/// @name set_letter_spacing
+/// @param {Number} $value - The letter-spacing value in Q-units
+/// @output `letter-spacing` property with Q-unit value
+///
+/// @example scss - Tight tracking for headlines
+///   h1 {
+///     @include set_letter_spacing(-1); // -1q = -0.25mm
+///   }
+///
+/// @example scss - Wide tracking for labels
+///   .label {
+///     @include set_letter_spacing(2); // 2q = 0.5mm
+///   }
+///
+/// @see q
+///
+@mixin set_letter_spacing($value) {
+    @include q($value, letter-spacing);
+}
+
+// ============================================================================
+// Combined Type Mixin
+// ============================================================================
+
+///
+/// Set Type (Font Size + Line Height)
+/// ---------------------------------------------------------------------------
+///
+/// Sets both font-size and line-height in a single mixin call.
+/// This is the recommended way to define typography for consistent
+/// vertical rhythm alignment.
+///
+/// @name set_type
+/// @param {Number} $font-size - The font-size value in Q-units
+/// @param {Number} $line-height - The line-height value in Q-units
+/// @output `font-size` and `line-height` properties with Q-unit values
+///
+/// @example scss - Body typography
+///   p {
+///     @include set_type(16, 25);
+///     // font-size: 16q; line-height: 25q;
+///   }
+///
+/// @example scss - Heading typography
+///   h1 {
+///     @include set_type(40, 50);
+///     // font-size: 40q; line-height: 50q;
+///   }
+///
+/// @example scss - Compact text
+///   .caption {
+///     @include set_type(12, 20);
+///     // font-size: 12q; line-height: 20q;
+///   }
+///
+/// @see set_font_size
+/// @see set_line_height
+/// @see line_height_for_size
+///
+@mixin set_type($font-size, $line-height) {
+    @include q($font-size, font-size);
+    @include q($line-height, line_height);
+}

@@ -1,0 +1,104 @@
+{#
+Sidebar Navigation partial
+
+Variables:
+- current_page: Current page filename for active state (e.g., 'index.html')
+#}
+
+{# Navigation sections defined as separate arrays for Nunjucks compatibility #}
+{% set learn_items = [
+{'href': 'getting-started.html', 'label': 'Getting Started'},
+{'href': 'core-concepts.html', 'label': 'Core Concepts'},
+{'href': 'configuration.html', 'label': 'Configuration'}
+] %}
+
+{% set api_items = [
+{'href': 'functions.html', 'label': 'Functions'},
+{'href': 'mixins.html', 'label': 'Mixins'},
+{'href': 'layers.html', 'label': 'Layers'},
+{'href': 'density.html', 'label': 'Density'}
+] %}
+
+{% set demo_items = [
+{'href': 'hybrid-scale.html', 'label': 'Hybrid Scale'},
+{'href': 'breakpoints.html', 'label': 'Breakpoints'},
+{'href': 'device.html', 'label': 'Devices'},
+{'href': 'qscale.html', 'label': 'Q Scale'},
+{'href': 'paper.html', 'label': 'Formats'},
+{'href': 'utilities.html', 'label': 'Utilities'},
+{'href': 'ratio.html', 'label': 'Ratios'},
+{'href': 'scale.html', 'label': 'Scale'},
+{'href': 'lorem.html', 'label': 'Typography'}
+] %}
+
+{% set about_items = [
+{'href': 'background.html', 'label': 'Background'}
+] %}
+
+<aside class="sidebar" id="sidebar" aria-label="Documentation navigation">
+    <nav class="sidebar__nav">
+        {# Learn Section #}
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">Learn</h3>
+            <ul class="sidebar__list">
+                {% for item in learn_items %}
+                <li>
+                    <a href="{{ item.href }}"
+                        class="sidebar__link{% if current_page == item.href %} is-active{% endif %}" {% if
+                        current_page==item.href %}aria-current="page" {% endif %}>
+                        {{ item.label }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {# API Section #}
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">API Reference</h3>
+            <ul class="sidebar__list">
+                {% for item in api_items %}
+                <li>
+                    <a href="{{ item.href }}"
+                        class="sidebar__link{% if current_page == item.href %} is-active{% endif %}" {% if
+                        current_page==item.href %}aria-current="page" {% endif %}>
+                        {{ item.label }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {# Examples Section #}
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">Examples</h3>
+            <ul class="sidebar__list">
+                {% for item in demo_items %}
+                <li>
+                    <a href="{{ item.href }}"
+                        class="sidebar__link{% if current_page == item.href %} is-active{% endif %}" {% if
+                        current_page==item.href %}aria-current="page" {% endif %}>
+                        {{ item.label }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {# About Section #}
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">About</h3>
+            <ul class="sidebar__list">
+                {% for item in about_items %}
+                <li>
+                    <a href="{{ item.href }}"
+                        class="sidebar__link{% if current_page == item.href %} is-active{% endif %}" {% if
+                        current_page==item.href %}aria-current="page" {% endif %}>
+                        {{ item.label }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+</aside>

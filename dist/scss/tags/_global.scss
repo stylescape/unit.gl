@@ -1,127 +1,133 @@
 ////
 ///
 /// Global Tags Module
-/// =========================================================================
+/// ===========================================================================
 ///
-/// Base element resets and global defaults for `html`, `body`, and
-/// universal selectors. Provides consistent box-sizing, text adjustments,
-/// and baseline resets that apply across the application.
+/// Provides foundational CSS resets and global defaults for core HTML elements.
+/// Establishes consistent cross-browser behavior and sets up the inheritance
+/// model for box-sizing throughout the application.
+///
+/// ## Key Features
+/// - Universal box-sizing reset with inheritance
+/// - iOS text-size-adjust prevention
+/// - Consistent tab sizing across browsers
+/// - Full-height document setup
+/// - Margin/padding reset on all elements
+/// - Pseudo-element inheritance fixes
+///
+/// ## Reset Philosophy
+/// This module follows a minimal reset approach:
+/// - Removes default margins and paddings
+/// - Establishes `border-box` as the default box model
+/// - Fixes common browser inconsistencies
+/// - Avoids opinionated styling decisions
+///
+/// ## Box Model
+/// Sets `box-sizing: border-box` on html and inherits to all elements.
+/// This ensures padding and borders are included in element dimensions.
 ///
 /// @group Tags
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
 
-// Base | Body
+// ============================================================================
+// Universal Reset
 // ============================================================================
 
-html {
-    box-sizing: border-box;
-    // Prevent adjustments of font size after orientation changes in iOS
-    -webkit-text-size-adjust: 100%;
-    word-break: normal;
-    -moz-tab-size: 4;
-    tab-size: 4;
-    height: 100%;
-    // height: 100vh;
-    // width: 100vw;
+///
+/// Universal Selector Reset
+/// ---------------------------------------------------------------------------
+///
+/// Applies baseline resets to all elements and pseudo-elements:
+/// - Resets margin and padding to zero
+/// - Sets background-repeat to no-repeat (prevents tiling issues)
+/// - Inherits box-sizing from parent (enables border-box inheritance)
+///
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    box-sizing: inherit;
 }
 
+///
+/// Pseudo-Element Inheritance
+/// ---------------------------------------------------------------------------
+///
+/// Ensures ::before and ::after pseudo-elements inherit text-decoration
+/// and vertical-align from their parent elements for consistent behavior.
+///
+::before,
+::after {
+    text-decoration: inherit;
+    vertical-align: inherit;
+}
+
+// ============================================================================
+// Document Root
+// ============================================================================
+
+///
+/// HTML Root Element
+/// ---------------------------------------------------------------------------
+///
+/// Establishes the root element defaults:
+/// - Sets border-box as the base box model (inherited by all descendants)
+/// - Prevents iOS font-size adjustment on orientation change
+/// - Sets consistent tab character width (4 spaces)
+/// - Enables normal word breaking behavior
+/// - Sets full viewport height
+///
+html {
+    // Box Model
+    box-sizing: border-box;
+
+    // iOS Fix: Prevent font-size adjustment on orientation change
+    -webkit-text-size-adjust: 100%;
+
+    // Text Handling
+    word-break: normal;
+
+    // Tab Sizing (consistent 4-space tabs)
+    -moz-tab-size: 4;
+    tab-size: 4;
+
+    // Full Height Document
+    height: 100%;
+}
+
+// ============================================================================
+// Body Element
+// ============================================================================
+
+///
+/// Body Element
+/// ---------------------------------------------------------------------------
+///
+/// Sets up the body element with:
+/// - Full minimum height to fill viewport
+/// - Zero margin (removes browser default margins)
+///
 body {
     min-height: 100%;
     margin: 0;
 }
 
+///
+/// Document Height Setup
+/// ---------------------------------------------------------------------------
+///
+/// Ensures both html and body fill the full viewport height.
+/// This is essential for sticky footers and full-height layouts.
+///
 html,
 body {
     height: 100%;
     margin: 0;
 }
-
-*,
-::before,
-::after {
-    // Set `background-repeat: no-repeat` to all elements and pseudo elements
-    background-repeat: no-repeat;
-    box-sizing: inherit;
-}
-
-::before,
-::after {
-    // Inherit text-decoration and vertical align to ::before
-    // and ::after pseudo elements
-    text-decoration: inherit;
-    vertical-align: inherit;
-}
-
-* {
-    padding: 0; // Reset `padding` and `margin` of all elements
-    margin: 0;
-}
-
-// body {
-//     font-family: "Urbanist", sans-serif !important;
-//     font-weight: 500;
-//     font-size: 1rem;
-//     min-height: 100%;
-//     margin: 0;
-//   }
-
-// html, body {
-//   @include reset_bleed;
-//   height: 100vh;
-//   width: 100vw;
-//     //overflow-x: hidden;
-//     // margin: 0;
-//     // padding: 0;
-//     // -webkit-tap-highlight-color: transparent;
-//     // width: 100%;
-// }
-
-// html {
-//   // scroll-behavior: smooth;
-//   // background-color: white;
-//   // -webkit-font-smoothing: antialiased;
-//   // -moz-osx-font-smoothing: grayscale;
-//   // text-rendering: optimizeLegibility;
-//   // font-family: sans-serif;
-// }
-
-// // html, body {
-// //   @include bleed_reset;
-// //   @include font_settings;
-// // }
-
-// // body {
-// //   @include paragraph_normal;
-// // }
-
-// body {
-//   background-color: $color_01;
-//   // line-height: 1;
-// 	// background: #ffffff;
-// 	// color: #777777;
-// 	// font: normal 16px "din_regular", arial, sans-serif;
-// 	// font-weight: 400;
-// 	// -webkit-font-smoothing: antialiased;
-// 	// -webkit-text-size-adjust: 100%;
-//     // font-family: var(--ptf-primary-font);
-//     // font-size: 1rem;
-//     // line-height: 1.625;
-
-//     // min-width: 20rem;
-//     // margin: 0;
-//     // padding: 0;
-
-//     // letter-spacing: -.025em;
-
-//     // color: var(--ptf-color-2);
-//     // background-color: var(--q_white);
-
-//     // -webkit-font-smoothing: antialiased;
-//     // -moz-osx-font-smoothing: grayscale;
-// }

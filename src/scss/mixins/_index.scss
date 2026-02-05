@@ -1,32 +1,45 @@
 ////
 ///
-/// Mixins Module
+/// Mixins Module - Central Index
 /// ===========================================================================
 ///
-/// This file centralizes the forwarding of various SCSS partials/modules used
-/// across the project. By aggregating these forwards, it simplifies imports
-/// in other parts of the codebase, promoting better modularity and
-/// organization.
+/// This module serves as the central entry point for all SCSS mixins in the
+/// unit.gl framework. By aggregating these forwards, it simplifies imports
+/// throughout the codebase while maintaining a clean, modular architecture.
 ///
-/// This module forwards several other modules to streamline imports
-/// and maintain a clean, modular structure. Each forwarded module contains
-/// specific functionalities, from managing viewports to handling aspect
-/// ratios.
+/// ## Architecture
+/// The mixins are organized into functional groups:
 ///
-/// Forwarded Modules:
-/// - paper: Contains paper sizes and related utilities.
-/// - view: Manages viewport-specific variables, such as breakpoints.
-/// - ratio: Includes mixins and functions for aspect ratio calculations.
-/// - device: Device-specific configurations for responsive design.
-/// - display: Display-related settings and utilities, including typography.
-/// - guide: Utilities for creating visual guides and overlays.
-/// - helper: General helper functions and mixins for common tasks.
+/// ### Core Mixins
+/// - `unit` - Q-unit property setters and calculations
+/// - `format` - Page/print format sizing (A4, Q-formats, etc.)
+/// - `view` - Viewport and breakpoint media queries
+/// - `ratio` - Aspect ratio utilities
+///
+/// ### Device & Display
+/// - `device` - Device-specific responsive configurations
+/// - `display` - Typography and display property settings
+///
+/// ### Layout Helpers
+/// - `guide` - Visual guide and overlay utilities for development
+/// - `spacing` - Padding, margin, and gap mixins/utilities
+/// - `dimensions` - Width, height, and size mixins/utilities
+/// - `typography` - Font size, line height, letter spacing mixins
+/// - `borders` - Border width, radius, and outline mixins/utilities
+/// - `position` - Inset and translate utility generators
+///
+/// ## Usage
+/// Import this module to access all mixins:
+/// ```scss
+/// @use "../mixins" as *;
+/// // or with namespace
+/// @use "../mixins" as mixins;
+/// ```
 ///
 /// @group Mixins
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -36,16 +49,61 @@
 // ============================================================================
 
 // ============================================================================
-// Forward
+// Forward - Core Mixins
 // ============================================================================
 
-/// Forwarding modules for global access
+/// Q-unit property setters and calculations
+/// @see _unit.scss
 @forward "unit";
-@forward "format"; // Handles page/print formats
-@forward "view"; // Manages viewport and breakpoint variables
-@forward "ratio"; // Provides aspect ratio utilities
-@forward "device"; // Device-specific responsive configurations
-@forward "display"; // Typography and display settings
-@forward "guide"; // Visual guide and overlay utilities
-@forward "helper"; // General-purpose helper functions and mixins
-@forward "utilities"; // Utilities for generating q-based spacing/sizing classes
+
+/// Page/print format sizing (A4, letter, Q-formats)
+/// @see _format.scss
+@forward "format";
+
+/// Viewport and breakpoint media query mixins
+/// @see _view.scss
+@forward "view";
+
+/// Aspect ratio calculation and application mixins
+/// @see _ratio.scss
+@forward "ratio";
+
+// ============================================================================
+// Forward - Device & Display
+// ============================================================================
+
+/// Device-specific responsive configurations
+/// @see _device.scss
+@forward "device";
+
+/// Typography and display property settings
+/// @see _display.scss
+@forward "display";
+
+// ============================================================================
+// Forward - Layout Helpers
+// ============================================================================
+
+/// Visual guide and overlay utilities for development
+/// @see _guide.scss
+@forward "guide";
+
+/// Spacing mixins: padding, margin, gap setters and utility generators
+/// @see _spacing.scss
+@forward "spacing";
+
+/// Dimension mixins: width, height, size setters and utility generators
+/// @see _dimensions.scss
+@forward "dimensions";
+
+/// Typography mixins: font-size, line-height, letter-spacing setters
+/// @see _typography.scss
+@forward "typography";
+
+/// Border mixins: border-width, border-radius, outline utilities
+/// @see _borders.scss
+@forward "borders";
+
+/// Position mixins: inset and translate utility generators
+/// @see _position.scss
+@forward "position";

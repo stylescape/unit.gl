@@ -3,11 +3,30 @@
 /// Layer Functions Module
 /// ===========================================================================
 ///
-/// @group Layer
+/// Provides functions for managing z-index values through a named layer
+/// system. This approach ensures consistent stacking context management
+/// across the application.
+///
+/// ## Key Features
+/// - Named layer lookup via `$layers` map
+/// - Warning when accessing undefined layers
+/// - Null-safe return for undefined layers
+///
+/// ## Layer Naming Convention
+/// Recommended layer names (from bottom to top):
+/// - `base` (1-10) - Default content layer
+/// - `dropdown` (100-199) - Dropdown menus
+/// - `sticky` (200-299) - Sticky headers
+/// - `overlay` (300-399) - Overlays and backdrops
+/// - `modal` (400-499) - Modal dialogs
+/// - `popover` (500-599) - Popovers and tooltips
+/// - `toast` (600-699) - Toast notifications
+/// - `guides` (9000+) - Development guide overlays
+///
+/// @group Functions-Layer
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -15,35 +34,61 @@
 // ============================================================================
 // Use
 // ============================================================================
+
 @use "sass:map";
 
 // ============================================================================
-// Functions
+// Z-Index Function
 // ============================================================================
 
 ///
-/// Z-Index Layer Function
+/// Z-Index Layer Lookup
 /// ---------------------------------------------------------------------------
 ///
-/// This function retrieves the z-index value from the $layers map based on
-/// the provided layer name. If the layer is not found, a warning is issued.
+/// Retrieves the z-index value from the `$layers` map based on the provided
+/// layer name. If the layer is not found, a warning is issued and `null` is
+/// returned, which will omit the z-index property from the output.
 ///
 /// @name z
-/// @param {String} $layer - The name of the layer to retrieve the z-index for.
-/// @return {Number | Null} - The z-index value associated with the layer,
-/// or null if not found.
+/// @param {String} $layer - The name of the layer to retrieve the z-index for
+/// @return {Number | Null} The z-index value, or null if layer not found
+/// @throws Warning if the specified layer doesn't exist in `$layers`
 ///
-/// @example scss - Usage
-///   // Define layers map (typically in variables)
+/// @example scss - Basic usage
+///   .modal-backdrop {
+///     z-index: z("overlay");  // Returns value from $layers map
+///   }
+///
+///   .modal-dialog {
+///     z-index: z("modal");    // Higher than overlay
+///   }
+///
+/// @example scss - With $layers map definition
+///   // In variables/_layer.scss
 ///   $layers: (
 ///     "base": 1,
-///     "modal": 1000,
+///     "dropdown": 100,
+///     "sticky": 200,
+///     "overlay": 300,
+///     "modal": 400,
+///     "popover": 500,
+///     "toast": 600,
 ///     "guides": 9999
 ///   );
 ///
-///   .modal {
-///     z-index: z("modal");
+///   // Usage
+///   .tooltip {
+///     z-index: z("popover");  // Returns 500
 ///   }
+///
+/// @example scss - Error handling
+///   .element {
+///     z-index: z("undefined-layer");
+///     // Outputs warning: Layer `undefined-layer` not found...
+///     // z-index property is omitted from output
+///   }
+///
+/// @see $layers
 ///
 @function z($layer) {
     @if not map.has-key($layers, $layer) {

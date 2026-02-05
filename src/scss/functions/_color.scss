@@ -1,17 +1,26 @@
 ////
 ///
-/// Color Variables Module
+/// Color Functions Module
 /// ===========================================================================
 ///
-/// These colors are used for visual guides such as grid overlays, baselines,
-/// and alignment guides. The colors are defined with varying levels of opacity
-/// to ensure they are visible yet non-intrusive on the design.
+/// Provides functions for retrieving colors from predefined color maps,
+/// particularly for visual guides such as grid overlays, baselines, and
+/// alignment guides.
 ///
-/// @group Color
+/// ## Key Features
+/// - Named color lookup from guide color maps
+/// - Consistent color retrieval across guide components
+///
+/// ## Guide Color Philosophy
+/// Colors for visual guides are defined with varying levels of opacity to
+/// ensure they are visible yet non-intrusive during design work. These
+/// guides are intended for development use only and should be hidden in
+/// production.
+///
+/// @group Functions-Color
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -20,13 +29,34 @@
 // Use
 // ============================================================================
 
+@use "sass:map";
+
 // ============================================================================
-// Functions
+// Guide Color Function
 // ============================================================================
 
 ///
-/// Function to Retrieve Guide Colors (Optional for Flexibility)
+/// Guide Color Lookup
 /// ---------------------------------------------------------------------------
+///
+/// Retrieves a guide color from the `$guide--color_map` by name.
+/// Used internally for consistent coloring of grid overlays, baselines,
+/// and other visual development guides.
+///
+/// @name guide--color
+/// @param {String} $name - The name of the guide color to retrieve
+/// @return {Color} The color value from the guide color map
+///
+/// @example scss - Usage
+///   .baseline-guide {
+///     background-color: guide--color("baseline");
+///   }
+///
+///   .grid-line {
+///     border-color: guide--color("grid-major");
+///   }
+///
+/// @see $guide--color_map
 ///
 @function guide--color($name) {
     @return map.get($guide--color_map, $name);

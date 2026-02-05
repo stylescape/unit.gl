@@ -1,9 +1,14 @@
 /**
- * Demo Site JavaScript
- * ====================
+ * Documentation Site JavaScript
+ * =============================
  *
- * This file contains all JavaScript functionality for the unit.gl demo/docs site.
+ * This file contains all JavaScript functionality for the unit.gl docs site.
  * It is separate from the library code and should be loaded after unit.gl.js.
+ *
+ * @module docs
+ * @author Scape Agency
+ * @link https://unit.gl
+ * @since 0.1.0 initial release
  */
 
 // ============================================================================
@@ -142,33 +147,49 @@ function initMobileNav(): void {
 }
 
 // ============================================================================
-// Dropdown Menu (base.html.jinja)
+// Sidebar Navigation Toggle (Mobile)
 // ============================================================================
 
-function initDropdown(): void {
-    const dropdown = document.getElementById('nav-dropdown');
-    const toggle = dropdown?.querySelector('.nav__dropdown-toggle') as HTMLElement | null;
+function initSidebarToggle(): void {
+    const toggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.querySelector('.sidebar');
 
-    toggle?.addEventListener('click', function (e) {
-        e.stopPropagation();
-        const isOpen = dropdown!.classList.toggle('open');
+    if (!toggle || !sidebar) return;
+
+    toggle.addEventListener('click', function () {
+        const isOpen = sidebar.classList.toggle('is-open');
         this.setAttribute('aria-expanded', String(isOpen));
+        document.body.classList.toggle('sidebar-open', isOpen);
     });
 
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function (e) {
-        if (dropdown && !dropdown.contains(e.target as Node)) {
-            dropdown.classList.remove('open');
-            toggle?.setAttribute('aria-expanded', 'false');
+    // Close sidebar when clicking a link (mobile)
+    sidebar.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 900) {
+                sidebar.classList.remove('is-open');
+                toggle.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('sidebar-open');
+            }
+        });
+    });
+
+    // Close sidebar on escape
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sidebar.classList.contains('is-open')) {
+            sidebar.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('sidebar-open');
+            toggle.focus();
         }
     });
 
-    // Close dropdown when pressing Escape
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && dropdown?.classList.contains('open')) {
-            dropdown.classList.remove('open');
-            toggle?.setAttribute('aria-expanded', 'false');
-            toggle?.focus();
+    // Close sidebar when resizing to desktop
+    const mediaQuery = window.matchMedia('(min-width: 900px)');
+    mediaQuery.addEventListener('change', (e) => {
+        if (e.matches && sidebar.classList.contains('is-open')) {
+            sidebar.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('sidebar-open');
         }
     });
 }
@@ -875,7 +896,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initThemeToggle();
     initGridToggle();
     initMobileNav();
-    initDropdown();
+    initSidebarToggle();
 
     // Page-specific demos (only run if relevant elements exist)
     initLayersDemo();
