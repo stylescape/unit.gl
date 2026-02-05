@@ -2,204 +2,12 @@
 
 {%- block title %}Utility Classes — unit.gl{%- endblock %}
 
-{%- block styles %}
-{{ super() }}
-<style>
-    /* ─────────────────────────────────────────────────────────────────
-       Utility Demo Specific Styles
-       ───────────────────────────────────────────────────────────────── */
-
-    .utility-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: calc(var(--grid-unit) * 2);
-        margin: calc(var(--grid-unit) * 3) 0;
-    }
-
-    .utility-box {
-        background: var(--swiss-black);
-        color: var(--swiss-white);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: var(--font-mono);
-        font-size: 0.625rem;
-        font-weight: 500;
-        min-height: 48px;
-        text-align: center;
-    }
-
-    .padding-demo {
-        background: var(--swiss-gray-100);
-        border: 1px solid var(--swiss-gray-300);
-    }
-
-    .padding-inner {
-        background: var(--swiss-black);
-        color: var(--swiss-white);
-        font-family: var(--font-mono);
-        font-size: 0.5625rem;
-        text-align: center;
-        padding: calc(var(--grid-unit) * 1);
-    }
-
-    .margin-demo {
-        background: var(--swiss-gray-100);
-        border: 1px dashed var(--swiss-gray-300);
-        display: inline-block;
-    }
-
-    .margin-inner {
-        background: var(--swiss-black);
-        color: var(--swiss-white);
-        font-family: var(--font-mono);
-        font-size: 0.5625rem;
-        text-align: center;
-        width: 48px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .gap-demo {
-        display: flex;
-        background: var(--swiss-gray-100);
-        border: 1px solid var(--swiss-gray-300);
-        padding: calc(var(--grid-unit) * 1);
-    }
-
-    .gap-item {
-        width: 24px;
-        height: 24px;
-        background: var(--swiss-black);
-    }
-
-    .size-box {
-        background: var(--swiss-black);
-    }
-
-    .border-demo {
-        width: 48px;
-        height: 32px;
-        border-style: solid;
-        border-color: var(--swiss-black);
-        background: var(--swiss-gray-100);
-    }
-
-    .radius-demo {
-        width: 48px;
-        height: 48px;
-        background: var(--swiss-black);
-    }
-
-    .inset-demo {
-        position: relative;
-        width: 80px;
-        height: 60px;
-        background: var(--swiss-gray-100);
-        border: 1px solid var(--swiss-gray-300);
-    }
-
-    .inset-item {
-        position: absolute;
-        width: 16px;
-        height: 16px;
-        background: var(--swiss-red);
-    }
-
-    .responsive-demo {
-        background: var(--swiss-black);
-        color: var(--swiss-white);
-        text-align: center;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
-
-    .responsive-demo p {
-        margin: 0;
-        max-width: none;
-    }
-
-    .scale-bar {
-        height: 6px;
-        background: var(--swiss-black);
-    }
-
-    .scale-reference {
-        display: flex;
-        align-items: center;
-        gap: calc(var(--grid-unit) * 2);
-        padding: calc(var(--grid-unit) * 1.5) 0;
-        border-bottom: 1px solid var(--swiss-gray-200);
-    }
-
-    .scale-reference__label {
-        font-family: var(--font-mono);
-        font-size: 0.6875rem;
-        color: var(--swiss-gray-500);
-        min-width: 100px;
-    }
-
-    .card-demo {
-        border: 1px solid var(--swiss-black);
-        background: var(--swiss-white);
-        max-width: 320px;
-    }
-
-    .card-demo h4 {
-        font-size: 1rem;
-        margin: 0 0 calc(var(--grid-unit) * 1);
-    }
-
-    .card-demo p {
-        font-size: 0.875rem;
-        color: var(--swiss-gray-600);
-        margin: 0 0 calc(var(--grid-unit) * 2);
-    }
-
-    .btn-demo {
-        font-family: var(--font-sans);
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        border: none;
-        cursor: pointer;
-    }
-
-    .btn-demo--primary {
-        background: var(--swiss-black);
-        color: var(--swiss-white);
-    }
-
-    .btn-demo--secondary {
-        background: var(--swiss-white);
-        color: var(--swiss-black);
-        border: 1px solid var(--swiss-black);
-    }
-
-    .breakpoint-tag {
-        display: inline-block;
-        font-family: var(--font-mono);
-        font-size: 0.5625rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        background: var(--swiss-gray-100);
-        color: var(--swiss-gray-600);
-        padding: 0.25em 0.5em;
-        margin-right: calc(var(--grid-unit) * 0.5);
-        border: 1px solid var(--swiss-gray-300);
-    }
-</style>
-{%- endblock %}
-
 {%- block header %}
 <p class="eyebrow">Documentation</p>
 <h1>Utility Classes</h1>
 <p class="lead">Granular utility classes based on the q() unit system. Each class applies a precise multiple of
-    <code>0.0625rem</code>.</p>
+    <code>0.0625rem</code>.
+</p>
 {%- endblock %}
 
 {%- block content %}
@@ -224,7 +32,8 @@
 <section>
     <h2>Padding</h2>
     <p>Control element padding: <code>.p_q*</code>, <code>.px_q*</code>, <code>.py_q*</code>, <code>.pt_q*</code>,
-        <code>.pr_q*</code>, <code>.pb_q*</code>, <code>.pl_q*</code></p>
+        <code>.pr_q*</code>, <code>.pb_q*</code>, <code>.pl_q*</code>
+    </p>
 
     <h3>All Sides</h3>
     <div class="demo-row">
@@ -263,7 +72,8 @@
 <section>
     <h2>Margin</h2>
     <p>Control element margins: <code>.m_q*</code>, <code>.mx_q*</code>, <code>.my_q*</code>, <code>.mt_q*</code>,
-        <code>.mr_q*</code>, <code>.mb_q*</code>, <code>.ml_q*</code></p>
+        <code>.mr_q*</code>, <code>.mb_q*</code>, <code>.ml_q*</code>
+    </p>
 
     <div class="demo-row">
         {% for step in [4, 8, 16, 24] %}
@@ -308,7 +118,8 @@
 <section>
     <h2>Width & Height</h2>
     <p>Control dimensions: <code>.w_q*</code>, <code>.h_q*</code>, <code>.min_w_q*</code>, <code>.max_w_q*</code>,
-        <code>.min_h_q*</code>, <code>.max_h_q*</code></p>
+        <code>.min_h_q*</code>, <code>.max_h_q*</code>
+    </p>
 
     <h3>Width</h3>
     <div class="demo-row">
@@ -338,7 +149,8 @@
 <section>
     <h2>Border Width</h2>
     <p>Control border widths: <code>.border_q*</code>, <code>.border_t_q*</code>, <code>.border_r_q*</code>,
-        <code>.border_b_q*</code>, <code>.border_l_q*</code></p>
+        <code>.border_b_q*</code>, <code>.border_l_q*</code>
+    </p>
 
     <div class="demo-row">
         {% for step in [1, 2, 4, 6, 8] %}
@@ -358,7 +170,8 @@
 <section>
     <h2>Border Radius</h2>
     <p>Control border radius: <code>.rounded_q*</code>, <code>.rounded_t_q*</code>, <code>.rounded_r_q*</code>,
-        <code>.rounded_b_q*</code>, <code>.rounded_l_q*</code></p>
+        <code>.rounded_b_q*</code>, <code>.rounded_l_q*</code>
+    </p>
 
     <div class="demo-row">
         {% for step in [0, 4, 8, 12, 16, 24, 32] %}
@@ -377,7 +190,8 @@
 <section>
     <h2>Position</h2>
     <p>Control positioning: <code>.top_q*</code>, <code>.right_q*</code>, <code>.bottom_q*</code>,
-        <code>.left_q*</code>, <code>.inset_q*</code></p>
+        <code>.left_q*</code>, <code>.inset_q*</code>
+    </p>
 
     <div class="demo-row">
         {% for step in [4, 8, 16] %}
@@ -401,13 +215,14 @@
     <p>All utilities support responsive breakpoints. Resize the browser to see changes.</p>
 
     <div style="margin: calc(var(--grid-unit) * 2) 0 calc(var(--grid-unit) * 3);">
-        <span class="breakpoint-tag">ss 280px</span>
-        <span class="breakpoint-tag">xs 320px</span>
-        <span class="breakpoint-tag">sm 480px</span>
-        <span class="breakpoint-tag">md 768px</span>
-        <span class="breakpoint-tag">lg 1024px</span>
-        <span class="breakpoint-tag">xl 1280px</span>
-        <span class="breakpoint-tag">sl 1440px</span>
+        <span class="breakpoint-tag">us 240px</span>
+        <span class="breakpoint-tag">ss 360px</span>
+        <span class="breakpoint-tag">xs 540px</span>
+        <span class="breakpoint-tag">sm 720px</span>
+        <span class="breakpoint-tag">md 1440px</span>
+        <span class="breakpoint-tag">lg 2160px</span>
+        <span class="breakpoint-tag">xl 2880px</span>
+        <span class="breakpoint-tag">ul 4320px</span>
     </div>
 
     <h3>Responsive Padding</h3>

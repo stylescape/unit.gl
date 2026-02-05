@@ -5,8 +5,8 @@
 {%- block header %}
 <p class="eyebrow">Guides</p>
 <h1>Breakpoints</h1>
-<p class="lead">A quick, interactive view of unit.gl's <code>$breakpoints</code> map. All values are multiples of 40px
-    for consistency with the Q-based grid system.</p>
+<p class="lead">A quick, interactive view of unit.gl's <code>$breakpoints</code> map. All values are derived from Q
+    format paper sizes (mm × 4).</p>
 {%- endblock %}
 
 {%- block content %}
@@ -49,14 +49,14 @@
             </thead>
             <tbody>
                 {% set bps = [
-                {"key": "ss", "min": 280, "mult": "7×40", "desc": "Compact/fold devices"},
-                {"key": "xs", "min": 320, "mult": "8×40", "desc": "Phones"},
-                {"key": "sm", "min": 480, "mult": "12×40", "desc": "Large phones / small tablets"},
-                {"key": "md", "min": 800, "mult": "20×40", "desc": "Tablets / small laptops"},
-                {"key": "lg", "min": 1040, "mult": "26×40", "desc": "Laptops / desktops"},
-                {"key": "xl", "min": 1280, "mult": "32×40", "desc": "Large desktops"},
-                {"key": "xxl", "min": 1600, "mult": "40×40", "desc": "Ultrawide / QHD"},
-                {"key": "sl", "min": 2560, "mult": "64×40", "desc": "4K / 5K displays"}
+                {"key": "us", "min": 240, "mult": "Q07 60mm", "desc": "Compact / Fold devices"},
+                {"key": "ss", "min": 360, "mult": "Q06 90mm", "desc": "Phones"},
+                {"key": "xs", "min": 540, "mult": "Q05 135mm", "desc": "Large phones"},
+                {"key": "sm", "min": 720, "mult": "Q04 180mm", "desc": "Tablets"},
+                {"key": "md", "min": 1440, "mult": "Q03 360mm", "desc": "Laptops"},
+                {"key": "lg", "min": 2160, "mult": "Q02 540mm", "desc": "QHD desktops"},
+                {"key": "xl", "min": 2880, "mult": "Q01 720mm", "desc": "4K displays"},
+                {"key": "ul", "min": 4320, "mult": "Q00 1080mm", "desc": "5K+ displays"}
                 ] %}
 
                 {% for bp in bps %}
@@ -71,9 +71,9 @@
         </table>
 
         <div class="alert alert--tip" style="margin-top: calc(var(--grid-unit) * 3);">
-            <div class="alert__title">40px Grid Alignment</div>
-            <p>All breakpoints are multiples of 40px, ensuring they align with unit.gl's Q-based spacing system where
-                Q1 = 40mm at screen density.</p>
+            <div class="alert__title">Q Format Alignment</div>
+            <p>All breakpoints are derived from Q format paper sizes × 4 multiplier (1mm = 4px at 96dpi), ensuring
+                physical-to-digital consistency.</p>
         </div>
     </section>
 
@@ -91,34 +91,5 @@
     </section>
 
 </div>
-
-<script>
-    const breakpoints = [
-        { key: 'sl', min: 2560 },
-        { key: 'xxl', min: 1600 },
-        { key: 'xl', min: 1280 },
-        { key: 'lg', min: 1040 },
-        { key: 'md', min: 800 },
-        { key: 'sm', min: 480 },
-        { key: 'xs', min: 320 },
-        { key: 'ss', min: 280 },
-    ];
-
-    function updateBreakpointUI() {
-        const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-        const active = breakpoints.find(bp => width >= bp.min) || breakpoints[breakpoints.length - 1];
-
-        document.getElementById('bp-width').textContent = String(width);
-        document.getElementById('bp-active').textContent = active.key;
-        document.getElementById('bp-rule').textContent = `(min-width: ${active.min}px)`;
-
-        document.querySelectorAll('.bp-row').forEach(row => {
-            row.classList.toggle('active', row.dataset.bp === active.key);
-        });
-    }
-
-    window.addEventListener('resize', updateBreakpointUI);
-    updateBreakpointUI();
-</script>
 
 {%- endblock %}
