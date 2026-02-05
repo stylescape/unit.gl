@@ -44,14 +44,14 @@ icon_github, icon_menu, icon_close %}
     <nav class="nav" aria-label="Main navigation">
         <div class="nav__inner">
             {# Logo #}
-            <a href="index.html" class="nav__logo" {% if current_page == 'index.html' %}aria-current="page"{% endif %}>
+            <a href="index.html" class="nav__logo" {% if current_page=='index.html' %}aria-current="page" {% endif %}>
                 <span class="nav__logo-text">unit.gl</span>
                 <span class="nav__version">{{ version | default('v0.1') }}</span>
             </a>
 
             {# Mobile Menu Toggle #}
-            <button type="button" class="nav__mobile-toggle" id="nav-mobile-toggle" 
-                    aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+            <button type="button" class="nav__mobile-toggle" id="nav-mobile-toggle" aria-expanded="false"
+                aria-controls="nav-menu" aria-label="Toggle navigation menu">
                 {{ icon_menu() }}
                 {{ icon_close() }}
             </button>
@@ -86,25 +86,29 @@ icon_github, icon_menu, icon_close %}
                         <div class="nav__dropdown-section">
                             <span class="nav__dropdown-label">Learn</span>
                             {% for item in nav.learn %}
-                            <a href="{{ item.href }}" role="menuitem" {% if current_page == item.href %}aria-current="page" class="is-active"{% endif %}>{{ item.label }}</a>
+                            <a href="{{ item.href }}" role="menuitem" {% if current_page==item.href
+                                %}aria-current="page" class="is-active" {% endif %}>{{ item.label }}</a>
                             {% endfor %}
                         </div>
                         <div class="nav__dropdown-section">
                             <span class="nav__dropdown-label">API</span>
                             {% for item in nav.api %}
-                            <a href="{{ item.href }}" role="menuitem" {% if current_page == item.href %}aria-current="page" class="is-active"{% endif %}>{{ item.label }}</a>
+                            <a href="{{ item.href }}" role="menuitem" {% if current_page==item.href
+                                %}aria-current="page" class="is-active" {% endif %}>{{ item.label }}</a>
                             {% endfor %}
                         </div>
                         <div class="nav__dropdown-section">
                             <span class="nav__dropdown-label">Demos</span>
                             {% for item in nav.demos %}
-                            <a href="{{ item.href }}" role="menuitem" {% if current_page == item.href %}aria-current="page" class="is-active"{% endif %}>{{ item.label }}</a>
+                            <a href="{{ item.href }}" role="menuitem" {% if current_page==item.href
+                                %}aria-current="page" class="is-active" {% endif %}>{{ item.label }}</a>
                             {% endfor %}
                         </div>
                         <div class="nav__dropdown-section">
                             <span class="nav__dropdown-label">About</span>
                             {% for item in nav.about %}
-                            <a href="{{ item.href }}" role="menuitem" {% if current_page == item.href %}aria-current="page" class="is-active"{% endif %}>{{ item.label }}</a>
+                            <a href="{{ item.href }}" role="menuitem" {% if current_page==item.href
+                                %}aria-current="page" class="is-active" {% endif %}>{{ item.label }}</a>
                             {% endfor %}
                         </div>
                     </div>

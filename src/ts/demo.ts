@@ -103,7 +103,7 @@ function initMobileNav(): void {
         const isOpen = menu.classList.toggle('is-open');
         navWrapper?.classList.toggle('nav-open', isOpen);
         this.setAttribute('aria-expanded', String(isOpen));
-        
+
         // Prevent body scroll when menu is open
         document.body.classList.toggle('nav-open', isOpen);
     });
