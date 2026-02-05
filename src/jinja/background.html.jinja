@@ -27,7 +27,8 @@
 
     <p>Design systems attempt to solve this with spacing tokens like <code>$spacing-sm</code>, <code>$spacing-md</code>,
         <code>$spacing-lg</code>. But these are often arbitrary choices — why is "medium" 16px instead of 14px or 18px?
-        Why these breakpoints and not others?</p>
+        Why these breakpoints and not others?
+    </p>
 
     <p>unit.gl takes a different approach. Instead of arbitrary tokens, we use <strong>mathematical
             relationships</strong> rooted in typography, music theory, and the physical world.</p>
@@ -137,70 +138,78 @@
         easy to reason about and produces harmonious relationships between sizes.</p>
 </section>
 
-<!-- 40px Grid -->
+<!-- Q Format System -->
 <section>
-    <h2>The 40px Foundation</h2>
+    <h2>Q Format Paper System</h2>
 
-    <p>Why 40? This number appears throughout unit.gl's design:</p>
+    <p>unit.gl breakpoints are derived from the Q paper format system — a geometric series where each size is 1.5× the
+        previous:</p>
 
     <ul>
-        <li><strong>40mm = Q1</strong> — The base unit in the Q-system</li>
-        <li><strong>40px</strong> — A comfortable touch target on mobile (Apple recommends 44pt minimum)</li>
-        <li><strong>40px breakpoints</strong> — All responsive breakpoints are multiples of 40px</li>
-        <li><strong>8 × 5 = 40</strong> — Bridges the 8-point grid to larger layout divisions</li>
+        <li><strong>Physical foundation</strong> — Breakpoints map to real paper dimensions</li>
+        <li><strong>4× multiplier</strong> — 1mm = 4px at 96dpi (standard screen density)</li>
+        <li><strong>Density-aware</strong> — Scales correctly across device pixel ratios</li>
     </ul>
 
-    <p>By aligning breakpoints to 40px multiples, your layouts naturally snap to grid boundaries at every viewport size:
-    </p>
+    <p>Portrait widths serve mobile devices, landscape widths serve desktop:</p>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Breakpoint</th>
-                <th>Value</th>
-                <th>Multiple</th>
+                <th>Q Format</th>
+                <th>Width (mm)</th>
+                <th>×4 = px</th>
             </tr>
         </thead>
         <tbody>
             <tr>
+                <td>us</td>
+                <td>Q07 Portrait</td>
+                <td>60mm</td>
+                <td>240px</td>
+            </tr>
+            <tr>
                 <td>ss</td>
-                <td>280px</td>
-                <td>7 × 40</td>
+                <td>Q06 Portrait</td>
+                <td>90mm</td>
+                <td>360px</td>
             </tr>
             <tr>
                 <td>xs</td>
-                <td>320px</td>
-                <td>8 × 40</td>
+                <td>Q05 Portrait</td>
+                <td>135mm</td>
+                <td>540px</td>
             </tr>
             <tr>
                 <td>sm</td>
-                <td>480px</td>
-                <td>12 × 40</td>
+                <td>Q04 Portrait</td>
+                <td>180mm</td>
+                <td>720px</td>
             </tr>
             <tr>
                 <td>md</td>
-                <td>800px</td>
-                <td>20 × 40</td>
+                <td>Q03 Landscape</td>
+                <td>360mm</td>
+                <td>1440px</td>
             </tr>
             <tr>
                 <td>lg</td>
-                <td>1040px</td>
-                <td>26 × 40</td>
+                <td>Q02 Landscape</td>
+                <td>540mm</td>
+                <td>2160px</td>
             </tr>
             <tr>
                 <td>xl</td>
-                <td>1280px</td>
-                <td>32 × 40</td>
+                <td>Q01 Landscape</td>
+                <td>720mm</td>
+                <td>2880px</td>
             </tr>
             <tr>
-                <td>xxl</td>
-                <td>1600px</td>
-                <td>40 × 40</td>
-            </tr>
-            <tr>
-                <td>sl</td>
-                <td>2560px</td>
-                <td>64 × 40</td>
+                <td>ul</td>
+                <td>Q00 Landscape</td>
+                <td>1080mm</td>
+                <td>4320px</td>
             </tr>
         </tbody>
     </table>

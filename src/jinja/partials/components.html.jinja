@@ -1,0 +1,196 @@
+{#
+Reusable UI Components as Jinja macros
+Usage: {% from "partials/components.html.jinja" import code_block, alert, api_signature %}
+#}
+
+{# ============================================================================
+Code Block
+Usage: {{ code_block('npm install unit.gl', lang='bash') }}
+============================================================================ #}
+{% macro code_block(code, lang='scss', title='') %}
+<div class="code-block{% if lang %} code-block--{{ lang }}{% endif %}">
+    {% if title %}<div class="code-block__title">{{ title }}</div>{% endif %}
+    {{ code | safe }}
+</div>
+{% endmacro %}
+
+
+{# ============================================================================
+Alert / Callout
+Usage: {{ alert('This is a tip!', type='tip', title='Pro Tip') }}
+Types: tip, warning, info, danger
+============================================================================ #}
+{% macro alert(content, type='info', title='') %}
+<div class="alert alert--{{ type }}">
+    {% if title %}<p class="alert__title">{{ title }}</p>{% endif %}
+    <p>{{ content | safe }}</p>
+</div>
+{% endmacro %}
+
+
+{# ============================================================================
+API Signature
+Usage: {{ api_signature('q($multiplier) → Length') }}
+============================================================================ #}
+{% macro api_signature(signature) %}
+<div class="api-signature">{{ signature }}</div>
+{% endmacro %}
+
+
+{# ============================================================================
+API Parameter
+Usage: {{ api_param('$multiplier', 'Number', 'The number of Q units') }}
+============================================================================ #}
+{% macro api_param(name, type, description, default='') %}
+<div class="api-param">
+    <span class="api-param__name">{{ name }}</span>
+    <span class="api-param__type">{{ type }}</span>
+    {% if default %}<span class="api-param__default">Default: {{ default }}</span>{% endif %}
+    <span class="api-param__desc">{{ description }}</span>
+</div>
+{% endmacro %}
+
+
+{# ============================================================================
+API Parameters Block
+Usage: {% call api_params() %}{{ api_param(...) }}{% endcall %}
+============================================================================ #}
+{% macro api_params() %}
+<div class="api-params">
+    {{ caller() }}
+</div>
+{% endmacro %}
+
+
+{# ============================================================================
+Feature Card
+Usage: {{ feature_card('Q', 'The Q Unit', 'Atomic unit system...') }}
+============================================================================ #}
+{% macro feature_card(icon, title, description) %}
+<div class="feature-card">
+    <div class="feature-card__icon">{{ icon }}</div>
+    <h3 class="feature-card__title">{{ title }}</h3>
+    <p class="feature-card__desc">{{ description }}</p>
+</div>
+{% endmacro %}
+
+
+{# ============================================================================
+Button
+Usage: {{ button('Get Started', href='/start.html', variant='primary', icon='lightning') }}
+Variants: primary, secondary, ghost
+============================================================================ #}
+{% macro button(text, href='#', variant='primary', icon='', target='') %}
+{% from "partials/icons.html.jinja" import icon_lightning, icon_github, icon_arrow_right, icon_external %}
+<a href="{{ href }}" class="btn btn--{{ variant }}" {% if target %} target="{{ target }}" {% endif %}>
+    {% if icon == 'lightning' %}{{ icon_lightning() }}{% endif %}
+    {% if icon == 'github' %}{{ icon_github(16) }}{% endif %}
+    {% if icon == 'arrow' %}{{ icon_arrow_right() }}{% endif %}
+    {{ text }}
+    {% if icon == 'external' %}{{ icon_external() }}{% endif %}
+</a>
+{% endmacro %}
+
+
+{# ============================================================================
+Demo Row
+Usage: {% call demo_row() %}...{% endcall %}
+============================================================================ #}
+{% macro demo_row() %}
+<div class="demo-row">
+    {{ caller() }}
+</div>
+{% endmacro %}
+
+
+{# ============================================================================
+Demo Item
+Usage: {{ demo_item(content, label='.p_q16') }}
+============================================================================ #}
+{% macro demo_item(label='') %}
+<div class="demo-item">
+    {{ caller() }}
+    {% if label %}<span class="demo-item__label">{{ label }}</span>{% endif %}
+</div>
+{% endmacro %}
+
+
+{# ============================================================================
+Table (simple)
+Usage: {{ table(headers=['Name', 'Value'], rows=[['item1', 'val1'], ['item2', 'val2']]) }}
+============================================================================ #}
+{% macro table(headers, rows, class='') %}
+<table class="table{% if class %} {{ class }}{% endif %}">
+    <thead>
+        <tr>
+            {% for header in headers %}
+            <th>{{ header }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in rows %}
+        <tr>
+            {% for cell in row %}
+            <td>{{ cell | safe }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endmacro %}
+
+
+{# ============================================================================
+Section Header
+Usage: {{ section_header('Features', 'Explore the key features of unit.gl') }}
+============================================================================ #}
+{% macro section_header(title, description='') %}
+<h2>{{ title }}</h2>
+{% if description %}<p>{{ description }}</p>{% endif %}
+{% endmacro %}
+
+
+{# ============================================================================
+Ratio Card
+Usage: {{ ratio_card('1:1', 'Square', 1, 1) }}
+============================================================================ #}
+{% macro ratio_card(name, desc, w, h) %}
+<div class="ratio-card">
+    <div class="ratio-card__preview" style="aspect-ratio: {{ w }}/{{ h }};">
+        <span class="ratio-card__inner">{{ w }}:{{ h }}</span>
+    </div>
+    <div class="ratio-card__info">
+        <p class="ratio-card__name">{{ desc }}</p>
+        <p class="ratio-card__value">.ratio_{{ w }}x{{ h }}</p>
+    </div>
+</div>
+{% endmacro %}
+
+
+{# ============================================================================
+Number Cell (for Q unit grids)
+Usage: {{ number_cell(16) }}
+============================================================================ #}
+{% macro number_cell(value) %}
+<div class="number-cell">
+    <div class="number-cell__value">{{ value }}</div>
+    <div class="number-cell__label">q({{ value }})</div>
+</div>
+{% endmacro %}
+
+
+{# ============================================================================
+Doc Section (for documentation index)
+Usage: {{ doc_section('Learn', [{'href': '/start.html', 'label': 'Getting Started'}]) }}
+============================================================================ #}
+{% macro doc_section(title, links) %}
+<div class="doc-section">
+    <h3>{{ title }}</h3>
+    <ul>
+        {% for link in links %}
+        <li><a href="{{ link.href }}">{{ link.label }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endmacro %}

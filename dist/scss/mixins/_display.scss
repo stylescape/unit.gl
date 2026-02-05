@@ -25,6 +25,7 @@
 @use "../functions" as *;
 @use "../variables" as *;
 @use "../maps" as *;
+@use "sass:map";
 
 // ============================================================================
 // Mixins
@@ -114,4 +115,259 @@
     @media (aspect-ratio: #{ $width } / #{ $height }) {
         @content;
     }
+}
+
+///
+/// Applies styles at a minimum device pixel ratio (DPR).
+/// Targets screens with the specified density or higher.
+///
+/// @name display_density
+///
+/// @param {Number} $min-dpr [2] - Minimum device pixel ratio to target
+///
+/// @example scss
+///   @include display_density(2) {
+///     // styles for 2× displays and higher
+///   }
+///   @include display_density(3) {
+///     // styles for 3× displays and higher
+///   }
+///
+@mixin display_density($min-dpr: 2) {
+    @media (-webkit-min-device-pixel-ratio: #{$min-dpr}),
+           (min-resolution: #{$min-dpr * 96}dpi),
+           (min-resolution: #{$min-dpr}dppx) {
+        @content;
+    }
+}
+
+///
+/// Combined viewport width + density media query.
+/// Targets specific breakpoint AND minimum DPR together.
+/// Useful for targeting high-density phones vs low-density tablets.
+///
+/// @name media_density
+///
+/// @param {String} $breakpoint - Breakpoint name from $breakpoints map
+/// @param {Number} $min-dpr [1] - Minimum device pixel ratio to target
+///
+/// @example scss
+///   // Target phones (ss breakpoint) with retina displays
+///   @include media_density(ss, 2) {
+///     font-size: 14px;
+///   }
+///
+///   // Target tablets (sm) with standard density
+///   @include media_density(sm, 1) {
+///     font-size: 16px;
+///   }
+///
+///   // Target desktops (md) with any density
+///   @include media_density(md) {
+///     max-width: 1200px;
+///   }
+///
+@mixin media_density($breakpoint, $min-dpr: 1) {
+    $bp-value: map.get($breakpoints, $breakpoint);
+
+    @if $bp-value == null {
+        @warn "Unknown breakpoint: #{$breakpoint}";
+    } @else if $min-dpr <= 1 {
+        // Standard density or lower, just use viewport query
+        @media (min-width: #{$bp-value}) {
+            @content;
+        }
+    } @else {
+        // Combined viewport + density query
+        @media (min-width: #{$bp-value}) and (-webkit-min-device-pixel-ratio: #{$min-dpr}),
+               (min-width: #{$bp-value}) and (min-resolution: #{$min-dpr * 96}dpi),
+               (min-width: #{$bp-value}) and (min-resolution: #{$min-dpr}dppx) {
+            @content;
+        }
+    }
+}
+
+///
+/// Target a Q format size with optional density.
+/// Uses the unified Q format → breakpoint mapping.
+///
+/// @name media_format
+///
+/// @param {String} $format - Format name (q06p, q05p, q04p, q03l, q02l, q01l, q00l)
+/// @param {Number} $min-dpr [1] - Minimum device pixel ratio
+///
+/// @example scss
+///   // Target Q06 portrait devices (phones)
+///   @include media_format(q06p) {
+///     padding: 16px;
+///   }
+///
+///   // Target Q03 landscape devices (laptops) with retina
+///   @include media_format(q03l, 2) {
+///     font-weight: 300;
+///   }
+///
+@mixin media_format($format, $min-dpr: 1) {
+    $breakpoint: map.get($format_breakpoint_map, $format);
+
+    @if $breakpoint == null {
+        @warn "Unknown format: #{$format}. Use q06p, q05p, q04p, q03l, q02l, q01l, or q00l.";
+    } @else {
+        @include media_density($breakpoint, $min-dpr) {
+            @content;
+        }
+    }
+}
+
+///
+/// Applies styles for a specific density bucket.
+/// Uses Android density bucket names for semantic targeting.
+///
+/// @name display_bucket
+///
+/// @param {String} $bucket - Density bucket name (ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi)
+///
+/// @example scss
+///   @include display_bucket("xhdpi") {
+///     // styles for 2× (320dpi) displays
+///   }
+///   @include display_bucket("xxhdpi") {
+///     // styles for 3× (480dpi) displays
+///   }
+///
+@mixin display_bucket($bucket) {
+    $dpr: map.get($density_buckets, $bucket);
+
+    @if $dpr == null {
+        @warn "Density bucket `#{$bucket}` not found.";
+    } @else {
+        @include display_density($dpr) {
+            @content;
+        }
+    }
+}
+
+///
+/// Applies styles for standard (1×) density displays only.
+/// Useful for providing fallback styles or optimizations for non-retina screens.
+///
+/// @name display_standard
+///
+/// @example scss
+///   @include display_standard {
+///     // styles for standard density only
+///   }
+///
+@mixin display_standard {
+    @media (-webkit-max-device-pixel-ratio: 1.5),
+        (max-resolution: 144dpi),
+        (max-resolution: 1.5dppx) {
+        @content;
+    }
+}
+
+///
+/// Provides density-aware image background with automatic resolution switching.
+/// Generates image-set() for browsers that support it, with fallback.
+///
+/// @name image_density
+///
+/// @param {String} $path - Base path to image (without extension)
+/// @param {String} $ext [png] - Image file extension
+/// @param {List} $densities [1, 2] - List of density multipliers to include
+///
+/// @example scss
+///   .logo {
+///     @include image_density("/images/logo", "png", 1 2 3);
+///   }
+///   // Outputs:
+///   // background-image: url("/images/logo.png");
+///   // background-image: image-set(
+///   //   url("/images/logo.png") 1x,
+///   //   url("/images/logo@2x.png") 2x,
+///   //   url("/images/logo@3x.png") 3x
+///   // );
+///
+@mixin image_density($path, $ext: "png", $densities: 1 2) {
+    // Fallback for browsers without image-set support
+    background-image: url("#{$path}.#{$ext}");
+
+    // Build image-set string
+    $image-set-items: ();
+
+    @each $density in $densities {
+        $suffix: "";
+        @if $density != 1 {
+            $suffix: "@#{$density}x";
+        }
+        $image-set-items: append(
+            $image-set-items,
+            url("#{$path}#{$suffix}.#{$ext}") #{$density}x,
+            comma
+        );
+    }
+
+    // Modern image-set with -webkit prefix for Safari
+    background-image: -webkit-image-set(#{$image-set-items});
+    background-image: image-set(#{$image-set-items});
+}
+
+///
+/// Applies styles for print media with optional minimum resolution.
+///
+/// @name display_print
+///
+/// @param {Number|null} $min-dpi [null] - Optional minimum print resolution in DPI
+///
+/// @example scss
+///   @include display_print {
+///     // styles for all print
+///   }
+///   @include display_print(300) {
+///     // styles for high-resolution print (300dpi+)
+///   }
+///
+@mixin display_print($min-dpi: null) {
+    @if $min-dpi {
+        @media print and (min-resolution: #{$min-dpi}dpi) {
+            @content;
+        }
+    } @else {
+        @media print {
+            @content;
+        }
+    }
+}
+
+///
+/// Generates responsive image srcset values for use in HTML.
+/// Returns a comma-separated string suitable for the srcset attribute.
+///
+/// @name srcset_density
+///
+/// @param {String} $path - Base path to image (without extension)
+/// @param {String} $ext [png] - Image file extension
+/// @param {List} $densities [1, 2, 3] - List of density multipliers
+/// @return {String} - srcset-compatible string
+///
+/// @example scss
+///   $srcset: srcset_density("/images/hero", "jpg");
+///   // Returns: "/images/hero.jpg 1x, /images/hero@2x.jpg 2x, /images/hero@3x.jpg 3x"
+///
+@function srcset_density($path, $ext: "png", $densities: 1 2 3) {
+    $result: "";
+
+    @each $density in $densities {
+        $suffix: "";
+        @if $density != 1 {
+            $suffix: "@#{$density}x";
+        }
+        $separator: "";
+        @if $result != "" {
+            $separator: ", ";
+        }
+        $result: "#{$result}#{$separator}#{$path}#{$suffix}.#{$ext} #{$density}x";
+    }
+
+    @return $result;
 }

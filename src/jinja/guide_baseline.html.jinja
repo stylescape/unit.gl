@@ -9,107 +9,6 @@
     alignment.</p>
 {%- endblock %}
 
-{%- block styles %}
-{{ super() }}
-<style>
-    /* ─────────────────────────────────────────────────────────────────
-       Baseline Grid Demo Specific Styles
-       ───────────────────────────────────────────────────────────────── */
-
-    .baseline-demo {
-        position: relative;
-        border: 1px solid var(--swiss-gray-300);
-        margin: calc(var(--grid-unit) * 3) 0;
-    }
-
-    .baseline-content {
-        position: relative;
-        z-index: 1;
-        padding: calc(var(--grid-unit) * 3);
-    }
-
-    .baseline-content h3 {
-        margin-top: 0;
-    }
-
-    .baseline-content p {
-        max-width: 45ch;
-    }
-
-    .toggle-btn {
-        position: fixed;
-        bottom: calc(var(--grid-unit) * 3);
-        right: calc(var(--grid-unit) * 3);
-        z-index: 10000;
-        font-family: var(--font-sans);
-        font-size: 0.6875rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        padding: calc(var(--grid-unit) * 1) calc(var(--grid-unit) * 2);
-        background: var(--swiss-black);
-        color: var(--swiss-white);
-        border: none;
-        cursor: pointer;
-        transition: opacity 0.2s;
-    }
-
-    .toggle-btn:hover {
-        opacity: 0.8;
-    }
-
-    .rhythm-example {
-        margin: calc(var(--grid-unit) * 3) 0;
-    }
-
-    .rhythm-block {
-        border-bottom: 1px solid var(--swiss-gray-200);
-        padding: calc(var(--grid-unit) * 2) 0;
-    }
-
-    .rhythm-block h4 {
-        font-size: 1rem;
-        margin: 0 0 calc(var(--grid-unit) * 1);
-    }
-
-    .rhythm-block p {
-        margin: 0;
-        font-size: 0.875rem;
-        color: var(--swiss-gray-600);
-    }
-
-    .rhythm-spec {
-        display: flex;
-        align-items: baseline;
-        gap: calc(var(--grid-unit) * 4);
-        margin-top: calc(var(--grid-unit) * 1);
-    }
-
-    .rhythm-spec__item {
-        font-family: var(--font-mono);
-        font-size: 0.625rem;
-        color: var(--swiss-gray-500);
-    }
-
-    .type-sample {
-        margin: calc(var(--grid-unit) * 3) 0;
-        padding: calc(var(--grid-unit) * 3);
-        background: var(--swiss-gray-100);
-        border-left: 4px solid var(--swiss-black);
-    }
-
-    .type-sample p {
-        font-size: 1.125rem;
-        line-height: 1.75;
-        margin: 0 0 calc(var(--grid-unit) * 2);
-    }
-
-    .type-sample p:last-child {
-        margin-bottom: 0;
-    }
-</style>
-{%- endblock %}
-
 {%- block content %}
 
 <!-- Default Baseline -->
@@ -232,13 +131,5 @@
 </section>
 
 <button class="toggle-btn" id="toggle-baseline" onclick="toggleBaseline()">Toggle Grid</button>
-
-<script>
-    function toggleBaseline() {
-        document.querySelectorAll('.guide--baseline, .guide--baseline_custom').forEach(el => {
-            el.classList.toggle('guide--baseline--hidden');
-        });
-    }
-</script>
 
 {%- endblock %}

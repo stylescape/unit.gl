@@ -1,7 +1,7 @@
 <p align="center">
     <img src="https://raw.githubusercontent.com/stylescape/brand/master/src/logo/logo-transparant.png" width="20%" alt="Stylescape Logo">
 </p>
-<h1 align="center" style='border-bottom: none;'>unit.gl</h1>
+<h1 align="center" style='border-bottom: none;'>qp</h1>
 <h3 align="center">Dynamic Layout Engine</h3>
 
 <br/>
@@ -48,7 +48,7 @@
 
 ### Responsive Design Tools
 
-- **Viewport Breakpoints** – Predefined breakpoint system (xs, sm, md, lg, xl, sl) with `view()` mixin for mobile-first media queries
+- **Viewport Breakpoints** – Q format-derived breakpoint system (us, ss, xs, sm, md, lg, xl, ul) with `view()` mixin for mobile-first media queries
 - **Device Profiles** – Pre-configured device-specific media queries for iPhone, iPad, Samsung Galaxy, and more
 - **Aspect Ratio Utilities** – Maintain proportions with `display_ratio()` mixin supporting common ratios (16:9, 4:3, golden ratio)
 - **Orientation Helpers** – Landscape/portrait-specific styling with `display_orientation_*` mixins
@@ -364,14 +364,16 @@ p  ██              (1.000rem) ← modular_scale(0)
 
 ### Breakpoint Reference
 
-| Name | Min Width | Device Target          |
-|------|-----------|------------------------|
-| xs   | 320px     | Mobile (portrait)      |
-| sm   | 480px     | Mobile (landscape)     |
-| md   | 768px     | Tablet                 |
-| lg   | 1024px    | Desktop                |
-| xl   | 1280px    | Large Desktop          |
-| sl   | 1920px    | Extra Large Display    |
+| Name | Min Width | Q Format        | Device Target          |
+|------|-----------|-----------------|------------------------|
+| us   | 240px     | Q07 Portrait    | Compact / Fold         |
+| ss   | 360px     | Q06 Portrait    | Phones                 |
+| xs   | 540px     | Q05 Portrait    | Large phones           |
+| sm   | 720px     | Q04 Portrait    | Tablets                |
+| md   | 1440px    | Q03 Landscape   | Laptops                |
+| lg   | 2160px    | Q02 Landscape   | QHD Desktops           |
+| xl   | 2880px    | Q01 Landscape   | 4K Displays            |
+| ul   | 4320px    | Q00 Landscape   | 5K+ Displays           |
 
 ---
 

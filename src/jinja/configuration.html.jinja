@@ -156,19 +156,19 @@
 <!-- Breakpoint Configuration -->
 <section>
     <h2>Breakpoint Configuration</h2>
-    <p>Customize responsive breakpoints by overriding the <code>$breakpoints</code> map. Default values are multiples of
-        40px.</p>
+    <p>Customize responsive breakpoints by overriding the <code>$breakpoints</code> map. Default values are derived from
+        Q format paper sizes (mm × 4).</p>
 
     <h3>Default Breakpoints</h3>
     <div class="code-block">$breakpoints: (
-        ss: 280px, <span class="comment">// 7×40 - Compact/fold</span>
-        xs: 320px, <span class="comment">// 8×40 - Phones</span>
-        sm: 480px, <span class="comment">// 12×40 - Large phones</span>
-        md: 800px, <span class="comment">// 20×40 - Tablets</span>
-        lg: 1040px, <span class="comment">// 26×40 - Laptops</span>
-        xl: 1280px, <span class="comment">// 32×40 - Desktops</span>
-        xxl: 1600px, <span class="comment">// 40×40 - Ultrawide</span>
-        sl: 2560px, <span class="comment">// 64×40 - 4K/5K</span>
+        us: 240px, <span class="comment">// Q07 Portrait (60mm)</span>
+        ss: 360px, <span class="comment">// Q06 Portrait (90mm)</span>
+        xs: 540px, <span class="comment">// Q05 Portrait (135mm)</span>
+        sm: 720px, <span class="comment">// Q04 Portrait (180mm)</span>
+        md: 1440px, <span class="comment">// Q03 Landscape (360mm)</span>
+        lg: 2160px, <span class="comment">// Q02 Landscape (540mm)</span>
+        xl: 2880px, <span class="comment">// Q01 Landscape (720mm)</span>
+        ul: 4320px, <span class="comment">// Q00 Landscape (1080mm)</span>
         ) !default;</div>
 
     <h3>Customizing</h3>

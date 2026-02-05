@@ -1,4 +1,5 @@
 {% extends "base.html.jinja" %}
+{% from "partials/components.html.jinja" import code_block, alert, table %}
 
 {%- block title %}Getting Started — unit.gl{%- endblock %}
 
@@ -10,7 +11,7 @@
 
 {%- block content %}
 
-<!-- Installation -->
+{# Installation #}
 <section>
     <h2>Installation</h2>
 
@@ -26,7 +27,7 @@
     <div class="code-block">pnpm add unit.gl -D</div>
 </section>
 
-<!-- Basic Setup -->
+{# Basic Setup #}
 <section>
     <h2>Basic Setup</h2>
 
@@ -41,10 +42,8 @@
         @use "unit.gl/scss/mixins" as mx;
     </div>
 
-    <div class="alert alert--tip">
-        <p class="alert__title">Tip</p>
-        <p>Using <code>@use</code> with namespaces helps avoid naming conflicts in larger projects.</p>
-    </div>
+    {{ alert('Using <code>@use</code> with namespaces helps avoid naming conflicts in larger projects.', type='tip',
+    title='Tip') }}
 </section>
 
 <!-- Your First Layout -->

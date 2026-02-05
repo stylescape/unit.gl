@@ -133,7 +133,8 @@
     <h2>Modular Scale</h2>
 
     <p>A modular scale creates harmonious proportions by using a consistent ratio between sizes. unit.gl provides the
-        <code>modular_scale()</code> function for this purpose.</p>
+        <code>modular_scale()</code> function for this purpose.
+    </p>
 
     <div class="api-signature">modular_scale($increment, $base: 1em, $ratio: 1.618)</div>
 
@@ -273,7 +274,7 @@
 <section>
     <h2>Responsive Breakpoints</h2>
 
-    <p>unit.gl uses a mobile-first breakpoint system:</p>
+    <p>unit.gl uses a mobile-first breakpoint system derived from Q format paper sizes:</p>
 
     <table class="table">
         <thead>
@@ -286,40 +287,52 @@
         </thead>
         <tbody>
             <tr>
-                <td>xs</td>
-                <td>320px</td>
-                <td><code>.xs_*</code></td>
-                <td>Small phones</td>
+                <td>us</td>
+                <td>240px</td>
+                <td><code>.us_*</code></td>
+                <td>Compact / Fold</td>
             </tr>
             <tr>
-                <td>sm</td>
-                <td>480px</td>
-                <td><code>.sm_*</code></td>
+                <td>ss</td>
+                <td>360px</td>
+                <td><code>.ss_*</code></td>
+                <td>Phones</td>
+            </tr>
+            <tr>
+                <td>xs</td>
+                <td>540px</td>
+                <td><code>.xs_*</code></td>
                 <td>Large phones</td>
             </tr>
             <tr>
-                <td>md</td>
-                <td>768px</td>
-                <td><code>.md_*</code></td>
+                <td>sm</td>
+                <td>720px</td>
+                <td><code>.sm_*</code></td>
                 <td>Tablets</td>
             </tr>
             <tr>
-                <td>lg</td>
-                <td>1024px</td>
-                <td><code>.lg_*</code></td>
+                <td>md</td>
+                <td>1440px</td>
+                <td><code>.md_*</code></td>
                 <td>Laptops</td>
             </tr>
             <tr>
-                <td>xl</td>
-                <td>1280px</td>
-                <td><code>.xl_*</code></td>
-                <td>Desktops</td>
+                <td>lg</td>
+                <td>2160px</td>
+                <td><code>.lg_*</code></td>
+                <td>QHD desktops</td>
             </tr>
             <tr>
-                <td>sl</td>
-                <td>1440px</td>
-                <td><code>.sl_*</code></td>
-                <td>Large screens</td>
+                <td>xl</td>
+                <td>2880px</td>
+                <td><code>.xl_*</code></td>
+                <td>4K displays</td>
+            </tr>
+            <tr>
+                <td>ul</td>
+                <td>4320px</td>
+                <td><code>.ul_*</code></td>
+                <td>5K+ displays</td>
             </tr>
         </tbody>
     </table>

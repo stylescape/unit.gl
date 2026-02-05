@@ -127,6 +127,69 @@
         </div>
     </section>
 
+    <section>
+        <h2>Visual Grid Comparison</h2>
+        <p>See how Type Scale (4Q) and Line Scale (5Q) create different grid densities. <strong>Green lines</strong>
+            indicate LCM alignment points where both scales meet (every 20Q).</p>
+
+        <div class="grid-comparison-large">
+            <div class="grid-row">
+                <div class="grid-label">
+                    <span class="label-title">Type Scale</span>
+                    <span class="label-value">4Q = 4px = 1mm</span>
+                </div>
+                <div class="grid-canvas" id="qs-type-grid"></div>
+            </div>
+
+            <div class="grid-row">
+                <div class="grid-label">
+                    <span class="label-title">Line Scale</span>
+                    <span class="label-value">5Q = 5px = 1.25mm</span>
+                </div>
+                <div class="grid-canvas" id="qs-line-grid"></div>
+            </div>
+
+            <div class="grid-row combined">
+                <div class="grid-label">
+                    <span class="label-title">Combined LCM</span>
+                    <span class="label-value">20Q = 20px = 5mm</span>
+                </div>
+                <div class="grid-canvas" id="qs-combined-grid"></div>
+            </div>
+
+            <div class="grid-legend">
+                <span class="legend-item type"><span class="legend-color"></span> Type (4Q)</span>
+                <span class="legend-item line"><span class="legend-color"></span> Line (5Q)</span>
+                <span class="legend-item lcm"><span class="legend-color"></span> LCM (20Q)</span>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>When to Use Q Units</h2>
+        <div class="qscale-use-cases">
+            <div class="use-case">
+                <h3>✓ Use q() for</h3>
+                <ul>
+                    <li>Spacing and padding</li>
+                    <li>Component dimensions</li>
+                    <li>Grid gaps</li>
+                    <li>Border widths</li>
+                    <li>Icon sizes</li>
+                </ul>
+            </div>
+            <div class="use-case">
+                <h3>✗ Avoid q() for</h3>
+                <ul>
+                    <li>Font sizes (use type scale)</li>
+                    <li>Line heights (use line scale)</li>
+                    <li>Percentage-based layouts</li>
+                    <li>Viewport-relative units</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
 </div>
 
 {%- endblock %}

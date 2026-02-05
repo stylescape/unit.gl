@@ -1,0 +1,311 @@
+////
+///
+/// Density Functions Module
+/// ===========================================================================
+///
+/// Functions for handling pixel density conversions between screen and print.
+/// Provides a unified system for working with the Q unit across different
+/// display densities and physical media.
+///
+/// @group Density
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.2.4 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "sass:map";
+@use "sass:math";
+@use "../maps/density" as density;
+
+// ============================================================================
+// Functions
+// ============================================================================
+
+///
+/// Get Density Ratio
+/// ---------------------------------------------------------------------------
+///
+/// Returns the device pixel ratio (DPR) for a named density bucket.
+///
+/// @name density
+/// @param {String} $bucket - The density bucket name (ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi)
+/// @return {Number} - The DPR value for the bucket
+///
+/// @example scss - Usage
+///   $dpr: density("xhdpi"); // 2
+///   $dpr: density("retina"); // 2 (alias)
+///
+@function density($bucket) {
+    // Check named buckets first
+    @if map.has-key(density.$density_buckets, $bucket) {
+        @return map.get(density.$density_buckets, $bucket);
+    }
+
+    // Check display density aliases
+    @if map.has-key(density.$display_densities, $bucket) {
+        @return map.get(density.$display_densities, $bucket);
+    }
+
+    @warn "Density bucket `#{$bucket}` not found. Returning 1.";
+    @return 1;
+}
+
+///
+/// Get DPI for Density Bucket
+/// ---------------------------------------------------------------------------
+///
+/// Returns the DPI (dots per inch) for a named density bucket.
+///
+/// @name density_dpi
+/// @param {String} $bucket - The density bucket name
+/// @return {Number} - The DPI value
+///
+/// @example scss - Usage
+///   $dpi: density_dpi("xhdpi"); // 320
+///
+@function density_dpi($bucket) {
+    @if map.has-key(density.$density_dpi, $bucket) {
+        @return map.get(density.$density_dpi, $bucket);
+    }
+
+    // Calculate from DPR if not in DPI map
+    $dpr: density($bucket);
+    @return $dpr * density.$reference_dpi;
+}
+
+///
+/// Convert Q to Physical Millimeters
+/// ---------------------------------------------------------------------------
+///
+/// Converts Q units to physical millimeters. This is the true physical
+/// size regardless of screen density.
+///
+/// 1Q = 0.25mm (based on Japanese Kyū unit)
+///
+/// @name q_to_mm
+/// @param {Number} $q_value - The value in Q units
+/// @return {Number} - The value in millimeters (with mm unit)
+///
+/// @example scss - Usage
+///   $mm: q_to_mm(16);  // 4mm
+///   $mm: q_to_mm(160); // 40mm (Q1)
+///
+@function q_to_mm($q_value) {
+    @return $q_value * density.$q_physical_mm * 1mm;
+}
+
+///
+/// Convert Millimeters to Q
+/// ---------------------------------------------------------------------------
+///
+/// Converts physical millimeters to Q units.
+///
+/// @name mm_to_q
+/// @param {Number} $mm_value - The value in millimeters (unitless or with mm)
+/// @return {Number} - The value in Q units (unitless)
+///
+/// @example scss - Usage
+///   $q: mm_to_q(4);  // 16
+///   $q: mm_to_q(40); // 160 (Q1)
+///
+@function mm_to_q($mm_value) {
+    // Strip mm unit if present
+    $value: $mm_value;
+    @if math.unit($mm_value) == "mm" {
+        $value: math.div($mm_value, 1mm);
+    }
+    @return math.div($value, density.$q_physical_mm);
+}
+
+///
+/// Convert Q to Screen Pixels at Density
+/// ---------------------------------------------------------------------------
+///
+/// Converts Q units to actual screen pixels at a given device pixel ratio.
+/// This accounts for how Q units appear on screens with different densities.
+///
+/// On a 2× display, 1Q (which equals 1 CSS pixel) is rendered using
+/// 2 physical pixels.
+///
+/// @name q_to_px
+/// @param {Number} $q_value - The value in Q units
+/// @param {Number|String} $dpr [1] - Device pixel ratio or density bucket name
+/// @return {Number} - The physical pixel count
+///
+/// @example scss - Usage
+///   $px: q_to_px(16, 1);        // 16 physical pixels
+///   $px: q_to_px(16, 2);        // 32 physical pixels
+///   $px: q_to_px(16, "xhdpi");  // 32 physical pixels
+///
+@function q_to_px($q_value, $dpr: 1) {
+    $ratio: $dpr;
+    @if type-of($dpr) == "string" {
+        $ratio: density($dpr);
+    }
+    @return $q_value * $ratio;
+}
+
+///
+/// Convert Physical Pixels to Q at Density
+/// ---------------------------------------------------------------------------
+///
+/// Converts physical screen pixels to Q units at a given device pixel ratio.
+///
+/// @name px_to_q
+/// @param {Number} $px_value - The physical pixel count
+/// @param {Number|String} $dpr [1] - Device pixel ratio or density bucket name
+/// @return {Number} - The value in Q units
+///
+/// @example scss - Usage
+///   $q: px_to_q(32, 2);        // 16
+///   $q: px_to_q(32, "xhdpi");  // 16
+///
+@function px_to_q($px_value, $dpr: 1) {
+    $ratio: $dpr;
+    @if type-of($dpr) == "string" {
+        $ratio: density($dpr);
+    }
+    @return math.div($px_value, $ratio);
+}
+
+///
+/// Convert Q to Inches
+/// ---------------------------------------------------------------------------
+///
+/// Converts Q units to physical inches.
+///
+/// @name q_to_in
+/// @param {Number} $q_value - The value in Q units
+/// @return {Number} - The value in inches (with in unit)
+///
+/// @example scss - Usage
+///   $inches: q_to_in(160); // ~1.575in (40mm)
+///
+@function q_to_in($q_value) {
+    $mm: $q_value * density.$q_physical_mm;
+    @return math.div($mm, 25.4) * 1in;
+}
+
+///
+/// Convert Inches to Q
+/// ---------------------------------------------------------------------------
+///
+/// Converts physical inches to Q units.
+///
+/// @name in_to_q
+/// @param {Number} $in_value - The value in inches
+/// @return {Number} - The value in Q units (unitless)
+///
+/// @example scss - Usage
+///   $q: in_to_q(1); // ~101.6
+///
+@function in_to_q($in_value) {
+    $value: $in_value;
+    @if math.unit($in_value) == "in" {
+        $value: math.div($in_value, 1in);
+    }
+    $mm: $value * 25.4;
+    @return mm_to_q($mm);
+}
+
+///
+/// Convert Q to Points (pt)
+/// ---------------------------------------------------------------------------
+///
+/// Converts Q units to typographic points.
+/// 1pt = 1/72 inch = 0.3528mm
+///
+/// @name q_to_pt
+/// @param {Number} $q_value - The value in Q units
+/// @return {Number} - The value in points (with pt unit)
+///
+/// @example scss - Usage
+///   $pt: q_to_pt(16); // ~11.34pt
+///
+@function q_to_pt($q_value) {
+    $mm: $q_value * density.$q_physical_mm;
+    @return math.div($mm, 0.3528) * 1pt;
+}
+
+///
+/// Convert Points to Q
+/// ---------------------------------------------------------------------------
+///
+/// Converts typographic points to Q units.
+///
+/// @name pt_to_q
+/// @param {Number} $pt_value - The value in points
+/// @return {Number} - The value in Q units (unitless)
+///
+/// @example scss - Usage
+///   $q: pt_to_q(12); // ~14.11
+///
+@function pt_to_q($pt_value) {
+    $value: $pt_value;
+    @if math.unit($pt_value) == "pt" {
+        $value: math.div($pt_value, 1pt);
+    }
+    $mm: $value * 0.3528;
+    @return mm_to_q($mm);
+}
+
+///
+/// Calculate Density-Adjusted Size
+/// ---------------------------------------------------------------------------
+///
+/// Returns a size that maintains physical consistency across different
+/// display densities. Useful for ensuring elements appear the same
+/// physical size on all screens.
+///
+/// @name density_adjusted
+/// @param {Number} $size - The base size in any unit
+/// @param {Number|String} $target_dpr [2] - Target device pixel ratio
+/// @param {Number|String} $base_dpr [1] - Base device pixel ratio
+/// @return {Number} - The adjusted size
+///
+/// @example scss - Usage
+///   // Make element appear same physical size on retina
+///   width: density_adjusted(100px, 2, 1); // 50px
+///
+@function density_adjusted($size, $target_dpr: 2, $base_dpr: 1) {
+    $target: $target_dpr;
+    $base: $base_dpr;
+    @if type-of($target_dpr) == "string" {
+        $target: density($target_dpr);
+    }
+    @if type-of($base_dpr) == "string" {
+        $base: density($base_dpr);
+    }
+    @return $size * math.div($base, $target);
+}
+
+///
+/// Get Image Resolution Suffix
+/// ---------------------------------------------------------------------------
+///
+/// Returns the appropriate image resolution suffix for a density bucket.
+/// Useful for generating responsive image filenames.
+///
+/// @name density_suffix
+/// @param {String} $bucket - The density bucket name
+/// @return {String} - The resolution suffix (e.g., "@2x", "@3x")
+///
+/// @example scss - Usage
+///   $suffix: density_suffix("xhdpi"); // "@2x"
+///
+@function density_suffix($bucket) {
+    $dpr: density($bucket);
+
+    @if $dpr == 1 {
+        @return "";
+    }
+
+    @return "@#{$dpr}x";
+}

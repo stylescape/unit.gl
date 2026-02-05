@@ -1,4 +1,5 @@
 {% extends "base.html.jinja" %}
+{% from "partials/components.html.jinja" import api_signature, api_param, api_params, table, code_block %}
 
 {%- block title %}Functions Reference — unit.gl{%- endblock %}
 
@@ -10,20 +11,16 @@
 
 {%- block content %}
 
-<!-- q() Function -->
+{# q() Function #}
 <section>
     <h2>q()</h2>
     <p>Converts a multiplier to Q units (0.0625rem base).</p>
 
-    <div class="api-signature">q($multiplier) → Length</div>
+    {{ api_signature('q($multiplier) → Length') }}
 
-    <div class="api-params">
-        <div class="api-param">
-            <span class="api-param__name">$multiplier</span>
-            <span class="api-param__type">Number</span>
-            <span class="api-param__desc">The number of Q units to return</span>
-        </div>
-    </div>
+    {% call api_params() %}
+    {{ api_param('$multiplier', 'Number', 'The number of Q units to return') }}
+    {% endcall %}
 
     <h3>Examples</h3>
     <div class="code-block">.element {
@@ -61,33 +58,21 @@
     </table>
 </section>
 
-<!-- modular_scale() Function -->
+{# modular_scale() Function #}
 <section>
     <h2>modular_scale()</h2>
     <p>Calculates a value on a modular scale, useful for typography and spacing systems.</p>
 
-    <div class="api-signature">modular_scale($increment, $base: 1em, $ratio: 1.618) → Length</div>
+    {{ api_signature('modular_scale($increment, $base: 1em, $ratio: 1.618) → Length') }}
 
-    <div class="api-params">
-        <div class="api-param">
-            <span class="api-param__name">$increment</span>
-            <span class="api-param__type">Number</span>
-            <span class="api-param__desc">Step on the scale (positive or negative)</span>
-        </div>
-        <div class="api-param">
-            <span class="api-param__name">$base</span>
-            <span class="api-param__type">Length</span>
-            <span class="api-param__desc">Base value to scale from (default: 1em)</span>
-        </div>
-        <div class="api-param">
-            <span class="api-param__name">$ratio</span>
-            <span class="api-param__type">Number</span>
-            <span class="api-param__desc">Scale ratio (default: 1.618 golden ratio)</span>
-        </div>
-    </div>
+    {% call api_params() %}
+    {{ api_param('$increment', 'Number', 'Step on the scale (positive or negative)') }}
+    {{ api_param('$base', 'Length', 'Base value to scale from', '1em') }}
+    {{ api_param('$ratio', 'Number', 'Scale ratio', '1.618 (golden ratio)') }}
+    {% endcall %}
 
     <h3>Formula</h3>
-    <div class="api-signature">result = $base × $ratio^$increment</div>
+    {{ api_signature('result = $base × $ratio^$increment') }}
 
     <h3>Examples</h3>
     <div class="code-block"><span class="comment">// Typography scale with Major Third (1.25)</span>
@@ -105,73 +90,31 @@
     </div>
 
     <h3>Common Ratios</h3>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Value</th>
-                <th>Scale (steps 0-4 from 1rem)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Minor Second</td>
-                <td>1.067</td>
-                <td>1.00, 1.07, 1.14, 1.21, 1.30</td>
-            </tr>
-            <tr>
-                <td>Major Second</td>
-                <td>1.125</td>
-                <td>1.00, 1.13, 1.27, 1.42, 1.60</td>
-            </tr>
-            <tr>
-                <td>Minor Third</td>
-                <td>1.200</td>
-                <td>1.00, 1.20, 1.44, 1.73, 2.07</td>
-            </tr>
-            <tr>
-                <td>Major Third</td>
-                <td>1.250</td>
-                <td>1.00, 1.25, 1.56, 1.95, 2.44</td>
-            </tr>
-            <tr>
-                <td>Perfect Fourth</td>
-                <td>1.333</td>
-                <td>1.00, 1.33, 1.78, 2.37, 3.16</td>
-            </tr>
-            <tr>
-                <td>Perfect Fifth</td>
-                <td>1.500</td>
-                <td>1.00, 1.50, 2.25, 3.38, 5.06</td>
-            </tr>
-            <tr>
-                <td>Golden Ratio</td>
-                <td>1.618</td>
-                <td>1.00, 1.62, 2.62, 4.24, 6.85</td>
-            </tr>
-        </tbody>
-    </table>
+    {{ table(
+    ['Name', 'Value', 'Scale (steps 0-4 from 1rem)'],
+    [
+    ['Minor Second', '1.067', '1.00, 1.07, 1.14, 1.21, 1.30'],
+    ['Major Second', '1.125', '1.00, 1.13, 1.27, 1.42, 1.60'],
+    ['Minor Third', '1.200', '1.00, 1.20, 1.44, 1.73, 2.07'],
+    ['Major Third', '1.250', '1.00, 1.25, 1.56, 1.95, 2.44'],
+    ['Perfect Fourth', '1.333', '1.00, 1.33, 1.78, 2.37, 3.16'],
+    ['Perfect Fifth', '1.500', '1.00, 1.50, 2.25, 3.38, 5.06'],
+    ['Golden Ratio', '1.618', '1.00, 1.62, 2.62, 4.24, 6.85']
+    ]
+    ) }}
 </section>
 
-<!-- ratio_golden() Function -->
+{# ratio_golden() Function #}
 <section>
     <h2>ratio_golden()</h2>
     <p>Calculates a size based on the golden ratio (φ ≈ 1.618).</p>
 
-    <div class="api-signature">ratio_golden($size, $increment: 1) → Length</div>
+    {{ api_signature('ratio_golden($size, $increment: 1) → Length') }}
 
-    <div class="api-params">
-        <div class="api-param">
-            <span class="api-param__name">$size</span>
-            <span class="api-param__type">Length</span>
-            <span class="api-param__desc">Base size to scale</span>
-        </div>
-        <div class="api-param">
-            <span class="api-param__name">$increment</span>
-            <span class="api-param__type">Number</span>
-            <span class="api-param__desc">Exponent applied to the golden ratio (default: 1)</span>
-        </div>
-    </div>
+    {% call api_params() %}
+    {{ api_param('$size', 'Length', 'Base size to scale') }}
+    {{ api_param('$increment', 'Number', 'Exponent applied to the golden ratio', '1') }}
+    {% endcall %}
 
     <h3>Examples</h3>
     <div class="code-block">.sidebar {
@@ -191,12 +134,12 @@
     </div>
 </section>
 
-<!-- z() Function -->
+{# z() Function #}
 <section>
     <h2>z()</h2>
     <p>Returns a z-index value from the semantic layer map.</p>
 
-    <div class="api-signature">z($layer) → Number</div>
+    {{ api_signature('z($layer) → Number') }}
 
     <div class="api-params">
         <div class="api-param">

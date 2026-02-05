@@ -1,0 +1,25 @@
+{#
+Footer partial
+
+Variables:
+- brand: Brand name (default: "unit.gl")
+- tagline: Tagline text (default: "Dynamic Layout Engine")
+- year: Copyright year (default: current year)
+#}
+
+<footer class="footer">
+    <div class="footer__content">
+        <div class="footer__left">
+            <span class="footer__brand">{{ brand | default('unit.gl') }}</span>
+            <span class="footer__tagline">{{ tagline | default('Dynamic Layout Engine') }}</span>
+        </div>
+        <div class="footer__right">
+            <div class="footer__links">
+                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank">GitHub</a>
+                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank">npm</a>
+                <a href="https://www.scape.agency" class="footer__link" target="_blank">Scape Agency</a>
+            </div>
+            <span class="footer__copyright">© {{ year | default('2024') }} Scape Agency. MIT License.</span>
+        </div>
+    </div>
+</footer>

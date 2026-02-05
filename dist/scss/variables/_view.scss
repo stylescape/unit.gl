@@ -3,33 +3,36 @@
 /// View Variables Module
 /// ===========================================================================
 ///
-/// This module defines the breakpoints for responsive design, categorized by
-/// device types. It leverages a base unit to calculate breakpoint values for
-/// consistency across various screen sizes.
+/// This module defines breakpoints for responsive design, derived from the
+/// Q format paper sizes. The system creates a unified physical-to-digital
+/// mapping using a base multiplier of 4 (1mm = 4px at standard 96dpi/1× density).
 ///
-/// Breakpoint Categories:
-/// - ss: Super small devices (e.g., compact/fold phones)
-/// - xs: Extra small devices (e.g., Mobile phones)
-/// - sm: Small devices (e.g., Tablets)
-/// - md: Medium devices (e.g., Laptops)
-/// - lg: Large devices (e.g., Desktops)
-/// - xl: Extra large devices (e.g., TVs)
-/// - sl: Super large devices (e.g., Large TVs)
+/// Q Format to Breakpoint Mapping:
+/// ───────────────────────────────────────────────────────────────────────────
+/// | Breakpoint | Format | Orientation | Width (mm) | ×4 = px | Device        |
+/// |------------|--------|-------------|------------|---------|---------------|
+/// | us         | Q07    | Portrait    | 60mm       | 240px   | Compact/Fold  |
+/// | ss         | Q06    | Portrait    | 90mm       | 360px   | Phones        |
+/// | xs         | Q05    | Portrait    | 135mm      | 540px   | Large phones  |
+/// | sm         | Q04    | Portrait    | 180mm      | 720px   | Tablets       |
+/// | md         | Q03    | Landscape   | 360mm      | 1440px  | Laptops       |
+/// | lg         | Q02    | Landscape   | 540mm      | 2160px  | QHD/Ultrawide |
+/// | xl         | Q01    | Landscape   | 720mm      | 2880px  | 4K displays   |
+/// | ul         | Q00    | Landscape   | 1080mm     | 4320px  | 5K+ displays  |
+/// ───────────────────────────────────────────────────────────────────────────
 ///
-/// Base Unit:
-/// - The base screen unit is set to 16px, which serves as the foundation for
-///   calculating breakpoints.
+/// Density Integration:
+/// - Base multiplier: 4 (1mm = 4px at 1× DPR / 96dpi)
+/// - At 2× DPR: 1mm = 8 physical pixels (but same CSS pixels)
+/// - At 3× DPR: 1mm = 12 physical pixels (but same CSS pixels)
 ///
-/// Example Usage:
-///   @media (min-width: map.get($breakpoints, md)) {
-///       // Styles for medium devices and up
-///   }
+/// Small formats (Q06-Q04) use portrait width → mobile/tablet devices
+/// Large formats (Q03-Q00) use landscape width → desktop devices
 ///
 /// @group View
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -39,64 +42,206 @@
 // ============================================================================
 
 @use "sass:map";
+@use "sass:math";
 
 // ============================================================================
-// Variables
+// Physical-to-Digital Conversion
 // ============================================================================
 
 ///
-/// Base unit size used for calculating breakpoints. Defaults to 16px.
+/// Base multiplier for converting millimeters to CSS pixels.
+/// At standard density (1× DPR / 96dpi), 1mm ≈ 4px.
+/// This creates a clean bridge between physical Q formats and digital breakpoints.
 ///
-/// @name $base_screen_unit
-/// @type Length
+/// @name $mm_to_px_multiplier
+/// @type Number
 ///
-$base_screen_unit: 16px !default;
+$mm_to_px_multiplier: 4 !default;
 
 ///
-/// A map defining the breakpoints for responsive design. Each key represents
-/// a different device category. All values are multiples of 40px for
-/// consistency with the Q-based grid system.
+/// Reference DPI for the base multiplier calculation.
+/// Standard screen density is 96dpi.
 ///
-/// - **ss**: 280px (Super small devices like fold/compact phones) - 7×40
-/// - **xs**: 320px (Extra small devices like mobile phones) - 8×40
-/// - **sm**: 480px (Small devices like large phones/small tablets) - 12×40
-/// - **md**: 800px (Medium devices like tablets/laptops) - 20×40
-/// - **lg**: 1040px (Large devices like laptops/desktops) - 26×40
-/// - **xl**: 1280px (Extra large devices like large desktops) - 32×40
-/// - **xxl**: 1600px (Extra extra large devices like ultrawide) - 40×40
-/// - **sl**: 2560px (Super large devices like 4K/5K displays) - 64×40
+/// @name $reference_dpi
+/// @type Number
+///
+$reference_dpi: 96 !default;
+
+///
+/// Convert millimeters to CSS pixels using the base multiplier.
+/// Density-aware: multiply result by DPR for physical pixels.
+///
+/// @name mm_to_px
+/// @param {Number} $mm - Value in millimeters
+/// @param {Number} $multiplier [$mm_to_px_multiplier] - Conversion multiplier
+/// @return {Length} Value in pixels
+///
+/// @example scss - Usage
+///   width: mm_to_px(90);   // 360px (Q06 portrait)
+///   width: mm_to_px(360);  // 1440px (Q03 landscape)
+///
+@function mm_to_px($mm, $multiplier: $mm_to_px_multiplier) {
+    @return $mm * $multiplier * 1px;
+}
+
+///
+/// Convert CSS pixels to millimeters using the base multiplier.
+///
+/// @name px_to_mm
+/// @param {Length} $px - Value in pixels
+/// @param {Number} $multiplier [$mm_to_px_multiplier] - Conversion multiplier
+/// @return {Number} Value in millimeters
+///
+@function px_to_mm($px, $multiplier: $mm_to_px_multiplier) {
+    @return math.div($px, $multiplier * 1px);
+}
+
+// ============================================================================
+// Q Format Dimensions (in mm)
+// ============================================================================
+
+///
+/// Q format paper sizes used as the basis for breakpoints.
+/// Portrait orientation for mobile devices, landscape for desktop.
+///
+/// @name $q_formats
+/// @type Map
+///
+$q_formats: (
+    q00: (
+        width: 720mm,
+        height: 1080mm
+    ),
+    // Largest format
+    q01: (
+            width: 540mm,
+            height: 720mm
+        ),
+    q02: (
+        width: 360mm,
+        height: 540mm
+    ),
+    q03: (
+        width: 270mm,
+        height: 360mm
+    ),
+    q04: (
+        width: 180mm,
+        height: 270mm
+    ),
+    q05: (
+        width: 135mm,
+        height: 180mm
+    ),
+    q06: (
+        width: 90mm,
+        height: 135mm
+    ),
+    q07: (
+        width: 60mm,
+        height: 90mm
+    ) // Ultrasmall format
+) !default;
+
+// ============================================================================
+// Breakpoint Definitions (derived from Q formats)
+// ============================================================================
+
+///
+/// Breakpoints derived from Q format dimensions.
+/// Small devices use portrait width, large devices use landscape width.
+/// The 4× multiplier (1mm = 4px) bridges physical and digital.
 ///
 /// @name $breakpoints
 /// @type Map
 ///
-
-// $breakpoints: (
-//      ss: calc_breakpoint($base_screen_unit, 17.5), //  280px - Super small devices (Fold/Compact)
-//      xs: calc_breakpoint($base_screen_unit, 20),   //  320px - Extra small devices (Mobile)
-//      sm: calc_breakpoint($base_screen_unit, 30),   //  480px - Small devices (Tablets)
-//      md: calc_breakpoint($base_screen_unit, 48),   //  768px - Medium devices (Laptops)
-//      lg: calc_breakpoint($base_screen_unit, 64),   // 1024px - Large devices (Desktops)
-//      xl: calc_breakpoint($base_screen_unit, 80),   // 1280px - Extra large devices (TV)
-//      sl: calc_breakpoint($base_screen_unit, 90),   // 1440px - Super large devices (Large TV)
-// ) !default;
-
 $breakpoints: (
-    ss: 280px,
-    //  7×40 - Super small devices (Fold/Compact)
-    xs: 320px,
-    //  8×40 - Extra small devices (Mobile)
-    sm: 480px,
-    // 12×40 - Small devices (Large phones/Small tablets)
-    md: 800px,
-    // 20×40 - Medium devices (Tablets/Laptops)
-    lg: 1040px,
-    // 26×40 - Large devices (Laptops/Desktops)
-    xl: 1280px,
-    // 32×40 - Extra large devices (Large desktops)
-    xxl: 1600px,
-    // 40×40 - Extra extra large (Ultrawide/QHD)
-    sl: 2560px // 64×40 - Super large devices (4K/5K displays)
+    // Portrait Q formats → Mobile/Tablet devices (held vertically)
+    us: mm_to_px(60),
+    // Q07 Portrait width  →  240px - Compact/Fold phones
+    ss: mm_to_px(90),
+    // Q06 Portrait width  →  360px - Phones
+    xs: mm_to_px(135),
+    // Q05 Portrait width  →  540px - Large phones/Small tablets
+    sm: mm_to_px(180),
+    // Q04 Portrait width  →  720px - Tablets/Small laptops
+    // Landscape Q formats → Desktop devices (horizontal displays)
+    md: mm_to_px(360),
+    // Q03 Landscape width → 1440px - Laptops/Desktops
+    lg: mm_to_px(540),
+    // Q02 Landscape width → 2160px - Ultrawide/QHD
+    xl: mm_to_px(720),
+    // Q01 Landscape width → 2880px - 4K displays
+    ul: mm_to_px(1080) // Q00 Landscape width → 4320px - 5K+ displays (ultralarge)
 ) !default;
+
+///
+/// Mapping between Q formats and breakpoints.
+/// P = Portrait (mobile), L = Landscape (desktop)
+///
+/// @name $format_breakpoint_map
+/// @type Map
+///
+$format_breakpoint_map: (
+    q07p: us,
+    // Q07 Portrait → us (240px)
+    q06p: ss,
+    // Q06 Portrait → ss (360px)
+    q05p: xs,
+    // Q05 Portrait → xs (540px)
+    q04p: sm,
+    // Q04 Portrait → sm (720px)
+    q03l: md,
+    // Q03 Landscape → md (1440px)
+    q02l: lg,
+    // Q02 Landscape → lg (2160px)
+    q01l: xl,
+    // Q01 Landscape → xl (2880px)
+    q00l: ul // Q00 Landscape → ul (4320px)
+) !default;
+
+///
+/// Get the breakpoint name for a Q format.
+///
+/// @name format_to_breakpoint
+/// @param {String} $format - Format name (e.g., "q07p", "q06p", "q03l")
+/// @return {String} Breakpoint name (us, ss, xs, sm, md, lg, xl, ul)
+///
+@function format_to_breakpoint($format) {
+    @if map.has-key($format_breakpoint_map, $format) {
+        @return map.get($format_breakpoint_map, $format);
+    }
+    @warn "Unknown format: #{$format}. Returning null.";
+    @return null;
+}
+
+///
+/// Get breakpoint value adjusted for a target DPR.
+/// Useful for understanding physical pixel requirements.
+///
+/// @name breakpoint_for_density
+/// @param {String} $breakpoint - Breakpoint name
+/// @param {Number} $target_dpr [1] - Target device pixel ratio
+/// @return {Length} Breakpoint value in CSS pixels
+///
+@function breakpoint_for_density($breakpoint, $target_dpr: 1) {
+    $base_px: map.get($breakpoints, $breakpoint);
+    @if $base_px == null {
+        @warn "Unknown breakpoint: #{$breakpoint}";
+        @return null;
+    }
+    // Note: CSS media queries use CSS pixels, not physical pixels
+    // This function returns the physical pixel equivalent for reference
+    @return $base_px * $target_dpr;
+}
+
+///
+/// Exposes the value of the `us` breakpoint for direct access.
+///
+/// @name $media_us
+/// @type Length
+///
+$media_us: map.get($breakpoints, us) !default;
 
 ///
 /// Exposes the value of the `ss` breakpoint for direct access.
@@ -147,28 +292,20 @@ $media_lg: map.get($breakpoints, lg) !default;
 $media_xl: map.get($breakpoints, xl) !default;
 
 ///
-/// Exposes the value of the `xxl` breakpoint for direct access.
+/// Exposes the value of the `ul` breakpoint for direct access.
 ///
-/// @name $media_xxl
+/// @name $media_ul
 /// @type Length
 ///
-$media_xxl: map.get($breakpoints, xxl) !default;
+$media_ul: map.get($breakpoints, ul) !default;
 
 ///
-/// Exposes the value of the `sl` breakpoint for direct access.
-///
-/// @name $media_sl
-/// @type Length
-///
-$media_sl: map.get($breakpoints, sl) !default;
-
-///
-/// Calculates the difference between the `sl` and `xs` breakpoints.
+/// Calculates the difference between the `ul` and `xs` breakpoints.
 ///
 /// @name $media_dif
 /// @type Length
 ///
-$media_dif: calc($media_sl - $media_xs);
+$media_dif: calc($media_ul - $media_xs);
 
 // Uncomment below if you want to use the following predefined breakpoints
 // for various devices:

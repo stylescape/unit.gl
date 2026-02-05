@@ -1,4 +1,6 @@
 {% extends "base.html.jinja" %}
+{% from "partials/components.html.jinja" import feature_card, button, number_cell, doc_section %}
+{% from "partials/icons.html.jinja" import icon_lightning, icon_github %}
 
 {%- block title %}unit.gl — Dynamic Layout Engine{%- endblock %}
 
@@ -10,52 +12,30 @@
 <p class="lead">A precision-based design system built on the Kyū (Q) unit — enabling consistent, scalable spacing and
     typography across digital and print.</p>
 <div class="hero-actions">
-    <a href="/getting-started.html" class="btn btn--primary">Get Started</a>
-    <a href="https://github.com/stylescape/unit.gl" class="btn btn--secondary">View on GitHub</a>
+    {{ button('Get Started', href='/getting-started.html', variant='primary', icon='lightning') }}
+    {{ button('View on GitHub', href='https://github.com/stylescape/unit.gl', variant='secondary', icon='github',
+    target='_blank') }}
 </div>
 {%- endblock %}
 
 {%- block content %}
 
-<!-- Key Features -->
+{# Key Features #}
 <section>
     <h2>Features</h2>
     <div class="feature-grid">
-        <div class="feature-card">
-            <div class="feature-card__icon">Q</div>
-            <h3 class="feature-card__title">The Q Unit</h3>
-            <p class="feature-card__desc">Atomic unit system based on 0.0625rem (1px). Every measurement derives from
-                this precise foundation.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-card__icon">⊞</div>
-            <h3 class="feature-card__title">8-Point Grid</h3>
-            <p class="feature-card__desc">Enforces spatial harmony with consistent multiples. Elements snap to a uniform
-                rhythm.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-card__icon">φ</div>
-            <h3 class="feature-card__title">Modular Scale</h3>
-            <p class="feature-card__desc">Typography system using mathematical ratios. Golden ratio, Major Third, and
-                more.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-card__icon">⬚</div>
-            <h3 class="feature-card__title">Utility Classes</h3>
-            <p class="feature-card__desc">Tailwind-style classes for rapid prototyping. Spacing, sizing, and responsive
-                variants.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-card__icon">◈</div>
-            <h3 class="feature-card__title">Aspect Ratios</h3>
-            <p class="feature-card__desc">Pre-defined ratios for images, videos, and containers. From square to
-                ultrawide.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-card__icon">≡</div>
-            <h3 class="feature-card__title">Layer System</h3>
-            <p class="feature-card__desc">Semantic z-index management. No more magic numbers for stacking contexts.</p>
-        </div>
+        {{ feature_card('Q', 'The Q Unit', 'Atomic unit system based on 0.0625rem (1px). Every measurement derives from
+        this precise foundation.') }}
+        {{ feature_card('⊞', '8-Point Grid', 'Enforces spatial harmony with consistent multiples. Elements snap to a
+        uniform rhythm.') }}
+        {{ feature_card('φ', 'Modular Scale', 'Typography system using mathematical ratios. Golden ratio, Major Third,
+        and more.') }}
+        {{ feature_card('⬚', 'Utility Classes', 'Tailwind-style classes for rapid prototyping. Spacing, sizing, and
+        responsive variants.') }}
+        {{ feature_card('◈', 'Aspect Ratios', 'Pre-defined ratios for images, videos, and containers. From square to
+        ultrawide.') }}
+        {{ feature_card('≡', 'Layer System', 'Semantic z-index management. No more magic numbers for stacking
+        contexts.') }}
     </div>
 </section>
 
@@ -81,44 +61,35 @@
     <a href="/getting-started.html" class="btn btn--secondary" style="margin-top: 16px;">Full Installation Guide →</a>
 </section>
 
-<!-- Documentation Sections -->
+{# Documentation Sections #}
 <section>
     <h2>Documentation</h2>
 
     <div class="doc-sections">
-        <div class="doc-section">
-            <h3>Learn</h3>
-            <ul>
-                <li><a href="/getting-started.html">Getting Started</a></li>
-                <li><a href="/core-concepts.html">Core Concepts</a></li>
-                <li><a href="/configuration.html">Configuration</a></li>
-            </ul>
-        </div>
-        <div class="doc-section">
-            <h3>API Reference</h3>
-            <ul>
-                <li><a href="/functions.html">Functions</a></li>
-                <li><a href="/mixins.html">Mixins</a></li>
-                <li><a href="/test_breakpoints.html">Breakpoints</a></li>
-                <li><a href="/test_device.html">Device Explorer</a></li>
-                <li><a href="/test_paper.html">Page Formats</a></li>
-                <li><a href="/test_utilities.html">Utility Classes</a></li>
-            </ul>
-        </div>
-        <div class="doc-section">
-            <h3>Guides</h3>
-            <ul>
-                <li><a href="/test_qscale.html">Q Scale Explorer</a></li>
-                <li><a href="/test_scale.html">Typographic Scale</a></li>
-                <li><a href="/test_ratio.html">Aspect Ratios</a></li>
-                <li><a href="/test_layers.html">Layer System</a></li>
-                <li><a href="/guide_baseline.html">Baseline Grid</a></li>
-            </ul>
-        </div>
+        {{ doc_section('Learn', [
+        {'href': '/getting-started.html', 'label': 'Getting Started'},
+        {'href': '/core-concepts.html', 'label': 'Core Concepts'},
+        {'href': '/configuration.html', 'label': 'Configuration'}
+        ]) }}
+        {{ doc_section('API Reference', [
+        {'href': '/functions.html', 'label': 'Functions'},
+        {'href': '/mixins.html', 'label': 'Mixins'},
+        {'href': '/test_breakpoints.html', 'label': 'Breakpoints'},
+        {'href': '/test_device.html', 'label': 'Device Explorer'},
+        {'href': '/test_paper.html', 'label': 'Page Formats'},
+        {'href': '/test_utilities.html', 'label': 'Utility Classes'}
+        ]) }}
+        {{ doc_section('Guides', [
+        {'href': '/test_qscale.html', 'label': 'Q Scale Explorer'},
+        {'href': '/test_scale.html', 'label': 'Typographic Scale'},
+        {'href': '/test_ratio.html', 'label': 'Aspect Ratios'},
+        {'href': '/test_layers.html', 'label': 'Layer System'},
+        {'href': '/guide_baseline.html', 'label': 'Baseline Grid'}
+        ]) }}
     </div>
 </section>
 
-<!-- The Q Unit -->
+{# The Q Unit #}
 <section>
     <h2>The Q Unit</h2>
     <p>The foundation of unit.gl is the <strong>Kyū (Q)</strong> — a base unit equal to <code>0.0625rem</code> (1px at
@@ -126,13 +97,10 @@
 
     <div class="number-grid" style="margin-top: 24px;">
         {% for step in [1, 2, 4, 8, 16, 32, 64, 128] %}
-        <div class="number-cell">
-            <div class="number-cell__value">{{ step }}</div>
-            <div class="number-cell__label">q({{ step }})</div>
-        </div>
+        {{ number_cell(step) }}
         {% endfor %}
     </div>
-    <a href="/core-concepts.html" class="btn btn--secondary" style="margin-top: 16px;">Learn More →</a>
+    {{ button('Learn More →', href='/core-concepts.html', variant='secondary') }}
 </section>
 
 <!-- Demos -->

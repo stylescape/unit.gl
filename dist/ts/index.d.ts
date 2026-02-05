@@ -53,7 +53,7 @@ export type QValue = number;
 /**
  * Breakpoint names used in the responsive system
  */
-export type Breakpoint = 'ss' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'sl';
+export type Breakpoint = 'us' | 'ss' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'ul';
 
 /**
  * Format/paper size names
