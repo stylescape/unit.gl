@@ -8,6 +8,16 @@
 /// It also provides a function to calculate values based on a modular scale,
 /// which is essential for maintaining consistent design proportions.
 ///
+/// The Hybrid Scale System combines two complementary scales:
+/// - Type Scale (4Q): For typography - clean 4px increments
+/// - Line Scale (5Q): For vertical rhythm - aligns with Q format paper sizes
+///
+/// Key Relationship:
+/// - 1Q = 0.25mm = 1px (at 4× density)
+/// - 4Q = 1.00mm = 4px → Type Scale base
+/// - 5Q = 1.25mm = 5px → Line Scale base
+/// - 20Q = 5.00mm = 20px → LCM alignment point (where both scales meet)
+///
 /// @group Scale
 /// @author Scape Agency
 /// @link https://unit.gl
@@ -21,9 +31,20 @@
 // Use
 // ============================================================================
 @use "sass:math";
+@use "unit" as *;
 
 // ============================================================================
-// Functions
+// Local Scale Constants
+// ============================================================================
+
+/// Line scale multiplier (5Q per line unit)
+$_line_scale: 5;
+
+/// Type scale multiplier (4Q per type unit)
+$_type_scale: 4;
+
+// ============================================================================
+// Modular Scale Function
 // ============================================================================
 
 ///
@@ -64,4 +85,193 @@
 
     // Calculate the modular scale value
     @return $base * math.pow($ratio, $increment);
+}
+
+// ============================================================================
+// Line Scale Functions (5Q = 1.25mm = 5px)
+// ============================================================================
+
+///
+/// Line Function
+/// ---------------------------------------------------------------------------
+///
+/// Calculates a line-based value for vertical rhythm. The line scale uses 5Q
+/// (5px) increments, which perfectly align with Q format paper dimensions.
+///
+/// Key relationships:
+/// - Q04 (180×270mm) = 36×54 line units = 720×1080px
+/// - Q03 (270×360mm) = 54×72 line units = 1080×1440px
+/// - Q02 (360×540mm) = 72×108 line units = 1440×2160px
+///
+/// @name line
+/// @param {Number} $lines - Number of line units
+/// @return {Length} Value in line units (5Q per unit)
+///
+/// @example scss - Usage
+///   line-height: line(4);    // 20px - 4 line units
+///   margin-bottom: line(2);  // 10px - 2 line units
+///   padding: line(3);        // 15px - 3 line units
+///
+@function line($lines) {
+    @return calc($q * $lines * $_line_scale);
+}
+
+///
+/// Snap to Line Grid
+/// ---------------------------------------------------------------------------
+///
+/// Rounds a value to the nearest line grid increment (5Q).
+/// Useful for maintaining vertical rhythm alignment.
+///
+/// @name snap_to_line
+/// @param {Length} $value - Value to snap
+/// @return {Length} Value snapped to the nearest line grid
+///
+/// @example scss - Usage
+///   padding: snap_to_line(13px);  // Returns 15px (3 line units)
+///   margin: snap_to_line(17px);   // Returns 15px or 20px based on rounding
+///
+@function snap_to_line($value) {
+    // Convert to unitless for calculation
+    $px_value: math.div($value, 1px);
+    @return math.round(math.div($px_value, 5)) * 5 * $q;
+}
+
+///
+/// Line Height for Size
+/// ---------------------------------------------------------------------------
+///
+/// Calculates an appropriate line-height for a given font size that maintains
+/// baseline grid alignment. Snaps the result to the 5Q line grid.
+///
+/// @name line_height_for_size
+/// @param {Length} $font_size - The font size
+/// @param {Number} $target_ratio [1.5] - Target line-height ratio
+/// @return {Length} Line-height snapped to 5Q grid
+///
+/// @example scss - Usage
+///   line-height: line_height_for_size(16px);       // 25px (5 line units)
+///   line-height: line_height_for_size(24px, 1.4);  // 35px (7 line units)
+///
+@function line_height_for_size($font_size, $target_ratio: 1.5) {
+    $ideal: $font_size * $target_ratio;
+    @return snap_to_line($ideal);
+}
+
+///
+/// Convert Millimeters to Line Units
+/// ---------------------------------------------------------------------------
+///
+/// Converts a millimeter value to line scale units.
+/// 1 line unit = 1.25mm (5Q = 5 × 0.25mm)
+///
+/// @name mm_to_lines
+/// @param {Number} $mm - Value in millimeters
+/// @return {Number} Value in line units
+///
+/// @example scss - Usage
+///   $lines: mm_to_lines(180);  // 144 line units (Q04 width)
+///   $lines: mm_to_lines(270);  // 216 line units (Q04 height)
+///
+@function mm_to_lines($mm) {
+    @return math.div($mm, 1.25);
+}
+
+///
+/// Convert Line Units to Millimeters
+/// ---------------------------------------------------------------------------
+///
+/// Converts line scale units to millimeters.
+/// 1 line unit = 1.25mm
+///
+/// @name lines_to_mm
+/// @param {Number} $lines - Value in line units
+/// @return {Number} Value in millimeters
+///
+/// @example scss - Usage
+///   $mm: lines_to_mm(36);  // 45mm
+///   $mm: lines_to_mm(54);  // 67.5mm
+///
+@function lines_to_mm($lines) {
+    @return $lines * 1.25;
+}
+
+///
+/// Convert Line Units to Pixels
+/// ---------------------------------------------------------------------------
+///
+/// Converts line scale units to pixels (at 4× density / 96dpi).
+/// 1 line unit = 5px
+///
+/// @name lines_to_px
+/// @param {Number} $lines - Value in line units
+/// @return {Number} Value in pixels
+///
+/// @example scss - Usage
+///   $px: lines_to_px(36);   // 180px
+///   $px: lines_to_px(144);  // 720px (Q04 width)
+///   $px: lines_to_px(216);  // 1080px (Q04 height)
+///
+@function lines_to_px($lines) {
+    @return $lines * 5;
+}
+
+///
+/// Convert Pixels to Line Units
+/// ---------------------------------------------------------------------------
+///
+/// Converts pixels to line scale units (at 4× density / 96dpi).
+/// 1 line unit = 5px
+///
+/// @name px_to_lines
+/// @param {Number} $px - Value in pixels
+/// @return {Number} Value in line units
+///
+/// @example scss - Usage
+///   $lines: px_to_lines(720);   // 144 line units (Q04 width)
+///   $lines: px_to_lines(1080);  // 216 line units (Q04 height)
+///
+@function px_to_lines($px) {
+    @return math.div($px, 5);
+}
+
+// ============================================================================
+// Type Scale Functions (4Q = 1mm = 4px)
+// ============================================================================
+
+///
+/// Type Unit Function
+/// ---------------------------------------------------------------------------
+///
+/// Calculates a type-based value for typography. The type scale uses 4Q
+/// (4px) increments for clean font sizing.
+///
+/// Note: Named `type_unit` instead of `type` because `type()` is a reserved
+/// CSS function name.
+///
+/// @name type_unit
+/// @param {Number} $units - Number of type units
+/// @return {Length} Value in type units (4Q per unit)
+///
+/// @example scss - Usage
+///   font-size: type_unit(4);   // 16px - base font size
+///   font-size: type_unit(5);   // 20px
+///   font-size: type_unit(6);   // 24px
+///
+@function type_unit($units) {
+    @return calc($q * $units * $_type_scale);
+}
+
+///
+/// Convert Millimeters to Type Units
+/// ---------------------------------------------------------------------------
+///
+/// 1 type unit = 4px
+///
+/// @name type_to_px
+/// @param {Number} $units - Value in type units
+/// @return {Number} Value in pixels
+///
+@function type_to_px($units) {
+    @return $units * $_type_scale;
 }

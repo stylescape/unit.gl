@@ -20,13 +20,14 @@
 ///
 /// Responsive Variants:
 /// All utilities are generated with responsive modifiers for all breakpoints:
+/// - us: .us_p_q4, .us_m_q8, .us_gap_q12, etc.
 /// - ss: .ss_p_q4, .ss_m_q8, .ss_gap_q12, etc.
 /// - xs: .xs_p_q4, .xs_m_q8, .xs_gap_q12, etc.
 /// - sm: .sm_p_q4, .sm_m_q8, .sm_gap_q12, etc.
 /// - md: .md_p_q4, .md_m_q8, .md_gap_q12, etc.
 /// - lg: .lg_p_q4, .lg_m_q8, .lg_gap_q12, etc.
 /// - xl: .xl_p_q4, .xl_m_q8, .xl_gap_q12, etc.
-/// - sl: .sl_p_q4, .sl_m_q8, .sl_gap_q12, etc.
+/// - ul: .ul_p_q4, .ul_m_q8, .ul_gap_q12, etc.
 ///
 /// CSS Variables:
 /// All utilities also set corresponding CSS custom properties for dynamic JS usage:
@@ -69,6 +70,183 @@
 @include mixins.inset-utilities();
 @include mixins.border-width-utilities();
 @include mixins.border-radius-utilities();
+
+// ============================================================================
+// Responsive Utilities - US Breakpoint (Ultra-Small)
+// ============================================================================
+
+@include mixins.breakpoint(us) {
+    @each $key, $value in maps.$q_steps {
+        // Padding
+        .us_p_q#{$key} {
+            padding: variables.q($value);
+        }
+        .us_pt_q#{$key} {
+            padding-top: variables.q($value);
+        }
+        .us_pr_q#{$key} {
+            padding-right: variables.q($value);
+        }
+        .us_pb_q#{$key} {
+            padding-bottom: variables.q($value);
+        }
+        .us_pl_q#{$key} {
+            padding-left: variables.q($value);
+        }
+        .us_px_q#{$key} {
+            padding-left: variables.q($value);
+            padding-right: variables.q($value);
+        }
+        .us_py_q#{$key} {
+            padding-top: variables.q($value);
+            padding-bottom: variables.q($value);
+        }
+
+        // Margin
+        .us_m_q#{$key} {
+            margin: variables.q($value);
+        }
+        .us_mt_q#{$key} {
+            margin-top: variables.q($value);
+        }
+        .us_mr_q#{$key} {
+            margin-right: variables.q($value);
+        }
+        .us_mb_q#{$key} {
+            margin-bottom: variables.q($value);
+        }
+        .us_ml_q#{$key} {
+            margin-left: variables.q($value);
+        }
+        .us_mx_q#{$key} {
+            margin-left: variables.q($value);
+            margin-right: variables.q($value);
+        }
+        .us_my_q#{$key} {
+            margin-top: variables.q($value);
+            margin-bottom: variables.q($value);
+        }
+
+        // Gap
+        .us_gap_q#{$key} {
+            gap: variables.q($value);
+        }
+        .us_gap_col_q#{$key} {
+            column-gap: variables.q($value);
+        }
+        .us_gap_row_q#{$key} {
+            row-gap: variables.q($value);
+        }
+
+        // Width
+        .us_w_q#{$key} {
+            width: variables.q($value);
+        }
+        .us_min_w_q#{$key} {
+            min-width: variables.q($value);
+        }
+        .us_max_w_q#{$key} {
+            max-width: variables.q($value);
+        }
+
+        // Height
+        .us_h_q#{$key} {
+            height: variables.q($value);
+        }
+        .us_min_h_q#{$key} {
+            min-height: variables.q($value);
+        }
+        .us_max_h_q#{$key} {
+            max-height: variables.q($value);
+        }
+
+        // Inset
+        .us_inset_q#{$key} {
+            top: variables.q($value);
+            right: variables.q($value);
+            bottom: variables.q($value);
+            left: variables.q($value);
+        }
+        .us_top_q#{$key} {
+            top: variables.q($value);
+        }
+        .us_right_q#{$key} {
+            right: variables.q($value);
+        }
+        .us_bottom_q#{$key} {
+            bottom: variables.q($value);
+        }
+        .us_left_q#{$key} {
+            left: variables.q($value);
+        }
+        .us_inset_x_q#{$key} {
+            left: variables.q($value);
+            right: variables.q($value);
+        }
+        .us_inset_y_q#{$key} {
+            top: variables.q($value);
+            bottom: variables.q($value);
+        }
+
+        // Border Width
+        .us_border_q#{$key} {
+            border-width: variables.q($value);
+        }
+        .us_border_t_q#{$key} {
+            border-top-width: variables.q($value);
+        }
+        .us_border_r_q#{$key} {
+            border-right-width: variables.q($value);
+        }
+        .us_border_b_q#{$key} {
+            border-bottom-width: variables.q($value);
+        }
+        .us_border_l_q#{$key} {
+            border-left-width: variables.q($value);
+        }
+        .us_border_x_q#{$key} {
+            border-left-width: variables.q($value);
+            border-right-width: variables.q($value);
+        }
+        .us_border_y_q#{$key} {
+            border-top-width: variables.q($value);
+            border-bottom-width: variables.q($value);
+        }
+
+        // Border Radius
+        .us_rounded_q#{$key} {
+            border-radius: variables.q($value);
+        }
+        .us_rounded_t_q#{$key} {
+            border-top-left-radius: variables.q($value);
+            border-top-right-radius: variables.q($value);
+        }
+        .us_rounded_r_q#{$key} {
+            border-top-right-radius: variables.q($value);
+            border-bottom-right-radius: variables.q($value);
+        }
+        .us_rounded_b_q#{$key} {
+            border-bottom-left-radius: variables.q($value);
+            border-bottom-right-radius: variables.q($value);
+        }
+        .us_rounded_l_q#{$key} {
+            border-top-left-radius: variables.q($value);
+            border-bottom-left-radius: variables.q($value);
+        }
+        .us_rounded_tl_q#{$key} {
+            border-top-left-radius: variables.q($value);
+        }
+        .us_rounded_tr_q#{$key} {
+            border-top-right-radius: variables.q($value);
+        }
+        .us_rounded_br_q#{$key} {
+            border-bottom-right-radius: variables.q($value);
+        }
+        .us_rounded_bl_q#{$key} {
+            border-bottom-left-radius: variables.q($value);
+        }
+    }
+}
 
 // ============================================================================
 // Responsive Utilities - XS Breakpoint
@@ -1133,177 +1311,177 @@
 }
 
 // ============================================================================
-// Responsive Utilities - SL Breakpoint
+// Responsive Utilities - UL Breakpoint
 // ============================================================================
 
-@include mixins.breakpoint(sl) {
+@include mixins.breakpoint(ul) {
     @each $key, $value in maps.$q_steps {
         // Padding
-        .sl_p_q#{$key} {
+        .ul_p_q#{$key} {
             padding: variables.q($value);
         }
-        .sl_pt_q#{$key} {
+        .ul_pt_q#{$key} {
             padding-top: variables.q($value);
         }
-        .sl_pr_q#{$key} {
+        .ul_pr_q#{$key} {
             padding-right: variables.q($value);
         }
-        .sl_pb_q#{$key} {
+        .ul_pb_q#{$key} {
             padding-bottom: variables.q($value);
         }
-        .sl_pl_q#{$key} {
+        .ul_pl_q#{$key} {
             padding-left: variables.q($value);
         }
-        .sl_px_q#{$key} {
+        .ul_px_q#{$key} {
             padding-left: variables.q($value);
             padding-right: variables.q($value);
         }
-        .sl_py_q#{$key} {
+        .ul_py_q#{$key} {
             padding-top: variables.q($value);
             padding-bottom: variables.q($value);
         }
 
         // Margin
-        .sl_m_q#{$key} {
+        .ul_m_q#{$key} {
             margin: variables.q($value);
         }
-        .sl_mt_q#{$key} {
+        .ul_mt_q#{$key} {
             margin-top: variables.q($value);
         }
-        .sl_mr_q#{$key} {
+        .ul_mr_q#{$key} {
             margin-right: variables.q($value);
         }
-        .sl_mb_q#{$key} {
+        .ul_mb_q#{$key} {
             margin-bottom: variables.q($value);
         }
-        .sl_ml_q#{$key} {
+        .ul_ml_q#{$key} {
             margin-left: variables.q($value);
         }
-        .sl_mx_q#{$key} {
+        .ul_mx_q#{$key} {
             margin-left: variables.q($value);
             margin-right: variables.q($value);
         }
-        .sl_my_q#{$key} {
+        .ul_my_q#{$key} {
             margin-top: variables.q($value);
             margin-bottom: variables.q($value);
         }
 
         // Gap
-        .sl_gap_q#{$key} {
+        .ul_gap_q#{$key} {
             gap: variables.q($value);
         }
-        .sl_gap_col_q#{$key} {
+        .ul_gap_col_q#{$key} {
             column-gap: variables.q($value);
         }
-        .sl_gap_row_q#{$key} {
+        .ul_gap_row_q#{$key} {
             row-gap: variables.q($value);
         }
 
         // Width
-        .sl_w_q#{$key} {
+        .ul_w_q#{$key} {
             width: variables.q($value);
         }
-        .sl_min_w_q#{$key} {
+        .ul_min_w_q#{$key} {
             min-width: variables.q($value);
         }
-        .sl_max_w_q#{$key} {
+        .ul_max_w_q#{$key} {
             max-width: variables.q($value);
         }
 
         // Height
-        .sl_h_q#{$key} {
+        .ul_h_q#{$key} {
             height: variables.q($value);
         }
-        .sl_min_h_q#{$key} {
+        .ul_min_h_q#{$key} {
             min-height: variables.q($value);
         }
-        .sl_max_h_q#{$key} {
+        .ul_max_h_q#{$key} {
             max-height: variables.q($value);
         }
 
         // Inset
-        .sl_inset_q#{$key} {
+        .ul_inset_q#{$key} {
             top: variables.q($value);
             right: variables.q($value);
             bottom: variables.q($value);
             left: variables.q($value);
         }
-        .sl_top_q#{$key} {
+        .ul_top_q#{$key} {
             top: variables.q($value);
         }
-        .sl_right_q#{$key} {
+        .ul_right_q#{$key} {
             right: variables.q($value);
         }
-        .sl_bottom_q#{$key} {
+        .ul_bottom_q#{$key} {
             bottom: variables.q($value);
         }
-        .sl_left_q#{$key} {
+        .ul_left_q#{$key} {
             left: variables.q($value);
         }
-        .sl_inset_x_q#{$key} {
+        .ul_inset_x_q#{$key} {
             left: variables.q($value);
             right: variables.q($value);
         }
-        .sl_inset_y_q#{$key} {
+        .ul_inset_y_q#{$key} {
             top: variables.q($value);
             bottom: variables.q($value);
         }
 
         // Border Width
-        .sl_border_q#{$key} {
+        .ul_border_q#{$key} {
             border-width: variables.q($value);
         }
-        .sl_border_t_q#{$key} {
+        .ul_border_t_q#{$key} {
             border-top-width: variables.q($value);
         }
-        .sl_border_r_q#{$key} {
+        .ul_border_r_q#{$key} {
             border-right-width: variables.q($value);
         }
-        .sl_border_b_q#{$key} {
+        .ul_border_b_q#{$key} {
             border-bottom-width: variables.q($value);
         }
-        .sl_border_l_q#{$key} {
+        .ul_border_l_q#{$key} {
             border-left-width: variables.q($value);
         }
-        .sl_border_x_q#{$key} {
+        .ul_border_x_q#{$key} {
             border-left-width: variables.q($value);
             border-right-width: variables.q($value);
         }
-        .sl_border_y_q#{$key} {
+        .ul_border_y_q#{$key} {
             border-top-width: variables.q($value);
             border-bottom-width: variables.q($value);
         }
 
         // Border Radius
-        .sl_rounded_q#{$key} {
+        .ul_rounded_q#{$key} {
             border-radius: variables.q($value);
         }
-        .sl_rounded_t_q#{$key} {
+        .ul_rounded_t_q#{$key} {
             border-top-left-radius: variables.q($value);
             border-top-right-radius: variables.q($value);
         }
-        .sl_rounded_r_q#{$key} {
+        .ul_rounded_r_q#{$key} {
             border-top-right-radius: variables.q($value);
             border-bottom-right-radius: variables.q($value);
         }
-        .sl_rounded_b_q#{$key} {
+        .ul_rounded_b_q#{$key} {
             border-bottom-left-radius: variables.q($value);
             border-bottom-right-radius: variables.q($value);
         }
-        .sl_rounded_l_q#{$key} {
+        .ul_rounded_l_q#{$key} {
             border-top-left-radius: variables.q($value);
             border-bottom-left-radius: variables.q($value);
         }
-        .sl_rounded_tl_q#{$key} {
+        .ul_rounded_tl_q#{$key} {
             border-top-left-radius: variables.q($value);
         }
-        .sl_rounded_tr_q#{$key} {
+        .ul_rounded_tr_q#{$key} {
             border-top-right-radius: variables.q($value);
         }
-        .sl_rounded_br_q#{$key} {
+        .ul_rounded_br_q#{$key} {
             border-bottom-right-radius: variables.q($value);
         }
-        .sl_rounded_bl_q#{$key} {
+        .ul_rounded_bl_q#{$key} {
             border-bottom-left-radius: variables.q($value);
         }
     }

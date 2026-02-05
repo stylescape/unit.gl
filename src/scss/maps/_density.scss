@@ -1,0 +1,141 @@
+////
+///
+/// Density Variables Module
+/// ===========================================================================
+///
+/// Defines pixel density buckets and related utilities for handling
+/// different display densities across devices. This system unifies
+/// screen and print density handling through the Q unit.
+///
+/// The density system is based on Android's density-independent pixel (dp)
+/// buckets, which provide a standardized way to target different display
+/// densities across platforms.
+///
+/// @group Density
+/// @author Scape Agency
+/// @link https://unit.gl
+/// @since 0.2.4 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+///
+/// Density Bucket Map
+/// ---------------------------------------------------------------------------
+///
+/// Maps density bucket names to their device pixel ratio (DPR) values.
+/// Based on Android's density qualifiers with additions for modern displays.
+///
+/// The baseline (mdpi) corresponds to 160dpi, where 1dp = 1px.
+/// Each bucket scales proportionally:
+/// - ldpi:    0.75× (120dpi) — Low density, legacy
+/// - mdpi:    1.00× (160dpi) — Medium density, baseline
+/// - hdpi:    1.50× (240dpi) — High density
+/// - xhdpi:   2.00× (320dpi) — Extra-high density (Retina)
+/// - xxhdpi:  3.00× (480dpi) — Extra-extra-high density
+/// - xxxhdpi: 4.00× (640dpi) — Extra-extra-extra-high density
+///
+/// @name density_buckets
+/// @type Map
+///
+/// @example scss - Usage Example
+///   $dpr: map.get($density_buckets, "xhdpi"); // 2
+///
+$density_buckets: (
+    "ldpi": 0.75,
+    // 120dpi - Low density (legacy)
+    "mdpi": 1,
+    // 160dpi - Medium density (baseline)
+    "hdpi": 1.5,
+    // 240dpi - High density
+    "xhdpi": 2,
+    // 320dpi - Extra-high (Retina/2×)
+    "xxhdpi": 3,
+    // 480dpi - Extra-extra-high (3×)
+    "xxxhdpi": 4 // 640dpi - Extra-extra-extra-high (4×)
+) !default;
+
+///
+/// Density Bucket DPI Map
+/// ---------------------------------------------------------------------------
+///
+/// Maps density bucket names to their DPI (dots per inch) values.
+/// Useful for generating resolution media queries.
+///
+/// @name density_dpi
+/// @type Map
+///
+$density_dpi: (
+    "ldpi": 120,
+    "mdpi": 160,
+    "hdpi": 240,
+    "xhdpi": 320,
+    "xxhdpi": 480,
+    "xxxhdpi": 640
+) !default;
+
+///
+/// Physical Reference DPI
+/// ---------------------------------------------------------------------------
+///
+/// The baseline physical DPI used for print-to-screen conversions.
+/// Standard print resolution is 96dpi for CSS, but physical print
+/// typically uses 300dpi or higher.
+///
+/// @name reference_dpi
+/// @type Number
+///
+$reference_dpi: 96 !default;
+
+///
+/// Print Reference DPI
+/// ---------------------------------------------------------------------------
+///
+/// Standard print resolution for high-quality output.
+///
+/// @name print_dpi
+/// @type Number
+///
+$print_dpi: 300 !default;
+
+///
+/// Q Unit Physical Size
+/// ---------------------------------------------------------------------------
+///
+/// The physical size of 1Q in millimeters, based on the traditional
+/// Japanese Kyū typographic unit.
+///
+/// 1Q = 0.25mm in the physical world
+///
+/// @name q_physical_mm
+/// @type Number
+///
+$q_physical_mm: 0.25 !default;
+
+///
+/// Common Display Densities
+/// ---------------------------------------------------------------------------
+///
+/// Named density profiles for common device categories.
+///
+/// @name display_densities
+/// @type Map
+///
+$display_densities: (
+    "standard": 1,
+    // Standard desktop displays
+    "retina": 2,
+    // Apple Retina, most modern phones
+    "super": 3,
+    // High-end phones (iPhone Pro, Samsung S series)
+    "ultra": 4 // Ultra-high density (some Android flagships)
+) !default;

@@ -56,3 +56,9 @@
 @forward "interval"; // interval configurations for responsive elements
 
 @forward "scale";
+
+///
+/// Forwards density bucket definitions for handling different display
+/// pixel densities across devices (retina, hdpi, etc.).
+///
+@forward "density"; // Pixel density buckets and DPI values

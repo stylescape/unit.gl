@@ -5,8 +5,33 @@
 ///
 /// This module defines the base typographic and spacing scales used throughout
 /// the project, leveraging a rhythm-based approach for consistent vertical
-/// spacing and typographic hierarchy. The Kyū Point and Baseline scales
-/// provide a flexible system for responsive design.
+/// spacing and typographic hierarchy.
+///
+/// Hybrid Scale System
+/// ───────────────────────────────────────────────────────────────────────────
+/// The system uses two complementary scales:
+///
+/// 1. TYPE SCALE (4Q = 1mm = 4px)
+///    - Used for: font-size, letter-spacing, fine adjustments
+///    - Clean 4px increments for typography
+///
+/// 2. LINE SCALE (5Q = 1.25mm = 5px)
+///    - Used for: line-height, vertical spacing, layout rhythm
+///    - Aligns perfectly with Q format paper sizes and screen resolutions
+///
+/// Key Relationships:
+/// ───────────────────────────────────────────────────────────────────────────
+/// | Format | mm (W×H)    | Line Units | Pixels (×4) | Use Case           |
+/// |--------|-------------|------------|-------------|---------------------|
+/// | Q07    | 60×90       | 12×18      | 240×360     | Compact/Watch      |
+/// | Q06    | 90×135      | 18×27      | 360×540     | Phone              |
+/// | Q05    | 135×180     | 27×36      | 540×720     | Large phone        |
+/// | Q04    | 180×270     | 36×54      | 720×1080    | Tablet (HD)        |
+/// | Q03    | 270×360     | 54×72      | 1080×1440   | Laptop             |
+/// | Q02    | 360×540     | 72×108     | 1440×2160   | Desktop (QHD)      |
+/// | Q01    | 540×720     | 108×144    | 2160×2880   | Large desktop      |
+/// | Q00    | 720×1080    | 144×216    | 2880×4320   | 5K display         |
+/// ───────────────────────────────────────────────────────────────────────────
 ///
 /// @group Scale
 /// @author Scape Agency
@@ -18,20 +43,19 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
 @use "unit" as *;
 
-
 // ============================================================================
-// Variables
+// Core Rhythm Variables
 // ============================================================================
 
 ///
 /// The base rhythm unit used for vertical spacing and typography.
+/// Based on 4Q (4px) for clean typographic increments.
 ///
 /// @name $rhythm_base
 /// @type Length
@@ -80,6 +104,100 @@ $font_size_base: calc($font_size_scalar * $rhythm_base) !default;
 ///
 $line_height_base: calc($line_height_scalar * $rhythm_base) !default;
 
+// ============================================================================
+// Type Scale (4Q = 1mm = 4px)
+// ============================================================================
+
+///
+/// Type Scale Multiplier
+/// ---------------------------------------------------------------------------
+///
+/// The base scaling factor for the type point scale.
+/// 4Q = 4px = 1mm at standard density.
+///
+/// @name $type_scale
+/// @type Number
+///
+$type_scale: 4 !default;
+
+///
+/// Kyū Point Scale (Legacy Alias)
+/// ---------------------------------------------------------------------------
+///
+/// Alias for $type_scale for backward compatibility.
+///
+/// @name $basepoint_scale
+/// @type Number
+/// @deprecated Use $type_scale instead
+///
+$basepoint_scale: $type_scale !default;
+
+///
+/// Calculates a type point value based on the type scale.
+///
+/// @name basepoint
+/// @param {Number} $value - The multiplier to apply to the type scale.
+/// @return {Length} The calculated type point value.
+/// @deprecated Use type() function from _scale.scss instead
+///
+@function basepoint($value) {
+    @return calc($q * $value * $type_scale);
+}
+
+///
+/// Type Scale Map
+/// ---------------------------------------------------------------------------
+///
+/// A scale of type points (4Q-based), used for font sizing and fine spacing.
+/// Each step represents multiples of 4Q (4px).
+///
+/// @name $type_points
+/// @type Map
+///
+$type_points: (
+    1: basepoint(1),
+    // 4px
+    2: basepoint(2),
+    // 8px
+    3: basepoint(3),
+    // 12px
+    4: basepoint(4),
+    // 16px (base)
+    5: basepoint(5),
+    // 20px ← aligns with line(4)
+    6: basepoint(6),
+    // 24px
+    7: basepoint(7),
+    // 28px
+    8: basepoint(8),
+    // 32px
+    9: basepoint(9),
+    // 36px
+    10: basepoint(10),
+    // 40px ← aligns with line(8)
+    11: basepoint(11),
+    // 44px
+    12: basepoint(12),
+    // 48px
+    13: basepoint(13),
+    // 52px
+    14: basepoint(14),
+    // 56px
+    15: basepoint(15),
+    // 60px ← aligns with line(12)
+    16: basepoint(16),
+    // 64px
+    17: basepoint(17),
+    // 68px
+    18: basepoint(18) // 72px
+) !default;
+
+///
+/// Legacy basepoint map alias
+/// @deprecated Use $type_points instead
+///
+$basepoint: $type_points !default;
+
 ///
 /// Typographic Scale Map
 /// ---------------------------------------------------------------------------
@@ -103,9 +221,9 @@ $typographic_scale: (
     6: q(14),
     // +2 units
     7: q(16),
-    // +2 units
+    // +2 units (base)
     8: q(20),
-    // +4 units
+    // +4 units ← aligns with line(4)
     9: q(24),
     // +4 units
     10: q(28),
@@ -115,101 +233,354 @@ $typographic_scale: (
     12: q(36),
     // +4 units
     13: q(40),
-    // +4 units
+    // +4 units ← aligns with line(8)
     14: q(48),
     // +8 units
     15: q(56),
     // +8 units
     16: q(64),
     // +8 units
-    17: q(72),
-    // +8 units
+    17: q(72) // +8 units
 ) !default;
 
+// ============================================================================
+// Line Scale (5Q = 1.25mm = 5px)
+// ============================================================================
+
 ///
-///  Kyū Point Scale
+/// Line Scale Multiplier
 /// ---------------------------------------------------------------------------
 ///
-/// The base scaling factor for the Kyū point scale.
+/// The base scaling factor for the line grid.
+/// 5Q = 5px = 1.25mm at standard density.
 ///
-/// @name $basepoint_scale
+/// This scale aligns perfectly with Q format paper sizes:
+/// - Q04 (180×270mm) = 36×54 line units = 720×1080px
+///
+/// @name $line_scale
 /// @type Number
 ///
-$basepoint_scale: 4 !default;
+$line_scale: 5 !default;
 
 ///
-/// Calculates a Kyū point value based on the basepoint scale.
+/// Legacy Baseline Scale Alias
+/// @deprecated Use $line_scale instead
 ///
-/// @name basepoint
-/// @param {Number} $value - The multiplier to apply to the base point scale.
-/// @return {Length} The calculated Kyū point value.
-///
-@function basepoint($value) {
-    @return calc($q * $value * $basepoint_scale);
-}
+$baseline_scale: $line_scale !default;
 
 ///
-/// A scale of Kyū points, used for fine-tuned spacing and sizing.
-///
-/// @name $basepoint
-/// @type Map
-///
-$basepoint: (
-    1: basepoint(1),
-    2: basepoint(2),
-    3: basepoint(3),
-    4: basepoint(4),
-    5: basepoint(5),
-    6: basepoint(6),
-    7: basepoint(7),
-    8: basepoint(8),
-    9: basepoint(9),
-    10: basepoint(10),
-    11: basepoint(11),
-    12: basepoint(12)
-) !default;
-
-///
-/// Kyū Baseline Scale
-/// ---------------------------------------------------------------------------
-///
-/// The base scaling factor for the Kyū baseline grid.
-///
-/// @name $baseline_scale
-/// @type Number
-///
-$baseline_scale: 5 !default;
-
-///
-/// Calculates a baseline grid value based on the baseline scale.
+/// Calculates a line grid value based on the line scale.
 ///
 /// @name baseline
 /// @type Function
-/// @param {Number} $value - The multiplier to apply to the baseline scale.
-/// @return {Length} The calculated baseline grid value.
+/// @param {Number} $value - The multiplier to apply to the line scale.
+/// @return {Length} The calculated line grid value.
+/// @deprecated Use line() function from _scale.scss instead
 ///
 @function baseline($value) {
-    @return calc($q * $value * $baseline_scale);
+    @return calc($q * $value * $line_scale);
 }
 
 ///
-/// A scale for the baseline grid, used for consistent vertical rhythm in
-/// layouts.
+/// Line Scale Map
+/// ---------------------------------------------------------------------------
 ///
-/// @name $baseline
+/// A scale for the line grid (5Q-based), used for vertical rhythm and spacing.
+/// Each step represents multiples of 5Q (5px).
+///
+/// @name $line_units
 /// @type Map
 ///
-$baseline: (
+$line_units: (
     1: baseline(1),
+    // 5px
     2: baseline(2),
+    // 10px
     3: baseline(3),
+    // 15px
     4: baseline(4),
+    // 20px ← aligns with type(5)
     5: baseline(5),
+    // 25px
     6: baseline(6),
+    // 30px
     7: baseline(7),
+    // 35px
     8: baseline(8),
+    // 40px ← aligns with type(10)
     9: baseline(9),
+    // 45px
     10: baseline(10),
+    // 50px
     11: baseline(11),
-    12: baseline(12)
+    // 55px
+    12: baseline(12),
+    // 60px ← aligns with type(15)
+    16: baseline(16),
+    // 80px ← aligns with type(20)
+    18: baseline(18),
+    // 90px (Q07 width)
+    20: baseline(20),
+    // 100px ← aligns with type(25)
+    24: baseline(24),
+    // 120px
+    27: baseline(27),
+    // 135px (Q05 width)
+    36: baseline(36),
+    // 180px (Q04 width)
+    54: baseline(54),
+    // 270px (Q04 height)
+    72: baseline(72),
+    // 360px (Q03 width)
+    108: baseline(108),
+    // 540px (Q02 width)
+    144: baseline(144),
+    // 720px (Q01 width)
+    216: baseline(216) // 1080px (Q04 height in px)
 ) !default;
+
+///
+/// Legacy baseline map alias
+/// @deprecated Use $line_units instead
+///
+$baseline: $line_units !default;
+
+///
+/// Line Height Scale
+/// ---------------------------------------------------------------------------
+///
+/// Semantic line-height values based on the line scale (5Q).
+/// These snap to the baseline grid for vertical rhythm.
+///
+/// @name $line_height_scale
+/// @type Map
+///
+$line_height_scale: (
+    tight: baseline(3),
+    // 15px - for dense UI
+    snug: baseline(4),
+    // 20px - compact text ← aligns with type(5)
+    normal: baseline(5),
+    // 25px - body text
+    relaxed: baseline(6),
+    // 30px - comfortable reading
+    loose: baseline(8) // 40px - spacious ← aligns with type(10)
+) !default;
+
+///
+/// Spacing Scale
+/// ---------------------------------------------------------------------------
+///
+/// Semantic spacing values based on the line scale (5Q).
+/// Used for margins, padding, and gaps.
+///
+/// @name $spacing_scale
+/// @type Map
+///
+$spacing_scale: (
+    0: baseline(0),
+    // 0px
+    xs: baseline(1),
+    // 5px
+    sm: baseline(2),
+    // 10px
+    md: baseline(3),
+    // 15px
+    lg: baseline(4),
+    // 20px ← LCM alignment
+    xl: baseline(6),
+    // 30px
+    2xl: baseline(8),
+    // 40px ← LCM alignment
+    3xl: baseline(12),
+    // 60px ← LCM alignment
+    4xl: baseline(16),
+    // 80px ← LCM alignment
+    5xl: baseline(20) // 100px ← LCM alignment
+) !default;
+
+// ============================================================================
+// Q Format ↔ Line Grid Mapping
+// ============================================================================
+
+///
+/// Q Format Line Grid
+/// ---------------------------------------------------------------------------
+///
+/// Maps Q format paper sizes to their line grid dimensions.
+/// Each entry shows (columns × rows) in line units.
+///
+/// Formula: mm ÷ 1.25 = line units (since 5Q = 1.25mm)
+///
+/// @name $q_format_lines
+/// @type Map
+///
+$q_format_lines: (
+    q07: (
+        columns: 48,
+        rows: 72
+    ),
+    // 60×90mm → 48×72 lines = 240×360px
+    q06: (
+            columns: 72,
+            rows: 108
+        ),
+    // 90×135mm → 72×108 lines = 360×540px
+    q05: (
+            columns: 108,
+            rows: 144
+        ),
+    // 135×180mm → 108×144 lines = 540×720px
+    q04: (
+            columns: 144,
+            rows: 216
+        ),
+    // 180×270mm → 144×216 lines = 720×1080px
+    q03: (
+            columns: 216,
+            rows: 288
+        ),
+    // 270×360mm → 216×288 lines = 1080×1440px
+    q02: (
+            columns: 288,
+            rows: 432
+        ),
+    // 360×540mm → 288×432 lines = 1440×2160px
+    q01: (
+            columns: 432,
+            rows: 576
+        ),
+    // 540×720mm → 432×576 lines = 2160×2880px
+    q00: (
+            columns: 576,
+            rows: 864
+        ) // 720×1080mm → 576×864 lines = 2880×4320px
+) !default;
+
+///
+/// Common Screen Resolutions in Line Units
+/// ---------------------------------------------------------------------------
+///
+/// Maps common screen resolutions to line grid dimensions.
+///
+/// @name $resolution_lines
+/// @type Map
+///
+$resolution_lines: (
+    qvga: (
+        columns: 64,
+        rows: 48
+    ),
+    // 320×240 (÷5)
+    hvga: (
+            columns: 96,
+            rows: 64
+        ),
+    // 480×320 (÷5)
+    vga: (
+            columns: 128,
+            rows: 96
+        ),
+    // 640×480 (÷5)
+    svga: (
+            columns: 160,
+            rows: 120
+        ),
+    // 800×600 (÷5)
+    xga: (
+            columns: 204,
+            rows: 153
+        ),
+    // 1024×768 (÷5, rounded)
+    hd: (
+            columns: 144,
+            rows: 216
+        ),
+    // 720×1080 (÷5) = Q04
+    fhd: (
+            columns: 384,
+            rows: 216
+        ),
+    // 1920×1080 (÷5)
+    qhd: (
+            columns: 512,
+            rows: 288
+        ),
+    // 2560×1440 (÷5)
+    uhd: (
+            columns: 768,
+            rows: 432
+        ),
+    // 3840×2160 (÷5)
+    5k: (
+            columns: 1024,
+            rows: 576
+        ) // 5120×2880 (÷5)
+) !default;
+
+// ============================================================================
+// Density-Aware Scale Functions
+// ============================================================================
+
+///
+/// Density-aware scale function.
+/// Returns a typographic scale value adjusted for target DPR.
+/// Useful for creating density-aware font sizes that maintain
+/// optical consistency across different pixel densities.
+///
+/// @name scale_density
+/// @param {Number} $step - The typographic scale step (1-17)
+/// @param {Number} $target_dpr [1] - Target device pixel ratio
+/// @param {Number} $density_scale [0.9] - Scale factor per DPR step
+/// @return {Length} Adjusted size value
+///
+/// @example scss - Usage
+///   font-size: scale_density(7);        // q(16) at 1× DPR
+///   font-size: scale_density(7, 2);     // q(16) * 0.9 at 2× DPR
+///   font-size: scale_density(7, 3);     // q(16) * 0.81 at 3× DPR
+///
+@function scale_density($step, $target_dpr: 1, $density_scale: 0.9) {
+    $base_size: map-get($typographic_scale, $step);
+
+    @if $base_size == null {
+        @warn "Invalid typographic scale step: #{$step}. Valid steps are 1-17.";
+        @return null;
+    }
+
+    @if $target_dpr <= 1 {
+        @return $base_size;
+    }
+
+    // Calculate the scale factor: scale^(dpr-1)
+    // For DPR 2: 0.9^1 = 0.9
+    // For DPR 3: 0.9^2 = 0.81
+    $factor: 1;
+    @for $i from 2 through $target_dpr {
+        $factor: $factor * $density_scale;
+    }
+
+    @return calc(#{$base_size} * #{$factor});
+}
+
+///
+/// Get scale value with CSS custom property density adjustment.
+/// Uses var(--dpr-inverse) for runtime density adaptation.
+/// Requires JavaScript DPR injection.
+///
+/// @name scale_density_runtime
+/// @param {Number} $step - The typographic scale step (1-17)
+/// @return {String} calc() expression with runtime DPR adjustment
+///
+/// @example scss - Usage
+///   font-size: scale_density_runtime(7);  // Scales with runtime DPR
+///
+@function scale_density_runtime($step) {
+    $base_size: map-get($typographic_scale, $step);
+
+    @if $base_size == null {
+        @warn "Invalid typographic scale step: #{$step}. Valid steps are 1-17.";
+        @return null;
+    }
+
+    @return calc(#{$base_size} * var(--dpr-inverse, 1));
+}

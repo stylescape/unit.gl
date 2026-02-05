@@ -54,7 +54,22 @@
 }
 
 ///
-/// Applies styles for super-small devices and up (min-width: 280px).
+/// Applies styles for ultra-small devices and up (min-width: 240px).
+///
+/// @name media_us
+/// @example scss - Usage
+///     @include media_us {
+///         // Styles for ultra-small devices and up
+///     }
+///
+@mixin media_us {
+    @media (min-width: $media_us) {
+        @content;
+    }
+}
+
+///
+/// Applies styles for super-small devices and up (min-width: 360px).
 ///
 /// @name media_ss
 /// @example scss - Usage
@@ -69,7 +84,7 @@
 }
 
 ///
-/// Applies styles for extra-small devices and up (min-width: 320px).
+/// Applies styles for extra-small devices and up (min-width: 540px).
 ///
 /// @name media_xs
 /// @example scss - Usage
@@ -84,7 +99,7 @@
 }
 
 ///
-/// Applies styles for small devices and up (min-width: 480px).
+/// Applies styles for small devices and up (min-width: 720px).
 ///
 /// @name media_sm
 /// @example scss - Usage
@@ -99,7 +114,7 @@
 }
 
 ///
-/// Applies styles for medium devices and up (min-width: 768px).
+/// Applies styles for medium devices and up (min-width: 1440px).
 ///
 /// @name media_md
 ///
@@ -115,7 +130,7 @@
 }
 
 ///
-/// Applies styles for large devices and up (min-width: 1024px).
+/// Applies styles for large devices and up (min-width: 2160px).
 ///
 /// @name media_lg
 ///
@@ -131,7 +146,7 @@
 }
 
 ///
-/// Applies styles for extra-large devices and up (min-width: 1280px).
+/// Applies styles for extra-large devices and up (min-width: 2880px).
 ///
 /// @name media_xl
 ///
@@ -147,17 +162,17 @@
 }
 
 ///
-/// Applies styles for super-large devices and up (min-width: 1440px).
+/// Applies styles for ultra-large devices and up (min-width: 4320px).
 ///
-/// @name media_sl
+/// @name media_ul
 ///
 /// @example scss - Usage
-///   @include media_sl {
-///     // Styles for super-large devices and up
+///   @include media_ul {
+///     // Styles for ultra-large devices and up
 ///   }
 ///
-@mixin media_sl {
-    @media (min-width: $media_sl) {
+@mixin media_ul {
+    @media (min-width: $media_ul) {
         @content;
     }
 }
