@@ -1,31 +1,38 @@
 cff-version: 1.2.0
 title: unit.gl
-version: 0.2.3
-date-released: 2024-07-01
-url: "https://github.com/stylescape/unit.gl"
-repository-code: "https://github.com/stylescape/unit.gl"
-
-license: MIT
-license-url: "https://github.com/stylescape/unit.gl/LICENSE"
-
 message: >-
-  If you use unit.gl in your work, please cite it using the metadata from this file.
-
+  If you use this software in your research or project,
+  please cite it using the metadata from this file.
 type: software
-
 authors:
-  - given-names: Lars Bastiaan
-    family-names: van Vianen
-    email: lars@scape.agency
+  - family-names: van Vianen
+    given-names: Lars
+    email: lars@vianen.com
     affiliation: Scape Agency
-    orcid: "https://orcid.org/0000-0002-8790-8630"
-
+repository-code: https://github.com/stylescape/unit.gl
+url: https://www.unit.gl
+abstract: >-
+  unit.gl is a dynamic layout engine and design system built on SCSS.
+  It provides a unified Q-unit measurement system, responsive breakpoints,
+  typographic scales, aspect ratios, and utility functions for creating
+  consistent, harmonious layouts across all screen sizes.
 keywords:
-  - responsive design
+  - layout engine
+  - design system
   - SCSS
-  - web development
-  - design toolkit
-  - fluid typography
+  - CSS
+  - responsive design
+  - typography
+  - grid system
+  - Q-unit
+  - breakpoints
+  - aspect ratios
+license: MIT
+version: 0.3.1
+date-released: "2026-02-04"
+
+
+
 
 
 
