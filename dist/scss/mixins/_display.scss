@@ -112,7 +112,7 @@
 ///   }
 ///
 @mixin display_ratio($width, $height) {
-    @media (aspect-ratio: #{ $width } / #{ $height }) {
+    @media (aspect-ratio: #{$width + "/" + $height}) {
         @content;
     }
 }

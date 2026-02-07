@@ -1,0 +1,32 @@
+///
+/// Musical Scales Map
+/// ---------------------------------------------------------------------------
+///
+/// A map representing various musical scales by their degree.
+/// These scales can be used to inform design decisions, such as rhythm-based
+/// spacing or modular scale ratios in typography.
+///
+/// @name scale_musical
+/// @type Map
+///
+$scale_musical: (
+    "monotonic": 1,
+    // Single tone scale
+    "ditonic": 2,
+    // Two-tone scale
+    "tritonic": 3,
+    // Three-tone scale
+    "tetratonic": 4,
+    // Four-tone scale
+    "pentatonic": 5,
+    // Five-tone scale, commonly used in music
+    "hexatonic": 6,
+    // Six-tone scale
+    "peptatonic": 7,
+    // Seven-tone scale
+    "octatonic": 8,
+    // Eight-tone scale
+    "nonatonic": 9,
+    // Nine-tone scale
+    "dodecatonic": 12 // Twelve-tone scale, covers all semitones in an octave
+) !default;

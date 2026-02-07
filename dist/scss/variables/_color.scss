@@ -20,19 +20,20 @@
 // Use
 // ============================================================================
 @use "sass:color";
+@use "pkg:hue.gl" as hue;
 
 // ============================================================================
 // Variables
 // ============================================================================
 
-$guide--baseline_primary: rgb(0, 200, 255);
-$guide--baseline_secondary: rgb(125, 181, 203);
+$guide--baseline_primary: hue.$N2105;    // Cyan
+$guide--baseline_secondary: hue.$N1955;  // Teal
 
-$guide--color: rgb(0, 200, 255);
+$guide--color: hue.$N2105;               // Cyan
 
-$guide--graph_primary: color.change(rgb(111, 124, 126), $alpha: 0.483);
+$guide--graph_primary: color.change(hue.$N0005, $alpha: 0.5);  // Grey
 
-$guide--bleed_primary: color.change(rgb(178, 51, 170), $alpha: 0.5);
+$guide--bleed_primary: color.change(hue.$N3305, $alpha: 0.5);    // Magenta
 
 ///
 /// Primary Guide Color
@@ -40,7 +41,7 @@ $guide--bleed_primary: color.change(rgb(178, 51, 170), $alpha: 0.5);
 ///
 /// Neutral gray for general guide overlays
 ///
-$guide--color_primary: color.change(rgb(50, 50, 50), $alpha: 0.25);
+$guide--color_primary: color.change(hue.$N0008, $alpha: 0.25);   // Dark grey
 
 ///
 /// Secondary Guide Color
@@ -48,7 +49,7 @@ $guide--color_primary: color.change(rgb(50, 50, 50), $alpha: 0.25);
 ///
 /// Highlight color for key guides or emphasis
 ///
-$guide--color_secondary: color.change(rgb(178, 51, 170), $alpha: 0.5);
+$guide--color_secondary: color.change(hue.$N3305, $alpha: 0.5);  // Magenta
 
 ///
 /// Tertiary Guide Color (Extended)
@@ -56,7 +57,7 @@ $guide--color_secondary: color.change(rgb(178, 51, 170), $alpha: 0.5);
 ///
 /// A warm orange for alternate guide markings
 ///
-$guide--color_tertiary: color.change(rgb(255, 102, 0), $alpha: 0.3);
+$guide--color_tertiary: color.change(hue.$N0305, $alpha: 0.3);   // Orange
 
 ///
 /// Quaternary Guide Color (Extended)
@@ -64,7 +65,7 @@ $guide--color_tertiary: color.change(rgb(255, 102, 0), $alpha: 0.3);
 ///
 /// A cool blue for additional grid or alignment lines
 ///
-$guide--color_quaternary: color.change(rgb(0, 102, 255), $alpha: 0.3);
+$guide--color_quaternary: color.change(hue.$N2405, $alpha: 0.3); // Blue
 
 ///
 /// Light Guide Color (Extended)
@@ -72,7 +73,7 @@ $guide--color_quaternary: color.change(rgb(0, 102, 255), $alpha: 0.3);
 ///
 /// Light color for subtle or background guides
 ///
-$guide--color_light: color.change(rgb(255, 255, 255), $alpha: 0.2);
+$guide--color_light: color.change(hue.$N0001, $alpha: 0.2);      // Light grey
 
 ///
 /// Dark Guide Color (Extended)
@@ -80,4 +81,4 @@ $guide--color_light: color.change(rgb(255, 255, 255), $alpha: 0.2);
 ///
 /// Dark color for use on lighter backgrounds
 ///
-$guide--color_dark: color.change(rgb(0, 0, 0), $alpha: 0.2);
+$guide--color_dark: color.change(hue.$N0009, $alpha: 0.2);       // Dark grey
