@@ -45,7 +45,7 @@
     "module": "dist/js/unit.gl.js",
     "style": "dist/css/unit.gl.css",
     "scripts": {
-        "build": "npx kist --config ./kist.pro.yml",
+        "build": "npx kist --config ./kist.yml",
         "watch": "npx kist --config ./kist.yml --live",
         "dev": "vite"
     },
@@ -53,8 +53,10 @@
         "node": ">=20.0.0"
     },
     "devDependencies": {
+        "@getkist/action-nunjucks": "^2.0.9",
+        "@getkist/action-sass": "^1.0.4",
         "hue.gl": "^0.0.36",
-        "kist": "^0.1.58",
+        "kist": "^0.1.60",
         "micromatch": "^4.0.8",
         "nunjucks": "^3.2.4",
         "sass": "^1.97.3",

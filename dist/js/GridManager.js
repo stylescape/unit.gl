@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GridManager = void 0;
-class GridManager {
+export class GridManager {
     constructor() {
         this.STORAGE_KEY = 'unitgl:grid:visibility';
         this.visibilityMap = {};
@@ -13,7 +10,7 @@ class GridManager {
         try {
             this.visibilityMap = JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '{}');
         }
-        catch {
+        catch (_a) {
             this.visibilityMap = {};
         }
     }
@@ -63,5 +60,4 @@ class GridManager {
         });
     }
 }
-exports.GridManager = GridManager;
 //# sourceMappingURL=GridManager.js.map

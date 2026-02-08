@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const GridManager_js_1 = require("./GridManager.js");
-new GridManager_js_1.GridManager();
+import { GridManager } from './GridManager.js';
+new GridManager();
 function injectDPR() {
     const updateDPR = () => {
         const dpr = window.devicePixelRatio || 1;

@@ -113,25 +113,20 @@ stages:
                 name: RenderTemplates
                 action: TemplateRenderAction
                 options:
-                    templatesDir: "./src/jinja"
+                    inputDir: "./src/jinja"
                     outputDir: "./src/html"
-                    renderAllFromDir: true
-                context:
-                    name: "kist"
-                    version: "1.0.0"
-                    author: "Lars van Vianen"
+                    pattern: "**/*.html.jinja"
+                    stripExtension: ".jinja"
+                    context:
+                        name: "kist"
+                        version: "1.0.0"
+                        author: "Lars van Vianen"
 
 
             # Copy Dirs
             # -----------------------------------------------------------------
             -
                 name: CopySrcHTML
-                action: DirectoryCopyAction
-                options:
-                    srcDir: "./src/scss"
-                    destDir: "./dist/scss"
-            -
-                name: CopySrcTS
                 action: DirectoryCopyAction
                 options:
                     srcDir: "./src/html"
@@ -145,48 +140,38 @@ stages:
                 name: Compile TS to JS
                 action: TypeScriptCompilerAction
                 options:
-                    tsConfigPath: "./tsconfig.pro.json"
-                    filePaths:
-                        - "src/ts/index.ts"
-                        # - "src/utils.ts"
-                    outputDir: "./dist/js"
-                    compilerOptions:
-                        target: "ES2020"
-                        module: "CommonJS"
+                    tsConfigPath: "./tsconfig.json"
             -
-                name: Compile Docs TS to JS
-                action: TypeScriptCompilerAction
-                options:
-                    tsConfigPath: "./tsconfig.pro.json"
-                    filePaths:
-                        - "src/ts/docs.ts"
-                    outputDir: "./dist/js"
-                    compilerOptions:
-                        target: "ES2020"
-                        module: "CommonJS"
-            -
-                name: Rename index.js.map File
+                name: Rename Library JS Map
                 action: FileRenameAction
                 options:
                     srcPath: "./dist/js/index.js.map"
                     targetPath: "./dist/js/unit.gl.js.map"
 
             -
-                name: Rename index.js File
+                name: Rename Library JS
                 action: FileRenameAction
                 options:
                     srcPath: "./dist/js/index.js"
                     targetPath: "./dist/js/unit.gl.js"
 
+            # Compile Docs TS to JS (separate from library)
+            # -----------------------------------------------------------------
+            # Note: docs.ts is compiled along with index.ts via tsconfig.json
+            # This step is commented out as TypeScriptCompilerAction compiles all files
+            # -
+            #     name: Compile Docs TS to JS
+            #     action: TypeScriptCompilerAction
+            #     options:
+            #         tsConfigPath: "./tsconfig.json"
             -
-                name: Rename docs.js.map File
+                name: Rename Docs JS Map
                 action: FileRenameAction
                 options:
                     srcPath: "./dist/js/docs.js.map"
                     targetPath: "./dist/js/unit.gl.docs.js.map"
-
             -
-                name: Rename docs.js File
+                name: Rename Docs JS
                 action: FileRenameAction
                 options:
                     srcPath: "./dist/js/docs.js"

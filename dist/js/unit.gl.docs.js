@@ -13,7 +13,7 @@ function setText(id, value) {
         el.textContent = String(value);
 }
 function fmt(n, digits = 2) {
-    return (Math.round(n * (10 ** digits)) / (10 ** digits)).toFixed(digits);
+    return (Math.round(n * (Math.pow(10, digits))) / (Math.pow(10, digits))).toFixed(digits);
 }
 function getViewport() {
     const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
@@ -31,7 +31,7 @@ function initThemeToggle() {
     else if (systemPrefersDark) {
         html.setAttribute('data-theme', 'dark');
     }
-    themeToggle?.addEventListener('click', function () {
+    themeToggle === null || themeToggle === void 0 ? void 0 : themeToggle.addEventListener('click', function () {
         const currentTheme = html.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         html.setAttribute('data-theme', newTheme);
@@ -58,14 +58,14 @@ function initMobileNav() {
         return;
     toggle.addEventListener('click', function () {
         const isOpen = menu.classList.toggle('is-open');
-        navWrapper?.classList.toggle('nav-open', isOpen);
+        navWrapper === null || navWrapper === void 0 ? void 0 : navWrapper.classList.toggle('nav-open', isOpen);
         this.setAttribute('aria-expanded', String(isOpen));
         document.body.classList.toggle('nav-open', isOpen);
     });
     menu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             menu.classList.remove('is-open');
-            navWrapper?.classList.remove('nav-open');
+            navWrapper === null || navWrapper === void 0 ? void 0 : navWrapper.classList.remove('nav-open');
             toggle.setAttribute('aria-expanded', 'false');
             document.body.classList.remove('nav-open');
         });
@@ -73,7 +73,7 @@ function initMobileNav() {
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && menu.classList.contains('is-open')) {
             menu.classList.remove('is-open');
-            navWrapper?.classList.remove('nav-open');
+            navWrapper === null || navWrapper === void 0 ? void 0 : navWrapper.classList.remove('nav-open');
             toggle.setAttribute('aria-expanded', 'false');
             document.body.classList.remove('nav-open');
             toggle.focus();
@@ -83,7 +83,7 @@ function initMobileNav() {
     mediaQuery.addEventListener('change', (e) => {
         if (e.matches && menu.classList.contains('is-open')) {
             menu.classList.remove('is-open');
-            navWrapper?.classList.remove('nav-open');
+            navWrapper === null || navWrapper === void 0 ? void 0 : navWrapper.classList.remove('nav-open');
             toggle.setAttribute('aria-expanded', 'false');
             document.body.classList.remove('nav-open');
         }
@@ -129,8 +129,8 @@ function initLayersDemo() {
     window.toggleLayer = function (id) {
         const layer = document.getElementById('layer-' + id);
         const btn = document.getElementById('btn-' + id);
-        layer?.classList.toggle('layer-box--hidden');
-        btn?.classList.toggle('layer-btn--active');
+        layer === null || layer === void 0 ? void 0 : layer.classList.toggle('layer-box--hidden');
+        btn === null || btn === void 0 ? void 0 : btn.classList.toggle('layer-btn--active');
     };
     window.showAll = function () {
         document.querySelectorAll('.layer-box').forEach(el => {
@@ -295,7 +295,7 @@ function initDeviceDemo() {
         setText('mf-transparency', getReducedTransparency());
         setText('mf-data', getReducedData());
         const filterEl = document.getElementById('dev-filter');
-        const filterValue = String(filterEl?.value || '').trim().toLowerCase();
+        const filterValue = String((filterEl === null || filterEl === void 0 ? void 0 : filterEl.value) || '').trim().toLowerCase();
         let matches = 0;
         document.querySelectorAll('.device-row').forEach(row => {
             const key = String(row.dataset.key || '').toLowerCase();
@@ -460,7 +460,7 @@ function initDensityDemo() {
     }
     function updateCalculator() {
         const input = document.getElementById('calc-q');
-        const q = parseFloat(input?.value || '0') || 0;
+        const q = parseFloat((input === null || input === void 0 ? void 0 : input.value) || '0') || 0;
         const mm = q * 0.25;
         const inches = mm / 25.4;
         const pt = mm / 0.3528;
@@ -474,7 +474,7 @@ function initDensityDemo() {
         setText('calc-px3', (q * 3) + 'px');
     }
     const calcInput = document.getElementById('calc-q');
-    calcInput?.addEventListener('input', updateCalculator);
+    calcInput === null || calcInput === void 0 ? void 0 : calcInput.addEventListener('input', updateCalculator);
     updateDeviceInfo();
     updateCalculator();
     if (window.matchMedia) {
@@ -530,7 +530,8 @@ function initPaperDemo() {
     const maxRefSize = 1189;
     const containerMaxPx = 400;
     function currentDims() {
-        const opt = select?.selectedOptions?.[0];
+        var _a;
+        const opt = (_a = select === null || select === void 0 ? void 0 : select.selectedOptions) === null || _a === void 0 ? void 0 : _a[0];
         if (!opt)
             return { key: 'q04', w: 180, h: 270 };
         const key = opt.value;
