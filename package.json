@@ -1,7 +1,7 @@
 {
     "name": "unit.gl",
     "description": "Dynamic Layout Engine.",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "config": {
         "version_short": "0.1"
     },
