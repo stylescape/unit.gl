@@ -40,12 +40,14 @@
         }
     ],
     "type": "module",
-    "main": "src/ts/index.ts",
+    "main": "./dist/js/index.cjs",
+    "module": "./dist/js/index.mjs",
+    "types": "./dist/js/index.d.ts",
     "sass": "src/scss/index.scss",
-    "module": "dist/js/unit.gl.js",
     "style": "dist/css/unit.gl.css",
     "scripts": {
-        "build": "npx kist --config ./kist.yml",
+        "build": "npx kist --config ./kist.yml && npm run build:ts",
+        "build:ts": "tsup",
         "watch": "npx kist --config ./kist.yml --live",
         "dev": "vite"
     },
@@ -61,6 +63,7 @@
         "nunjucks": "^3.2.4",
         "sass": "^1.97.3",
         "ts-node": "^10.9.2",
+        "tsup": "^8.5.1",
         "typescript": "^5.9.3",
         "vite": "^7.3.1"
     },
@@ -73,22 +76,23 @@
     ],
     "exports": {
         ".": {
-            "sass": "./scss/index.scss",
-            "types": "./ts/index.d.ts",
-            "import": "./js/unit.gl.js",
-            "default": "./js/unit.gl.js"
+            "sass": "./src/scss/index.scss",
+            "types": "./dist/js/index.d.ts",
+            "import": "./dist/js/index.mjs",
+            "require": "./dist/js/index.cjs"
         },
+        "./scss": "./dist/scss/index.scss",
         "./utilities": {
-            "sass": "./scss/utilities.scss"
+            "sass": "./dist/scss/utilities.scss"
         },
         "./guide": {
-            "sass": "./scss/guide.scss"
+            "sass": "./dist/scss/guide.scss"
         },
         "./formats": {
-            "sass": "./scss/formats.scss"
+            "sass": "./dist/scss/formats.scss"
         },
-        "./css/unit.gl.css": "./css/unit.gl.css",
-        "./css/unit.gl.min.css": "./css/unit.gl.min.css"
+        "./css/unit.gl.css": "./dist/css/unit.gl.css",
+        "./css/unit.gl.min.css": "./dist/css/unit.gl.min.css"
     },
     "typesVersions": {
         "*": {

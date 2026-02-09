@@ -107,37 +107,6 @@ stages:
                   srcFile: "./README.md"
                   destDir: "./dist"
 
-            # Compile TypeScript
-            # -----------------------------------------------------------------
-            - name: CompileTypeScript
-              action: TypeScriptCompilerAction
-              options:
-                  tsConfigPath: "./tsconfig.json"
-
-            - name: RenameLibraryJSMap
-              action: FileRenameAction
-              options:
-                  srcPath: "./dist/js/index.js.map"
-                  targetPath: "./dist/js/unit.gl.js.map"
-
-            - name: RenameLibraryJS
-              action: FileRenameAction
-              options:
-                  srcPath: "./dist/js/index.js"
-                  targetPath: "./dist/js/unit.gl.js"
-
-            - name: RenameDocsJSMap
-              action: FileRenameAction
-              options:
-                  srcPath: "./dist/js/docs.js.map"
-                  targetPath: "./dist/js/unit.gl.docs.js.map"
-
-            - name: RenameDocsJS
-              action: FileRenameAction
-              options:
-                  srcPath: "./dist/js/docs.js"
-                  targetPath: "./dist/js/unit.gl.docs.js"
-
             # Generate package.json for distribution
             # -----------------------------------------------------------------
             - name: GeneratePackageJSON

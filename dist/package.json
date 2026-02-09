@@ -59,21 +59,22 @@
   ],
   "exports": {
     ".": {
-      "sass": "./scss/index.scss",
-      "types": "./ts/index.d.ts",
-      "import": "./js/unit.gl.js",
-      "default": "./js/unit.gl.js"
+      "sass": "./src/scss/index.scss",
+      "types": "./dist/js/index.d.ts",
+      "import": "./dist/js/index.mjs",
+      "require": "./dist/js/index.cjs"
     },
+    "./scss": "./dist/scss/index.scss",
     "./utilities": {
-      "sass": "./scss/utilities.scss"
+      "sass": "./dist/scss/utilities.scss"
     },
     "./guide": {
-      "sass": "./scss/guide.scss"
+      "sass": "./dist/scss/guide.scss"
     },
     "./formats": {
-      "sass": "./scss/formats.scss"
+      "sass": "./dist/scss/formats.scss"
     },
-    "./css/unit.gl.css": "./css/unit.gl.css",
-    "./css/unit.gl.min.css": "./css/unit.gl.min.css"
+    "./css/unit.gl.css": "./dist/css/unit.gl.css",
+    "./css/unit.gl.min.css": "./dist/css/unit.gl.min.css"
   }
 }
