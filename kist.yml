@@ -1,25 +1,12 @@
+# =============================================================================
+# unit.gl - Production Build Configuration
+# =============================================================================
 
 ---
 
-
-# =============================================================================
-# Options
-# =============================================================================
-
 options:
-
-    mode: development
-    live:
-        enabled: false
-        port: 3001
-        root: public
-        watchPaths:
-            - src/**
-            - config/**
-        ignoredPaths:
-            - node_modules/**
-    logLevel: debug
-
+    mode: production
+    logLevel: info
 
 # =============================================================================
 # Stages
@@ -27,194 +14,159 @@ options:
 
 stages:
 
-    # Preprocessing
-    # =========================================================================
-    -
-        name: Preprocessing
-        description: "Before starting a new build."
+    - name: Build
+      description: "Production build for unit.gl (unit conversion library)"
 
-        steps:
+      steps:
 
-            # Dirs Clean (tolerant - ignores missing files/dirs)
+            # Clean dist directory
             # -----------------------------------------------------------------
-            -
-                name: CleanBuildDirStep
-                action: DirectoryCleanAction
-                options:
-                    dirPath: "./dist"
-                    tolerant: true
+            - name: CleanDistDirectory
+              action: DirectoryCleanAction
+              options:
+                  dirPath: "./dist"
+                  tolerant: true
 
-            # Process SCSS to CSS
+            # Process SCSS to CSS (library styles)
             # -----------------------------------------------------------------
-            -   name: ProcessMainStyles
-                action: StyleProcessingAction
-                options:
-                    inputFile: "./src/scss/index.scss"
-                    outputFile: "./dist/css/unit.gl.min.css"
-                    styleOption: "compressed"
-            -
-                name: ProcessAdditionalStyles
-                action: StyleProcessingAction
-                options:
-                    inputFile: "./src/scss/index.scss"
-                    outputFile: "./dist/css/unit.gl.css"
-                    styleOption: "expanded"
+            - name: ProcessMainStylesMinified
+              action: StyleProcessingAction
+              options:
+                  inputFile: "./src/scss/index.scss"
+                  outputFile: "./dist/css/unit.gl.min.css"
+                  styleOption: "compressed"
 
-            # Process Docs SCSS to CSS (separate from package CSS)
+            - name: ProcessMainStylesExpanded
+              action: StyleProcessingAction
+              options:
+                  inputFile: "./src/scss/index.scss"
+                  outputFile: "./dist/css/unit.gl.css"
+                  styleOption: "expanded"
+
+            # Process Docs SCSS to CSS (documentation styles)
             # -----------------------------------------------------------------
-            -   name: ProcessDocsStyles
-                action: StyleProcessingAction
-                options:
-                    inputFile: "./src/scss/docs.scss"
-                    outputFile: "./dist/css/unit.gl.docs.min.css"
-                    styleOption: "compressed"
-            -
-                name: ProcessAdditionalDocsStyles
-                action: StyleProcessingAction
-                options:
-                    inputFile: "./src/scss/docs.scss"
-                    outputFile: "./dist/css/unit.gl.docs.css"
-                    styleOption: "expanded"
+            - name: ProcessDocsStylesMinified
+              action: StyleProcessingAction
+              options:
+                  inputFile: "./src/scss/docs.scss"
+                  outputFile: "./dist/css/unit.gl.docs.min.css"
+                  styleOption: "compressed"
 
-            # Copy Files
+            - name: ProcessDocsStylesExpanded
+              action: StyleProcessingAction
+              options:
+                  inputFile: "./src/scss/docs.scss"
+                  outputFile: "./dist/css/unit.gl.docs.css"
+                  styleOption: "expanded"
+
+            # Copy source files
             # -----------------------------------------------------------------
-            -
-                name: CopyLICENSE
-                action: FileCopyAction
-                options:
-                    srcFile: "./LICENSE"
-                    destDir: "./dist"
-            -
-                name: CopyREADME
-                action: FileCopyAction
-                options:
-                    srcFile: "./README.md"
-                    destDir: "./dist"
+            - name: CopySrcSCSS
+              action: DirectoryCopyAction
+              options:
+                  srcDir: "./src/scss"
+                  destDir: "./dist/scss"
 
-            # Copy Dirs
+            - name: CopySrcTS
+              action: DirectoryCopyAction
+              options:
+                  srcDir: "./src/ts"
+                  destDir: "./dist/ts"
+
+            # Render templates
             # -----------------------------------------------------------------
-            -
-                name: CopySrcSCSS
-                action: DirectoryCopyAction
-                options:
-                    srcDir: "./src/scss"
-                    destDir: "./dist/scss"
-            -
-                name: CopySrcTS
-                action: DirectoryCopyAction
-                options:
-                    srcDir: "./src/ts"
-                    destDir: "./dist/ts"
+            - name: RenderTemplates
+              action: TemplateRenderAction
+              options:
+                  inputDir: "./src/jinja"
+                  outputDir: "./src/html"
+                  pattern: "**/*.html.jinja"
+                  stripExtension: ".jinja"
+                  context:
+                      name: "unit.gl"
+                      version: "1.0.0"
+                      author: "Lars van Vianen"
 
-            # RenderTemplates
+            - name: CopySrcHTML
+              action: DirectoryCopyAction
+              options:
+                  srcDir: "./src/html"
+                  destDir: "./dist/html"
+
+            # Copy license and readme
             # -----------------------------------------------------------------
+            - name: CopyLICENSE
+              action: FileCopyAction
+              options:
+                  srcFile: "./LICENSE"
+                  destDir: "./dist"
 
-            -
-                name: RenderTemplates
-                action: TemplateRenderAction
-                options:
-                    inputDir: "./src/jinja"
-                    outputDir: "./src/html"
-                    pattern: "**/*.html.jinja"
-                    stripExtension: ".jinja"
-                    context:
-                        name: "kist"
-                        version: "1.0.0"
-                        author: "Lars van Vianen"
+            - name: CopyREADME
+              action: FileCopyAction
+              options:
+                  srcFile: "./README.md"
+                  destDir: "./dist"
 
-
-            # Copy Dirs
+            # Compile TypeScript
             # -----------------------------------------------------------------
-            -
-                name: CopySrcHTML
-                action: DirectoryCopyAction
-                options:
-                    srcDir: "./src/html"
-                    destDir: "./dist/html"
+            - name: CompileTypeScript
+              action: TypeScriptCompilerAction
+              options:
+                  tsConfigPath: "./tsconfig.json"
 
-            # Compile TS to JS
+            - name: RenameLibraryJSMap
+              action: FileRenameAction
+              options:
+                  srcPath: "./dist/js/index.js.map"
+                  targetPath: "./dist/js/unit.gl.js.map"
+
+            - name: RenameLibraryJS
+              action: FileRenameAction
+              options:
+                  srcPath: "./dist/js/index.js"
+                  targetPath: "./dist/js/unit.gl.js"
+
+            - name: RenameDocsJSMap
+              action: FileRenameAction
+              options:
+                  srcPath: "./dist/js/docs.js.map"
+                  targetPath: "./dist/js/unit.gl.docs.js.map"
+
+            - name: RenameDocsJS
+              action: FileRenameAction
+              options:
+                  srcPath: "./dist/js/docs.js"
+                  targetPath: "./dist/js/unit.gl.docs.js"
+
+            # Generate package.json for distribution
             # -----------------------------------------------------------------
+            - name: GeneratePackageJSON
+              action: PackageManagerAction
+              options:
+                  packageJsonPath: "./package.json"
+                  outputDir: "./dist"
+                  fields:
+                      - name
+                      - version
+                      - bin
+                      - dependencies
+                      - description
+                      - keywords
+                      - license
+                      - homepage
+                      - author
+                      - contributors
+                      - repository
+                      - funding
+                      - exports
 
-
-            -
-                name: Compile TS to JS
-                action: TypeScriptCompilerAction
-                options:
-                    tsConfigPath: "./tsconfig.json"
-            -
-                name: Rename Library JS Map
-                action: FileRenameAction
-                options:
-                    srcPath: "./dist/js/index.js.map"
-                    targetPath: "./dist/js/unit.gl.js.map"
-
-            -
-                name: Rename Library JS
-                action: FileRenameAction
-                options:
-                    srcPath: "./dist/js/index.js"
-                    targetPath: "./dist/js/unit.gl.js"
-
-            # Compile Docs TS to JS (separate from library)
+            # Version synchronization
             # -----------------------------------------------------------------
-            # Note: docs.ts is compiled along with index.ts via tsconfig.json
-            # This step is commented out as TypeScriptCompilerAction compiles all files
-            # -
-            #     name: Compile Docs TS to JS
-            #     action: TypeScriptCompilerAction
-            #     options:
-            #         tsConfigPath: "./tsconfig.json"
-            -
-                name: Rename Docs JS Map
-                action: FileRenameAction
-                options:
-                    srcPath: "./dist/js/docs.js.map"
-                    targetPath: "./dist/js/unit.gl.docs.js.map"
-            -
-                name: Rename Docs JS
-                action: FileRenameAction
-                options:
-                    srcPath: "./dist/js/docs.js"
-                    targetPath: "./dist/js/unit.gl.docs.js"
-
-            # Package.json
-            # -----------------------------------------------------------------
-            -
-                name: Package.json
-                action: PackageManagerAction
-                options:
-                    packageJsonPath: "./package.json"
-                    outputDir: "./dist"
-                    fields:
-                        - name
-                        - version
-                        - bin
-                        - dependencies
-                        - description
-                        - keywords
-                        - license
-                        - homepage
-                        - author
-                        - contributors
-                        - repository
-                        - funding
-                        - exports
-                    # customConfig:
-                    #     private: true
-                    #     scripts:
-                    #     start: "node index.js"
-                    #     build: "npm run build"
-                    #     devDependencies:
-                    #     typescript: "^5.0.0"
-
-            # Replace Version
-            # -----------------------------------------------------------------
-            -
-                name: ReplaceVersion
-                action: VersionWriteAction
-                options:
-                    files:
-                    -   path: "./CITATION.cff"
+            - name: SyncVersion
+              action: VersionWriteAction
+              options:
+                  files:
+                      - path: "./CITATION.cff"
                         key: "version: "
-                    -   path: "./VERSION"
+                      - path: "./VERSION"
                         key: "v"
