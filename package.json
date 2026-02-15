@@ -57,7 +57,7 @@
     "devDependencies": {
         "@getkist/action-nunjucks": "^2.0.9",
         "@getkist/action-sass": "^1.0.4",
-        "hue.gl": "^0.0.36",
+        "hue.gl": "^0.1.2",
         "kist": "^0.1.60",
         "micromatch": "^4.0.8",
         "nunjucks": "^3.2.4",
