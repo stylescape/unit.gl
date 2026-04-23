@@ -139,6 +139,8 @@
 
 
 
+
+
 <aside class="sidebar" id="sidebar" aria-label="Documentation navigation">
     <nav class="sidebar__nav">
         
@@ -161,6 +163,13 @@
                 </li>
                 
                 <li>
+                    <a href="steps.html"
+                        class="sidebar__link" >
+                        9-Step Scale
+                    </a>
+                </li>
+                
+                <li>
                     <a href="configuration.html"
                         class="sidebar__link" >
                         Configuration
@@ -172,22 +181,24 @@
 
         
         <div class="sidebar__section">
-            <h3 class="sidebar__heading">API Reference</h3>
+            <h3 class="sidebar__heading">Core</h3>
             <ul class="sidebar__list">
                 
                 <li>
-                    <a href="functions.html"
+                    <a href="unit.html"
                         class="sidebar__link" >
-                        Functions
+                        Unit
                     </a>
                 </li>
                 
-                <li>
-                    <a href="mixins.html"
-                        class="sidebar__link" >
-                        Mixins
-                    </a>
-                </li>
+            </ul>
+        </div>
+
+
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">Framework</h3>
+            <ul class="sidebar__list">
                 
                 <li>
                     <a href="layers.html"
@@ -195,21 +206,6 @@
                         Layers
                     </a>
                 </li>
-                
-                <li>
-                    <a href="density.html"
-                        class="sidebar__link" >
-                        Density
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
-
-        
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">Examples</h3>
-            <ul class="sidebar__list">
                 
                 <li>
                     <a href="scale.html"
@@ -263,6 +259,43 @@
             </ul>
         </div>
 
+
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">API Reference</h3>
+            <ul class="sidebar__list">
+                
+                <li>
+                    <a href="functions.html"
+                        class="sidebar__link" >
+                        Functions
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="mixins.html"
+                        class="sidebar__link" >
+                        Mixins
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="density.html"
+                        class="sidebar__link" >
+                        Density
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/sassdoc/"
+                        class="sidebar__link" >
+                        SassDoc
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+
         
         <div class="sidebar__section">
             <h3 class="sidebar__heading">About</h3>
@@ -285,7 +318,7 @@
                 <header class="header">
 <p class="eyebrow">Guides</p>
 <h1>Device Explorer</h1>
-<p class="lead">Inspect environment media features and match them against unit.gl’s <code>$devices</code> profile map.
+<p class="lead">Inspect environment media features and match them against unit.gl's <code>$devices</code> profile map.
 </p>
                 </header>
 
@@ -300,369 +333,368 @@
                     </noscript>
 
 <div class="page--device">
+<section>
+    <h2>Current Environment</h2>
 
-    <section>
-        <h2>Current Environment</h2>
-
-        <div class="device-status">
-            <div class="device-status__item">
-                <div class="device-status__label">Viewport</div>
-                <div class="device-status__value"><span id="dev-width">—</span>×<span id="dev-height">—</span>px</div>
-            </div>
-            <div class="device-status__item">
-                <div class="device-status__label">Device Pixel Ratio</div>
-                <div class="device-status__value"><span id="dev-dpr">—</span></div>
-            </div>
-            <div class="device-status__item">
-                <div class="device-status__label">Orientation</div>
-                <div class="device-status__value"><span id="dev-orientation">—</span></div>
-            </div>
-            <div class="device-status__item">
-                <div class="device-status__label">Touch Points</div>
-                <div class="device-status__value"><span id="dev-touch">—</span></div>
-            </div>
+    <div class="device-status">
+        <div class="device-status__item">
+            <div class="device-status__label">Viewport</div>
+            <div class="device-status__value"><span id="dev-width">—</span>×<span id="dev-height">—</span>px</div>
         </div>
-    </section>
+        <div class="device-status__item">
+            <div class="device-status__label">Device Pixel Ratio</div>
+            <div class="device-status__value"><span id="dev-dpr">—</span></div>
+        </div>
+        <div class="device-status__item">
+            <div class="device-status__label">Orientation</div>
+            <div class="device-status__value"><span id="dev-orientation">—</span></div>
+        </div>
+        <div class="device-status__item">
+            <div class="device-status__label">Touch Points</div>
+            <div class="device-status__value"><span id="dev-touch">—</span></div>
+        </div>
+    </div>
+</section>
 
-    <section>
-        <h2>Media Features</h2>
+<section>
+    <h2>Media Features</h2>
 
-        <div class="device-features">
-            <div class="device-features__col">
-                <h3>Interaction</h3>
-                <ul class="device-feature-list">
-                    <li><span class="device-feature-list__key">hover</span><span id="mf-hover"
-                            class="device-feature-list__value">—</span></li>
-                    <li><span class="device-feature-list__key">pointer</span><span id="mf-pointer"
-                            class="device-feature-list__value">—</span></li>
-                    <li><span class="device-feature-list__key">any-hover</span><span id="mf-any-hover"
-                            class="device-feature-list__value">—</span></li>
-                    <li><span class="device-feature-list__key">any-pointer</span><span id="mf-any-pointer"
-                            class="device-feature-list__value">—</span></li>
-                </ul>
-            </div>
-
-            <div class="device-features__col">
-                <h3>Preferences</h3>
-                <ul class="device-feature-list">
-                    <li><span class="device-feature-list__key">prefers-color-scheme</span><span id="mf-scheme"
-                            class="device-feature-list__value">—</span></li>
-                    <li><span class="device-feature-list__key">prefers-reduced-motion</span><span id="mf-motion"
-                            class="device-feature-list__value">—</span></li>
-                    <li><span class="device-feature-list__key">prefers-contrast</span><span id="mf-contrast"
-                            class="device-feature-list__value">—</span></li>
-                    <li><span class="device-feature-list__key">forced-colors</span><span id="mf-forced"
-                            class="device-feature-list__value">—</span></li>
-                </ul>
-            </div>
-
-            <div class="device-features__col">
-                <h3>Display</h3>
-                <ul class="device-feature-list">
-                    <li><span class="device-feature-list__key">color-gamut</span><span id="mf-gamut"
-                            class="device-feature-list__value">—</span></li>
-                    <li><span class="device-feature-list__key">display-mode</span><span id="mf-display"
-                            class="device-feature-list__value">—</span></li>
-                    <li><span class="device-feature-list__key">prefers-reduced-transparency</span><span
-                            id="mf-transparency" class="device-feature-list__value">—</span></li>
-                    <li><span class="device-feature-list__key">prefers-reduced-data</span><span id="mf-data"
-                            class="device-feature-list__value">—</span></li>
-                </ul>
-            </div>
+    <div class="device-features">
+        <div class="device-features__col">
+            <h3>Interaction</h3>
+            <ul class="device-feature-list">
+                <li><span class="device-feature-list__key">hover</span><span id="mf-hover"
+                        class="device-feature-list__value">—</span></li>
+                <li><span class="device-feature-list__key">pointer</span><span id="mf-pointer"
+                        class="device-feature-list__value">—</span></li>
+                <li><span class="device-feature-list__key">any-hover</span><span id="mf-any-hover"
+                        class="device-feature-list__value">—</span></li>
+                <li><span class="device-feature-list__key">any-pointer</span><span id="mf-any-pointer"
+                        class="device-feature-list__value">—</span></li>
+            </ul>
         </div>
 
-        <div class="alert alert--tip device-tip">
-            <div class="alert__title">Tip</div>
-            <p>Use these media features to progressively enhance: fewer effects under reduced motion, higher contrast
-                tokens when requested, and touch-first UI when pointers are coarse.</p>
-        </div>
-    </section>
-
-    <section>
-        <h2>Device Profiles (<code>$devices</code> map)</h2>
-
-        <p class="device-muted">This list is a curated set from the SCSS map in <code>src/scss/maps/_device.scss</code>.
-            Matching is approximate: width range + DPR similarity.</p>
-
-        <div class="device-controls">
-            <label class="device-search" for="dev-filter">
-                <span class="device-search__label">Filter</span>
-                <input id="dev-filter" class="device-search__input" type="search"
-                    placeholder="iphone_x, ipad_pro, galaxy_fold…" autocomplete="off" />
-            </label>
-
-            <div class="device-match">
-                <div class="device-match__label">Matches</div>
-                <div class="device-match__value"><span id="dev-matches">—</span></div>
-            </div>
+        <div class="device-features__col">
+            <h3>Preferences</h3>
+            <ul class="device-feature-list">
+                <li><span class="device-feature-list__key">prefers-color-scheme</span><span id="mf-scheme"
+                        class="device-feature-list__value">—</span></li>
+                <li><span class="device-feature-list__key">prefers-reduced-motion</span><span id="mf-motion"
+                        class="device-feature-list__value">—</span></li>
+                <li><span class="device-feature-list__key">prefers-contrast</span><span id="mf-contrast"
+                        class="device-feature-list__value">—</span></li>
+                <li><span class="device-feature-list__key">forced-colors</span><span id="mf-forced"
+                        class="device-feature-list__value">—</span></li>
+            </ul>
         </div>
 
-        
+        <div class="device-features__col">
+            <h3>Display</h3>
+            <ul class="device-feature-list">
+                <li><span class="device-feature-list__key">color-gamut</span><span id="mf-gamut"
+                        class="device-feature-list__value">—</span></li>
+                <li><span class="device-feature-list__key">display-mode</span><span id="mf-display"
+                        class="device-feature-list__value">—</span></li>
+                <li><span class="device-feature-list__key">prefers-reduced-transparency</span><span
+                        id="mf-transparency" class="device-feature-list__value">—</span></li>
+                <li><span class="device-feature-list__key">prefers-reduced-data</span><span id="mf-data"
+                        class="device-feature-list__value">—</span></li>
+            </ul>
+        </div>
+    </div>
 
-        <table class="device-table">
-            <thead>
-                <tr>
-                    <th>Key</th>
-                    <th>Min</th>
-                    <th>Max</th>
-                    <th>DPR</th>
-                    <th>Type</th>
-                    <th>Match</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                <tr class="device-row" data-key="galaxy_fold" data-min="280" data-max="653"
-                    data-dpr="3" data-type="phone">
-                    <td><code>galaxy_fold</code></td>
-                    <td><code>280px</code></td>
-                    <td><code>653px</code></td>
-                    <td><code>3</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="iphone_5" data-min="320" data-max="568"
-                    data-dpr="2" data-type="phone">
-                    <td><code>iphone_5</code></td>
-                    <td><code>320px</code></td>
-                    <td><code>568px</code></td>
-                    <td><code>2</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="iphone_6" data-min="375" data-max="667"
-                    data-dpr="2" data-type="phone">
-                    <td><code>iphone_6</code></td>
-                    <td><code>375px</code></td>
-                    <td><code>667px</code></td>
-                    <td><code>2</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="iphone_8" data-min="375" data-max="667"
-                    data-dpr="2" data-type="phone">
-                    <td><code>iphone_8</code></td>
-                    <td><code>375px</code></td>
-                    <td><code>667px</code></td>
-                    <td><code>2</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="iphone_x" data-min="375" data-max="812"
-                    data-dpr="3" data-type="phone">
-                    <td><code>iphone_x</code></td>
-                    <td><code>375px</code></td>
-                    <td><code>812px</code></td>
-                    <td><code>3</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="iphone_11" data-min="414" data-max="896"
-                    data-dpr="2" data-type="phone">
-                    <td><code>iphone_11</code></td>
-                    <td><code>414px</code></td>
-                    <td><code>896px</code></td>
-                    <td><code>2</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="iphone_12" data-min="390" data-max="844"
-                    data-dpr="3" data-type="phone">
-                    <td><code>iphone_12</code></td>
-                    <td><code>390px</code></td>
-                    <td><code>844px</code></td>
-                    <td><code>3</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="iphone_13" data-min="428" data-max="926"
-                    data-dpr="3" data-type="phone">
-                    <td><code>iphone_13</code></td>
-                    <td><code>428px</code></td>
-                    <td><code>926px</code></td>
-                    <td><code>3</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="samsung_s10" data-min="360" data-max="760"
-                    data-dpr="3" data-type="phone">
-                    <td><code>samsung_s10</code></td>
-                    <td><code>360px</code></td>
-                    <td><code>760px</code></td>
-                    <td><code>3</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="samsung_s20" data-min="320" data-max="720"
-                    data-dpr="4" data-type="phone">
-                    <td><code>samsung_s20</code></td>
-                    <td><code>320px</code></td>
-                    <td><code>720px</code></td>
-                    <td><code>4</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="samsung_s21" data-min="320" data-max="780"
-                    data-dpr="3" data-type="phone">
-                    <td><code>samsung_s21</code></td>
-                    <td><code>320px</code></td>
-                    <td><code>780px</code></td>
-                    <td><code>3</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="google_pixel" data-min="411" data-max="731"
-                    data-dpr="2.6" data-type="phone">
-                    <td><code>google_pixel</code></td>
-                    <td><code>411px</code></td>
-                    <td><code>731px</code></td>
-                    <td><code>2.6</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="google_pixel_5" data-min="393" data-max="851"
-                    data-dpr="3" data-type="phone">
-                    <td><code>google_pixel_5</code></td>
-                    <td><code>393px</code></td>
-                    <td><code>851px</code></td>
-                    <td><code>3</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="surface_duo" data-min="540" data-max="720"
-                    data-dpr="2.5" data-type="phone">
-                    <td><code>surface_duo</code></td>
-                    <td><code>540px</code></td>
-                    <td><code>720px</code></td>
-                    <td><code>2.5</code></td>
-                    <td>phone</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="ipad" data-min="768" data-max="1024"
-                    data-dpr="2" data-type="tablet">
-                    <td><code>ipad</code></td>
-                    <td><code>768px</code></td>
-                    <td><code>1024px</code></td>
-                    <td><code>2</code></td>
-                    <td>tablet</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="ipad_mini" data-min="768" data-max="1024"
-                    data-dpr="2" data-type="tablet">
-                    <td><code>ipad_mini</code></td>
-                    <td><code>768px</code></td>
-                    <td><code>1024px</code></td>
-                    <td><code>2</code></td>
-                    <td>tablet</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="ipad_air" data-min="820" data-max="1180"
-                    data-dpr="2" data-type="tablet">
-                    <td><code>ipad_air</code></td>
-                    <td><code>820px</code></td>
-                    <td><code>1180px</code></td>
-                    <td><code>2</code></td>
-                    <td>tablet</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="ipad_pro" data-min="1024" data-max="1366"
-                    data-dpr="2" data-type="tablet">
-                    <td><code>ipad_pro</code></td>
-                    <td><code>1024px</code></td>
-                    <td><code>1366px</code></td>
-                    <td><code>2</code></td>
-                    <td>tablet</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="surface_pro" data-min="768" data-max="1366"
-                    data-dpr="2" data-type="tablet">
-                    <td><code>surface_pro</code></td>
-                    <td><code>768px</code></td>
-                    <td><code>1366px</code></td>
-                    <td><code>2</code></td>
-                    <td>tablet</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="macbook_air" data-min="1440" data-max="2560"
-                    data-dpr="2" data-type="desktop">
-                    <td><code>macbook_air</code></td>
-                    <td><code>1440px</code></td>
-                    <td><code>2560px</code></td>
-                    <td><code>2</code></td>
-                    <td>desktop</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="macbook_pro" data-min="1680" data-max="3072"
-                    data-dpr="2" data-type="desktop">
-                    <td><code>macbook_pro</code></td>
-                    <td><code>1680px</code></td>
-                    <td><code>3072px</code></td>
-                    <td><code>2</code></td>
-                    <td>desktop</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="imac" data-min="1920" data-max="5120"
-                    data-dpr="2" data-type="desktop">
-                    <td><code>imac</code></td>
-                    <td><code>1920px</code></td>
-                    <td><code>5120px</code></td>
-                    <td><code>2</code></td>
-                    <td>desktop</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-                <tr class="device-row" data-key="dell_xps" data-min="1920" data-max="3840"
-                    data-dpr="2" data-type="desktop">
-                    <td><code>dell_xps</code></td>
-                    <td><code>1920px</code></td>
-                    <td><code>3840px</code></td>
-                    <td><code>2</code></td>
-                    <td>desktop</td>
-                    <td><span class="device-badge" data-role="match">—</span></td>
-                </tr>
-                
-            </tbody>
-        </table>
-    </section>
+    <div class="alert alert--tip device-tip">
+        <div class="alert__title">Tip</div>
+        <p>Use these media features to progressively enhance: fewer effects under reduced motion, higher contrast
+            tokens when requested, and touch-first UI when pointers are coarse.</p>
+    </div>
+</section>
 
-    <section>
-        <h2>SCSS Usage</h2>
+<section>
+    <h2>Device Profiles (<code>$devices</code> map)</h2>
 
-        <div class="code-block">
-            <pre><code>@use "unit.gl" as *;
+    <p class="device-muted">This list is a curated set from the SCSS map in <code>src/scss/maps/_device.scss</code>.
+        Matching is approximate: width range + DPR similarity.</p>
+
+    <div class="device-controls">
+        <label class="device-search" for="dev-filter">
+            <span class="device-search__label">Filter</span>
+            <input id="dev-filter" class="device-search__input" type="search"
+                placeholder="iphone_x, ipad_pro, galaxy_fold…" autocomplete="off" />
+        </label>
+
+        <div class="device-match">
+            <div class="device-match__label">Matches</div>
+            <div class="device-match__value"><span id="dev-matches">—</span></div>
+        </div>
+    </div>
+
+    
+
+    <table class="device-table">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Min</th>
+                <th>Max</th>
+                <th>DPR</th>
+                <th>Type</th>
+                <th>Match</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr class="device-row" data-key="galaxy_fold" data-min="280" data-max="653"
+                data-dpr="3" data-type="phone">
+                <td><code>galaxy_fold</code></td>
+                <td><code>280px</code></td>
+                <td><code>653px</code></td>
+                <td><code>3</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="iphone_5" data-min="320" data-max="568"
+                data-dpr="2" data-type="phone">
+                <td><code>iphone_5</code></td>
+                <td><code>320px</code></td>
+                <td><code>568px</code></td>
+                <td><code>2</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="iphone_6" data-min="375" data-max="667"
+                data-dpr="2" data-type="phone">
+                <td><code>iphone_6</code></td>
+                <td><code>375px</code></td>
+                <td><code>667px</code></td>
+                <td><code>2</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="iphone_8" data-min="375" data-max="667"
+                data-dpr="2" data-type="phone">
+                <td><code>iphone_8</code></td>
+                <td><code>375px</code></td>
+                <td><code>667px</code></td>
+                <td><code>2</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="iphone_x" data-min="375" data-max="812"
+                data-dpr="3" data-type="phone">
+                <td><code>iphone_x</code></td>
+                <td><code>375px</code></td>
+                <td><code>812px</code></td>
+                <td><code>3</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="iphone_11" data-min="414" data-max="896"
+                data-dpr="2" data-type="phone">
+                <td><code>iphone_11</code></td>
+                <td><code>414px</code></td>
+                <td><code>896px</code></td>
+                <td><code>2</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="iphone_12" data-min="390" data-max="844"
+                data-dpr="3" data-type="phone">
+                <td><code>iphone_12</code></td>
+                <td><code>390px</code></td>
+                <td><code>844px</code></td>
+                <td><code>3</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="iphone_13" data-min="428" data-max="926"
+                data-dpr="3" data-type="phone">
+                <td><code>iphone_13</code></td>
+                <td><code>428px</code></td>
+                <td><code>926px</code></td>
+                <td><code>3</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="samsung_s10" data-min="360" data-max="760"
+                data-dpr="3" data-type="phone">
+                <td><code>samsung_s10</code></td>
+                <td><code>360px</code></td>
+                <td><code>760px</code></td>
+                <td><code>3</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="samsung_s20" data-min="320" data-max="720"
+                data-dpr="4" data-type="phone">
+                <td><code>samsung_s20</code></td>
+                <td><code>320px</code></td>
+                <td><code>720px</code></td>
+                <td><code>4</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="samsung_s21" data-min="320" data-max="780"
+                data-dpr="3" data-type="phone">
+                <td><code>samsung_s21</code></td>
+                <td><code>320px</code></td>
+                <td><code>780px</code></td>
+                <td><code>3</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="google_pixel" data-min="411" data-max="731"
+                data-dpr="2.6" data-type="phone">
+                <td><code>google_pixel</code></td>
+                <td><code>411px</code></td>
+                <td><code>731px</code></td>
+                <td><code>2.6</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="google_pixel_5" data-min="393" data-max="851"
+                data-dpr="3" data-type="phone">
+                <td><code>google_pixel_5</code></td>
+                <td><code>393px</code></td>
+                <td><code>851px</code></td>
+                <td><code>3</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="surface_duo" data-min="540" data-max="720"
+                data-dpr="2.5" data-type="phone">
+                <td><code>surface_duo</code></td>
+                <td><code>540px</code></td>
+                <td><code>720px</code></td>
+                <td><code>2.5</code></td>
+                <td>phone</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="ipad" data-min="768" data-max="1024"
+                data-dpr="2" data-type="tablet">
+                <td><code>ipad</code></td>
+                <td><code>768px</code></td>
+                <td><code>1024px</code></td>
+                <td><code>2</code></td>
+                <td>tablet</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="ipad_mini" data-min="768" data-max="1024"
+                data-dpr="2" data-type="tablet">
+                <td><code>ipad_mini</code></td>
+                <td><code>768px</code></td>
+                <td><code>1024px</code></td>
+                <td><code>2</code></td>
+                <td>tablet</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="ipad_air" data-min="820" data-max="1180"
+                data-dpr="2" data-type="tablet">
+                <td><code>ipad_air</code></td>
+                <td><code>820px</code></td>
+                <td><code>1180px</code></td>
+                <td><code>2</code></td>
+                <td>tablet</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="ipad_pro" data-min="1024" data-max="1366"
+                data-dpr="2" data-type="tablet">
+                <td><code>ipad_pro</code></td>
+                <td><code>1024px</code></td>
+                <td><code>1366px</code></td>
+                <td><code>2</code></td>
+                <td>tablet</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="surface_pro" data-min="768" data-max="1366"
+                data-dpr="2" data-type="tablet">
+                <td><code>surface_pro</code></td>
+                <td><code>768px</code></td>
+                <td><code>1366px</code></td>
+                <td><code>2</code></td>
+                <td>tablet</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="macbook_air" data-min="1440" data-max="2560"
+                data-dpr="2" data-type="desktop">
+                <td><code>macbook_air</code></td>
+                <td><code>1440px</code></td>
+                <td><code>2560px</code></td>
+                <td><code>2</code></td>
+                <td>desktop</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="macbook_pro" data-min="1680" data-max="3072"
+                data-dpr="2" data-type="desktop">
+                <td><code>macbook_pro</code></td>
+                <td><code>1680px</code></td>
+                <td><code>3072px</code></td>
+                <td><code>2</code></td>
+                <td>desktop</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="imac" data-min="1920" data-max="5120"
+                data-dpr="2" data-type="desktop">
+                <td><code>imac</code></td>
+                <td><code>1920px</code></td>
+                <td><code>5120px</code></td>
+                <td><code>2</code></td>
+                <td>desktop</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+            <tr class="device-row" data-key="dell_xps" data-min="1920" data-max="3840"
+                data-dpr="2" data-type="desktop">
+                <td><code>dell_xps</code></td>
+                <td><code>1920px</code></td>
+                <td><code>3840px</code></td>
+                <td><code>2</code></td>
+                <td>desktop</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>SCSS Usage</h2>
+
+    <div class="code-block">
+        <pre><code>@use "unit.gl" as *;
 
 // Target a specific device profile from $devices
 @include device_media_query("galaxy_fold") {
   .panel { padding: q(10); }
 }
 </code></pre>
-        </div>
+    </div>
 
-        <p class="device-muted">Profile keys are underscored (for example <code>iphone_x</code>, <code>ipad_pro</code>,
-            <code>macbook_pro</code>).
-        </p>
-    </section>
+    <p class="device-muted">Profile keys are underscored (for example <code>iphone_x</code>, <code>ipad_pro</code>,
+        <code>macbook_pro</code>).
+    </p>
+</section>
 
 </div>
                 </main>

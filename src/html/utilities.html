@@ -139,6 +139,8 @@
 
 
 
+
+
 <aside class="sidebar" id="sidebar" aria-label="Documentation navigation">
     <nav class="sidebar__nav">
         
@@ -161,6 +163,13 @@
                 </li>
                 
                 <li>
+                    <a href="steps.html"
+                        class="sidebar__link" >
+                        9-Step Scale
+                    </a>
+                </li>
+                
+                <li>
                     <a href="configuration.html"
                         class="sidebar__link" >
                         Configuration
@@ -172,22 +181,24 @@
 
         
         <div class="sidebar__section">
-            <h3 class="sidebar__heading">API Reference</h3>
+            <h3 class="sidebar__heading">Core</h3>
             <ul class="sidebar__list">
                 
                 <li>
-                    <a href="functions.html"
+                    <a href="unit.html"
                         class="sidebar__link" >
-                        Functions
+                        Unit
                     </a>
                 </li>
                 
-                <li>
-                    <a href="mixins.html"
-                        class="sidebar__link" >
-                        Mixins
-                    </a>
-                </li>
+            </ul>
+        </div>
+
+
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">Framework</h3>
+            <ul class="sidebar__list">
                 
                 <li>
                     <a href="layers.html"
@@ -195,21 +206,6 @@
                         Layers
                     </a>
                 </li>
-                
-                <li>
-                    <a href="density.html"
-                        class="sidebar__link" >
-                        Density
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
-
-        
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">Examples</h3>
-            <ul class="sidebar__list">
                 
                 <li>
                     <a href="scale.html"
@@ -257,6 +253,43 @@
                     <a href="lorem.html"
                         class="sidebar__link" >
                         Typography
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+
+
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">API Reference</h3>
+            <ul class="sidebar__list">
+                
+                <li>
+                    <a href="functions.html"
+                        class="sidebar__link" >
+                        Functions
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="mixins.html"
+                        class="sidebar__link" >
+                        Mixins
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="density.html"
+                        class="sidebar__link" >
+                        Density
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/sassdoc/"
+                        class="sidebar__link" >
+                        SassDoc
                     </a>
                 </li>
                 
@@ -817,16 +850,16 @@
         <p style="font-size: 0.6875rem; font-family: var(--font-mono);">Width grows</p>
     </div>
 
-    <div class="code-block"><span class="comment">&lt;!-- Mobile first: starts small, grows on larger screens
-            --&gt;</span>
-        &lt;div class="<span class="class">p_q8 sm_p_q12 md_p_q16 lg_p_q24</span>"&gt;
-        Responsive padding
-        &lt;/div&gt;
+    <div class="code-block">
+        <pre><code>&lt;!-- Mobile first: starts small, grows on larger screens --&gt;
+&lt;div class="p_q8 sm_p_q12 md_p_q16 lg_p_q24"&gt;
+  Responsive padding
+&lt;/div&gt;
 
-        <span class="comment">&lt;!-- Different gaps at different breakpoints --&gt;</span>
-        &lt;div class="<span class="class">gap_q4 md_gap_q8 lg_gap_q16</span>" style="display: flex;"&gt;
-        Responsive gap
-        &lt;/div&gt;
+&lt;!-- Different gaps at different breakpoints --&gt;
+&lt;div class="gap_q4 md_gap_q8 lg_gap_q16" style="display: flex;"&gt;
+  Responsive gap
+&lt;/div&gt;</code></pre>
     </div>
 </section>
 
@@ -853,6 +886,7 @@
         &lt;/div&gt;
         &lt;/div&gt;</div>
 </section>
+
                 </main>
 
                 

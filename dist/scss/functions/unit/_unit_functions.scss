@@ -1,13 +1,15 @@
 ////
 ///
-/// Unit Functions Module
+/// Unit Utility Functions
 /// ===========================================================================
+///
+/// Provides utility functions for unit manipulation, interpolation, and
+/// fluid responsive scaling calculations.
 ///
 /// @group Unit
 /// @author Scape Agency
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -18,228 +20,392 @@
 
 @use "sass:meta";
 @use "sass:math";
-@use "sass:string";
+@use "sass:list";
 
 // ============================================================================
-// Functions
+// Unit Manipulation Functions
 // ============================================================================
 
 ///
 /// Strip Unit Function
 /// ---------------------------------------------------------------------------
 ///
-/// Removes the unit from a numerical value, ensuring compatibility with various SCSS versions.
+/// Removes the unit from a numerical value, returning a unitless number.
 ///
+/// @name unit_strip
 /// @param {Number} $value - The numerical value with or without a unit.
-/// @return {Number} - The raw numerical value without its unit, or the original value if unitless or non-numerical.
+/// @return {Number} - The unitless numerical value.
+/// @example scss
+///   $raw: unit_strip(16px); // => 16
+///   $raw: unit_strip(1.5rem); // => 1.5
 ///
 @function unit_strip($value) {
-    // Check if the input is a number with a unit
-    @if meta.type-of($value) == "number" and not math.is-unitless($value) {
-        // Convert the value to a string
-        // $value-str: inspect($value);
-        $value-str: meta.inspect($value);
+    @if meta.type-of($value) != "number" {
+        @error "Expected a number, but got `#{meta.type-of($value)}`.";
+    }
 
-        // Remove the unit part from the string
-        $value-no-unit: string.slice(
-            $value-str,
-            1,
-            string.index($value-str, math.unit($value)) - 1
-        );
-
-        // Return the number without its unit
-        @return $value-no-unit;
-    } @else if type-of($value) != "number" {
-        // Handle non-number inputs gracefully
-        // @warn "Input `#{$value}` is not a number. Returning value as-is.";
+    @if math.is-unitless($value) {
         @return $value;
     }
 
-    // Return the value as-is for unitless numbers or non-number inputs
-    @return $value;
+    // Divide by 1 of the same unit to strip it
+    @return math.div($value, ($value * 0 + 1));
 }
+
+///
+/// Get Unit Function
+/// ---------------------------------------------------------------------------
+///
+/// Returns the unit of a numerical value as a string.
+///
+/// @name unit_get
+/// @param {Number} $value - The numerical value.
+/// @return {String} - The unit as a string (e.g., "px", "rem", "em").
+/// @example scss
+///   $u: unit_get(16px); // => "px"
+///   $u: unit_get(1.5rem); // => "rem"
+///
+@function unit_get($value) {
+    @if meta.type-of($value) != "number" {
+        @error "Expected a number, but got `#{meta.type-of($value)}`.";
+    }
+    @return math.unit($value);
+}
+
+///
+/// Check if Value is Unitless
+/// ---------------------------------------------------------------------------
+///
+/// Returns whether a value has no unit attached.
+///
+/// @name is_unitless
+/// @param {Number} $value - The value to check.
+/// @return {Boolean} - True if unitless, false otherwise.
+/// @example scss
+///   $check: is_unitless(16); // => true
+///   $check: is_unitless(16px); // => false
+///
+@function is_unitless($value) {
+    @if meta.type-of($value) != "number" {
+        @return false;
+    }
+    @return math.is-unitless($value);
+}
+
+///
+/// Add Unit to Value
+/// ---------------------------------------------------------------------------
+///
+/// Attaches a unit to a unitless number.
+///
+/// @name unit_add
+/// @param {Number} $value - A unitless number.
+/// @param {String} $unit - The unit to add (e.g., "px", "rem", "em", "%").
+/// @return {Number} - The value with the specified unit.
+/// @throws Error if value already has a unit or unit is invalid.
+/// @example scss
+///   $sized: unit_add(16, "px"); // => 16px
+///   $sized: unit_add(1.5, "rem"); // => 1.5rem
+///
+@function unit_add($value, $unit) {
+    @if meta.type-of($value) != "number" {
+        @error "Expected a number, but got `#{meta.type-of($value)}`.";
+    }
+
+    @if not math.is-unitless($value) {
+        @error "Value `#{$value}` already has a unit. Strip it first with unit_strip().";
+    }
+
+    // Map of supported units
+    $unit-map: (
+        "px": 1px,
+        "rem": 1rem,
+        "em": 1em,
+        "%": 1%,
+        "vw": 1vw,
+        "vh": 1vh,
+        "vmin": 1vmin,
+        "vmax": 1vmax,
+        "ch": 1ch,
+        "ex": 1ex,
+        "cm": 1cm,
+        "mm": 1mm,
+        "in": 1in,
+        "pt": 1pt,
+        "pc": 1pc,
+        "deg": 1deg,
+        "rad": 1rad,
+        "grad": 1grad,
+        "turn": 1turn,
+        "s": 1s,
+        "ms": 1ms,
+    );
+
+    @if not map-has-key($unit-map, $unit) {
+        @error "Unsupported unit `#{$unit}`.";
+    }
+
+    @return $value * map-get($unit-map, $unit);
+}
+
+///
+/// Check Unit Compatibility
+/// ---------------------------------------------------------------------------
+///
+/// Checks if two values have compatible units for arithmetic operations.
+///
+/// @name units_compatible
+/// @param {Number} $value1 - First value.
+/// @param {Number} $value2 - Second value.
+/// @return {Boolean} - True if units are compatible.
+/// @example scss
+///   $compat: units_compatible(16px, 24px); // => true
+///   $compat: units_compatible(16px, 1rem); // => false
+///
+@function units_compatible($value1, $value2) {
+    @if meta.type-of($value1) != "number" or meta.type-of($value2) != "number" {
+        @return false;
+    }
+    @return math.compatible($value1, $value2);
+}
+
+// ============================================================================
+// Interpolation Functions
+// ============================================================================
 
 ///
 /// Linear Interpolation Function
 /// ---------------------------------------------------------------------------
 ///
-/// Interpolates linearly between two values across a range, useful for
-/// fluid scaling.
+/// Interpolates linearly between two values across a viewport range.
+/// Generates a CSS calc() expression for fluid scaling.
 ///
-/// @param {Number} $start - Starting value at the lower bound (can include units).
-/// @param {Number} $end - Ending value at the upper bound (can include units).
-/// @param {Number} $min - Lower bound for interpolation (must be unitless or in 'px').
-/// @param {Number} $max - Upper bound for interpolation (must be unitless or in 'px').
-/// @param {Number} $actual - Current value to interpolate (default is 100vw).
-/// @return {Number} - Interpolated value (in the same units as $start and $end).
+/// @name lerp
+/// @param {Number} $start - Starting value at the lower bound.
+/// @param {Number} $end - Ending value at the upper bound.
+/// @param {Number} $min-vw - Lower viewport bound (in px).
+/// @param {Number} $max-vw - Upper viewport bound (in px).
+/// @return {Calculation} - A calc() expression for fluid interpolation.
+/// @throws Error if viewport bounds are invalid.
+/// @example scss
+///   font-size: lerp(16px, 24px, 320px, 1200px);
+///   // => calc(16px + 8 * ((100vw - 320px) / 880))
+///
+@function lerp($start, $end, $min-vw, $max-vw) {
+    // Validate viewport bounds
+    @if meta.type-of($min-vw) != "number" or meta.type-of($max-vw) != "number" {
+        @error "Viewport bounds must be numbers.";
+    }
+
+    $min-vw-stripped: unit_strip($min-vw);
+    $max-vw-stripped: unit_strip($max-vw);
+
+    @if $max-vw-stripped <= $min-vw-stripped {
+        @error "Maximum viewport width must be greater than minimum.";
+    }
+
+    // Calculate the difference
+    $delta: unit_strip($end) - unit_strip($start);
+    $vw-range: $max-vw-stripped - $min-vw-stripped;
+
+    // Build the calc expression
+    // Formula: start + (delta * ((100vw - min) / range))
+    @return calc(#{$start} + #{$delta} * ((100vw - #{$min-vw}) / #{$vw-range}));
+}
+
+///
+/// Legacy Linear Interpolation (alias)
+/// ---------------------------------------------------------------------------
+///
+/// @deprecated Use `lerp()` instead.
+/// @see lerp
 ///
 @function linear_interpolation($start, $end, $min, $max, $actual: 100vw) {
-    // Validate parameters
-    @if math.is-unitless($min) == false and math.unit($min) != "px" {
-        @error "Parameter `$min` must be unitless or in 'px'.";
+    @return lerp($start, $end, $min, $max);
+}
+
+// ============================================================================
+// Fluid Scaling Functions
+// ============================================================================
+
+///
+/// Fluid Clamp Function
+/// ---------------------------------------------------------------------------
+///
+/// Creates a CSS clamp() expression for fluid responsive values.
+/// Combines minimum, preferred (interpolated), and maximum values.
+///
+/// @name fluid
+/// @param {Number} $min - Minimum value.
+/// @param {Number} $max - Maximum value.
+/// @param {Number} $min-vw [320px] - Viewport width where scaling starts.
+/// @param {Number} $max-vw [1200px] - Viewport width where scaling stops.
+/// @return {Calculation} - A CSS clamp() expression.
+/// @example scss
+///   font-size: fluid(16px, 24px);
+///   // => clamp(16px, calc(16px + 8 * ((100vw - 320px) / 880)), 24px)
+///
+@function fluid($min, $max, $min-vw: 320px, $max-vw: 1200px) {
+    @if meta.type-of($min) != "number" or meta.type-of($max) != "number" {
+        @error "Minimum and maximum values must be numbers.";
     }
-    @if math.is-unitless($max) == false and math.unit($max) != "px" {
-        @error "Parameter `$max` must be unitless or in 'px'.";
-    }
-    @if $max <= $min {
-        @error "Parameter `$max` must be greater than `$min`.";
+
+    @if unit_strip($min) > unit_strip($max) {
+        @error "Minimum value cannot be greater than maximum value.";
     }
 
-    // Convert all values to a common unit for calculation
-    $unit: 1#{math.unit($start)};
-
-    // Convert coordinate values to unitless for calculations
-    $x0: #{unit_strip($min)};
-    $x1: #{unit_strip($max)};
-    $y0: #{unit_strip($start)};
-    $y1: #{unit_strip($end)};
-
-    // Calculate the slope of the line
-    $slope: #{calc(($y1 - $y0) / ($x1 - $x0))};
-
-    // Calculate the interval
-    $interval: calc($actual - $min);
-
-    // Calculate and return the interpolated value
-    $value: calc($start + $slope * $interval);
-
-    // Return the `calc` expression
-    @return $value;
+    @return clamp(#{$min}, #{lerp($min, $max, $min-vw, $max-vw)}, #{$max});
 }
 
 ///
-///  Clamp-based Responsive Typography Function
+/// Legacy Clamp Function (alias)
 /// ---------------------------------------------------------------------------
 ///
-/// Calculates font size using clamp-based responsive typography.
-///
-/// @param {Number} $_font_size_min - Minimum font size.
-/// @param {Number} $_font_size_max - Maximum font size.
-/// @param {Number} $_viewport_width_min - Minimum viewport width where scaling starts.
-/// @param {Number} $_viewport_width_max - Maximum viewport width where scaling stops.
-/// @return {Number} - Calculated size using clamp.
+/// @deprecated Use `fluid()` instead.
+/// @see fluid
 ///
 @function scale_dynamic_clamp(
-    $_viewport_width_min,
-    $_viewport_width_max,
-    $_font_size_min,
-    $_font_size_max
+    $viewport-width-min,
+    $viewport-width-max,
+    $size-min,
+    $size-max
 ) {
-    @return clamp(
-        $_font_size_min,
-        linear_interpolation(
-            $_font_size_min,
-            $_font_size_max,
-            $_viewport_width_min,
-            $_viewport_width_max
-        ),
-        $_font_size_max
-    );
+    @return fluid($size-min, $size-max, $viewport-width-min, $viewport-width-max);
 }
 
-/// Fluid Typography Mixin
-/// ---------------------------------------------------------------------------
-/// Mixin: fluid_type
-/// Creates fluid typography rules to scale font sizes responsively between a
-/// minimum and maximum viewport width.
-// /// @param $_viewport_width_min - Minimum viewport width where scaling starts
-// /// @param $_viewport_width_max - Maximum viewport width where scaling stops
-// /// @param $_font_size_min - Minimum font size
-// /// @param $_font_size_max - Maximum font size
-// @mixin fluid_type(
-//     $_viewport_width_min,
-//     $_viewport_width_max,
-//     $_font_size_min,
-//     $_font_size_max,
-// ) {
-
-//     // Ensure the units are consistent
-//     $u1: unit($_viewport_width_min);
-//     $u2: unit($_viewport_width_max);
-//     $u3: unit($_font_size_min);
-//     $u4: unit($_font_size_max);
-
-//     // $u1: $_viewport_width_min;
-//     // $u2: $_viewport_width_max;
-//     // $u3: $_font_size_min;
-//     // $u4: $_font_size_max;
-
-//     @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
-//         font-size: $_font_size_min/// 16;
-//         // Apply fluid font-size between the min and max viewport widths
-//         @media screen and (min-width: $_viewport_width_min) {
-//             font-size: linear_interpolation(
-//                 $_font_size_min,
-//                 $_font_size_max,
-//                 $_viewport_width_min,
-//                 $_viewport_width_max
-//             )/// 16;
-//         }
-//         // Set to max font-size for viewports wider than the max viewport width
-//         @media screen and (min-width: $_viewport_width_max) {
-//             font-size: $_font_size_max/// 16;
-//         }
-//     } @else {
-//         @warn "Inconsistent units provided for fluid typography.";
-//     }
-// }
-
 ///
-/// Dynamic Scaling Function
+/// Fluid Typography Shorthand
 /// ---------------------------------------------------------------------------
 ///
-/// Calculates font size dynamically based on viewport width, allowing for
-/// fluid scaling.
+/// Convenience function for fluid font sizes with common viewport breakpoints.
 ///
-/// @param {Number} $_viewport_width_min - Minimum viewport width where scaling starts.
-/// @param {Number} $_viewport_width_max - Maximum viewport width where scaling stops.
-/// @param {Number} $_font_size_min - Minimum font size.
-/// @param {Number} $_font_size_max - Maximum font size.
-/// @param {Number} $_current_width - Current viewport width.
-/// @return {Number} - The calculated font size based on the current width, or null if units are inconsistent.
+/// @name fluid_type
+/// @param {Number} $min-size - Minimum font size.
+/// @param {Number} $max-size - Maximum font size.
+/// @param {Number} $min-vw [320px] - Mobile viewport width.
+/// @param {Number} $max-vw [1200px] - Desktop viewport width.
+/// @return {Calculation} - A CSS clamp() expression for font-size.
+/// @example scss
+///   h1 { font-size: fluid_type(24px, 48px); }
+///
+@function fluid_type($min-size, $max-size, $min-vw: 320px, $max-vw: 1200px) {
+    @return fluid($min-size, $max-size, $min-vw, $max-vw);
+}
+
+///
+/// Fluid Spacing Shorthand
+/// ---------------------------------------------------------------------------
+///
+/// Convenience function for fluid spacing (padding, margin, gap).
+///
+/// @name fluid_space
+/// @param {Number} $min-space - Minimum spacing value.
+/// @param {Number} $max-space - Maximum spacing value.
+/// @param {Number} $min-vw [320px] - Mobile viewport width.
+/// @param {Number} $max-vw [1200px] - Desktop viewport width.
+/// @return {Calculation} - A CSS clamp() expression for spacing.
+/// @example scss
+///   .container { padding: fluid_space(16px, 64px); }
+///
+@function fluid_space($min-space, $max-space, $min-vw: 320px, $max-vw: 1200px) {
+    @return fluid($min-space, $max-space, $min-vw, $max-vw);
+}
+
+// ============================================================================
+// Range & Constraint Functions
+// ============================================================================
+
+///
+/// Constrain Value to Range
+/// ---------------------------------------------------------------------------
+///
+/// Constrains a value between a minimum and maximum bound.
+/// This is a compile-time clamp for static values.
+///
+/// @name constrain
+/// @param {Number} $value - The value to constrain.
+/// @param {Number} $min - Minimum allowed value.
+/// @param {Number} $max - Maximum allowed value.
+/// @return {Number} - The constrained value.
+/// @example scss
+///   $clamped: constrain(150, 0, 100); // => 100
+///   $clamped: constrain(-10, 0, 100); // => 0
+///
+@function constrain($value, $min, $max) {
+    @if meta.type-of($value) != "number" {
+        @error "Value must be a number.";
+    }
+    @if $min > $max {
+        @error "Minimum cannot be greater than maximum.";
+    }
+    @return math.max($min, math.min($value, $max));
+}
+
+///
+/// Map Value from One Range to Another
+/// ---------------------------------------------------------------------------
+///
+/// Remaps a value from one numerical range to another.
+///
+/// @name remap
+/// @param {Number} $value - The value to remap.
+/// @param {Number} $in-min - Input range minimum.
+/// @param {Number} $in-max - Input range maximum.
+/// @param {Number} $out-min - Output range minimum.
+/// @param {Number} $out-max - Output range maximum.
+/// @return {Number} - The remapped value.
+/// @example scss
+///   $mapped: remap(50, 0, 100, 0, 1); // => 0.5
+///   $mapped: remap(75, 0, 100, 0, 255); // => 191.25
+///
+@function remap($value, $in-min, $in-max, $out-min, $out-max) {
+    @if $in-max == $in-min {
+        @error "Input range cannot be zero (in-min equals in-max).";
+    }
+
+    $normalized: math.div(($value - $in-min), ($in-max - $in-min));
+    @return $out-min + ($normalized * ($out-max - $out-min));
+}
+
+///
+/// Calculate Percentage of Value
+/// ---------------------------------------------------------------------------
+///
+/// Returns a percentage of a given value.
+///
+/// @name percent_of
+/// @param {Number} $value - The base value.
+/// @param {Number} $percent - The percentage (as number, e.g., 50 for 50%).
+/// @return {Number} - The calculated portion.
+/// @example scss
+///   $half: percent_of(200px, 50); // => 100px
+///
+@function percent_of($value, $percent) {
+    @if meta.type-of($value) != "number" or meta.type-of($percent) != "number" {
+        @error "Both value and percent must be numbers.";
+    }
+    @return math.div($value * $percent, 100);
+}
+
+// ============================================================================
+// Deprecated Functions
+// ============================================================================
+
+///
+/// Dynamic Scaling Function (deprecated)
+/// ---------------------------------------------------------------------------
+///
+/// @deprecated Use `fluid()` with CSS clamp() instead.
+/// This function attempted runtime calculations which are better handled
+/// by modern CSS clamp() expressions.
 ///
 @function scale_dynamic(
-    $_viewport_width_min,
-    $_viewport_width_max,
-    $_font_size_min,
-    $_font_size_max,
-    $_current_width
+    $viewport-width-min,
+    $viewport-width-max,
+    $size-min,
+    $size-max,
+    $current-width
 ) {
-    // Ensure the units are consistent
-    // $u1: unit($_viewport_width_min);
-    // $u2: unit($_viewport_width_max);
-    // $u3: unit($_font_size_min);
-    // $u4: unit($_font_size_max);
-    $u1: $_viewport_width_min;
-    $u2: $_viewport_width_max;
-    $u3: $_font_size_min;
-    $u4: $_font_size_max;
-
-    // Validate unit consistency
-    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
-        // Check if the current width is within the specified range
-        @if $_current_width >=
-            $_viewport_width_min and
-            $_current_width <=
-            $_viewport_width_max
-        {
-            // Calculate and return the interpolated font size
-            @return linear_interpolation(
-                $_font_size_min,
-                $_font_size_max,
-                $_viewport_width_min,
-                $_viewport_width_max,
-                100vw
-            );
-        } @else if $_current_width < $_viewport_width_min {
-            // Return the minimum font size
-            @return $_font_size_min;
-        } @else {
-            // Return the maximum font size
-            @return $_font_size_max;
-        }
-    } @else {
-        @warn "Inconsistent units provided for fluid typography.";
-        @return null;
-    }
+    @warn "scale_dynamic() is deprecated. Use fluid() instead for modern CSS clamp() support.";
+    @return fluid($size-min, $size-max, $viewport-width-min, $viewport-width-max);
 }

@@ -1,0 +1,44 @@
+<section>
+    <h2>Q Format Alignment</h2>
+
+    <p>When used for breakpoints, the 9 steps align with Q format paper sizes. The <strong>P</strong> (Portrait) and <strong>L</strong> (Landscape) designations indicate orientation:</p>
+
+    <table class="step-table">
+        <thead>
+            <tr>
+                <th>Step</th>
+                <th>Q Format</th>
+                <th>Physical Size</th>
+                <th>Pixel Value</th>
+                <th>Typical Device</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set qformats = [
+                {"key": "us", "format": "Q07P", "mm": "60mm", "px": "240px", "device": "Compact / Fold"},
+                {"key": "ss", "format": "Q06P", "mm": "90mm", "px": "360px", "device": "Phones"},
+                {"key": "xs", "format": "Q05P", "mm": "135mm", "px": "540px", "device": "Large phones"},
+                {"key": "sm", "format": "Q04P", "mm": "180mm", "px": "720px", "device": "Tablets"},
+                {"key": "md", "format": "Q04L", "mm": "270mm", "px": "1080px", "device": "Laptops"},
+                {"key": "lg", "format": "Q03L", "mm": "360mm", "px": "1440px", "device": "Desktops"},
+                {"key": "xl", "format": "Q02L", "mm": "540mm", "px": "2160px", "device": "QHD displays"},
+                {"key": "sl", "format": "Q01L", "mm": "720mm", "px": "2880px", "device": "4K displays"},
+                {"key": "ul", "format": "Q00L", "mm": "1080mm", "px": "4320px", "device": "5K+ displays"}
+            ] %}
+            {% for q in qformats %}
+            <tr>
+                <td><code>{{ q.key }}</code></td>
+                <td><code>{{ q.format }}</code></td>
+                <td>{{ q.mm }}</td>
+                <td><code>{{ q.px }}</code></td>
+                <td>{{ q.device }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="alert alert--info">
+        <div class="alert__title">Physical-to-Digital</div>
+        <p>All pixel values are derived from physical millimeters using the 4× multiplier (1mm = 4px at 96dpi). This ensures consistency between print and digital design.</p>
+    </div>
+</section>

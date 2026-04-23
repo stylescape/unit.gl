@@ -1,0 +1,48 @@
+<!-- Stacking Contexts -->
+<section>
+    <h2>Understanding Stacking Contexts</h2>
+
+    <p>Z-index only works within a stacking context. Several CSS properties create new stacking contexts:</p>
+
+    <ul>
+        <li><code>position</code> (relative, absolute, fixed, sticky) with z-index other than auto</li>
+        <li><code>opacity</code> less than 1</li>
+        <li><code>transform</code>, <code>filter</code>, <code>perspective</code></li>
+        <li><code>isolation: isolate</code></li>
+        <li>Flex/Grid items with z-index other than auto</li>
+    </ul>
+
+    <p>A child element cannot escape its parent's stacking context. If a modal is inside a container with
+        <code>z-index: 1</code>, setting the modal to <code>z-index: 9999</code> won't place it above a sibling with
+        <code>z-index: 2</code>.
+    </p>
+
+    <div class="code-block">
+        <pre><code>// Problem: Modal trapped in stacking context
+.sidebar {
+  position: relative;
+  z-index: 1; // Creates stacking context
+}
+
+.sidebar .modal {
+  z-index: z("modal"); // 7000, but still below main content!
+}
+
+// Solution: Move modal outside or use isolation
+.sidebar {
+  position: relative;
+  // No z-index, no stacking context
+}
+
+.main-content {
+  isolation: isolate; // Contains its own stacking
+}</code></pre>
+    </div>
+
+    <div class="alert">
+        <p class="alert__title">Key Insight</p>
+        <p>The layer system provides consistent z-index values, but you still need to manage stacking contexts.
+            Place
+            modals and overlays at the root level of your DOM when possible.</p>
+    </div>
+</section>

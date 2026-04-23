@@ -1,0 +1,20 @@
+<!-- Border Width -->
+<section>
+    <h2>Border Width</h2>
+    <p>Control border widths: <code>.border_q*</code>, <code>.border_t_q*</code>, <code>.border_r_q*</code>,
+        <code>.border_b_q*</code>, <code>.border_l_q*</code>
+    </p>
+
+    <div class="demo-row">
+        {% for step in [1, 2, 4, 6, 8] %}
+        <div class="demo-item">
+            <div class="border-demo border_q{{ step }}"></div>
+            <span class="demo-item__label">.border_q{{ step }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="code-block">&lt;div class="<span class="class">border_q2</span>" style="border-style: solid;"&gt;2px
+        border&lt;/div&gt;
+        &lt;div class="<span class="class">border_b_q4</span>"&gt;4px bottom border only&lt;/div&gt;</div>
+</section>

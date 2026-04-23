@@ -1,0 +1,61 @@
+<section>
+    <h2>Device & Format Mixins</h2>
+
+    <h3>format()</h3>
+    <p>Applies dimensions from a page/print format.</p>
+
+    <div class="api-signature">@include format($size, $orientation: portrait)</div>
+
+    <h4>Available Formats</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Size</th>
+                <th>Dimensions (portrait)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>a3</td>
+                <td>297mm × 420mm</td>
+            </tr>
+            <tr>
+                <td>a4</td>
+                <td>210mm × 297mm</td>
+            </tr>
+            <tr>
+                <td>a5</td>
+                <td>148mm × 210mm</td>
+            </tr>
+            <tr>
+                <td>letter</td>
+                <td>216mm × 279mm</td>
+            </tr>
+            <tr>
+                <td>legal</td>
+                <td>216mm × 356mm</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">.print-preview {
+        @include format(a4, portrait);
+        }
+
+        .landscape-doc {
+        @include format(letter, landscape);
+        }</div>
+
+    <h3>device()</h3>
+    <p>Applies dimensions from a device preset.</p>
+
+    <div class="api-signature">@include device($name)</div>
+
+    <div class="code-block">.iphone-frame {
+        @include device("iphone-14-pro");
+        }
+
+        .macbook-frame {
+        @include device("macbook-pro-14");
+        }</div>
+</section>

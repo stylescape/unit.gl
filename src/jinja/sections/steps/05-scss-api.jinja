@@ -1,0 +1,47 @@
+<section>
+    <h2>SCSS API</h2>
+
+    <h3>Step Keys List</h3>
+    <p>Access all step keys as a list:</p>
+
+    <pre><code class="language-scss">@use "unit.gl" as unit;
+
+// Get all step keys
+$steps: (us, ss, xs, sm, md, lg, xl, sl, ul);
+
+// Loop through steps
+@each $step in $steps {
+    .size-#{$step} {
+        // Generate classes for each step
+    }
+}</code></pre>
+
+    <h3>Map Access</h3>
+    <p>Access values from any step-based map:</p>
+
+    <pre><code class="language-scss">@use "sass:map";
+@use "unit.gl" as unit;
+
+// Get a specific breakpoint
+$tablet-bp: map.get(unit.$breakpoints, sm); // 720px
+
+// Get a specific spacing value
+$large-space: map.get(unit.$spacing, lg);
+
+// Use in media queries
+@media (min-width: map.get(unit.$breakpoints, md)) {
+    // Laptop and up styles
+}</code></pre>
+
+    <h3>Responsive Utilities</h3>
+    <p>Generate responsive variants using step prefixes:</p>
+
+    <pre><code class="language-scss">// Output: .us_hidden, .ss_hidden, .xs_hidden, etc.
+@each $step in $steps {
+    .#{$step}_hidden {
+        @media (min-width: map.get($breakpoints, $step)) {
+            display: none;
+        }
+    }
+}</code></pre>
+</section>

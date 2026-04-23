@@ -139,6 +139,8 @@
 
 
 
+
+
 <aside class="sidebar" id="sidebar" aria-label="Documentation navigation">
     <nav class="sidebar__nav">
         
@@ -161,6 +163,13 @@
                 </li>
                 
                 <li>
+                    <a href="steps.html"
+                        class="sidebar__link" >
+                        9-Step Scale
+                    </a>
+                </li>
+                
+                <li>
                     <a href="configuration.html"
                         class="sidebar__link" >
                         Configuration
@@ -172,22 +181,24 @@
 
         
         <div class="sidebar__section">
-            <h3 class="sidebar__heading">API Reference</h3>
+            <h3 class="sidebar__heading">Core</h3>
             <ul class="sidebar__list">
                 
                 <li>
-                    <a href="functions.html"
+                    <a href="unit.html"
                         class="sidebar__link" >
-                        Functions
+                        Unit
                     </a>
                 </li>
                 
-                <li>
-                    <a href="mixins.html"
-                        class="sidebar__link" >
-                        Mixins
-                    </a>
-                </li>
+            </ul>
+        </div>
+
+
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">Framework</h3>
+            <ul class="sidebar__list">
                 
                 <li>
                     <a href="layers.html"
@@ -195,21 +206,6 @@
                         Layers
                     </a>
                 </li>
-                
-                <li>
-                    <a href="density.html"
-                        class="sidebar__link" >
-                        Density
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
-
-        
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">Examples</h3>
-            <ul class="sidebar__list">
                 
                 <li>
                     <a href="scale.html"
@@ -257,6 +253,43 @@
                     <a href="lorem.html"
                         class="sidebar__link" >
                         Typography
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+
+
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">API Reference</h3>
+            <ul class="sidebar__list">
+                
+                <li>
+                    <a href="functions.html"
+                        class="sidebar__link" >
+                        Functions
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="mixins.html"
+                        class="sidebar__link" >
+                        Mixins
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="density.html"
+                        class="sidebar__link" >
+                        Density
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/sassdoc/"
+                        class="sidebar__link" >
+                        SassDoc
                     </a>
                 </li>
                 
@@ -413,11 +446,11 @@
             </div>
         </div>
 
-        <div class="code-block"><span class="comment">// SCSS</span>
-            .print-sheet {
-            @include format(<span class="class" id="paper-code">q04</span>, <span class="class"
-                id="paper-code-or">portrait</span>);
-            }
+        <div class="code-block">
+            <pre><code>// SCSS
+.print-sheet {
+  @include format(q04, portrait);
+}</code></pre>
         </div>
     </section>
 
@@ -898,13 +931,15 @@
     <div class="alert alert--tip" style="margin-top: calc(var(--grid-unit) * 3);">
         <div class="alert__title">Custom formats</div>
         <p>Extend formats using Sass configuration:</p>
-        <div class="code-block">@use "unit.gl" with (
-            $format_overrides: (
-            "my-format": (100mm, 200mm)
-            )
-            );
+        <div class="code-block">
+            <pre><code>@use "unit.gl" with (
+  $format_overrides: (
+    "my-format": (100mm, 200mm)
+  )
+);
 
-            .sheet { @include format("my-format"); }</div>
+.sheet { @include format("my-format"); }</code></pre>
+        </div>
     </div>
 
 </div>

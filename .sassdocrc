@@ -1,0 +1,30 @@
+{
+  "dest": "./dist/sassdoc",
+  "package": "./package.json",
+  "theme": "default",
+  "autofill": ["requires", "throws", "content"],
+  "groups": {
+    "unit": "Unit Conversions",
+    "math": "Math Functions",
+    "scale": "Scale System",
+    "view": "Viewport & Breakpoints",
+    "layer": "Layer System",
+    "density": "Density Functions",
+    "ratio": "Aspect Ratios",
+    "sequence": "Number Sequences",
+    "color": "Color",
+    "spacing": "Spacing Utilities",
+    "typography": "Typography",
+    "display": "Display Utilities",
+    "undefined": "General"
+  },
+  "basePath": "https://unit.gl/sassdoc",
+  "verbose": true,
+  "strict": false,
+  "display": {
+    "access": ["public"],
+    "alias": true,
+    "watermark": true
+  },
+  "sort": ["group", "file", "line"]
+}

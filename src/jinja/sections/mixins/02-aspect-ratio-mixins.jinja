@@ -1,0 +1,123 @@
+<section>
+    <h2>Aspect Ratio Mixins</h2>
+    <p>Apply aspect ratios to containers.</p>
+
+    <h3>ratio()</h3>
+    <p>Sets an aspect ratio on an element using the modern <code>aspect-ratio</code> property.</p>
+
+    <div class="api-signature">@include ratio($width, $height)</div>
+
+    <div class="api-params">
+        <div class="api-param">
+            <span class="api-param__name">$width</span>
+            <span class="api-param__type">Number</span>
+            <span class="api-param__desc">Width portion of the ratio</span>
+        </div>
+        <div class="api-param">
+            <span class="api-param__name">$height</span>
+            <span class="api-param__type">Number</span>
+            <span class="api-param__desc">Height portion of the ratio</span>
+        </div>
+    </div>
+
+    <div class="code-block">.video-container {
+        @include ratio(16, 9);
+        <span class="comment">// Output: aspect-ratio: 16 / 9;</span>
+        }
+
+        .square {
+        @include ratio(1, 1);
+        }
+
+        .photo {
+        @include ratio(4, 3);
+        }
+    </div>
+
+    <h3>ratio_name()</h3>
+    <p>Apply a named aspect ratio from the ratio map.</p>
+
+    <div class="api-signature">@include ratio_name($name)</div>
+
+    <h4>Available Ratios</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Ratio</th>
+                <th>Use Case</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>square</code></td>
+                <td>1:1</td>
+                <td>Avatars, icons</td>
+            </tr>
+            <tr>
+                <td><code>photo</code></td>
+                <td>4:3</td>
+                <td>Traditional photography</td>
+            </tr>
+            <tr>
+                <td><code>landscape</code></td>
+                <td>3:2</td>
+                <td>35mm film</td>
+            </tr>
+            <tr>
+                <td><code>wide</code></td>
+                <td>16:9</td>
+                <td>Video, presentations</td>
+            </tr>
+            <tr>
+                <td><code>ultrawide</code></td>
+                <td>21:9</td>
+                <td>Cinematic content</td>
+            </tr>
+            <tr>
+                <td><code>golden</code></td>
+                <td>1.618:1</td>
+                <td>Golden ratio</td>
+            </tr>
+            <tr>
+                <td><code>a_series</code></td>
+                <td>1:√2</td>
+                <td>A4, A3 paper</td>
+            </tr>
+            <tr>
+                <td><code>portrait</code></td>
+                <td>2:3</td>
+                <td>Portrait photos</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">.card-image {
+        @include ratio_name("photo");
+        }
+
+        .video-embed {
+        @include ratio_name("wide");
+        }
+
+        .golden-section {
+        @include ratio_name("golden");
+        }</div>
+
+    <h3>ratio_padding()</h3>
+    <p>Legacy padding-based aspect ratio (for broader browser support).</p>
+
+    <div class="api-signature">@include ratio_padding($width, $height)</div>
+
+    <div class="code-block">.legacy-container {
+        @include ratio_padding(16, 9);
+        <span class="comment">// Output:</span>
+        <span class="comment">// position: relative;</span>
+        <span class="comment">// &::before {</span>
+        <span class="comment">// content: "";</span>
+        <span class="comment">// display: block;</span>
+        <span class="comment">// padding-top: 56.25%;</span>
+        <span class="comment">// }</span>
+        }
+    </div>
+</section>

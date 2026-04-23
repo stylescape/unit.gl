@@ -1,0 +1,39 @@
+<!-- Padding -->
+<section>
+    <h2>Padding</h2>
+    <p>Control element padding: <code>.p_q*</code>, <code>.px_q*</code>, <code>.py_q*</code>, <code>.pt_q*</code>,
+        <code>.pr_q*</code>, <code>.pb_q*</code>, <code>.pl_q*</code>
+    </p>
+
+    <h3>All Sides</h3>
+    <div class="demo-row">
+        {% for step in [4, 8, 12, 16, 24, 32] %}
+        <div class="demo-item">
+            <div class="padding-demo p_q{{ step }}">
+                <div class="padding-inner">•</div>
+            </div>
+            <span class="demo-item__label">.p_q{{ step }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h3>Horizontal & Vertical</h3>
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="padding-demo px_q16 py_q4">
+                <div class="padding-inner">px+py</div>
+            </div>
+            <span class="demo-item__label">.px_q16 .py_q4</span>
+        </div>
+        <div class="demo-item">
+            <div class="padding-demo px_q8 py_q16">
+                <div class="padding-inner">px+py</div>
+            </div>
+            <span class="demo-item__label">.px_q8 .py_q16</span>
+        </div>
+    </div>
+
+    <div class="code-block">&lt;div class="<span class="class">p_q8</span>"&gt;All sides: 8px&lt;/div&gt;
+        &lt;div class="<span class="class">px_q16 py_q8</span>"&gt;Horizontal: 16px, Vertical: 8px&lt;/div&gt;
+        &lt;div class="<span class="class">pt_q12 pb_q24</span>"&gt;Top: 12px, Bottom: 24px&lt;/div&gt;</div>
+</section>

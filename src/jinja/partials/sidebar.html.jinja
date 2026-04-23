@@ -9,17 +9,24 @@ Variables:
 {% set learn_items = [
 {'href': 'getting-started.html', 'label': 'Getting Started'},
 {'href': 'core-concepts.html', 'label': 'Core Concepts'},
+{'href': 'steps.html', 'label': '9-Step Scale'},
 {'href': 'configuration.html', 'label': 'Configuration'}
 ] %}
 
 {% set api_items = [
 {'href': 'functions.html', 'label': 'Functions'},
 {'href': 'mixins.html', 'label': 'Mixins'},
-{'href': 'layers.html', 'label': 'Layers'},
-{'href': 'density.html', 'label': 'Density'}
+{'href': 'density.html', 'label': 'Density'},
+{'href': '/sassdoc/', 'label': 'SassDoc'}
 ] %}
 
-{% set demo_items = [
+{% set core_items = [
+{'href': 'unit.html', 'label': 'Unit'}
+] %}
+
+{% set framework_items = [
+{'href': 'layers.html', 'label': 'Layers'},
+
 {'href': 'scale.html', 'label': 'Scale'},
 {'href': 'breakpoints.html', 'label': 'Breakpoints'},
 {'href': 'device.html', 'label': 'Devices'},
@@ -51,11 +58,11 @@ Variables:
             </ul>
         </div>
 
-        {# API Section #}
+        {# Core Section #}
         <div class="sidebar__section">
-            <h3 class="sidebar__heading">API Reference</h3>
+            <h3 class="sidebar__heading">Core</h3>
             <ul class="sidebar__list">
-                {% for item in api_items %}
+                {% for item in core_items %}
                 <li>
                     <a href="{{ item.href }}"
                         class="sidebar__link{% if current_page == item.href %} is-active{% endif %}" {% if
@@ -67,11 +74,29 @@ Variables:
             </ul>
         </div>
 
-        {# Examples Section #}
+
+        {# Framework Section #}
         <div class="sidebar__section">
-            <h3 class="sidebar__heading">Examples</h3>
+            <h3 class="sidebar__heading">Framework</h3>
             <ul class="sidebar__list">
-                {% for item in demo_items %}
+                {% for item in framework_items %}
+                <li>
+                    <a href="{{ item.href }}"
+                        class="sidebar__link{% if current_page == item.href %} is-active{% endif %}" {% if
+                        current_page==item.href %}aria-current="page" {% endif %}>
+                        {{ item.label }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+        {# API Section #}
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">API Reference</h3>
+            <ul class="sidebar__list">
+                {% for item in api_items %}
                 <li>
                     <a href="{{ item.href }}"
                         class="sidebar__link{% if current_page == item.href %} is-active{% endif %}" {% if

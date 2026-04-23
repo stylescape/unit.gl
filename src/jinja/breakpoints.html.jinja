@@ -12,84 +12,9 @@
 {%- block content %}
 
 <div class="page--breakpoints">
-
-    <section>
-        <h2>Current Viewport</h2>
-
-        <div class="bp-status">
-            <div class="bp-status__item">
-                <div class="bp-status__label">Viewport</div>
-                <div class="bp-status__value"><span id="bp-width">—</span>px</div>
-            </div>
-            <div class="bp-status__item">
-                <div class="bp-status__label">Active Breakpoint</div>
-                <div class="bp-status__value"><span id="bp-active">—</span></div>
-            </div>
-            <div class="bp-status__item">
-                <div class="bp-status__label">Rule</div>
-                <div class="bp-status__value"><span id="bp-rule">—</span></div>
-            </div>
-        </div>
-
-        <p style="margin-top: calc(var(--grid-unit) * 2);">Resize the window to see which breakpoint is active. The
-            active row is highlighted.</p>
-    </section>
-
-    <section>
-        <h2>Breakpoint Map</h2>
-
-        <table class="bp-table">
-            <thead>
-                <tr>
-                    <th>Key</th>
-                    <th>Min Width</th>
-                    <th>Multiple</th>
-                    <th>Typical Use</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% set bps = [
-                {"key": "us", "min": 240, "mult": "Q07 60mm", "desc": "Compact / Fold devices"},
-                {"key": "ss", "min": 360, "mult": "Q06 90mm", "desc": "Phones"},
-                {"key": "xs", "min": 540, "mult": "Q05 135mm", "desc": "Large phones"},
-                {"key": "sm", "min": 720, "mult": "Q04 180mm", "desc": "Tablets"},
-                {"key": "md", "min": 1440, "mult": "Q03 360mm", "desc": "Laptops"},
-                {"key": "lg", "min": 2160, "mult": "Q02 540mm", "desc": "QHD desktops"},
-                {"key": "xl", "min": 2880, "mult": "Q01 720mm", "desc": "4K displays"},
-                {"key": "ul", "min": 4320, "mult": "Q00 1080mm", "desc": "5K+ displays"}
-                ] %}
-
-                {% for bp in bps %}
-                <tr class="bp-row" data-bp="{{ bp.key }}" data-min="{{ bp.min }}">
-                    <td><code>{{ bp.key }}</code></td>
-                    <td><code>{{ bp.min }}px</code></td>
-                    <td class="bp-mult">{{ bp.mult }}</td>
-                    <td>{{ bp.desc }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-        <div class="alert alert--tip" style="margin-top: calc(var(--grid-unit) * 3);">
-            <div class="alert__title">Q Format Alignment</div>
-            <p>All breakpoints are derived from Q format paper sizes × 4 multiplier (1mm = 4px at 96dpi), ensuring
-                physical-to-digital consistency.</p>
-        </div>
-    </section>
-
-    <section>
-        <h2>Utilities Example</h2>
-
-        <p>This card uses responsive utility classes to increase padding as the viewport grows:</p>
-
-        <div class="bp-demo-card p_q8 ss_p_q10 sm_p_q12 md_p_q16 lg_p_q24 xl_p_q32">
-            <div class="bp-demo-card__title">Responsive padding</div>
-            <div class="bp-demo-card__meta">Classes:
-                <code>.p_q8 .ss_p_q10 .sm_p_q12 .md_p_q16 .lg_p_q24 .xl_p_q32</code>
-            </div>
-        </div>
-    </section>
-
+{% include "sections/breakpoints/01-current-viewport.jinja" %}
+{% include "sections/breakpoints/02-breakpoint-map.jinja" %}
+{% include "sections/breakpoints/03-utilities-example.jinja" %}
 </div>
 
 {%- endblock %}

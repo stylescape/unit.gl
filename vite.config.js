@@ -65,6 +65,7 @@ export default defineConfig({
 
                 server.middlewares.use('/css', serveStatic(path.join(pathToDist, 'css')));
                 server.middlewares.use('/js', serveStatic(path.join(pathToDist, 'js')));
+                server.middlewares.use('/sassdoc', serveStatic(path.join(pathToDist, 'sassdoc')));
 
 
                 // Serve / as index.html

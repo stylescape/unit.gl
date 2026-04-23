@@ -1,0 +1,42 @@
+<section>
+    <h2>Breakpoint Map</h2>
+
+    <table class="bp-table">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Min Width</th>
+                <th>Multiple</th>
+                <th>Typical Use</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set bps = [
+            {"key": "us", "min": 240, "mult": "Q07P 60mm", "desc": "Compact / Fold devices"},
+            {"key": "ss", "min": 360, "mult": "Q06P 90mm", "desc": "Phones"},
+            {"key": "xs", "min": 540, "mult": "Q05P 135mm", "desc": "Large phones"},
+            {"key": "sm", "min": 720, "mult": "Q04P 180mm", "desc": "Tablets"},
+            {"key": "md", "min": 1080, "mult": "Q04L 270mm", "desc": "Laptops"},
+            {"key": "lg", "min": 1440, "mult": "Q03L 360mm", "desc": "Desktops"},
+            {"key": "xl", "min": 2160, "mult": "Q02L 540mm", "desc": "QHD desktops"},
+            {"key": "sl", "min": 2880, "mult": "Q01L 720mm", "desc": "4K displays"},
+            {"key": "ul", "min": 4320, "mult": "Q00L 1080mm", "desc": "5K+ displays"}
+            ] %}
+
+            {% for bp in bps %}
+            <tr class="bp-row" data-bp="{{ bp.key }}" data-min="{{ bp.min }}">
+                <td><code>{{ bp.key }}</code></td>
+                <td><code>{{ bp.min }}px</code></td>
+                <td class="bp-mult">{{ bp.mult }}</td>
+                <td>{{ bp.desc }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="alert alert--tip" style="margin-top: calc(var(--grid-unit) * 3);">
+        <div class="alert__title">Q Format Alignment</div>
+        <p>All breakpoints are derived from Q format paper sizes × 4 multiplier (1mm = 4px at 96dpi), ensuring
+            physical-to-digital consistency.</p>
+    </div>
+</section>

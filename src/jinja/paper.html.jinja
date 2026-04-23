@@ -101,11 +101,11 @@
             </div>
         </div>
 
-        <div class="code-block"><span class="comment">// SCSS</span>
-            .print-sheet {
-            @include format(<span class="class" id="paper-code">q04</span>, <span class="class"
-                id="paper-code-or">portrait</span>);
-            }
+        <div class="code-block">
+            <pre><code>// SCSS
+.print-sheet {
+  @include format(q04, portrait);
+}</code></pre>
         </div>
     </section>
 
@@ -265,13 +265,15 @@
     <div class="alert alert--tip" style="margin-top: calc(var(--grid-unit) * 3);">
         <div class="alert__title">Custom formats</div>
         <p>Extend formats using Sass configuration:</p>
-        <div class="code-block">@use "unit.gl" with (
-            $format_overrides: (
-            "my-format": (100mm, 200mm)
-            )
-            );
+        <div class="code-block">
+            <pre><code>@use "unit.gl" with (
+  $format_overrides: (
+    "my-format": (100mm, 200mm)
+  )
+);
 
-            .sheet { @include format("my-format"); }</div>
+.sheet { @include format("my-format"); }</code></pre>
+        </div>
     </div>
 
 </div>

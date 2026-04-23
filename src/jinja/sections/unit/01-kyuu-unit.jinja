@@ -1,0 +1,44 @@
+<!-- The Kyū Unit -->
+<section>
+    <h2>The Kyū (Q) Unit</h2>
+
+    <p>At the heart of unit.gl is the <strong>Kyū</strong> (級, Japanese for "grade" or "level"), a micro-unit that
+        provides pixel-level precision while remaining scalable and accessible.</p>
+
+    <div class="api-signature">1Q = 0.0625rem = 1/16rem ≈ 1px (at 16px base font size)</div>
+
+    <p>The Q unit bridges the gap between pixel-perfect design and responsive, accessible layouts:</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Context</th>
+                <th>1Q Equals</th>
+                <th>Use Case</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Digital (16px base)</td>
+                <td>1px</td>
+                <td>Screen layouts, web interfaces</td>
+            </tr>
+            <tr>
+                <td>Digital (scaled)</td>
+                <td>Scales with rem</td>
+                <td>Accessible, user-preference aware</td>
+            </tr>
+            <tr>
+                <td>Print</td>
+                <td>0.25mm</td>
+                <td>Physical media, typography</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alert alert--tip">
+        <p class="alert__title">Why REM-based?</p>
+        <p>Using rem ensures your layouts respect user font size preferences, making your designs accessible by default.
+        </p>
+    </div>
+</section>

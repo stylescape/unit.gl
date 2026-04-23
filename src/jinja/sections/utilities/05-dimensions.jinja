@@ -1,0 +1,30 @@
+<!-- Width & Height -->
+<section>
+    <h2>Width & Height</h2>
+    <p>Control dimensions: <code>.w_q*</code>, <code>.h_q*</code>, <code>.min_w_q*</code>, <code>.max_w_q*</code>,
+        <code>.min_h_q*</code>, <code>.max_h_q*</code>
+    </p>
+
+    <h3>Width</h3>
+    <div class="demo-row">
+        {% for step in [32, 48, 64, 96, 128] %}
+        <div class="demo-item">
+            <div class="size-box w_q{{ step }} h_q24"></div>
+            <span class="demo-item__label">.w_q{{ step }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h3>Height</h3>
+    <div class="demo-row">
+        {% for step in [24, 32, 48, 64, 96] %}
+        <div class="demo-item">
+            <div class="size-box w_q24 h_q{{ step }}"></div>
+            <span class="demo-item__label">.h_q{{ step }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="code-block">&lt;div class="<span class="class">w_q64 h_q48</span>"&gt;64×48 pixels&lt;/div&gt;
+        &lt;div class="<span class="class">min_w_q128 max_w_q256</span>"&gt;Min 128px, Max 256px&lt;/div&gt;</div>
+</section>

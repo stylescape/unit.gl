@@ -1,0 +1,45 @@
+<!-- Best Practices -->
+<section>
+    <h2>Best Practices</h2>
+
+    <div class="best-practices">
+        <div class="best-practice">
+            <h4>✓ Use semantic names</h4>
+            <p>Always use the <code>z()</code> function with meaningful layer names. Never hardcode z-index values.
+            </p>
+        </div>
+
+        <div class="best-practice">
+            <h4>✓ Respect the hierarchy</h4>
+            <p>Follow the layer order: canvas → content → interface → modal → guides. Don't skip layers without
+                reason.
+            </p>
+        </div>
+
+        <div class="best-practice">
+            <h4>✓ Use offsets sparingly</h4>
+            <p>When you need relative stacking, use small offsets (+1 to +10). If you need larger gaps, consider
+                adding
+                a custom layer.</p>
+        </div>
+
+        <div class="best-practice">
+            <h4>✓ Document custom layers</h4>
+            <p>If you add custom layers to <code>$layer_map</code>, document their purpose and position in the
+                stack.
+            </p>
+        </div>
+
+        <div class="best-practice">
+            <h4>✗ Avoid z-index: 9999</h4>
+            <p>The "make it bigger" approach leads to unmaintainable code. Use the layer system instead.</p>
+        </div>
+
+        <div class="best-practice">
+            <h4>✗ Don't create stacking context chaos</h4>
+            <p>Remember that <code>position: relative/absolute/fixed</code> with z-index creates new stacking
+                contexts.
+                Plan accordingly.</p>
+        </div>
+    </div>
+</section>

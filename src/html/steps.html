@@ -1,0 +1,724 @@
+
+    <!DOCTYPE html>
+    <html lang="en" data-theme="light">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description"
+            content="A precision-based design system built on the Kyū (Q) unit for consistent, scalable spacing and typography." />
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+        <title>Step System — unit.gl</title>
+
+        
+        <link rel="stylesheet" href="/css/unit.gl.css" />
+        <link rel="stylesheet" href="/css/unit.gl.docs.css" />
+
+        
+        <script type="module" src="/js/unit.gl.js"></script>
+        <script src="/js/unit.gl.docs.js"></script>
+
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+            rel="stylesheet">
+    </head>
+
+    <body>
+        
+        <a href="#main" class="skip-link">Skip to main content</a>
+
+        
+
+
+<div class="nav-wrapper">
+    <nav class="nav" aria-label="Main navigation">
+        <div class="nav__inner">
+            
+            <a href="index.html" class="nav__logo" >
+                <span class="nav__logo-text">unit.gl</span>
+                <span class="nav__version">1.0.0</span>
+            </a>
+
+            
+            <button type="button" class="nav__mobile-toggle" id="sidebar-toggle" aria-expanded="false"
+                aria-controls="sidebar" aria-label="Toggle navigation menu">
+                
+<svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2">
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="18" x2="21" y2="18" />
+</svg>
+
+                
+<svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2">
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+</svg>
+
+            </button>
+
+            <div class="nav__right">
+                
+                <div class="grid-controls" aria-label="Grid overlay controls">
+                    <button type="button" data-toggle="baseline" title="Toggle baseline grid" aria-pressed="false">
+                        
+<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+    <line x1="0" y1="3.5" x2="14" y2="3.5" />
+    <line x1="0" y1="7" x2="14" y2="7" />
+    <line x1="0" y1="10.5" x2="14" y2="10.5" />
+</svg>
+
+                        <span>Baseline</span>
+                    </button>
+                    <button type="button" data-toggle="graph" title="Toggle graph grid" aria-pressed="false">
+                        
+<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+    <rect x="1" y="1" width="12" height="12" />
+    <line x1="7" y1="1" x2="7" y2="13" />
+    <line x1="1" y1="7" x2="13" y2="7" />
+</svg>
+
+                        <span>Graph</span>
+                    </button>
+                </div>
+
+                
+                <button type="button" class="theme-toggle" data-toggle="theme" title="Toggle dark mode"
+                    aria-label="Toggle dark mode">
+                    
+<svg class="theme-icon theme-icon--light" width="16" height="16" viewBox="0 0 16 16"
+    fill="currentColor">
+    <path
+        d="M8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zm7-5a.75.75 0 00-.75-.75h-1.5a.75.75 0 000 1.5h1.5A.75.75 0 0015 8zM3 8a.75.75 0 00-.75-.75H.75a.75.75 0 000 1.5h1.5A.75.75 0 003 8zm9.536-4.536a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 001.06 1.061l1.061-1.06a.75.75 0 000-1.061zm-9.072 9.072a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 101.06 1.061l1.061-1.06a.75.75 0 000-1.061zm9.072 0a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 101.061-1.06l-1.06-1.061zm-9.072-9.072a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 001.061-1.06l-1.06-1.061z" />
+</svg>
+
+                    
+<svg class="theme-icon theme-icon--dark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+    <path d="M6.2 1A6.98 6.98 0 008 7a6.98 6.98 0 00-1.8 6A7 7 0 116.2 1z" />
+</svg>
+
+                </button>
+
+                
+                <a href="https://github.com/stylescape/unit.gl" class="nav__github" target="_blank"
+                    rel="noopener noreferrer" title="View on GitHub" aria-label="View on GitHub (opens in new tab)">
+                    
+<svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+    <path
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+</svg>
+
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+        
+
+<div class="guide--layer guide--graph_centered" data-grid="graph"></div>
+<div class="guide--layer guide--baseline" data-grid="baseline"></div>
+
+
+        <div class="docs-layout">
+            
+
+
+
+
+
+
+
+
+
+
+
+
+<aside class="sidebar" id="sidebar" aria-label="Documentation navigation">
+    <nav class="sidebar__nav">
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">Learn</h3>
+            <ul class="sidebar__list">
+                
+                <li>
+                    <a href="getting-started.html"
+                        class="sidebar__link" >
+                        Getting Started
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="core-concepts.html"
+                        class="sidebar__link" >
+                        Core Concepts
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="steps.html"
+                        class="sidebar__link" >
+                        9-Step Scale
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="configuration.html"
+                        class="sidebar__link" >
+                        Configuration
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">Core</h3>
+            <ul class="sidebar__list">
+                
+                <li>
+                    <a href="unit.html"
+                        class="sidebar__link" >
+                        Unit
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+
+
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">Framework</h3>
+            <ul class="sidebar__list">
+                
+                <li>
+                    <a href="layers.html"
+                        class="sidebar__link" >
+                        Layers
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="scale.html"
+                        class="sidebar__link" >
+                        Scale
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="breakpoints.html"
+                        class="sidebar__link" >
+                        Breakpoints
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="device.html"
+                        class="sidebar__link" >
+                        Devices
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="paper.html"
+                        class="sidebar__link" >
+                        Formats
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="utilities.html"
+                        class="sidebar__link" >
+                        Utilities
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="ratio.html"
+                        class="sidebar__link" >
+                        Ratios
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="lorem.html"
+                        class="sidebar__link" >
+                        Typography
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+
+
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">API Reference</h3>
+            <ul class="sidebar__list">
+                
+                <li>
+                    <a href="functions.html"
+                        class="sidebar__link" >
+                        Functions
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="mixins.html"
+                        class="sidebar__link" >
+                        Mixins
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="density.html"
+                        class="sidebar__link" >
+                        Density
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/sassdoc/"
+                        class="sidebar__link" >
+                        SassDoc
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+
+        
+        <div class="sidebar__section">
+            <h3 class="sidebar__heading">About</h3>
+            <ul class="sidebar__list">
+                
+                <li>
+                    <a href="background.html"
+                        class="sidebar__link" >
+                        Background
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+</aside>
+
+
+            <div class="docs-content">
+                <header class="header">
+<p class="eyebrow">Core Concepts</p>
+<h1>9-Step Scale</h1>
+<p class="lead">A universal naming system for responsive and tiered values across unit.gl. From ultra-small (us) to ultra-large (ul), these 9 steps provide consistent semantic keys for breakpoints, spacing, typography, and more.</p>
+                </header>
+
+                <main id="main" role="main">
+                    
+                    <noscript>
+                        <div class="noscript-warning">
+                            <strong>JavaScript Required:</strong> Some interactive features on this page require
+                            JavaScript
+                            to function properly.
+                        </div>
+                    </noscript>
+
+<div class="page--steps">
+<section>
+    <h2>Overview</h2>
+    <p>The 9-step scale provides a consistent vocabulary for expressing progressive values throughout unit.gl. Rather than arbitrary names or magic numbers, every map uses the same semantic keys:</p>
+
+    <div class="step-overview">
+        <div class="step-scale">
+            
+            
+            <div class="step-item" data-step="us">
+                <div class="step-key"><code>us</code></div>
+                <div class="step-name">Ultra Small</div>
+                <div class="step-position">Step 1</div>
+            </div>
+            
+            <div class="step-item" data-step="ss">
+                <div class="step-key"><code>ss</code></div>
+                <div class="step-name">Super Small</div>
+                <div class="step-position">Step 2</div>
+            </div>
+            
+            <div class="step-item" data-step="xs">
+                <div class="step-key"><code>xs</code></div>
+                <div class="step-name">Extra Small</div>
+                <div class="step-position">Step 3</div>
+            </div>
+            
+            <div class="step-item" data-step="sm">
+                <div class="step-key"><code>sm</code></div>
+                <div class="step-name">Small</div>
+                <div class="step-position">Step 4</div>
+            </div>
+            
+            <div class="step-item" data-step="md">
+                <div class="step-key"><code>md</code></div>
+                <div class="step-name">Medium</div>
+                <div class="step-position">Step 5</div>
+            </div>
+            
+            <div class="step-item" data-step="lg">
+                <div class="step-key"><code>lg</code></div>
+                <div class="step-name">Large</div>
+                <div class="step-position">Step 6</div>
+            </div>
+            
+            <div class="step-item" data-step="xl">
+                <div class="step-key"><code>xl</code></div>
+                <div class="step-name">Extra Large</div>
+                <div class="step-position">Step 7</div>
+            </div>
+            
+            <div class="step-item" data-step="sl">
+                <div class="step-key"><code>sl</code></div>
+                <div class="step-name">Super Large</div>
+                <div class="step-position">Step 8</div>
+            </div>
+            
+            <div class="step-item" data-step="ul">
+                <div class="step-key"><code>ul</code></div>
+                <div class="step-name">Ultra Large</div>
+                <div class="step-position">Step 9</div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Naming Convention</h2>
+
+    <p>The naming follows a symmetric pattern around the center (<code>md</code>):</p>
+
+    <table class="step-table">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Full Name</th>
+                <th>Pattern</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>us</code></td>
+                <td>Ultra Small</td>
+                <td>u + s</td>
+                <td>Smallest tier, compact contexts</td>
+            </tr>
+            <tr>
+                <td><code>ss</code></td>
+                <td>Super Small</td>
+                <td>s + s</td>
+                <td>Very small, constrained contexts</td>
+            </tr>
+            <tr>
+                <td><code>xs</code></td>
+                <td>Extra Small</td>
+                <td>x + s</td>
+                <td>Below small threshold</td>
+            </tr>
+            <tr>
+                <td><code>sm</code></td>
+                <td>Small</td>
+                <td>sm</td>
+                <td>Small but comfortable</td>
+            </tr>
+            <tr class="step-center">
+                <td><code>md</code></td>
+                <td>Medium</td>
+                <td>md</td>
+                <td>Default / baseline value</td>
+            </tr>
+            <tr>
+                <td><code>lg</code></td>
+                <td>Large</td>
+                <td>lg</td>
+                <td>Above default, spacious</td>
+            </tr>
+            <tr>
+                <td><code>xl</code></td>
+                <td>Extra Large</td>
+                <td>x + l</td>
+                <td>Above large threshold</td>
+            </tr>
+            <tr>
+                <td><code>sl</code></td>
+                <td>Super Large</td>
+                <td>s + l</td>
+                <td>Very large, expansive contexts</td>
+            </tr>
+            <tr>
+                <td><code>ul</code></td>
+                <td>Ultra Large</td>
+                <td>u + l</td>
+                <td>Largest tier, maximum scale</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alert alert--tip">
+        <div class="alert__title">Symmetry</div>
+        <p>Notice how <code>us</code>/<code>ul</code>, <code>ss</code>/<code>sl</code>, <code>xs</code>/<code>xl</code>, and <code>sm</code>/<code>lg</code> mirror each other around <code>md</code>. This makes the scale intuitive and predictable.</p>
+    </div>
+</section>
+
+<section>
+    <h2>Usage in Maps</h2>
+
+    <p>The 9-step keys are used consistently across unit.gl:</p>
+
+    <div class="usage-grid">
+        <div class="usage-card">
+            <h3>Breakpoints</h3>
+            <p>Viewport width thresholds for responsive design.</p>
+            <code>$breakpoints: (us: 240px, ss: 360px, ...)</code>
+            <a href="breakpoints.html" class="usage-link">View Breakpoints →</a>
+        </div>
+
+        <div class="usage-card">
+            <h3>Container Widths</h3>
+            <p>Maximum widths for layout containers.</p>
+            <code>$containers: (us: 100%, ss: 100%, ...)</code>
+        </div>
+
+        <div class="usage-card">
+            <h3>Spacing Scale</h3>
+            <p>Margin and padding multipliers.</p>
+            <code>$spacing: (us: 4px, ss: 8px, ...)</code>
+        </div>
+
+        <div class="usage-card">
+            <h3>Type Scale</h3>
+            <p>Font sizes for responsive typography.</p>
+            <code>$type-scale: (us: 12px, ss: 14px, ...)</code>
+        </div>
+
+        <div class="usage-card">
+            <h3>Icon Sizes</h3>
+            <p>Standard icon dimensions.</p>
+            <code>$icon-sizes: (us: 12px, ss: 16px, ...)</code>
+        </div>
+
+        <div class="usage-card">
+            <h3>Border Radius</h3>
+            <p>Corner rounding scales.</p>
+            <code>$radii: (us: 2px, ss: 4px, ...)</code>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Q Format Alignment</h2>
+
+    <p>When used for breakpoints, the 9 steps align with Q format paper sizes. The <strong>P</strong> (Portrait) and <strong>L</strong> (Landscape) designations indicate orientation:</p>
+
+    <table class="step-table">
+        <thead>
+            <tr>
+                <th>Step</th>
+                <th>Q Format</th>
+                <th>Physical Size</th>
+                <th>Pixel Value</th>
+                <th>Typical Device</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            
+            <tr>
+                <td><code>us</code></td>
+                <td><code>Q07P</code></td>
+                <td>60mm</td>
+                <td><code>240px</code></td>
+                <td>Compact / Fold</td>
+            </tr>
+            
+            <tr>
+                <td><code>ss</code></td>
+                <td><code>Q06P</code></td>
+                <td>90mm</td>
+                <td><code>360px</code></td>
+                <td>Phones</td>
+            </tr>
+            
+            <tr>
+                <td><code>xs</code></td>
+                <td><code>Q05P</code></td>
+                <td>135mm</td>
+                <td><code>540px</code></td>
+                <td>Large phones</td>
+            </tr>
+            
+            <tr>
+                <td><code>sm</code></td>
+                <td><code>Q04P</code></td>
+                <td>180mm</td>
+                <td><code>720px</code></td>
+                <td>Tablets</td>
+            </tr>
+            
+            <tr>
+                <td><code>md</code></td>
+                <td><code>Q04L</code></td>
+                <td>270mm</td>
+                <td><code>1080px</code></td>
+                <td>Laptops</td>
+            </tr>
+            
+            <tr>
+                <td><code>lg</code></td>
+                <td><code>Q03L</code></td>
+                <td>360mm</td>
+                <td><code>1440px</code></td>
+                <td>Desktops</td>
+            </tr>
+            
+            <tr>
+                <td><code>xl</code></td>
+                <td><code>Q02L</code></td>
+                <td>540mm</td>
+                <td><code>2160px</code></td>
+                <td>QHD displays</td>
+            </tr>
+            
+            <tr>
+                <td><code>sl</code></td>
+                <td><code>Q01L</code></td>
+                <td>720mm</td>
+                <td><code>2880px</code></td>
+                <td>4K displays</td>
+            </tr>
+            
+            <tr>
+                <td><code>ul</code></td>
+                <td><code>Q00L</code></td>
+                <td>1080mm</td>
+                <td><code>4320px</code></td>
+                <td>5K+ displays</td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+    <div class="alert alert--info">
+        <div class="alert__title">Physical-to-Digital</div>
+        <p>All pixel values are derived from physical millimeters using the 4× multiplier (1mm = 4px at 96dpi). This ensures consistency between print and digital design.</p>
+    </div>
+</section>
+
+<section>
+    <h2>SCSS API</h2>
+
+    <h3>Step Keys List</h3>
+    <p>Access all step keys as a list:</p>
+
+    <pre><code class="language-scss">@use "unit.gl" as unit;
+
+// Get all step keys
+$steps: (us, ss, xs, sm, md, lg, xl, sl, ul);
+
+// Loop through steps
+@each $step in $steps {
+    .size-#{$step} {
+        // Generate classes for each step
+    }
+}</code></pre>
+
+    <h3>Map Access</h3>
+    <p>Access values from any step-based map:</p>
+
+    <pre><code class="language-scss">@use "sass:map";
+@use "unit.gl" as unit;
+
+// Get a specific breakpoint
+$tablet-bp: map.get(unit.$breakpoints, sm); // 720px
+
+// Get a specific spacing value
+$large-space: map.get(unit.$spacing, lg);
+
+// Use in media queries
+@media (min-width: map.get(unit.$breakpoints, md)) {
+    // Laptop and up styles
+}</code></pre>
+
+    <h3>Responsive Utilities</h3>
+    <p>Generate responsive variants using step prefixes:</p>
+
+    <pre><code class="language-scss">// Output: .us_hidden, .ss_hidden, .xs_hidden, etc.
+@each $step in $steps {
+    .#{$step}_hidden {
+        @media (min-width: map.get($breakpoints, $step)) {
+            display: none;
+        }
+    }
+}</code></pre>
+</section>
+
+<section>
+    <h2>Design Rationale</h2>
+
+    <div class="rationale-grid">
+        <div class="rationale-item">
+            <h3>9 Steps, Not 5</h3>
+            <p>Traditional frameworks use 5 breakpoints (xs, sm, md, lg, xl). Our 9-step system adds finer granularity for modern device diversity—from foldables to 5K displays.</p>
+        </div>
+
+        <div class="rationale-item">
+            <h3>Semantic, Not Numeric</h3>
+            <p>Using <code>sm</code> instead of <code>576px</code> decouples intent from implementation. Values can change; semantics remain stable.</p>
+        </div>
+
+        <div class="rationale-item">
+            <h3>Consistent Vocabulary</h3>
+            <p>The same keys work for breakpoints, spacing, typography, and any tiered scale. Learn once, apply everywhere.</p>
+        </div>
+
+        <div class="rationale-item">
+            <h3>Physical Foundation</h3>
+            <p>Q format alignment bridges physical and digital design, ensuring proportions feel natural across media.</p>
+        </div>
+    </div>
+</section>
+
+</div>
+                </main>
+
+                
+
+<footer class="footer">
+    <div class="footer__content">
+        <div class="footer__left">
+            <span class="footer__brand">unit.gl</span>
+            <span class="footer__tagline">Dynamic Layout Engine</span>
+        </div>
+        <div class="footer__right">
+            <div class="footer__links">
+                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank">GitHub</a>
+                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank">npm</a>
+                <a href="https://www.scape.agency" class="footer__link" target="_blank">Scape Agency</a>
+            </div>
+            <span class="footer__copyright">© 2024 Scape Agency. MIT License.</span>
+        </div>
+    </div>
+</footer>
+
+            </div>
+        </div>
+
+    </body>
+
+    </html>

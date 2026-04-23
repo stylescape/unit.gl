@@ -1,0 +1,27 @@
+<section>
+    <h2>Overview</h2>
+    <p>The 9-step scale provides a consistent vocabulary for expressing progressive values throughout unit.gl. Rather than arbitrary names or magic numbers, every map uses the same semantic keys:</p>
+
+    <div class="step-overview">
+        <div class="step-scale">
+            {% set steps = [
+                {"key": "us", "name": "Ultra Small", "position": 1},
+                {"key": "ss", "name": "Super Small", "position": 2},
+                {"key": "xs", "name": "Extra Small", "position": 3},
+                {"key": "sm", "name": "Small", "position": 4},
+                {"key": "md", "name": "Medium", "position": 5},
+                {"key": "lg", "name": "Large", "position": 6},
+                {"key": "xl", "name": "Extra Large", "position": 7},
+                {"key": "sl", "name": "Super Large", "position": 8},
+                {"key": "ul", "name": "Ultra Large", "position": 9}
+            ] %}
+            {% for step in steps %}
+            <div class="step-item" data-step="{{ step.key }}">
+                <div class="step-key"><code>{{ step.key }}</code></div>
+                <div class="step-name">{{ step.name }}</div>
+                <div class="step-position">Step {{ step.position }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

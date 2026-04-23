@@ -10,94 +10,9 @@
 
 {%- block content %}
 
-<!-- Main Prose -->
-<section>
-    <h2>Long-Form Text</h2>
-
-    <div class="prose">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec gravida augue lorem, eget feugiat magna
-            posuere et. Praesent eget augue consequat, pulvinar massa vitae, luctus neque. Vivamus sed metus libero.
-            Cras egestas ornare mauris ac lacinia. Ut venenatis ante ut augue consectetur lacinia.</p>
-
-        <p>Vestibulum eget finibus quam, id imperdiet libero. Etiam laoreet luctus justo, nec congue purus consequat sit
-            amet. Nulla maximus orci a commodo viverra. Vivamus ultrices erat et est rhoncus aliquet ut non massa.
-            Quisque id sagittis purus. Proin non volutpat nisl, vitae egestas nisi.</p>
-
-        <p>Pellentesque placerat pellentesque dolor, vel eleifend magna maximus quis. Etiam euismod, augue vel pharetra
-            volutpat, arcu justo gravida orci, non maximus dolor lectus non sapien. Phasellus vitae gravida elit, at
-            rhoncus orci.</p>
-
-        <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec non
-            malesuada nibh, ut fermentum eros. Ut libero arcu, aliquam ut justo eu, condimentum posuere erat. Duis ac
-            mauris vulputate, tempor neque non, posuere orci.</p>
-    </div>
-</section>
-
-<!-- Quotation -->
-<section>
-    <h2>Quotation</h2>
-
-    <div class="text-sample text-sample--quote">
-        <blockquote>"The grid system is an aid, not a guarantee. It permits a number of possible uses and each designer
-            can look for a solution appropriate to his personal style."</blockquote>
-        <cite>— Josef Müller-Brockmann</cite>
-    </div>
-
-    <div class="text-sample text-sample--quote">
-        <blockquote>"Typography is what language looks like."</blockquote>
-        <cite>— Ellen Lupton</cite>
-    </div>
-</section>
-
-<!-- Type Comparison -->
-<section>
-    <h2>Line Height Comparison</h2>
-
-    <div class="type-comparison">
-        <div class="type-column">
-            <h4>Tight Leading (1.4)</h4>
-            <p style="line-height: 1.4;">Praesent tempor lorem quis viverra hendrerit. Nullam maximus semper
-                scelerisque. Suspendisse et mauris vitae enim pellentesque tristique. Nunc odio mi, porta eget quam non,
-                iaculis maximus nunc.</p>
-        </div>
-        <div class="type-column">
-            <h4>Comfortable Leading (1.75)</h4>
-            <p style="line-height: 1.75;">Praesent tempor lorem quis viverra hendrerit. Nullam maximus semper
-                scelerisque. Suspendisse et mauris vitae enim pellentesque tristique. Nunc odio mi, porta eget quam non,
-                iaculis maximus nunc.</p>
-        </div>
-    </div>
-
-    <div class="type-comparison">
-        <div class="type-column">
-            <h4>45 Characters</h4>
-            <p style="max-width: 45ch;">Duis tristique urna lorem, ut porta dolor ultricies a. Sed eu consectetur mi, a
-                maximus turpis.</p>
-        </div>
-        <div class="type-column">
-            <h4>75 Characters</h4>
-            <p style="max-width: 75ch;">Duis tristique urna lorem, ut porta dolor ultricies a. Sed eu consectetur mi, a
-                maximus turpis. Aenean interdum, velit semper facilisis tincidunt.</p>
-        </div>
-    </div>
-</section>
-
-<!-- Rhythm Test -->
-<section class="guide--baseline">
-    <h2>Rhythm Test</h2>
-    <p>This section has the baseline grid enabled. Observe how text aligns to the vertical rhythm.</p>
-
-    <div class="prose">
-        <p>Vestibulum tincidunt dui nec bibendum eleifend. Quisque rutrum, turpis ac fringilla tincidunt, felis sapien
-            faucibus diam, eleifend tristique nisl augue sed odio. Fusce sollicitudin libero lacinia sapien porta
-            elementum.</p>
-
-        <p>Donec id mauris auctor, rutrum metus laoreet, tincidunt nisl. Duis pulvinar rhoncus euismod. Suspendisse
-            condimentum augue vel pretium pharetra. Aliquam id vehicula dolor.</p>
-
-        <p>Vestibulum eu malesuada orci, accumsan faucibus lectus. In a ultricies nisi, non suscipit metus. Aliquam
-            aliquam ante finibus libero lobortis, eget ornare ex pharetra.</p>
-    </div>
-</section>
+{% include "sections/lorem/01-long-form-text.jinja" %}
+{% include "sections/lorem/02-quotation.jinja" %}
+{% include "sections/lorem/03-line-height-comparison.jinja" %}
+{% include "sections/lorem/04-rhythm-test.jinja" %}
 
 {%- endblock %}

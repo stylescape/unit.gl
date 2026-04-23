@@ -1,0 +1,40 @@
+<!-- Relative Positioning -->
+<section>
+    <h2>Relative Positioning</h2>
+
+    <p>Sometimes you need elements to stack relative to a layer rather than exactly on it. Use simple arithmetic
+        with
+        the <code>z()</code> function:</p>
+
+    <div class="code-block">
+        <pre><code>// Dropdown trigger and menu
+.dropdown-trigger {
+  z-index: z("content"); // 2000
+}
+
+.dropdown-menu {
+  z-index: z("content") + 10; // 2010
+}
+
+// Modal with backdrop
+.modal-backdrop {
+  z-index: z("modal") - 1; // 6999
+}
+
+.modal-dialog {
+  z-index: z("modal"); // 7000
+}
+
+// Nested cards
+.card { z-index: z("content"); }
+.card__overlay { z-index: z("content") + 1; }
+.card__actions { z-index: z("content") + 2; }</code></pre>
+    </div>
+
+    <div class="alert alert--tip">
+        <p class="alert__title">Tip</p>
+        <p>Use small offsets (+1, +5, +10) for related elements. The large gaps between layers (1000–3000 units)
+            give
+            you plenty of room.</p>
+    </div>
+</section>

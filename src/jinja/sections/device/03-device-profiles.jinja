@@ -1,0 +1,73 @@
+<section>
+    <h2>Device Profiles (<code>$devices</code> map)</h2>
+
+    <p class="device-muted">This list is a curated set from the SCSS map in <code>src/scss/maps/_device.scss</code>.
+        Matching is approximate: width range + DPR similarity.</p>
+
+    <div class="device-controls">
+        <label class="device-search" for="dev-filter">
+            <span class="device-search__label">Filter</span>
+            <input id="dev-filter" class="device-search__input" type="search"
+                placeholder="iphone_x, ipad_pro, galaxy_fold…" autocomplete="off" />
+        </label>
+
+        <div class="device-match">
+            <div class="device-match__label">Matches</div>
+            <div class="device-match__value"><span id="dev-matches">—</span></div>
+        </div>
+    </div>
+
+    {% set devices = [
+    {"key": "galaxy_fold", "min": 280, "max": 653, "dpr": 3.0, "type": "phone"},
+    {"key": "iphone_5", "min": 320, "max": 568, "dpr": 2.0, "type": "phone"},
+    {"key": "iphone_6", "min": 375, "max": 667, "dpr": 2.0, "type": "phone"},
+    {"key": "iphone_8", "min": 375, "max": 667, "dpr": 2.0, "type": "phone"},
+    {"key": "iphone_x", "min": 375, "max": 812, "dpr": 3.0, "type": "phone"},
+    {"key": "iphone_11", "min": 414, "max": 896, "dpr": 2.0, "type": "phone"},
+    {"key": "iphone_12", "min": 390, "max": 844, "dpr": 3.0, "type": "phone"},
+    {"key": "iphone_13", "min": 428, "max": 926, "dpr": 3.0, "type": "phone"},
+    {"key": "samsung_s10", "min": 360, "max": 760, "dpr": 3.0, "type": "phone"},
+    {"key": "samsung_s20", "min": 320, "max": 720, "dpr": 4.0, "type": "phone"},
+    {"key": "samsung_s21", "min": 320, "max": 780, "dpr": 3.0, "type": "phone"},
+    {"key": "google_pixel", "min": 411, "max": 731, "dpr": 2.6, "type": "phone"},
+    {"key": "google_pixel_5", "min": 393, "max": 851, "dpr": 3.0, "type": "phone"},
+    {"key": "surface_duo", "min": 540, "max": 720, "dpr": 2.5, "type": "phone"},
+
+    {"key": "ipad", "min": 768, "max": 1024, "dpr": 2.0, "type": "tablet"},
+    {"key": "ipad_mini", "min": 768, "max": 1024, "dpr": 2.0, "type": "tablet"},
+    {"key": "ipad_air", "min": 820, "max": 1180, "dpr": 2.0, "type": "tablet"},
+    {"key": "ipad_pro", "min": 1024, "max": 1366, "dpr": 2.0, "type": "tablet"},
+    {"key": "surface_pro", "min": 768, "max": 1366, "dpr": 2.0, "type": "tablet"},
+
+    {"key": "macbook_air", "min": 1440, "max": 2560, "dpr": 2.0, "type": "desktop"},
+    {"key": "macbook_pro", "min": 1680, "max": 3072, "dpr": 2.0, "type": "desktop"},
+    {"key": "imac", "min": 1920, "max": 5120, "dpr": 2.0, "type": "desktop"},
+    {"key": "dell_xps", "min": 1920, "max": 3840, "dpr": 2.0, "type": "desktop"}
+    ] %}
+
+    <table class="device-table">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Min</th>
+                <th>Max</th>
+                <th>DPR</th>
+                <th>Type</th>
+                <th>Match</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in devices %}
+            <tr class="device-row" data-key="{{ d.key }}" data-min="{{ d.min }}" data-max="{{ d.max }}"
+                data-dpr="{{ d.dpr }}" data-type="{{ d.type }}">
+                <td><code>{{ d.key }}</code></td>
+                <td><code>{{ d.min }}px</code></td>
+                <td><code>{{ d.max }}px</code></td>
+                <td><code>{{ d.dpr }}</code></td>
+                <td>{{ d.type }}</td>
+                <td><span class="device-badge" data-role="match">—</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>

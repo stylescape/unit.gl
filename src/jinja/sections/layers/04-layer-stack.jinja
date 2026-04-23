@@ -1,0 +1,36 @@
+<!-- The Layer Stack -->
+<section>
+    <h2>The Layer Stack</h2>
+
+    <p>The default layer stack provides five semantic layers with well-spaced z-index values. The large gaps
+        (1000–3000
+        units) between layers allow room for relative positioning without conflicts.</p>
+
+    <div class="layer-stack">
+        <div class="layer-stack__item layer-stack__item--guides">
+            <div class="layer-stack__name">guides</div>
+            <div class="layer-stack__value">z-index: 9998</div>
+            <div class="layer-stack__desc">Development overlays, grid guides, debug tools</div>
+        </div>
+        <div class="layer-stack__item layer-stack__item--modal">
+            <div class="layer-stack__name">modal</div>
+            <div class="layer-stack__value">z-index: 7000</div>
+            <div class="layer-stack__desc">Modal dialogs, lightboxes, fullscreen overlays</div>
+        </div>
+        <div class="layer-stack__item layer-stack__item--interface">
+            <div class="layer-stack__name">interface</div>
+            <div class="layer-stack__value">z-index: 4000</div>
+            <div class="layer-stack__desc">Fixed navigation, sticky headers, toolbars</div>
+        </div>
+        <div class="layer-stack__item layer-stack__item--content">
+            <div class="layer-stack__name">content</div>
+            <div class="layer-stack__value">z-index: 2000</div>
+            <div class="layer-stack__desc">Elevated content, cards, dropdowns, tooltips</div>
+        </div>
+        <div class="layer-stack__item layer-stack__item--canvas">
+            <div class="layer-stack__name">canvas</div>
+            <div class="layer-stack__value">z-index: −1000</div>
+            <div class="layer-stack__desc">Background elements, decorative patterns</div>
+        </div>
+    </div>
+</section>

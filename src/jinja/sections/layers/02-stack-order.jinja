@@ -1,0 +1,29 @@
+<!-- Stack Diagram -->
+<section>
+    <h2>Stack Order</h2>
+    <p>Visual representation of the layer stack. Elements are ordered from bottom (canvas) to top (guides). Higher
+        z-index values appear in front.</p>
+
+    <div class="stack-diagram">
+        <div class="stack-item stack-item--canvas">
+            <span>canvas</span>
+            <span class="stack-item__z">z-index: -1000</span>
+        </div>
+        <div class="stack-item stack-item--content">
+            <span>content</span>
+            <span class="stack-item__z">z-index: 2000</span>
+        </div>
+        <div class="stack-item stack-item--interface">
+            <span>interface</span>
+            <span class="stack-item__z">z-index: 4000</span>
+        </div>
+        <div class="stack-item stack-item--modal">
+            <span>modal</span>
+            <span class="stack-item__z">z-index: 7000</span>
+        </div>
+        <div class="stack-item stack-item--guides">
+            <span>guides</span>
+            <span class="stack-item__z">z-index: 9998</span>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,28 @@
+<!-- Introduction -->
+<section>
+    <h2>Overview</h2>
+
+    <p>Managing z-index values across a large project quickly becomes chaotic. The common approach of using
+        arbitrary
+        numbers like <code>z-index: 9999</code> leads to an arms race where values keep increasing without any logic
+        or
+        system.</p>
+
+    <p>unit.gl solves this with a <strong>semantic layering system</strong>. Instead of numbers, you use meaningful
+        names that describe the <em>purpose</em> of each layer. The <code>z()</code> function maps these names to
+        carefully structured z-index values.</p>
+
+    <div class="code-block">
+        <pre><code>@use "unit.gl" as *;
+
+// Instead of this...
+.modal { z-index: 9999; }
+.header { z-index: 999; }
+.dropdown { z-index: 100; }
+
+// Use semantic names
+.modal { z-index: z("modal"); } // 7000
+.header { z-index: z("interface"); } // 4000
+.dropdown { z-index: z("content"); } // 2000</code></pre>
+    </div>
+</section>

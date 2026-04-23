@@ -1,0 +1,42 @@
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">&lt;!-- Apply ratio class to container --&gt;</span>
+        &lt;div class="<span class="class">ratio_16x9</span>"&gt;
+        &lt;img src="video-thumb.jpg" alt="Video"&gt;
+        &lt;/div&gt;
+
+        <span class="comment">&lt;!-- With responsive images --&gt;</span>
+        &lt;div class="<span class="class">ratio_4x3</span>"&gt;
+        &lt;picture&gt;
+        &lt;source srcset="large.webp" media="(min-width: 1024px)"&gt;
+        &lt;img src="small.jpg" alt="Photo"&gt;
+        &lt;/picture&gt;
+        &lt;/div&gt;
+
+        <span class="comment">&lt;!-- Video embed --&gt;</span>
+        &lt;div class="<span class="class">ratio_16x9</span>"&gt;
+        &lt;iframe src="https://youtube.com/embed/..."&gt;&lt;/iframe&gt;
+        &lt;/div&gt;
+    </div>
+
+    <h3>SCSS Usage</h3>
+
+    <div class="code-block"><span class="comment">// Using ratio variables</span>
+        @use "unit.gl" as *;
+
+        .hero-image {
+        aspect-ratio: $ratio-16x9;
+        }
+
+        .profile-avatar {
+        aspect-ratio: $ratio-1x1;
+        border-radius: 50%;
+        }
+
+        <span class="comment">// Custom ratio with math</span>
+        .golden-container {
+        aspect-ratio: 1 / 1.618; <span class="comment">// Golden ratio</span>
+        }
+    </div>
+</section>

@@ -1,0 +1,24 @@
+<!-- Accessibility & Scaling -->
+<section>
+    <h2>Accessibility & Responsive Scaling</h2>
+
+    <p>One of the key advantages of Q units is that they respect user preferences and scale across different devices:
+    </p>
+
+    <div class="code-block">
+        <pre><code>// Q units automatically scale with the html font-size
+// User sets 18px font size: q(16) becomes 1.125rem (18px)
+// User sets 14px font size: q(16) becomes 0.875rem (14px)
+
+// Your CSS stays the same
+.component {
+  padding: q(16); // Always 1rem, but scales with user preference
+}</code></pre>
+    </div>
+
+    <div class="alert alert--tip">
+        <p class="alert__title">Browser Zoom & User Preferences</p>
+        <p>REM-based units respect browser zoom levels and user font-size preferences, making your designs accessible to
+            users who need larger text.</p>
+    </div>
+</section>

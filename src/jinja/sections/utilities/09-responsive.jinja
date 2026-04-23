@@ -1,0 +1,40 @@
+<!-- Responsive -->
+<section>
+    <h2>Responsive Variants</h2>
+    <p>All utilities support responsive breakpoints. Resize the browser to see changes.</p>
+
+    <div style="margin: calc(var(--grid-unit) * 2) 0 calc(var(--grid-unit) * 3);">
+        <span class="breakpoint-tag">us 240px</span>
+        <span class="breakpoint-tag">ss 360px</span>
+        <span class="breakpoint-tag">xs 540px</span>
+        <span class="breakpoint-tag">sm 720px</span>
+        <span class="breakpoint-tag">md 1440px</span>
+        <span class="breakpoint-tag">lg 2160px</span>
+        <span class="breakpoint-tag">xl 2880px</span>
+        <span class="breakpoint-tag">ul 4320px</span>
+    </div>
+
+    <h3>Responsive Padding</h3>
+    <div class="responsive-demo p_q8 ss_p_q10 sm_p_q12 md_p_q16 lg_p_q24 xl_p_q32">
+        <p>Padding grows with viewport</p>
+        <p style="font-size: 0.6875rem; opacity: 0.6; font-family: var(--font-mono);">.p_q8 .ss_p_q10 .sm_p_q12
+            .md_p_q16 .lg_p_q24 .xl_p_q32</p>
+    </div>
+
+    <h3 style="margin-top: calc(var(--grid-unit) * 4);">Responsive Width</h3>
+    <div class="responsive-demo w_q128 sm_w_q160 md_w_q192 lg_w_q224 xl_w_q256 p_q8">
+        <p style="font-size: 0.6875rem; font-family: var(--font-mono);">Width grows</p>
+    </div>
+
+    <div class="code-block">
+        <pre><code>&lt;!-- Mobile first: starts small, grows on larger screens --&gt;
+&lt;div class="p_q8 sm_p_q12 md_p_q16 lg_p_q24"&gt;
+  Responsive padding
+&lt;/div&gt;
+
+&lt;!-- Different gaps at different breakpoints --&gt;
+&lt;div class="gap_q4 md_gap_q8 lg_gap_q16" style="display: flex;"&gt;
+  Responsive gap
+&lt;/div&gt;</code></pre>
+    </div>
+</section>

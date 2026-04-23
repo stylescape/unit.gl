@@ -1,0 +1,47 @@
+<!-- The z() Function -->
+<section>
+    <h2>The z() Function</h2>
+
+    <div class="api-signature">z($layer)</div>
+
+    <p>Returns the z-index value for the specified layer name.</p>
+
+    <h3>Parameters</h3>
+
+    <div class="api-param">
+        <code>$layer</code>
+        <span class="api-param__type">String</span>
+        <span class="api-param__desc">The name of the layer (e.g., "modal", "interface", "content")</span>
+    </div>
+
+    <h3>Returns</h3>
+    <p><code>Number</code> — The z-index value associated with the layer, or <code>null</code> if not found.</p>
+
+    <h3>Example</h3>
+
+    <div class="code-block">
+        <pre><code>@use "unit.gl" as *;
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: z("modal"); // 7000
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: z("interface"); // 4000
+}
+
+.card {
+  position: relative;
+  z-index: z("content"); // 2000
+}
+
+.background-pattern {
+  position: absolute;
+  z-index: z("canvas"); // -1000
+}</code></pre>
+    </div>
+</section>

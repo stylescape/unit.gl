@@ -27,6 +27,9 @@ stages:
                   dirPath: "./dist"
                   tolerant: true
 
+            # Note: TypeScript build is handled by npm script after kist runs
+            # See package.json: "build": "npx kist ... && npm run build:ts"
+
             # Process SCSS to CSS (library styles)
             # -----------------------------------------------------------------
             - name: ProcessMainStylesMinified

@@ -158,21 +158,23 @@ $q_formats: (
 $breakpoints: (
     // Portrait Q formats → Mobile/Tablet devices (held vertically)
     us: mm_to_px(60),
-    // Q07 Portrait width  →  240px - Compact/Fold phones
+    // Q07P Portrait width →  240px - Compact/Fold phones
     ss: mm_to_px(90),
-    // Q06 Portrait width  →  360px - Phones
+    // Q06P Portrait width →  360px - Phones
     xs: mm_to_px(135),
-    // Q05 Portrait width  →  540px - Large phones/Small tablets
+    // Q05P Portrait width →  540px - Large phones/Small tablets
     sm: mm_to_px(180),
-    // Q04 Portrait width  →  720px - Tablets/Small laptops
+    // Q04P Portrait width →  720px - Tablets
     // Landscape Q formats → Desktop devices (horizontal displays)
-    md: mm_to_px(360),
-    // Q03 Landscape width → 1440px - Laptops/Desktops
-    lg: mm_to_px(540),
-    // Q02 Landscape width → 2160px - Ultrawide/QHD
-    xl: mm_to_px(720),
-    // Q01 Landscape width → 2880px - 4K displays
-    ul: mm_to_px(1080) // Q00 Landscape width → 4320px - 5K+ displays (ultralarge)
+    md: mm_to_px(270),
+    // Q04L Landscape width → 1080px - Laptops
+    lg: mm_to_px(360),
+    // Q03L Landscape width → 1440px - Desktops
+    xl: mm_to_px(540),
+    // Q02L Landscape width → 2160px - QHD desktops
+    sl: mm_to_px(720),
+    // Q01L Landscape width → 2880px - 4K displays
+    ul: mm_to_px(1080) // Q00L Landscape width → 4320px - 5K+ displays (ultralarge)
 ) !default;
 
 ///
@@ -290,6 +292,14 @@ $media_lg: map.get($breakpoints, lg) !default;
 /// @type Length
 ///
 $media_xl: map.get($breakpoints, xl) !default;
+
+///
+/// Exposes the value of the `sl` breakpoint for direct access.
+///
+/// @name $media_sl
+/// @type Length
+///
+$media_sl: map.get($breakpoints, sl) !default;
 
 ///
 /// Exposes the value of the `ul` breakpoint for direct access.

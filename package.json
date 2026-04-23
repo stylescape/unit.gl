@@ -46,8 +46,9 @@
     "sass": "src/scss/index.scss",
     "style": "dist/css/unit.gl.css",
     "scripts": {
-        "build": "npx kist --config ./kist.yml && npm run build:ts",
+        "build": "npx kist --config ./kist.yml && npm run build:ts && npm run docs:scss",
         "build:ts": "tsup",
+        "docs:scss": "sassdoc src/scss --config .sassdocrc",
         "watch": "npx kist --config ./kist.yml --live",
         "dev": "vite"
     },
@@ -62,6 +63,7 @@
         "micromatch": "^4.0.8",
         "nunjucks": "^3.2.4",
         "sass": "^1.97.3",
+        "sassdoc": "^2.7.4",
         "ts-node": "^10.9.2",
         "tsup": "^8.5.1",
         "typescript": "^5.9.3",

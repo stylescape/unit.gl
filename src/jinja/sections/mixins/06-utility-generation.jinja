@@ -1,0 +1,33 @@
+<section>
+    <h2>Utility Generation</h2>
+    <p>Mixins for generating utility classes (used internally by utility classes module).</p>
+
+    <h3>generate_spacing_utilities()</h3>
+    <p>Generates padding and margin utilities for a scale.</p>
+
+    <div class="api-signature">@include generate_spacing_utilities($scale: $q_steps, $prefix: "")</div>
+
+    <div class="code-block"><span class="comment">// Generate utilities for all q-steps</span>
+        @include generate_spacing_utilities();
+
+        <span class="comment">// Generates classes like:</span>
+        <span class="comment">// .p_q0, .p_q1, .p_q2, .p_q4...</span>
+        <span class="comment">// .m_q0, .m_q1, .m_q2, .m_q4...</span>
+        <span class="comment">// .pt_q8, .pb_q8, .pl_q8, .pr_q8...</span>
+    </div>
+
+    <h3>generate_size_utilities()</h3>
+    <p>Generates width and height utilities.</p>
+
+    <div class="api-signature">@include generate_size_utilities($scale: $q_steps)</div>
+
+    <h3>generate_responsive_utilities()</h3>
+    <p>Generates responsive variants for all utility classes.</p>
+
+    <div class="api-signature">@include generate_responsive_utilities()</div>
+
+    <div class="code-block"><span class="comment">// Generates responsive prefixed classes:</span>
+        <span class="comment">// .sm\:p_q16, .md\:p_q16, .lg\:p_q16...</span>
+        <span class="comment">// .sm\:w_q64, .md\:w_q64, .lg\:w_q64...</span>
+    </div>
+</section>

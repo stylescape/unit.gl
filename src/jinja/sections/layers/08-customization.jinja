@@ -1,0 +1,34 @@
+<!-- Customization -->
+<section>
+    <h2>Customization</h2>
+
+    <p>You can extend or override the default layer map to fit your project's needs:</p>
+
+    <div class="code-block">
+        <pre><code>// Override $layer_map before importing unit.gl
+$layer_map: (
+  "canvas": -1000,
+  "background": 0,
+  "content": 2000,
+  "dropdown": 3000, // Custom layer
+  "sticky": 3500, // Custom layer
+  "interface": 4000,
+  "overlay": 5000, // Custom layer
+  "modal": 7000,
+  "toast": 8000, // Custom layer
+  "tooltip": 8500, // Custom layer
+  "guides": 9998,
+);
+
+@use "unit.gl" as * with ($layer_map: $layer_map);
+
+// Now use your custom layers
+.toast-notification {
+  z-index: z("toast"); // 8000
+}
+
+.tooltip {
+  z-index: z("tooltip"); // 8500
+}</code></pre>
+    </div>
+</section>

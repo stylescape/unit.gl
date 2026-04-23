@@ -1,0 +1,70 @@
+<section>
+    <h2>Display & Layout Mixins</h2>
+
+    <h3>flex_center()</h3>
+    <p>Centers content using flexbox.</p>
+
+    <div class="api-signature">@include flex_center($direction: row)</div>
+
+    <div class="code-block">.centered {
+        @include flex_center();
+        <span class="comment">// Output:</span>
+        <span class="comment">// display: flex;</span>
+        <span class="comment">// justify-content: center;</span>
+        <span class="comment">// align-items: center;</span>
+        }
+
+        .vertical-center {
+        @include flex_center(column);
+        }
+    </div>
+
+    <h3>absolute_fill()</h3>
+    <p>Makes an element fill its positioned parent.</p>
+
+    <div class="api-signature">@include absolute_fill()</div>
+
+    <div class="code-block">.overlay {
+        @include absolute_fill();
+        <span class="comment">// Output:</span>
+        <span class="comment">// position: absolute;</span>
+        <span class="comment">// top: 0;</span>
+        <span class="comment">// right: 0;</span>
+        <span class="comment">// bottom: 0;</span>
+        <span class="comment">// left: 0;</span>
+        }
+    </div>
+
+    <h3>truncate()</h3>
+    <p>Truncates text with an ellipsis.</p>
+
+    <div class="api-signature">@include truncate($lines: 1)</div>
+
+    <div class="code-block">.single-line {
+        @include truncate();
+        <span class="comment">// Single line with ellipsis</span>
+        }
+
+        .multi-line {
+        @include truncate(3);
+        <span class="comment">// Max 3 lines, then ellipsis</span>
+        }
+    </div>
+
+    <h3>sr_only()</h3>
+    <p>Hides element visually while keeping it accessible to screen readers.</p>
+
+    <div class="api-signature">@include sr_only()</div>
+
+    <div class="code-block">.skip-link {
+        @include sr_only();
+
+        &:focus {
+        <span class="comment">// Make visible when focused</span>
+        position: static;
+        width: auto;
+        height: auto;
+        }
+        }
+    </div>
+</section>

@@ -1,0 +1,51 @@
+<!-- Real-World Examples -->
+<section>
+    <h2>Real-World Examples</h2>
+
+    <h3>Button Spacing</h3>
+
+    <p>A typical button with consistent spacing:</p>
+
+    <div class="code-block">
+        <pre><code>.button {
+  padding: q(8) q(16); // 4px 8px padding
+  border-radius: q(4); // 1mm rounded corners
+  font-size: q(14); // Text sizing
+  gap: q(8); // Space between icon and text
+}</code></pre>
+    </div>
+
+    <h3>Card Component</h3>
+
+    <p>A card with proper spacing hierarchy:</p>
+
+    <div class="code-block">
+        <pre><code>.card {
+  padding: q(24); // 1.5rem inner padding
+  border-radius: q(8); // 2mm rounded corners
+  box-shadow: 0 q(1) q(3) rgba(0, 0, 0, 0.1);
+  margin-bottom: q(16); // Space between cards
+}
+
+.card__title {
+  margin-bottom: q(8); // Title spacing
+}
+
+.card__description {
+  margin-bottom: q(12); // Description spacing
+}</code></pre>
+    </div>
+
+    <h3>Grid Layout</h3>
+
+    <p>Consistent grid gaps using Q units:</p>
+
+    <div class="code-block">
+        <pre><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: q(16); // 8px gaps between items
+  padding: q(24); // Container padding
+}</code></pre>
+    </div>
+</section>

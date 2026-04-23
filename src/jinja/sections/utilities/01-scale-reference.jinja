@@ -1,0 +1,15 @@
+<!-- Scale Reference -->
+<section>
+    <h2>Q-Unit Scale</h2>
+    <p>Available multipliers from the curated scale. Each step is carefully chosen for visual harmony.</p>
+
+    <div style="margin-top: calc(var(--grid-unit) * 3);">
+        {% for step in [0, 1, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48, 64, 96, 128, 256] %}
+        <div class="scale-reference">
+            <span class="scale-reference__label">q({{ step }})</span>
+            <span class="scale-reference__label">{{ step }}px</span>
+            <div class="scale-bar w_q{{ step }}" style="max-width: 100%;"></div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
