@@ -201,7 +201,7 @@
 /// Generates utility classes for border-width properties on all sides,
 /// individual sides, and axis pairs (x/y).
 ///
-/// @name border-width-utilities
+/// @name border_width_utilities
 /// @param {Map} $steps [$q_steps] - Map of step names to Q-unit multipliers
 /// @output CSS classes:
 ///   - `.border_q{key}` - All sides
@@ -213,7 +213,7 @@
 ///   - `.border_y_q{key}` - Vertical (top + bottom)
 ///
 /// @example scss - Usage
-///   @include border-width-utilities();
+///   @include border_width_utilities();
 ///
 /// @example css - Generated output
 ///   .border_q1 { border-width: 1q; }
@@ -222,7 +222,7 @@
 ///
 /// @see $q_steps
 ///
-@mixin border-width-utilities($steps: $q_steps, $prefix: "") {
+@mixin border_width_utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
         .#{$prefix}border_q#{$key} {
             border-width: q($value);
@@ -257,7 +257,7 @@
 /// Generates utility classes for border-radius properties on all corners,
 /// individual corners, and side pairs (top/bottom/left/right edges).
 ///
-/// @name border-radius-utilities
+/// @name border_radius_utilities
 /// @param {Map} $steps [$q_steps] - Map of step names to Q-unit multipliers
 /// @output CSS classes:
 ///   - `.rounded_q{key}` - All corners
@@ -271,7 +271,7 @@
 ///   - `.rounded_bl_q{key}` - Bottom-left only
 ///
 /// @example scss - Usage
-///   @include border-radius-utilities();
+///   @include border_radius_utilities();
 ///
 /// @example css - Generated output
 ///   .rounded_q8 { border-radius: 8q; }
@@ -279,7 +279,7 @@
 ///
 /// @see $q_steps
 ///
-@mixin border-radius-utilities($steps: $q_steps, $prefix: "") {
+@mixin border_radius_utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
         .#{$prefix}rounded_q#{$key} {
             border-radius: q($value);
@@ -322,19 +322,19 @@
 /// Generates utility classes for outline-width properties.
 /// Outlines differ from borders in that they don't affect layout.
 ///
-/// @name outline-width-utilities
+/// @name outline_width_utilities
 /// @param {Map} $steps [$q_steps] - Map of step names to Q-unit multipliers
 /// @output CSS classes: `.outline_q{key}`
 ///
 /// @example scss - Usage
-///   @include outline-width-utilities();
+///   @include outline_width_utilities();
 ///
 /// @example css - Generated output
 ///   .outline_q2 { outline-width: 2q; }
 ///
 /// @see $q_steps
 ///
-@mixin outline-width-utilities($steps: $q_steps, $prefix: "") {
+@mixin outline_width_utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
         .#{$prefix}outline_q#{$key} {
             outline-width: q($value);
@@ -349,19 +349,19 @@
 /// Generates utility classes for outline-offset properties.
 /// Controls the space between the element's edge and its outline.
 ///
-/// @name outline-offset-utilities
+/// @name outline_offset_utilities
 /// @param {Map} $steps [$q_steps] - Map of step names to Q-unit multipliers
 /// @output CSS classes: `.outline_offset_q{key}`
 ///
 /// @example scss - Usage
-///   @include outline-offset-utilities();
+///   @include outline_offset_utilities();
 ///
 /// @example css - Generated output
 ///   .outline_offset_q4 { outline-offset: 4q; }
 ///
 /// @see $q_steps
 ///
-@mixin outline-offset-utilities($steps: $q_steps, $prefix: "") {
+@mixin outline_offset_utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
         .#{$prefix}outline_offset_q#{$key} {
             outline-offset: q($value);

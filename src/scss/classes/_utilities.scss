@@ -94,32 +94,32 @@ $container_breakpoints: () !default;
 ///
 @mixin _all-utilities($prefix: "") {
     // Spacing
-    @include mixins.padding-utilities($prefix: $prefix);
-    @include mixins.margin-utilities($prefix: $prefix);
-    @include mixins.gap-utilities($prefix: $prefix);
+    @include mixins.padding_utilities($prefix: $prefix);
+    @include mixins.margin_utilities($prefix: $prefix);
+    @include mixins.gap_utilities($prefix: $prefix);
 
     // Sizing
-    @include mixins.width-utilities($prefix: $prefix);
-    @include mixins.height-utilities($prefix: $prefix);
+    @include mixins.width_utilities($prefix: $prefix);
+    @include mixins.height_utilities($prefix: $prefix);
 
     // Positioning
-    @include mixins.inset-utilities($prefix: $prefix);
+    @include mixins.inset_utilities($prefix: $prefix);
 
     // Borders
-    @include mixins.border-width-utilities($prefix: $prefix);
-    @include mixins.border-radius-utilities($prefix: $prefix);
+    @include mixins.border_width_utilities($prefix: $prefix);
+    @include mixins.border_radius_utilities($prefix: $prefix);
 
     @if $enable_logical {
-        @include mixins.padding-logical-utilities($prefix: $prefix);
-        @include mixins.margin-logical-utilities($prefix: $prefix);
-        @include mixins.inset-logical-utilities($prefix: $prefix);
+        @include mixins.padding_logical_utilities($prefix: $prefix);
+        @include mixins.margin_logical_utilities($prefix: $prefix);
+        @include mixins.inset_logical_utilities($prefix: $prefix);
     }
 
     @if $enable_extras {
-        @include mixins.size-utilities($prefix: $prefix);
-        @include mixins.translate-utilities($prefix: $prefix);
-        @include mixins.outline-width-utilities($prefix: $prefix);
-        @include mixins.outline-offset-utilities($prefix: $prefix);
+        @include mixins.size_utilities($prefix: $prefix);
+        @include mixins.translate_utilities($prefix: $prefix);
+        @include mixins.outline_width_utilities($prefix: $prefix);
+        @include mixins.outline_offset_utilities($prefix: $prefix);
     }
 }
 
@@ -134,7 +134,7 @@ $container_breakpoints: () !default;
 }
 // Container-query variants (opt-in via $container_breakpoints)
 @each $bp in $container_breakpoints {
-    @include mixins.container-up($bp) {
+    @include mixins.container_up($bp) {
         @include _all-utilities($prefix: "c-#{$bp}_");
     }
 }

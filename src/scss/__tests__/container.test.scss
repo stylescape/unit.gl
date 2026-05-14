@@ -9,7 +9,7 @@
     @include it("emits a min-width container query") {
         @include assert {
             @include output {
-                @include container-up(md) {
+                @include container_up(md) {
                     color: red;
                 }
             }
@@ -26,7 +26,7 @@
     @include it("emits a named container query") {
         @include assert {
             @include output {
-                @include container-up(md, "card") {
+                @include container_up(md, "card") {
                     color: red;
                 }
             }
@@ -45,7 +45,7 @@
     ) {
         @include assert {
             @include output {
-                @include container-down(md) {
+                @include container_down(md) {
                     color: red;
                 }
             }

@@ -13,11 +13,11 @@
 /// .card {
 ///     @include container("card");
 ///
-///     @include container-up(md, "card") {
+///     @include container_up(md, "card") {
 ///         display: grid;
 ///     }
 ///
-///     @include container-down(sm, "card") {
+///     @include container_down(sm, "card") {
 ///         padding: q(8);
 ///     }
 /// }
@@ -90,7 +90,7 @@
 ///
 /// Match when the container's inline size is >= the named breakpoint.
 ///
-@mixin container-up($size, $name: null) {
+@mixin container_up($size, $name: null) {
     $value: _container-size($size);
     // stylelint-disable-next-line scss/at-rule-no-unknown
     @container#{_container-name-suffix($name)} (min-width: #{$value}) {
@@ -102,7 +102,7 @@
 /// Match when the container's inline size is <= the named breakpoint - 0.02px.
 /// Mirrors common max-width media query semantics.
 ///
-@mixin container-down($size, $name: null) {
+@mixin container_down($size, $name: null) {
     $value: _container-size($size);
     // stylelint-disable-next-line scss/at-rule-no-unknown
     @container#{_container-name-suffix($name)} (max-width: #{$value - 0.02px}) {
@@ -113,7 +113,7 @@
 ///
 /// Match when the container's inline size is between two named breakpoints.
 ///
-@mixin container-between($lower, $upper, $name: null) {
+@mixin container_between($lower, $upper, $name: null) {
     $low: _container-size($lower);
     $high: _container-size($upper);
     // stylelint-disable-next-line scss/at-rule-no-unknown
@@ -125,7 +125,7 @@
 ///
 /// Match only the band starting at `$size` (up to the next breakpoint).
 ///
-@mixin container-only($size, $name: null) {
+@mixin container_only($size, $name: null) {
     $keys: map.keys($breakpoints);
     $idx: list.index($keys, $size);
 
@@ -135,11 +135,11 @@
 
     @if $idx < list.length($keys) {
         $next: list.nth($keys, $idx + 1);
-        @include container-between($size, $next, $name) {
+        @include container_between($size, $next, $name) {
             @content;
         }
     } @else {
-        @include container-up($size, $name) {
+        @include container_up($size, $name) {
             @content;
         }
     }

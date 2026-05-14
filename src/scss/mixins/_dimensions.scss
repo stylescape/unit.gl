@@ -135,12 +135,12 @@
 /// Generates utility classes for width, min-width, and max-width properties
 /// based on the provided step map.
 ///
-/// @name width-utilities
+/// @name width_utilities
 /// @param {Map} $steps [$q_steps] - Map of step names to Q-unit multipliers
 /// @output CSS classes: `.w_q{key}`, `.min_w_q{key}`, `.max_w_q{key}`
 ///
 /// @example scss - Usage with default steps
-///   @include width-utilities();
+///   @include width_utilities();
 ///   // Generates: .w_q1, .w_q2, .w_q4, .w_q8, etc.
 ///
 /// @example scss - Generated CSS output
@@ -150,7 +150,7 @@
 ///
 /// @see $q_steps
 ///
-@mixin width-utilities($steps: $q_steps, $prefix: "") {
+@mixin width_utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
         .#{$prefix}w_q#{$key} {
             width: q($value);
@@ -171,12 +171,12 @@
 /// Generates utility classes for height, min-height, and max-height properties
 /// based on the provided step map.
 ///
-/// @name height-utilities
+/// @name height_utilities
 /// @param {Map} $steps [$q_steps] - Map of step names to Q-unit multipliers
 /// @output CSS classes: `.h_q{key}`, `.min_h_q{key}`, `.max_h_q{key}`
 ///
 /// @example scss - Usage with default steps
-///   @include height-utilities();
+///   @include height_utilities();
 ///   // Generates: .h_q1, .h_q2, .h_q4, .h_q8, etc.
 ///
 /// @example scss - Generated CSS output
@@ -186,7 +186,7 @@
 ///
 /// @see $q_steps
 ///
-@mixin height-utilities($steps: $q_steps, $prefix: "") {
+@mixin height_utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
         .#{$prefix}h_q#{$key} {
             height: q($value);
@@ -207,12 +207,12 @@
 /// Generates utility classes for square elements where width equals height.
 /// Useful for avatars, icons, and other square UI elements.
 ///
-/// @name size-utilities
+/// @name size_utilities
 /// @param {Map} $steps [$q_steps] - Map of step names to Q-unit multipliers
 /// @output CSS classes: `.size_q{key}` with equal width and height
 ///
 /// @example scss - Usage
-///   @include size-utilities();
+///   @include size_utilities();
 ///   // Generates: .size_q1, .size_q2, .size_q4, etc.
 ///
 /// @example scss - Generated CSS output
@@ -223,7 +223,7 @@
 ///
 /// @see $q_steps
 ///
-@mixin size-utilities($steps: $q_steps, $prefix: "") {
+@mixin size_utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
         .#{$prefix}size_q#{$key} {
             width: q($value);
