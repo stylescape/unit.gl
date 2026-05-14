@@ -94,5 +94,10 @@ module.exports = {
         // local `$variables` and `@if` early-return guards inside functions.
         // Disable for now; revisit per-file with auto-fix.
         "order/order": null,
+
+        // The fluid-type mixins use `& { ... }` wrappers inside `@if` / `@media`
+        // intentionally to keep declarations scoped to the call-site selector
+        // when the mixin is invoked at the root or alongside other rules.
+        "block-no-redundant-nested-style-rules": null,
     },
 };

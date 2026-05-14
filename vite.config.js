@@ -78,6 +78,7 @@ export default defineConfig({
         {
             name: 'serve-kist-html',
             configureServer(server) {
+                startTsupWatch();
                 runKist(server);
 
                 server.middlewares.use('/css', serveStatic(path.join(pathToDist, 'css')));
