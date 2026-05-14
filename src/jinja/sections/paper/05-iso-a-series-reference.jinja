@@ -1,0 +1,25 @@
+<section>
+        <h2>ISO A-Series Reference</h2>
+        <p class="paper-muted">International standard paper sizes (ISO 216).</p>
+
+        <table class="paper-table">
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Width (mm)</th>
+                    <th>Height (mm)</th>
+                    <th>Area (cm²)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for f in iso_formats %}
+                <tr>
+                    <td><code>{{ f.key }}</code></td>
+                    <td><code>{{ f.w }}</code></td>
+                    <td><code>{{ f.h }}</code></td>
+                    <td class="paper-usage">{{ ((f.w * f.h) / 100) | round(1) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>

@@ -1,0 +1,15 @@
+<section class="docs-section">
+            <h2>Typographic Scale</h2>
+            <p>Type sizes built on q() multiples. Each step maintains optical harmony through the unit system.</p>
+
+            <div class="type-specimen">
+                {% for step in [8, 10, 12, 14, 16, 20, 24, 32, 40, 48, 64] %}
+                <div class="type-line">
+                    <span class="type-line__label">q({{ step }})</span>
+                    <span class="type-line__size">{{ step }}px</span>
+                    <span class="type-line__text" style="font-size: calc(0.0625rem * {{ step }});">The quick brown fox
+                        jumps over the lazy dog</span>
+                </div>
+                {% endfor %}
+            </div>
+        </section>

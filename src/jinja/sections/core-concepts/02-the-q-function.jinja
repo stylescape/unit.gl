@@ -1,0 +1,37 @@
+<section>
+    <h2>The q() Function</h2>
+
+    <p>The <code>q()</code> function is your primary tool for applying Q units:</p>
+
+    <div class="code-block">@use "unit.gl" as *;
+
+        <span class="comment">// Basic usage</span>
+        .element {
+        padding: q(16); <span class="comment">// 1rem (16 × 0.0625rem)</span>
+        margin: q(8); <span class="comment">// 0.5rem</span>
+        gap: q(24); <span class="comment">// 1.5rem</span>
+        border-width: q(1); <span class="comment">// 0.0625rem (≈1px)</span>
+        }
+
+        <span class="comment">// Negative values</span>
+        .pull-up {
+        margin-top: q(-8); <span class="comment">// -0.5rem</span>
+        }
+
+        <span class="comment">// Calculations</span>
+        .calculated {
+        width: calc(100% - q(32));
+        }
+    </div>
+
+    <h3>Common Values</h3>
+
+    <div class="number-grid" style="margin: calc(var(--grid-unit) * 3) 0;">
+        {% for q in [1, 2, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128] %}
+        <div class="number-cell">
+            <div class="number-cell__value">{{ q }}</div>
+            <div class="number-cell__label">{{ q }}px</div>
+        </div>
+        {% endfor %}
+    </div>
+</section>

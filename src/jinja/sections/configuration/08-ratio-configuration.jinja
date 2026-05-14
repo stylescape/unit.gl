@@ -1,0 +1,33 @@
+<section>
+    <h2>Ratio Configuration</h2>
+    <p>Extend or customize aspect ratios via <code>$ratio_map</code>.</p>
+
+    <h3>Default Ratios</h3>
+    <div class="code-block">$ratio_map: (
+        "square": (1, 1),
+        "photo": (4, 3),
+        "landscape": (3, 2),
+        "wide": (16, 9),
+        "ultrawide": (21, 9),
+        "golden": (1.618, 1),
+        "a_series": (1, 1.4142),
+        "portrait": (2, 3),
+        ) !default;</div>
+
+    <h3>Customizing</h3>
+    <div class="code-block"><span class="comment">// Add custom ratios</span>
+        $ratio_map: map.merge($ratio_map, (
+        "cinema": (2.35, 1),
+        "imax": (1.43, 1),
+        "instagram": (1, 1),
+        "instagram-story": (9, 16),
+        "twitter": (16, 9),
+        "linkedin": (1.91, 1),
+        ));
+
+        <span class="comment">// Usage</span>
+        .cinema-frame {
+        @include ratio_name("cinema");
+        }
+    </div>
+</section>

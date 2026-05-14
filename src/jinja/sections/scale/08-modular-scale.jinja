@@ -1,0 +1,33 @@
+<section class="docs-section">
+            <h2>Modular Scale</h2>
+            <p>Mathematical ratios applied to the base unit for harmonic proportions.</p>
+
+            <div class="modular-scale">
+                {% set ratios = [
+                ('Minor Second', 1.067, 16),
+                ('Major Second', 1.125, 18),
+                ('Minor Third', 1.2, 19),
+                ('Major Third', 1.25, 20),
+                ('Perfect Fourth', 1.333, 21),
+                ('Aug. Fourth', 1.414, 23),
+                ('Perfect Fifth', 1.5, 24),
+                ('Minor Sixth', 1.6, 26),
+                ('Golden Ratio', 1.618, 26),
+                ('Major Sixth', 1.667, 27),
+                ('Octave', 2, 32)
+                ] %}
+                {% for name, ratio, size in ratios %}
+                <div class="modular-item">
+                    <span class="modular-item__ratio">{{ name }} ({{ ratio }})</span>
+                    <div class="modular-item__bar" style="width: {{ (ratio * 100)|int }}px;"></div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="code-block">
+                <pre><code>// Using ratio functions with q()
+font-size: scale(16px, $ratio-golden); // 25.89px
+font-size: scale(16px, $ratio-fifth); // 24px
+font-size: scale(16px, $ratio-fourth); // 21.33px</code></pre>
+            </div>
+        </section>

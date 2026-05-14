@@ -1,0 +1,88 @@
+<section>
+    <h2>Complete Configuration Example</h2>
+    <p>A full example of a customized unit.gl setup.</p>
+
+    <div class="code-block"><span class="comment">// _config.scss</span>
+        <span class="comment">// Complete unit.gl configuration</span>
+
+        @use "sass:map";
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Unit System</span>
+        <span class="comment">// ===================================</span>
+
+        $unit_base: 0.0625rem; <span class="comment">// 1px base</span>
+        $root_font_size: 16px;
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Scale System</span>
+        <span class="comment">// ===================================</span>
+
+        $scale_ratio: 1.25; <span class="comment">// Major Third</span>
+        $scale_base: 1rem;
+
+        $q_steps: (
+        0, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128
+        );
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Breakpoints</span>
+        <span class="comment">// ===================================</span>
+
+        $device_map: (
+        "sm": 640px,
+        "md": 768px,
+        "lg": 1024px,
+        "xl": 1280px,
+        );
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Layers</span>
+        <span class="comment">// ===================================</span>
+
+        $layer_map: (
+        "base": 0,
+        "dropdown": 100,
+        "sticky": 200,
+        "modal": 300,
+        "toast": 400,
+        );
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Colors</span>
+        <span class="comment">// ===================================</span>
+
+        $color_map: (
+        "brand": (
+        "base": #6366f1,
+        "light": #818cf8,
+        "dark": #4f46e5,
+        ),
+        "neutral": (
+        "base": #6b7280,
+        "light": #9ca3af,
+        "dark": #4b5563,
+        ),
+        );
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Build Options</span>
+        <span class="comment">// ===================================</span>
+
+        $generate_utilities: true;
+        $generate_responsive_utilities: true;
+
+        <span class="comment">// ===================================</span>
+        <span class="comment">// Import unit.gl with configuration</span>
+        <span class="comment">// ===================================</span>
+
+        @forward "unit.gl" with (
+        $unit_base: $unit_base,
+        $scale_ratio: $scale_ratio,
+        $q_steps: $q_steps,
+        $device_map: $device_map,
+        $layer_map: $layer_map,
+        $color_map: $color_map,
+        );
+    </div>
+</section>

@@ -1,0 +1,20 @@
+<section>
+    <h2>Quick Start</h2>
+    <div class="code-block"><span class="comment">// Install via npm</span>
+        npm install unit.gl
+
+        <span class="comment">// Import in your SCSS</span>
+        @use "unit.gl" as *;
+
+        <span class="comment">// Use the q() function for precise spacing</span>
+        .card {
+        padding: <span class="class">q(16)</span>; <span class="comment">// 1rem (16px)</span>
+        margin: <span class="class">q(8)</span>; <span class="comment">// 0.5rem (8px)</span>
+        gap: <span class="class">q(4)</span>; <span class="comment">// 0.25rem (4px)</span>
+        }
+
+        <span class="comment">// Or use utility classes directly</span>
+        &lt;div class="<span class="class">p_q16 m_q8 gap_q4</span>"&gt;...&lt;/div&gt;
+    </div>
+    <a href="/getting-started.html" class="btn btn--secondary" style="margin-top: 16px;">Full Installation Guide →</a>
+</section>

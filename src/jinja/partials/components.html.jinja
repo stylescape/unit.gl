@@ -79,15 +79,17 @@ Usage: {{ feature_card('Q', 'The Q Unit', 'Atomic unit system...') }}
 Button
 Usage: {{ button('Get Started', href='/start.html', variant='primary', icon='lightning') }}
 Variants: primary, secondary, ghost
+Icons: lightning, github, arrow, external
 ============================================================================ #}
 {% macro button(text, href='#', variant='primary', icon='', target='') %}
-{% from "partials/icons.html.jinja" import icon_lightning, icon_github, icon_arrow_right, icon_external %}
-<a href="{{ href }}" class="btn btn--{{ variant }}" {% if target %} target="{{ target }}" {% endif %}>
-    {% if icon == 'lightning' %}{{ icon_lightning() }}{% endif %}
-    {% if icon == 'github' %}{{ icon_github(16) }}{% endif %}
-    {% if icon == 'arrow' %}{{ icon_arrow_right() }}{% endif %}
+{%- from "partials/icons.html.jinja" import icon_lightning, icon_github, icon_arrow_right, icon_external -%}
+{%- set leading_icons = {'lightning': icon_lightning, 'github': icon_github, 'arrow': icon_arrow_right} -%}
+{%- set trailing_icons = {'external': icon_external} -%}
+<a href="{{ href }}" class="btn btn--{{ variant }}" {%- if target %} target="{{ target }}" rel="noopener noreferrer" {%
+    endif %}>
+    {%- if icon in leading_icons %}{{ leading_icons[icon]() }}{% endif %}
     {{ text }}
-    {% if icon == 'external' %}{{ icon_external() }}{% endif %}
+    {%- if icon in trailing_icons %}{{ trailing_icons[icon]() }}{% endif %}
 </a>
 {% endmacro %}
 

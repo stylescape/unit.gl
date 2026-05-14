@@ -1,0 +1,12 @@
+<section>
+    <h2>The Q Unit</h2>
+    <p>The foundation of unit.gl is the <strong>Kyū (Q)</strong> — a base unit equal to <code>0.0625rem</code> (1px at
+        16px root). All spacing, sizing, and typography derive from this atomic measurement.</p>
+
+    <div class="number-grid" style="margin-top: 24px;">
+        {% for step in [1, 2, 4, 8, 16, 32, 64, 128] %}
+        {{ number_cell(step) }}
+        {% endfor %}
+    </div>
+    {{ button('Learn More →', href='/core-concepts.html', variant='secondary') }}
+</section>

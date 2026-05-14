@@ -1,0 +1,31 @@
+<section>
+    <h2>8-Point Grid System</h2>
+
+    <p>unit.gl is designed around an 8-point grid, a widely-adopted standard that provides consistent, harmonious
+        spacing.</p>
+
+    <div style="display: flex; gap: 4px; margin: calc(var(--grid-unit) * 3) 0; align-items: flex-end;">
+        {% for i in [1, 2, 3, 4, 5, 6, 8, 10, 12, 16] %}
+        <div style="width: 40px; text-align: center;">
+            <div style="background: var(--swiss-black); height: {{ i * 8 }}px; margin-bottom: 8px;"></div>
+            <span style="font-family: var(--font-mono); font-size: 0.625rem; color: var(--swiss-gray-500);">{{ i * 8
+                }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="code-block"><span class="comment">// 8-point grid values</span>
+        $spacing-xs: q(4); <span class="comment">// 4px - Micro spacing</span>
+        $spacing-sm: q(8); <span class="comment">// 8px - Small spacing</span>
+        $spacing-md: q(16); <span class="comment">// 16px - Base spacing</span>
+        $spacing-lg: q(24); <span class="comment">// 24px - Medium spacing</span>
+        $spacing-xl: q(32); <span class="comment">// 32px - Large spacing</span>
+        $spacing-2xl: q(48); <span class="comment">// 48px - Extra large</span>
+        $spacing-3xl: q(64); <span class="comment">// 64px - Section spacing</span></div>
+
+    <div class="alert">
+        <p class="alert__title">Why 8?</p>
+        <p>8 is divisible by 2 and 4, making it easy to create half and quarter values. It also aligns with common icon
+            sizes (16, 24, 32px) and touch targets (48px minimum).</p>
+    </div>
+</section>

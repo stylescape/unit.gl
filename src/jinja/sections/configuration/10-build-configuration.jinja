@@ -1,0 +1,20 @@
+<section>
+    <h2>Build Configuration</h2>
+    <p>Control what gets generated in your CSS output.</p>
+
+    <div class="code-block"><span class="comment">// Disable utility classes generation</span>
+        $generate_utilities: false;
+
+        <span class="comment">// Disable responsive utilities (smaller output)</span>
+        $generate_responsive_utilities: false;
+
+        <span class="comment">// Choose which utility types to generate</span>
+        $generate_spacing_utilities: true;
+        $generate_size_utilities: true;
+        $generate_gap_utilities: true;
+        $generate_ratio_utilities: false; <span class="comment">// Skip ratio utilities</span>
+
+        <span class="comment">// Import after configuration</span>
+        @use "unit.gl";
+    </div>
+</section>

@@ -1,0 +1,24 @@
+<section>
+    <h2>Recommended Project Structure</h2>
+
+    <div class="code-block">styles/
+        ├── main.scss <span class="comment"># Main entry point</span>
+        ├── _variables.scss <span class="comment"># Custom variable overrides</span>
+        ├── _base.scss <span class="comment"># Base element styles</span>
+        ├── _components.scss <span class="comment"># Component styles</span>
+        └── _utilities.scss <span class="comment"># Local utility classes</span></div>
+
+    <h3>main.scss</h3>
+
+    <div class="code-block"><span class="comment">// 1. Import unit.gl</span>
+        @use "unit.gl" as *;
+
+        <span class="comment">// 2. Override default variables (optional)</span>
+        @use "variables";
+
+        <span class="comment">// 3. Your styles</span>
+        @use "base";
+        @use "components";
+        @use "utilities";
+    </div>
+</section>

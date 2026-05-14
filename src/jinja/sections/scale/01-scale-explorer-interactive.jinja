@@ -1,0 +1,71 @@
+<section class="docs-section">
+            <h2>Scale Explorer</h2>
+            <p>
+                Explore the relationship between Type Scale (4Q) and Line Scale (5Q)
+                interactively. The LCM of 20Q ensures both scales align at regular intervals.
+            </p>
+
+            <div class="scale-explorer">
+                <div class="explorer-controls">
+                    <div class="explorer-slider">
+                        <label for="scaleSlider">Scale Value</label>
+                        <input type="range" id="scaleSlider" min="1" max="24" value="4" step="1">
+                        <span class="slider-value" id="sliderValue">4</span>
+                    </div>
+
+                    <div class="explorer-chips">
+                        <span class="chip-label">Quick Select:</span>
+                        <button class="chip" data-value="1">1</button>
+                        <button class="chip" data-value="2">2</button>
+                        <button class="chip" data-value="3">3</button>
+                        <button class="chip active" data-value="4">4</button>
+                        <button class="chip" data-value="5">5</button>
+                        <button class="chip" data-value="6">6</button>
+                        <button class="chip" data-value="8">8</button>
+                        <button class="chip" data-value="10">10</button>
+                        <button class="chip" data-value="12">12</button>
+                        <button class="chip" data-value="16">16</button>
+                        <button class="chip" data-value="20">20</button>
+                    </div>
+                </div>
+
+                <div class="explorer-display">
+                    <div class="explorer-metrics">
+                        <div class="metric-card type-card">
+                            <h4>Type Scale</h4>
+                            <div class="metric-main" id="typeQ">16Q</div>
+                            <div class="metric-details">
+                                <span id="typePx">16px</span>
+                                <span id="typeMm">4mm</span>
+                                <span id="typeRem">1rem</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card line-card">
+                            <h4>Line Scale</h4>
+                            <div class="metric-main" id="lineQ">20Q</div>
+                            <div class="metric-details">
+                                <span id="linePx">20px</span>
+                                <span id="lineMm">5mm</span>
+                                <span id="lineRem">1.25rem</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card lcm-card">
+                            <h4>LCM Alignment</h4>
+                            <div class="metric-main" id="lcmValue">20Q</div>
+                            <div class="metric-details">
+                                <span id="lcmMultiple">1× LCM</span>
+                                <span id="lcmAligned" class="aligned">✓ Aligned</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="explorer-preview">
+                        <div class="preview-box" id="previewBox">
+                            <span class="preview-label">Visual Size</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

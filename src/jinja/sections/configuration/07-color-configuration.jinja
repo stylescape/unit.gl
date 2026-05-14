@@ -1,0 +1,42 @@
+<section>
+    <h2>Color Configuration</h2>
+    <p>Define your color palette using <code>$color_map</code>.</p>
+
+    <div class="code-block">$color_map: (
+        "primary": (
+        "base": #2563eb,
+        "light": #3b82f6,
+        "dark": #1d4ed8,
+        "contrast": #ffffff,
+        ),
+        "secondary": (
+        "base": #64748b,
+        "light": #94a3b8,
+        "dark": #475569,
+        "contrast": #ffffff,
+        ),
+        "success": (
+        "base": #22c55e,
+        "light": #4ade80,
+        "dark": #16a34a,
+        "contrast": #ffffff,
+        ),
+        "danger": (
+        "base": #ef4444,
+        "light": #f87171,
+        "dark": #dc2626,
+        "contrast": #ffffff,
+        ),
+        ) !default;
+
+        <span class="comment">// Usage</span>
+        .btn-primary {
+        background: color("primary");
+        color: color("primary", "contrast");
+
+        &:hover {
+        background: color("primary", "dark");
+        }
+        }
+    </div>
+</section>

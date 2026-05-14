@@ -1,0 +1,50 @@
+<section class="docs-section">
+            <h2>SCSS Functions</h2>
+
+            <div class="function-grid">
+                <div class="function-card">
+                    <h4><code>q($n)</code></h4>
+                    <p>Returns Q-unit value: $n × 0.0625rem</p>
+                    <pre><code>padding: q(8);              // 8px
+margin: q(16);              // 16px
+gap: q(24);                 // 24px</code></pre>
+                </div>
+
+                <div class="function-card">
+                    <h4><code>type_unit($n)</code></h4>
+                    <p>Returns type-based value: $n × 4Q</p>
+                    <pre><code>font-size: type_unit(4);    // 16Q = 16px
+font-size: type_unit(5);    // 20Q = 20px
+font-size: type_unit(6);    // 24Q = 24px</code></pre>
+                </div>
+
+                <div class="function-card">
+                    <h4><code>line($n)</code></h4>
+                    <p>Returns line-based value: $n × 5Q</p>
+                    <pre><code>line-height: line(4);       // 20Q = 20px
+margin-bottom: line(2);     // 10Q = 10px
+padding: line(3);           // 15Q = 15px</code></pre>
+                </div>
+
+                <div class="function-card">
+                    <h4><code>snap_to_line($value)</code></h4>
+                    <p>Snaps any value to nearest line unit</p>
+                    <pre><code>height: snap_to_line(17px);  // 15px (3 lines)
+height: snap_to_line(23px);  // 25px (5 lines)</code></pre>
+                </div>
+
+                <div class="function-card">
+                    <h4><code>line_height_for_size($size)</code></h4>
+                    <p>Calculates optimal line-height for font size</p>
+                    <pre><code>// For 16px font
+line-height: line_height_for_size(16px);  // 20px</code></pre>
+                </div>
+
+                <div class="function-card">
+                    <h4><code>baseline($n)</code></h4>
+                    <p>Alias for line-based spacing</p>
+                    <pre><code>margin-top: baseline(2);    // 10Q = 10px
+padding: baseline(4);       // 20Q = 20px</code></pre>
+                </div>
+            </div>
+        </section>

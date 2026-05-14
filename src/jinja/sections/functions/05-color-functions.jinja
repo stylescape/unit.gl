@@ -1,0 +1,29 @@
+<section>
+    <h2>Color Functions</h2>
+    <p>Functions for working with the color map.</p>
+
+    <h3>color()</h3>
+    <div class="api-signature">color($name, $shade: null) → Color</div>
+
+    <div class="api-params">
+        <div class="api-param">
+            <span class="api-param__name">$name</span>
+            <span class="api-param__type">String</span>
+            <span class="api-param__desc">Color name from $color_map</span>
+        </div>
+        <div class="api-param">
+            <span class="api-param__name">$shade</span>
+            <span class="api-param__type">String | null</span>
+            <span class="api-param__desc">Optional shade variant (e.g., 'light', 'dark')</span>
+        </div>
+    </div>
+
+    <div class="code-block">.button {
+        background: color("primary");
+        color: color("primary", "contrast");
+
+        &:hover {
+        background: color("primary", "dark");
+        }
+        }</div>
+</section>

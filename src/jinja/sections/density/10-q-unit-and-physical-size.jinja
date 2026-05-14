@@ -1,0 +1,55 @@
+<section>
+    <h2>Q Units & Physical Size</h2>
+
+    <p>The Q unit provides a bridge between screen and print through its physical definition:</p>
+
+    <div class="api-signature">1Q = 0.25mm (physical) = 0.0625rem (CSS) ≈ 1px (at 16px base)</div>
+
+    <h3>Screen vs Print</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Q Value</th>
+                <th>Physical Size</th>
+                <th>CSS Size</th>
+                <th>Physical Pixels (1×)</th>
+                <th>Physical Pixels (2×)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1Q</td>
+                <td>0.25mm</td>
+                <td>0.0625rem</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>16Q</td>
+                <td>4mm</td>
+                <td>1rem</td>
+                <td>16</td>
+                <td>32</td>
+            </tr>
+            <tr>
+                <td>160Q (Q1)</td>
+                <td>40mm</td>
+                <td>10rem</td>
+                <td>160</td>
+                <td>320</td>
+            </tr>
+            <tr>
+                <td>320Q (Q2)</td>
+                <td>80mm</td>
+                <td>20rem</td>
+                <td>320</td>
+                <td>640</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>This unified system means you can design for screen and print using the same Q values. When printing, Q units map
+        directly to physical millimeters. On screen, they adapt to the display's density while maintaining proportional
+        relationships.</p>
+</section>

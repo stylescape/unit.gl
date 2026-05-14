@@ -1,0 +1,29 @@
+<section>
+    <h2>Runtime DPR Access</h2>
+
+    <p>unit.gl automatically injects the device pixel ratio as a CSS custom property, enabling dynamic density-aware
+        calculations in CSS:</p>
+
+    <div class="code-block"><span class="comment">/* Available CSS custom properties */</span>
+        :root {
+        --dpr: 2; <span class="comment">/* Current device pixel ratio */</span>
+        --dpr-inverse: 0.5; <span class="comment">/* 1 / DPR for inverse calculations */</span>
+        }
+
+        <span class="comment">/* Use in calculations */</span>
+        .hairline {
+        border-width: calc(1px * var(--dpr-inverse)); <span class="comment">/* True 1px on any display */</span>
+        }
+
+        .icon {
+        <span class="comment">/* Scale based on density */</span>
+        transform: scale(var(--dpr-inverse));
+        }
+    </div>
+
+    <div class="alert">
+        <p class="alert__title">Note</p>
+        <p>The <code>--dpr</code> variable updates automatically when moving windows between displays with different
+            densities.</p>
+    </div>
+</section>

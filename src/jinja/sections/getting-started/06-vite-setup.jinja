@@ -1,0 +1,39 @@
+<section>
+    <h2>Build Tool Setup</h2>
+
+    <h3>Vite</h3>
+
+    <div class="code-block"><span class="comment">// vite.config.js</span>
+        import { defineConfig } from 'vite';
+
+        export default defineConfig({
+        css: {
+        preprocessorOptions: {
+        scss: {
+        api: 'modern-compiler',
+        }
+        }
+        }
+        });</div>
+
+    <h3>Webpack</h3>
+
+    <div class="code-block"><span class="comment">// webpack.config.js</span>
+        module.exports = {
+        module: {
+        rules: [{
+        test: /\.scss$/,
+        use: [
+        'style-loader',
+        'css-loader',
+        {
+        loader: 'sass-loader',
+        options: {
+        api: 'modern-compiler',
+        }
+        }
+        ]
+        }]
+        }
+        };</div>
+</section>

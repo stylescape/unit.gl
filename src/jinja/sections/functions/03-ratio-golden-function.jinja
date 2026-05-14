@@ -1,0 +1,28 @@
+<section>
+    <h2>ratio_golden()</h2>
+    <p>Calculates a size based on the golden ratio (φ ≈ 1.618).</p>
+
+    {{ api_signature('ratio_golden($size, $increment: 1) → Length') }}
+
+    {% call api_params() %}
+    {{ api_param('$size', 'Length', 'Base size to scale') }}
+    {{ api_param('$increment', 'Number', 'Exponent applied to the golden ratio', '1') }}
+    {% endcall %}
+
+    <h3>Examples</h3>
+    <div class="code-block">.sidebar {
+        width: ratio_golden(300px, 1); <span class="comment">// 485.4px (larger)</span>
+        }
+
+        .aside {
+        width: ratio_golden(300px, -1); <span class="comment">// 185.4px (smaller)</span>
+        }
+
+        <span class="comment">// Creating golden ratio layouts</span>
+        .container {
+        display: grid;
+        grid-template-columns: ratio_golden(1fr, -1) 1fr;
+        <span class="comment">// Creates ~38% / 62% split</span>
+        }
+    </div>
+</section>

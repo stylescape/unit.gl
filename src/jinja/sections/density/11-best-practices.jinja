@@ -1,0 +1,38 @@
+<section>
+    <h2>Best Practices</h2>
+
+    <div class="best-practices">
+        <div class="best-practice">
+            <h4>✓ Provide @2x assets minimum</h4>
+            <p>Most modern devices are at least 2× density. Always provide @2x images; @3x is recommended for icons and
+                logos.</p>
+        </div>
+
+        <div class="best-practice">
+            <h4>✓ Use vector graphics when possible</h4>
+            <p>SVG and icon fonts scale perfectly at any density. Reserve bitmap images for photos and complex graphics.
+            </p>
+        </div>
+
+        <div class="best-practice">
+            <h4>✓ Test on multiple densities</h4>
+            <p>Use browser DevTools to simulate different DPRs. Chrome: Device Toolbar → DPR dropdown.</p>
+        </div>
+
+        <div class="best-practice">
+            <h4>✓ Use image_density for backgrounds</h4>
+            <p>The <code>image_density</code> mixin handles fallbacks and browser prefixes automatically.</p>
+        </div>
+
+        <div class="best-practice">
+            <h4>✗ Don't assume 1× baseline</h4>
+            <p>Standard 1× displays are increasingly rare. Design for 2× first, then optimize for other densities.</p>
+        </div>
+
+        <div class="best-practice">
+            <h4>✗ Avoid density-dependent sizing</h4>
+            <p>Let CSS pixels and Q units handle scaling. Only use physical pixel calculations for specific effects like
+                hairline borders.</p>
+        </div>
+    </div>
+</section>

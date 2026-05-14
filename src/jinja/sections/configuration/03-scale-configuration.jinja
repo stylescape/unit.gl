@@ -1,0 +1,45 @@
+<section>
+    <h2>Scale Configuration</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>$scale_base</code></td>
+                <td><code>1rem</code></td>
+                <td>Base value for modular scale</td>
+            </tr>
+            <tr>
+                <td><code>$scale_ratio</code></td>
+                <td><code>1.618</code></td>
+                <td>Default scale ratio (golden ratio)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Configuring Typography Scale</h3>
+    <div class="code-block"><span class="comment">// Use Major Third for tighter scale</span>
+        $scale_ratio: 1.25;
+
+        <span class="comment">// Or Perfect Fifth for dramatic scale</span>
+        $scale_ratio: 1.5;
+
+        <span class="comment">// Custom type scale</span>
+        $type_scale: (
+        "xs": modular_scale(-2),
+        "sm": modular_scale(-1),
+        "base": modular_scale(0),
+        "md": modular_scale(1),
+        "lg": modular_scale(2),
+        "xl": modular_scale(3),
+        "2xl": modular_scale(4),
+        "3xl": modular_scale(5),
+        );
+    </div>
+</section>

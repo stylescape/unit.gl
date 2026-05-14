@@ -1,0 +1,31 @@
+<section>
+    <h2>Your First Layout</h2>
+
+    <p>Here's a minimal example using the q() unit function:</p>
+
+    <div class="code-block">@use "unit.gl" as *;
+
+        <span class="comment">// Use q() for consistent spacing</span>
+        .card {
+        padding: q(16); <span class="comment">// 16px (16 × 0.0625rem)</span>
+        margin-bottom: q(24); <span class="comment">// 24px</span>
+        border-radius: q(4); <span class="comment">// 4px</span>
+        }
+
+        <span class="comment">// Typography with modular scale</span>
+        h1 {
+        font-size: modular_scale(3, 1rem, 1.25); <span class="comment">// ~1.95rem</span>
+        line-height: q(40);
+        }
+
+        <span class="comment">// Responsive container</span>
+        .container {
+        max-width: q(1200);
+        padding: q(16);
+
+        @include view_md {
+        padding: q(32);
+        }
+        }
+    </div>
+</section>

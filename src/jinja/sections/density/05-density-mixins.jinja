@@ -1,0 +1,86 @@
+<section>
+    <h2>Mixins</h2>
+
+    <h3>display_density($min-dpr)</h3>
+    <p>Applies styles at a minimum device pixel ratio.</p>
+
+    <div class="code-block">@use "unit.gl" as *;
+
+        <span class="comment">// Target 2× displays and higher</span>
+        @include display_density(2) {
+        .logo {
+        background-image: url("logo@2x.png");
+        background-size: 100px 50px;
+        }
+        }
+
+        <span class="comment">// Target 3× displays and higher</span>
+        @include display_density(3) {
+        .hero {
+        background-image: url("hero@3x.jpg");
+        }
+        }
+    </div>
+
+    <h3>display_bucket($bucket)</h3>
+    <p>Applies styles for a specific density bucket using semantic names.</p>
+
+    <div class="code-block"><span class="comment">// Target retina (2×) displays</span>
+        @include display_bucket("xhdpi") {
+        font-weight: 300; <span class="comment">// Thinner fonts look better on retina</span>
+        }
+
+        <span class="comment">// Or use aliases</span>
+        @include display_bucket("retina") {
+        border-width: 0.5px;
+        }
+    </div>
+
+    <h3>display_standard()</h3>
+    <p>Targets only standard (1×) density displays.</p>
+
+    <div class="code-block">@include display_standard {
+        <span class="comment">// Fallback for non-retina displays</span>
+        .icon {
+        background-image: url("icon.png");
+        }
+        }
+    </div>
+
+    <h3>image_density($path, $ext, $densities)</h3>
+    <p>Generates density-aware background images with automatic resolution switching.</p>
+
+    <div class="code-block">.logo {
+        @include image_density("/images/logo", "png", 1 2 3);
+        }
+
+        <span class="comment">// Compiles to:</span>
+        .logo {
+        background-image: url("/images/logo.png");
+        background-image: -webkit-image-set(
+        url("/images/logo.png") 1x,
+        url("/images/logo@2x.png") 2x,
+        url("/images/logo@3x.png") 3x
+        );
+        background-image: image-set(
+        url("/images/logo.png") 1x,
+        url("/images/logo@2x.png") 2x,
+        url("/images/logo@3x.png") 3x
+        );
+        }
+    </div>
+
+    <h3>display_print($min-dpi)</h3>
+    <p>Targets print media with optional minimum resolution.</p>
+
+    <div class="code-block">@include display_print {
+        <span class="comment">// All print styles</span>
+        .no-print { display: none; }
+        }
+
+        @include display_print(300) {
+        <span class="comment">// High-resolution print only (300dpi+)</span>
+        .photo { image-rendering: high-quality; }
+        }
+    </div>
+</section>

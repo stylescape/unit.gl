@@ -1,0 +1,32 @@
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// Apply baseline guide via class</span>
+        &lt;div class="<span class="class">guide--baseline</span>"&gt;
+        Content aligned to baseline grid
+        &lt;/div&gt;
+
+        <span class="comment">// Apply via SCSS mixin</span>
+        @use "unit.gl" as *;
+
+        .my-section {
+        @include guide--baseline;
+        }
+
+        <span class="comment">// Custom baseline height and color</span>
+        .custom-grid {
+        @include guide--baseline(
+        $height: baseline(2),
+        $color: rgba(255, 0, 128, 0.15)
+        );
+        }
+    </div>
+
+    <h3>Best Practices</h3>
+    <ul>
+        <li>Use <code>line-height</code> values that are multiples of the baseline unit</li>
+        <li>Set <code>margin-bottom</code> to maintain rhythm between blocks</li>
+        <li>Avoid arbitrary padding that breaks the vertical flow</li>
+        <li>Test with the grid visible during development</li>
+    </ul>
+</section>

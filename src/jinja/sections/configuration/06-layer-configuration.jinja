@@ -1,0 +1,35 @@
+<section>
+    <h2>Layer Configuration</h2>
+    <p>Customize z-index layers via <code>$layer_map</code>.</p>
+
+    <h3>Default Layers</h3>
+    <div class="code-block">$layer_map: (
+        "canvas": -1000,
+        "background": 0,
+        "content": 2000,
+        "interface": 4000,
+        "modal": 7000,
+        "guides": 9998,
+        "debug": 9999,
+        ) !default;</div>
+
+    <h3>Customizing</h3>
+    <div class="code-block"><span class="comment">// Add custom layers</span>
+        $layer_map: (
+        "canvas": -1000,
+        "background": 0,
+        "content": 1000,
+        "dropdown": 2000,
+        "sticky": 3000,
+        "overlay": 4000,
+        "modal": 5000,
+        "toast": 6000,
+        "tooltip": 7000,
+        "guides": 9998,
+        );
+
+        <span class="comment">// Usage</span>
+        .dropdown { z-index: z("dropdown"); }
+        .toast { z-index: z("toast"); }
+    </div>
+</section>

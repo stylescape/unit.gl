@@ -1,0 +1,39 @@
+<section>
+    <h2>CSS Custom Properties</h2>
+
+    <p>unit.gl provides density and breakpoint values as CSS custom properties for use in calculations:</p>
+
+    <div class="code-block">:root {
+        <span class="comment">/* Density (JavaScript-injected) */</span>
+        --dpr: 1;
+        --dpr-inverse: 1;
+
+        <span class="comment">/* Density-adjusted grid */</span>
+        --grid-unit: 0.5rem; <span class="comment">/* q(8) */</span>
+        --grid-unit-density: calc(var(--grid-unit) * var(--dpr-inverse));
+
+        <span class="comment">/* Physical-to-digital multiplier */</span>
+        --mm-to-px: 4;
+
+        <span class="comment">/* Q-format-derived breakpoints */</span>
+        --bp-us: 240px; <span class="comment">/* Q07 Portrait */</span>
+        --bp-ss: 360px; <span class="comment">/* Q06 Portrait */</span>
+        --bp-xs: 540px; <span class="comment">/* Q05 Portrait */</span>
+        --bp-sm: 720px; <span class="comment">/* Q04 Portrait */</span>
+        --bp-md: 1440px; <span class="comment">/* Q03 Landscape */</span>
+        --bp-lg: 2160px; <span class="comment">/* Q02 Landscape */</span>
+        --bp-xl: 2880px; <span class="comment">/* Q01 Landscape */</span>
+        --bp-ul: 4320px; <span class="comment">/* Q00 Landscape */</span>
+        }
+
+        <span class="comment">/* Usage example */</span>
+        .element {
+        <span class="comment">/* Density-aware spacing */</span>
+        padding: var(--grid-unit-density);
+
+        <span class="comment">/* Container query using breakpoint */</span>
+        max-width: var(--bp-md);
+        }
+    </div>
+
+</section>

@@ -1,0 +1,56 @@
+<section class="docs-section">
+            <h2>Q Unit Scale</h2>
+            <p>
+                <code>q()</code> is the atomic unit: <code>q(1) = 0.0625rem</code> (1px at a 16px root).
+                The utilities use a curated step map (<code>$q_steps</code>) to stay granular without
+                exploding CSS size.
+            </p>
+
+            <div class="qscale-metrics">
+                <div class="qscale-metrics__item">
+                    <div class="qscale-metrics__label">Root font-size</div>
+                    <div class="qscale-metrics__value"><span id="qs-root">16</span>px</div>
+                </div>
+                <div class="qscale-metrics__item">
+                    <div class="qscale-metrics__label">q(1) value</div>
+                    <div class="qscale-metrics__value">0.0625rem</div>
+                </div>
+                <div class="qscale-metrics__item">
+                    <div class="qscale-metrics__label">Physical size</div>
+                    <div class="qscale-metrics__value">0.25mm</div>
+                </div>
+            </div>
+
+            {% set q_steps = [0,1,2,4,6,8,12,16,20,24,32,40,48,56,64,72,80,96,112,128,144,160,192,224,256] %}
+
+            <h3>Curated Steps (<code>$q_steps</code>)</h3>
+            <p class="qscale-muted">The scale is intentionally sparse at larger values to keep generated CSS
+                predictable.</p>
+
+            <table class="docs-table qscale-table">
+                <thead>
+                    <tr>
+                        <th>Step</th>
+                        <th>q(step)</th>
+                        <th>At 16px root</th>
+                        <th>mm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in q_steps %}
+                    <tr{% if s % 20==0 and s> 0 %} class="lcm-row"{% endif %}>
+                        <td><code>{{ s }}</code></td>
+                        <td><code>{{ (s / 16) | round(4) }}rem</code></td>
+                        <td><code>{{ s }}px</code></td>
+                        <td><code>{{ (s * 0.25) | round(2) }}mm</code></td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="alert alert--tip" style="margin-top: calc(var(--grid-unit) * 3);">
+                <div class="alert__title">Tip</div>
+                <p>If you need ultra-fine values for a one-off, use <code>q(n)</code> directly in SCSS. Keep utilities
+                    for the shared, common ladder.</p>
+            </div>
+        </section>

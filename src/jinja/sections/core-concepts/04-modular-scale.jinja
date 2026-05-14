@@ -1,0 +1,77 @@
+<section>
+    <h2>Modular Scale</h2>
+
+    <p>A modular scale creates harmonious proportions by using a consistent ratio between sizes. unit.gl provides the
+        <code>modular_scale()</code> function for this purpose.
+    </p>
+
+    <div class="api-signature">modular_scale($increment, $base: 1em, $ratio: 1.618)</div>
+
+    <h3>Common Ratios</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ratio</th>
+                <th>Value</th>
+                <th>Musical Term</th>
+                <th>Use Case</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Minor Second</td>
+                <td>1.067</td>
+                <td>Semitone</td>
+                <td>Very subtle scale</td>
+            </tr>
+            <tr>
+                <td>Major Second</td>
+                <td>1.125</td>
+                <td>Whole tone</td>
+                <td>Subtle, conservative</td>
+            </tr>
+            <tr>
+                <td>Minor Third</td>
+                <td>1.200</td>
+                <td>—</td>
+                <td>Moderate contrast</td>
+            </tr>
+            <tr>
+                <td>Major Third</td>
+                <td>1.250</td>
+                <td>—</td>
+                <td>Good for body text</td>
+            </tr>
+            <tr>
+                <td>Perfect Fourth</td>
+                <td>1.333</td>
+                <td>—</td>
+                <td>Balanced contrast</td>
+            </tr>
+            <tr>
+                <td>Perfect Fifth</td>
+                <td>1.500</td>
+                <td>—</td>
+                <td>Strong contrast</td>
+            </tr>
+            <tr>
+                <td>Golden Ratio</td>
+                <td>1.618</td>
+                <td>—</td>
+                <td>Classic, dramatic</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Typography Example</h3>
+
+    <div class="code-block">$ratio: 1.25; <span class="comment">// Major Third</span>
+
+        body { font-size: modular_scale(0, 1rem, $ratio); } <span class="comment">// 1rem</span>
+        h4 { font-size: modular_scale(1, 1rem, $ratio); } <span class="comment">// 1.25rem</span>
+        h3 { font-size: modular_scale(2, 1rem, $ratio); } <span class="comment">// 1.5625rem</span>
+        h2 { font-size: modular_scale(3, 1rem, $ratio); } <span class="comment">// 1.953rem</span>
+        h1 { font-size: modular_scale(4, 1rem, $ratio); } <span class="comment">// 2.441rem</span>
+        .display { font-size: modular_scale(5, 1rem, $ratio); } <span class="comment">// 3.052rem</span></div>
+</section>

@@ -1,0 +1,29 @@
+<section>
+    <h2>Variables</h2>
+    <p>unit.gl uses SCSS variables with the <code>!default</code> flag, allowing you to override them before importing
+        the library.</p>
+
+    <h3>Override Pattern</h3>
+    <div class="code-block"><span class="comment">// _your-config.scss</span>
+        <span class="comment">// Override variables BEFORE importing unit.gl</span>
+
+        <span class="comment">// Custom base unit</span>
+        $unit_base: 0.0625rem; <span class="comment">// Default: 0.0625rem (1px)</span>
+
+        <span class="comment">// Custom typography scale</span>
+        $scale_ratio: 1.25; <span class="comment">// Default: 1.618 (golden ratio)</span>
+
+        <span class="comment">// Custom breakpoints</span>
+        $breakpoint_md: 800px; <span class="comment">// Default: 768px</span>
+
+        <span class="comment">// Then import unit.gl</span>
+        @use "unit.gl" with (
+        $unit_base: $unit_base,
+        $scale_ratio: $scale_ratio
+        );
+    </div>
+
+    <div class="alert alert--tip">
+        <strong>Tip:</strong> Use the <code>@use ... with ()</code> syntax for the cleanest configuration pattern.
+    </div>
+</section>

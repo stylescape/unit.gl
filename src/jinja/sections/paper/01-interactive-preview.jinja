@@ -1,0 +1,55 @@
+<section>
+        <h2>Interactive Preview</h2>
+        <p class="paper-muted">Compare formats at true relative scale. All sizes shown proportionally to each other.</p>
+
+        <div class="paper-controls">
+            <label class="paper-field">
+                <span class="paper-field__label">Format</span>
+                <select id="paper-format" class="paper-select" aria-label="Page format">
+                    <optgroup label="Q-Series">
+                        {% for f in q_formats %}
+                        <option value="{{ f.key }}" data-w="{{ f.w }}" data-h="{{ f.h }}">{{ f.key }}</option>
+                        {% endfor %}
+                    </optgroup>
+                    <optgroup label="ISO A-Series">
+                        {% for f in iso_formats %}
+                        <option value="{{ f.key }}" data-w="{{ f.w }}" data-h="{{ f.h }}">{{ f.key | upper }}</option>
+                        {% endfor %}
+                    </optgroup>
+                    <optgroup label="US Formats">
+                        {% for f in us_formats %}
+                        <option value="{{ f.key }}" data-w="{{ f.w }}" data-h="{{ f.h }}">{{ f.key | capitalize }}
+                        </option>
+                        {% endfor %}
+                    </optgroup>
+                </select>
+            </label>
+
+            <div class="paper-orient" role="group" aria-label="Orientation">
+                <button type="button" class="paper-orient__btn active" data-orient="portrait">Portrait</button>
+                <button type="button" class="paper-orient__btn" data-orient="landscape">Landscape</button>
+            </div>
+        </div>
+
+        <div class="paper-preview-wrap">
+            <div class="paper-preview-container" id="paper-preview-container">
+                <div class="paper-preview" id="paper-preview" aria-label="Page preview">
+                    <div class="paper-preview__meta">
+                        <div class="paper-preview__title" id="paper-title">q04</div>
+                        <div class="paper-preview__dims"><span id="paper-w">—</span> × <span id="paper-h">—</span> mm
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="paper-scale-indicator">
+                <span id="scale-display">Scale: 1:1</span>
+            </div>
+        </div>
+
+        <div class="code-block">
+            <pre><code>// SCSS
+.print-sheet {
+  @include format(q04, portrait);
+}</code></pre>
+        </div>
+    </section>

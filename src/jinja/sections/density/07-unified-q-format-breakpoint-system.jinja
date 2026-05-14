@@ -1,0 +1,155 @@
+<section>
+    <h2>Unified Q Format & Breakpoints</h2>
+
+    <p>unit.gl unifies <strong>physical Q paper formats</strong> with <strong>digital breakpoints</strong> using a
+        consistent 4× multiplier. This creates a seamless bridge between print and screen design.</p>
+
+    <div class="api-signature">1mm (physical) = 4px (CSS at 1× DPR)</div>
+
+    <h3>Physical-to-Digital Mapping</h3>
+
+    <p>Q paper formats map directly to responsive breakpoints. Portrait widths serve mobile devices, landscape widths
+        serve desktop:</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Breakpoint</th>
+                <th>Q Format</th>
+                <th>Orientation</th>
+                <th>Width (mm)</th>
+                <th>×4 = px</th>
+                <th>Device Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>us</code></td>
+                <td>Q07</td>
+                <td>Portrait</td>
+                <td>60mm</td>
+                <td>240px</td>
+                <td>Compact / Fold devices</td>
+            </tr>
+            <tr>
+                <td><code>ss</code></td>
+                <td>Q06</td>
+                <td>Portrait</td>
+                <td>90mm</td>
+                <td>360px</td>
+                <td>Phones</td>
+            </tr>
+            <tr>
+                <td><code>xs</code></td>
+                <td>Q05</td>
+                <td>Portrait</td>
+                <td>135mm</td>
+                <td>540px</td>
+                <td>Large phones / Small tablets</td>
+            </tr>
+            <tr>
+                <td><code>sm</code></td>
+                <td>Q04</td>
+                <td>Portrait</td>
+                <td>180mm</td>
+                <td>720px</td>
+                <td>Tablets</td>
+            </tr>
+            <tr class="density-row--highlight">
+                <td><code>md</code></td>
+                <td>Q03</td>
+                <td>Landscape</td>
+                <td>360mm</td>
+                <td>1440px</td>
+                <td>Laptops / Desktops</td>
+            </tr>
+            <tr>
+                <td><code>lg</code></td>
+                <td>Q02</td>
+                <td>Landscape</td>
+                <td>540mm</td>
+                <td>2160px</td>
+                <td>QHD / Ultrawide</td>
+            </tr>
+            <tr>
+                <td><code>xl</code></td>
+                <td>Q01</td>
+                <td>Landscape</td>
+                <td>720mm</td>
+                <td>2880px</td>
+                <td>4K displays</td>
+            </tr>
+            <tr>
+                <td><code>ul</code></td>
+                <td>Q00</td>
+                <td>Landscape</td>
+                <td>1080mm</td>
+                <td>4320px</td>
+                <td>5K+ displays</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Conversion Functions</h3>
+
+    <div class="code-block">@use "unit.gl" as *;
+
+        <span class="comment">// Physical to digital</span>
+        $width: mm_to_px(90); <span class="comment">// 360px (Q06 portrait)</span>
+        $width: mm_to_px(360); <span class="comment">// 1440px (Q03 landscape)</span>
+
+        <span class="comment">// Digital to physical</span>
+        $mm: px_to_mm(1440px); <span class="comment">// 360mm</span>
+
+        <span class="comment">// Density-adjusted</span>
+        $physical_px: breakpoint_for_density(md, 2); <span class="comment">// 2880 physical pixels</span>
+    </div>
+
+    <h3>Combined Viewport + Density Queries</h3>
+
+    <p>The <code>media_density</code> mixin targets specific breakpoints AND densities together:</p>
+
+    <div class="code-block"><span class="comment">// Target phones (ss) with retina displays</span>
+        @include media_density(ss, 2) {
+        font-size: 14px;
+        font-weight: 300; <span class="comment">// Thinner weights on retina</span>
+        }
+
+        <span class="comment">// Target tablets (sm) with any density</span>
+        @include media_density(sm) {
+        max-width: 600px;
+        }
+
+        <span class="comment">// Target laptops (md) with 3× displays</span>
+        @include media_density(md, 3) {
+        border-width: 0.333px; <span class="comment">// True 1px hairline</span>
+        }
+    </div>
+
+    <h3>Q Format Semantic Targeting</h3>
+
+    <p>Use <code>media_format</code> to target Q paper sizes directly:</p>
+
+    <div class="code-block"><span class="comment">// Target Q06 portrait devices (phones)</span>
+        @include media_format(q06p) {
+        padding: q(16);
+        }
+
+        <span class="comment">// Target Q03 landscape devices (laptops) with retina</span>
+        @include media_format(q03l, 2) {
+        font-weight: 300;
+        }
+
+        <span class="comment">// Target Q01 landscape (4K) with any density</span>
+        @include media_format(q01l) {
+        max-width: q(1400);
+        }
+    </div>
+
+    <div class="alert alert--tip">
+        <p class="alert__title">Why 4× Multiplier?</p>
+        <p>The 4× multiplier (1mm = 4px) bridges the gap between the traditional print standard (96dpi ≈ 3.78 px/mm) and
+            our Q unit system. This creates clean, round breakpoint values that align perfectly with the Q format paper
+            dimensions.</p>
+    </div>
+</section>

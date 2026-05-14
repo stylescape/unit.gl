@@ -1,86 +1,64 @@
 {#
-Base Template - All pages extend this template
+    Base Template -- all pages extend this.
 
-Blocks available:
-- title: Page title (appears in <title> tag)
-    - head_extra: Additional head content (scripts, styles, meta)
-    - header_class: Additional classes for header element
-    - header: Page header content (eyebrow, h1, lead)
-    - content: Main page content
-    - footer_extra: Additional footer content
-    #}
-    <!DOCTYPE html>
-    <html lang="en" data-theme="light">
+    Blocks:
+    - title         Page title (rendered in <title>)
+    - description   Meta description (rendered in <meta name="description">)
+    - head_extra    Additional <head> content (per-page styles, scripts, meta)
+    - header_class  Extra classes for the page header element
+    - header        Page header content (eyebrow, h1, lead)
+    - content       Main page content
+    - footer_extra  Additional content rendered after the footer
+#}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <title>{%- block title %}unit.gl{%- endblock %}</title>
+    <meta name="description"
+        content="{%- block description -%}A precision-based design system built on the Kyū (Q) unit for consistent, scalable spacing and typography.{%- endblock -%}" />
+    {%- include "partials/head.html.jinja" %}
+    {%- block head_extra %}{%- endblock %}
+</head>
 
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description"
-            content="{{ description | default('A precision-based design system built on the Kyū (Q) unit for consistent, scalable spacing and typography.') }}" />
-        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-        <title>{%- block title %}unit.gl{%- endblock %}</title>
+<body>
+    {# Skip to content link for accessibility #}
+    <a href="#main" class="skip-link">Skip to main content</a>
 
-        {# Stylesheets #}
-        <link rel="stylesheet" href="/css/unit.gl.css" />
-        <link rel="stylesheet" href="/css/unit.gl.docs.css" />
+    {# Top bar #}
+    {%- include "partials/nav.html.jinja" %}
 
-        {# Scripts #}
-        <script type="module" src="/js/unit.gl.js"></script>
-        <script src="/js/unit.gl.docs.js"></script>
+    {# Grid Overlays #}
+    {%- include "partials/grid-overlays.html.jinja" %}
 
-        {# Fonts #}
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-            rel="stylesheet">
+    <div class="docs-layout">
+        {# Sidebar Navigation #}
+        {%- include "partials/sidebar.html.jinja" %}
 
-        {%- block head_extra %}{%- endblock %}
-    </head>
+        <div class="docs-content">
+            <header class="header {%- block header_class %}{%- endblock %}">
+                {%- block header %}
+                <p class="eyebrow">unit.gl</p>
+                <h1>Documentation</h1>
+                {%- endblock %}
+            </header>
 
-    <body>
-        {# Skip to content link for accessibility #}
-        <a href="#main" class="skip-link">Skip to main content</a>
+            <main id="main" role="main">
+                {# Fallback for users without JavaScript #}
+                <noscript>
+                    <div class="noscript-warning">
+                        <strong>JavaScript Required:</strong> Some interactive features on this page require
+                        JavaScript to function properly.
+                    </div>
+                </noscript>
+                {%- block content %}
+                <p>Replace this with your content.</p>
+                {%- endblock %}
+            </main>
 
-        {# Navigation #}
-        {%- include "partials/nav.html.jinja" %}
-
-        {# Grid Overlays #}
-        {%- include "partials/grid-overlays.html.jinja" %}
-
-        <div class="docs-layout">
-            {# Sidebar Navigation #}
-            {%- include "partials/sidebar.html.jinja" %}
-
-            <div class="docs-content">
-                <header class="header {%- block header_class %}{%- endblock %}">
-                    {%- block header %}
-                    <p class="eyebrow">unit.gl</p>
-                    <h1>Documentation</h1>
-                    {%- endblock %}
-                </header>
-
-                <main id="main" role="main">
-                    {# Fallback for users without JavaScript #}
-                    <noscript>
-                        <div class="noscript-warning">
-                            <strong>JavaScript Required:</strong> Some interactive features on this page require
-                            JavaScript
-                            to function properly.
-                        </div>
-                    </noscript>
-                    {%- block content %}
-                    <p>Replace this with your content.</p>
-                    {%- endblock %}
-                </main>
-
-                {# Footer #}
-                {%- include "partials/footer.html.jinja" %}
-                {%- block footer_extra %}{%- endblock %}
-            </div>
+            {# Footer #}
+            {%- include "partials/footer.html.jinja" %}
+            {%- block footer_extra %}{%- endblock %}
         </div>
-
-    </body>
-
-    </html>
+    </div>
+</body>
+</html>

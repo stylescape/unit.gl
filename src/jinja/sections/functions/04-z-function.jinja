@@ -1,0 +1,71 @@
+<section>
+    <h2>z()</h2>
+    <p>Returns a z-index value from the semantic layer map.</p>
+
+    {{ api_signature('z($layer) → Number') }}
+
+    <div class="api-params">
+        <div class="api-param">
+            <span class="api-param__name">$layer</span>
+            <span class="api-param__type">String</span>
+            <span class="api-param__desc">Layer name from $layer_map</span>
+        </div>
+    </div>
+
+    <h3>Available Layers</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Layer</th>
+                <th>z-index</th>
+                <th>Use Case</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>z("canvas")</code></td>
+                <td>-1000</td>
+                <td>Background elements</td>
+            </tr>
+            <tr>
+                <td><code>z("content")</code></td>
+                <td>2000</td>
+                <td>Main content, cards</td>
+            </tr>
+            <tr>
+                <td><code>z("interface")</code></td>
+                <td>4000</td>
+                <td>Fixed navigation, toolbars</td>
+            </tr>
+            <tr>
+                <td><code>z("modal")</code></td>
+                <td>7000</td>
+                <td>Dialogs, lightboxes</td>
+            </tr>
+            <tr>
+                <td><code>z("guides")</code></td>
+                <td>9998</td>
+                <td>Development guides</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Examples</h3>
+    <div class="code-block">.modal {
+        position: fixed;
+        z-index: z("modal"); <span class="comment">// 7000</span>
+        }
+
+        .modal-backdrop {
+        z-index: z("modal") - 1; <span class="comment">// 6999</span>
+        }
+
+        .sticky-nav {
+        position: sticky;
+        z-index: z("interface"); <span class="comment">// 4000</span>
+        }
+
+        .dropdown {
+        z-index: z("interface") + 10; <span class="comment">// 4010</span>
+        }</div>
+</section>

@@ -1,0 +1,44 @@
+<section>
+    <h2>modular_scale()</h2>
+    <p>Calculates a value on a modular scale, useful for typography and spacing systems.</p>
+
+    {{ api_signature('modular_scale($increment, $base: 1em, $ratio: 1.618) → Length') }}
+
+    {% call api_params() %}
+    {{ api_param('$increment', 'Number', 'Step on the scale (positive or negative)') }}
+    {{ api_param('$base', 'Length', 'Base value to scale from', '1em') }}
+    {{ api_param('$ratio', 'Number', 'Scale ratio', '1.618 (golden ratio)') }}
+    {% endcall %}
+
+    <h3>Formula</h3>
+    {{ api_signature('result = $base × $ratio^$increment') }}
+
+    <h3>Examples</h3>
+    <div class="code-block"><span class="comment">// Typography scale with Major Third (1.25)</span>
+        $ratio: 1.25;
+
+        body { font-size: modular_scale(0, 1rem, $ratio); } <span class="comment">// 1rem</span>
+        h4 { font-size: modular_scale(1, 1rem, $ratio); } <span class="comment">// 1.25rem</span>
+        h3 { font-size: modular_scale(2, 1rem, $ratio); } <span class="comment">// 1.5625rem</span>
+        h2 { font-size: modular_scale(3, 1rem, $ratio); } <span class="comment">// 1.953rem</span>
+        h1 { font-size: modular_scale(4, 1rem, $ratio); } <span class="comment">// 2.441rem</span>
+
+        <span class="comment">// Negative steps for smaller sizes</span>
+        small { font-size: modular_scale(-1, 1rem, $ratio); } <span class="comment">// 0.8rem</span>
+        .caption { font-size: modular_scale(-2, 1rem, $ratio); } <span class="comment">// 0.64rem</span>
+    </div>
+
+    <h3>Common Ratios</h3>
+    {{ table(
+    ['Name', 'Value', 'Scale (steps 0-4 from 1rem)'],
+    [
+    ['Minor Second', '1.067', '1.00, 1.07, 1.14, 1.21, 1.30'],
+    ['Major Second', '1.125', '1.00, 1.13, 1.27, 1.42, 1.60'],
+    ['Minor Third', '1.200', '1.00, 1.20, 1.44, 1.73, 2.07'],
+    ['Major Third', '1.250', '1.00, 1.25, 1.56, 1.95, 2.44'],
+    ['Perfect Fourth', '1.333', '1.00, 1.33, 1.78, 2.37, 3.16'],
+    ['Perfect Fifth', '1.500', '1.00, 1.50, 2.25, 3.38, 5.06'],
+    ['Golden Ratio', '1.618', '1.00, 1.62, 2.62, 4.24, 6.85']
+    ]
+    ) }}
+</section>

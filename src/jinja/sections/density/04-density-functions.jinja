@@ -1,0 +1,51 @@
+<section>
+    <h2>Functions</h2>
+
+    <h3>density($bucket)</h3>
+    <p>Returns the DPR value for a density bucket name.</p>
+
+    <div class="code-block">@use "unit.gl" as *;
+
+        $dpr: density("xhdpi"); <span class="comment">// 2</span>
+        $dpr: density("retina"); <span class="comment">// 2 (alias)</span>
+        $dpr: density("xxhdpi"); <span class="comment">// 3</span></div>
+
+    <h3>density_dpi($bucket)</h3>
+    <p>Returns the DPI value for a density bucket.</p>
+
+    <div class="code-block">$dpi: density_dpi("xhdpi"); <span class="comment">// 320</span>
+        $dpi: density_dpi("xxhdpi"); <span class="comment">// 480</span></div>
+
+    <h3>q_to_mm($q_value)</h3>
+    <p>Converts Q units to physical millimeters. Based on the traditional Kyū unit where 1Q = 0.25mm.</p>
+
+    <div class="code-block">$mm: q_to_mm(16); <span class="comment">// 4mm</span>
+        $mm: q_to_mm(160); <span class="comment">// 40mm (Q1 base unit)</span>
+        $mm: q_to_mm(320); <span class="comment">// 80mm (Q2)</span></div>
+
+    <h3>mm_to_q($mm_value)</h3>
+    <p>Converts physical millimeters to Q units.</p>
+
+    <div class="code-block">$q: mm_to_q(4); <span class="comment">// 16</span>
+        $q: mm_to_q(40); <span class="comment">// 160 (Q1)</span></div>
+
+    <h3>q_to_px($q_value, $dpr)</h3>
+    <p>Converts Q units to physical screen pixels at a given DPR.</p>
+
+    <div class="code-block">$px: q_to_px(16, 1); <span class="comment">// 16 physical pixels</span>
+        $px: q_to_px(16, 2); <span class="comment">// 32 physical pixels</span>
+        $px: q_to_px(16, "xhdpi"); <span class="comment">// 32 physical pixels</span></div>
+
+    <h3>q_to_pt($q_value)</h3>
+    <p>Converts Q units to typographic points (1pt = 0.3528mm).</p>
+
+    <div class="code-block">$pt: q_to_pt(16); <span class="comment">// ~11.34pt</span>
+        $pt: q_to_pt(12); <span class="comment">// ~8.5pt</span></div>
+
+    <h3>density_suffix($bucket)</h3>
+    <p>Returns the image resolution suffix for a density bucket.</p>
+
+    <div class="code-block">$suffix: density_suffix("mdpi"); <span class="comment">// "" (no suffix)</span>
+        $suffix: density_suffix("xhdpi"); <span class="comment">// "@2x"</span>
+        $suffix: density_suffix("xxhdpi");<span class="comment">// "@3x"</span></div>
+</section>

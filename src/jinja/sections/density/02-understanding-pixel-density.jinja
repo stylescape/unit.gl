@@ -1,0 +1,28 @@
+<section>
+    <h2>Understanding Pixel Density</h2>
+
+    <p>Modern displays pack different numbers of physical pixels into each CSS pixel. A <strong>device pixel ratio
+            (DPR)</strong> of 2 means each CSS pixel is rendered using 2×2 physical pixels.</p>
+
+    <div class="density-visual">
+        <div class="density-visual__box density-visual__box--1x">
+            <div class="density-visual__grid density-visual__grid--1x"></div>
+            <span class="density-visual__label">1× (Standard)</span>
+            <span class="density-visual__desc">1 CSS px = 1 physical px</span>
+        </div>
+        <div class="density-visual__box density-visual__box--2x">
+            <div class="density-visual__grid density-visual__grid--2x"></div>
+            <span class="density-visual__label">2× (Retina)</span>
+            <span class="density-visual__desc">1 CSS px = 4 physical px</span>
+        </div>
+        <div class="density-visual__box density-visual__box--3x">
+            <div class="density-visual__grid density-visual__grid--3x"></div>
+            <span class="density-visual__label">3× (Super)</span>
+            <span class="density-visual__desc">1 CSS px = 9 physical px</span>
+        </div>
+    </div>
+
+    <p>The Q unit in unit.gl equals 1 CSS pixel at standard density. As density increases, Q units maintain their
+        <em>CSS size</em> while using more physical pixels for sharper rendering.
+    </p>
+</section>

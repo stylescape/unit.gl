@@ -1,0 +1,37 @@
+<section>
+    <h2>Unit Configuration</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>$unit_base</code></td>
+                <td><code>0.0625rem</code></td>
+                <td>Base Q unit (1px at 16px root)</td>
+            </tr>
+            <tr>
+                <td><code>$unit_base_px</code></td>
+                <td><code>1px</code></td>
+                <td>Base unit in pixels</td>
+            </tr>
+            <tr>
+                <td><code>$root_font_size</code></td>
+                <td><code>16px</code></td>
+                <td>Assumed browser root font size</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block"><span class="comment">// Using a 4px base unit instead of 1px</span>
+        $unit_base: 0.25rem;
+
+        <span class="comment">// Now q(4) = 1rem = 16px</span>
+        <span class="comment">// q(8) = 2rem = 32px</span>
+    </div>
+</section>

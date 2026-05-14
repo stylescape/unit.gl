@@ -1,0 +1,36 @@
+<section>
+        <h2>Q-Series Reference</h2>
+        <p class="paper-muted">Complete Q-series formats from <code>res/paper_size_metric_q.csv</code>.</p>
+
+        <table class="paper-table">
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Width (mm)</th>
+                    <th>Height (mm)</th>
+                    <th>Area (cm²)</th>
+                    <th>~Equivalent</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for f in q_formats %}
+                <tr>
+                    <td><code>{{ f.key }}</code></td>
+                    <td><code>{{ f.w }}</code></td>
+                    <td><code>{{ f.h }}</code></td>
+                    <td class="paper-usage">{{ ((f.w * f.h) / 100) | round(1) }}</td>
+                    <td class="paper-usage">
+                        {% if f.key == 'q04' %}≈ A5
+                        {% elif f.key == 'q03' %}≈ A4
+                        {% elif f.key == 'q02' %}≈ A3
+                        {% elif f.key == 'q05' %}≈ A6
+                        {% elif f.key == 'q01' %}≈ A2
+                        {% elif f.key == 'q00' %}≈ A1
+                        {% else %}—
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>

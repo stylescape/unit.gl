@@ -1,0 +1,39 @@
+<section>
+    <h2>Live Demos</h2>
+
+    {% set demos = [
+    {"name": "test_breakpoints", "title": "Breakpoints", "tag": "responsive", "desc": "Interactive view of $breakpoints
+    (includes ss)"},
+    {"name": "test_device", "title": "Device Explorer", "tag": "media", "desc": "Detect media features + match $devices
+    profiles"},
+    {"name": "test_paper", "title": "Page Formats", "tag": "print", "desc": "Explore Q-series formats (res/) and
+    format()
+    usage"},
+    {"name": "test_qscale", "title": "Q Scale Explorer", "tag": "units", "desc": "Interactively explore q() and the
+    $q_steps ladder"},
+    {"name": "test_utilities", "title": "Utility Classes", "tag": "interactive", "desc": "Explore spacing, sizing, and
+    responsive utilities"},
+    {"name": "test_scale", "title": "Typographic Scale", "tag": "typography", "desc": "See modular scale ratios in
+    action"},
+    {"name": "test_ratio", "title": "Aspect Ratios", "tag": "layout", "desc": "Visual demonstration of all ratio
+    presets"},
+    {"name": "test_layers", "title": "Layer System", "tag": "z-index", "desc": "Interactive stacking context
+    visualization"},
+    {"name": "guide_baseline", "title": "Baseline Grid", "tag": "guides", "desc": "Toggle alignment guides and grids"}
+    ] %}
+
+    <ul>
+        {% for page in demos %}
+        <li>
+            <div class="list-item">
+                <div>
+                    <a href="/{{ page.name }}.html" class="list-item__title">{{ page.title }}</a>
+                    <span class="tag{% if page.tag == 'interactive' %} tag--red{% endif %}">{{ page.tag }}</span>
+                    <p class="list-item__meta" style="margin-top: 4px; margin-bottom: 0;">{{ page.desc }}</p>
+                </div>
+                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--swiss-gray-400);">→</span>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>

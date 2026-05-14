@@ -1,0 +1,23 @@
+<section>
+    <h2>Math Functions</h2>
+    <p>unit.gl provides access to common mathematical operations via Sass's built-in math module.</p>
+
+    <div class="code-block">@use "sass:math";
+
+        <span class="comment">// Rounding</span>
+        math.round(4.7); <span class="comment">// 5</span>
+        math.floor(4.7); <span class="comment">// 4</span>
+        math.ceil(4.2); <span class="comment">// 5</span>
+
+        <span class="comment">// Exponents</span>
+        math.pow(2, 3); <span class="comment">// 8</span>
+        math.sqrt(16); <span class="comment">// 4</span>
+
+        <span class="comment">// Min/Max</span>
+        math.min(10px, 20px, 5px); <span class="comment">// 5px</span>
+        math.max(10px, 20px, 5px); <span class="comment">// 20px</span>
+
+        <span class="comment">// Clamping</span>
+        math.clamp(5px, 10px, 20px); <span class="comment">// 10px (between min and max)</span>
+    </div>
+</section>

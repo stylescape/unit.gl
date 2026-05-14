@@ -1,0 +1,49 @@
+<section>
+        <h2>Format Comparison</h2>
+        <p class="paper-muted">Visual comparison of Q-series against ISO A and US formats at relative scale.</p>
+
+        <div class="comparison-grid">
+            <div class="comparison-column">
+                <h3 class="comparison-heading">Q-Series</h3>
+                <p class="comparison-desc">Based on 1:1.5 ratio (2:3). Optimized for screen and modular grids.</p>
+                <div class="comparison-stack" id="q-stack">
+                    {% for f in q_formats %}
+                    {% if f.key in ['q06', 'q05', 'q04', 'q03', 'q02'] %}
+                    <div class="comparison-sheet comparison-sheet--q" data-key="{{ f.key }}" data-w="{{ f.w }}"
+                        data-h="{{ f.h }}" title="{{ f.key }}: {{ f.w }}×{{ f.h }}mm">
+                        <span class="comparison-sheet__label">{{ f.key }}</span>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="comparison-column">
+                <h3 class="comparison-heading">ISO A-Series</h3>
+                <p class="comparison-desc">Based on √2 ratio (~1:1.414). International standard for print.</p>
+                <div class="comparison-stack" id="a-stack">
+                    {% for f in iso_formats %}
+                    {% if f.key in ['a6', 'a5', 'a4', 'a3', 'a2'] %}
+                    <div class="comparison-sheet comparison-sheet--a" data-key="{{ f.key }}" data-w="{{ f.w }}"
+                        data-h="{{ f.h }}" title="{{ f.key | upper }}: {{ f.w }}×{{ f.h }}mm">
+                        <span class="comparison-sheet__label">{{ f.key | upper }}</span>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="comparison-column">
+                <h3 class="comparison-heading">US Formats</h3>
+                <p class="comparison-desc">Imperial-based sizes. Common in North America.</p>
+                <div class="comparison-stack" id="us-stack">
+                    {% for f in us_formats %}
+                    <div class="comparison-sheet comparison-sheet--us" data-key="{{ f.key }}" data-w="{{ f.w }}"
+                        data-h="{{ f.h }}" title="{{ f.key | capitalize }}: {{ f.w }}×{{ f.h }}mm">
+                        <span class="comparison-sheet__label">{{ f.key | capitalize }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>

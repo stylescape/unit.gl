@@ -1,0 +1,45 @@
+<section>
+    <h2>q()</h2>
+    <p>Converts a multiplier to Q units (0.0625rem base).</p>
+
+    {{ api_signature('q($multiplier) → Length') }}
+
+    {% call api_params() %}
+    {{ api_param('$multiplier', 'Number', 'The number of Q units to return') }}
+    {% endcall %}
+
+    <h3>Examples</h3>
+    <div class="code-block">.element {
+        padding: q(16); <span class="comment">// 1rem (16px)</span>
+        margin: q(8); <span class="comment">// 0.5rem (8px)</span>
+        gap: q(24); <span class="comment">// 1.5rem (24px)</span>
+        border-width: q(1); <span class="comment">// 0.0625rem (~1px)</span>
+
+        <span class="comment">// Negative values</span>
+        margin-top: q(-8); <span class="comment">// -0.5rem</span>
+
+        <span class="comment">// With calc()</span>
+        width: calc(100% - q(32));
+        }
+    </div>
+
+    <h3>Reference Table</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Input</th>
+                <th>Output (rem)</th>
+                <th>Output (px @ 16px base)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for n in [1, 2, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128] %}
+            <tr>
+                <td><code>q({{ n }})</code></td>
+                <td>{{ (n * 0.0625)|round(4) }}rem</td>
+                <td>{{ n }}px</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>

@@ -1,0 +1,62 @@
+<section>
+    <h2>Density Buckets</h2>
+
+    <p>unit.gl uses Android's density bucket system for semantic targeting. Each bucket corresponds to a specific DPR
+        and DPI range:</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Bucket</th>
+                <th>DPR</th>
+                <th>DPI</th>
+                <th>Common Devices</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>ldpi</code></td>
+                <td>0.75×</td>
+                <td>120</td>
+                <td>Legacy low-resolution displays</td>
+            </tr>
+            <tr>
+                <td><code>mdpi</code></td>
+                <td>1× <span class="density-baseline">(baseline)</span></td>
+                <td>160</td>
+                <td>Standard desktop monitors</td>
+            </tr>
+            <tr>
+                <td><code>hdpi</code></td>
+                <td>1.5×</td>
+                <td>240</td>
+                <td>Some laptops, older tablets</td>
+            </tr>
+            <tr class="density-row--highlight">
+                <td><code>xhdpi</code></td>
+                <td>2×</td>
+                <td>320</td>
+                <td>Retina MacBooks, most phones/tablets</td>
+            </tr>
+            <tr>
+                <td><code>xxhdpi</code></td>
+                <td>3×</td>
+                <td>480</td>
+                <td>iPhone Pro, Samsung Galaxy S series</td>
+            </tr>
+            <tr>
+                <td><code>xxxhdpi</code></td>
+                <td>4×</td>
+                <td>640</td>
+                <td>Some Android flagships</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alert alert--tip">
+        <p class="alert__title">Tip</p>
+        <p>You can also use semantic aliases: <code>"standard"</code> (1×), <code>"retina"</code> (2×),
+            <code>"super"</code> (3×), and <code>"ultra"</code> (4×).
+        </p>
+    </div>
+</section>

@@ -1,4 +1,6 @@
 {
-    "title": "unit.gl test",
-    "name": "world"
-  }
+    "_comment": "Reserved for future Kist data-file consumption. Live render context is defined in kist.yml under stages.steps.RenderTemplates.options.context.",
+    "name": "unit.gl",
+    "version": "0.3.3",
+    "year": 2026
+}
