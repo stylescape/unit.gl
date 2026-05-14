@@ -1,15 +1,15 @@
 
-    <!DOCTYPE html>
-    <html lang="en" data-theme="light">
-
-    <head>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <title>Utility Classes — unit.gl</title>
+    <meta name="description"
+        content="A precision-based design system built on the Kyū (Q) unit for consistent, scalable spacing and typography." />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description"
-            content="A precision-based design system built on the Kyū (Q) unit for consistent, scalable spacing and typography." />
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-        <title>Utility Classes — unit.gl</title>
+        
 
         
         <link rel="stylesheet" href="/css/unit.gl.css" />
@@ -20,18 +20,18 @@
         <script src="/js/unit.gl.docs.js"></script>
 
         
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-            rel="stylesheet">
-    </head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
 
-    <body>
-        
-        <a href="#main" class="skip-link">Skip to main content</a>
+</head>
 
-        
+<body>
+    
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    
 
 
 <div class="nav-wrapper">
@@ -40,7 +40,7 @@
             
             <a href="index.html" class="nav__logo" >
                 <span class="nav__logo-text">unit.gl</span>
-                <span class="nav__version">1.0.0</span>
+                <span class="nav__version">0.3.3</span>
             </a>
 
             
@@ -121,14 +121,14 @@
 </div>
 
 
-        
+    
 
 <div class="guide--layer guide--graph_centered" data-grid="graph"></div>
 <div class="guide--layer guide--baseline" data-grid="baseline"></div>
 
 
-        <div class="docs-layout">
-            
+    <div class="docs-layout">
+        
 
 
 
@@ -314,26 +314,25 @@
 </aside>
 
 
-            <div class="docs-content">
-                <header class="header">
+        <div class="docs-content">
+            <header class="header">
 <p class="eyebrow">Documentation</p>
 <h1>Utility Classes</h1>
 <p class="lead">Granular utility classes based on the q() unit system. Each class applies a precise multiple of
     <code>0.0625rem</code>.
 </p>
-                </header>
+            </header>
 
-                <main id="main" role="main">
-                    
-                    <noscript>
-                        <div class="noscript-warning">
-                            <strong>JavaScript Required:</strong> Some interactive features on this page require
-                            JavaScript
-                            to function properly.
-                        </div>
-                    </noscript>
+            <main id="main" role="main">
+                
+                <noscript>
+                    <div class="noscript-warning">
+                        <strong>JavaScript Required:</strong> Some interactive features on this page require
+                        JavaScript to function properly.
+                    </div>
+                </noscript>
 
-<!-- Scale Reference -->
+
 <section>
     <h2>Q-Unit Scale</h2>
     <p>Available multipliers from the curated scale. Each step is carefully chosen for visual harmony.</p>
@@ -445,7 +444,7 @@
     </div>
 </section>
 
-<!-- Padding -->
+
 <section>
     <h2>Padding</h2>
     <p>Control element padding: <code>.p_q*</code>, <code>.px_q*</code>, <code>.py_q*</code>, <code>.pt_q*</code>,
@@ -520,7 +519,7 @@
         &lt;div class="<span class="class">pt_q12 pb_q24</span>"&gt;Top: 12px, Bottom: 24px&lt;/div&gt;</div>
 </section>
 
-<!-- Margin -->
+
 <section>
     <h2>Margin</h2>
     <p>Control element margins: <code>.m_q*</code>, <code>.mx_q*</code>, <code>.my_q*</code>, <code>.mt_q*</code>,
@@ -564,7 +563,7 @@
         &lt;div class="<span class="class">mt_q12 mb_q24</span>"&gt;Top: 12px, Bottom: 24px&lt;/div&gt;</div>
 </section>
 
-<!-- Gap -->
+
 <section>
     <h2>Gap</h2>
     <p>Control flex/grid gaps: <code>.gap_q*</code>, <code>.gap_col_q*</code>, <code>.gap_row_q*</code></p>
@@ -623,7 +622,7 @@
     </div>
 </section>
 
-<!-- Width & Height -->
+
 <section>
     <h2>Width & Height</h2>
     <p>Control dimensions: <code>.w_q*</code>, <code>.h_q*</code>, <code>.min_w_q*</code>, <code>.max_w_q*</code>,
@@ -694,7 +693,7 @@
         &lt;div class="<span class="class">min_w_q128 max_w_q256</span>"&gt;Min 128px, Max 256px&lt;/div&gt;</div>
 </section>
 
-<!-- Border Width -->
+
 <section>
     <h2>Border Width</h2>
     <p>Control border widths: <code>.border_q*</code>, <code>.border_t_q*</code>, <code>.border_r_q*</code>,
@@ -735,7 +734,7 @@
         &lt;div class="<span class="class">border_b_q4</span>"&gt;4px bottom border only&lt;/div&gt;</div>
 </section>
 
-<!-- Border Radius -->
+
 <section>
     <h2>Border Radius</h2>
     <p>Control border radius: <code>.rounded_q*</code>, <code>.rounded_t_q*</code>, <code>.rounded_r_q*</code>,
@@ -785,7 +784,7 @@
         &lt;div class="<span class="class">rounded_t_q16</span>"&gt;16px top corners only&lt;/div&gt;</div>
 </section>
 
-<!-- Inset/Position -->
+
 <section>
     <h2>Position</h2>
     <p>Control positioning: <code>.top_q*</code>, <code>.right_q*</code>, <code>.bottom_q*</code>,
@@ -822,7 +821,7 @@
         &lt;/div&gt;</div>
 </section>
 
-<!-- Responsive -->
+
 <section>
     <h2>Responsive Variants</h2>
     <p>All utilities support responsive breakpoints. Resize the browser to see changes.</p>
@@ -863,7 +862,7 @@
     </div>
 </section>
 
-<!-- Complete Example -->
+
 <section>
     <h2>Complete Example</h2>
     <p>Combining utilities for a card component:</p>
@@ -887,9 +886,9 @@
         &lt;/div&gt;</div>
 </section>
 
-                </main>
+            </main>
 
-                
+            
 
 <footer class="footer">
     <div class="footer__content">
@@ -899,18 +898,19 @@
         </div>
         <div class="footer__right">
             <div class="footer__links">
-                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank">GitHub</a>
-                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank">npm</a>
-                <a href="https://www.scape.press" class="footer__link" target="_blank">Scape Press</a>
+                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank"
+                    rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank"
+                    rel="noopener noreferrer">npm</a>
+                <a href="https://www.scape.press" class="footer__link" target="_blank" rel="noopener noreferrer">Scape
+                    Press</a>
             </div>
-            <span class="footer__copyright">© 2024 Scape Press. MIT License.</span>
+            <span class="footer__copyright">© 2026 Scape Press. MIT License.</span>
         </div>
     </div>
 </footer>
 
-            </div>
         </div>
-
-    </body>
-
-    </html>
+    </div>
+</body>
+</html>

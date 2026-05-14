@@ -55,7 +55,7 @@
 /// The `inset` shorthand sets all four sides, while individual classes allow
 /// precise control over specific edges.
 ///
-/// @name inset-utilities
+/// @name inset_utilities
 /// @param {Map} $steps [maps.$q_steps] - Map of step names to Q-unit multipliers
 /// @output CSS classes:
 ///   - `.inset_q{key}` - All four sides
@@ -67,7 +67,7 @@
 ///   - `.inset_y_q{key}` - Vertical (top + bottom)
 ///
 /// @example scss - Usage
-///   @include inset-utilities();
+///   @include inset_utilities();
 ///
 /// @example css - Generated output
 ///   .inset_q16 { top: 16q; right: 16q; bottom: 16q; left: 16q; }
@@ -81,7 +81,7 @@
 ///
 /// @see maps.$q_steps
 ///
-@mixin inset-utilities($steps: maps.$q_steps, $prefix: "") {
+@mixin inset_utilities($steps: maps.$q_steps, $prefix: "") {
     @each $key, $value in $steps {
         /// All four sides (inset shorthand)
         .#{$prefix}inset_q#{$key} {
@@ -131,7 +131,7 @@
 /// Includes both positive and negative variants for each axis.
 /// Negative variants use a leading dash (e.g., `.-translate_x_q8`).
 ///
-/// @name translate-utilities
+/// @name translate_utilities
 /// @param {Map} $steps [maps.$q_steps] - Map of step names to Q-unit multipliers
 /// @output CSS classes:
 ///   - `.translate_x_q{key}` - Translate right (+X)
@@ -140,7 +140,7 @@
 ///   - `.-translate_y_q{key}` - Translate up (-Y)
 ///
 /// @example scss - Usage
-///   @include translate-utilities();
+///   @include translate_utilities();
 ///
 /// @example css - Generated output
 ///   .translate_x_q16 { transform: translateX(16q); }
@@ -154,7 +154,7 @@
 ///
 /// @see maps.$q_steps
 ///
-@mixin translate-utilities($steps: maps.$q_steps, $prefix: "") {
+@mixin translate_utilities($steps: maps.$q_steps, $prefix: "") {
     @each $key, $value in $steps {
         /// Positive X translation (shift right)
         .#{$prefix}translate_x_q#{$key} {
@@ -188,14 +188,14 @@
 /// Generates classes that target inset on the inline (start/end) and
 /// block (start/end) axes instead of physical sides.
 ///
-/// @name inset-logical-utilities
+/// @name inset_logical_utilities
 /// @param {Map}    $steps  [maps.$q_steps]
 /// @param {String} $prefix [""]
 /// @output `.inset_inline_q*`, `.inset_inline_start_q*`,
 ///         `.inset_inline_end_q*`, `.inset_block_q*`,
 ///         `.inset_block_start_q*`, `.inset_block_end_q*`
 ///
-@mixin inset-logical-utilities($steps: maps.$q_steps, $prefix: "") {
+@mixin inset_logical_utilities($steps: maps.$q_steps, $prefix: "") {
     @each $key, $value in $steps {
         .#{$prefix}inset_inline_q#{$key} {
             inset-inline: variables.q($value);

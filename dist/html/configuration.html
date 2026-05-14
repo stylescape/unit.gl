@@ -1,15 +1,15 @@
 
-    <!DOCTYPE html>
-    <html lang="en" data-theme="light">
-
-    <head>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <title>Configuration — unit.gl</title>
+    <meta name="description"
+        content="A precision-based design system built on the Kyū (Q) unit for consistent, scalable spacing and typography." />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description"
-            content="A precision-based design system built on the Kyū (Q) unit for consistent, scalable spacing and typography." />
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-        <title>Configuration — unit.gl</title>
+        
 
         
         <link rel="stylesheet" href="/css/unit.gl.css" />
@@ -20,18 +20,18 @@
         <script src="/js/unit.gl.docs.js"></script>
 
         
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-            rel="stylesheet">
-    </head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
 
-    <body>
-        
-        <a href="#main" class="skip-link">Skip to main content</a>
+</head>
 
-        
+<body>
+    
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    
 
 
 <div class="nav-wrapper">
@@ -40,7 +40,7 @@
             
             <a href="index.html" class="nav__logo" >
                 <span class="nav__logo-text">unit.gl</span>
-                <span class="nav__version">1.0.0</span>
+                <span class="nav__version">0.3.3</span>
             </a>
 
             
@@ -121,14 +121,14 @@
 </div>
 
 
-        
+    
 
 <div class="guide--layer guide--graph_centered" data-grid="graph"></div>
 <div class="guide--layer guide--baseline" data-grid="baseline"></div>
 
 
-        <div class="docs-layout">
-            
+    <div class="docs-layout">
+        
 
 
 
@@ -314,24 +314,22 @@
 </aside>
 
 
-            <div class="docs-content">
-                <header class="header">
+        <div class="docs-content">
+            <header class="header">
 <p class="eyebrow">Customization</p>
 <h1>Configuration</h1>
 <p class="lead">Customize unit.gl by overriding variables, extending maps, and configuring build options.</p>
-                </header>
+            </header>
 
-                <main id="main" role="main">
-                    
-                    <noscript>
-                        <div class="noscript-warning">
-                            <strong>JavaScript Required:</strong> Some interactive features on this page require
-                            JavaScript
-                            to function properly.
-                        </div>
-                    </noscript>
+            <main id="main" role="main">
+                
+                <noscript>
+                    <div class="noscript-warning">
+                        <strong>JavaScript Required:</strong> Some interactive features on this page require
+                        JavaScript to function properly.
+                    </div>
+                </noscript>
 
-<!-- Variables Overview -->
 <section>
     <h2>Variables</h2>
     <p>unit.gl uses SCSS variables with the <code>!default</code> flag, allowing you to override them before importing
@@ -362,7 +360,6 @@
     </div>
 </section>
 
-<!-- Unit Configuration -->
 <section>
     <h2>Unit Configuration</h2>
 
@@ -401,7 +398,6 @@
     </div>
 </section>
 
-<!-- Scale Configuration -->
 <section>
     <h2>Scale Configuration</h2>
 
@@ -448,7 +444,6 @@
     </div>
 </section>
 
-<!-- Q Steps Configuration -->
 <section>
     <h2>Q Steps Scale</h2>
     <p>The <code>$q_steps</code> map defines which Q values generate utility classes.</p>
@@ -474,7 +469,6 @@
     </div>
 </section>
 
-<!-- Breakpoint Configuration -->
 <section>
     <h2>Breakpoint Configuration</h2>
     <p>Customize responsive breakpoints by overriding the <code>$breakpoints</code> map. Default values are derived from
@@ -513,7 +507,6 @@
     </div>
 </section>
 
-<!-- Layer Configuration -->
 <section>
     <h2>Layer Configuration</h2>
     <p>Customize z-index layers via <code>$layer_map</code>.</p>
@@ -550,7 +543,6 @@
     </div>
 </section>
 
-<!-- Color Configuration -->
 <section>
     <h2>Color Configuration</h2>
     <p>Define your color palette using <code>$color_map</code>.</p>
@@ -594,7 +586,6 @@
     </div>
 </section>
 
-<!-- Ratio Configuration -->
 <section>
     <h2>Ratio Configuration</h2>
     <p>Extend or customize aspect ratios via <code>$ratio_map</code>.</p>
@@ -629,7 +620,6 @@
     </div>
 </section>
 
-<!-- Paper Configuration -->
 <section>
     <h2>Paper Configuration</h2>
     <p>Paper sizes for print-oriented designs.</p>
@@ -654,7 +644,6 @@
         ));</div>
 </section>
 
-<!-- Build Configuration -->
 <section>
     <h2>Build Configuration</h2>
     <p>Control what gets generated in your CSS output.</p>
@@ -676,7 +665,6 @@
     </div>
 </section>
 
-<!-- Full Configuration Example -->
 <section>
     <h2>Complete Configuration Example</h2>
     <p>A full example of a customized unit.gl setup.</p>
@@ -765,9 +753,10 @@
         );
     </div>
 </section>
-                </main>
 
-                
+            </main>
+
+            
 
 <footer class="footer">
     <div class="footer__content">
@@ -777,18 +766,19 @@
         </div>
         <div class="footer__right">
             <div class="footer__links">
-                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank">GitHub</a>
-                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank">npm</a>
-                <a href="https://www.scape.press" class="footer__link" target="_blank">Scape Press</a>
+                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank"
+                    rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank"
+                    rel="noopener noreferrer">npm</a>
+                <a href="https://www.scape.press" class="footer__link" target="_blank" rel="noopener noreferrer">Scape
+                    Press</a>
             </div>
-            <span class="footer__copyright">© 2024 Scape Press. MIT License.</span>
+            <span class="footer__copyright">© 2026 Scape Press. MIT License.</span>
         </div>
     </div>
 </footer>
 
-            </div>
         </div>
-
-    </body>
-
-    </html>
+    </div>
+</body>
+</html>

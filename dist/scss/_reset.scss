@@ -67,13 +67,7 @@
 // Block content: strip default margin
 // ============================================================================
 
-:where(
-    h1, h2, h3, h4, h5, h6,
-    p,
-    blockquote, pre,
-    dl, dd,
-    figure
-) {
+:where(h1, h2, h3, h4, h5, h6, p, blockquote, pre, dl, dd, figure) {
     margin: 0;
 }
 
@@ -129,8 +123,12 @@
     vertical-align: baseline;
 }
 
-:where(sub) { inset-block-end: -0.25em; }
-:where(sup) { inset-block-start: -0.5em; }
+:where(sub) {
+    inset-block-end: -0.25em;
+}
+:where(sup) {
+    inset-block-start: -0.5em;
+}
 
 // ============================================================================
 // Replaced & embedded
@@ -158,7 +156,7 @@
 }
 
 :where(button, [type="button"], [type="reset"], [type="submit"]) {
-    appearance: button;
+    appearance: auto;
     cursor: pointer;
 }
 

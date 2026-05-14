@@ -1,15 +1,15 @@
 
-    <!DOCTYPE html>
-    <html lang="en" data-theme="light">
-
-    <head>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <title>Pixel Density — unit.gl</title>
+    <meta name="description"
+        content="A precision-based design system built on the Kyū (Q) unit for consistent, scalable spacing and typography." />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description"
-            content="A precision-based design system built on the Kyū (Q) unit for consistent, scalable spacing and typography." />
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-        <title>Pixel Density — unit.gl</title>
+        
 
         
         <link rel="stylesheet" href="/css/unit.gl.css" />
@@ -20,18 +20,18 @@
         <script src="/js/unit.gl.docs.js"></script>
 
         
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-            rel="stylesheet">
-    </head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
 
-    <body>
-        
-        <a href="#main" class="skip-link">Skip to main content</a>
+</head>
 
-        
+<body>
+    
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    
 
 
 <div class="nav-wrapper">
@@ -40,7 +40,7 @@
             
             <a href="index.html" class="nav__logo" >
                 <span class="nav__logo-text">unit.gl</span>
-                <span class="nav__version">1.0.0</span>
+                <span class="nav__version">0.3.3</span>
             </a>
 
             
@@ -121,14 +121,14 @@
 </div>
 
 
-        
+    
 
 <div class="guide--layer guide--graph_centered" data-grid="graph"></div>
 <div class="guide--layer guide--baseline" data-grid="baseline"></div>
 
 
-        <div class="docs-layout">
-            
+    <div class="docs-layout">
+        
 
 
 
@@ -314,25 +314,23 @@
 </aside>
 
 
-            <div class="docs-content">
-                <header class="header">
+        <div class="docs-content">
+            <header class="header">
 <p class="eyebrow">Documentation</p>
 <h1>Pixel Density</h1>
 <p class="lead">A unified system for handling display density across screen and print. Convert between Q units, physical
     measurements, and density-aware pixels.</p>
-                </header>
+            </header>
 
-                <main id="main" role="main">
-                    
-                    <noscript>
-                        <div class="noscript-warning">
-                            <strong>JavaScript Required:</strong> Some interactive features on this page require
-                            JavaScript
-                            to function properly.
-                        </div>
-                    </noscript>
+            <main id="main" role="main">
+                
+                <noscript>
+                    <div class="noscript-warning">
+                        <strong>JavaScript Required:</strong> Some interactive features on this page require
+                        JavaScript to function properly.
+                    </div>
+                </noscript>
 
-<!-- Current Device Info -->
 <section>
     <h2>Your Display</h2>
     <p>Real-time information about your current display's pixel density.</p>
@@ -357,7 +355,6 @@
     </div>
 </section>
 
-<!-- Understanding Pixel Density -->
 <section>
     <h2>Understanding Pixel Density</h2>
 
@@ -387,7 +384,6 @@
     </p>
 </section>
 
-<!-- Density Buckets -->
 <section>
     <h2>Density Buckets</h2>
 
@@ -451,7 +447,6 @@
     </div>
 </section>
 
-<!-- Density Functions -->
 <section>
     <h2>Functions</h2>
 
@@ -504,7 +499,6 @@
         $suffix: density_suffix("xxhdpi");<span class="comment">// "@3x"</span></div>
 </section>
 
-<!-- Density Mixins -->
 <section>
     <h2>Mixins</h2>
 
@@ -592,7 +586,6 @@
     </div>
 </section>
 
-<!-- Runtime DPR -->
 <section>
     <h2>Runtime DPR Access</h2>
 
@@ -623,7 +616,6 @@
     </div>
 </section>
 
-<!-- Unified Q Format & Breakpoint System -->
 <section>
     <h2>Unified Q Format & Breakpoints</h2>
 
@@ -780,7 +772,6 @@
     </div>
 </section>
 
-<!-- Density-Aware Typography -->
 <section>
     <h2>Density-Aware Typography</h2>
 
@@ -843,7 +834,6 @@
 
 </section>
 
-<!-- CSS Custom Properties -->
 <section>
     <h2>CSS Custom Properties</h2>
 
@@ -884,7 +874,6 @@
 
 </section>
 
-<!-- Q Unit and Physical Size -->
 <section>
     <h2>Q Units & Physical Size</h2>
 
@@ -941,7 +930,6 @@
         relationships.</p>
 </section>
 
-<!-- Best Practices -->
 <section>
     <h2>Best Practices</h2>
 
@@ -981,7 +969,6 @@
     </div>
 </section>
 
-<!-- Conversion Calculator -->
 <section>
     <h2>Conversion Calculator</h2>
 
@@ -1023,9 +1010,10 @@
         </div>
     </div>
 </section>
-                </main>
 
-                
+            </main>
+
+            
 
 <footer class="footer">
     <div class="footer__content">
@@ -1035,18 +1023,19 @@
         </div>
         <div class="footer__right">
             <div class="footer__links">
-                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank">GitHub</a>
-                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank">npm</a>
-                <a href="https://www.scape.press" class="footer__link" target="_blank">Scape Press</a>
+                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank"
+                    rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank"
+                    rel="noopener noreferrer">npm</a>
+                <a href="https://www.scape.press" class="footer__link" target="_blank" rel="noopener noreferrer">Scape
+                    Press</a>
             </div>
-            <span class="footer__copyright">© 2024 Scape Press. MIT License.</span>
+            <span class="footer__copyright">© 2026 Scape Press. MIT License.</span>
         </div>
     </div>
 </footer>
 
-            </div>
         </div>
-
-    </body>
-
-    </html>
+    </div>
+</body>
+</html>

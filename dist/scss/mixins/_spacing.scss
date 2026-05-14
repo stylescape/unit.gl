@@ -402,7 +402,7 @@
 /// Generates utility classes for padding properties on all sides,
 /// individual sides, and axis pairs (x/y).
 ///
-/// @name padding-utilities
+/// @name padding_utilities
 /// @param {Map} $steps [$q_steps] - Map of step names to Q-unit multipliers
 /// @param {List} $breakpoints [null] - Optional breakpoints for responsive variants
 /// @output CSS classes:
@@ -415,7 +415,7 @@
 ///   - `.py_q{key}` - Vertical (top + bottom)
 ///
 /// @example scss - Usage
-///   @include padding-utilities();
+///   @include padding_utilities();
 ///
 /// @example css - Generated output
 ///   .p_q16 { padding: 16q; }
@@ -424,7 +424,7 @@
 ///
 /// @see $q_steps
 ///
-@mixin padding-utilities($steps: $q_steps, $prefix: "") {
+@mixin padding_utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
         .#{$prefix}p_q#{$key} {
             padding: q($value);
@@ -459,7 +459,7 @@
 /// Generates utility classes for margin properties on all sides,
 /// individual sides, and axis pairs (x/y).
 ///
-/// @name margin-utilities
+/// @name margin_utilities
 /// @param {Map} $steps [$q_steps] - Map of step names to Q-unit multipliers
 /// @param {List} $breakpoints [null] - Optional breakpoints for responsive variants
 /// @output CSS classes:
@@ -472,7 +472,7 @@
 ///   - `.my_q{key}` - Vertical (top + bottom)
 ///
 /// @example scss - Usage
-///   @include margin-utilities();
+///   @include margin_utilities();
 ///
 /// @example css - Generated output
 ///   .m_q16 { margin: 16q; }
@@ -481,7 +481,7 @@
 ///
 /// @see $q_steps
 ///
-@mixin margin-utilities($steps: $q_steps, $prefix: "") {
+@mixin margin_utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
         .#{$prefix}m_q#{$key} {
             margin: q($value);
@@ -516,7 +516,7 @@
 /// Generates utility classes for gap properties used in flexbox and grid layouts.
 /// Includes shorthand `gap` and individual `column-gap` / `row-gap` properties.
 ///
-/// @name gap-utilities
+/// @name gap_utilities
 /// @param {Map} $steps [$q_steps] - Map of step names to Q-unit multipliers
 /// @output CSS classes:
 ///   - `.gap_q{key}` - Both row and column gap
@@ -524,7 +524,7 @@
 ///   - `.gap_row_q{key}` - Row gap only
 ///
 /// @example scss - Usage
-///   @include gap-utilities();
+///   @include gap_utilities();
 ///
 /// @example css - Generated output
 ///   .gap_q16 { gap: 16q; }
@@ -537,7 +537,7 @@
 ///
 /// @see $q_steps
 ///
-@mixin gap-utilities($steps: $q_steps, $prefix: "") {
+@mixin gap_utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
         .#{$prefix}gap_q#{$key} {
             gap: q($value);
@@ -562,13 +562,13 @@
 /// (start/end) axes instead of physical sides. Honors writing mode and
 /// document direction, making them safe for RTL and vertical scripts.
 ///
-/// @name padding-logical-utilities
+/// @name padding_logical_utilities
 /// @param {Map}    $steps  [$q_steps]
 /// @param {String} $prefix [""]
 /// @output `.p_inline_q*`, `.p_inline_start_q*`, `.p_inline_end_q*`,
 ///         `.p_block_q*`, `.p_block_start_q*`, `.p_block_end_q*`
 ///
-@mixin padding-logical-utilities($steps: $q_steps, $prefix: "") {
+@mixin padding_logical_utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
         .#{$prefix}p_inline_q#{$key} {
             padding-inline: q($value);
@@ -594,13 +594,13 @@
 ///
 /// Margin logical-axis utility classes.
 ///
-/// @name margin-logical-utilities
+/// @name margin_logical_utilities
 /// @param {Map}    $steps  [$q_steps]
 /// @param {String} $prefix [""]
 /// @output `.m_inline_q*`, `.m_inline_start_q*`, `.m_inline_end_q*`,
 ///         `.m_block_q*`, `.m_block_start_q*`, `.m_block_end_q*`
 ///
-@mixin margin-logical-utilities($steps: $q_steps, $prefix: "") {
+@mixin margin_logical_utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
         .#{$prefix}m_inline_q#{$key} {
             margin-inline: q($value);

@@ -87,8 +87,11 @@ stages:
                   stripExtension: ".jinja"
                   context:
                       name: "unit.gl"
-                      version: "1.0.0"
+                      version: "0.3.3"
                       author: "Lars van Vianen"
+                      year: 2026
+                      tagline: "Dynamic Layout Engine"
+                      brand: "unit.gl"
 
             - name: CopySrcHTML
               action: DirectoryCopyAction

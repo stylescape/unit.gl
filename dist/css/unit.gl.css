@@ -22,11 +22,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-:where(h1, h2, h3, h4, h5, h6,
-p,
-blockquote, pre,
-dl, dd,
-figure) {
+:where(h1, h2, h3, h4, h5, h6, p, blockquote, pre, dl, dd, figure) {
   margin: 0;
 }
 
@@ -104,9 +100,9 @@ figure) {
 }
 
 :where(button, [type=button], [type=reset], [type=submit]) {
-  -webkit-appearance: button;
-     -moz-appearance: button;
-          appearance: button;
+  -webkit-appearance: auto;
+     -moz-appearance: auto;
+          appearance: auto;
   cursor: pointer;
 }
 

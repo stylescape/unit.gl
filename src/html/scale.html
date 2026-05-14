@@ -1,15 +1,15 @@
 
-    <!DOCTYPE html>
-    <html lang="en" data-theme="light">
-
-    <head>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <title>Scale System | unit.gl</title>
+    <meta name="description"
+        content="A precision-based design system built on the Kyū (Q) unit for consistent, scalable spacing and typography." />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description"
-            content="A precision-based design system built on the Kyū (Q) unit for consistent, scalable spacing and typography." />
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-        <title>Scale System | unit.gl</title>
+        
 
         
         <link rel="stylesheet" href="/css/unit.gl.css" />
@@ -20,18 +20,18 @@
         <script src="/js/unit.gl.docs.js"></script>
 
         
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-            rel="stylesheet">
-    </head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
 
-    <body>
-        
-        <a href="#main" class="skip-link">Skip to main content</a>
+</head>
 
-        
+<body>
+    
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    
 
 
 <div class="nav-wrapper">
@@ -40,7 +40,7 @@
             
             <a href="index.html" class="nav__logo" >
                 <span class="nav__logo-text">unit.gl</span>
-                <span class="nav__version">1.0.0</span>
+                <span class="nav__version">0.3.3</span>
             </a>
 
             
@@ -121,14 +121,14 @@
 </div>
 
 
-        
+    
 
 <div class="guide--layer guide--graph_centered" data-grid="graph"></div>
 <div class="guide--layer guide--baseline" data-grid="baseline"></div>
 
 
-        <div class="docs-layout">
-            
+    <div class="docs-layout">
+        
 
 
 
@@ -314,36 +314,22 @@
 </aside>
 
 
-            <div class="docs-content">
-                <header class="header">
-                    <p class="eyebrow">unit.gl</p>
-                    <h1>Documentation</h1>
-                </header>
+        <div class="docs-content">
+            <header class="header">
+                <p class="eyebrow">unit.gl</p>
+                <h1>Documentation</h1>
+            </header>
 
-                <main id="main" role="main">
-                    
-                    <noscript>
-                        <div class="noscript-warning">
-                            <strong>JavaScript Required:</strong> Some interactive features on this page require
-                            JavaScript
-                            to function properly.
-                        </div>
-                    </noscript>
-<main class="docs-main">
-    <article class="docs-content">
+            <main id="main" role="main">
+                
+                <noscript>
+                    <div class="noscript-warning">
+                        <strong>JavaScript Required:</strong> Some interactive features on this page require
+                        JavaScript to function properly.
+                    </div>
+                </noscript>
 
-        <!-- Header -->
-        <header class="docs-header">
-            <h1 class="docs-title">Scale System</h1>
-            <p class="docs-lead">
-                A comprehensive scaling architecture combining the Q unit, type scale (4Q),
-                line scale (5Q), and mathematical harmony through LCM alignment and
-                Highly Composite Numbers.
-            </p>
-        </header>
-
-        <!-- Scale Explorer (Interactive) -->
-        <section class="docs-section">
+<section class="docs-section">
             <h2>Scale Explorer</h2>
             <p>
                 Explore the relationship between Type Scale (4Q) and Line Scale (5Q)
@@ -415,8 +401,7 @@
             </div>
         </section>
 
-        <!-- Q Scale Section -->
-        <section class="docs-section">
+<section class="docs-section">
             <h2>Q Unit Scale</h2>
             <p>
                 <code>q()</code> is the atomic unit: <code>q(1) = 0.0625rem</code> (1px at a 16px root).
@@ -641,8 +626,7 @@
             </div>
         </section>
 
-        <!-- Visual Grid Comparison -->
-        <section class="docs-section">
+<section class="docs-section">
             <h2>Visual Grid Comparison</h2>
             <p>
                 See how the Type Scale (4Q) and Line Scale (5Q) create different grids,
@@ -683,8 +667,7 @@
             </div>
         </section>
 
-        <!-- Mathematical Foundation -->
-        <section class="docs-section">
+<section class="docs-section">
             <h2>Mathematical Foundation</h2>
 
             <div class="math-foundation">
@@ -751,8 +734,7 @@
             </div>
         </section>
 
-        <!-- Typographic Scale -->
-        <section class="docs-section">
+<section class="docs-section">
             <h2>Typographic Scale</h2>
             <p>Type sizes built on q() multiples. Each step maintains optical harmony through the unit system.</p>
 
@@ -838,8 +820,7 @@
             </div>
         </section>
 
-        <!-- Typography Examples -->
-        <section class="docs-section">
+<section class="docs-section">
             <h2>Typography Examples</h2>
             <p>
                 See the hybrid scale in action. Each level uses
@@ -890,8 +871,7 @@
             </div>
         </section>
 
-        <!-- Vertical Rhythm -->
-        <section class="docs-section">
+<section class="docs-section">
             <h2>Vertical Rhythm</h2>
             <p>Height increments for maintaining consistent baseline rhythm across components.</p>
 
@@ -952,8 +932,7 @@ padding: q(8); // 8px — 1 baseline unit</code></pre>
             </div>
         </section>
 
-        <!-- Modular Scale -->
-        <section class="docs-section">
+<section class="docs-section">
             <h2>Modular Scale</h2>
             <p>Mathematical ratios applied to the base unit for harmonic proportions.</p>
 
@@ -1025,8 +1004,7 @@ font-size: scale(16px, $ratio-fourth); // 21.33px</code></pre>
             </div>
         </section>
 
-        <!-- Scale Relationship Table -->
-        <section class="docs-section">
+<section class="docs-section">
             <h2>Scale Relationship</h2>
             <p>
                 Compare values across both scales. Note how every 5th type unit
@@ -1103,8 +1081,7 @@ font-size: scale(16px, $ratio-fourth); // 21.33px</code></pre>
             </div>
         </section>
 
-        <!-- SCSS Functions -->
-        <section class="docs-section">
+<section class="docs-section">
             <h2>SCSS Functions</h2>
 
             <div class="function-grid">
@@ -1155,8 +1132,7 @@ padding: baseline(4);       // 20Q = 20px</code></pre>
             </div>
         </section>
 
-        <!-- When to Use -->
-        <section class="docs-section">
+<section class="docs-section">
             <h2>When to Use</h2>
             <div class="qscale-use-cases">
                 <div class="use-case">
@@ -1196,8 +1172,7 @@ padding: baseline(4);       // 20Q = 20px</code></pre>
             </div>
         </section>
 
-        <!-- Why Hybrid? -->
-        <section class="docs-section">
+<section class="docs-section">
             <h2>Why Hybrid Scales?</h2>
 
             <div class="benefits-grid">
@@ -1228,13 +1203,11 @@ padding: baseline(4);       // 20Q = 20px</code></pre>
             </div>
         </section>
 
-    </article>
-</main>
 
 
-                </main>
+            </main>
 
-                
+            
 
 <footer class="footer">
     <div class="footer__content">
@@ -1244,18 +1217,19 @@ padding: baseline(4);       // 20Q = 20px</code></pre>
         </div>
         <div class="footer__right">
             <div class="footer__links">
-                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank">GitHub</a>
-                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank">npm</a>
-                <a href="https://www.scape.press" class="footer__link" target="_blank">Scape Press</a>
+                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank"
+                    rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank"
+                    rel="noopener noreferrer">npm</a>
+                <a href="https://www.scape.press" class="footer__link" target="_blank" rel="noopener noreferrer">Scape
+                    Press</a>
             </div>
-            <span class="footer__copyright">© 2024 Scape Press. MIT License.</span>
+            <span class="footer__copyright">© 2026 Scape Press. MIT License.</span>
         </div>
     </div>
 </footer>
 
-            </div>
         </div>
-
-    </body>
-
-    </html>
+    </div>
+</body>
+</html>
