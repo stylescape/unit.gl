@@ -153,12 +153,19 @@ export class GridManager {
    * @private
    */
   private setupEventListeners(): void {
-    document.addEventListener('DOMContentLoaded', () => {
+    const init = () => {
       this.updateAllGridHeights();
       this.setupToggleButtons();
 
       window.addEventListener('resize', () => this.updateAllGridHeights());
       window.addEventListener('scroll', () => this.updateAllGridHeights());
-    });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      // Module scripts are deferred and may execute after DOMContentLoaded.
+      init();
+    }
   }
 }

@@ -894,7 +894,7 @@ function initHybridScaleDemo(): void {
 document.addEventListener('DOMContentLoaded', function () {
     // Core functionality (always runs)
     initThemeToggle();
-    initGridToggle();
+    // Grid toggle handled by GridManager in unit.gl.js (avoids double-toggle)
     initMobileNav();
     initSidebarToggle();
 

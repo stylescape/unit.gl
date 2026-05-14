@@ -380,7 +380,7 @@
 
     <p>The <code>q()</code> function is your primary tool for applying Q units:</p>
 
-    <div class="code-block">@use "unit.gl" as *;
+    <div class="code-block"><pre><code>@use "unit.gl" as *;
 
         <span class="comment">// Basic usage</span>
         .element {
@@ -398,8 +398,7 @@
         <span class="comment">// Calculations</span>
         .calculated {
         width: calc(100% - q(32));
-        }
-    </div>
+        }</code></pre></div>
 
     <h3>Common Values</h3>
 
@@ -528,14 +527,14 @@
         
     </div>
 
-    <div class="code-block"><span class="comment">// 8-point grid values</span>
+    <div class="code-block"><pre><code><span class="comment">// 8-point grid values</span>
         $spacing-xs: q(4); <span class="comment">// 4px - Micro spacing</span>
         $spacing-sm: q(8); <span class="comment">// 8px - Small spacing</span>
         $spacing-md: q(16); <span class="comment">// 16px - Base spacing</span>
         $spacing-lg: q(24); <span class="comment">// 24px - Medium spacing</span>
         $spacing-xl: q(32); <span class="comment">// 32px - Large spacing</span>
         $spacing-2xl: q(48); <span class="comment">// 48px - Extra large</span>
-        $spacing-3xl: q(64); <span class="comment">// 64px - Section spacing</span></div>
+        $spacing-3xl: q(64); <span class="comment">// 64px - Section spacing</span></code></pre></div>
 
     <div class="alert">
         <p class="alert__title">Why 8?</p>
@@ -612,14 +611,14 @@
 
     <h3>Typography Example</h3>
 
-    <div class="code-block">$ratio: 1.25; <span class="comment">// Major Third</span>
+    <div class="code-block"><pre><code>$ratio: 1.25; <span class="comment">// Major Third</span>
 
         body { font-size: modular_scale(0, 1rem, $ratio); } <span class="comment">// 1rem</span>
         h4 { font-size: modular_scale(1, 1rem, $ratio); } <span class="comment">// 1.25rem</span>
         h3 { font-size: modular_scale(2, 1rem, $ratio); } <span class="comment">// 1.5625rem</span>
         h2 { font-size: modular_scale(3, 1rem, $ratio); } <span class="comment">// 1.953rem</span>
         h1 { font-size: modular_scale(4, 1rem, $ratio); } <span class="comment">// 2.441rem</span>
-        .display { font-size: modular_scale(5, 1rem, $ratio); } <span class="comment">// 3.052rem</span></div>
+        .display { font-size: modular_scale(5, 1rem, $ratio); } <span class="comment">// 3.052rem</span></code></pre></div>
 </section>
 
 <section>
@@ -662,16 +661,15 @@
         
     </div>
 
-    <div class="code-block"><span class="comment">// Using ratio classes</span>
+    <div class="code-block"><pre><code><span class="comment">// Using ratio classes</span>
         &lt;div class="<span class="class">ratio_16x9</span>"&gt;
         &lt;img src="video-thumb.jpg" alt="Video"&gt;
         &lt;/div&gt;
 
         <span class="comment">// Using SCSS mixin</span>
         .hero-image {
-        @include ratio(16, 9);
-        }
-    </div>
+        @include aspect_ratio(16, 9);
+        }</code></pre></div>
 </section>
 
 <section>
@@ -715,7 +713,7 @@
         
     </div>
 
-    <div class="code-block"><span class="comment">// Use semantic layer names</span>
+    <div class="code-block"><pre><code><span class="comment">// Use semantic layer names</span>
         .modal {
         z-index: z("modal"); <span class="comment">// 7000</span>
         }
@@ -726,7 +724,7 @@
 
         .tooltip {
         z-index: z("interface") + 10; <span class="comment">// 4010</span>
-        }</div>
+        }</code></pre></div>
 </section>
 
 <section>
@@ -795,18 +793,18 @@
         </tbody>
     </table>
 
-    <div class="code-block"><span class="comment">// Using breakpoint mixins</span>
+    <div class="code-block"><pre><code><span class="comment">// Using breakpoint mixins</span>
         .card {
         padding: q(16);
 
-        @include view_md {
+        @include media_md {
         padding: q(24);
         }
 
-        @include view_lg {
+        @include media_lg {
         padding: q(32);
         }
-        }</div>
+        }</code></pre></div>
 </section>
 
 <section>

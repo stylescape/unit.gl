@@ -680,15 +680,13 @@
 <section>
     <h2>SCSS Usage</h2>
 
-    <div class="code-block">
-        <pre><code>@use "unit.gl" as *;
+    <div class="code-block"><pre><code>@use "unit.gl" as *;
 
 // Target a specific device profile from $devices
 @include device_media_query("galaxy_fold") {
   .panel { padding: q(10); }
 }
-</code></pre>
-    </div>
+</code></pre></div>
 
     <p class="device-muted">Profile keys are underscored (for example <code>iphone_x</code>, <code>ipad_pro</code>,
         <code>macbook_pro</code>).

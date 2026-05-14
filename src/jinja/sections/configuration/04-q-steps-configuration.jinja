@@ -3,13 +3,13 @@
     <p>The <code>$q_steps</code> map defines which Q values generate utility classes.</p>
 
     <h3>Default Scale</h3>
-    <div class="code-block">$q_steps: (
+    <div class="code-block"><pre><code>$q_steps: (
         0, 1, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48,
         56, 64, 72, 80, 96, 112, 128, 144, 160, 192, 224, 256
-        ) !default;</div>
+        ) !default;</code></pre></div>
 
     <h3>Customizing</h3>
-    <div class="code-block"><span class="comment">// Minimal scale for smaller CSS output</span>
+    <div class="code-block"><pre><code><span class="comment">// Minimal scale for smaller CSS output</span>
         $q_steps: (0, 4, 8, 16, 24, 32, 48, 64);
 
         <span class="comment">// Extended scale for more precision</span>
@@ -19,6 +19,5 @@
         );
 
         <span class="comment">// 4px-based scale (multiples of 4)</span>
-        $q_steps: (0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96);
-    </div>
+        $q_steps: (0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96);</code></pre></div>
 </section>

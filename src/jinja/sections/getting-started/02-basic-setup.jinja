@@ -3,14 +3,13 @@
 
     <p>Import unit.gl into your main SCSS file:</p>
 
-    <div class="code-block"><span class="comment">// Import the entire framework</span>
+    <div class="code-block"><pre><code><span class="comment">// Import the entire framework</span>
         @use "unit.gl" as *;
 
         <span class="comment">// Or import specific modules</span>
         @use "unit.gl/scss/variables" as vars;
         @use "unit.gl/scss/functions" as fn;
-        @use "unit.gl/scss/mixins" as mx;
-    </div>
+        @use "unit.gl/scss/mixins" as mx;</code></pre></div>
 
     {{ alert('Using <code>@use</code> with namespaces helps avoid naming conflicts in larger projects.', type='tip',
     title='Tip') }}

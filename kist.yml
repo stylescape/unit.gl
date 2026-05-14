@@ -19,16 +19,10 @@ stages:
 
       steps:
 
-            # Clean dist directory
-            # -----------------------------------------------------------------
-            - name: CleanDistDirectory
-              action: DirectoryCleanAction
-              options:
-                  dirPath: "./dist"
-                  tolerant: true
-
-            # Note: TypeScript build is handled by npm script after kist runs
-            # See package.json: "build": "npx kist ... && npm run build:ts"
+            # Note: TypeScript build is handled by tsup (see vite.config.js for
+            # dev `tsup --watch`, package.json for production `npm run build:ts`).
+            # We intentionally do NOT clean ./dist here -- doing so would wipe
+            # dist/js between kist runs and break the live dev server.
 
             # Process SCSS to CSS (library styles)
             # -----------------------------------------------------------------

@@ -1,8 +1,8 @@
 <section>
-    <h2>Device & Format Mixins</h2>
+    <h2>Device &amp; Format Mixins</h2>
 
     <h3>format()</h3>
-    <p>Applies dimensions from a page/print format.</p>
+    <p>Applies dimensions from a page/print format defined in <code>$paper_map</code>.</p>
 
     <div class="api-signature">@include format($size, $orientation: portrait)</div>
 
@@ -15,47 +15,36 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>a3</td>
-                <td>297mm × 420mm</td>
-            </tr>
-            <tr>
-                <td>a4</td>
-                <td>210mm × 297mm</td>
-            </tr>
-            <tr>
-                <td>a5</td>
-                <td>148mm × 210mm</td>
-            </tr>
-            <tr>
-                <td>letter</td>
-                <td>216mm × 279mm</td>
-            </tr>
-            <tr>
-                <td>legal</td>
-                <td>216mm × 356mm</td>
-            </tr>
+            <tr><td>a3</td><td>297mm × 420mm</td></tr>
+            <tr><td>a4</td><td>210mm × 297mm</td></tr>
+            <tr><td>a5</td><td>148mm × 210mm</td></tr>
+            <tr><td>letter</td><td>216mm × 279mm</td></tr>
+            <tr><td>legal</td><td>216mm × 356mm</td></tr>
         </tbody>
     </table>
 
-    <div class="code-block">.print-preview {
-        @include format(a4, portrait);
-        }
+    <div class="code-block"><pre><code>.print-preview {
+    @include format(a4, portrait);
+}
 
-        .landscape-doc {
-        @include format(letter, landscape);
-        }</div>
+.landscape-doc {
+    @include format(letter, landscape);
+}</code></pre></div>
 
-    <h3>device()</h3>
-    <p>Applies dimensions from a device preset.</p>
+    <h3>device_media_query()</h3>
+    <p>Generates a media query that matches a profile from the <code>$devices</code> map.</p>
 
-    <div class="api-signature">@include device($name)</div>
+    <div class="api-signature">@include device_media_query($name) { ... }</div>
 
-    <div class="code-block">.iphone-frame {
-        @include device("iphone-14-pro");
-        }
+    <div class="code-block"><pre><code>.panel {
+    padding: q(8);
 
-        .macbook-frame {
-        @include device("macbook-pro-14");
-        }</div>
+    @include device_media_query("iphone_x") {
+        padding: q(16);
+    }
+
+    @include device_media_query("macbook_pro") {
+        padding: q(32);
+    }
+}</code></pre></div>
 </section>

@@ -91,12 +91,17 @@ var GridManager = class {
    * @private
    */
   setupEventListeners() {
-    document.addEventListener("DOMContentLoaded", () => {
+    const init = () => {
       this.updateAllGridHeights();
       this.setupToggleButtons();
       window.addEventListener("resize", () => this.updateAllGridHeights());
       window.addEventListener("scroll", () => this.updateAllGridHeights());
-    });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
   }
 };
 

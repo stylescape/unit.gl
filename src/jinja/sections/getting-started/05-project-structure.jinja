@@ -1,16 +1,16 @@
 <section>
     <h2>Recommended Project Structure</h2>
 
-    <div class="code-block">styles/
+    <div class="code-block"><pre><code>styles/
         ├── main.scss <span class="comment"># Main entry point</span>
         ├── _variables.scss <span class="comment"># Custom variable overrides</span>
         ├── _base.scss <span class="comment"># Base element styles</span>
         ├── _components.scss <span class="comment"># Component styles</span>
-        └── _utilities.scss <span class="comment"># Local utility classes</span></div>
+        └── _utilities.scss <span class="comment"># Local utility classes</span></code></pre></div>
 
     <h3>main.scss</h3>
 
-    <div class="code-block"><span class="comment">// 1. Import unit.gl</span>
+    <div class="code-block"><pre><code><span class="comment">// 1. Import unit.gl</span>
         @use "unit.gl" as *;
 
         <span class="comment">// 2. Override default variables (optional)</span>
@@ -19,6 +19,5 @@
         <span class="comment">// 3. Your styles</span>
         @use "base";
         @use "components";
-        @use "utilities";
-    </div>
+        @use "utilities";</code></pre></div>
 </section>

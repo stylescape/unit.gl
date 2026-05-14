@@ -92,7 +92,7 @@
 
     <h3>Conversion Functions</h3>
 
-    <div class="code-block">@use "unit.gl" as *;
+    <div class="code-block"><pre><code>@use "unit.gl" as *;
 
         <span class="comment">// Physical to digital</span>
         $width: mm_to_px(90); <span class="comment">// 360px (Q06 portrait)</span>
@@ -102,14 +102,13 @@
         $mm: px_to_mm(1440px); <span class="comment">// 360mm</span>
 
         <span class="comment">// Density-adjusted</span>
-        $physical_px: breakpoint_for_density(md, 2); <span class="comment">// 2880 physical pixels</span>
-    </div>
+        $physical_px: breakpoint_for_density(md, 2); <span class="comment">// 2880 physical pixels</span></code></pre></div>
 
     <h3>Combined Viewport + Density Queries</h3>
 
     <p>The <code>media_density</code> mixin targets specific breakpoints AND densities together:</p>
 
-    <div class="code-block"><span class="comment">// Target phones (ss) with retina displays</span>
+    <div class="code-block"><pre><code><span class="comment">// Target phones (ss) with retina displays</span>
         @include media_density(ss, 2) {
         font-size: 14px;
         font-weight: 300; <span class="comment">// Thinner weights on retina</span>
@@ -123,14 +122,13 @@
         <span class="comment">// Target laptops (md) with 3× displays</span>
         @include media_density(md, 3) {
         border-width: 0.333px; <span class="comment">// True 1px hairline</span>
-        }
-    </div>
+        }</code></pre></div>
 
     <h3>Q Format Semantic Targeting</h3>
 
     <p>Use <code>media_format</code> to target Q paper sizes directly:</p>
 
-    <div class="code-block"><span class="comment">// Target Q06 portrait devices (phones)</span>
+    <div class="code-block"><pre><code><span class="comment">// Target Q06 portrait devices (phones)</span>
         @include media_format(q06p) {
         padding: q(16);
         }
@@ -143,8 +141,7 @@
         <span class="comment">// Target Q01 landscape (4K) with any density</span>
         @include media_format(q01l) {
         max-width: q(1400);
-        }
-    </div>
+        }</code></pre></div>
 
     <div class="alert alert--tip">
         <p class="alert__title">Why 4× Multiplier?</p>

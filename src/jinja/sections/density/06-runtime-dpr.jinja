@@ -4,7 +4,7 @@
     <p>unit.gl automatically injects the device pixel ratio as a CSS custom property, enabling dynamic density-aware
         calculations in CSS:</p>
 
-    <div class="code-block"><span class="comment">/* Available CSS custom properties */</span>
+    <div class="code-block"><pre><code><span class="comment">/* Available CSS custom properties */</span>
         :root {
         --dpr: 2; <span class="comment">/* Current device pixel ratio */</span>
         --dpr-inverse: 0.5; <span class="comment">/* 1 / DPR for inverse calculations */</span>
@@ -18,8 +18,7 @@
         .icon {
         <span class="comment">/* Scale based on density */</span>
         transform: scale(var(--dpr-inverse));
-        }
-    </div>
+        }</code></pre></div>
 
     <div class="alert">
         <p class="alert__title">Note</p>

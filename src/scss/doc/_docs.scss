@@ -140,6 +140,14 @@
     box-sizing: border-box;
 }
 
+// Override the lib reset's `html, body { height: 100% }` so the document
+// itself scrolls and `position: sticky` on the top nav can actually stick.
+html,
+body {
+    height: auto;
+    min-height: 100%;
+}
+
 html {
     // font-size is controlled by unit.gl.css fluid_type mixin
     -webkit-font-smoothing: antialiased;
@@ -800,7 +808,6 @@ li:last-child {
     margin: calc(var(--grid-unit) * 3) 0;
     border: 1px solid var(--color-border);
     position: relative;
-    white-space: pre;
     tab-size: 4;
 }
 
@@ -947,23 +954,27 @@ li:last-child {
 .nav-wrapper {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    width: 100%;
     background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
     backdrop-filter: blur(#{q(8)});
     transition: background-color var(--transition-base);
 }
 
 .nav {
     background: transparent;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: none;
     padding: calc(var(--grid-unit) * 1.5) calc(var(--grid-unit) * 4);
-    max-width: calc(var(--max-width) + var(--grid-unit) * 8);
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
 }
 
 .nav__inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1388,7 +1399,7 @@ li:last-child {
     overflow-y: auto;
     padding: calc(var(--grid-unit) * 4) calc(var(--grid-unit) * 3);
     border-right: 1px solid var(--color-border);
-    background: var(--color-bg-subtle);
+    background: var(--color-bg);
 
     @media (min-width: #{q(900)}) {
         display: block;
@@ -1432,18 +1443,18 @@ li:last-child {
         bottom: auto;
         height: calc(100vh - #{q(60)});
         border-right: 1px solid var(--color-border);
-        background: var(--color-bg-subtle);
+        background: var(--color-bg);
     }
 }
 
 .sidebar__nav {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--grid-unit) * 1);
+    gap: calc(var(--grid-unit) * 0.5);
 }
 
 .sidebar__section {
-    margin-bottom: calc(var(--grid-unit) * 3);
+    margin-bottom: calc(var(--grid-unit) * 2);
 }
 
 .sidebar__heading {
@@ -1452,8 +1463,8 @@ li:last-child {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--color-text-subtle);
-    margin: 0 0 calc(var(--grid-unit) * 1.5) 0;
-    padding-bottom: calc(var(--grid-unit) * 1);
+    margin: 0 0 calc(var(--grid-unit) * 1) 0;
+    padding-bottom: calc(var(--grid-unit) * 0.5);
     border-bottom: 1px solid var(--color-border);
 }
 
@@ -1465,6 +1476,8 @@ li:last-child {
 
 .sidebar__list li {
     margin: 0;
+    padding: 0;
+    border-bottom: none;
 }
 
 .sidebar__link {
@@ -1472,7 +1485,7 @@ li:last-child {
     font-size: #{q(13)};
     font-weight: 400;
     color: var(--color-text-muted);
-    padding: calc(var(--grid-unit) * 0.75) calc(var(--grid-unit) * 1);
+    padding: calc(var(--grid-unit) * 0.25) calc(var(--grid-unit) * 1);
     margin: 0 calc(var(--grid-unit) * -1);
     border: none;
     border-radius: #{q(4)};
@@ -1698,7 +1711,7 @@ li:last-child {
     border-top: 1px solid var(--color-border-strong);
     padding: calc(var(--grid-unit) * 5) 0;
     margin-top: calc(var(--grid-unit) * 10);
-    background: var(--color-bg-subtle);
+    background: var(--color-bg);
 }
 
 .footer__content {

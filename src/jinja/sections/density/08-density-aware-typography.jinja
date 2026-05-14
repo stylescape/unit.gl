@@ -9,7 +9,7 @@
     <p>Extends fluid typography with density awareness. High-DPR screens get proportionally smaller text to maintain
         optical consistency:</p>
 
-    <div class="code-block">html {
+    <div class="code-block"><pre><code>html {
         <span class="comment">// Base fluid type: 12px → 24px from 360px → 4320px viewport</span>
         @include fluid_type_density(360px, 4320px, 12px, 24px);
         }
@@ -17,8 +17,7 @@
         <span class="comment">// With custom density scale (default: 0.9 = 10% reduction per DPR step)</span>
         html {
         @include fluid_type_density(360px, 4320px, 12px, 24px, 0.95);
-        }
-    </div>
+        }</code></pre></div>
 
     <p>This generates:</p>
     <ul>
@@ -31,7 +30,7 @@
 
     <p>Runtime density-aware Q units using the JavaScript-injected <code>--dpr-inverse</code>:</p>
 
-    <div class="code-block">.element {
+    <div class="code-block"><pre><code>.element {
         font-size: q_density(16); <span class="comment">// Scales with runtime DPR</span>
         padding: q_density(8);
         line-height: q_density(24);
@@ -42,20 +41,18 @@
         font-size: calc(1rem * var(--dpr-inverse, 1));
         padding: calc(0.5rem * var(--dpr-inverse, 1));
         line-height: calc(1.5rem * var(--dpr-inverse, 1));
-        }
-    </div>
+        }</code></pre></div>
 
     <h3>scale_density() Functions</h3>
 
     <p>Retrieve typographic scale values adjusted for density:</p>
 
-    <div class="code-block"><span class="comment">// Compile-time density adjustment</span>
+    <div class="code-block"><pre><code><span class="comment">// Compile-time density adjustment</span>
         font-size: scale_density(7); <span class="comment">// q(16) at 1× DPR</span>
         font-size: scale_density(7, 2); <span class="comment">// q(16) × 0.9 at 2× DPR</span>
         font-size: scale_density(7, 3); <span class="comment">// q(16) × 0.81 at 3× DPR</span>
 
         <span class="comment">// Runtime density adjustment (requires JS injection)</span>
-        font-size: scale_density_runtime(7); <span class="comment">// Scales with --dpr-inverse</span>
-    </div>
+        font-size: scale_density_runtime(7); <span class="comment">// Scales with --dpr-inverse</span></code></pre></div>
 
 </section>

@@ -35,18 +35,6 @@ function initThemeToggle() {
     localStorage.setItem("theme", newTheme);
   });
 }
-function initGridToggle() {
-  document.querySelectorAll(".grid-controls button").forEach((btn) => {
-    btn.addEventListener("click", function() {
-      const gridType = this.dataset.toggle;
-      const grid = document.querySelector(`[data-grid="${gridType}"]`);
-      if (grid) {
-        grid.classList.toggle("active");
-        this.classList.toggle("active");
-      }
-    });
-  });
-}
 function initMobileNav() {
   const toggle = document.getElementById("nav-mobile-toggle");
   const menu = document.getElementById("nav-menu");
@@ -628,7 +616,6 @@ function initHybridScaleDemo() {
 }
 document.addEventListener("DOMContentLoaded", function() {
   initThemeToggle();
-  initGridToggle();
   initMobileNav();
   initSidebarToggle();
   initLayersDemo();

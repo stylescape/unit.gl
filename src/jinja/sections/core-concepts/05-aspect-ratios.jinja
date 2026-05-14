@@ -15,14 +15,13 @@
         {% endfor %}
     </div>
 
-    <div class="code-block"><span class="comment">// Using ratio classes</span>
+    <div class="code-block"><pre><code><span class="comment">// Using ratio classes</span>
         &lt;div class="<span class="class">ratio_16x9</span>"&gt;
         &lt;img src="video-thumb.jpg" alt="Video"&gt;
         &lt;/div&gt;
 
         <span class="comment">// Using SCSS mixin</span>
         .hero-image {
-        @include ratio(16, 9);
-        }
-    </div>
+        @include aspect_ratio(16, 9);
+        }</code></pre></div>
 </section>

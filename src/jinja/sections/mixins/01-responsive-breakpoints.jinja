@@ -1,17 +1,17 @@
 <section>
     <h2>Responsive Breakpoints</h2>
-    <p>Mobile-first breakpoint mixins using the device map.</p>
+    <p>Mobile-first breakpoint mixins built on the <code>$breakpoints</code> map.</p>
 
-    <h3>view()</h3>
-    <p>Apply styles at a specific breakpoint and above.</p>
+    <h3>breakpoint()</h3>
+    <p>Apply styles at a named breakpoint and above.</p>
 
-    <div class="api-signature">@include view($breakpoint) { ... }</div>
+    <div class="api-signature">@include breakpoint($size) { ... }</div>
 
     <div class="api-params">
         <div class="api-param">
-            <span class="api-param__name">$breakpoint</span>
+            <span class="api-param__name">$size</span>
             <span class="api-param__type">String</span>
-            <span class="api-param__desc">Breakpoint name from $device_map</span>
+            <span class="api-param__desc">Breakpoint key from <code>$breakpoints</code></span>
         </div>
     </div>
 
@@ -26,110 +26,55 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><code>us</code></td>
-                <td>240px</td>
-                <td>Q07 Portrait (60mm)</td>
-                <td>Compact/fold devices</td>
-            </tr>
-            <tr>
-                <td><code>ss</code></td>
-                <td>360px</td>
-                <td>Q06 Portrait (90mm)</td>
-                <td>Phones</td>
-            </tr>
-            <tr>
-                <td><code>xs</code></td>
-                <td>540px</td>
-                <td>Q05 Portrait (135mm)</td>
-                <td>Large phones</td>
-            </tr>
-            <tr>
-                <td><code>sm</code></td>
-                <td>720px</td>
-                <td>Q04 Portrait (180mm)</td>
-                <td>Tablets</td>
-            </tr>
-            <tr>
-                <td><code>md</code></td>
-                <td>1440px</td>
-                <td>Q03 Landscape (360mm)</td>
-                <td>Laptops</td>
-            </tr>
-            <tr>
-                <td><code>lg</code></td>
-                <td>2160px</td>
-                <td>Q02 Landscape (540mm)</td>
-                <td>QHD desktops</td>
-            </tr>
-            <tr>
-                <td><code>xl</code></td>
-                <td>2880px</td>
-                <td>Q01 Landscape (720mm)</td>
-                <td>4K displays</td>
-            </tr>
-            <tr>
-                <td><code>ul</code></td>
-                <td>4320px</td>
-                <td>Q00 Landscape (1080mm)</td>
-                <td>5K+ displays</td>
-            </tr>
+            <tr><td><code>us</code></td><td>240px</td><td>Q07 Portrait (60mm)</td><td>Compact/fold devices</td></tr>
+            <tr><td><code>ss</code></td><td>360px</td><td>Q06 Portrait (90mm)</td><td>Phones</td></tr>
+            <tr><td><code>xs</code></td><td>540px</td><td>Q05 Portrait (135mm)</td><td>Large phones</td></tr>
+            <tr><td><code>sm</code></td><td>720px</td><td>Q04 Portrait (180mm)</td><td>Tablets</td></tr>
+            <tr><td><code>md</code></td><td>1440px</td><td>Q03 Landscape (360mm)</td><td>Laptops</td></tr>
+            <tr><td><code>lg</code></td><td>2160px</td><td>Q02 Landscape (540mm)</td><td>QHD desktops</td></tr>
+            <tr><td><code>xl</code></td><td>2880px</td><td>Q01 Landscape (720mm)</td><td>4K displays</td></tr>
+            <tr><td><code>ul</code></td><td>4320px</td><td>Q00 Landscape (1080mm)</td><td>5K+ displays</td></tr>
         </tbody>
     </table>
 
     <h4>Examples</h4>
-    <div class="code-block">.container {
-        padding: q(16);
+    <div class="code-block"><pre><code>.container {
+    padding: q(16);
 
-        @include view(md) {
+    @include breakpoint(md) {
         padding: q(24);
-        }
+    }
 
-        @include view(lg) {
+    @include breakpoint(lg) {
         padding: q(32);
         max-width: 1200px;
         margin: 0 auto;
-        }
-        }
+    }
+}
 
-        .grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: q(16);
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: q(16);
 
-        @include view(sm) {
+    @include breakpoint(sm) {
         grid-template-columns: repeat(2, 1fr);
-        }
+    }
 
-        @include view(lg) {
+    @include breakpoint(lg) {
         grid-template-columns: repeat(4, 1fr);
         gap: q(24);
-        }
-        }</div>
+    }
+}</code></pre></div>
 
-    <h3>view_only()</h3>
-    <p>Apply styles only at a specific breakpoint range.</p>
+    <h3>media_us, media_ss, media_xs, media_sm, media_md, media_lg, media_xl, media_ul</h3>
+    <p>Per-breakpoint shortcut mixins. Equivalent to <code>@include breakpoint($name)</code> but more concise.</p>
 
-    <div class="api-signature">@include view_only($breakpoint) { ... }</div>
+    <div class="code-block"><pre><code>.sidebar {
+    display: none;
 
-    <div class="code-block">.element {
-        <span class="comment">// Only applies between md and lg breakpoints</span>
-        @include view_only(md) {
-        display: none;
-        }
-        }
-    </div>
-
-    <h3>view_max()</h3>
-    <p>Apply styles below a specific breakpoint.</p>
-
-    <div class="api-signature">@include view_max($breakpoint) { ... }</div>
-
-    <div class="code-block">.sidebar {
-        <span class="comment">// Hide on mobile, show on desktop</span>
-        @include view_max(lg) {
-        display: none;
-        }
-        }
-    </div>
+    @include media_md {
+        display: block;
+    }
+}</code></pre></div>
 </section>

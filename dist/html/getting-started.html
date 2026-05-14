@@ -336,13 +336,13 @@
     <h3>NPM</h3>
     <p>Install unit.gl as a development dependency:</p>
 
-    <div class="code-block">npm install unit.gl --save-dev</div>
+    <div class="code-block"><pre><code>npm install unit.gl --save-dev</code></pre></div>
 
     <h3>Yarn</h3>
-    <div class="code-block">yarn add unit.gl --dev</div>
+    <div class="code-block"><pre><code>yarn add unit.gl --dev</code></pre></div>
 
     <h3>pnpm</h3>
-    <div class="code-block">pnpm add unit.gl -D</div>
+    <div class="code-block"><pre><code>pnpm add unit.gl -D</code></pre></div>
 </section>
 
 <section>
@@ -350,14 +350,13 @@
 
     <p>Import unit.gl into your main SCSS file:</p>
 
-    <div class="code-block"><span class="comment">// Import the entire framework</span>
+    <div class="code-block"><pre><code><span class="comment">// Import the entire framework</span>
         @use "unit.gl" as *;
 
         <span class="comment">// Or import specific modules</span>
         @use "unit.gl/scss/variables" as vars;
         @use "unit.gl/scss/functions" as fn;
-        @use "unit.gl/scss/mixins" as mx;
-    </div>
+        @use "unit.gl/scss/mixins" as mx;</code></pre></div>
 
     
 <div class="alert alert--tip">
@@ -372,7 +371,7 @@
 
     <p>Here's a minimal example using the q() unit function:</p>
 
-    <div class="code-block">@use "unit.gl" as *;
+    <div class="code-block"><pre><code>@use "unit.gl" as *;
 
         <span class="comment">// Use q() for consistent spacing</span>
         .card {
@@ -392,11 +391,10 @@
         max-width: q(1200);
         padding: q(16);
 
-        @include view_md {
+        @include media_md {
         padding: q(32);
         }
-        }
-    </div>
+        }</code></pre></div>
 </section>
 
 <section>
@@ -451,16 +449,16 @@
 <section>
     <h2>Recommended Project Structure</h2>
 
-    <div class="code-block">styles/
+    <div class="code-block"><pre><code>styles/
         ├── main.scss <span class="comment"># Main entry point</span>
         ├── _variables.scss <span class="comment"># Custom variable overrides</span>
         ├── _base.scss <span class="comment"># Base element styles</span>
         ├── _components.scss <span class="comment"># Component styles</span>
-        └── _utilities.scss <span class="comment"># Local utility classes</span></div>
+        └── _utilities.scss <span class="comment"># Local utility classes</span></code></pre></div>
 
     <h3>main.scss</h3>
 
-    <div class="code-block"><span class="comment">// 1. Import unit.gl</span>
+    <div class="code-block"><pre><code><span class="comment">// 1. Import unit.gl</span>
         @use "unit.gl" as *;
 
         <span class="comment">// 2. Override default variables (optional)</span>
@@ -469,8 +467,7 @@
         <span class="comment">// 3. Your styles</span>
         @use "base";
         @use "components";
-        @use "utilities";
-    </div>
+        @use "utilities";</code></pre></div>
 </section>
 
 <section>
@@ -478,7 +475,7 @@
 
     <h3>Vite</h3>
 
-    <div class="code-block"><span class="comment">// vite.config.js</span>
+    <div class="code-block"><pre><code><span class="comment">// vite.config.js</span>
         import { defineConfig } from 'vite';
 
         export default defineConfig({
@@ -489,11 +486,11 @@
         }
         }
         }
-        });</div>
+        });</code></pre></div>
 
     <h3>Webpack</h3>
 
-    <div class="code-block"><span class="comment">// webpack.config.js</span>
+    <div class="code-block"><pre><code><span class="comment">// webpack.config.js</span>
         module.exports = {
         module: {
         rules: [{
@@ -510,7 +507,7 @@
         ]
         }]
         }
-        };</div>
+        };</code></pre></div>
 </section>
 
 <section>
@@ -518,17 +515,16 @@
 
     <p>If you don't need SCSS customization, use the pre-built CSS directly:</p>
 
-    <div class="code-block"><span class="comment">&lt;!-- In HTML --&gt;</span>
+    <div class="code-block"><pre><code><span class="comment">&lt;!-- In HTML --&gt;</span>
         &lt;link rel="stylesheet" href="node_modules/unit.gl/css/unit.gl.css"&gt;
 
         <span class="comment">&lt;!-- Or minified --&gt;</span>
-        &lt;link rel="stylesheet" href="node_modules/unit.gl/css/unit.gl.min.css"&gt;
-    </div>
+        &lt;link rel="stylesheet" href="node_modules/unit.gl/css/unit.gl.min.css"&gt;</code></pre></div>
 
     <p>Or import in your JavaScript:</p>
 
-    <div class="code-block"><span class="comment">// In your JS/TS entry file</span>
-        import 'unit.gl/css/unit.gl.css';</div>
+    <div class="code-block"><pre><code><span class="comment">// In your JS/TS entry file</span>
+        import 'unit.gl/css/unit.gl.css';</code></pre></div>
 </section>
 
 <section>
@@ -549,7 +545,7 @@
         </li>
         <li>
             <div class="list-item">
-                <span class="list-item__title"><a href="test_utilities.html">Utility Classes</a></span>
+                <span class="list-item__title"><a href="utilities.html">Utility Classes</a></span>
                 <span class="list-item__meta">Pre-built classes for rapid prototyping</span>
             </div>
         </li>

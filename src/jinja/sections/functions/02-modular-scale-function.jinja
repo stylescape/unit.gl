@@ -14,7 +14,7 @@
     {{ api_signature('result = $base × $ratio^$increment') }}
 
     <h3>Examples</h3>
-    <div class="code-block"><span class="comment">// Typography scale with Major Third (1.25)</span>
+    <div class="code-block"><pre><code><span class="comment">// Typography scale with Major Third (1.25)</span>
         $ratio: 1.25;
 
         body { font-size: modular_scale(0, 1rem, $ratio); } <span class="comment">// 1rem</span>
@@ -25,8 +25,7 @@
 
         <span class="comment">// Negative steps for smaller sizes</span>
         small { font-size: modular_scale(-1, 1rem, $ratio); } <span class="comment">// 0.8rem</span>
-        .caption { font-size: modular_scale(-2, 1rem, $ratio); } <span class="comment">// 0.64rem</span>
-    </div>
+        .caption { font-size: modular_scale(-2, 1rem, $ratio); } <span class="comment">// 0.64rem</span></code></pre></div>
 
     <h3>Common Ratios</h3>
     {{ table(

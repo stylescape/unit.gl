@@ -3,7 +3,7 @@
 
     <p>Here's a minimal example using the q() unit function:</p>
 
-    <div class="code-block">@use "unit.gl" as *;
+    <div class="code-block"><pre><code>@use "unit.gl" as *;
 
         <span class="comment">// Use q() for consistent spacing</span>
         .card {
@@ -23,9 +23,8 @@
         max-width: q(1200);
         padding: q(16);
 
-        @include view_md {
+        @include media_md {
         padding: q(32);
         }
-        }
-    </div>
+        }</code></pre></div>
 </section>

@@ -440,8 +440,7 @@
         names that describe the <em>purpose</em> of each layer. The <code>z()</code> function maps these names to
         carefully structured z-index values.</p>
 
-    <div class="code-block">
-        <pre><code>@use "unit.gl" as *;
+    <div class="code-block"><pre><code>@use "unit.gl" as *;
 
 // Instead of this...
 .modal { z-index: 9999; }
@@ -451,8 +450,7 @@
 // Use semantic names
 .modal { z-index: z("modal"); } // 7000
 .header { z-index: z("interface"); } // 4000
-.dropdown { z-index: z("content"); } // 2000</code></pre>
-    </div>
+.dropdown { z-index: z("content"); } // 2000</code></pre></div>
 </section>
 
     
@@ -513,8 +511,7 @@
 
     <h3>Example</h3>
 
-    <div class="code-block">
-        <pre><code>@use "unit.gl" as *;
+    <div class="code-block"><pre><code>@use "unit.gl" as *;
 
 .modal-overlay {
   position: fixed;
@@ -536,8 +533,7 @@
 .background-pattern {
   position: absolute;
   z-index: z("canvas"); // -1000
-}</code></pre>
-    </div>
+}</code></pre></div>
 </section>
 
     
@@ -638,8 +634,7 @@
         with
         the <code>z()</code> function:</p>
 
-    <div class="code-block">
-        <pre><code>// Dropdown trigger and menu
+    <div class="code-block"><pre><code>// Dropdown trigger and menu
 .dropdown-trigger {
   z-index: z("content"); // 2000
 }
@@ -660,8 +655,7 @@
 // Nested cards
 .card { z-index: z("content"); }
 .card__overlay { z-index: z("content") + 1; }
-.card__actions { z-index: z("content") + 2; }</code></pre>
-    </div>
+.card__actions { z-index: z("content") + 2; }</code></pre></div>
 
     <div class="alert alert--tip">
         <p class="alert__title">Tip</p>
@@ -677,8 +671,7 @@
 
     <p>You can extend or override the default layer map to fit your project's needs:</p>
 
-    <div class="code-block">
-        <pre><code>// Override $layer_map before importing unit.gl
+    <div class="code-block"><pre><code>// Override $layer_map before importing unit.gl
 $layer_map: (
   "canvas": -1000,
   "background": 0,
@@ -702,8 +695,7 @@ $layer_map: (
 
 .tooltip {
   z-index: z("tooltip"); // 8500
-}</code></pre>
-    </div>
+}</code></pre></div>
 </section>
 
     
@@ -771,8 +763,7 @@ $layer_map: (
         <code>z-index: 2</code>.
     </p>
 
-    <div class="code-block">
-        <pre><code>// Problem: Modal trapped in stacking context
+    <div class="code-block"><pre><code>// Problem: Modal trapped in stacking context
 .sidebar {
   position: relative;
   z-index: 1; // Creates stacking context
@@ -790,8 +781,7 @@ $layer_map: (
 
 .main-content {
   isolation: isolate; // Contains its own stacking
-}</code></pre>
-    </div>
+}</code></pre></div>
 
     <div class="alert">
         <p class="alert__title">Key Insight</p>

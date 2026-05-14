@@ -1,70 +1,39 @@
 <section>
-    <h2>Display & Layout Mixins</h2>
+    <h2>Layout Mixins</h2>
+    <p>Helpers for sizing, positioning, and viewport-relative containers.</p>
 
-    <h3>flex_center()</h3>
-    <p>Centers content using flexbox.</p>
+    <h3>container</h3>
+    <p>Wraps content in a width-constrained container.</p>
 
-    <div class="api-signature">@include flex_center($direction: row)</div>
+    <div class="api-signature">@include container</div>
 
-    <div class="code-block">.centered {
-        @include flex_center();
-        <span class="comment">// Output:</span>
-        <span class="comment">// display: flex;</span>
-        <span class="comment">// justify-content: center;</span>
-        <span class="comment">// align-items: center;</span>
-        }
+    <div class="code-block"><pre><code>.page {
+    @include container;
+}</code></pre></div>
 
-        .vertical-center {
-        @include flex_center(column);
-        }
-    </div>
+    <h3>center_x / center_y</h3>
+    <p>Absolute-positioning helpers that center an element horizontally or vertically within its positioned ancestor.
+    </p>
 
-    <h3>absolute_fill()</h3>
-    <p>Makes an element fill its positioned parent.</p>
+    <div class="api-signature">@include center_x<br>@include center_y</div>
 
-    <div class="api-signature">@include absolute_fill()</div>
+    <div class="code-block"><pre><code>.modal {
+    position: absolute;
+    @include center_x;
+    @include center_y;
+}</code></pre></div>
 
-    <div class="code-block">.overlay {
-        @include absolute_fill();
-        <span class="comment">// Output:</span>
-        <span class="comment">// position: absolute;</span>
-        <span class="comment">// top: 0;</span>
-        <span class="comment">// right: 0;</span>
-        <span class="comment">// bottom: 0;</span>
-        <span class="comment">// left: 0;</span>
-        }
-    </div>
+    <h3>set_size / set_width / set_height</h3>
+    <p>Apply sizing using Q units.</p>
 
-    <h3>truncate()</h3>
-    <p>Truncates text with an ellipsis.</p>
+    <div class="api-signature">@include set_size($q-value)<br>@include set_width($q-value)<br>@include set_height($q-value)</div>
 
-    <div class="api-signature">@include truncate($lines: 1)</div>
+    <div class="code-block"><pre><code>.thumb {
+    @include set_size(64);   // 64 × q(1)
+}
 
-    <div class="code-block">.single-line {
-        @include truncate();
-        <span class="comment">// Single line with ellipsis</span>
-        }
-
-        .multi-line {
-        @include truncate(3);
-        <span class="comment">// Max 3 lines, then ellipsis</span>
-        }
-    </div>
-
-    <h3>sr_only()</h3>
-    <p>Hides element visually while keeping it accessible to screen readers.</p>
-
-    <div class="api-signature">@include sr_only()</div>
-
-    <div class="code-block">.skip-link {
-        @include sr_only();
-
-        &:focus {
-        <span class="comment">// Make visible when focused</span>
-        position: static;
-        width: auto;
-        height: auto;
-        }
-        }
-    </div>
+.divider {
+    @include set_width(240);
+    @include set_height(1);
+}</code></pre></div>
 </section>

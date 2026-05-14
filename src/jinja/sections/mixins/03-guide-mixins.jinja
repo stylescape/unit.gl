@@ -1,51 +1,47 @@
 <section>
     <h2>Guide Mixins</h2>
-    <p>Visual guides for development and layout debugging.</p>
+    <p>Visual overlay mixins for development and layout debugging.</p>
 
-    <h3>guide_baseline()</h3>
-    <p>Adds a baseline grid overlay for vertical rhythm debugging.</p>
+    <h3>guide--baseline</h3>
+    <p>Renders a baseline grid overlay for vertical-rhythm debugging.</p>
 
-    <div class="api-signature">@include guide_baseline($size: q(8), $color: rgba(0, 0, 255, 0.1))</div>
+    <div class="api-signature">@include guide--baseline</div>
 
-    <div class="api-params">
-        <div class="api-param">
-            <span class="api-param__name">$size</span>
-            <span class="api-param__type">Length</span>
-            <span class="api-param__desc">Grid line spacing (default: q(8))</span>
-        </div>
-        <div class="api-param">
-            <span class="api-param__name">$color</span>
-            <span class="api-param__type">Color</span>
-            <span class="api-param__desc">Guide line color (default: semi-transparent blue)</span>
-        </div>
-    </div>
+    <div class="code-block"><pre><code>// Apply to a layer element
+.guide-overlay {
+    @include guide--layer;
+    @include guide--baseline;
+}</code></pre></div>
 
-    <div class="code-block"><span class="comment">// Apply to body for full-page baseline grid</span>
-        body {
-        @include guide_baseline(q(8), rgba(255, 0, 0, 0.1));
-        }
+    <h3>guide--graph / guide--graph_centered</h3>
+    <p>Renders a graph (column) grid overlay. The <code>_centered</code> variant aligns the grid to the viewport
+        center.</p>
 
-        <span class="comment">// Apply to specific container</span>
-        .content {
-        @include guide_baseline(q(16));
-        }
-    </div>
+    <div class="api-signature">@include guide--graph<br>@include guide--graph_centered</div>
 
-    <h3>guide_columns()</h3>
-    <p>Overlays a column grid for layout debugging.</p>
+    <div class="code-block"><pre><code>.guide-overlay {
+    @include guide--layer;
+    @include guide--graph_centered;
+}</code></pre></div>
 
-    <div class="api-signature">@include guide_columns($columns: 12, $gutter: q(16), $color: rgba(255, 0, 0, 0.1))</div>
+    <h3>guide--margin</h3>
+    <p>Highlights margin areas for layout inspection.</p>
 
-    <div class="code-block">.container {
-        @include guide_columns(12, q(24));
-        }</div>
+    <div class="api-signature">@include guide--margin</div>
 
-    <h3>guide_margin()</h3>
-    <p>Highlights margin areas.</p>
+    <div class="code-block"><pre><code>.guide-overlay {
+    @include guide--layer;
+    @include guide--margin;
+}</code></pre></div>
 
-    <div class="api-signature">@include guide_margin($size: q(16), $color: rgba(255, 165, 0, 0.2))</div>
+    <h3>guide--layer</h3>
+    <p>Base layer mixin -- positions the overlay element fixed across the viewport. Combine with one of the visual
+        guides above.</p>
 
-    <div class="code-block">.page {
-        @include guide_margin(q(32));
-        }</div>
+    <div class="api-signature">@include guide--layer</div>
+
+    <h3>guide--centered</h3>
+    <p>Centers a guide horizontally within its container.</p>
+
+    <div class="api-signature">@include guide--centered</div>
 </section>

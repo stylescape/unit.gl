@@ -354,7 +354,7 @@
 
 
     <h3>Examples</h3>
-    <div class="code-block">.element {
+    <div class="code-block"><pre><code>.element {
         padding: q(16); <span class="comment">// 1rem (16px)</span>
         margin: q(8); <span class="comment">// 0.5rem (8px)</span>
         gap: q(24); <span class="comment">// 1.5rem (24px)</span>
@@ -365,8 +365,7 @@
 
         <span class="comment">// With calc()</span>
         width: calc(100% - q(32));
-        }
-    </div>
+        }</code></pre></div>
 
     <h3>Reference Table</h3>
     <table class="table">
@@ -500,7 +499,7 @@
 
 
     <h3>Examples</h3>
-    <div class="code-block"><span class="comment">// Typography scale with Major Third (1.25)</span>
+    <div class="code-block"><pre><code><span class="comment">// Typography scale with Major Third (1.25)</span>
         $ratio: 1.25;
 
         body { font-size: modular_scale(0, 1rem, $ratio); } <span class="comment">// 1rem</span>
@@ -511,8 +510,7 @@
 
         <span class="comment">// Negative steps for smaller sizes</span>
         small { font-size: modular_scale(-1, 1rem, $ratio); } <span class="comment">// 0.8rem</span>
-        .caption { font-size: modular_scale(-2, 1rem, $ratio); } <span class="comment">// 0.64rem</span>
-    </div>
+        .caption { font-size: modular_scale(-2, 1rem, $ratio); } <span class="comment">// 0.64rem</span></code></pre></div>
 
     <h3>Common Ratios</h3>
     
@@ -637,7 +635,7 @@
 
 
     <h3>Examples</h3>
-    <div class="code-block">.sidebar {
+    <div class="code-block"><pre><code>.sidebar {
         width: ratio_golden(300px, 1); <span class="comment">// 485.4px (larger)</span>
         }
 
@@ -650,8 +648,7 @@
         display: grid;
         grid-template-columns: ratio_golden(1fr, -1) 1fr;
         <span class="comment">// Creates ~38% / 62% split</span>
-        }
-    </div>
+        }</code></pre></div>
 </section>
 
 <section>
@@ -709,7 +706,7 @@
     </table>
 
     <h3>Examples</h3>
-    <div class="code-block">.modal {
+    <div class="code-block"><pre><code>.modal {
         position: fixed;
         z-index: z("modal"); <span class="comment">// 7000</span>
         }
@@ -725,7 +722,7 @@
 
         .dropdown {
         z-index: z("interface") + 10; <span class="comment">// 4010</span>
-        }</div>
+        }</code></pre></div>
 </section>
 
 <section>
@@ -748,14 +745,14 @@
         </div>
     </div>
 
-    <div class="code-block">.button {
+    <div class="code-block"><pre><code>.button {
         background: color("primary");
         color: color("primary", "contrast");
 
         &:hover {
         background: color("primary", "dark");
         }
-        }</div>
+        }</code></pre></div>
 </section>
 
 <section>
@@ -766,33 +763,31 @@
 
     <div class="api-signature">unit_strip($value) → Number</div>
 
-    <div class="code-block">$pixels: 16px;
+    <div class="code-block"><pre><code>$pixels: 16px;
         $unitless: unit_strip($pixels); <span class="comment">// 16</span>
 
         <span class="comment">// Useful for calculations</span>
-        $ratio: unit_strip($width) / unit_strip($height);
-    </div>
+        $ratio: unit_strip($width) / unit_strip($height);</code></pre></div>
 
     <h3>px_to_rem()</h3>
     <p>Converts pixels to rem units.</p>
 
     <div class="api-signature">px_to_rem($px, $base: 16px) → Length</div>
 
-    <div class="code-block">.element {
+    <div class="code-block"><pre><code>.element {
         padding: px_to_rem(24px); <span class="comment">// 1.5rem</span>
         margin: px_to_rem(8px); <span class="comment">// 0.5rem</span>
 
         <span class="comment">// With custom base</span>
         font-size: px_to_rem(18px, 18px); <span class="comment">// 1rem</span>
-        }
-    </div>
+        }</code></pre></div>
 
     <h3>rem_to_px()</h3>
     <p>Converts rem to pixel units.</p>
 
     <div class="api-signature">rem_to_px($rem, $base: 16px) → Length</div>
 
-    <div class="code-block">$px-value: rem_to_px(1.5rem); <span class="comment">// 24px</span></div>
+    <div class="code-block"><pre><code>$px-value: rem_to_px(1.5rem); <span class="comment">// 24px</span></code></pre></div>
 </section>
 
 <section>
@@ -803,7 +798,7 @@
 
     <div class="api-signature">fibonacci($n) → Number</div>
 
-    <div class="code-block"><span class="comment">// Fibonacci sequence: 1, 1, 2, 3, 5, 8, 13, 21, 34...</span>
+    <div class="code-block"><pre><code><span class="comment">// Fibonacci sequence: 1, 1, 2, 3, 5, 8, 13, 21, 34...</span>
         fibonacci(6); <span class="comment">// 8</span>
         fibonacci(7); <span class="comment">// 13</span>
         fibonacci(10); <span class="comment">// 55</span>
@@ -812,15 +807,14 @@
         .fib-spacing {
         padding: q(fibonacci(6)); <span class="comment">// q(8) = 8px</span>
         margin: q(fibonacci(7)); <span class="comment">// q(13) = 13px</span>
-        }
-    </div>
+        }</code></pre></div>
 </section>
 
 <section>
     <h2>Math Functions</h2>
     <p>unit.gl provides access to common mathematical operations via Sass's built-in math module.</p>
 
-    <div class="code-block">@use "sass:math";
+    <div class="code-block"><pre><code>@use "sass:math";
 
         <span class="comment">// Rounding</span>
         math.round(4.7); <span class="comment">// 5</span>
@@ -836,8 +830,7 @@
         math.max(10px, 20px, 5px); <span class="comment">// 20px</span>
 
         <span class="comment">// Clamping</span>
-        math.clamp(5px, 10px, 20px); <span class="comment">// 10px (between min and max)</span>
-    </div>
+        math.clamp(5px, 10px, 20px); <span class="comment">// 10px (between min and max)</span></code></pre></div>
 </section>
 
             </main>

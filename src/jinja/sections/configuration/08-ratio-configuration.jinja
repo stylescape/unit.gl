@@ -3,7 +3,7 @@
     <p>Extend or customize aspect ratios via <code>$ratio_map</code>.</p>
 
     <h3>Default Ratios</h3>
-    <div class="code-block">$ratio_map: (
+    <div class="code-block"><pre><code>$ratio_map: (
         "square": (1, 1),
         "photo": (4, 3),
         "landscape": (3, 2),
@@ -12,10 +12,10 @@
         "golden": (1.618, 1),
         "a_series": (1, 1.4142),
         "portrait": (2, 3),
-        ) !default;</div>
+        ) !default;</code></pre></div>
 
     <h3>Customizing</h3>
-    <div class="code-block"><span class="comment">// Add custom ratios</span>
+    <div class="code-block"><pre><code><span class="comment">// Add custom ratios</span>
         $ratio_map: map.merge($ratio_map, (
         "cinema": (2.35, 1),
         "imax": (1.43, 1),
@@ -27,7 +27,6 @@
 
         <span class="comment">// Usage</span>
         .cinema-frame {
-        @include ratio_name("cinema");
-        }
-    </div>
+        @include aspect_ratio--"cinema");
+        }</code></pre></div>
 </section>

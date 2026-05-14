@@ -453,50 +453,50 @@
     <h3>density($bucket)</h3>
     <p>Returns the DPR value for a density bucket name.</p>
 
-    <div class="code-block">@use "unit.gl" as *;
+    <div class="code-block"><pre><code>@use "unit.gl" as *;
 
         $dpr: density("xhdpi"); <span class="comment">// 2</span>
         $dpr: density("retina"); <span class="comment">// 2 (alias)</span>
-        $dpr: density("xxhdpi"); <span class="comment">// 3</span></div>
+        $dpr: density("xxhdpi"); <span class="comment">// 3</span></code></pre></div>
 
     <h3>density_dpi($bucket)</h3>
     <p>Returns the DPI value for a density bucket.</p>
 
-    <div class="code-block">$dpi: density_dpi("xhdpi"); <span class="comment">// 320</span>
-        $dpi: density_dpi("xxhdpi"); <span class="comment">// 480</span></div>
+    <div class="code-block"><pre><code>$dpi: density_dpi("xhdpi"); <span class="comment">// 320</span>
+        $dpi: density_dpi("xxhdpi"); <span class="comment">// 480</span></code></pre></div>
 
     <h3>q_to_mm($q_value)</h3>
     <p>Converts Q units to physical millimeters. Based on the traditional Kyū unit where 1Q = 0.25mm.</p>
 
-    <div class="code-block">$mm: q_to_mm(16); <span class="comment">// 4mm</span>
+    <div class="code-block"><pre><code>$mm: q_to_mm(16); <span class="comment">// 4mm</span>
         $mm: q_to_mm(160); <span class="comment">// 40mm (Q1 base unit)</span>
-        $mm: q_to_mm(320); <span class="comment">// 80mm (Q2)</span></div>
+        $mm: q_to_mm(320); <span class="comment">// 80mm (Q2)</span></code></pre></div>
 
     <h3>mm_to_q($mm_value)</h3>
     <p>Converts physical millimeters to Q units.</p>
 
-    <div class="code-block">$q: mm_to_q(4); <span class="comment">// 16</span>
-        $q: mm_to_q(40); <span class="comment">// 160 (Q1)</span></div>
+    <div class="code-block"><pre><code>$q: mm_to_q(4); <span class="comment">// 16</span>
+        $q: mm_to_q(40); <span class="comment">// 160 (Q1)</span></code></pre></div>
 
     <h3>q_to_px($q_value, $dpr)</h3>
     <p>Converts Q units to physical screen pixels at a given DPR.</p>
 
-    <div class="code-block">$px: q_to_px(16, 1); <span class="comment">// 16 physical pixels</span>
+    <div class="code-block"><pre><code>$px: q_to_px(16, 1); <span class="comment">// 16 physical pixels</span>
         $px: q_to_px(16, 2); <span class="comment">// 32 physical pixels</span>
-        $px: q_to_px(16, "xhdpi"); <span class="comment">// 32 physical pixels</span></div>
+        $px: q_to_px(16, "xhdpi"); <span class="comment">// 32 physical pixels</span></code></pre></div>
 
     <h3>q_to_pt($q_value)</h3>
     <p>Converts Q units to typographic points (1pt = 0.3528mm).</p>
 
-    <div class="code-block">$pt: q_to_pt(16); <span class="comment">// ~11.34pt</span>
-        $pt: q_to_pt(12); <span class="comment">// ~8.5pt</span></div>
+    <div class="code-block"><pre><code>$pt: q_to_pt(16); <span class="comment">// ~11.34pt</span>
+        $pt: q_to_pt(12); <span class="comment">// ~8.5pt</span></code></pre></div>
 
     <h3>density_suffix($bucket)</h3>
     <p>Returns the image resolution suffix for a density bucket.</p>
 
-    <div class="code-block">$suffix: density_suffix("mdpi"); <span class="comment">// "" (no suffix)</span>
+    <div class="code-block"><pre><code>$suffix: density_suffix("mdpi"); <span class="comment">// "" (no suffix)</span>
         $suffix: density_suffix("xhdpi"); <span class="comment">// "@2x"</span>
-        $suffix: density_suffix("xxhdpi");<span class="comment">// "@3x"</span></div>
+        $suffix: density_suffix("xxhdpi");<span class="comment">// "@3x"</span></code></pre></div>
 </section>
 
 <section>
@@ -505,7 +505,7 @@
     <h3>display_density($min-dpr)</h3>
     <p>Applies styles at a minimum device pixel ratio.</p>
 
-    <div class="code-block">@use "unit.gl" as *;
+    <div class="code-block"><pre><code>@use "unit.gl" as *;
 
         <span class="comment">// Target 2× displays and higher</span>
         @include display_density(2) {
@@ -520,13 +520,12 @@
         .hero {
         background-image: url("hero@3x.jpg");
         }
-        }
-    </div>
+        }</code></pre></div>
 
     <h3>display_bucket($bucket)</h3>
     <p>Applies styles for a specific density bucket using semantic names.</p>
 
-    <div class="code-block"><span class="comment">// Target retina (2×) displays</span>
+    <div class="code-block"><pre><code><span class="comment">// Target retina (2×) displays</span>
         @include display_bucket("xhdpi") {
         font-weight: 300; <span class="comment">// Thinner fonts look better on retina</span>
         }
@@ -534,24 +533,22 @@
         <span class="comment">// Or use aliases</span>
         @include display_bucket("retina") {
         border-width: 0.5px;
-        }
-    </div>
+        }</code></pre></div>
 
     <h3>display_standard()</h3>
     <p>Targets only standard (1×) density displays.</p>
 
-    <div class="code-block">@include display_standard {
+    <div class="code-block"><pre><code>@include display_standard {
         <span class="comment">// Fallback for non-retina displays</span>
         .icon {
         background-image: url("icon.png");
         }
-        }
-    </div>
+        }</code></pre></div>
 
     <h3>image_density($path, $ext, $densities)</h3>
     <p>Generates density-aware background images with automatic resolution switching.</p>
 
-    <div class="code-block">.logo {
+    <div class="code-block"><pre><code>.logo {
         @include image_density("/images/logo", "png", 1 2 3);
         }
 
@@ -568,13 +565,12 @@
         url("/images/logo@2x.png") 2x,
         url("/images/logo@3x.png") 3x
         );
-        }
-    </div>
+        }</code></pre></div>
 
     <h3>display_print($min-dpi)</h3>
     <p>Targets print media with optional minimum resolution.</p>
 
-    <div class="code-block">@include display_print {
+    <div class="code-block"><pre><code>@include display_print {
         <span class="comment">// All print styles</span>
         .no-print { display: none; }
         }
@@ -582,8 +578,7 @@
         @include display_print(300) {
         <span class="comment">// High-resolution print only (300dpi+)</span>
         .photo { image-rendering: high-quality; }
-        }
-    </div>
+        }</code></pre></div>
 </section>
 
 <section>
@@ -592,7 +587,7 @@
     <p>unit.gl automatically injects the device pixel ratio as a CSS custom property, enabling dynamic density-aware
         calculations in CSS:</p>
 
-    <div class="code-block"><span class="comment">/* Available CSS custom properties */</span>
+    <div class="code-block"><pre><code><span class="comment">/* Available CSS custom properties */</span>
         :root {
         --dpr: 2; <span class="comment">/* Current device pixel ratio */</span>
         --dpr-inverse: 0.5; <span class="comment">/* 1 / DPR for inverse calculations */</span>
@@ -606,8 +601,7 @@
         .icon {
         <span class="comment">/* Scale based on density */</span>
         transform: scale(var(--dpr-inverse));
-        }
-    </div>
+        }</code></pre></div>
 
     <div class="alert">
         <p class="alert__title">Note</p>
@@ -710,7 +704,7 @@
 
     <h3>Conversion Functions</h3>
 
-    <div class="code-block">@use "unit.gl" as *;
+    <div class="code-block"><pre><code>@use "unit.gl" as *;
 
         <span class="comment">// Physical to digital</span>
         $width: mm_to_px(90); <span class="comment">// 360px (Q06 portrait)</span>
@@ -720,14 +714,13 @@
         $mm: px_to_mm(1440px); <span class="comment">// 360mm</span>
 
         <span class="comment">// Density-adjusted</span>
-        $physical_px: breakpoint_for_density(md, 2); <span class="comment">// 2880 physical pixels</span>
-    </div>
+        $physical_px: breakpoint_for_density(md, 2); <span class="comment">// 2880 physical pixels</span></code></pre></div>
 
     <h3>Combined Viewport + Density Queries</h3>
 
     <p>The <code>media_density</code> mixin targets specific breakpoints AND densities together:</p>
 
-    <div class="code-block"><span class="comment">// Target phones (ss) with retina displays</span>
+    <div class="code-block"><pre><code><span class="comment">// Target phones (ss) with retina displays</span>
         @include media_density(ss, 2) {
         font-size: 14px;
         font-weight: 300; <span class="comment">// Thinner weights on retina</span>
@@ -741,14 +734,13 @@
         <span class="comment">// Target laptops (md) with 3× displays</span>
         @include media_density(md, 3) {
         border-width: 0.333px; <span class="comment">// True 1px hairline</span>
-        }
-    </div>
+        }</code></pre></div>
 
     <h3>Q Format Semantic Targeting</h3>
 
     <p>Use <code>media_format</code> to target Q paper sizes directly:</p>
 
-    <div class="code-block"><span class="comment">// Target Q06 portrait devices (phones)</span>
+    <div class="code-block"><pre><code><span class="comment">// Target Q06 portrait devices (phones)</span>
         @include media_format(q06p) {
         padding: q(16);
         }
@@ -761,8 +753,7 @@
         <span class="comment">// Target Q01 landscape (4K) with any density</span>
         @include media_format(q01l) {
         max-width: q(1400);
-        }
-    </div>
+        }</code></pre></div>
 
     <div class="alert alert--tip">
         <p class="alert__title">Why 4× Multiplier?</p>
@@ -783,7 +774,7 @@
     <p>Extends fluid typography with density awareness. High-DPR screens get proportionally smaller text to maintain
         optical consistency:</p>
 
-    <div class="code-block">html {
+    <div class="code-block"><pre><code>html {
         <span class="comment">// Base fluid type: 12px → 24px from 360px → 4320px viewport</span>
         @include fluid_type_density(360px, 4320px, 12px, 24px);
         }
@@ -791,8 +782,7 @@
         <span class="comment">// With custom density scale (default: 0.9 = 10% reduction per DPR step)</span>
         html {
         @include fluid_type_density(360px, 4320px, 12px, 24px, 0.95);
-        }
-    </div>
+        }</code></pre></div>
 
     <p>This generates:</p>
     <ul>
@@ -805,7 +795,7 @@
 
     <p>Runtime density-aware Q units using the JavaScript-injected <code>--dpr-inverse</code>:</p>
 
-    <div class="code-block">.element {
+    <div class="code-block"><pre><code>.element {
         font-size: q_density(16); <span class="comment">// Scales with runtime DPR</span>
         padding: q_density(8);
         line-height: q_density(24);
@@ -816,21 +806,19 @@
         font-size: calc(1rem * var(--dpr-inverse, 1));
         padding: calc(0.5rem * var(--dpr-inverse, 1));
         line-height: calc(1.5rem * var(--dpr-inverse, 1));
-        }
-    </div>
+        }</code></pre></div>
 
     <h3>scale_density() Functions</h3>
 
     <p>Retrieve typographic scale values adjusted for density:</p>
 
-    <div class="code-block"><span class="comment">// Compile-time density adjustment</span>
+    <div class="code-block"><pre><code><span class="comment">// Compile-time density adjustment</span>
         font-size: scale_density(7); <span class="comment">// q(16) at 1× DPR</span>
         font-size: scale_density(7, 2); <span class="comment">// q(16) × 0.9 at 2× DPR</span>
         font-size: scale_density(7, 3); <span class="comment">// q(16) × 0.81 at 3× DPR</span>
 
         <span class="comment">// Runtime density adjustment (requires JS injection)</span>
-        font-size: scale_density_runtime(7); <span class="comment">// Scales with --dpr-inverse</span>
-    </div>
+        font-size: scale_density_runtime(7); <span class="comment">// Scales with --dpr-inverse</span></code></pre></div>
 
 </section>
 
@@ -839,7 +827,7 @@
 
     <p>unit.gl provides density and breakpoint values as CSS custom properties for use in calculations:</p>
 
-    <div class="code-block">:root {
+    <div class="code-block"><pre><code>:root {
         <span class="comment">/* Density (JavaScript-injected) */</span>
         --dpr: 1;
         --dpr-inverse: 1;
@@ -869,8 +857,7 @@
 
         <span class="comment">/* Container query using breakpoint */</span>
         max-width: var(--bp-md);
-        }
-    </div>
+        }</code></pre></div>
 
 </section>
 

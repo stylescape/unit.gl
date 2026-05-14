@@ -3,7 +3,7 @@
     <p>Paper sizes for print-oriented designs.</p>
 
     <h3>Default Paper Sizes</h3>
-    <div class="code-block">$paper_map: (
+    <div class="code-block"><pre><code>$paper_map: (
         "a3": (297mm, 420mm),
         "a4": (210mm, 297mm),
         "a5": (148mm, 210mm),
@@ -11,13 +11,13 @@
         "letter": (216mm, 279mm),
         "legal": (216mm, 356mm),
         "tabloid": (279mm, 432mm),
-        ) !default;</div>
+        ) !default;</code></pre></div>
 
     <h3>Customizing</h3>
-    <div class="code-block"><span class="comment">// Add custom sizes</span>
+    <div class="code-block"><pre><code><span class="comment">// Add custom sizes</span>
         $paper_map: map.merge($paper_map, (
         "business-card": (89mm, 51mm),
         "postcard": (148mm, 105mm),
         "poster-small": (420mm, 594mm), <span class="comment">// A2</span>
-        ));</div>
+        ));</code></pre></div>
 </section>

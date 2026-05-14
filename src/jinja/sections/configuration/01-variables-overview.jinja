@@ -4,7 +4,7 @@
         the library.</p>
 
     <h3>Override Pattern</h3>
-    <div class="code-block"><span class="comment">// _your-config.scss</span>
+    <div class="code-block"><pre><code><span class="comment">// _your-config.scss</span>
         <span class="comment">// Override variables BEFORE importing unit.gl</span>
 
         <span class="comment">// Custom base unit</span>
@@ -20,8 +20,7 @@
         @use "unit.gl" with (
         $unit_base: $unit_base,
         $scale_ratio: $scale_ratio
-        );
-    </div>
+        );</code></pre></div>
 
     <div class="alert alert--tip">
         <strong>Tip:</strong> Use the <code>@use ... with ()</code> syntax for the cleanest configuration pattern.
