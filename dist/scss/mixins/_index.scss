@@ -107,3 +107,7 @@
 /// Position mixins: inset and translate utility generators
 /// @see _position.scss
 @forward "position";
+
+/// Container query mixins: component-scoped responsive design
+/// @see _container.scss
+@forward "container";

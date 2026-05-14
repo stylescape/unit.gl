@@ -1,0 +1,146 @@
+////
+///
+/// Container Query Mixins
+/// ===========================================================================
+///
+/// Component-scoped responsive design mixins built on the same Q-format
+/// breakpoint ladder as `mixins/_view.scss`.
+///
+/// ## Setup
+/// Mark an element as a query container:
+///
+/// ```scss
+/// .card {
+///     @include container("card");
+///
+///     @include container-up(md, "card") {
+///         display: grid;
+///     }
+///
+///     @include container-down(sm, "card") {
+///         padding: q(8);
+///     }
+/// }
+/// ```
+///
+/// ## API
+/// - `container($name, $type)`               – declare a container.
+/// - `container-up($size, $name)`            – min-width container query.
+/// - `container-down($size, $name)`          – max-width container query.
+/// - `container-between($lower, $upper, $name)` – range query.
+/// - `container-only($size, $name)`          – exactly one breakpoint band.
+///
+/// All sizes resolve via the canonical `$breakpoints` map. Pass `$name: null`
+/// to write an unnamed container query.
+///
+/// @group Container
+/// @author Scape Press
+/// @link https://unit.gl
+/// @since 0.4.0
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "sass:map";
+@use "sass:list";
+@use "../variables" as *;
+
+// ============================================================================
+// Helpers
+// ============================================================================
+
+@function _container-size($size) {
+    @if not map.has-key($breakpoints, $size) {
+        @error "Unknown container breakpoint `#{$size}`. Valid keys: #{map.keys($breakpoints)}.";
+    }
+    @return map.get($breakpoints, $size);
+}
+
+@function _container-name-suffix($name) {
+    @if $name {
+        @return " #{$name}";
+    }
+    @return "";
+}
+
+// ============================================================================
+// Container declaration
+// ============================================================================
+
+///
+/// Declare a containment context.
+/// @param {String|null} $name [null] - Optional `container-name`.
+/// @param {String} $type ["inline-size"] - `container-type` value.
+///
+@mixin container($name: null, $type: inline-size) {
+    container-type: $type;
+    @if $name {
+        container-name: $name;
+    }
+}
+
+// ============================================================================
+// Query mixins
+// ============================================================================
+
+///
+/// Match when the container's inline size is >= the named breakpoint.
+///
+@mixin container-up($size, $name: null) {
+    $value: _container-size($size);
+    // stylelint-disable-next-line scss/at-rule-no-unknown
+    @container#{_container-name-suffix($name)} (min-width: #{$value}) {
+        @content;
+    }
+}
+
+///
+/// Match when the container's inline size is <= the named breakpoint - 0.02px.
+/// Mirrors common max-width media query semantics.
+///
+@mixin container-down($size, $name: null) {
+    $value: _container-size($size);
+    // stylelint-disable-next-line scss/at-rule-no-unknown
+    @container#{_container-name-suffix($name)} (max-width: #{$value - 0.02px}) {
+        @content;
+    }
+}
+
+///
+/// Match when the container's inline size is between two named breakpoints.
+///
+@mixin container-between($lower, $upper, $name: null) {
+    $low: _container-size($lower);
+    $high: _container-size($upper);
+    // stylelint-disable-next-line scss/at-rule-no-unknown
+    @container#{_container-name-suffix($name)} (min-width: #{$low}) and (max-width: #{$high - 0.02px}) {
+        @content;
+    }
+}
+
+///
+/// Match only the band starting at `$size` (up to the next breakpoint).
+///
+@mixin container-only($size, $name: null) {
+    $keys: map.keys($breakpoints);
+    $idx: list.index($keys, $size);
+
+    @if not $idx {
+        @error "Unknown container breakpoint `#{$size}`. Valid keys: #{$keys}.";
+    }
+
+    @if $idx < list.length($keys) {
+        $next: list.nth($keys, $idx + 1);
+        @include container-between($size, $next, $name) {
+            @content;
+        }
+    } @else {
+        @include container-up($size, $name) {
+            @content;
+        }
+    }
+}

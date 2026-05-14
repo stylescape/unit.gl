@@ -1,0 +1,10 @@
+// Smoke test: opt into logical + container utilities to make sure the
+// generator compiles end-to-end. Not part of the published bundle.
+@use "../classes/utilities" with (
+    $enable_logical: true,
+    $container_breakpoints: (
+        sm,
+        md,
+        lg
+    )
+);

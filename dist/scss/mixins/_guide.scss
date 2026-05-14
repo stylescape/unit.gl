@@ -323,9 +323,6 @@
     $color: color.change(rgb(0, 255, 0), $alpha: 0.1)
 ) {
     @include guide;
-    top: $margin;
-    left: $margin;
-    right: $margin;
-    bottom: $margin;
+    inset: $margin $margin $margin $margin;
     background-color: $color;
 }

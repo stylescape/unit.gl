@@ -21,6 +21,7 @@
 // Use
 // ============================================================================
 @use "sass:math";
+@use "sass:meta";
 
 // ============================================================================
 // Functions
@@ -54,12 +55,12 @@
     $golden-ratio: 1.618;
 
     // Validate the input size
-    @if not math.is-unitless($size) and type-of($size) != "number" {
+    @if not math.is-unitless($size) and meta.type-of($size) != "number" {
         @error "The size parameter must be a valid number or unitless value.";
     }
 
     // Validate the increment
-    @if type-of($increment) != "number" {
+    @if meta.type-of($increment) != "number" {
         @error "The increment parameter must be a valid number.";
     }
 

@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import { exec, spawn } from 'child_process';
 import micromatch from 'micromatch';
 import path from 'path';
 import { promisify } from 'util';
@@ -24,6 +24,22 @@ const watchGlobs = [
 ];
 
 let lastBuild = 0;
+let tsupProc = null;
+
+function startTsupWatch() {
+  if (tsupProc) return;
+  console.log('[tsup] 🛠️ Starting watch...');
+  tsupProc = spawn('npx', ['tsup', '--watch'], {
+    stdio: 'inherit',
+    shell: true,
+  });
+  const stop = () => {
+    if (tsupProc && !tsupProc.killed) tsupProc.kill();
+  };
+  process.on('exit', stop);
+  process.on('SIGINT', () => { stop(); process.exit(); });
+  process.on('SIGTERM', () => { stop(); process.exit(); });
+}
 
 async function runKist(server) {
   const now = Date.now();
@@ -46,6 +62,7 @@ async function runKist(server) {
 
   } catch (err) {
     console.error('[Kist] Build failed:', err.stderr || err.message);
+                startTsupWatch();
   }
 }
 

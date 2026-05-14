@@ -538,7 +538,7 @@ $resolution_lines: (
 ///   font-size: scale_density(7, 3);     // q(16) * 0.81 at 3× DPR
 ///
 @function scale_density($step, $target_dpr: 1, $density_scale: 0.9) {
-    $base_size: map-get($typographic_scale, $step);
+    $base_size: map.get($typographic_scale, $step);
 
     @if $base_size == null {
         @warn "Invalid typographic scale step: #{$step}. Valid steps are 1-17.";
@@ -573,7 +573,7 @@ $resolution_lines: (
 ///   font-size: scale_density_runtime(7);  // Scales with runtime DPR
 ///
 @function scale_density_runtime($step) {
-    $base_size: map-get($typographic_scale, $step);
+    $base_size: map.get($typographic_scale, $step);
 
     @if $base_size == null {
         @warn "Invalid typographic scale step: #{$step}. Valid steps are 1-17.";

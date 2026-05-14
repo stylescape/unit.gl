@@ -1,204 +1,225 @@
 ////
 ///
-/// Reset Mixins Module
+/// Reset
 /// ===========================================================================
+///
+/// Modern, opinionated reset built around the universal selector and a
+/// targeted set of element overrides. Wrapped in `:where()` everywhere so
+/// every rule has zero specificity and is trivial to override downstream.
+///
+/// Inspired by Andy Bell's Modern CSS Reset and Josh Comeau's reset, adapted
+/// for the unit.gl design system.
+///
+/// ## Layout & box model
+/// - Universal `box-sizing: border-box`
+/// - Strip default margin and padding from common content elements
+/// - Keep the `<html>` line-height sensible (1.15) and prevent text inflation
+///
+/// ## Typography
+/// - Inherit `font` on form controls (they don't by default)
+/// - Add `font: inherit` selectively, never globally
+///
+/// ## Media
+/// - `display: block` and `max-inline-size: 100%` for replaced elements
+///
+/// ## A11y / motion
+/// - Honor `prefers-reduced-motion`
 ///
 /// @group Reset
 /// @author Scape Press
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
 
-
 // ============================================================================
-// Use
+// Box model & overflow
 // ============================================================================
 
-// Reset margin and padding for all elements
-@mixin reset_bleed {
-    margin: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-    padding: 0;
-    border: 0; // Ensures no borders are applied unless explicitly defined
-    font-size: 100%; // Prevent scaling issues by setting default font size
-    font: inherit; // Ensures fonts are consistently inherited from parent elements
-    vertical-align: baseline; // Aligns elements to the baseline to avoid layout shifts
-}
-
-
-// Apply the reset mixin to all elements
 *,
-a,
-abbr,
-acronym,
-address,
-applet,
-area,
-article,
-aside,
-audio,
-b,
-base,
-basefont,
-bb,
-bdo,
-big,
-blockquote,
-body,
-br,
-button,
-canvas,
-caption,
-center,
-cite,
-code,
-col,
-colgroup,
-command,
-datalist,
-dd,
-del,
-details,
-dfn,
-dialog,
-dir,
-div,
-dl,
-dt,
-em,
-embed,
-eventsource,
-fieldset,
-figcaption,
-figure,
-font,
-footer,
-form,
-frame,
-frameset,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-head,
-header,
-hgroup,
-hr,
-html,
-i,
-iframe,
-img,
-input,
-ins,
-isindex,
-kbd,
-keygen,
-label,
-legend,
-li,
-link,
-map,
-mark,
-menu,
-meta,
-meter,
-nav,
-noframes,
-noscript,
-object,
-ol,
-optgroup,
-option,
-output,
-p,
-param,
-pre,
-progress,
-q,
-rp,
-rt,
-ruby,
-s,
-samp,
-script,
-section,
-select,
-small,
-source,
-span,
-strike,
-strong,
-style,
-sub,
-sup,
-table,
-tbody,
-td,
-textarea,
-tfoot,
-th,
-thead,
-time,
-title,
-tr,
-track,
-tt,
-u,
-ul,
-var,
-video,
-wbr {
-    @include reset_bleed;
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-// HTML5 display-role reset for older browsers
-// Ensures HTML5 elements are displayed correctly in older browsers
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section,
-main {
+// ============================================================================
+// Document
+// ============================================================================
+
+:where(html) {
+    text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.15;
+}
+
+:where(body) {
+    margin: 0;
+    min-block-size: 100vh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// ============================================================================
+// Block content: strip default margin
+// ============================================================================
+
+:where(
+    h1, h2, h3, h4, h5, h6,
+    p,
+    blockquote, pre,
+    dl, dd,
+    figure
+) {
+    margin: 0;
+}
+
+:where(ul, ol)[role="list"] {
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 0;
+}
+
+:where(hr) {
+    border: 0;
+    border-block-start: 1px solid;
+    block-size: 0;
+    color: inherit;
+}
+
+// ============================================================================
+// Headings & inline
+// ============================================================================
+
+:where(h1, h2, h3, h4, h5, h6) {
+    font-size: inherit;
+    font-weight: inherit;
+    text-wrap: balance;
+}
+
+:where(p) {
+    text-wrap: pretty;
+}
+
+:where(a) {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+:where(b, strong) {
+    font-weight: bolder;
+}
+
+:where(code, kbd, samp, pre) {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 1em;
+}
+
+:where(small) {
+    font-size: 80%;
+}
+
+:where(sub, sup) {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+:where(sub) { inset-block-end: -0.25em; }
+:where(sup) { inset-block-start: -0.5em; }
+
+// ============================================================================
+// Replaced & embedded
+// ============================================================================
+
+:where(img, picture, video, canvas, svg, iframe, embed, object) {
     display: block;
+    max-inline-size: 100%;
+    block-size: auto;
 }
 
-// html, body, div, span, applet, object, iframe,
-// h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-// a, abbr, acronym, address, big, cite, code,
-// del, dfn, em, img, ins, kbd, q, s, samp,
-// small, strike, strong, sub, sup, tt, var,
-// b, u, i, center,
-// dl, dt, dd, ol, ul, li,
-// fieldset, form, label, legend,
-// table, caption, tbody, tfoot, thead, tr, th, td,
-// article, aside, canvas, details, embed,
-// figure, figcaption, footer, header, hgroup,
-// menu, nav, output, ruby, section, summary,
-// time, mark, audio, video {
-//   margin: 0;
-//   padding: 0;
-//   border: 0;
-//   font-size: 100%;
-//   font: inherit;
-//   vertical-align: baseline;
-// }
+:where(svg:not([fill])) {
+    fill: currentColor;
+}
 
-// /* HTML5 display-role reset for older browsers */
-// article, aside, details, figcaption, figure,
-// footer, header, hgroup, menu, nav, section, main {
-//   display: block;
-// }
+// ============================================================================
+// Form controls
+// ============================================================================
+
+:where(button, input, select, textarea) {
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    margin: 0;
+}
+
+:where(button, [type="button"], [type="reset"], [type="submit"]) {
+    appearance: button;
+    cursor: pointer;
+}
+
+:where(button:disabled, [disabled]) {
+    cursor: not-allowed;
+}
+
+:where(textarea) {
+    resize: vertical;
+    overflow: auto;
+}
+
+:where(fieldset) {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-inline-size: 0;
+}
+
+:where(legend) {
+    padding: 0;
+}
+
+:where(label, button, select, summary, [role="button"], [role="option"]) {
+    cursor: pointer;
+}
+
+// ============================================================================
+// Tables
+// ============================================================================
+
+:where(table) {
+    border-collapse: collapse;
+    border-color: inherit;
+    text-indent: 0;
+}
+
+// ============================================================================
+// Interactive
+// ============================================================================
+
+:where(dialog) {
+    padding: 0;
+}
+
+:where(:focus-visible) {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+// ============================================================================
+// A11y: motion
+// ============================================================================
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

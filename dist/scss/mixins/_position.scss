@@ -38,8 +38,8 @@
 
 @use "sass:map";
 @use "sass:list";
-@use "../maps" as maps;
-@use "../variables" as variables;
+@use "../maps";
+@use "../variables";
 
 // ============================================================================
 // Inset Utility Generator
@@ -81,36 +81,36 @@
 ///
 /// @see maps.$q_steps
 ///
-@mixin inset-utilities($steps: maps.$q_steps) {
+@mixin inset-utilities($steps: maps.$q_steps, $prefix: "") {
     @each $key, $value in $steps {
         /// All four sides (inset shorthand)
-        .inset_q#{$key} {
-            top: variables.q($value);
-            right: variables.q($value);
-            bottom: variables.q($value);
-            left: variables.q($value);
+        .#{$prefix}inset_q#{$key} {
+            inset: variables.q($value)
+                variables.q($value)
+                variables.q($value)
+                variables.q($value);
         }
 
         /// Individual side positioning
-        .top_q#{$key} {
+        .#{$prefix}top_q#{$key} {
             top: variables.q($value);
         }
-        .right_q#{$key} {
+        .#{$prefix}right_q#{$key} {
             right: variables.q($value);
         }
-        .bottom_q#{$key} {
+        .#{$prefix}bottom_q#{$key} {
             bottom: variables.q($value);
         }
-        .left_q#{$key} {
+        .#{$prefix}left_q#{$key} {
             left: variables.q($value);
         }
 
         /// Axis-based positioning
-        .inset_x_q#{$key} {
+        .#{$prefix}inset_x_q#{$key} {
             left: variables.q($value);
             right: variables.q($value);
         }
-        .inset_y_q#{$key} {
+        .#{$prefix}inset_y_q#{$key} {
             top: variables.q($value);
             bottom: variables.q($value);
         }
@@ -154,26 +154,66 @@
 ///
 /// @see maps.$q_steps
 ///
-@mixin translate-utilities($steps: maps.$q_steps) {
+@mixin translate-utilities($steps: maps.$q_steps, $prefix: "") {
     @each $key, $value in $steps {
         /// Positive X translation (shift right)
-        .translate_x_q#{$key} {
+        .#{$prefix}translate_x_q#{$key} {
             transform: translateX(variables.q($value));
         }
 
         /// Positive Y translation (shift down)
-        .translate_y_q#{$key} {
+        .#{$prefix}translate_y_q#{$key} {
             transform: translateY(variables.q($value));
         }
 
         /// Negative X translation (shift left)
-        .-translate_x_q#{$key} {
+        .#{$prefix}-translate_x_q#{$key} {
             transform: translateX(calc(-1 * variables.q($value)));
         }
 
         /// Negative Y translation (shift up)
-        .-translate_y_q#{$key} {
+        .#{$prefix}-translate_y_q#{$key} {
             transform: translateY(calc(-1 * variables.q($value)));
+        }
+    }
+}
+
+// ============================================================================
+// Logical-Axis Inset Utilities (RTL/i18n-friendly)
+// ============================================================================
+
+///
+/// Inset logical-axis utility classes.
+///
+/// Generates classes that target inset on the inline (start/end) and
+/// block (start/end) axes instead of physical sides.
+///
+/// @name inset-logical-utilities
+/// @param {Map}    $steps  [maps.$q_steps]
+/// @param {String} $prefix [""]
+/// @output `.inset_inline_q*`, `.inset_inline_start_q*`,
+///         `.inset_inline_end_q*`, `.inset_block_q*`,
+///         `.inset_block_start_q*`, `.inset_block_end_q*`
+///
+@mixin inset-logical-utilities($steps: maps.$q_steps, $prefix: "") {
+    @each $key, $value in $steps {
+        .#{$prefix}inset_inline_q#{$key} {
+            inset-inline: variables.q($value);
+        }
+        .#{$prefix}inset_inline_start_q#{$key} {
+            inset-inline-start: variables.q($value);
+        }
+        .#{$prefix}inset_inline_end_q#{$key} {
+            inset-inline-end: variables.q($value);
+        }
+        .#{$prefix}inset_block_q#{$key} {
+            inset-block: variables.q($value);
+        }
+        .#{$prefix}inset_block_start_q#{$key} {
+            inset-block-start: variables.q($value);
+        }
+        .#{$prefix}inset_block_end_q#{$key} {
+            inset-block-end: variables.q($value);
         }
     }
 }

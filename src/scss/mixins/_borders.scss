@@ -222,28 +222,28 @@
 ///
 /// @see $q_steps
 ///
-@mixin border-width-utilities($steps: $q_steps) {
+@mixin border-width-utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
-        .border_q#{$key} {
+        .#{$prefix}border_q#{$key} {
             border-width: q($value);
         }
-        .border_t_q#{$key} {
+        .#{$prefix}border_t_q#{$key} {
             border-top-width: q($value);
         }
-        .border_r_q#{$key} {
+        .#{$prefix}border_r_q#{$key} {
             border-right-width: q($value);
         }
-        .border_b_q#{$key} {
+        .#{$prefix}border_b_q#{$key} {
             border-bottom-width: q($value);
         }
-        .border_l_q#{$key} {
+        .#{$prefix}border_l_q#{$key} {
             border-left-width: q($value);
         }
-        .border_x_q#{$key} {
+        .#{$prefix}border_x_q#{$key} {
             border-left-width: q($value);
             border-right-width: q($value);
         }
-        .border_y_q#{$key} {
+        .#{$prefix}border_y_q#{$key} {
             border-top-width: q($value);
             border-bottom-width: q($value);
         }
@@ -279,37 +279,37 @@
 ///
 /// @see $q_steps
 ///
-@mixin border-radius-utilities($steps: $q_steps) {
+@mixin border-radius-utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
-        .rounded_q#{$key} {
+        .#{$prefix}rounded_q#{$key} {
             border-radius: q($value);
         }
-        .rounded_t_q#{$key} {
+        .#{$prefix}rounded_t_q#{$key} {
             border-top-left-radius: q($value);
             border-top-right-radius: q($value);
         }
-        .rounded_r_q#{$key} {
+        .#{$prefix}rounded_r_q#{$key} {
             border-top-right-radius: q($value);
             border-bottom-right-radius: q($value);
         }
-        .rounded_b_q#{$key} {
+        .#{$prefix}rounded_b_q#{$key} {
             border-bottom-left-radius: q($value);
             border-bottom-right-radius: q($value);
         }
-        .rounded_l_q#{$key} {
+        .#{$prefix}rounded_l_q#{$key} {
             border-top-left-radius: q($value);
             border-bottom-left-radius: q($value);
         }
-        .rounded_tl_q#{$key} {
+        .#{$prefix}rounded_tl_q#{$key} {
             border-top-left-radius: q($value);
         }
-        .rounded_tr_q#{$key} {
+        .#{$prefix}rounded_tr_q#{$key} {
             border-top-right-radius: q($value);
         }
-        .rounded_br_q#{$key} {
+        .#{$prefix}rounded_br_q#{$key} {
             border-bottom-right-radius: q($value);
         }
-        .rounded_bl_q#{$key} {
+        .#{$prefix}rounded_bl_q#{$key} {
             border-bottom-left-radius: q($value);
         }
     }
@@ -334,9 +334,9 @@
 ///
 /// @see $q_steps
 ///
-@mixin outline-width-utilities($steps: $q_steps) {
+@mixin outline-width-utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
-        .outline_q#{$key} {
+        .#{$prefix}outline_q#{$key} {
             outline-width: q($value);
         }
     }
@@ -361,9 +361,9 @@
 ///
 /// @see $q_steps
 ///
-@mixin outline-offset-utilities($steps: $q_steps) {
+@mixin outline-offset-utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
-        .outline_offset_q#{$key} {
+        .#{$prefix}outline_offset_q#{$key} {
             outline-offset: q($value);
         }
     }

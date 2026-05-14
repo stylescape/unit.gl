@@ -19,6 +19,7 @@
 // Use
 // ============================================================================
 @use "sass:map";
+@use "sass:list";
 @use "sass:string";
 
 @use "../functions" as *;
@@ -52,8 +53,8 @@
 
     @if map.has-key($format_map, $key) {
         $pair: map.get($format_map, $key);
-        $width: nth($pair, 1);
-        $height: nth($pair, 2);
+        $width: list.nth($pair, 1);
+        $height: list.nth($pair, 2);
     } @else if map.has-key($paper_sizes, $key) {
         $size-map: map.get($paper_sizes, $key);
         $width: map.get($size-map, width);

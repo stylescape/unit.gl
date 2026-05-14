@@ -1,0 +1,40 @@
+// =============================================================================
+// Tests: mixins/_view.scss — breakpoint() mixin
+// =============================================================================
+
+@use "true" as *;
+@use "../mixins/view" as *;
+
+@include describe("breakpoint(md)") {
+    @include it("emits a min-width media query for the md breakpoint") {
+        @include assert {
+            @include output {
+                @include breakpoint(md) {
+                    color: red;
+                }
+            }
+            @include expect {
+                @media (min-width: 1080px) {
+                    color: red;
+                }
+            }
+        }
+    }
+}
+
+@include describe("breakpoint(us)") {
+    @include it("emits a min-width media query for the us breakpoint") {
+        @include assert {
+            @include output {
+                @include breakpoint(us) {
+                    color: blue;
+                }
+            }
+            @include expect {
+                @media (min-width: 240px) {
+                    color: blue;
+                }
+            }
+        }
+    }
+}

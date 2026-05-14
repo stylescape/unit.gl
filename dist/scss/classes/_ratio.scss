@@ -20,8 +20,8 @@
 @use "sass:map";
 
 @use "../variables" as vars;
-@use "../maps" as maps;
-@use "../mixins" as mixins;
+@use "../maps";
+@use "../mixins";
 
 // ============================================================================
 // Classes

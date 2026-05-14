@@ -26,6 +26,7 @@
 @use "../variables" as *;
 @use "../maps" as *;
 @use "sass:map";
+@use "sass:list";
 
 // ============================================================================
 // Mixins
@@ -91,7 +92,7 @@
 ///   }
 ///
 @mixin display_retina {
-    @media (-webkit-min-device-pixel-ratio: 2),
+    @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
         @content;
@@ -134,7 +135,7 @@
 ///   }
 ///
 @mixin display_density($min-dpr: 2) {
-    @media (-webkit-min-device-pixel-ratio: #{$min-dpr}),
+    @media (min-device-pixel-ratio: #{$min-dpr}),
            (min-resolution: #{$min-dpr * 96}dpi),
            (min-resolution: #{$min-dpr}dppx) {
         @content;
@@ -179,7 +180,7 @@
         }
     } @else {
         // Combined viewport + density query
-        @media (min-width: #{$bp-value}) and (-webkit-min-device-pixel-ratio: #{$min-dpr}),
+        @media (min-width: #{$bp-value}) and (min-device-pixel-ratio: #{$min-dpr}),
                (min-width: #{$bp-value}) and (min-resolution: #{$min-dpr * 96}dpi),
                (min-width: #{$bp-value}) and (min-resolution: #{$min-dpr}dppx) {
             @content;
@@ -259,7 +260,7 @@
 ///   }
 ///
 @mixin display_standard {
-    @media (-webkit-max-device-pixel-ratio: 1.5),
+    @media (max-device-pixel-ratio: 1.5),
         (max-resolution: 144dpi),
         (max-resolution: 1.5dppx) {
         @content;
@@ -300,7 +301,7 @@
         @if $density != 1 {
             $suffix: "@#{$density}x";
         }
-        $image-set-items: append(
+        $image-set-items: list.append(
             $image-set-items,
             url("#{$path}#{$suffix}.#{$ext}") #{$density}x,
             comma
@@ -308,7 +309,7 @@
     }
 
     // Modern image-set with -webkit prefix for Safari
-    background-image: -webkit-image-set(#{$image-set-items});
+    background-image: image-set(#{$image-set-items});
     background-image: image-set(#{$image-set-items});
 }
 

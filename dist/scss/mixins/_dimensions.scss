@@ -150,15 +150,15 @@
 ///
 /// @see $q_steps
 ///
-@mixin width-utilities($steps: $q_steps) {
+@mixin width-utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
-        .w_q#{$key} {
+        .#{$prefix}w_q#{$key} {
             width: q($value);
         }
-        .min_w_q#{$key} {
+        .#{$prefix}min_w_q#{$key} {
             min-width: q($value);
         }
-        .max_w_q#{$key} {
+        .#{$prefix}max_w_q#{$key} {
             max-width: q($value);
         }
     }
@@ -186,15 +186,15 @@
 ///
 /// @see $q_steps
 ///
-@mixin height-utilities($steps: $q_steps) {
+@mixin height-utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
-        .h_q#{$key} {
+        .#{$prefix}h_q#{$key} {
             height: q($value);
         }
-        .min_h_q#{$key} {
+        .#{$prefix}min_h_q#{$key} {
             min-height: q($value);
         }
-        .max_h_q#{$key} {
+        .#{$prefix}max_h_q#{$key} {
             max-height: q($value);
         }
     }
@@ -223,9 +223,9 @@
 ///
 /// @see $q_steps
 ///
-@mixin size-utilities($steps: $q_steps) {
+@mixin size-utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
-        .size_q#{$key} {
+        .#{$prefix}size_q#{$key} {
             width: q($value);
             height: q($value);
         }

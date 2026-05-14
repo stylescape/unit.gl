@@ -1,0 +1,68 @@
+////
+///
+/// Q-Unit CSS Custom Properties Layer
+/// ===========================================================================
+///
+/// Emits a `:root` token layer exposing every step of `$q_steps` as a CSS
+/// custom property (`--q-N`), plus a small set of layout primitives. This
+/// lets consumers reference Q values from runtime contexts (JS, inline
+/// styles, theming) without rebuilding the stylesheet.
+///
+/// ## Generated tokens
+/// ```css
+/// :root {
+///     --q-0:    0;
+///     --q-1:    0.0625rem;
+///     --q-2:    0.125rem;
+///     /* …one per entry in $q_steps… */
+/// }
+/// ```
+///
+/// ## Customisation
+/// ```scss
+/// @use "unit.gl/tokens" with (
+///     $token_prefix: "u-",   // → --u-4, --u-8, …
+///     $steps: (4, 8, 16),    // emit only a subset
+/// );
+/// ```
+///
+/// @group Tokens
+/// @author Scape Press
+/// @link https://unit.gl
+/// @since 0.4.0
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../maps";
+@use "../variables";
+
+// ============================================================================
+// Configuration
+// ============================================================================
+
+///
+/// Prefix applied to every emitted custom property (between the leading
+/// `--` and the step key). Defaults to `q-` to match the historical class
+/// naming (`.p_q4`, etc.).
+///
+$token_prefix: "q-" !default;
+
+///
+/// Steps to expose as tokens. By default mirrors the full `$q_steps` map.
+///
+$steps: maps.$q_steps !default;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+:root {
+    @each $key, $value in $steps {
+        --#{$token_prefix}#{$key}: #{variables.q($value)};
+    }
+}

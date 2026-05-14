@@ -424,28 +424,28 @@
 ///
 /// @see $q_steps
 ///
-@mixin padding-utilities($steps: $q_steps, $breakpoints: null) {
+@mixin padding-utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
-        .p_q#{$key} {
+        .#{$prefix}p_q#{$key} {
             padding: q($value);
         }
-        .pt_q#{$key} {
+        .#{$prefix}pt_q#{$key} {
             padding-top: q($value);
         }
-        .pr_q#{$key} {
+        .#{$prefix}pr_q#{$key} {
             padding-right: q($value);
         }
-        .pb_q#{$key} {
+        .#{$prefix}pb_q#{$key} {
             padding-bottom: q($value);
         }
-        .pl_q#{$key} {
+        .#{$prefix}pl_q#{$key} {
             padding-left: q($value);
         }
-        .px_q#{$key} {
+        .#{$prefix}px_q#{$key} {
             padding-left: q($value);
             padding-right: q($value);
         }
-        .py_q#{$key} {
+        .#{$prefix}py_q#{$key} {
             padding-top: q($value);
             padding-bottom: q($value);
         }
@@ -481,28 +481,28 @@
 ///
 /// @see $q_steps
 ///
-@mixin margin-utilities($steps: $q_steps, $breakpoints: null) {
+@mixin margin-utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
-        .m_q#{$key} {
+        .#{$prefix}m_q#{$key} {
             margin: q($value);
         }
-        .mt_q#{$key} {
+        .#{$prefix}mt_q#{$key} {
             margin-top: q($value);
         }
-        .mr_q#{$key} {
+        .#{$prefix}mr_q#{$key} {
             margin-right: q($value);
         }
-        .mb_q#{$key} {
+        .#{$prefix}mb_q#{$key} {
             margin-bottom: q($value);
         }
-        .ml_q#{$key} {
+        .#{$prefix}ml_q#{$key} {
             margin-left: q($value);
         }
-        .mx_q#{$key} {
+        .#{$prefix}mx_q#{$key} {
             margin-left: q($value);
             margin-right: q($value);
         }
-        .my_q#{$key} {
+        .#{$prefix}my_q#{$key} {
             margin-top: q($value);
             margin-bottom: q($value);
         }
@@ -537,16 +537,88 @@
 ///
 /// @see $q_steps
 ///
-@mixin gap-utilities($steps: $q_steps) {
+@mixin gap-utilities($steps: $q_steps, $prefix: "") {
     @each $key, $value in $steps {
-        .gap_q#{$key} {
+        .#{$prefix}gap_q#{$key} {
             gap: q($value);
         }
-        .gap_col_q#{$key} {
+        .#{$prefix}gap_col_q#{$key} {
             column-gap: q($value);
         }
-        .gap_row_q#{$key} {
+        .#{$prefix}gap_row_q#{$key} {
             row-gap: q($value);
+        }
+    }
+}
+
+// ============================================================================
+// Logical Property Utility Generators (RTL/i18n-friendly)
+// ============================================================================
+
+///
+/// Padding logical-axis utility classes.
+///
+/// Generates classes that target the inline (start/end) and block
+/// (start/end) axes instead of physical sides. Honors writing mode and
+/// document direction, making them safe for RTL and vertical scripts.
+///
+/// @name padding-logical-utilities
+/// @param {Map}    $steps  [$q_steps]
+/// @param {String} $prefix [""]
+/// @output `.p_inline_q*`, `.p_inline_start_q*`, `.p_inline_end_q*`,
+///         `.p_block_q*`, `.p_block_start_q*`, `.p_block_end_q*`
+///
+@mixin padding-logical-utilities($steps: $q_steps, $prefix: "") {
+    @each $key, $value in $steps {
+        .#{$prefix}p_inline_q#{$key} {
+            padding-inline: q($value);
+        }
+        .#{$prefix}p_inline_start_q#{$key} {
+            padding-inline-start: q($value);
+        }
+        .#{$prefix}p_inline_end_q#{$key} {
+            padding-inline-end: q($value);
+        }
+        .#{$prefix}p_block_q#{$key} {
+            padding-block: q($value);
+        }
+        .#{$prefix}p_block_start_q#{$key} {
+            padding-block-start: q($value);
+        }
+        .#{$prefix}p_block_end_q#{$key} {
+            padding-block-end: q($value);
+        }
+    }
+}
+
+///
+/// Margin logical-axis utility classes.
+///
+/// @name margin-logical-utilities
+/// @param {Map}    $steps  [$q_steps]
+/// @param {String} $prefix [""]
+/// @output `.m_inline_q*`, `.m_inline_start_q*`, `.m_inline_end_q*`,
+///         `.m_block_q*`, `.m_block_start_q*`, `.m_block_end_q*`
+///
+@mixin margin-logical-utilities($steps: $q_steps, $prefix: "") {
+    @each $key, $value in $steps {
+        .#{$prefix}m_inline_q#{$key} {
+            margin-inline: q($value);
+        }
+        .#{$prefix}m_inline_start_q#{$key} {
+            margin-inline-start: q($value);
+        }
+        .#{$prefix}m_inline_end_q#{$key} {
+            margin-inline-end: q($value);
+        }
+        .#{$prefix}m_block_q#{$key} {
+            margin-block: q($value);
+        }
+        .#{$prefix}m_block_start_q#{$key} {
+            margin-block-start: q($value);
+        }
+        .#{$prefix}m_block_end_q#{$key} {
+            margin-block-end: q($value);
         }
     }
 }

@@ -68,6 +68,9 @@
     "./utilities": {
       "sass": "./dist/scss/utilities.scss"
     },
+    "./tokens": {
+      "sass": "./dist/scss/tokens.scss"
+    },
     "./guide": {
       "sass": "./dist/scss/guide.scss"
     },

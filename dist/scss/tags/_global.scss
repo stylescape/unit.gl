@@ -89,13 +89,13 @@ html {
     box-sizing: border-box;
 
     // iOS Fix: Prevent font-size adjustment on orientation change
-    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 
     // Text Handling
     word-break: normal;
 
     // Tab Sizing (consistent 4-space tabs)
-    -moz-tab-size: 4;
+    tab-size: 4;
     tab-size: 4;
 
     // Full Height Document

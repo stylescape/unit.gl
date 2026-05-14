@@ -1,0 +1,46 @@
+// =============================================================================
+// Tests: functions/unit/_unit_conversion.scss
+// =============================================================================
+
+@use "true" as *;
+@use "../functions/unit/unit_conversion" as *;
+
+@include describe("px_to_rem()") {
+    @include it("uses 16px as the default base") {
+        @include assert-equal(px_to_rem(24px), 1.5rem);
+    }
+
+    @include it("respects a custom base") {
+        @include assert-equal(px_to_rem(20px, 10px), 2rem);
+    }
+}
+
+@include describe("rem_to_px()") {
+    @include it("converts rem back to px") {
+        @include assert-equal(rem_to_px(1.5rem), 24px);
+    }
+}
+
+@include describe("px_to_em()") {
+    @include it("converts px to em against a context") {
+        @include assert-equal(px_to_em(12px, 16px), 0.75em);
+    }
+}
+
+@include describe("em_to_px()") {
+    @include it("converts em back to px") {
+        @include assert-equal(em_to_px(0.75em, 16px), 12px);
+    }
+}
+
+@include describe("rem_to_em()") {
+    @include it("performs a 1:1 conversion") {
+        @include assert-equal(rem_to_em(1.5rem), 1.5em);
+    }
+}
+
+@include describe("em_to_rem()") {
+    @include it("performs a 1:1 conversion") {
+        @include assert-equal(em_to_rem(2em), 2rem);
+    }
+}

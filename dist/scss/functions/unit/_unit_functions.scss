@@ -21,6 +21,7 @@
 @use "sass:meta";
 @use "sass:math";
 @use "sass:list";
+@use "sass:map";
 
 // ============================================================================
 // Unit Manipulation Functions
@@ -138,14 +139,14 @@
         "grad": 1grad,
         "turn": 1turn,
         "s": 1s,
-        "ms": 1ms,
+        "ms": 1ms
     );
 
-    @if not map-has-key($unit-map, $unit) {
+    @if not map.has-key($unit-map, $unit) {
         @error "Unsupported unit `#{$unit}`.";
     }
 
-    @return $value * map-get($unit-map, $unit);
+    @return $value * map.get($unit-map, $unit);
 }
 
 ///
@@ -163,7 +164,8 @@
 ///   $compat: units_compatible(16px, 1rem); // => false
 ///
 @function units_compatible($value1, $value2) {
-    @if meta.type-of($value1) != "number" or meta.type-of($value2) != "number" {
+    @if meta.type-of($value1) != "number" or meta.type-of($value2) != "number"
+    {
         @return false;
     }
     @return math.compatible($value1, $value2);
@@ -193,7 +195,8 @@
 ///
 @function lerp($start, $end, $min-vw, $max-vw) {
     // Validate viewport bounds
-    @if meta.type-of($min-vw) != "number" or meta.type-of($max-vw) != "number" {
+    @if meta.type-of($min-vw) != "number" or meta.type-of($max-vw) != "number"
+    {
         @error "Viewport bounds must be numbers.";
     }
 
@@ -210,7 +213,9 @@
 
     // Build the calc expression
     // Formula: start + (delta * ((100vw - min) / range))
-    @return calc(#{$start} + #{$delta} * ((100vw - #{$min-vw}) / #{$vw-range}));
+    @return calc(
+        #{$start} + #{$delta} * ((100vw - #{$min-vw}) / #{$vw-range})
+    );
 }
 
 ///
@@ -270,7 +275,12 @@
     $size-min,
     $size-max
 ) {
-    @return fluid($size-min, $size-max, $viewport-width-min, $viewport-width-max);
+    @return fluid(
+        $size-min,
+        $size-max,
+        $viewport-width-min,
+        $viewport-width-max
+    );
 }
 
 ///
@@ -307,7 +317,12 @@
 /// @example scss
 ///   .container { padding: fluid_space(16px, 64px); }
 ///
-@function fluid_space($min-space, $max-space, $min-vw: 320px, $max-vw: 1200px) {
+@function fluid_space(
+    $min-space,
+    $max-space,
+    $min-vw: 320px,
+    $max-vw: 1200px
+) {
     @return fluid($min-space, $max-space, $min-vw, $max-vw);
 }
 
@@ -381,7 +396,8 @@
 ///   $half: percent_of(200px, 50); // => 100px
 ///
 @function percent_of($value, $percent) {
-    @if meta.type-of($value) != "number" or meta.type-of($percent) != "number" {
+    @if meta.type-of($value) != "number" or meta.type-of($percent) != "number"
+    {
         @error "Both value and percent must be numbers.";
     }
     @return math.div($value * $percent, 100);
@@ -407,5 +423,10 @@
     $current-width
 ) {
     @warn "scale_dynamic() is deprecated. Use fluid() instead for modern CSS clamp() support.";
-    @return fluid($size-min, $size-max, $viewport-width-min, $viewport-width-max);
+    @return fluid(
+        $size-min,
+        $size-max,
+        $viewport-width-min,
+        $viewport-width-max
+    );
 }

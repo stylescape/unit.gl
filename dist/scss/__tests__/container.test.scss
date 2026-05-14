@@ -1,0 +1,59 @@
+// =============================================================================
+// Tests: mixins/_container.scss
+// =============================================================================
+
+@use "true" as *;
+@use "../mixins/container" as *;
+
+@include describe("container-up(md)") {
+    @include it("emits a min-width container query") {
+        @include assert {
+            @include output {
+                @include container-up(md) {
+                    color: red;
+                }
+            }
+            @include expect {
+                @container (min-width: 1080px) {
+                    color: red;
+                }
+            }
+        }
+    }
+}
+
+@include describe("container-up(md, card)") {
+    @include it("emits a named container query") {
+        @include assert {
+            @include output {
+                @include container-up(md, "card") {
+                    color: red;
+                }
+            }
+            @include expect {
+                @container card (min-width: 1080px) {
+                    color: red;
+                }
+            }
+        }
+    }
+}
+
+@include describe("container-down(md)") {
+    @include it(
+        "emits a max-width container query 0.02px below the breakpoint"
+    ) {
+        @include assert {
+            @include output {
+                @include container-down(md) {
+                    color: red;
+                }
+            }
+            @include expect {
+                @container (max-width: 1079.98px) {
+                    color: red;
+                }
+            }
+        }
+    }
+}

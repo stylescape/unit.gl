@@ -31,6 +31,7 @@
 // Use
 // ============================================================================
 @use "sass:math";
+@use "sass:meta";
 @use "unit" as *;
 
 // ============================================================================
@@ -71,15 +72,15 @@ $_type_scale: 4;
 ///
 @function modular_scale($increment: 1, $base: 1em, $ratio: 1.618) {
     // Validate inputs
-    @if type-of($increment) != "number" {
+    @if meta.type-of($increment) != "number" {
         @error "Step must be a number.";
     }
 
-    @if type-of($base) != "number" and not math.is-unitless($base) {
+    @if meta.type-of($base) != "number" and not math.is-unitless($base) {
         @error "Base must be a number with or without units.";
     }
 
-    @if type-of($ratio) != "number" or $ratio <= 0 {
+    @if meta.type-of($ratio) != "number" or $ratio <= 0 {
         @error "Ratio must be a positive number.";
     }
 

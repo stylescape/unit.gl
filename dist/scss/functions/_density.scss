@@ -22,7 +22,8 @@
 
 @use "sass:map";
 @use "sass:math";
-@use "../maps/density" as density;
+@use "sass:meta";
+@use "../maps/density";
 
 // ============================================================================
 // Functions
@@ -146,7 +147,7 @@
 ///
 @function q_to_px($q_value, $dpr: 1) {
     $ratio: $dpr;
-    @if type-of($dpr) == "string" {
+    @if meta.type-of($dpr) == "string" {
         $ratio: density($dpr);
     }
     @return $q_value * $ratio;
@@ -169,7 +170,7 @@
 ///
 @function px_to_q($px_value, $dpr: 1) {
     $ratio: $dpr;
-    @if type-of($dpr) == "string" {
+    @if meta.type-of($dpr) == "string" {
         $ratio: density($dpr);
     }
     @return math.div($px_value, $ratio);
@@ -277,10 +278,10 @@
 @function density_adjusted($size, $target_dpr: 2, $base_dpr: 1) {
     $target: $target_dpr;
     $base: $base_dpr;
-    @if type-of($target_dpr) == "string" {
+    @if meta.type-of($target_dpr) == "string" {
         $target: density($target_dpr);
     }
-    @if type-of($base_dpr) == "string" {
+    @if meta.type-of($base_dpr) == "string" {
         $base: density($base_dpr);
     }
     @return $size * math.div($base, $target);
