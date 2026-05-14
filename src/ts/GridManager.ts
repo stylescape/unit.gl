@@ -6,7 +6,7 @@
  * Provides toggle functionality for design grid overlays used during development.
  *
  * @module GridManager
- * @author Scape Agency
+ * @author Scape Press
  * @license MIT
  * @since 0.3.0
  */

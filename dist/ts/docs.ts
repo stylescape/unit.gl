@@ -6,7 +6,7 @@
  * It is separate from the library code and should be loaded after unit.gl.js.
  *
  * @module docs
- * @author Scape Agency
+ * @author Scape Press
  * @link https://unit.gl
  * @since 0.1.0 initial release
  */

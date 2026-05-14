@@ -7,7 +7,7 @@
  *
  * @packageDocumentation
  * @module unit.gl
- * @author Scape Agency
+ * @author Scape Press
  * @license MIT
  * @since 0.3.0
  * @see https://unit.gl
