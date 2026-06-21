@@ -28,7 +28,7 @@ jobs:
 
       -
         name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       -
         name: Setup Node
@@ -89,7 +89,7 @@ jobs:
 
       -
         name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       -
         name: Download build.zip
@@ -135,7 +135,7 @@ jobs:
 
       -
         name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       -
         name: Setup Node
