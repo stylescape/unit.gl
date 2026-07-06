@@ -1,7 +1,7 @@
 {
     "name": "unit.gl",
     "description": "Dynamic Layout Engine.",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "config": {
         "version_short": "0.1"
     },
@@ -62,7 +62,7 @@
         "@getkist/action-nunjucks": "^2.0.9",
         "@getkist/action-sass": "^1.0.4",
         "hue.gl": "^0.1.2",
-        "kist": "^0.1.60",
+        "kist": "^0.1.74",
         "micromatch": "^4.0.8",
         "mocha": "^11.7.5",
         "nunjucks": "^3.2.4",
@@ -78,7 +78,16 @@
         "vite": "^8.0.13"
     },
     "overrides": {
-        "webidl-conversions": "6.1.0"
+        "webidl-conversions": "6.1.0",
+        "@xmldom/xmldom": "^0.9.8",
+        "diff": "^9.0.0",
+        "serialize-javascript": "^7.0.5",
+        "semver-regex": "^4.0.5",
+        "marked": "^14.1.4",
+        "got": "^11.8.6",
+        "brace-expansion": "^2.0.2",
+        "sassdoc-extras": "^3.0.0",
+        "html-minifier": "npm:html-minifier-terser@^7.2.0"
     },
     "files": [
         "dist/**",

@@ -81,7 +81,7 @@ stages:
                   stripExtension: ".jinja"
                   context:
                       name: "unit.gl"
-                      version: "0.3.3"
+                      version: "0.3.4"
                       author: "Lars van Vianen"
                       year: 2026
                       tagline: "Dynamic Layout Engine"

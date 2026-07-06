@@ -40,7 +40,7 @@
             
             <a href="index.html" class="nav__logo" >
                 <span class="nav__logo-text">unit.gl</span>
-                <span class="nav__version">0.3.3</span>
+                <span class="nav__version">0.3.4</span>
             </a>
 
             
@@ -64,6 +64,19 @@
             </button>
 
             <div class="nav__right">
+                
+                <div class="nav__bp" id="nav-bp" title="Current viewport breakpoint" aria-live="polite">
+                    <span class="nav__bp-key" id="nav-bp-key">—</span>
+                    <span class="nav__bp-width" id="nav-bp-width">—px</span>
+                </div>
+
+                
+                <div class="nav__bp" id="nav-q" title="Computed pixel value of q(1) at the current root font size"
+                    aria-live="polite">
+                    <span class="nav__bp-key">q(1)</span>
+                    <span class="nav__bp-width" id="nav-q-px">—px</span>
+                </div>
+
                 
                 <div class="grid-controls" aria-label="Grid overlay controls">
                     <button type="button" data-toggle="baseline" title="Toggle baseline grid" aria-pressed="false">
@@ -351,21 +364,24 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Key</th>
+                <th>Full Name</th>
+                <th>Step</th>
                 <th>Min Width</th>
                 <th>Q Format</th>
                 <th>Typical Devices</th>
             </tr>
         </thead>
         <tbody>
-            <tr><td><code>us</code></td><td>240px</td><td>Q07 Portrait (60mm)</td><td>Compact/fold devices</td></tr>
-            <tr><td><code>ss</code></td><td>360px</td><td>Q06 Portrait (90mm)</td><td>Phones</td></tr>
-            <tr><td><code>xs</code></td><td>540px</td><td>Q05 Portrait (135mm)</td><td>Large phones</td></tr>
-            <tr><td><code>sm</code></td><td>720px</td><td>Q04 Portrait (180mm)</td><td>Tablets</td></tr>
-            <tr><td><code>md</code></td><td>1440px</td><td>Q03 Landscape (360mm)</td><td>Laptops</td></tr>
-            <tr><td><code>lg</code></td><td>2160px</td><td>Q02 Landscape (540mm)</td><td>QHD desktops</td></tr>
-            <tr><td><code>xl</code></td><td>2880px</td><td>Q01 Landscape (720mm)</td><td>4K displays</td></tr>
-            <tr><td><code>ul</code></td><td>4320px</td><td>Q00 Landscape (1080mm)</td><td>5K+ displays</td></tr>
+            <tr><td><code>us</code></td><td>Ultra Small</td><td>1</td><td>240px</td><td>Q07 Portrait (60mm)</td><td>Compact / fold devices</td></tr>
+            <tr><td><code>ss</code></td><td>Super Small</td><td>2</td><td>360px</td><td>Q06 Portrait (90mm)</td><td>Phones</td></tr>
+            <tr><td><code>xs</code></td><td>Extra Small</td><td>3</td><td>540px</td><td>Q05 Portrait (135mm)</td><td>Large phones</td></tr>
+            <tr><td><code>sm</code></td><td>Small</td><td>4</td><td>720px</td><td>Q04 Portrait (180mm)</td><td>Tablets</td></tr>
+            <tr><td><code>md</code></td><td>Medium</td><td>5</td><td>1080px</td><td>Q04 Landscape (270mm)</td><td>Laptops</td></tr>
+            <tr><td><code>lg</code></td><td>Large</td><td>6</td><td>1440px</td><td>Q03 Landscape (360mm)</td><td>Desktops</td></tr>
+            <tr><td><code>xl</code></td><td>Extra Large</td><td>7</td><td>2160px</td><td>Q02 Landscape (540mm)</td><td>QHD desktops</td></tr>
+            <tr><td><code>sl</code></td><td>Super Large</td><td>8</td><td>2880px</td><td>Q01 Landscape (720mm)</td><td>4K displays</td></tr>
+            <tr><td><code>ul</code></td><td>Ultra Large</td><td>9</td><td>4320px</td><td>Q00 Landscape (1080mm)</td><td>5K+ displays</td></tr>
         </tbody>
     </table>
 
@@ -399,8 +415,8 @@
     }
 }</code></pre></div>
 
-    <h3>media_us, media_ss, media_xs, media_sm, media_md, media_lg, media_xl, media_ul</h3>
-    <p>Per-breakpoint shortcut mixins. Equivalent to <code>@include breakpoint($name)</code> but more concise.</p>
+    <h3>media_us, media_ss, media_xs, media_sm, media_md, media_lg, media_xl, media_sl, media_ul</h3>
+    <p>Per-breakpoint shortcut mixins for each step in the 9-step scale. Equivalent to <code>@include breakpoint($name)</code> but more concise.</p>
 
     <div class="code-block"><pre><code>.sidebar {
     display: none;

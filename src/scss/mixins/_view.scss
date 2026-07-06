@@ -160,6 +160,22 @@
 }
 
 ///
+/// Applies styles for super-large devices and up (min-width: 2880px).
+///
+/// @name media_sl
+///
+/// @example scss - Usage
+///   @include media_sl {
+///     // Styles for super-large devices and up
+///   }
+///
+@mixin media_sl {
+    @media (min-width: $media_sl) {
+        @content;
+    }
+}
+
+///
 /// Applies styles for ultra-large devices and up (min-width: 4320px).
 ///
 /// @name media_ul

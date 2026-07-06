@@ -15,6 +15,8 @@
         <thead>
             <tr>
                 <th>Breakpoint</th>
+                <th>Full Name</th>
+                <th>Step</th>
                 <th>Q Format</th>
                 <th>Orientation</th>
                 <th>Width (mm)</th>
@@ -23,70 +25,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><code>us</code></td>
-                <td>Q07</td>
-                <td>Portrait</td>
-                <td>60mm</td>
-                <td>240px</td>
-                <td>Compact / Fold devices</td>
-            </tr>
-            <tr>
-                <td><code>ss</code></td>
-                <td>Q06</td>
-                <td>Portrait</td>
-                <td>90mm</td>
-                <td>360px</td>
-                <td>Phones</td>
-            </tr>
-            <tr>
-                <td><code>xs</code></td>
-                <td>Q05</td>
-                <td>Portrait</td>
-                <td>135mm</td>
-                <td>540px</td>
-                <td>Large phones / Small tablets</td>
-            </tr>
-            <tr>
-                <td><code>sm</code></td>
-                <td>Q04</td>
-                <td>Portrait</td>
-                <td>180mm</td>
-                <td>720px</td>
-                <td>Tablets</td>
-            </tr>
-            <tr class="density-row--highlight">
-                <td><code>md</code></td>
-                <td>Q03</td>
-                <td>Landscape</td>
-                <td>360mm</td>
-                <td>1440px</td>
-                <td>Laptops / Desktops</td>
-            </tr>
-            <tr>
-                <td><code>lg</code></td>
-                <td>Q02</td>
-                <td>Landscape</td>
-                <td>540mm</td>
-                <td>2160px</td>
-                <td>QHD / Ultrawide</td>
-            </tr>
-            <tr>
-                <td><code>xl</code></td>
-                <td>Q01</td>
-                <td>Landscape</td>
-                <td>720mm</td>
-                <td>2880px</td>
-                <td>4K displays</td>
-            </tr>
-            <tr>
-                <td><code>ul</code></td>
-                <td>Q00</td>
-                <td>Landscape</td>
-                <td>1080mm</td>
-                <td>4320px</td>
-                <td>5K+ displays</td>
-            </tr>
+            <tr><td><code>us</code></td><td>Ultra Small</td><td>1</td><td>Q07</td><td>Portrait</td><td>60mm</td><td>240px</td><td>Compact / Fold devices</td></tr>
+            <tr><td><code>ss</code></td><td>Super Small</td><td>2</td><td>Q06</td><td>Portrait</td><td>90mm</td><td>360px</td><td>Phones</td></tr>
+            <tr><td><code>xs</code></td><td>Extra Small</td><td>3</td><td>Q05</td><td>Portrait</td><td>135mm</td><td>540px</td><td>Large phones / Small tablets</td></tr>
+            <tr><td><code>sm</code></td><td>Small</td><td>4</td><td>Q04</td><td>Portrait</td><td>180mm</td><td>720px</td><td>Tablets</td></tr>
+            <tr class="density-row--highlight"><td><code>md</code></td><td>Medium</td><td>5</td><td>Q04</td><td>Landscape</td><td>270mm</td><td>1080px</td><td>Laptops</td></tr>
+            <tr><td><code>lg</code></td><td>Large</td><td>6</td><td>Q03</td><td>Landscape</td><td>360mm</td><td>1440px</td><td>Desktops</td></tr>
+            <tr><td><code>xl</code></td><td>Extra Large</td><td>7</td><td>Q02</td><td>Landscape</td><td>540mm</td><td>2160px</td><td>QHD / Ultrawide</td></tr>
+            <tr><td><code>sl</code></td><td>Super Large</td><td>8</td><td>Q01</td><td>Landscape</td><td>720mm</td><td>2880px</td><td>4K displays</td></tr>
+            <tr><td><code>ul</code></td><td>Ultra Large</td><td>9</td><td>Q00</td><td>Landscape</td><td>1080mm</td><td>4320px</td><td>5K+ displays</td></tr>
         </tbody>
     </table>
 
@@ -95,14 +42,14 @@
     <div class="code-block"><pre><code>@use "unit.gl" as *;
 
         <span class="comment">// Physical to digital</span>
-        $width: mm_to_px(90); <span class="comment">// 360px (Q06 portrait)</span>
-        $width: mm_to_px(360); <span class="comment">// 1440px (Q03 landscape)</span>
+        $width: mm_to_px(90); <span class="comment">// 360px (Q06 portrait → ss)</span>
+        $width: mm_to_px(360); <span class="comment">// 1440px (Q03 landscape → lg)</span>
 
         <span class="comment">// Digital to physical</span>
         $mm: px_to_mm(1440px); <span class="comment">// 360mm</span>
 
         <span class="comment">// Density-adjusted</span>
-        $physical_px: breakpoint_for_density(md, 2); <span class="comment">// 2880 physical pixels</span></code></pre></div>
+        $physical_px: breakpoint_for_density(md, 2); <span class="comment">// 2160 physical pixels (md = 1080px × 2)</span></code></pre></div>
 
     <h3>Combined Viewport + Density Queries</h3>
 

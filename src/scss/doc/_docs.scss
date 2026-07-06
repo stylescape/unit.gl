@@ -634,24 +634,26 @@ button.active,
     letter-spacing: 0.05em;
     color: var(--color-text-muted);
     padding: calc(var(--grid-unit) * 0.5) calc(var(--grid-unit) * 1);
-    border: 1px solid var(--color-border);
-    background: var(--color-bg);
+    border: none;
+    background: transparent;
     outline: none;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: color var(--transition-fast);
 }
 
 .grid-controls button:hover,
-.grid-controls button:focus {
-    color: var(--color-text);
-    border-color: var(--color-border-strong);
+.grid-controls button:focus,
+.grid-controls button:focus-visible {
+    color: var(--color-text-muted);
+    background: transparent;
+    border: none;
     outline: none;
 }
 
 .grid-controls button.active {
-    color: var(--color-bg);
-    background: var(--color-text);
-    border-color: var(--color-text);
+    color: var(--color-text);
+    background: transparent;
+    border: none;
 }
 
 .grid-status {
@@ -1034,15 +1036,42 @@ li:last-child {
     height: #{q(32)};
     color: var(--color-text-muted);
     border: none;
-    transition:
-        color var(--transition-fast),
-        background-color var(--transition-fast);
+    transition: color var(--transition-fast);
 }
 
-.nav__github:hover {
-    color: var(--color-text);
-    background: var(--color-bg-muted);
+.nav__github:hover,
+.nav__github:focus,
+.nav__github:focus-visible {
+    color: var(--color-text-muted);
+    background: transparent;
     border: none;
+    outline: none;
+}
+
+// Current breakpoint indicator
+.nav__bp {
+    display: inline-flex;
+    align-items: baseline;
+    gap: calc(var(--grid-unit) * 0.75);
+    font-family: var(--font-mono);
+    font-size: #{q(11)};
+    font-weight: 500;
+    color: var(--color-text-muted);
+    padding: calc(var(--grid-unit) * 0.5) calc(var(--grid-unit) * 1);
+    border: none;
+    background: transparent;
+    user-select: none;
+}
+
+.nav__bp-key {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+}
+
+.nav__bp-width {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-subtle);
 }
 
 .nav__links {
@@ -1089,16 +1118,19 @@ li:last-child {
     height: #{q(32)};
     padding: 0;
     background: transparent;
-    border: 1px solid var(--color-border);
+    border: none;
     color: var(--color-text-muted);
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: color var(--transition-fast);
 }
 
-.theme-toggle:hover {
-    color: var(--color-text);
-    border-color: var(--color-text-muted);
-    background: var(--color-bg-muted);
+.theme-toggle:hover,
+.theme-toggle:focus,
+.theme-toggle:focus-visible {
+    color: var(--color-text-muted);
+    background: transparent;
+    border: none;
+    outline: none;
 }
 
 .theme-icon--dark {

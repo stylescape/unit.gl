@@ -7,7 +7,7 @@
             
             <a href="index.html" class="nav__logo" >
                 <span class="nav__logo-text">unit.gl</span>
-                <span class="nav__version">0.3.3</span>
+                <span class="nav__version">0.3.4</span>
             </a>
 
             
@@ -31,6 +31,19 @@
             </button>
 
             <div class="nav__right">
+                
+                <div class="nav__bp" id="nav-bp" title="Current viewport breakpoint" aria-live="polite">
+                    <span class="nav__bp-key" id="nav-bp-key">—</span>
+                    <span class="nav__bp-width" id="nav-bp-width">—px</span>
+                </div>
+
+                
+                <div class="nav__bp" id="nav-q" title="Computed pixel value of q(1) at the current root font size"
+                    aria-live="polite">
+                    <span class="nav__bp-key">q(1)</span>
+                    <span class="nav__bp-width" id="nav-q-px">—px</span>
+                </div>
+
                 
                 <div class="grid-controls" aria-label="Grid overlay controls">
                     <button type="button" data-toggle="baseline" title="Toggle baseline grid" aria-pressed="false">

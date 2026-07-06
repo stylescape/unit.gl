@@ -7,18 +7,19 @@
 /// Q format paper sizes. The system creates a unified physical-to-digital
 /// mapping using a base multiplier of 4 (1mm = 4px at standard 96dpi/1× density).
 ///
-/// Q Format to Breakpoint Mapping:
+/// Q Format to Breakpoint Mapping (9-step scale):
 /// ───────────────────────────────────────────────────────────────────────────
-/// | Breakpoint | Format | Orientation | Width (mm) | ×4 = px | Device        |
-/// |------------|--------|-------------|------------|---------|---------------|
-/// | us         | Q07    | Portrait    | 60mm       | 240px   | Compact/Fold  |
-/// | ss         | Q06    | Portrait    | 90mm       | 360px   | Phones        |
-/// | xs         | Q05    | Portrait    | 135mm      | 540px   | Large phones  |
-/// | sm         | Q04    | Portrait    | 180mm      | 720px   | Tablets       |
-/// | md         | Q03    | Landscape   | 360mm      | 1440px  | Laptops       |
-/// | lg         | Q02    | Landscape   | 540mm      | 2160px  | QHD/Ultrawide |
-/// | xl         | Q01    | Landscape   | 720mm      | 2880px  | 4K displays   |
-/// | ul         | Q00    | Landscape   | 1080mm     | 4320px  | 5K+ displays  |
+/// | Breakpoint | Full Name    | Step | Format | Orientation | Width  | px     |
+/// |------------|--------------|------|--------|-------------|--------|--------|
+/// | us         | Ultra Small  | 1    | Q07    | Portrait    | 60mm   | 240px  |
+/// | ss         | Super Small  | 2    | Q06    | Portrait    | 90mm   | 360px  |
+/// | xs         | Extra Small  | 3    | Q05    | Portrait    | 135mm  | 540px  |
+/// | sm         | Small        | 4    | Q04    | Portrait    | 180mm  | 720px  |
+/// | md         | Medium       | 5    | Q04    | Landscape   | 270mm  | 1080px |
+/// | lg         | Large        | 6    | Q03    | Landscape   | 360mm  | 1440px |
+/// | xl         | Extra Large  | 7    | Q02    | Landscape   | 540mm  | 2160px |
+/// | sl         | Super Large  | 8    | Q01    | Landscape   | 720mm  | 2880px |
+/// | ul         | Ultra Large  | 9    | Q00    | Landscape   | 1080mm | 4320px |
 /// ───────────────────────────────────────────────────────────────────────────
 ///
 /// Density Integration:

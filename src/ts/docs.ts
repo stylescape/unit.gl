@@ -612,26 +612,78 @@ function initDensityDemo(): void {
 }
 
 // ============================================================================
+// Breakpoints (canonical 9-step scale)
+// ============================================================================
+
+/**
+ * Canonical 9-step breakpoint scale (mirrors `$breakpoints` in SCSS).
+ * Sorted descending so `find(width >= bp.min)` returns the largest match.
+ */
+const BREAKPOINTS: ReadonlyArray<{ key: string; min: number }> = [
+    { key: 'ul', min: 4320 },
+    { key: 'sl', min: 2880 },
+    { key: 'xl', min: 2160 },
+    { key: 'lg', min: 1440 },
+    { key: 'md', min: 1080 },
+    { key: 'sm', min: 720 },
+    { key: 'xs', min: 540 },
+    { key: 'ss', min: 360 },
+    { key: 'us', min: 240 },
+];
+
+function getActiveBreakpoint(width: number): { key: string; min: number } {
+    return BREAKPOINTS.find(bp => width >= bp.min) || BREAKPOINTS[BREAKPOINTS.length - 1];
+}
+
+/**
+ * Updates the current-breakpoint indicator in the top nav (if present).
+ * Runs on every page that includes the nav partial.
+ */
+function initNavBreakpointIndicator(): void {
+    const keyEl = document.getElementById('nav-bp-key');
+    const widthEl = document.getElementById('nav-bp-width');
+    if (!keyEl || !widthEl) return;
+
+    const update = (): void => {
+        const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        const active = getActiveBreakpoint(width);
+        keyEl.textContent = active.key;
+        widthEl.textContent = `${width}px`;
+    };
+
+    window.addEventListener('resize', update);
+    update();
+}
+
+/**
+ * Updates the q(1) pixel-value indicator in the top nav (if present).
+ * `q(n) = n * 0.0625rem`, so q(1) in px = rootFontSize * 0.0625. The value
+ * may shift on resize if fluid typography scales the root font size.
+ */
+function initNavQIndicator(): void {
+    const qEl = document.getElementById('nav-q-px');
+    if (!qEl) return;
+
+    const update = (): void => {
+        const rootPx = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+        const qPx = rootPx * 0.0625;
+        qEl.textContent = `${fmt(qPx, 3)}px`;
+    };
+
+    window.addEventListener('resize', update);
+    update();
+}
+
+// ============================================================================
 // Breakpoints Demo (test_breakpoints.html.jinja)
 // ============================================================================
 
 function initBreakpointsDemo(): void {
     if (!document.getElementById('bp-width')) return;
 
-    const breakpoints = [
-        { key: 'ul', min: 4320 },
-        { key: 'xl', min: 2880 },
-        { key: 'lg', min: 2160 },
-        { key: 'md', min: 1440 },
-        { key: 'sm', min: 720 },
-        { key: 'xs', min: 540 },
-        { key: 'ss', min: 360 },
-        { key: 'us', min: 240 },
-    ];
-
     function updateBreakpointUI(): void {
         const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-        const active = breakpoints.find(bp => width >= bp.min) || breakpoints[breakpoints.length - 1];
+        const active = getActiveBreakpoint(width);
 
         setText('bp-width', String(width));
         setText('bp-active', active.key);
@@ -897,6 +949,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Grid toggle handled by GridManager in unit.gl.js (avoids double-toggle)
     initMobileNav();
     initSidebarToggle();
+    initNavBreakpointIndicator();
+    initNavQIndicator();
 
     // Page-specific demos (only run if relevant elements exist)
     initLayersDemo();
