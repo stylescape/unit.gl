@@ -160,6 +160,6 @@ jobs:
 
       -
         name: Publish NPM
-        run: |
-          cd dist
-          npm publish --access public
+        # Publish from the repo root: package.json `files` ships dist/** and the
+        # exports map points at ./dist/…, so the tarball layout matches the repo.
+        run: npm publish --access public

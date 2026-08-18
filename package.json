@@ -1,7 +1,7 @@
 {
     "name": "unit.gl",
     "description": "Dynamic Layout Engine.",
-    "version": "0.3.4",
+    "version": "0.3.5",
     "config": {
         "version_short": "0.1"
     },
@@ -97,7 +97,8 @@
         "!dist/scss/docs.scss",
         "!dist/css/unit.gl.docs.css",
         "!dist/css/unit.gl.docs.min.css",
-        "!dist/html/**"
+        "!dist/html/**",
+        "!dist/package.json"
     ],
     "exports": {
         ".": {
