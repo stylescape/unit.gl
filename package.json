@@ -106,6 +106,18 @@
             "import": "./dist/js/index.mjs",
             "require": "./dist/js/index.cjs"
         },
+        "./functions": {
+            "sass": "./src/scss/functions/_index.scss"
+        },
+        "./variables": {
+            "sass": "./src/scss/variables/_index.scss"
+        },
+        "./mixins": {
+            "sass": "./src/scss/mixins/_index.scss"
+        },
+        "./src/scss/*": {
+            "sass": "./src/scss/*"
+        },
         "./scss": "./dist/scss/index.scss",
         "./utilities": {
             "sass": "./dist/scss/utilities.scss"
