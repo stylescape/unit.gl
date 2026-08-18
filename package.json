@@ -101,22 +101,22 @@
     ],
     "exports": {
         ".": {
-            "sass": "./src/scss/index.scss",
+            "sass": "./dist/scss/index.scss",
             "types": "./dist/js/index.d.ts",
             "import": "./dist/js/index.mjs",
             "require": "./dist/js/index.cjs"
         },
         "./functions": {
-            "sass": "./src/scss/functions/_index.scss"
+            "sass": "./dist/scss/functions/_index.scss"
         },
         "./variables": {
-            "sass": "./src/scss/variables/_index.scss"
+            "sass": "./dist/scss/variables/_index.scss"
         },
         "./mixins": {
-            "sass": "./src/scss/mixins/_index.scss"
+            "sass": "./dist/scss/mixins/_index.scss"
         },
-        "./src/scss/*": {
-            "sass": "./src/scss/*"
+        "./scss/*": {
+            "sass": "./dist/scss/*"
         },
         "./scss": "./dist/scss/index.scss",
         "./utilities": {
