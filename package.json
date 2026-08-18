@@ -1,7 +1,7 @@
 {
     "name": "unit.gl",
     "description": "Dynamic Layout Engine.",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "config": {
         "version_short": "0.1"
     },
@@ -80,6 +80,18 @@
             "types": "./dist/js/index.d.ts",
             "import": "./dist/js/index.mjs",
             "require": "./dist/js/index.cjs"
+        },
+        "./functions": {
+            "sass": "./src/scss/functions/_index.scss"
+        },
+        "./variables": {
+            "sass": "./src/scss/variables/_index.scss"
+        },
+        "./mixins": {
+            "sass": "./src/scss/mixins/_index.scss"
+        },
+        "./src/scss/*": {
+            "sass": "./src/scss/*"
         },
         "./scss": "./dist/scss/index.scss",
         "./utilities": {
