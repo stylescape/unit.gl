@@ -5,7 +5,7 @@ Usage: {% from "partials/icons.html.jinja" import icon_sun, icon_moon %}
 
 {# Theme Toggle Icons #}
 {% macro icon_sun(size=16) %}
-<svg class="theme-icon theme-icon--light" width="{{ size }}" height="{{ size }}" viewBox="0 0 16 16"
+<svg aria-hidden="true" width="{{ size }}" height="{{ size }}" viewBox="0 0 16 16"
     fill="currentColor">
     <path
         d="M8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zm7-5a.75.75 0 00-.75-.75h-1.5a.75.75 0 000 1.5h1.5A.75.75 0 0015 8zM3 8a.75.75 0 00-.75-.75H.75a.75.75 0 000 1.5h1.5A.75.75 0 003 8zm9.536-4.536a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 001.06 1.061l1.061-1.06a.75.75 0 000-1.061zm-9.072 9.072a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 101.06 1.061l1.061-1.06a.75.75 0 000-1.061zm9.072 0a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 101.061-1.06l-1.06-1.061zm-9.072-9.072a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 001.061-1.06l-1.06-1.061z" />
@@ -13,7 +13,7 @@ Usage: {% from "partials/icons.html.jinja" import icon_sun, icon_moon %}
 {% endmacro %}
 
 {% macro icon_moon(size=16) %}
-<svg class="theme-icon theme-icon--dark" width="{{ size }}" height="{{ size }}" viewBox="0 0 16 16" fill="currentColor">
+<svg aria-hidden="true" width="{{ size }}" height="{{ size }}" viewBox="0 0 16 16" fill="currentColor">
     <path d="M6.2 1A6.98 6.98 0 008 7a6.98 6.98 0 00-1.8 6A7 7 0 116.2 1z" />
 </svg>
 {% endmacro %}
@@ -87,7 +87,7 @@ Usage: {% from "partials/icons.html.jinja" import icon_sun, icon_moon %}
 
 {# Mobile Menu Icons #}
 {% macro icon_menu(size=20) %}
-<svg class="icon-menu" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+<svg aria-hidden="true" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
     stroke-width="2">
     <line x1="3" y1="6" x2="21" y2="6" />
     <line x1="3" y1="12" x2="21" y2="12" />
@@ -95,8 +95,19 @@ Usage: {% from "partials/icons.html.jinja" import icon_sun, icon_moon %}
 </svg>
 {% endmacro %}
 
+{# Display-settings toggle (mobile ribbon) #}
+{% macro icon_settings(size=20) %}
+<svg aria-hidden="true" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2">
+    <line x1="4" y1="7" x2="20" y2="7" />
+    <circle cx="9" cy="7" r="2" fill="currentColor" />
+    <line x1="4" y1="17" x2="20" y2="17" />
+    <circle cx="15" cy="17" r="2" fill="currentColor" />
+</svg>
+{% endmacro %}
+
 {% macro icon_close(size=20) %}
-<svg class="icon-close" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+<svg aria-hidden="true" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
     stroke-width="2">
     <line x1="18" y1="6" x2="6" y2="18" />
     <line x1="6" y1="6" x2="18" y2="18" />

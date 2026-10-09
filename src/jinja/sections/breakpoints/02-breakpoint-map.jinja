@@ -1,7 +1,7 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Breakpoint Map</h2>
 
-    <table class="bp-table">
+    <table class="ss-c-table">
         <thead>
             <tr>
                 <th>Key</th>
@@ -12,7 +12,7 @@
         </thead>
         <tbody>
             {% set bps = [
-            {"key": "us", "min": 240, "mult": "Q07P 60mm", "desc": "Compact / Fold devices"},
+            {"key": "us", "min": 250, "mult": "Q07P 62.5mm", "desc": "Compact / Fold devices"},
             {"key": "ss", "min": 360, "mult": "Q06P 90mm", "desc": "Phones"},
             {"key": "xs", "min": 540, "mult": "Q05P 135mm", "desc": "Large phones"},
             {"key": "sm", "min": 720, "mult": "Q04P 180mm", "desc": "Tablets"},
@@ -24,19 +24,21 @@
             ] %}
 
             {% for bp in bps %}
-            <tr class="bp-row" data-bp="{{ bp.key }}" data-min="{{ bp.min }}">
+            <tr data-bp="{{ bp.key }}" data-min="{{ bp.min }}">
                 <td><code>{{ bp.key }}</code></td>
                 <td><code>{{ bp.min }}px</code></td>
-                <td class="bp-mult">{{ bp.mult }}</td>
+                <td>{{ bp.mult }}</td>
                 <td>{{ bp.desc }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <div class="alert alert--tip" style="margin-top: calc(var(--grid-unit) * 3);">
-        <div class="alert__title">Q Format Alignment</div>
-        <p>All breakpoints are derived from Q format paper sizes × 4 multiplier (1mm = 4px at 96dpi), ensuring
-            physical-to-digital consistency.</p>
+    <div class="ss-c-alert ss-c-alert--success" style="margin-top: calc(var(--grid-unit) * 3);">
+        <div class="ss-c-alert__body">
+            <p class="ss-c-alert__title">Q Format Alignment</p>
+            <p>All breakpoints are derived from Q format paper sizes × 4 multiplier (1mm = 4px at 96dpi), ensuring
+                physical-to-digital consistency.</p>
+        </div>
     </div>
 </section>

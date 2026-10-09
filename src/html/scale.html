@@ -12,126 +12,137 @@
         
 
         
-        <link rel="stylesheet" href="/css/unit.gl.css" />
+        <style>
+            @layer unitgl, ss;
+        </style>
+        <link rel="stylesheet" href="/vendor/stylescape/stylescape.css" />
+        <style>
+            @import url("/css/unit.gl.css") layer(unitgl);
+        </style>
         <link rel="stylesheet" href="/css/unit.gl.docs.css" />
 
         
         <script type="module" src="/js/unit.gl.js"></script>
         <script src="/js/unit.gl.docs.js"></script>
 
-        
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
-
 </head>
 
-<body>
+<body class="ss-l-page-sidebar-left">
     
-    <a href="#main" class="skip-link">Skip to main content</a>
+    <a href="#main" class="ss-c-skip-link">Skip to main content</a>
 
     
 
 
-<div class="nav-wrapper">
-    <nav class="nav" aria-label="Main navigation">
-        <div class="nav__inner">
+<header class="ss-c-ribbon--top ss-u-sticky ss-u-top-0 ss-u-z-sticky">
+    <div class="ss-c-ribbon__slot--horizontal_left">
+        
+        <button type="button" class="ss-c-ribbon__button docs-ribbon__toggle" id="sidebar-toggle"
+            aria-expanded="false" aria-controls="sidebar" aria-label="Toggle navigation menu">
             
-            <a href="index.html" class="nav__logo" >
-                <span class="nav__logo-text">unit.gl</span>
-                <span class="nav__version">0.3.4</span>
-            </a>
-
-            
-            <button type="button" class="nav__mobile-toggle" id="sidebar-toggle" aria-expanded="false"
-                aria-controls="sidebar" aria-label="Toggle navigation menu">
-                
-<svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
     stroke-width="2">
     <line x1="3" y1="6" x2="21" y2="6" />
     <line x1="3" y1="12" x2="21" y2="12" />
     <line x1="3" y1="18" x2="21" y2="18" />
 </svg>
 
-                
-<svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        </button>
+
+        
+        <div class="ss-c-ribbon__title">
+            <a href="index.html" class="ss-c-ribbon__title__text" >unit.gl</a>
+            <span class="ss-c-badge ss-c-badge--sm ss-c-badge--accent">v0.3.5</span>
+        </div>
+    </div>
+
+    <div class="ss-c-ribbon__slot--horizontal_right">
+        
+        <button type="button" class="ss-c-ribbon__button docs-ribbon__toggle" id="nav-mobile-toggle"
+            aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle display settings">
+            
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
     stroke-width="2">
-    <line x1="18" y1="6" x2="6" y2="18" />
-    <line x1="6" y1="6" x2="18" y2="18" />
+    <line x1="4" y1="7" x2="20" y2="7" />
+    <circle cx="9" cy="7" r="2" fill="currentColor" />
+    <line x1="4" y1="17" x2="20" y2="17" />
+    <circle cx="15" cy="17" r="2" fill="currentColor" />
 </svg>
 
-            </button>
+        </button>
 
-            <div class="nav__right">
-                
-                <div class="nav__bp" id="nav-bp" title="Current viewport breakpoint" aria-live="polite">
-                    <span class="nav__bp-key" id="nav-bp-key">—</span>
-                    <span class="nav__bp-width" id="nav-bp-width">—px</span>
-                </div>
+        <div class="docs-ribbon__menu" id="nav-menu">
+            <nav class="ss-c-ribbon__nav" aria-label="Display options">
+                <ul class="ss-c-ribbon__nav__list">
+                    
+                    <li class="ss-c-ribbon__nav__list__item" id="nav-bp" title="Current viewport breakpoint">
+                        <span id="nav-bp-key">—</span>&nbsp;<span id="nav-bp-width">—px</span>
+                    </li>
 
-                
-                <div class="nav__bp" id="nav-q" title="Computed pixel value of q(1) at the current root font size"
-                    aria-live="polite">
-                    <span class="nav__bp-key">q(1)</span>
-                    <span class="nav__bp-width" id="nav-q-px">—px</span>
-                </div>
+                    
+                    <li class="ss-c-ribbon__nav__list__item" id="nav-q"
+                        title="Computed pixel value of q(1) at the current root font size">
+                        q(1)&nbsp;<span id="nav-q-px">—px</span>
+                    </li>
 
-                
-                <div class="grid-controls" aria-label="Grid overlay controls">
-                    <button type="button" data-toggle="baseline" title="Toggle baseline grid" aria-pressed="false">
-                        
+                    
+                    <li class="ss-c-ribbon__nav__list__item">
+                        <button type="button" class="ss-c-ribbon__button" data-toggle="baseline" title="Toggle baseline grid"
+                            aria-pressed="false">
+                            
 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
     <line x1="0" y1="3.5" x2="14" y2="3.5" />
     <line x1="0" y1="7" x2="14" y2="7" />
     <line x1="0" y1="10.5" x2="14" y2="10.5" />
 </svg>
 
-                        <span>Baseline</span>
-                    </button>
-                    <button type="button" data-toggle="graph" title="Toggle graph grid" aria-pressed="false">
-                        
+                            <span>Baseline</span>
+                        </button>
+                    </li>
+                    <li class="ss-c-ribbon__nav__list__item">
+                        <button type="button" class="ss-c-ribbon__button" data-toggle="graph" title="Toggle graph grid"
+                            aria-pressed="false">
+                            
 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
     <rect x="1" y="1" width="12" height="12" />
     <line x1="7" y1="1" x2="7" y2="13" />
     <line x1="1" y1="7" x2="13" y2="7" />
 </svg>
 
-                        <span>Graph</span>
-                    </button>
-                </div>
-
-                
-                <button type="button" class="theme-toggle" data-toggle="theme" title="Toggle dark mode"
-                    aria-label="Toggle dark mode">
-                    
-<svg class="theme-icon theme-icon--light" width="16" height="16" viewBox="0 0 16 16"
-    fill="currentColor">
-    <path
-        d="M8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zm7-5a.75.75 0 00-.75-.75h-1.5a.75.75 0 000 1.5h1.5A.75.75 0 0015 8zM3 8a.75.75 0 00-.75-.75H.75a.75.75 0 000 1.5h1.5A.75.75 0 003 8zm9.536-4.536a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 001.06 1.061l1.061-1.06a.75.75 0 000-1.061zm-9.072 9.072a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 101.06 1.061l1.061-1.06a.75.75 0 000-1.061zm9.072 0a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 101.061-1.06l-1.06-1.061zm-9.072-9.072a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 001.061-1.06l-1.06-1.061z" />
-</svg>
+                            <span>Graph</span>
+                        </button>
+                    </li>
 
                     
-<svg class="theme-icon theme-icon--dark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <li class="ss-c-ribbon__nav__list__item">
+                        <button type="button" class="ss-c-ribbon__button" data-toggle="theme" title="Toggle dark mode"
+                            aria-pressed="false">
+                            
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
     <path d="M6.2 1A6.98 6.98 0 008 7a6.98 6.98 0 00-1.8 6A7 7 0 116.2 1z" />
 </svg>
 
-                </button>
+                            <span>Dark mode</span>
+                        </button>
+                    </li>
 
-                
-                <a href="https://github.com/stylescape/unit.gl" class="nav__github" target="_blank"
-                    rel="noopener noreferrer" title="View on GitHub" aria-label="View on GitHub (opens in new tab)">
                     
+                    <li class="ss-c-ribbon__nav__list__item">
+                        <a href="https://github.com/stylescape/unit.gl" class="ss-c-ribbon__button" target="_blank"
+                            rel="noopener noreferrer" title="View on GitHub" aria-label="View on GitHub (opens in new tab)">
+                            
 <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
     <path
         d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
 </svg>
 
-                </a>
-            </div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </nav>
-</div>
+    </div>
+</header>
 
 
     
@@ -140,7 +151,7 @@
 <div class="guide--layer guide--baseline" data-grid="baseline"></div>
 
 
-    <div class="docs-layout">
+    <div class="ss-l-page__body">
         
 
 
@@ -154,253 +165,233 @@
 
 
 
-<aside class="sidebar" id="sidebar" aria-label="Documentation navigation">
-    <nav class="sidebar__nav">
+
+
+<aside class="docs-sidebar" id="sidebar" aria-label="Documentation navigation">
+    <nav>
         
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">Learn</h3>
-            <ul class="sidebar__list">
+        <section class="ss-c-sidebar__section">
+            <h2 class="ss-c-section-title">Learn</h2>
+            <ul class="ss-c-nav ss-c-nav--vertical">
                 
-                <li>
-                    <a href="getting-started.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="getting-started.html" class="ss-c-nav__link" >
                         Getting Started
                     </a>
                 </li>
                 
-                <li>
-                    <a href="core-concepts.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="core-concepts.html" class="ss-c-nav__link" >
                         Core Concepts
                     </a>
                 </li>
                 
-                <li>
-                    <a href="steps.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="steps.html" class="ss-c-nav__link" >
                         9-Step Scale
                     </a>
                 </li>
                 
-                <li>
-                    <a href="configuration.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="configuration.html" class="ss-c-nav__link" >
                         Configuration
                     </a>
                 </li>
                 
             </ul>
-        </div>
-
+        </section>
         
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">Core</h3>
-            <ul class="sidebar__list">
+        <section class="ss-c-sidebar__section">
+            <h2 class="ss-c-section-title">Core</h2>
+            <ul class="ss-c-nav ss-c-nav--vertical">
                 
-                <li>
-                    <a href="unit.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="unit.html" class="ss-c-nav__link" >
                         Unit
                     </a>
                 </li>
                 
             </ul>
-        </div>
-
-
+        </section>
         
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">Framework</h3>
-            <ul class="sidebar__list">
+        <section class="ss-c-sidebar__section">
+            <h2 class="ss-c-section-title">Framework</h2>
+            <ul class="ss-c-nav ss-c-nav--vertical">
                 
-                <li>
-                    <a href="layers.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="layers.html" class="ss-c-nav__link" >
                         Layers
                     </a>
                 </li>
                 
-                <li>
-                    <a href="scale.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="scale.html" class="ss-c-nav__link" >
                         Scale
                     </a>
                 </li>
                 
-                <li>
-                    <a href="breakpoints.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="breakpoints.html" class="ss-c-nav__link" >
                         Breakpoints
                     </a>
                 </li>
                 
-                <li>
-                    <a href="device.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="device.html" class="ss-c-nav__link" >
                         Devices
                     </a>
                 </li>
                 
-                <li>
-                    <a href="paper.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="paper.html" class="ss-c-nav__link" >
                         Formats
                     </a>
                 </li>
                 
-                <li>
-                    <a href="utilities.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="utilities.html" class="ss-c-nav__link" >
                         Utilities
                     </a>
                 </li>
                 
-                <li>
-                    <a href="ratio.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="ratio.html" class="ss-c-nav__link" >
                         Ratios
                     </a>
                 </li>
                 
-                <li>
-                    <a href="lorem.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="lorem.html" class="ss-c-nav__link" >
                         Typography
                     </a>
                 </li>
                 
             </ul>
-        </div>
-
-
+        </section>
         
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">API Reference</h3>
-            <ul class="sidebar__list">
+        <section class="ss-c-sidebar__section">
+            <h2 class="ss-c-section-title">API Reference</h2>
+            <ul class="ss-c-nav ss-c-nav--vertical">
                 
-                <li>
-                    <a href="functions.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="functions.html" class="ss-c-nav__link" >
                         Functions
                     </a>
                 </li>
                 
-                <li>
-                    <a href="mixins.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="mixins.html" class="ss-c-nav__link" >
                         Mixins
                     </a>
                 </li>
                 
-                <li>
-                    <a href="density.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="density.html" class="ss-c-nav__link" >
                         Density
                     </a>
                 </li>
                 
-                <li>
-                    <a href="/sassdoc/"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="/sassdoc/" class="ss-c-nav__link" >
                         SassDoc
                     </a>
                 </li>
                 
             </ul>
-        </div>
-
+        </section>
         
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">About</h3>
-            <ul class="sidebar__list">
+        <section class="ss-c-sidebar__section">
+            <h2 class="ss-c-section-title">About</h2>
+            <ul class="ss-c-nav ss-c-nav--vertical">
                 
-                <li>
-                    <a href="background.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="background.html" class="ss-c-nav__link" >
                         Background
                     </a>
                 </li>
                 
             </ul>
-        </div>
+        </section>
+        
     </nav>
 </aside>
 
 
-        <div class="docs-content">
-            <header class="header">
-                <p class="eyebrow">unit.gl</p>
+        <main id="main" class="ss-u-p-8">
+            <header class="ss-c-demo__section__header ">
+                <p class="ss-t-overline">unit.gl</p>
                 <h1>Documentation</h1>
             </header>
 
-            <main id="main" role="main">
-                
-                <noscript>
-                    <div class="noscript-warning">
-                        <strong>JavaScript Required:</strong> Some interactive features on this page require
-                        JavaScript to function properly.
-                    </div>
-                </noscript>
+            
+            <noscript>
+                <div class="ss-c-alert ss-c-alert--warning">
+                    <p class="ss-c-alert__body"><strong>JavaScript Required:</strong> Some interactive features on
+                        this page require JavaScript to function properly.</p>
+                </div>
+            </noscript>
 
-<section class="docs-section">
+            <div class="ss-u-prose">
+
+<section class="ss-c-demo__section">
             <h2>Scale Explorer</h2>
             <p>
                 Explore the relationship between Type Scale (4Q) and Line Scale (5Q)
                 interactively. The LCM of 20Q ensures both scales align at regular intervals.
             </p>
 
-            <div class="scale-explorer">
-                <div class="explorer-controls">
-                    <div class="explorer-slider">
-                        <label for="scaleSlider">Scale Value</label>
-                        <input type="range" id="scaleSlider" min="1" max="24" value="4" step="1">
-                        <span class="slider-value" id="sliderValue">4</span>
+            <div class="ss-c-card ss-c-demo__stack">
+                <div class="ss-c-demo__stack">
+                    <div class="ss-c-demo__group">
+                        <label class="ss-c-label" for="scaleSlider">Scale Value</label>
+                        <input type="range" class="ss-c-range" id="scaleSlider" min="1" max="24" value="4" step="1">
+                        <span class="ss-c-badge" id="sliderValue">4</span>
                     </div>
 
-                    <div class="explorer-chips">
-                        <span class="chip-label">Quick Select:</span>
-                        <button class="chip" data-value="1">1</button>
-                        <button class="chip" data-value="2">2</button>
-                        <button class="chip" data-value="3">3</button>
-                        <button class="chip active" data-value="4">4</button>
-                        <button class="chip" data-value="5">5</button>
-                        <button class="chip" data-value="6">6</button>
-                        <button class="chip" data-value="8">8</button>
-                        <button class="chip" data-value="10">10</button>
-                        <button class="chip" data-value="12">12</button>
-                        <button class="chip" data-value="16">16</button>
-                        <button class="chip" data-value="20">20</button>
+                    <div class="ss-c-demo__group">
+                        <span class="ss-c-label">Quick Select:</span>
+                        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--outline" data-value="1" aria-pressed="false">1</button>
+                        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--outline" data-value="2" aria-pressed="false">2</button>
+                        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--outline" data-value="3" aria-pressed="false">3</button>
+                        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--solid" data-value="4" aria-pressed="true">4</button>
+                        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--outline" data-value="5" aria-pressed="false">5</button>
+                        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--outline" data-value="6" aria-pressed="false">6</button>
+                        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--outline" data-value="8" aria-pressed="false">8</button>
+                        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--outline" data-value="10" aria-pressed="false">10</button>
+                        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--outline" data-value="12" aria-pressed="false">12</button>
+                        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--outline" data-value="16" aria-pressed="false">16</button>
+                        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--outline" data-value="20" aria-pressed="false">20</button>
                     </div>
                 </div>
 
-                <div class="explorer-display">
-                    <div class="explorer-metrics">
-                        <div class="metric-card type-card">
-                            <h4>Type Scale</h4>
-                            <div class="metric-main" id="typeQ">16Q</div>
-                            <div class="metric-details">
+                <div class="ss-c-demo__stack">
+                    <div class="ss-l-grid ss-l-grid-auto">
+                        <div class="ss-c-card ss-c-stat">
+                            <h4 class="ss-c-stat__title">Type Scale</h4>
+                            <div class="ss-c-stat__value" id="typeQ">16Q</div>
+                            <div class="ss-c-stat__desc">
                                 <span id="typePx">16px</span>
                                 <span id="typeMm">4mm</span>
                                 <span id="typeRem">1rem</span>
                             </div>
                         </div>
 
-                        <div class="metric-card line-card">
-                            <h4>Line Scale</h4>
-                            <div class="metric-main" id="lineQ">20Q</div>
-                            <div class="metric-details">
+                        <div class="ss-c-card ss-c-stat">
+                            <h4 class="ss-c-stat__title">Line Scale</h4>
+                            <div class="ss-c-stat__value" id="lineQ">20Q</div>
+                            <div class="ss-c-stat__desc">
                                 <span id="linePx">20px</span>
                                 <span id="lineMm">5mm</span>
                                 <span id="lineRem">1.25rem</span>
                             </div>
                         </div>
 
-                        <div class="metric-card lcm-card">
-                            <h4>LCM Alignment</h4>
-                            <div class="metric-main" id="lcmValue">20Q</div>
-                            <div class="metric-details">
+                        <div class="ss-c-card ss-c-stat">
+                            <h4 class="ss-c-stat__title">LCM Alignment</h4>
+                            <div class="ss-c-stat__value" id="lcmValue">20Q</div>
+                            <div class="ss-c-stat__desc">
                                 <span id="lcmMultiple">1× LCM</span>
-                                <span id="lcmAligned" class="aligned">✓ Aligned</span>
+                                <span id="lcmAligned" class="ss-c-text-success">✓ Aligned</span>
                             </div>
                         </div>
                     </div>
@@ -414,7 +405,7 @@
             </div>
         </section>
 
-<section class="docs-section">
+<section class="ss-c-demo__section">
             <h2>Q Unit Scale</h2>
             <p>
                 <code>q()</code> is the atomic unit: <code>q(1) = 0.0625rem</code> (1px at a 16px root).
@@ -422,28 +413,28 @@
                 exploding CSS size.
             </p>
 
-            <div class="qscale-metrics">
-                <div class="qscale-metrics__item">
-                    <div class="qscale-metrics__label">Root font-size</div>
-                    <div class="qscale-metrics__value"><span id="qs-root">16</span>px</div>
+            <div class="ss-l-grid ss-l-grid-auto">
+                <div class="ss-c-card ss-c-stat">
+                    <div class="ss-c-stat__title">Root font-size</div>
+                    <div class="ss-c-stat__value"><span id="qs-root">16</span>px</div>
                 </div>
-                <div class="qscale-metrics__item">
-                    <div class="qscale-metrics__label">q(1) value</div>
-                    <div class="qscale-metrics__value">0.0625rem</div>
+                <div class="ss-c-card ss-c-stat">
+                    <div class="ss-c-stat__title">q(1) value</div>
+                    <div class="ss-c-stat__value">0.0625rem</div>
                 </div>
-                <div class="qscale-metrics__item">
-                    <div class="qscale-metrics__label">Physical size</div>
-                    <div class="qscale-metrics__value">0.25mm</div>
+                <div class="ss-c-card ss-c-stat">
+                    <div class="ss-c-stat__title">Physical size</div>
+                    <div class="ss-c-stat__value">0.25mm</div>
                 </div>
             </div>
 
             
 
             <h3>Curated Steps (<code>$q_steps</code>)</h3>
-            <p class="qscale-muted">The scale is intentionally sparse at larger values to keep generated CSS
+            <p class="ss-c-text-muted">The scale is intentionally sparse at larger values to keep generated CSS
                 predictable.</p>
 
-            <table class="docs-table qscale-table">
+            <table class="ss-c-table">
                 <thead>
                     <tr>
                         <th>Step</th>
@@ -510,7 +501,7 @@
                         <td><code>4mm</code></td>
                         </tr>
                         
-                    <tr class="lcm-row">
+                    <tr class="is-active">
                         <td><code>20</code></td>
                         <td><code>1.25rem</code></td>
                         <td><code>20px</code></td>
@@ -531,7 +522,7 @@
                         <td><code>8mm</code></td>
                         </tr>
                         
-                    <tr class="lcm-row">
+                    <tr class="is-active">
                         <td><code>40</code></td>
                         <td><code>2.5rem</code></td>
                         <td><code>40px</code></td>
@@ -566,7 +557,7 @@
                         <td><code>18mm</code></td>
                         </tr>
                         
-                    <tr class="lcm-row">
+                    <tr class="is-active">
                         <td><code>80</code></td>
                         <td><code>5rem</code></td>
                         <td><code>80px</code></td>
@@ -601,7 +592,7 @@
                         <td><code>36mm</code></td>
                         </tr>
                         
-                    <tr class="lcm-row">
+                    <tr class="is-active">
                         <td><code>160</code></td>
                         <td><code>10rem</code></td>
                         <td><code>160px</code></td>
@@ -632,14 +623,16 @@
                 </tbody>
             </table>
 
-            <div class="alert alert--tip" style="margin-top: calc(var(--grid-unit) * 3);">
-                <div class="alert__title">Tip</div>
-                <p>If you need ultra-fine values for a one-off, use <code>q(n)</code> directly in SCSS. Keep utilities
-                    for the shared, common ladder.</p>
+            <div class="ss-c-alert ss-c-alert--success" style="margin-top: calc(var(--grid-unit) * 3);">
+                <div class="ss-c-alert__body">
+                    <p class="ss-c-alert__title">Tip</p>
+                    <p>If you need ultra-fine values for a one-off, use <code>q(n)</code> directly in SCSS. Keep utilities
+                        for the shared, common ladder.</p>
+                </div>
             </div>
         </section>
 
-<section class="docs-section">
+<section class="ss-c-demo__section">
             <h2>Visual Grid Comparison</h2>
             <p>
                 See how the Type Scale (4Q) and Line Scale (5Q) create different grids,
@@ -653,7 +646,7 @@
                         <span class="label-title">Type Scale</span>
                         <span class="label-value">4Q = 4px = 1mm</span>
                     </div>
-                    <div class="grid-canvas" id="typeGridCanvas"></div>
+                    <div class="grid-canvas" id="type-grid-canvas"></div>
                 </div>
 
                 <div class="grid-row">
@@ -661,7 +654,7 @@
                         <span class="label-title">Line Scale</span>
                         <span class="label-value">5Q = 5px = 1.25mm</span>
                     </div>
-                    <div class="grid-canvas" id="lineGridCanvas"></div>
+                    <div class="grid-canvas" id="line-grid-canvas"></div>
                 </div>
 
                 <div class="grid-row combined">
@@ -669,7 +662,7 @@
                         <span class="label-title">Combined</span>
                         <span class="label-value">LCM = 20Q = 20px</span>
                     </div>
-                    <div class="grid-canvas" id="combinedGridCanvas"></div>
+                    <div class="grid-canvas" id="combined-grid-canvas"></div>
                 </div>
 
                 <div class="grid-legend">
@@ -680,13 +673,13 @@
             </div>
         </section>
 
-<section class="docs-section">
+<section class="ss-c-demo__section">
             <h2>Mathematical Foundation</h2>
 
-            <div class="math-foundation">
-                <div class="foundation-card">
+            <div class="ss-l-grid ss-l-grid-auto">
+                <div class="ss-c-card">
                     <h3>LCM (Least Common Multiple)</h3>
-                    <div class="math-formula">
+                    <div class="ss-c-code-block">
                         <code>LCM(4, 5) = 20</code>
                     </div>
                     <p>
@@ -694,15 +687,15 @@
                         of 20Q. This ensures both scales align perfectly every 20 pixels,
                         creating natural harmony between typography and vertical rhythm.
                     </p>
-                    <div class="math-example">
+                    <div class="ss-c-demo__stack">
                         <span>Type: 4, 8, 12, 16, <strong>20</strong>, 24, 28, 32, 36, <strong>40</strong>...</span>
                         <span>Line: 5, 10, 15, <strong>20</strong>, 25, 30, 35, <strong>40</strong>...</span>
                     </div>
                 </div>
 
-                <div class="foundation-card hcn-card">
+                <div class="ss-c-card">
                     <h3>HCN (Highly Composite Numbers)</h3>
-                    <div class="math-formula">
+                    <div class="ss-c-code-block">
                         <code>12, 24, 36, 48, 60, 120, 180, 240, 360, 720...</code>
                     </div>
                     <p>
@@ -711,43 +704,43 @@
                         like 720, 1080, and 1440 are divisible by many factors, enabling clean
                         subdivisions for grids, columns, and modular layouts.
                     </p>
-                    <div class="hcn-grid">
-                        <div class="hcn-item">
-                            <span class="hcn-number">12</span>
-                            <span class="hcn-divisors">1,2,3,4,6,12</span>
-                            <span class="hcn-count">6 divisors</span>
+                    <div class="ss-l-grid ss-l-grid-auto">
+                        <div class="ss-c-card ss-c-stat">
+                            <span class="ss-c-stat__value">12</span>
+                            <span class="ss-c-stat__desc">1,2,3,4,6,12</span>
+                            <span class="ss-c-stat__title">6 divisors</span>
                         </div>
-                        <div class="hcn-item">
-                            <span class="hcn-number">24</span>
-                            <span class="hcn-divisors">1,2,3,4,6,8,12,24</span>
-                            <span class="hcn-count">8 divisors</span>
+                        <div class="ss-c-card ss-c-stat">
+                            <span class="ss-c-stat__value">24</span>
+                            <span class="ss-c-stat__desc">1,2,3,4,6,8,12,24</span>
+                            <span class="ss-c-stat__title">8 divisors</span>
                         </div>
-                        <div class="hcn-item">
-                            <span class="hcn-number">60</span>
-                            <span class="hcn-divisors">1,2,3,4,5,6,10,12,15,20,30,60</span>
-                            <span class="hcn-count">12 divisors</span>
+                        <div class="ss-c-card ss-c-stat">
+                            <span class="ss-c-stat__value">60</span>
+                            <span class="ss-c-stat__desc">1,2,3,4,5,6,10,12,15,20,30,60</span>
+                            <span class="ss-c-stat__title">12 divisors</span>
                         </div>
-                        <div class="hcn-item">
-                            <span class="hcn-number">120</span>
-                            <span class="hcn-divisors">1,2,3,4,5,6,8,10,12,15,20,24,30,40,60,120</span>
-                            <span class="hcn-count">16 divisors</span>
+                        <div class="ss-c-card ss-c-stat">
+                            <span class="ss-c-stat__value">120</span>
+                            <span class="ss-c-stat__desc">1,2,3,4,5,6,8,10,12,15,20,24,30,40,60,120</span>
+                            <span class="ss-c-stat__title">16 divisors</span>
                         </div>
-                        <div class="hcn-item highlight">
-                            <span class="hcn-number">720</span>
-                            <span class="hcn-divisors">Q04 Width: 720px ÷ 5 = 144 lines</span>
-                            <span class="hcn-count">30 divisors</span>
+                        <div class="ss-c-card ss-c-stat ss-c-card--accent">
+                            <span class="ss-c-stat__value">720</span>
+                            <span class="ss-c-stat__desc">Q04 Width: 720px ÷ 5 = 144 lines</span>
+                            <span class="ss-c-stat__title">30 divisors</span>
                         </div>
-                        <div class="hcn-item highlight">
-                            <span class="hcn-number">1080</span>
-                            <span class="hcn-divisors">Q04 Height: 1080px ÷ 5 = 216 lines</span>
-                            <span class="hcn-count">18 divisors</span>
+                        <div class="ss-c-card ss-c-stat ss-c-card--accent">
+                            <span class="ss-c-stat__value">1080</span>
+                            <span class="ss-c-stat__desc">Q04 Height: 1080px ÷ 5 = 216 lines</span>
+                            <span class="ss-c-stat__title">18 divisors</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-<section class="docs-section">
+<section class="ss-c-demo__section">
             <h2>Typographic Scale</h2>
             <p>Type sizes built on q() multiples. Each step maintains optical harmony through the unit system.</p>
 
@@ -833,7 +826,7 @@
             </div>
         </section>
 
-<section class="docs-section">
+<section class="ss-c-demo__section">
             <h2>Typography Examples</h2>
             <p>
                 See the hybrid scale in action. Each level uses
@@ -884,7 +877,7 @@
             </div>
         </section>
 
-<section class="docs-section">
+<section class="ss-c-demo__section">
             <h2>Vertical Rhythm</h2>
             <p>Height increments for maintaining consistent baseline rhythm across components.</p>
 
@@ -937,13 +930,13 @@
                 
             </div>
 
-            <div class="code-block"><pre><code>// Vertical rhythm using q() function
+            <pre class="ss-c-code-block"><code>// Vertical rhythm using q() function
 line-height: q(24); // 24px — 3 baseline units
 margin-bottom: q(16); // 16px — 2 baseline units
-padding: q(8); // 8px — 1 baseline unit</code></pre></div>
+padding: q(8); // 8px — 1 baseline unit</code></pre>
         </section>
 
-<section class="docs-section">
+<section class="ss-c-demo__section">
             <h2>Modular Scale</h2>
             <p>Mathematical ratios applied to the base unit for harmonic proportions.</p>
 
@@ -951,77 +944,77 @@ padding: q(8); // 8px — 1 baseline unit</code></pre></div>
                 
                 
                 <div class="modular-item">
-                    <span class="modular-item__ratio"> ()</span>
-                    <div class="modular-item__bar" style="width: px;"></div>
+                    <span class="modular-item__ratio">Minor Second (1.067)</span>
+                    <div class="modular-item__bar" style="width: 106px;"></div>
                 </div>
                 
                 <div class="modular-item">
-                    <span class="modular-item__ratio"> ()</span>
-                    <div class="modular-item__bar" style="width: px;"></div>
+                    <span class="modular-item__ratio">Major Second (1.125)</span>
+                    <div class="modular-item__bar" style="width: 112px;"></div>
                 </div>
                 
                 <div class="modular-item">
-                    <span class="modular-item__ratio"> ()</span>
-                    <div class="modular-item__bar" style="width: px;"></div>
+                    <span class="modular-item__ratio">Minor Third (1.2)</span>
+                    <div class="modular-item__bar" style="width: 120px;"></div>
                 </div>
                 
                 <div class="modular-item">
-                    <span class="modular-item__ratio"> ()</span>
-                    <div class="modular-item__bar" style="width: px;"></div>
+                    <span class="modular-item__ratio">Major Third (1.25)</span>
+                    <div class="modular-item__bar" style="width: 125px;"></div>
                 </div>
                 
                 <div class="modular-item">
-                    <span class="modular-item__ratio"> ()</span>
-                    <div class="modular-item__bar" style="width: px;"></div>
+                    <span class="modular-item__ratio">Perfect Fourth (1.333)</span>
+                    <div class="modular-item__bar" style="width: 133px;"></div>
                 </div>
                 
                 <div class="modular-item">
-                    <span class="modular-item__ratio"> ()</span>
-                    <div class="modular-item__bar" style="width: px;"></div>
+                    <span class="modular-item__ratio">Aug. Fourth (1.414)</span>
+                    <div class="modular-item__bar" style="width: 141px;"></div>
                 </div>
                 
                 <div class="modular-item">
-                    <span class="modular-item__ratio"> ()</span>
-                    <div class="modular-item__bar" style="width: px;"></div>
+                    <span class="modular-item__ratio">Perfect Fifth (1.5)</span>
+                    <div class="modular-item__bar" style="width: 150px;"></div>
                 </div>
                 
                 <div class="modular-item">
-                    <span class="modular-item__ratio"> ()</span>
-                    <div class="modular-item__bar" style="width: px;"></div>
+                    <span class="modular-item__ratio">Minor Sixth (1.6)</span>
+                    <div class="modular-item__bar" style="width: 160px;"></div>
                 </div>
                 
                 <div class="modular-item">
-                    <span class="modular-item__ratio"> ()</span>
-                    <div class="modular-item__bar" style="width: px;"></div>
+                    <span class="modular-item__ratio">Golden Ratio (1.618)</span>
+                    <div class="modular-item__bar" style="width: 161px;"></div>
                 </div>
                 
                 <div class="modular-item">
-                    <span class="modular-item__ratio"> ()</span>
-                    <div class="modular-item__bar" style="width: px;"></div>
+                    <span class="modular-item__ratio">Major Sixth (1.667)</span>
+                    <div class="modular-item__bar" style="width: 166px;"></div>
                 </div>
                 
                 <div class="modular-item">
-                    <span class="modular-item__ratio"> ()</span>
-                    <div class="modular-item__bar" style="width: px;"></div>
+                    <span class="modular-item__ratio">Octave (2)</span>
+                    <div class="modular-item__bar" style="width: 200px;"></div>
                 </div>
                 
             </div>
 
-            <div class="code-block"><pre><code>// Using ratio functions with q()
+            <pre class="ss-c-code-block"><code>// Using ratio functions with q()
 font-size: scale(16px, $ratio-golden); // 25.89px
 font-size: scale(16px, $ratio-fifth); // 24px
-font-size: scale(16px, $ratio-fourth); // 21.33px</code></pre></div>
+font-size: scale(16px, $ratio-fourth); // 21.33px</code></pre>
         </section>
 
-<section class="docs-section">
+<section class="ss-c-demo__section">
             <h2>Scale Relationship</h2>
             <p>
                 Compare values across both scales. Note how every 5th type unit
                 and every 4th line unit meet at the LCM alignment points.
             </p>
 
-            <div class="table-responsive">
-                <table class="docs-table scale-table">
+            <div class="ss-c-table-wrapper">
+                <table class="ss-c-table">
                     <thead>
                         <tr>
                             <th>Multiplier</th>
@@ -1035,116 +1028,116 @@ font-size: scale(16px, $ratio-fourth); // 21.33px</code></pre></div>
                             <td>1×</td>
                             <td>4Q = 4px = 1mm</td>
                             <td>5Q = 5px = 1.25mm</td>
-                            <td class="not-aligned">—</td>
+                            <td class="ss-c-text-muted">—</td>
                         </tr>
                         <tr>
                             <td>2×</td>
                             <td>8Q = 8px = 2mm</td>
                             <td>10Q = 10px = 2.5mm</td>
-                            <td class="not-aligned">—</td>
+                            <td class="ss-c-text-muted">—</td>
                         </tr>
                         <tr>
                             <td>3×</td>
                             <td>12Q = 12px = 3mm</td>
                             <td>15Q = 15px = 3.75mm</td>
-                            <td class="not-aligned">—</td>
+                            <td class="ss-c-text-muted">—</td>
                         </tr>
                         <tr>
                             <td>4×</td>
                             <td>16Q = 16px = 4mm</td>
                             <td>20Q = 20px = 5mm</td>
-                            <td class="not-aligned">—</td>
+                            <td class="ss-c-text-muted">—</td>
                         </tr>
-                        <tr class="lcm-row">
+                        <tr class="is-active">
                             <td>5× / 4×</td>
                             <td>20Q = 20px = 5mm</td>
                             <td>20Q = 20px = 5mm</td>
-                            <td class="aligned">✓ LCM</td>
+                            <td class="ss-c-text-success">✓ LCM</td>
                         </tr>
                         <tr>
                             <td>6×</td>
                             <td>24Q = 24px = 6mm</td>
                             <td>25Q = 25px = 6.25mm</td>
-                            <td class="not-aligned">—</td>
+                            <td class="ss-c-text-muted">—</td>
                         </tr>
                         <tr>
                             <td>8×</td>
                             <td>32Q = 32px = 8mm</td>
                             <td>40Q = 40px = 10mm</td>
-                            <td class="not-aligned">—</td>
+                            <td class="ss-c-text-muted">—</td>
                         </tr>
-                        <tr class="lcm-row">
+                        <tr class="is-active">
                             <td>10× / 8×</td>
                             <td>40Q = 40px = 10mm</td>
                             <td>40Q = 40px = 10mm</td>
-                            <td class="aligned">✓ 2×LCM</td>
+                            <td class="ss-c-text-success">✓ 2×LCM</td>
                         </tr>
-                        <tr class="lcm-row">
+                        <tr class="is-active">
                             <td>15× / 12×</td>
                             <td>60Q = 60px = 15mm</td>
                             <td>60Q = 60px = 15mm</td>
-                            <td class="aligned">✓ 3×LCM</td>
+                            <td class="ss-c-text-success">✓ 3×LCM</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-<section class="docs-section">
+<section class="ss-c-demo__section">
             <h2>SCSS Functions</h2>
 
-            <div class="function-grid">
-                <div class="function-card">
+            <div class="ss-l-grid ss-l-grid-auto">
+                <div class="ss-c-card">
                     <h4><code>q($n)</code></h4>
                     <p>Returns Q-unit value: $n × 0.0625rem</p>
-                    <pre><code>padding: q(8);              // 8px
+                    <pre class="ss-c-code-block"><code>padding: q(8);              // 8px
 margin: q(16);              // 16px
 gap: q(24);                 // 24px</code></pre>
                 </div>
 
-                <div class="function-card">
+                <div class="ss-c-card">
                     <h4><code>type_unit($n)</code></h4>
                     <p>Returns type-based value: $n × 4Q</p>
-                    <pre><code>font-size: type_unit(4);    // 16Q = 16px
+                    <pre class="ss-c-code-block"><code>font-size: type_unit(4);    // 16Q = 16px
 font-size: type_unit(5);    // 20Q = 20px
 font-size: type_unit(6);    // 24Q = 24px</code></pre>
                 </div>
 
-                <div class="function-card">
+                <div class="ss-c-card">
                     <h4><code>line($n)</code></h4>
                     <p>Returns line-based value: $n × 5Q</p>
-                    <pre><code>line-height: line(4);       // 20Q = 20px
+                    <pre class="ss-c-code-block"><code>line-height: line(4);       // 20Q = 20px
 margin-bottom: line(2);     // 10Q = 10px
 padding: line(3);           // 15Q = 15px</code></pre>
                 </div>
 
-                <div class="function-card">
+                <div class="ss-c-card">
                     <h4><code>snap_to_line($value)</code></h4>
                     <p>Snaps any value to nearest line unit</p>
-                    <pre><code>height: snap_to_line(17px);  // 15px (3 lines)
+                    <pre class="ss-c-code-block"><code>height: snap_to_line(17px);  // 15px (3 lines)
 height: snap_to_line(23px);  // 25px (5 lines)</code></pre>
                 </div>
 
-                <div class="function-card">
+                <div class="ss-c-card">
                     <h4><code>line_height_for_size($size)</code></h4>
                     <p>Calculates optimal line-height for font size</p>
-                    <pre><code>// For 16px font
+                    <pre class="ss-c-code-block"><code>// For 16px font
 line-height: line_height_for_size(16px);  // 20px</code></pre>
                 </div>
 
-                <div class="function-card">
+                <div class="ss-c-card">
                     <h4><code>baseline($n)</code></h4>
                     <p>Alias for line-based spacing</p>
-                    <pre><code>margin-top: baseline(2);    // 10Q = 10px
+                    <pre class="ss-c-code-block"><code>margin-top: baseline(2);    // 10Q = 10px
 padding: baseline(4);       // 20Q = 20px</code></pre>
                 </div>
             </div>
         </section>
 
-<section class="docs-section">
+<section class="ss-c-demo__section">
             <h2>When to Use</h2>
-            <div class="qscale-use-cases">
-                <div class="use-case">
+            <div class="ss-l-grid ss-l-grid-auto">
+                <div class="ss-c-card">
                     <h3>✓ Use q() for</h3>
                     <ul>
                         <li>Spacing and padding</li>
@@ -1154,7 +1147,7 @@ padding: baseline(4);       // 20Q = 20px</code></pre>
                         <li>Icon sizes</li>
                     </ul>
                 </div>
-                <div class="use-case">
+                <div class="ss-c-card">
                     <h3>✓ Use type_unit() for</h3>
                     <ul>
                         <li>Font sizes</li>
@@ -1162,7 +1155,7 @@ padding: baseline(4);       // 20Q = 20px</code></pre>
                         <li>Print-aligned measurements</li>
                     </ul>
                 </div>
-                <div class="use-case">
+                <div class="ss-c-card">
                     <h3>✓ Use line() for</h3>
                     <ul>
                         <li>Line heights</li>
@@ -1170,7 +1163,7 @@ padding: baseline(4);       // 20Q = 20px</code></pre>
                         <li>Baseline-aligned margins</li>
                     </ul>
                 </div>
-                <div class="use-case">
+                <div class="ss-c-card">
                     <h3>✗ Avoid for</h3>
                     <ul>
                         <li>Percentage-based layouts</li>
@@ -1181,31 +1174,31 @@ padding: baseline(4);       // 20Q = 20px</code></pre>
             </div>
         </section>
 
-<section class="docs-section">
+<section class="ss-c-demo__section">
             <h2>Why Hybrid Scales?</h2>
 
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">📐</div>
+            <div class="ss-l-grid ss-l-grid-auto">
+                <div class="ss-c-card">
+                    <div class="ss-c-card__icon">4Q</div>
                     <h4>Precision Typography</h4>
                     <p>The 4Q type scale aligns with print standards (1mm = 4px at 96dpi), enabling pixel-perfect font
                         sizing.</p>
                 </div>
 
-                <div class="benefit-card">
-                    <div class="benefit-icon">📏</div>
+                <div class="ss-c-card">
+                    <div class="ss-c-card__icon">5Q</div>
                     <h4>Natural Rhythm</h4>
                     <p>The 5Q line scale creates comfortable reading rhythm with line-heights that feel natural.</p>
                 </div>
 
-                <div class="benefit-card">
-                    <div class="benefit-icon">🔗</div>
+                <div class="ss-c-card">
+                    <div class="ss-c-card__icon">20Q</div>
                     <h4>LCM Harmony</h4>
                     <p>Every 20Q (20px), both scales align perfectly—creating predictable, harmonious layouts.</p>
                 </div>
 
-                <div class="benefit-card">
-                    <div class="benefit-icon">🧮</div>
+                <div class="ss-c-card">
+                    <div class="ss-c-card__icon">720</div>
                     <h4>HCN Flexibility</h4>
                     <p>Highly Composite Numbers enable maximum grid subdivisions—720 divides evenly 30 ways.</p>
                 </div>
@@ -1214,31 +1207,26 @@ padding: baseline(4);       // 20Q = 20px</code></pre>
 
 
 
-            </main>
-
-            
-
-<footer class="footer">
-    <div class="footer__content">
-        <div class="footer__left">
-            <span class="footer__brand">unit.gl</span>
-            <span class="footer__tagline">Dynamic Layout Engine</span>
-        </div>
-        <div class="footer__right">
-            <div class="footer__links">
-                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank"
-                    rel="noopener noreferrer">GitHub</a>
-                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank"
-                    rel="noopener noreferrer">npm</a>
-                <a href="https://www.scape.press" class="footer__link" target="_blank" rel="noopener noreferrer">Scape
-                    Press</a>
             </div>
-            <span class="footer__copyright">© 2026 Scape Press. MIT License.</span>
+        </main>
+    </div>
+
+    
+
+<footer class="ss-c-footer">
+    <div class="ss-c-footer-container ss-c-footer-bottom">
+        <div class="ss-c-footer-brand-section">
+            <span class="ss-c-footer-brand-name">unit.gl</span>
+            <span class="ss-c-footer-copyright">Dynamic Layout Engine</span>
         </div>
+        <nav class="ss-c-footer-legal" aria-label="Project links">
+            <a href="https://github.com/stylescape/unit.gl" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.npmjs.com/package/unit.gl" target="_blank" rel="noopener noreferrer">npm</a>
+            <a href="https://www.scape.press" target="_blank" rel="noopener noreferrer">Scape Press</a>
+        </nav>
+        <p class="ss-c-footer-copyright">© 2026 Scape Press. MIT License.</p>
     </div>
 </footer>
 
-        </div>
-    </div>
 </body>
 </html>

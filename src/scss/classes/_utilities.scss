@@ -14,7 +14,7 @@
 /// Override the breakpoint ladder used for responsive prefixes:
 ///
 /// ```scss
-/// @use "unit.gl/utilities" with (
+///     @use "unit.gl/utilities" with (
 ///     $responsive_breakpoints: (sm, md, lg)
 /// );
 /// ```
@@ -62,7 +62,7 @@
 ///
 /// Set to an empty list to skip responsive variants entirely.
 ///
-$responsive_breakpoints: (us, ss, xs, sm, md, lg, xl, ul) !default;
+$responsive_breakpoints: (us, ss, xs, sm, md, lg, xl, sl, ul) !default;
 
 ///
 /// Whether to also emit the extended set of utilities

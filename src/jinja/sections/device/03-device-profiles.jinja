@@ -1,19 +1,19 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Device Profiles (<code>$devices</code> map)</h2>
 
-    <p class="device-muted">This list is a curated set from the SCSS map in <code>src/scss/maps/_device.scss</code>.
+    <p class="ss-c-text-muted">This list is a curated set from the SCSS map in <code>src/scss/maps/_device.scss</code>.
         Matching is approximate: width range + DPR similarity.</p>
 
-    <div class="device-controls">
-        <label class="device-search" for="dev-filter">
-            <span class="device-search__label">Filter</span>
-            <input id="dev-filter" class="device-search__input" type="search"
+    <div class="ss-l-grid ss-l-grid-auto">
+        <label class="ss-c-form-field" for="dev-filter">
+            <span class="ss-c-label">Filter</span>
+            <input id="dev-filter" class="ss-c-input" type="search"
                 placeholder="iphone_x, ipad_pro, galaxy_fold…" autocomplete="off" />
         </label>
 
-        <div class="device-match">
-            <div class="device-match__label">Matches</div>
-            <div class="device-match__value"><span id="dev-matches">—</span></div>
+        <div class="ss-c-card ss-c-stat">
+            <div class="ss-c-stat__title">Matches</div>
+            <div class="ss-c-stat__value"><span id="dev-matches">—</span></div>
         </div>
     </div>
 
@@ -45,7 +45,7 @@
     {"key": "dell_xps", "min": 1920, "max": 3840, "dpr": 2.0, "type": "desktop"}
     ] %}
 
-    <table class="device-table">
+    <table class="ss-c-table">
         <thead>
             <tr>
                 <th>Key</th>
@@ -58,14 +58,14 @@
         </thead>
         <tbody>
             {% for d in devices %}
-            <tr class="device-row" data-key="{{ d.key }}" data-min="{{ d.min }}" data-max="{{ d.max }}"
+            <tr data-key="{{ d.key }}" data-min="{{ d.min }}" data-max="{{ d.max }}"
                 data-dpr="{{ d.dpr }}" data-type="{{ d.type }}">
                 <td><code>{{ d.key }}</code></td>
                 <td><code>{{ d.min }}px</code></td>
                 <td><code>{{ d.max }}px</code></td>
                 <td><code>{{ d.dpr }}</code></td>
                 <td>{{ d.type }}</td>
-                <td><span class="device-badge" data-role="match">—</span></td>
+                <td><span class="ss-c-badge ss-c-badge--sm" data-role="match">—</span></td>
             </tr>
             {% endfor %}
         </tbody>

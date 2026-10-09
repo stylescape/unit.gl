@@ -28,7 +28,7 @@ let tsupProc = null;
 
 function startTsupWatch() {
   if (tsupProc) return;
-  console.log('[tsup] 🛠️ Starting watch...');
+  console.log('[tsup] Starting watch...');
   tsupProc = spawn('npx', ['tsup', '--watch'], {
     stdio: 'inherit',
     shell: true,
@@ -46,7 +46,7 @@ async function runKist(server) {
   if (now - lastBuild < 500) return;
   lastBuild = now;
 
-  console.log('[Kist] 🛠️ Running build...');
+  console.log('[Kist] Running build...');
   try {
     const { stdout, stderr } = await execAsync('npx kist --config ./kist.yml');
     if (stdout) console.log('[Kist] stdout:', stdout);
@@ -84,6 +84,9 @@ export default defineConfig({
                 server.middlewares.use('/css', serveStatic(path.join(pathToDist, 'css')));
                 server.middlewares.use('/js', serveStatic(path.join(pathToDist, 'js')));
                 server.middlewares.use('/sassdoc', serveStatic(path.join(pathToDist, 'sassdoc')));
+                // Demo chrome is styled with stylescape (dev-only dependency);
+                // served straight from node_modules, never copied into dist.
+                server.middlewares.use('/vendor/stylescape', serveStatic(path.resolve('node_modules/stylescape/css')));
 
 
                 // Serve / as index.html

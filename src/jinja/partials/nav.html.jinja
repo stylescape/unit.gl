@@ -5,64 +5,80 @@ Variables:
 - version: Version string to display (default: "v0.1")
 - current_page: Current page filename for active state (e.g., 'index.html')
 #}
-{% from "partials/icons.html.jinja" import icon_sun, icon_moon, icon_baseline, icon_graph, icon_github, icon_menu,
-icon_close %}
+{% from "partials/icons.html.jinja" import icon_moon, icon_baseline, icon_graph, icon_github, icon_menu,
+icon_settings %}
 
-<div class="nav-wrapper">
-    <nav class="nav" aria-label="Main navigation">
-        <div class="nav__inner">
-            {# Logo #}
-            <a href="index.html" class="nav__logo" {% if current_page=='index.html' %}aria-current="page" {% endif %}>
-                <span class="nav__logo-text">unit.gl</span>
-                <span class="nav__version">{{ version | default('v0.1') }}</span>
-            </a>
+<header class="ss-c-ribbon--top ss-u-sticky ss-u-top-0 ss-u-z-sticky">
+    <div class="ss-c-ribbon__slot--horizontal_left">
+        {# Mobile Sidebar Toggle #}
+        <button type="button" class="ss-c-ribbon__button docs-ribbon__toggle" id="sidebar-toggle"
+            aria-expanded="false" aria-controls="sidebar" aria-label="Toggle navigation menu">
+            {{ icon_menu() }}
+        </button>
 
-            {# Mobile Sidebar Toggle #}
-            <button type="button" class="nav__mobile-toggle" id="sidebar-toggle" aria-expanded="false"
-                aria-controls="sidebar" aria-label="Toggle navigation menu">
-                {{ icon_menu() }}
-                {{ icon_close() }}
-            </button>
-
-            <div class="nav__right">
-                {# Current Breakpoint Indicator #}
-                <div class="nav__bp" id="nav-bp" title="Current viewport breakpoint" aria-live="polite">
-                    <span class="nav__bp-key" id="nav-bp-key">—</span>
-                    <span class="nav__bp-width" id="nav-bp-width">—px</span>
-                </div>
-
-                {# Current q(1) px Value #}
-                <div class="nav__bp" id="nav-q" title="Computed pixel value of q(1) at the current root font size"
-                    aria-live="polite">
-                    <span class="nav__bp-key">q(1)</span>
-                    <span class="nav__bp-width" id="nav-q-px">—px</span>
-                </div>
-
-                {# Grid Controls #}
-                <div class="grid-controls" aria-label="Grid overlay controls">
-                    <button type="button" data-toggle="baseline" title="Toggle baseline grid" aria-pressed="false">
-                        {{ icon_baseline() }}
-                        <span>Baseline</span>
-                    </button>
-                    <button type="button" data-toggle="graph" title="Toggle graph grid" aria-pressed="false">
-                        {{ icon_graph() }}
-                        <span>Graph</span>
-                    </button>
-                </div>
-
-                {# Theme Toggle #}
-                <button type="button" class="theme-toggle" data-toggle="theme" title="Toggle dark mode"
-                    aria-label="Toggle dark mode">
-                    {{ icon_sun() }}
-                    {{ icon_moon() }}
-                </button>
-
-                {# GitHub Link #}
-                <a href="https://github.com/stylescape/unit.gl" class="nav__github" target="_blank"
-                    rel="noopener noreferrer" title="View on GitHub" aria-label="View on GitHub (opens in new tab)">
-                    {{ icon_github() }}
-                </a>
-            </div>
+        {# Logo #}
+        <div class="ss-c-ribbon__title">
+            <a href="index.html" class="ss-c-ribbon__title__text" {% if current_page=='index.html' %}aria-current="page"
+                {% endif %}>unit.gl</a>
+            <span class="ss-c-badge ss-c-badge--sm ss-c-badge--accent">{{ version | default('v0.1') }}</span>
         </div>
-    </nav>
-</div>
+    </div>
+
+    <div class="ss-c-ribbon__slot--horizontal_right">
+        {# Mobile Display-Settings Toggle (opens the menu below 768px) #}
+        <button type="button" class="ss-c-ribbon__button docs-ribbon__toggle" id="nav-mobile-toggle"
+            aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle display settings">
+            {{ icon_settings() }}
+        </button>
+
+        <div class="docs-ribbon__menu" id="nav-menu">
+            <nav class="ss-c-ribbon__nav" aria-label="Display options">
+                <ul class="ss-c-ribbon__nav__list">
+                    {# Current Breakpoint Indicator #}
+                    <li class="ss-c-ribbon__nav__list__item" id="nav-bp" title="Current viewport breakpoint">
+                        <span id="nav-bp-key">—</span>&nbsp;<span id="nav-bp-width">—px</span>
+                    </li>
+
+                    {# Current q(1) px Value #}
+                    <li class="ss-c-ribbon__nav__list__item" id="nav-q"
+                        title="Computed pixel value of q(1) at the current root font size">
+                        q(1)&nbsp;<span id="nav-q-px">—px</span>
+                    </li>
+
+                    {# Grid Controls #}
+                    <li class="ss-c-ribbon__nav__list__item">
+                        <button type="button" class="ss-c-ribbon__button" data-toggle="baseline" title="Toggle baseline grid"
+                            aria-pressed="false">
+                            {{ icon_baseline() }}
+                            <span>Baseline</span>
+                        </button>
+                    </li>
+                    <li class="ss-c-ribbon__nav__list__item">
+                        <button type="button" class="ss-c-ribbon__button" data-toggle="graph" title="Toggle graph grid"
+                            aria-pressed="false">
+                            {{ icon_graph() }}
+                            <span>Graph</span>
+                        </button>
+                    </li>
+
+                    {# Theme Toggle #}
+                    <li class="ss-c-ribbon__nav__list__item">
+                        <button type="button" class="ss-c-ribbon__button" data-toggle="theme" title="Toggle dark mode"
+                            aria-pressed="false">
+                            {{ icon_moon() }}
+                            <span>Dark mode</span>
+                        </button>
+                    </li>
+
+                    {# GitHub Link #}
+                    <li class="ss-c-ribbon__nav__list__item">
+                        <a href="https://github.com/stylescape/unit.gl" class="ss-c-ribbon__button" target="_blank"
+                            rel="noopener noreferrer" title="View on GitHub" aria-label="View on GitHub (opens in new tab)">
+                            {{ icon_github() }}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>

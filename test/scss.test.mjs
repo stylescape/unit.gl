@@ -5,7 +5,7 @@
 // Loads every `*.test.scss` under `src/scss/__tests__/` and feeds the assertion
 // output into Mocha so failures bubble up with proper stack traces.
 
-import { globSync } from "node:fs";
+import { readdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { runSass } from "sass-true";
@@ -20,9 +20,10 @@ const sassOptions = {
     loadPaths: [resolve(here, "../node_modules")],
 };
 
-const files = globSync("**/*.test.scss", { cwd: testRoot }).map((rel) =>
-    resolve(testRoot, rel),
-);
+// `fs.globSync` needs Node 22; the release workflow runs Node 20.
+const files = readdirSync(testRoot, { recursive: true })
+    .filter((rel) => rel.endsWith(".test.scss"))
+    .map((rel) => resolve(testRoot, rel));
 
 if (files.length === 0) {
     throw new Error(`No test files found under ${testRoot}`);

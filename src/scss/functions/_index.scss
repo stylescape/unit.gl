@@ -49,3 +49,9 @@
 
 // Functions for pixel density conversions
 @forward "density";
+
+// Z-index lookup from the layer map
+@forward "layer";
+
+// Guide color lookup
+@forward "color";

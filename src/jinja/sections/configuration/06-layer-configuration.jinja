@@ -1,9 +1,9 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Layer Configuration</h2>
     <p>Customize z-index layers via <code>$layer_map</code>.</p>
 
     <h3>Default Layers</h3>
-    <div class="code-block"><pre><code>$layer_map: (
+    <pre class="ss-c-code-block"><code>$layer_map: (
         "canvas": -1000,
         "background": 0,
         "content": 2000,
@@ -11,10 +11,10 @@
         "modal": 7000,
         "guides": 9998,
         "debug": 9999,
-        ) !default;</code></pre></div>
+        ) !default;</code></pre>
 
     <h3>Customizing</h3>
-    <div class="code-block"><pre><code><span class="comment">// Add custom layers</span>
+    <pre class="ss-c-code-block"><code><span class="comment">// Add custom layers</span>
         $layer_map: (
         "canvas": -1000,
         "background": 0,
@@ -30,5 +30,5 @@
 
         <span class="comment">// Usage</span>
         .dropdown { z-index: z("dropdown"); }
-        .toast { z-index: z("toast"); }</code></pre></div>
+        .toast { z-index: z("toast"); }</code></pre>
 </section>

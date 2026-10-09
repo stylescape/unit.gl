@@ -1,29 +1,31 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Color Functions</h2>
     <p>Functions for working with the color map.</p>
 
     <h3>color()</h3>
-    <div class="api-signature">color($name, $shade: null) → Color</div>
+    <pre class="ss-c-code-block">color($name, $shade: null) → Color</pre>
 
-    <div class="api-params">
-        <div class="api-param">
-            <span class="api-param__name">$name</span>
-            <span class="api-param__type">String</span>
-            <span class="api-param__desc">Color name from $color_map</span>
-        </div>
-        <div class="api-param">
-            <span class="api-param__name">$shade</span>
-            <span class="api-param__type">String | null</span>
-            <span class="api-param__desc">Optional shade variant (e.g., 'light', 'dark')</span>
-        </div>
-    </div>
+    <table class="ss-c-table">
+        <tbody>
+            <tr>
+                <td><code>$name</code></td>
+                <td><span class="ss-c-badge ss-c-badge--sm">String</span></td>
+                <td>Color name from $color_map</td>
+            </tr>
+            <tr>
+                <td><code>$shade</code></td>
+                <td><span class="ss-c-badge ss-c-badge--sm">String | null</span></td>
+                <td>Optional shade variant (e.g., 'light', 'dark')</td>
+            </tr>
+        </tbody>
+    </table>
 
-    <div class="code-block"><pre><code>.button {
+    <pre class="ss-c-code-block"><code>.button {
         background: color("primary");
         color: color("primary", "contrast");
 
         &:hover {
         background: color("primary", "dark");
         }
-        }</code></pre></div>
+        }</code></pre>
 </section>

@@ -43,14 +43,16 @@
     "main": "./dist/js/index.cjs",
     "module": "./dist/js/index.mjs",
     "types": "./dist/js/index.d.ts",
-    "sass": "src/scss/index.scss",
+    "sass": "dist/scss/index.scss",
     "style": "dist/css/unit.gl.css",
     "scripts": {
         "build": "npx kist --config ./kist.yml && npm run build:ts",
         "build:ts": "tsup",
-        "docs:scss": "sassdoc src/scss --config .sassdocrc",
+        "typecheck": "tsc --noEmit -p .",
+        "docs:scss": "node -r ./scripts/sassdoc-marked-shim.cjs node_modules/sassdoc/bin/sassdoc src/scss --config .sassdocrc",
         "lint:scss": "stylelint \"src/scss/**/*.scss\"",
         "lint:scss:fix": "stylelint \"src/scss/**/*.scss\" --fix",
+        "test": "npm run test:scss",
         "test:scss": "mocha test/scss.test.mjs",
         "watch": "npx kist --config ./kist.yml --live",
         "dev": "vite"
@@ -58,10 +60,12 @@
     "engines": {
         "node": ">=20.0.0"
     },
+    "dependencies": {
+        "hue.gl": "^0.1.2"
+    },
     "devDependencies": {
         "@getkist/action-nunjucks": "^2.0.9",
         "@getkist/action-sass": "^1.0.4",
-        "hue.gl": "^0.1.2",
         "kist": "^0.1.74",
         "micromatch": "^4.0.8",
         "mocha": "^11.7.5",
@@ -69,9 +73,11 @@
         "sass": "^1.97.3",
         "sass-true": "^10.1.0",
         "sassdoc": "^2.7.4",
+        "serve-static": "^2.2.1",
         "stylelint": "^17.11.1",
         "stylelint-config-standard-scss": "^17.0.0",
         "stylelint-order": "^8.1.1",
+        "stylescape": "^0.4.1",
         "ts-node": "^10.9.2",
         "tsup": "^8.5.1",
         "typescript": "~6.0.3",
@@ -93,19 +99,27 @@
         "dist/**",
         "!dist/scss/dev/**",
         "!dist/scss/doc/**",
+        "!dist/scss/__tests__/**",
         "!dist/scss/test.scss",
         "!dist/scss/docs.scss",
         "!dist/css/unit.gl.docs.css",
         "!dist/css/unit.gl.docs.min.css",
+        "!dist/js/unit.gl.docs.*",
+        "!dist/ts/**",
         "!dist/html/**",
         "!dist/package.json"
     ],
     "exports": {
         ".": {
             "sass": "./dist/scss/index.scss",
-            "types": "./dist/js/index.d.ts",
-            "import": "./dist/js/index.mjs",
-            "require": "./dist/js/index.cjs"
+            "import": {
+                "types": "./dist/js/index.d.ts",
+                "default": "./dist/js/index.mjs"
+            },
+            "require": {
+                "types": "./dist/js/index.d.cts",
+                "default": "./dist/js/index.cjs"
+            }
         },
         "./functions": {
             "sass": "./dist/scss/functions/_index.scss"
@@ -134,12 +148,5 @@
         },
         "./css/unit.gl.css": "./dist/css/unit.gl.css",
         "./css/unit.gl.min.css": "./dist/css/unit.gl.min.css"
-    },
-    "typesVersions": {
-        "*": {
-            "*": [
-                "./ts/index.d.ts"
-            ]
-        }
     }
 }

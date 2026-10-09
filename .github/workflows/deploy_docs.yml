@@ -36,7 +36,7 @@ jobs:
       - 
         name: PIP Install mkdocstrings
         run: |
-          pip install mkdocstrings[python]>=0.18
+          pip install "mkdocstrings[python]>=0.18"
 
       - 
         name: MKDocs Deploy

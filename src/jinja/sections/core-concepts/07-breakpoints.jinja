@@ -1,9 +1,9 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Responsive Breakpoints</h2>
 
     <p>unit.gl uses a mobile-first 9-step breakpoint scale derived from Q format paper sizes:</p>
 
-    <table class="table">
+    <table class="ss-c-table">
         <thead>
             <tr>
                 <th>Key</th>
@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr><td><code>us</code></td><td>Ultra Small</td><td>1</td><td>240px</td><td><code>.us_*</code></td><td>Compact / Fold</td></tr>
+            <tr><td><code>us</code></td><td>Ultra Small</td><td>1</td><td>250px</td><td><code>.us_*</code></td><td>Compact / Fold</td></tr>
             <tr><td><code>ss</code></td><td>Super Small</td><td>2</td><td>360px</td><td><code>.ss_*</code></td><td>Phones</td></tr>
             <tr><td><code>xs</code></td><td>Extra Small</td><td>3</td><td>540px</td><td><code>.xs_*</code></td><td>Large phones</td></tr>
             <tr><td><code>sm</code></td><td>Small</td><td>4</td><td>720px</td><td><code>.sm_*</code></td><td>Tablets</td></tr>
@@ -27,7 +27,7 @@
         </tbody>
     </table>
 
-    <div class="code-block"><pre><code><span class="comment">// Using breakpoint mixins</span>
+    <pre class="ss-c-code-block"><code><span class="comment">// Using breakpoint mixins</span>
         .card {
         padding: q(16);
 
@@ -38,5 +38,5 @@
         @include media_lg {
         padding: q(32);
         }
-        }</code></pre></div>
+        }</code></pre>
 </section>

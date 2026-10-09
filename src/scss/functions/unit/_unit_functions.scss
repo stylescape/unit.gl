@@ -22,6 +22,7 @@
 @use "sass:math";
 @use "sass:list";
 @use "sass:map";
+@use "unit_conversion" as *;
 
 // ============================================================================
 // Unit Manipulation Functions
@@ -191,7 +192,7 @@
 /// @throws Error if viewport bounds are invalid.
 /// @example scss
 ///   font-size: lerp(16px, 24px, 320px, 1200px);
-///   // => calc(16px + 8 * ((100vw - 320px) / 880))
+///   // => calc(16px + 0.0090909091 * (100vw - 320px))
 ///
 @function lerp($start, $end, $min-vw, $max-vw) {
     // Validate viewport bounds
@@ -200,22 +201,32 @@
         @error "Viewport bounds must be numbers.";
     }
 
-    $min-vw-stripped: unit_strip($min-vw);
-    $max-vw-stripped: unit_strip($max-vw);
+    // Compare everything in px: stripping units instead would treat
+    // `1rem → 1.5rem` as a 0.5px change.
+    $min-vw-px: _length_to_px($min-vw);
+    $max-vw-px: _length_to_px($max-vw);
 
-    @if $max-vw-stripped <= $min-vw-stripped {
+    @if $max-vw-px <= $min-vw-px {
         @error "Maximum viewport width must be greater than minimum.";
     }
 
-    // Calculate the difference
-    $delta: unit_strip($end) - unit_strip($start);
-    $vw-range: $max-vw-stripped - $min-vw-stripped;
-
-    // Build the calc expression
-    // Formula: start + (delta * ((100vw - min) / range))
-    @return calc(
-        #{$start} + #{$delta} * ((100vw - #{$min-vw}) / #{$vw-range})
+    // Unitless slope: change in value per px of viewport width
+    $slope: math.div(
+        _length_to_px($end) - _length_to_px($start),
+        $max-vw-px - $min-vw-px
     );
+
+    // Formula: start + slope * (100vw - min)
+    @return calc(#{$start} + #{$slope} * (100vw - #{$min-vw}));
+}
+
+/// Converts any absolute or font-relative length to px.
+/// @access private
+@function _length_to_px($value) {
+    @if math.compatible($value, 1px) and not math.is-unitless($value) {
+        @return math.div($value, 1px) * 1px;
+    }
+    @return to_px($value);
 }
 
 ///
@@ -248,14 +259,14 @@
 /// @return {Calculation} - A CSS clamp() expression.
 /// @example scss
 ///   font-size: fluid(16px, 24px);
-///   // => clamp(16px, calc(16px + 8 * ((100vw - 320px) / 880)), 24px)
+///   // => clamp(16px, calc(16px + 0.0090909091 * (100vw - 320px)), 24px)
 ///
 @function fluid($min, $max, $min-vw: 320px, $max-vw: 1200px) {
     @if meta.type-of($min) != "number" or meta.type-of($max) != "number" {
         @error "Minimum and maximum values must be numbers.";
     }
 
-    @if unit_strip($min) > unit_strip($max) {
+    @if _length_to_px($min) > _length_to_px($max) {
         @error "Minimum value cannot be greater than maximum value.";
     }
 

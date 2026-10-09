@@ -5,7 +5,10 @@ export default defineConfig([
     {
         entry: { 'index': 'src/ts/index.ts' },
         format: ['esm', 'cjs'],
-        dts: true,
+        // tsup's declaration build sets `baseUrl`, which TypeScript 6 rejects
+        // as deprecated unless told otherwise. Comments are kept so the
+        // published types carry their JSDoc.
+        dts: { compilerOptions: { ignoreDeprecations: '6.0', removeComments: false } },
         outDir: 'dist/js',
         outExtension({ format }) {
             return {

@@ -8,20 +8,16 @@
 /// across the application.
 ///
 /// ## Key Features
-/// - Named layer lookup via `$layers` map
+/// - Named layer lookup via `$layer_map` map
 /// - Warning when accessing undefined layers
 /// - Null-safe return for undefined layers
 ///
-/// ## Layer Naming Convention
-/// Recommended layer names (from bottom to top):
-/// - `base` (1-10) - Default content layer
-/// - `dropdown` (100-199) - Dropdown menus
-/// - `sticky` (200-299) - Sticky headers
-/// - `overlay` (300-399) - Overlays and backdrops
-/// - `modal` (400-499) - Modal dialogs
-/// - `popover` (500-599) - Popovers and tooltips
-/// - `toast` (600-699) - Toast notifications
-/// - `guides` (9000+) - Development guide overlays
+/// ## Layers
+/// Layer names and values come from `$layer_map` (maps/_layer.scss), e.g.
+/// `canvas` (-1000), `content` (2000), `control` (3000), `interface`
+/// (4000), `ribbon` (5000), `modal` (7000), `guides` (9998), and the
+/// special values `min`, `mid` and `max`. Configure `$layer_map` to change
+/// the stack.
 ///
 /// @group Functions-Layer
 /// @author Scape Press
@@ -36,6 +32,7 @@
 // ============================================================================
 
 @use "sass:map";
+@use "../maps/layer" as *;
 
 // ============================================================================
 // Z-Index Function
@@ -45,41 +42,28 @@
 /// Z-Index Layer Lookup
 /// ---------------------------------------------------------------------------
 ///
-/// Retrieves the z-index value from the `$layers` map based on the provided
-/// layer name. If the layer is not found, a warning is issued and `null` is
-/// returned, which will omit the z-index property from the output.
+/// Retrieves the z-index value from the `$layer_map` map based on the
+/// provided layer name. If the layer is not found, a warning is issued and
+/// `null` is returned, which will omit the z-index property from the output.
 ///
 /// @name z
 /// @param {String} $layer - The name of the layer to retrieve the z-index for
 /// @return {Number | Null} The z-index value, or null if layer not found
-/// @throws Warning if the specified layer doesn't exist in `$layers`
+/// @throws Warning if the specified layer doesn't exist in `$layer_map`
 ///
 /// @example scss - Basic usage
-///   .modal-backdrop {
-///     z-index: z("overlay");  // Returns value from $layers map
+///   .modal {
+///     z-index: z("modal");    // 7000
 ///   }
 ///
-///   .modal-dialog {
-///     z-index: z("modal");    // Higher than overlay
+///   .toolbar {
+///     z-index: z("control");  // 3000
 ///   }
 ///
-/// @example scss - With $layers map definition
-///   // In variables/_layer.scss
-///   $layers: (
-///     "base": 1,
-///     "dropdown": 100,
-///     "sticky": 200,
-///     "overlay": 300,
-///     "modal": 400,
-///     "popover": 500,
-///     "toast": 600,
-///     "guides": 9999
+/// @example scss - Custom layers
+///   @use "unit.gl" with (
+///     $layer_map: ("base": 1, "dropdown": 100, "modal": 400, "guides": 9999)
 ///   );
-///
-///   // Usage
-///   .tooltip {
-///     z-index: z("popover");  // Returns 500
-///   }
 ///
 /// @example scss - Error handling
 ///   .element {
@@ -88,12 +72,12 @@
 ///     // z-index property is omitted from output
 ///   }
 ///
-/// @see $layers
+/// @see $layer_map
 ///
 @function z($layer) {
-    @if not map.has-key($layers, $layer) {
-        @warn "Layer `#{$layer}` not found in the $layers map. z-index property omitted.";
+    @if not map.has-key($layer_map, $layer) {
+        @warn "Layer `#{$layer}` not found in the $layer_map map. z-index property omitted.";
         @return null;
     }
-    @return map.get($layers, $layer);
+    @return map.get($layer_map, $layer);
 }

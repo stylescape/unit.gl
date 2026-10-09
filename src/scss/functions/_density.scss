@@ -64,6 +64,11 @@
 ///
 /// Returns the DPI (dots per inch) for a named density bucket.
 ///
+/// Android bucket names (`mdpi` … `xxxhdpi`) return Android's DPI values
+/// (160dpi baseline, so `xhdpi` is 320). Any other name is resolved through
+/// `density()` and multiplied by the CSS reference DPI (96), so `retina` is
+/// 192. Use the latter scale for CSS `resolution` media queries.
+///
 /// @name density_dpi
 /// @param {String} $bucket - The density bucket name
 /// @return {Number} - The DPI value

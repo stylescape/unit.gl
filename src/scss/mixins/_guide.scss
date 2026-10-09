@@ -127,6 +127,7 @@
 ///
 @mixin guide--centered($width, $height, $color: red) {
     @include guide;
+    min-height: 0;
     width: $width;
     height: $height;
     top: 50%;
@@ -210,9 +211,10 @@
     background-repeat: repeat;
     background-size: $column_width $row_height;
 
-    // Offset grid so center column lands in center of screen
-    $total_grid_width: $columns * $column_width;
-    $half_offset: calc(50% - (#{$total_grid_width} / 2));
+    // Put the centre of the $columns-wide grid at the centre of the screen.
+    // A percentage position already centres one tile (its left edge sits at
+    // 50% - w/2), so shift by the remaining (1 - $columns) * w / 2.
+    $half_offset: calc(50% + #{(1 - $columns) * $column_width} / 2);
 
     background-position: $half_offset 0;
 
@@ -269,7 +271,7 @@
 /// and horizontal grid lines, useful for designing layouts with consistent
 /// column widths and baseline spacing.
 ///
-/// @name guide--baseline
+/// @name grid_baseline
 /// @param {Length} $column_width - The width of each column in the grid.
 /// @param {Length} $baseline_height - The height of each baseline.
 /// @param {Color} $column_color - The color of the column lines. Defaults to `color.change(rgb(200, 0, 0), $alpha: 0.2)`.
@@ -277,7 +279,7 @@
 ///
 /// @example scss - Usage
 ///   .guide--baseline {
-///     @include guide--baseline(60px, 20px);
+///     @include grid_baseline(60px, 20px);
 ///   }
 ///
 @mixin grid_baseline(
@@ -289,8 +291,8 @@
     background-image:
         linear-gradient(
             to right,
-            $column_color 0 $column_width,
-            transparent $column_width transparent
+            $column_color 0 1px,
+            transparent 1px
         ),
         linear-gradient(
             to bottom,
@@ -323,6 +325,10 @@
     $color: color.change(rgb(0, 255, 0), $alpha: 0.1)
 ) {
     @include guide;
-    inset: $margin $margin $margin $margin;
+    // Let the inset size the box; `guide` sets explicit dimensions.
+    width: auto;
+    height: auto;
+    min-height: 0;
+    inset: $margin;
     background-color: $color;
 }

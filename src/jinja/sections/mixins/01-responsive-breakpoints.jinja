@@ -1,22 +1,24 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Responsive Breakpoints</h2>
     <p>Mobile-first breakpoint mixins built on the <code>$breakpoints</code> map.</p>
 
     <h3>breakpoint()</h3>
     <p>Apply styles at a named breakpoint and above.</p>
 
-    <div class="api-signature">@include breakpoint($size) { ... }</div>
+    <pre class="ss-c-code-block">@include breakpoint($size) { ... }</pre>
 
-    <div class="api-params">
-        <div class="api-param">
-            <span class="api-param__name">$size</span>
-            <span class="api-param__type">String</span>
-            <span class="api-param__desc">Breakpoint key from <code>$breakpoints</code></span>
-        </div>
-    </div>
+    <table class="ss-c-table">
+        <tbody>
+            <tr>
+                <td><code>$size</code></td>
+                <td><span class="ss-c-badge ss-c-badge--sm">String</span></td>
+                <td>Breakpoint key from <code>$breakpoints</code></td>
+            </tr>
+        </tbody>
+    </table>
 
     <h4>Available Breakpoints</h4>
-    <table class="table">
+    <table class="ss-c-table">
         <thead>
             <tr>
                 <th>Key</th>
@@ -28,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr><td><code>us</code></td><td>Ultra Small</td><td>1</td><td>240px</td><td>Q07 Portrait (60mm)</td><td>Compact / fold devices</td></tr>
+            <tr><td><code>us</code></td><td>Ultra Small</td><td>1</td><td>250px</td><td>Q07 Portrait (62.5mm)</td><td>Compact / fold devices</td></tr>
             <tr><td><code>ss</code></td><td>Super Small</td><td>2</td><td>360px</td><td>Q06 Portrait (90mm)</td><td>Phones</td></tr>
             <tr><td><code>xs</code></td><td>Extra Small</td><td>3</td><td>540px</td><td>Q05 Portrait (135mm)</td><td>Large phones</td></tr>
             <tr><td><code>sm</code></td><td>Small</td><td>4</td><td>720px</td><td>Q04 Portrait (180mm)</td><td>Tablets</td></tr>
@@ -41,7 +43,7 @@
     </table>
 
     <h4>Examples</h4>
-    <div class="code-block"><pre><code>.container {
+    <pre class="ss-c-code-block"><code>.container {
     padding: q(16);
 
     @include breakpoint(md) {
@@ -68,16 +70,16 @@
         grid-template-columns: repeat(4, 1fr);
         gap: q(24);
     }
-}</code></pre></div>
+}</code></pre>
 
     <h3>media_us, media_ss, media_xs, media_sm, media_md, media_lg, media_xl, media_sl, media_ul</h3>
     <p>Per-breakpoint shortcut mixins for each step in the 9-step scale. Equivalent to <code>@include breakpoint($name)</code> but more concise.</p>
 
-    <div class="code-block"><pre><code>.sidebar {
+    <pre class="ss-c-code-block"><code>.sidebar {
     display: none;
 
     @include media_md {
         display: block;
     }
-}</code></pre></div>
+}</code></pre>
 </section>

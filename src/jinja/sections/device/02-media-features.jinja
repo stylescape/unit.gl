@@ -1,53 +1,85 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Media Features</h2>
 
-    <div class="device-features">
-        <div class="device-features__col">
+    <div class="ss-l-grid ss-l-grid-auto">
+        <div class="ss-c-card">
             <h3>Interaction</h3>
-            <ul class="device-feature-list">
-                <li><span class="device-feature-list__key">hover</span><span id="mf-hover"
-                        class="device-feature-list__value">—</span></li>
-                <li><span class="device-feature-list__key">pointer</span><span id="mf-pointer"
-                        class="device-feature-list__value">—</span></li>
-                <li><span class="device-feature-list__key">any-hover</span><span id="mf-any-hover"
-                        class="device-feature-list__value">—</span></li>
-                <li><span class="device-feature-list__key">any-pointer</span><span id="mf-any-pointer"
-                        class="device-feature-list__value">—</span></li>
-            </ul>
+            <table class="ss-c-table">
+                <tbody>
+                    <tr>
+                        <td><code>hover</code></td>
+                        <td id="mf-hover">—</td>
+                    </tr>
+                    <tr>
+                        <td><code>pointer</code></td>
+                        <td id="mf-pointer">—</td>
+                    </tr>
+                    <tr>
+                        <td><code>any-hover</code></td>
+                        <td id="mf-any-hover">—</td>
+                    </tr>
+                    <tr>
+                        <td><code>any-pointer</code></td>
+                        <td id="mf-any-pointer">—</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
-        <div class="device-features__col">
+        <div class="ss-c-card">
             <h3>Preferences</h3>
-            <ul class="device-feature-list">
-                <li><span class="device-feature-list__key">prefers-color-scheme</span><span id="mf-scheme"
-                        class="device-feature-list__value">—</span></li>
-                <li><span class="device-feature-list__key">prefers-reduced-motion</span><span id="mf-motion"
-                        class="device-feature-list__value">—</span></li>
-                <li><span class="device-feature-list__key">prefers-contrast</span><span id="mf-contrast"
-                        class="device-feature-list__value">—</span></li>
-                <li><span class="device-feature-list__key">forced-colors</span><span id="mf-forced"
-                        class="device-feature-list__value">—</span></li>
-            </ul>
+            <table class="ss-c-table">
+                <tbody>
+                    <tr>
+                        <td><code>prefers-color-scheme</code></td>
+                        <td id="mf-scheme">—</td>
+                    </tr>
+                    <tr>
+                        <td><code>prefers-reduced-motion</code></td>
+                        <td id="mf-motion">—</td>
+                    </tr>
+                    <tr>
+                        <td><code>prefers-contrast</code></td>
+                        <td id="mf-contrast">—</td>
+                    </tr>
+                    <tr>
+                        <td><code>forced-colors</code></td>
+                        <td id="mf-forced">—</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
-        <div class="device-features__col">
+        <div class="ss-c-card">
             <h3>Display</h3>
-            <ul class="device-feature-list">
-                <li><span class="device-feature-list__key">color-gamut</span><span id="mf-gamut"
-                        class="device-feature-list__value">—</span></li>
-                <li><span class="device-feature-list__key">display-mode</span><span id="mf-display"
-                        class="device-feature-list__value">—</span></li>
-                <li><span class="device-feature-list__key">prefers-reduced-transparency</span><span
-                        id="mf-transparency" class="device-feature-list__value">—</span></li>
-                <li><span class="device-feature-list__key">prefers-reduced-data</span><span id="mf-data"
-                        class="device-feature-list__value">—</span></li>
-            </ul>
+            <table class="ss-c-table">
+                <tbody>
+                    <tr>
+                        <td><code>color-gamut</code></td>
+                        <td id="mf-gamut">—</td>
+                    </tr>
+                    <tr>
+                        <td><code>display-mode</code></td>
+                        <td id="mf-display">—</td>
+                    </tr>
+                    <tr>
+                        <td><code>prefers-reduced-transparency</code></td>
+                        <td id="mf-transparency">—</td>
+                    </tr>
+                    <tr>
+                        <td><code>prefers-reduced-data</code></td>
+                        <td id="mf-data">—</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <div class="alert alert--tip device-tip">
-        <div class="alert__title">Tip</div>
-        <p>Use these media features to progressively enhance: fewer effects under reduced motion, higher contrast
-            tokens when requested, and touch-first UI when pointers are coarse.</p>
+    <div class="ss-c-alert ss-c-alert--success">
+        <div class="ss-c-alert__body">
+            <p class="ss-c-alert__title">Tip</p>
+            <p>Use these media features to progressively enhance: fewer effects under reduced motion, higher contrast
+                tokens when requested, and touch-first UI when pointers are coarse.</p>
+        </div>
     </div>
 </section>

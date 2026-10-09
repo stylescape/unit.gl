@@ -1,9 +1,9 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Q Format Alignment</h2>
 
     <p>When used for breakpoints, the 9 steps align with Q format paper sizes. The <strong>P</strong> (Portrait) and <strong>L</strong> (Landscape) designations indicate orientation:</p>
 
-    <table class="step-table">
+    <table class="ss-c-table">
         <thead>
             <tr>
                 <th>Step</th>
@@ -15,7 +15,7 @@
         </thead>
         <tbody>
             {% set qformats = [
-                {"key": "us", "format": "Q07P", "mm": "60mm", "px": "240px", "device": "Compact / Fold"},
+                {"key": "us", "format": "Q07P", "mm": "62.5mm", "px": "250px", "device": "Compact / Fold"},
                 {"key": "ss", "format": "Q06P", "mm": "90mm", "px": "360px", "device": "Phones"},
                 {"key": "xs", "format": "Q05P", "mm": "135mm", "px": "540px", "device": "Large phones"},
                 {"key": "sm", "format": "Q04P", "mm": "180mm", "px": "720px", "device": "Tablets"},
@@ -37,8 +37,10 @@
         </tbody>
     </table>
 
-    <div class="alert alert--info">
-        <div class="alert__title">Physical-to-Digital</div>
-        <p>All pixel values are derived from physical millimeters using the 4× multiplier (1mm = 4px at 96dpi). This ensures consistency between print and digital design.</p>
+    <div class="ss-c-alert ss-c-alert--info">
+        <div class="ss-c-alert__body">
+            <p class="ss-c-alert__title">Physical-to-Digital</p>
+            <p>All pixel values are derived from physical millimeters using the 4× multiplier (1mm = 4px at 96dpi). This ensures consistency between print and digital design.</p>
+        </div>
     </div>
 </section>

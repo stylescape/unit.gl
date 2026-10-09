@@ -1,22 +1,22 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Layering System</h2>
 
     <p>unit.gl provides semantic z-index management to prevent "z-index wars":</p>
 
     <div
         style="display: flex; flex-direction: column-reverse; gap: 2px; margin: calc(var(--grid-unit) * 3) 0; max-width: 300px;">
-        {% set layers = [('canvas', -1000, '#d4d4d4'), ('content', 2000, '#3b82f6'), ('interface', 4000, '#22c55e'),
-        ('modal', 7000, '#ef4444'), ('guides', 9998, '#0ea5e9')] %}
+        {% set layers = [['canvas', -1000, '#d4d4d4'], ['content', 2000, '#3b82f6'], ['interface', 4000, '#22c55e'],
+        ['modal', 7000, '#ef4444'], ['guides', 9998, '#0ea5e9']] %}
         {% for name, z, color in layers %}
         <div
             style="background: {{ color }}; color: white; padding: 8px 16px; display: flex; justify-content: space-between; font-size: 0.75rem;">
             <span>{{ name }}</span>
-            <span style="font-family: var(--font-mono);">z: {{ z }}</span>
+            <span style="font-family: var(--ss-font-family-mono);">z: {{ z }}</span>
         </div>
         {% endfor %}
     </div>
 
-    <div class="code-block"><pre><code><span class="comment">// Use semantic layer names</span>
+    <pre class="ss-c-code-block"><code><span class="comment">// Use semantic layer names</span>
         .modal {
         z-index: z("modal"); <span class="comment">// 7000</span>
         }
@@ -27,5 +27,5 @@
 
         .tooltip {
         z-index: z("interface") + 10; <span class="comment">// 4010</span>
-        }</code></pre></div>
+        }</code></pre>
 </section>

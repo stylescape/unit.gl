@@ -92,8 +92,7 @@
 ///   }
 ///
 @mixin display_retina {
-    @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
+    @media (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
         @content;
     }
@@ -135,8 +134,7 @@
 ///   }
 ///
 @mixin display_density($min-dpr: 2) {
-    @media (min-device-pixel-ratio: #{$min-dpr}),
-           (min-resolution: #{$min-dpr * 96}dpi),
+    @media (min-resolution: #{$min-dpr * 96}dpi),
            (min-resolution: #{$min-dpr}dppx) {
         @content;
     }
@@ -180,8 +178,7 @@
         }
     } @else {
         // Combined viewport + density query
-        @media (min-width: #{$bp-value}) and (min-device-pixel-ratio: #{$min-dpr}),
-               (min-width: #{$bp-value}) and (min-resolution: #{$min-dpr * 96}dpi),
+        @media (min-width: #{$bp-value}) and (min-resolution: #{$min-dpr * 96}dpi),
                (min-width: #{$bp-value}) and (min-resolution: #{$min-dpr}dppx) {
             @content;
         }
@@ -260,8 +257,7 @@
 ///   }
 ///
 @mixin display_standard {
-    @media (max-device-pixel-ratio: 1.5),
-        (max-resolution: 144dpi),
+    @media (max-resolution: 144dpi),
         (max-resolution: 1.5dppx) {
         @content;
     }
@@ -308,8 +304,6 @@
         );
     }
 
-    // Modern image-set with -webkit prefix for Safari
-    background-image: image-set(#{$image-set-items});
     background-image: image-set(#{$image-set-items});
 }
 

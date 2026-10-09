@@ -8,7 +8,7 @@
 /// easy access and modification, ensuring responsive designs that cater to
 /// a wide range of devices.
 ///
-/// @group Color
+/// @group Device
 /// @author Scape Press
 /// @link https://unit.gl
 /// @since 0.1.0 initial release
@@ -16,7 +16,7 @@
 /// @access public
 ///
 /// @example scss - Usage Example
-///   @media (min-width: map.get($devices, "iphone_x")["min-width"]) {
+///   @media (min-width: map.get($device_map, "iphone_x", "min-width")) {
 ///       // Styles specific to iPhone X
 ///   }
 ///
@@ -49,7 +49,7 @@
 /// @property iPhones - iPhones with varying screen sizes and pixel densities.
 ///
 /// @example scss - Usage Example
-///     @media (min-width: map.get($devices, "iphone_x")["min-width"]) {
+///     @media (min-width: map.get($device_map, "iphone_x", "min-width")) {
 ///         // Styles specific to iPhone X
 ///     }
 ///
@@ -96,8 +96,8 @@ $device_map: (
         "pixel-ratio": 3
     ),
     "iphone_13": (
-        "min-width": 428px,
-        "max-width": 926px,
+        "min-width": 390px,
+        "max-width": 844px,
         "pixel-ratio": 3
     ),
     // Samsung Galaxy
@@ -110,13 +110,13 @@ $device_map: (
             "pixel-ratio": 3
         ),
     "samsung_s20": (
-        "min-width": 320px,
-        "max-width": 720px,
-        "pixel-ratio": 4
+        "min-width": 360px,
+        "max-width": 800px,
+        "pixel-ratio": 3
     ),
     "samsung_s21": (
-        "min-width": 320px,
-        "max-width": 780px,
+        "min-width": 360px,
+        "max-width": 800px,
         "pixel-ratio": 3
     ),
     // Samsung Galaxy Fold
@@ -135,12 +135,12 @@ $device_map: (
     "google_pixel": (
             "min-width": 411px,
             "max-width": 731px,
-            "pixel-ratio": 2.6
+            "pixel-ratio": 2.625
         ),
     "google_pixel_5": (
         "min-width": 393px,
         "max-width": 851px,
-        "pixel-ratio": 3
+        "pixel-ratio": 2.75
     ),
     /// Other Smartphones
     /// Other popular smartphones with varying screen sizes and pixel densities.
@@ -151,8 +151,8 @@ $device_map: (
         ),
     "oneplus_7t": (
         "min-width": 412px,
-        "max-width": 732px,
-        "pixel-ratio": 2.5
+        "max-width": 914px,
+        "pixel-ratio": 2.625
     ),
     "sony_xperia_1": (
         "min-width": 384px,
@@ -167,7 +167,7 @@ $device_map: (
     "xiaomi_mi9": (
         "min-width": 393px,
         "max-width": 851px,
-        "pixel-ratio": 3
+        "pixel-ratio": 2.75
     ),
     // Tablets
     // ========================================================================
@@ -205,8 +205,8 @@ $device_map: (
             "pixel-ratio": 2.5
         ),
     "surface_pro": (
-        "min-width": 768px,
-        "max-width": 1366px,
+        "min-width": 912px,
+        "max-width": 1368px,
         "pixel-ratio": 2
     ),
     // Desktops & Laptops
@@ -265,7 +265,7 @@ $device_map: (
         "max-width": 2560px,
         "pixel-ratio": 2
     )
-);
+) !default;
 
 // Public alias (used by mixins/docs)
 $devices: $device_map !default;

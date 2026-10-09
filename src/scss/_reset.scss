@@ -48,9 +48,7 @@
 // ============================================================================
 
 :where(html) {
-    text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    text-size-adjust: 100%;
+    text-size-adjust: 100%; // prefixes are added at build time
     -webkit-tap-highlight-color: transparent;
     line-height: 1.15;
 }
@@ -160,10 +158,6 @@
     cursor: pointer;
 }
 
-:where(button:disabled, [disabled]) {
-    cursor: not-allowed;
-}
-
 :where(textarea) {
     resize: vertical;
     overflow: auto;
@@ -182,6 +176,11 @@
 
 :where(label, button, select, summary, [role="button"], [role="option"]) {
     cursor: pointer;
+}
+
+// After the pointer rules: all are zero-specificity, so source order decides.
+:where(button:disabled, [disabled]) {
+    cursor: not-allowed;
 }
 
 // ============================================================================

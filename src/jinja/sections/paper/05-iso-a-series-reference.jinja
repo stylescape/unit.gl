@@ -1,8 +1,8 @@
-<section>
+<section class="ss-c-demo__section">
         <h2>ISO A-Series Reference</h2>
-        <p class="paper-muted">International standard paper sizes (ISO 216).</p>
+        <p class="ss-c-text-muted">International standard paper sizes (ISO 216).</p>
 
-        <table class="paper-table">
+        <table class="ss-c-table">
             <thead>
                 <tr>
                     <th>Key</th>
@@ -17,7 +17,7 @@
                     <td><code>{{ f.key }}</code></td>
                     <td><code>{{ f.w }}</code></td>
                     <td><code>{{ f.h }}</code></td>
-                    <td class="paper-usage">{{ ((f.w * f.h) / 100) | round(1) }}</td>
+                    <td>{{ ((f.w * f.h) / 100) | round(1) }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

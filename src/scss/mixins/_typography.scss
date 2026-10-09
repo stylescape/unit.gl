@@ -40,6 +40,7 @@
 @use "../functions" as *;
 @use "../variables" as *;
 @use "../maps" as *;
+@use "unit" as *;
 
 // ============================================================================
 // Font Size Mixin
@@ -102,7 +103,7 @@
 /// @see line_height_for_size
 ///
 @mixin set_line_height($value) {
-    @include q($value, line_height);
+    @include q($value, line-height);
 }
 
 // ============================================================================
@@ -177,5 +178,5 @@
 ///
 @mixin set_type($font-size, $line-height) {
     @include q($font-size, font-size);
-    @include q($line-height, line_height);
+    @include q($line-height, line-height);
 }

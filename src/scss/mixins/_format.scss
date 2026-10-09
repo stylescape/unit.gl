@@ -43,7 +43,7 @@
 ///
 /// @example scss - Usage
 ///   .print-preview { @include format(a4); }
-///   .poster { @include format(q00+, landscape); }
+///   .poster { @include format("q00+", landscape); }
 ///
 @mixin format($size, $orientation: portrait) {
     $key: string.to-lower-case(#{$size});

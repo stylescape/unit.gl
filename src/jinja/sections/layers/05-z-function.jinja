@@ -1,25 +1,29 @@
 {# The z() Function #}
-<section>
+<section class="ss-c-demo__section">
     <h2>The z() Function</h2>
 
-    <div class="api-signature">z($layer)</div>
+    <pre class="ss-c-code-block">z($layer)</pre>
 
     <p>Returns the z-index value for the specified layer name.</p>
 
     <h3>Parameters</h3>
 
-    <div class="api-param">
-        <code>$layer</code>
-        <span class="api-param__type">String</span>
-        <span class="api-param__desc">The name of the layer (e.g., "modal", "interface", "content")</span>
-    </div>
+    <table class="ss-c-table">
+        <tbody>
+            <tr>
+                <td><code>$layer</code></td>
+                <td><span class="ss-c-badge ss-c-badge--sm">String</span></td>
+                <td>The name of the layer (e.g., "modal", "interface", "content")</td>
+            </tr>
+        </tbody>
+    </table>
 
     <h3>Returns</h3>
     <p><code>Number</code> — The z-index value associated with the layer, or <code>null</code> if not found.</p>
 
     <h3>Example</h3>
 
-    <div class="code-block"><pre><code>@use "unit.gl" as *;
+    <pre class="ss-c-code-block"><code>@use "unit.gl" as *;
 
 .modal-overlay {
   position: fixed;
@@ -41,5 +45,5 @@
 .background-pattern {
   position: absolute;
   z-index: z("canvas"); // -1000
-}</code></pre></div>
+}</code></pre>
 </section>

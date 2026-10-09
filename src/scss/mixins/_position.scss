@@ -79,18 +79,28 @@
 ///   <div class="absolute top_q16 right_q16">Top-right badge</div>
 ///   <div class="absolute inset_x_q24 bottom_q0">Bottom bar with margins</div>
 ///
-/// @see maps.$q_steps
+/// @see $q_steps
 ///
 @mixin inset_utilities($steps: maps.$q_steps, $prefix: "") {
+    // Emitted shorthand → axis → side so the more specific class wins at any step.
     @each $key, $value in $steps {
         /// All four sides (inset shorthand)
         .#{$prefix}inset_q#{$key} {
-            inset: variables.q($value)
-                variables.q($value)
-                variables.q($value)
-                variables.q($value);
+            inset: variables.q($value);
         }
-
+    }
+    @each $key, $value in $steps {
+        /// Axis-based positioning
+        .#{$prefix}inset_x_q#{$key} {
+            left: variables.q($value);
+            right: variables.q($value);
+        }
+        .#{$prefix}inset_y_q#{$key} {
+            top: variables.q($value);
+            bottom: variables.q($value);
+        }
+    }
+    @each $key, $value in $steps {
         /// Individual side positioning
         .#{$prefix}top_q#{$key} {
             top: variables.q($value);
@@ -103,16 +113,6 @@
         }
         .#{$prefix}left_q#{$key} {
             left: variables.q($value);
-        }
-
-        /// Axis-based positioning
-        .#{$prefix}inset_x_q#{$key} {
-            left: variables.q($value);
-            right: variables.q($value);
-        }
-        .#{$prefix}inset_y_q#{$key} {
-            top: variables.q($value);
-            bottom: variables.q($value);
         }
     }
 }
@@ -143,37 +143,50 @@
 ///   @include translate_utilities();
 ///
 /// @example css - Generated output
-///   .translate_x_q16 { transform: translateX(16q); }
-///   .translate_y_q8 { transform: translateY(8q); }
-///   .-translate_x_q16 { transform: translateX(calc(-1 * 16q)); }
-///   .-translate_y_q8 { transform: translateY(calc(-1 * 8q)); }
+///   .translate_x_q16 { --translate-x: 1rem; translate: var(--translate-x) var(--translate-y); }
+///   .-translate_y_q8 { --translate-y: -0.5rem; translate: var(--translate-x) var(--translate-y); }
 ///
 /// @example html - Usage in markup
 ///   <div class="translate_x_q16">Shifted right by 16q</div>
 ///   <div class="-translate_y_q8">Shifted up by 8q</div>
 ///
-/// @see maps.$q_steps
+/// @see $q_steps
 ///
 @mixin translate_utilities($steps: maps.$q_steps, $prefix: "") {
+    // X and Y go through custom properties into the individual `translate`
+    // property, so `.translate_x_* .translate_y_*` combine and neither
+    // overrides a `transform` (rotate/scale) set elsewhere. Registered as
+    // non-inheriting so a parent's offset never leaks into its children.
+    @property --translate-x {
+        syntax: "<length-percentage>";
+        inherits: false;
+        initial-value: 0;
+    }
+    @property --translate-y {
+        syntax: "<length-percentage>";
+        inherits: false;
+        initial-value: 0;
+    }
     @each $key, $value in $steps {
         /// Positive X translation (shift right)
         .#{$prefix}translate_x_q#{$key} {
-            transform: translateX(variables.q($value));
+            --translate-x: #{variables.q($value)};
+            translate: var(--translate-x) var(--translate-y);
         }
-
         /// Positive Y translation (shift down)
         .#{$prefix}translate_y_q#{$key} {
-            transform: translateY(variables.q($value));
+            --translate-y: #{variables.q($value)};
+            translate: var(--translate-x) var(--translate-y);
         }
-
         /// Negative X translation (shift left)
         .#{$prefix}-translate_x_q#{$key} {
-            transform: translateX(calc(-1 * variables.q($value)));
+            --translate-x: #{calc(-1 * variables.q($value))};
+            translate: var(--translate-x) var(--translate-y);
         }
-
         /// Negative Y translation (shift up)
         .#{$prefix}-translate_y_q#{$key} {
-            transform: translateY(calc(-1 * variables.q($value)));
+            --translate-y: #{calc(-1 * variables.q($value))};
+            translate: var(--translate-x) var(--translate-y);
         }
     }
 }
@@ -196,18 +209,21 @@
 ///         `.inset_block_start_q*`, `.inset_block_end_q*`
 ///
 @mixin inset_logical_utilities($steps: maps.$q_steps, $prefix: "") {
+    // Emitted axis → side so the more specific class wins at any step.
     @each $key, $value in $steps {
         .#{$prefix}inset_inline_q#{$key} {
             inset-inline: variables.q($value);
         }
+        .#{$prefix}inset_block_q#{$key} {
+            inset-block: variables.q($value);
+        }
+    }
+    @each $key, $value in $steps {
         .#{$prefix}inset_inline_start_q#{$key} {
             inset-inline-start: variables.q($value);
         }
         .#{$prefix}inset_inline_end_q#{$key} {
             inset-inline-end: variables.q($value);
-        }
-        .#{$prefix}inset_block_q#{$key} {
-            inset-block: variables.q($value);
         }
         .#{$prefix}inset_block_start_q#{$key} {
             inset-block-start: variables.q($value);

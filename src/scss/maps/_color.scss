@@ -20,7 +20,7 @@
 // Use
 // ============================================================================
 
-@use "../variables" as *;
+@use "../variables/color" as *;
 
 // ============================================================================
 // Maps
@@ -36,4 +36,4 @@ $guide--color_map: (
     "quaternary": $guide--color_quaternary,
     "light": $guide--color_light,
     "dark": $guide--color_dark
-);
+) !default;

@@ -1,4 +1,4 @@
-<section class="docs-section">
+<section class="ss-c-demo__section">
             <h2>Q Unit Scale</h2>
             <p>
                 <code>q()</code> is the atomic unit: <code>q(1) = 0.0625rem</code> (1px at a 16px root).
@@ -6,28 +6,28 @@
                 exploding CSS size.
             </p>
 
-            <div class="qscale-metrics">
-                <div class="qscale-metrics__item">
-                    <div class="qscale-metrics__label">Root font-size</div>
-                    <div class="qscale-metrics__value"><span id="qs-root">16</span>px</div>
+            <div class="ss-l-grid ss-l-grid-auto">
+                <div class="ss-c-card ss-c-stat">
+                    <div class="ss-c-stat__title">Root font-size</div>
+                    <div class="ss-c-stat__value"><span id="qs-root">16</span>px</div>
                 </div>
-                <div class="qscale-metrics__item">
-                    <div class="qscale-metrics__label">q(1) value</div>
-                    <div class="qscale-metrics__value">0.0625rem</div>
+                <div class="ss-c-card ss-c-stat">
+                    <div class="ss-c-stat__title">q(1) value</div>
+                    <div class="ss-c-stat__value">0.0625rem</div>
                 </div>
-                <div class="qscale-metrics__item">
-                    <div class="qscale-metrics__label">Physical size</div>
-                    <div class="qscale-metrics__value">0.25mm</div>
+                <div class="ss-c-card ss-c-stat">
+                    <div class="ss-c-stat__title">Physical size</div>
+                    <div class="ss-c-stat__value">0.25mm</div>
                 </div>
             </div>
 
             {% set q_steps = [0,1,2,4,6,8,12,16,20,24,32,40,48,56,64,72,80,96,112,128,144,160,192,224,256] %}
 
             <h3>Curated Steps (<code>$q_steps</code>)</h3>
-            <p class="qscale-muted">The scale is intentionally sparse at larger values to keep generated CSS
+            <p class="ss-c-text-muted">The scale is intentionally sparse at larger values to keep generated CSS
                 predictable.</p>
 
-            <table class="docs-table qscale-table">
+            <table class="ss-c-table">
                 <thead>
                     <tr>
                         <th>Step</th>
@@ -38,7 +38,7 @@
                 </thead>
                 <tbody>
                     {% for s in q_steps %}
-                    <tr{% if s % 20==0 and s> 0 %} class="lcm-row"{% endif %}>
+                    <tr{% if s % 20==0 and s> 0 %} class="is-active"{% endif %}>
                         <td><code>{{ s }}</code></td>
                         <td><code>{{ (s / 16) | round(4) }}rem</code></td>
                         <td><code>{{ s }}px</code></td>
@@ -48,9 +48,11 @@
                 </tbody>
             </table>
 
-            <div class="alert alert--tip" style="margin-top: calc(var(--grid-unit) * 3);">
-                <div class="alert__title">Tip</div>
-                <p>If you need ultra-fine values for a one-off, use <code>q(n)</code> directly in SCSS. Keep utilities
-                    for the shared, common ladder.</p>
+            <div class="ss-c-alert ss-c-alert--success" style="margin-top: calc(var(--grid-unit) * 3);">
+                <div class="ss-c-alert__body">
+                    <p class="ss-c-alert__title">Tip</p>
+                    <p>If you need ultra-fine values for a one-off, use <code>q(n)</code> directly in SCSS. Keep utilities
+                        for the shared, common ladder.</p>
+                </div>
             </div>
         </section>

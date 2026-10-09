@@ -63,11 +63,6 @@
 ///   }
 ///
 @mixin fluid_type($min_vw, $max_vw, $min_font_size, $max_font_size) {
-    // $u1: unit($min_vw);
-    // $u2: unit($max_vw);
-    // $u3: unit($min_font_size);
-    // $u4: unit($max_font_size);
-
     $u1: math.unit($min_vw);
     $u2: math.unit($max_vw);
     $u3: math.unit($min_font_size);
@@ -93,7 +88,9 @@
             }
         }
     } @else {
-        @warn "Units do not match across all parameters in fluid_type mixin.";
+        // Mixed units: the media-query steps above need one unit, but
+        // `fluid()` converts everything to px for the slope.
+        font-size: fluid($min_font_size, $max_font_size, $min_vw, $max_vw);
     }
 }
 
@@ -130,8 +127,7 @@
 
     // Reduce font size on high-density displays
     // 2× displays: multiply by $density_scale
-    @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
+    @media (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
         & {
             font-size: calc(#{$min_font_size} * #{$density_scale});
@@ -159,8 +155,7 @@
     }
 
     // 3× displays: multiply by $density_scale squared
-    @media (min-device-pixel-ratio: 3),
-        (min-resolution: 288dpi),
+    @media (min-resolution: 288dpi),
         (min-resolution: 3dppx) {
         & {
             $scale_3x: $density_scale * $density_scale;

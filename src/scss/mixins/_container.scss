@@ -79,7 +79,8 @@
 @mixin container($name: null, $type: inline-size) {
     container-type: $type;
     @if $name {
-        container-name: $name;
+        // `container-name` takes an ident; a quoted string is invalid CSS.
+        container-name: #{$name};
     }
 }
 

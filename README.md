@@ -48,7 +48,7 @@
 
 ### Responsive Design Tools
 
-- **Viewport Breakpoints** – Q format-derived breakpoint system (us, ss, xs, sm, md, lg, xl, ul) with `view()` mixin for mobile-first media queries
+- **Viewport Breakpoints** – Q format-derived breakpoint system (us, ss, xs, sm, md, lg, xl, sl, ul) with `breakpoint()` mixin for mobile-first media queries
 - **Device Profiles** – Pre-configured device-specific media queries for iPhone, iPad, Samsung Galaxy, and more
 - **Aspect Ratio Utilities** – Maintain proportions with `display_ratio()` mixin supporting common ratios (16:9, 4:3, golden ratio)
 - **Orientation Helpers** – Landscape/portrait-specific styling with `display_orientation_*` mixins
@@ -57,7 +57,7 @@
 
 - **Unit Conversion** – Seamless conversion between px, rem, em with `px_to_rem()`, `rem_to_px()`, `em_to_px()` functions
 - **Math Operations** – `add()`, `subtract()` with intelligent unit handling; `modular_scale()` for ratio-based scaling
-- **Layer Management** – z-index token system via `$layers` map and `z()` function for consistent stacking order
+- **Layer Management** – z-index token system via `$layer_map` map and `z()` function for consistent stacking order
 - **Paper Sizes** – ISO (A-series, B-series), ANSI, and custom Q-series paper dimensions for print layouts
 
 ### Developer Experience
@@ -72,7 +72,7 @@
 ### HTML Script Tag
 
 ``` html
-<script src="https://unpkg.com/unit.gl@latest/dist.min.js"></script>
+<script type="module" src="https://unpkg.com/unit.gl@latest/dist/js/unit.gl.js"></script>
 ```
 
 ### NPM Module
@@ -80,6 +80,12 @@
 ``` bash
 npm i unit.gl
 ```
+
+The Sass sources load their colour palette from `hue.gl` (installed as a
+dependency) through a `pkg:` URL, so compile with Node's package importer:
+bundlers such as Vite and webpack handle this, and the Sass CLI needs
+`--pkg-importer=node` (or `importers: [new NodePackageImporter()]` in the JS
+API).
 
 ---
 
@@ -100,12 +106,8 @@ Import `unit.gl` into your Sass/SCSS files:
 
 // Apply fluid typography
 .heading {
-  @include fluid_type(
-    $min-size: 16px,
-    $max-size: 48px,
-    $min-vw: 320px,
-    $max-vw: 1280px
-  );
+  // min viewport, max viewport, min size, max size
+  @include fluid_type(320px, 1280px, 16px, 48px);
 }
 
 // Responsive breakpoints
@@ -114,11 +116,11 @@ Import `unit.gl` into your Sass/SCSS files:
   grid-template-columns: 1fr;
   gap: q(4);
 
-  @include view(md) {
+  @include breakpoint(md) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include view(lg) {
+  @include breakpoint(lg) {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -140,13 +142,13 @@ Import `unit.gl` into your Sass/SCSS files:
   grid-template-columns: 1fr;
 
   // Tablet: 2 columns
-  @include view(sm) {
+  @include breakpoint(sm) {
     grid-template-columns: repeat(2, 1fr);
     gap: q(12);                       // 0.75rem
   }
 
   // Desktop: 3 columns
-  @include view(md) {
+  @include breakpoint(md) {
     grid-template-columns: repeat(3, 1fr);
     gap: q(16);                       // 1rem
   }
@@ -163,10 +165,11 @@ Import `unit.gl` into your Sass/SCSS files:
 #### Typography Scale with Modular Rhythm
 
 ```scss
+@use "sass:map";
 @use "unit.gl" as *;
 
 // Use golden ratio (1.618) for harmonious type scale
-$scale-ratio: map.get($ratio_map, golden);
+$scale-ratio: map.get($interval_map, golden_ratio);
 
 h1 {
   font-size: modular_scale(4, 1rem, $scale-ratio);  // ~6.85rem
@@ -225,13 +228,13 @@ p {
   height: q(80);  // 5rem = 80px
 
   // iPhone-specific adjustments
-  @include device-media-query('iphone_x') {
+  @include device_media_query('iphone_x') {
     padding-top: env(safe-area-inset-top);  // Notch support
   }
 
   // Tablet landscape
   @include display_orientation_landscape {
-    @include view(sm) {
+    @include breakpoint(sm) {
       height: q(64);  // Shorter header in landscape
     }
   }
@@ -240,22 +243,30 @@ p {
 
 ### TypeScript Integration
 
+Importing `unit.gl` in the browser sets `--dpr` / `--dpr-inverse` on `<html>`
+and wires up grid overlays: every `button[data-toggle="<name>"]` toggles the
+`.guide--layer[data-grid="<name>"]` overlay, and the choice persists in
+`localStorage`. During server-side rendering the import does nothing.
+
+```html
+<button type="button" data-toggle="baseline" aria-pressed="false">Baseline</button>
+<div class="guide--layer guide--baseline" data-grid="baseline"></div>
+```
+
+For overlays with other markup, create a manager yourself:
+
 ```typescript
 import { GridManager } from 'unit.gl';
 
-// Initialize grid overlay for development
-const grid = new GridManager({
-  columns: 12,
-  gutter: 16,       // 16px gutter
-  baseline: 8,      // 8px baseline grid
-  color: 'rgba(255, 0, 0, 0.1)'
+const grids = new GridManager({
+  toggleSelector: '.grid-toggle',
+  gridSelector: '.grid-overlay',
+  activeClass: 'visible',
 });
 
-// Toggle grid visibility
-grid.toggle();
-
-// Update grid configuration
-grid.updateConfig({ columns: 16 });
+grids.toggle('baseline');
+grids.show('graph');
+grids.hideAll();
 ```
 
 ---
@@ -265,15 +276,14 @@ grid.updateConfig({ columns: 16 });
 ### Performance Optimization
 
 1. **Minimize Media Query Complexity**
-   - Use the `view()` mixin for standard breakpoints instead of custom media queries
+   - Use the `breakpoint()` mixin for standard breakpoints instead of custom media queries
    - Consolidate similar breakpoint rules to reduce CSS output
 
 2. **Leverage Sass Variables**
    - Override defaults at the top of your main stylesheet:
      ```scss
      @use "unit.gl" with (
-       $q: 0.0625rem,           // Customize base unit if needed
-       $base_screen_unit: 16px  // Adjust breakpoint base
+       $q: 0.0625rem  // Customize base unit if needed
      );
      ```
 
@@ -288,8 +298,8 @@ grid.updateConfig({ columns: 16 });
 
 - **Consistent Spacing**: Use Kyū multiples (4q, 8q, 12q, 16q) as your spacing scale
 - **Type Hierarchy**: Choose one modular scale ratio and stick with it across all typographic elements
-- **Z-Index Management**: Define your layer stack in `$layers` map at project start
-- **Breakpoint Strategy**: Use mobile-first approach with `view()` mixins; avoid `max-width` queries
+- **Z-Index Management**: Define your layer stack in `$layer_map` map at project start
+- **Breakpoint Strategy**: Use mobile-first approach with `breakpoint()` mixins; avoid `max-width` queries
 
 ### Accessibility Considerations
 
@@ -299,7 +309,7 @@ grid.updateConfig({ columns: 16 });
 
 ### Common Pitfalls to Avoid
 
-❌ **Don't mix unit systems**
+**Don't mix unit systems**
 ```scss
 .bad {
   padding: 10px;      // Hardcoded px
@@ -307,7 +317,7 @@ grid.updateConfig({ columns: 16 });
 }
 ```
 
-✅ **Use consistent units**
+**Use consistent units**
 ```scss
 .good {
   padding: q(10);     // All Kyū
@@ -315,22 +325,22 @@ grid.updateConfig({ columns: 16 });
 }
 ```
 
-❌ **Don't nest too many breakpoints**
+**Don't nest too many breakpoints**
 ```scss
 .bad {
-  @include view(md) {
-    @include view(lg) {  // Nested breakpoint = bad specificity
+  @include breakpoint(md) {
+    @include breakpoint(lg) {  // Nested breakpoint = bad specificity
       // ...
     }
   }
 }
 ```
 
-✅ **Keep breakpoints flat**
+**Keep breakpoints flat**
 ```scss
 .good {
-  @include view(md) { /* md styles */ }
-  @include view(lg) { /* lg styles */ }
+  @include breakpoint(md) { /* md styles */ }
+  @include breakpoint(lg) { /* lg styles */ }
 }
 ```
 
@@ -366,13 +376,14 @@ p  ██              (1.000rem) ← modular_scale(0)
 
 | Name | Min Width | Q Format        | Device Target          |
 |------|-----------|-----------------|------------------------|
-| us   | 240px     | Q07 Portrait    | Compact / Fold         |
+| us   | 250px     | Q07 Portrait    | Compact / Fold         |
 | ss   | 360px     | Q06 Portrait    | Phones                 |
 | xs   | 540px     | Q05 Portrait    | Large phones           |
 | sm   | 720px     | Q04 Portrait    | Tablets                |
-| md   | 1440px    | Q03 Landscape   | Laptops                |
-| lg   | 2160px    | Q02 Landscape   | QHD Desktops           |
-| xl   | 2880px    | Q01 Landscape   | 4K Displays            |
+| md   | 1080px    | Q04 Landscape   | Laptops                |
+| lg   | 1440px    | Q03 Landscape   | Desktops               |
+| xl   | 2160px    | Q02 Landscape   | QHD Desktops           |
+| sl   | 2880px    | Q01 Landscape   | 4K Displays            |
 | ul   | 4320px    | Q00 Landscape   | 5K+ Displays           |
 
 ---

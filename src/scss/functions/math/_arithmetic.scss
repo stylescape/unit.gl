@@ -186,12 +186,12 @@
 /// Raises a value to a power.
 ///
 /// @name power
-/// @param {Number} $base - The base value.
+/// @param {Number} $base - The base value (must be unitless).
 /// @param {Number} $exponent - The exponent (must be unitless).
 /// @return {Number} - Base raised to exponent.
 /// @example scss
 ///   $squared: power(4, 2); // => 16
-///   $cubed: power(2px, 3); // => 8px
+///   $cubed: power(2, 3) * 1px; // => 8px
 ///
 @function power($base, $exponent) {
     $base: _validate_number($base, "$base");
@@ -209,7 +209,7 @@
 /// Returns the square root of a value.
 ///
 /// @name sqrt
-/// @param {Number} $value - Value to find square root of.
+/// @param {Number} $value - Value to find square root of (must be unitless).
 /// @return {Number|Null} - Square root, or null if negative.
 /// @example scss
 ///   $root: sqrt(16); // => 4
@@ -231,7 +231,7 @@
 /// Returns the nth root of a value.
 ///
 /// @name nth_root
-/// @param {Number} $value - Value to find root of.
+/// @param {Number} $value - Value to find root of (must be unitless).
 /// @param {Number} $n [2] - The root degree (must be unitless).
 /// @return {Number|Null} - The nth root.
 /// @example scss
@@ -277,10 +277,11 @@
         @return null;
     }
 
-    $sum: 0;
+    $sum: null;
     @each $value in $values {
         $value: _validate_number($value);
-        @if $sum == 0 {
+        // The first value seeds the total so its unit is kept
+        @if $sum == null {
             $sum: $value;
         } @else {
             $sum: add($sum, $value);
@@ -308,10 +309,11 @@
         @return 0;
     }
 
-    $total: 0;
+    $total: null;
     @each $value in $values {
         $value: _validate_number($value);
-        @if $total == 0 {
+        // The first value seeds the total so its unit is kept
+        @if $total == null {
             $total: $value;
         } @else {
             $total: add($total, $value);

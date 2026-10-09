@@ -1,0 +1,58 @@
+// =============================================================================
+// Tests: configuring the package entry point with `@use ... with (...)`
+// =============================================================================
+
+@use "true" as *;
+@use "../index" as u with (
+    $q: 0.125rem,
+    $reference_dpi: 120,
+    $format_overrides: ("custom": (100mm, 200mm))
+);
+
+@include describe("@use with (...)") {
+    @include it("configures $q for q() and the line scale") {
+        @include assert-equal(u.q(2), 0.25rem);
+        @include assert-equal(u.line(1), 0.625rem);
+    }
+
+    @include it("configures $reference_dpi") {
+        @include assert-equal(u.density_dpi("retina"), 240);
+    }
+
+    @include it("configures $format_overrides") {
+        @include assert {
+            @include output {
+                .c {
+                    @include u.format("custom", landscape);
+                }
+            }
+            @include expect {
+                .c {
+                    width: 200mm;
+                    height: 100mm;
+                }
+            }
+        }
+    }
+}
+
+@include describe("setter mixins") {
+    @include it("emit valid property names") {
+        @include assert {
+            @include output {
+                .a {
+                    @include u.set_padding_top(8);
+                    @include u.set_line_height(24);
+                    @include u.set_border_radius(4);
+                }
+            }
+            @include expect {
+                .a {
+                    padding-top: 1rem;
+                    line-height: 3rem;
+                    border-radius: 0.5rem;
+                }
+            }
+        }
+    }
+}

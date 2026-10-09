@@ -27,6 +27,23 @@
 // Functions
 // ============================================================================
 
+/// Nth term of a sequence where each term is the sum of the previous two,
+/// computed iteratively (naive recursion is exponential in $n).
+/// @access private
+@function _sequence_additive($n, $first, $second) {
+    $previous: $first;
+    $current: $second;
+    @if $n == 0 {
+        @return $first;
+    }
+    @for $i from 2 through $n {
+        $next: $previous + $current;
+        $previous: $current;
+        $current: $next;
+    }
+    @return $current;
+}
+
 ///
 /// Fibonacci Number Sequence
 /// ---------------------------------------------------------------------------
@@ -44,13 +61,7 @@
         @warn "Index #{$n} is not valid for the Fibonacci sequence.";
         @return null;
     }
-    @if $n == 0 {
-        @return 0;
-    } @else if $n == 1 {
-        @return 1;
-    } @else {
-        @return sequence_fibonacci($n - 1) + sequence_fibonacci($n - 2);
-    }
+    @return _sequence_additive($n, 0, 1);
 }
 
 ///
@@ -70,13 +81,7 @@
         @warn "Index #{$n} is not valid for the Lucas sequence.";
         @return null;
     }
-    @if $n == 0 {
-        @return 2;
-    } @else if $n == 1 {
-        @return 1;
-    } @else {
-        @return sequence_lucas($n - 1) + sequence_lucas($n - 2);
-    }
+    @return _sequence_additive($n, 2, 1);
 }
 
 ///
@@ -94,7 +99,12 @@
     @if $n <= 1 {
         @return false;
     }
-    @for $i from 2 through math.sqrt($n) {
+    // `@for` needs integer bounds and counts down when the start exceeds
+    // the end, so 2 and 3 are answered before the loop.
+    @if $n < 4 {
+        @return true;
+    }
+    @for $i from 2 through math.floor(math.sqrt($n)) {
         @if $n % $i == 0 {
             @return false;
         }
@@ -114,6 +124,14 @@
 /// @return {Number} - The factorial of $n.
 ///
 @function factorial($n) {
+    @if $n < 0 {
+        @warn "Factorial is not defined for negative numbers (#{$n}).";
+        @return null;
+    }
+    // `@for $i from 1 through 0` would iterate 1, 0 and yield 0.
+    @if $n < 2 {
+        @return 1;
+    }
     $result: 1;
     @for $i from 1 through $n {
         $result: $result * $i;
@@ -169,7 +187,8 @@
 /// @return {Number} - The nth term of the geometric series.
 ///
 @function sequence_geometric($n) {
-    @if $n < 0 {
+    // 1-indexed: the first term is 1
+    @if $n < 1 {
         @warn "Negative index #{$n} is not valid for the geometric series.";
         @return null;
     }
@@ -188,6 +207,13 @@
 /// @return {Number} - The superfactorial of $n.
 ///
 @function sequence_superfactorial($n) {
+    @if $n < 0 {
+        @warn "Superfactorial is not defined for negative numbers (#{$n}).";
+        @return null;
+    }
+    @if $n < 2 {
+        @return 1;
+    }
     $result: 1;
     @for $i from 1 through $n {
         $factorial: 1;

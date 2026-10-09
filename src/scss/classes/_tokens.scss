@@ -11,7 +11,7 @@
 /// ## Generated tokens
 /// ```css
 /// :root {
-///     --q-0:    0;
+///     --q-0:    0rem;
 ///     --q-1:    0.0625rem;
 ///     --q-2:    0.125rem;
 ///     /* …one per entry in $q_steps… */
@@ -20,9 +20,9 @@
 ///
 /// ## Customisation
 /// ```scss
-/// @use "unit.gl/tokens" with (
+///     @use "unit.gl/tokens" with (
 ///     $token_prefix: "u-",   // → --u-4, --u-8, …
-///     $steps: (4, 8, 16),    // emit only a subset
+///     $steps: (4: 4, 8: 8, 16: 16),  // emit only a subset
 /// );
 /// ```
 ///

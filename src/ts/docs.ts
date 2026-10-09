@@ -54,43 +54,72 @@ function getViewport(): { width: number; height: number } {
 // Theme Toggle (base.html.jinja)
 // ============================================================================
 
-function initThemeToggle(): void {
-    const themeToggle = document.querySelector('[data-toggle="theme"]');
-    const html = document.documentElement;
-
-    // Check for saved theme or system preference
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme) {
-        html.setAttribute('data-theme', savedTheme);
-    } else if (systemPrefersDark) {
-        html.setAttribute('data-theme', 'dark');
+/**
+ * localStorage access that never throws (blocked storage, sandboxed iframes);
+ * a failure only means the preference isn't remembered.
+ */
+function readStored(key: string): string | null {
+    try {
+        return localStorage.getItem(key);
+    } catch {
+        return null;
     }
+}
 
-    themeToggle?.addEventListener('click', function () {
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+function writeStored(key: string, value: string): void {
+    try {
+        localStorage.setItem(key, value);
+    } catch {
+        // Preference simply won't persist.
+    }
+}
+
+/**
+ * Marks a stylescape toggle button as pressed: the pressed one renders as a
+ * solid `ss-c-button`, the others as outline.
+ */
+function setPressed(btn: Element, pressed: boolean): void {
+    btn.classList.toggle('ss-c-button--solid', pressed);
+    btn.classList.toggle('ss-c-button--outline', !pressed);
+    btn.setAttribute('aria-pressed', String(pressed));
+}
+
+/** Applies the saved or system theme. */
+function applyInitialTheme(): void {
+    const saved = readStored('theme');
+    const theme = saved ?? (mq('(prefers-color-scheme: dark)') ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+}
+
+// This script is a classic <script> in <head>, so this runs before the body
+// paints and dark-mode visitors don't see a flash of the light theme.
+applyInitialTheme();
+
+function initThemeToggle(): void {
+    const themeToggle = document.querySelector<HTMLElement>('[data-toggle="theme"]');
+    const html = document.documentElement;
+    if (!themeToggle) return;
+
+    const sync = () => themeToggle.setAttribute('aria-pressed', String(html.getAttribute('data-theme') === 'dark'));
+    sync();
+
+    themeToggle.addEventListener('click', () => {
+        const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+        writeStored('theme', newTheme);
+        sync();
     });
 }
 
 // ============================================================================
-// Grid Toggle (base.html.jinja)
+// Active Navigation Link
 // ============================================================================
 
-function initGridToggle(): void {
-    document.querySelectorAll('.grid-controls button').forEach(btn => {
-        btn.addEventListener('click', function (this: HTMLButtonElement) {
-            const gridType = this.dataset.toggle;
-            const grid = document.querySelector(`[data-grid="${gridType}"]`);
-            if (grid) {
-                grid.classList.toggle('active');
-                this.classList.toggle('active');
-            }
-        });
-    });
+function initActiveNavLink(): void {
+    const current = location.pathname.split('/').pop() || 'index.html';
+    const link = document.querySelector(`#sidebar .ss-c-nav__link[href="${CSS.escape(current)}"]`);
+    link?.classList.add('is-active');
+    link?.setAttribute('aria-current', 'page');
 }
 
 // ============================================================================
@@ -100,26 +129,19 @@ function initGridToggle(): void {
 function initMobileNav(): void {
     const toggle = document.getElementById('nav-mobile-toggle');
     const menu = document.getElementById('nav-menu');
-    const navWrapper = document.querySelector('.nav-wrapper');
 
     if (!toggle || !menu) return;
 
     toggle.addEventListener('click', function () {
         const isOpen = menu.classList.toggle('is-open');
-        navWrapper?.classList.toggle('nav-open', isOpen);
         this.setAttribute('aria-expanded', String(isOpen));
-
-        // Prevent body scroll when menu is open
-        document.body.classList.toggle('nav-open', isOpen);
     });
 
     // Close menu when clicking a link
     menu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             menu.classList.remove('is-open');
-            navWrapper?.classList.remove('nav-open');
             toggle.setAttribute('aria-expanded', 'false');
-            document.body.classList.remove('nav-open');
         });
     });
 
@@ -127,9 +149,7 @@ function initMobileNav(): void {
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && menu.classList.contains('is-open')) {
             menu.classList.remove('is-open');
-            navWrapper?.classList.remove('nav-open');
             toggle.setAttribute('aria-expanded', 'false');
-            document.body.classList.remove('nav-open');
             toggle.focus();
         }
     });
@@ -139,9 +159,7 @@ function initMobileNav(): void {
     mediaQuery.addEventListener('change', (e) => {
         if (e.matches && menu.classList.contains('is-open')) {
             menu.classList.remove('is-open');
-            navWrapper?.classList.remove('nav-open');
             toggle.setAttribute('aria-expanded', 'false');
-            document.body.classList.remove('nav-open');
         }
     });
 }
@@ -152,14 +170,13 @@ function initMobileNav(): void {
 
 function initSidebarToggle(): void {
     const toggle = document.getElementById('sidebar-toggle');
-    const sidebar = document.querySelector('.sidebar');
+    const sidebar = document.getElementById('sidebar');
 
     if (!toggle || !sidebar) return;
 
     toggle.addEventListener('click', function () {
         const isOpen = sidebar.classList.toggle('is-open');
         this.setAttribute('aria-expanded', String(isOpen));
-        document.body.classList.toggle('sidebar-open', isOpen);
     });
 
     // Close sidebar when clicking a link (mobile)
@@ -168,7 +185,6 @@ function initSidebarToggle(): void {
             if (window.innerWidth < 900) {
                 sidebar.classList.remove('is-open');
                 toggle.setAttribute('aria-expanded', 'false');
-                document.body.classList.remove('sidebar-open');
             }
         });
     });
@@ -178,7 +194,6 @@ function initSidebarToggle(): void {
         if (e.key === 'Escape' && sidebar.classList.contains('is-open')) {
             sidebar.classList.remove('is-open');
             toggle.setAttribute('aria-expanded', 'false');
-            document.body.classList.remove('sidebar-open');
             toggle.focus();
         }
     });
@@ -189,7 +204,6 @@ function initSidebarToggle(): void {
         if (e.matches && sidebar.classList.contains('is-open')) {
             sidebar.classList.remove('is-open');
             toggle.setAttribute('aria-expanded', 'false');
-            document.body.classList.remove('sidebar-open');
         }
     });
 }
@@ -199,40 +213,27 @@ function initSidebarToggle(): void {
 // ============================================================================
 
 function initLayersDemo(): void {
-    // Expose functions globally for onclick handlers
-    (window as any).toggleLayer = function (id: string): void {
-        const layer = document.getElementById('layer-' + id);
-        const btn = document.getElementById('btn-' + id);
-
-        layer?.classList.toggle('layer-box--hidden');
-        btn?.classList.toggle('layer-btn--active');
+    const setLayer = (btn: HTMLElement, visible: boolean): void => {
+        document.getElementById('layer-' + btn.dataset.layer)?.classList.toggle('layer-box--hidden', !visible);
+        setPressed(btn, visible);
     };
 
-    (window as any).showAll = function (): void {
-        document.querySelectorAll('.layer-box').forEach(el => {
-            el.classList.remove('layer-box--hidden');
-        });
-        document.querySelectorAll('.layer-btn').forEach(el => {
-            if (el.id.startsWith('btn-')) {
-                el.classList.add('layer-btn--active');
-            }
-        });
-    };
+    const layerButtons = document.querySelectorAll<HTMLElement>('button[data-layer]');
 
-    (window as any).hideAll = function (): void {
-        document.querySelectorAll('.layer-box').forEach(el => {
-            el.classList.add('layer-box--hidden');
+    layerButtons.forEach(btn => {
+        btn.addEventListener('click', () => setLayer(btn, btn.getAttribute('aria-pressed') !== 'true'));
+    });
+
+    document.querySelectorAll<HTMLElement>('button[data-layers]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const visible = btn.dataset.layers === 'show';
+            layerButtons.forEach(layerBtn => setLayer(layerBtn, visible));
         });
-        document.querySelectorAll('.layer-btn').forEach(el => {
-            if (el.id.startsWith('btn-')) {
-                el.classList.remove('layer-btn--active');
-            }
-        });
-    };
+    });
 }
 
 // ============================================================================
-// Device Detection Demo (test_device.html.jinja)
+// Device Detection Demo (device.html.jinja)
 // ============================================================================
 
 function initDeviceDemo(): void {
@@ -369,20 +370,20 @@ function initDeviceDemo(): void {
         const filterValue = String(filterEl?.value || '').trim().toLowerCase();
 
         let matches = 0;
-        document.querySelectorAll<HTMLElement>('.device-row').forEach(row => {
+        document.querySelectorAll<HTMLElement>('tr[data-key]').forEach(row => {
             const key = String(row.dataset.key || '').toLowerCase();
             const visible = !filterValue || key.includes(filterValue);
-            row.classList.toggle('is-filtered', !visible);
+            row.hidden = !visible;
 
             const badge = row.querySelector('[data-role="match"]');
             if (!visible) {
-                row.classList.remove('is-match');
+                row.classList.remove('is-active');
                 if (badge) badge.textContent = '—';
                 return;
             }
 
             const result = scoreDeviceMatch({ width, dpr }, row);
-            row.classList.toggle('is-match', result.match);
+            row.classList.toggle('is-active', result.match);
             if (badge) badge.textContent = result.label;
             if (result.match) matches += 1;
         });
@@ -400,153 +401,21 @@ function initDeviceDemo(): void {
 }
 
 // ============================================================================
-// Q Scale Demo (test_qscale.html.jinja)
+// Q Scale Demo (scale.html.jinja)
 // ============================================================================
 
 function initQScaleDemo(): void {
-    if (!document.getElementById('qs-root')) return;
+    const rootEl = document.getElementById('qs-root');
+    if (!rootEl) return;
 
-    const qSteps = [0, 1, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48, 56, 64, 72, 80, 96, 112, 128, 144, 160, 192, 224, 256];
-    const slider = document.getElementById('qs-range') as HTMLInputElement | null;
+    // The root font-size is fluid, so q(1) in px changes with the viewport
+    const update = () => {
+        const value = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
+        rootEl.textContent = Number.isFinite(value) ? String(Math.round(value * 100) / 100) : '16';
+    };
 
-    function rootPx(): number {
-        const raw = getComputedStyle(document.documentElement).fontSize;
-        const value = Number.parseFloat(raw);
-        return Number.isFinite(value) ? value : 16;
-    }
-
-    function toPx(step: number): number {
-        return (step * rootPx()) / 16;
-    }
-
-    function toRem(step: number): number {
-        return step / 16;
-    }
-
-    function setStep(step: number): void {
-        const stepNum = Number(step);
-        const px = toPx(stepNum);
-        const rem = toRem(stepNum);
-
-        setText('qs-root', fmt(rootPx(), 2));
-        setText('qs-step', stepNum);
-        setText('qs-px', fmt(px, 2));
-        setText('qs-rem', fmt(rem, 4));
-
-        const className = `.p_q${stepNum}`;
-        const classEl = document.getElementById('qs-class');
-        if (classEl) classEl.textContent = className;
-
-        // Visual: box size responds to the step
-        const size = Math.max(8, px);
-        const pad = Math.max(2, px / 4);
-        const gap = Math.max(2, px / 6);
-
-        const box = document.getElementById('qs-box');
-        if (box) {
-            box.style.width = `${size}px`;
-            box.style.height = `${size}px`;
-            box.style.padding = `${pad}px`;
-            box.style.gap = `${gap}px`;
-        }
-
-        setText('qs-w', `${fmt(size, 0)}px`);
-        setText('qs-h', `${fmt(size, 0)}px`);
-        setText('qs-pad', `${fmt(pad, 0)}px`);
-        setText('qs-gap', `${fmt(gap, 0)}px`);
-
-        setText('qs-u-step', stepNum);
-        setText('qs-u-step2', stepNum);
-        setText('qs-u-step3', stepNum);
-        setText('qs-u-step4', stepNum);
-        setText('qs-u-step5', stepNum);
-
-        // Update slider position
-        if (slider) {
-            const sliderIndex = qSteps.indexOf(stepNum);
-            if (sliderIndex >= 0) {
-                slider.value = String(sliderIndex);
-            }
-        }
-
-        // UI state - update chip active states
-        document.querySelectorAll<HTMLElement>('.qscale-chip').forEach(btn => {
-            btn.classList.toggle('active', Number(btn.dataset.step) === stepNum);
-        });
-    }
-
-    // Slider event listener
-    if (slider) {
-        slider.addEventListener('input', (e) => {
-            const index = parseInt((e.target as HTMLInputElement).value);
-            if (index >= 0 && index < qSteps.length) {
-                setStep(qSteps[index]);
-            }
-        });
-    }
-
-    // Chip click handlers (for chips defined in template)
-    document.querySelectorAll<HTMLElement>('.qscale-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-            const step = parseInt(chip.dataset.step || '16');
-            setStep(step);
-        });
-    });
-
-    // Initialize chips dynamically if container exists
-    const chipRow = document.getElementById('qscale-chip-row');
-    if (chipRow) {
-        qSteps.forEach(step => {
-            const btn = document.createElement('button');
-            btn.className = 'qscale-chip' + (step === 16 ? ' active' : '');
-            btn.textContent = String(step);
-            btn.dataset.step = String(step);
-            btn.addEventListener('click', () => setStep(step));
-            chipRow.appendChild(btn);
-        });
-    }
-
-    // Grid visualization for qscale page
-    function createQScaleGrid(canvasId: string, scale: number, className: string): void {
-        const canvas = document.getElementById(canvasId);
-        if (!canvas) return;
-
-        canvas.innerHTML = '';
-        const width = canvas.offsetWidth;
-
-        for (let x = scale; x < width; x += scale) {
-            const line = document.createElement('div');
-            line.className = 'grid-line ' + className;
-
-            // Mark LCM alignment points
-            if (x % 20 === 0) {
-                line.classList.add('lcm');
-            }
-
-            line.style.left = x + 'px';
-            canvas.appendChild(line);
-        }
-    }
-
-    // Initialize grids if they exist on this page
-    createQScaleGrid('qs-type-grid', 4, 'type');
-    createQScaleGrid('qs-line-grid', 5, 'line-scale');
-
-    // Combined grid showing only LCM points
-    const combinedCanvas = document.getElementById('qs-combined-grid');
-    if (combinedCanvas) {
-        combinedCanvas.innerHTML = '';
-        const width = combinedCanvas.offsetWidth;
-        for (let x = 20; x < width; x += 20) {
-            const line = document.createElement('div');
-            line.className = 'grid-line lcm';
-            line.style.left = x + 'px';
-            combinedCanvas.appendChild(line);
-        }
-    }
-
-    // Initial render
-    setStep(16);
+    update();
+    window.addEventListener('resize', update);
 }
 
 // ============================================================================
@@ -579,7 +448,7 @@ function initDensityDemo(): void {
         const q = parseFloat(input?.value || '0') || 0;
         const mm = q * 0.25;
         const inches = mm / 25.4;
-        const pt = mm / 0.3528;
+        const pt = (mm * 72) / 25.4;
         const rem = q * 0.0625;
 
         setText('calc-mm', mm.toFixed(2) + 'mm');
@@ -628,11 +497,12 @@ const BREAKPOINTS: ReadonlyArray<{ key: string; min: number }> = [
     { key: 'sm', min: 720 },
     { key: 'xs', min: 540 },
     { key: 'ss', min: 360 },
-    { key: 'us', min: 240 },
+    { key: 'us', min: 250 },
 ];
 
 function getActiveBreakpoint(width: number): { key: string; min: number } {
-    return BREAKPOINTS.find(bp => width >= bp.min) || BREAKPOINTS[BREAKPOINTS.length - 1];
+    // Below the smallest breakpoint only the unprefixed base styles apply
+    return BREAKPOINTS.find(bp => width >= bp.min) || { key: 'base', min: 0 };
 }
 
 /**
@@ -675,7 +545,7 @@ function initNavQIndicator(): void {
 }
 
 // ============================================================================
-// Breakpoints Demo (test_breakpoints.html.jinja)
+// Breakpoints Demo (breakpoints.html.jinja)
 // ============================================================================
 
 function initBreakpointsDemo(): void {
@@ -687,10 +557,10 @@ function initBreakpointsDemo(): void {
 
         setText('bp-width', String(width));
         setText('bp-active', active.key);
-        setText('bp-rule', `(min-width: ${active.min}px)`);
+        setText('bp-rule', active.min ? `(min-width: ${active.min}px)` : 'none (base styles)');
 
-        document.querySelectorAll<HTMLElement>('.bp-row').forEach(row => {
-            row.classList.toggle('active', row.dataset.bp === active.key);
+        document.querySelectorAll<HTMLElement>('tr[data-bp]').forEach(row => {
+            row.classList.toggle('is-active', row.dataset.bp === active.key);
         });
     }
 
@@ -699,7 +569,7 @@ function initBreakpointsDemo(): void {
 }
 
 // ============================================================================
-// Paper Demo (test_paper.html.jinja)
+// Paper Demo (paper.html.jinja)
 // ============================================================================
 
 function initPaperDemo(): void {
@@ -717,9 +587,14 @@ function initPaperDemo(): void {
 
     let orientation = 'portrait';
 
-    // Reference size for scaling (A0 is the largest common format)
-    const maxRefSize = 1189; // A0 height in mm
+    // One fixed drawing scale for every format, so sizes stay comparable:
+    // the largest format on offer fills the preview.
+    const maxRefSize = Math.max(
+        ...Array.from(select.options, opt => Math.max(Number(opt.dataset.w) || 0, Number(opt.dataset.h) || 0)),
+        1
+    );
     const containerMaxPx = 400; // Max pixel size for preview
+    const mmPerCssPx = 25.4 / 96;
 
     function currentDims(): { key: string; w: number; h: number } {
         const opt = select?.selectedOptions?.[0];
@@ -738,9 +613,7 @@ function initPaperDemo(): void {
         const pw = orientation === 'landscape' ? h : w;
         const ph = orientation === 'landscape' ? w : h;
 
-        // Calculate scale factor based on container size
-        const maxDim = Math.max(pw, ph);
-        const scale = containerMaxPx / maxRefSize;
+        const scale = containerMaxPx / maxRefSize; // px per mm
         const scaledW = pw * scale;
         const scaledH = ph * scale;
 
@@ -749,21 +622,23 @@ function initPaperDemo(): void {
         preview.style.height = `${scaledH}px`;
         preview.style.aspectRatio = 'auto';
 
-        // Update scale indicator
-        const displayScale = (maxRefSize / maxDim).toFixed(1);
+        // Real-world drawing scale: 1 CSS px is 25.4/96 mm
+        const displayScale = (1 / (scale * mmPerCssPx)).toFixed(1);
         if (scaleDisplay) scaleDisplay.textContent = `Scale: 1:${displayScale}`;
 
         if (title) title.textContent = key;
         if (outW) outW.textContent = String(pw);
         if (outH) outH.textContent = String(ph);
-        if (code) code.textContent = key;
+        // Keys such as q00+ are not valid bare Sass identifiers
+        if (code) code.textContent = /^[a-z0-9_]+$/i.test(key) ? key : `"${key}"`;
         if (codeOr) codeOr.textContent = orientation;
     }
 
-    document.querySelectorAll<HTMLElement>('.paper-orient__btn').forEach(btn => {
+    const orientButtons = document.querySelectorAll<HTMLElement>('button[data-orient]');
+    orientButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             orientation = btn.dataset.orient || 'portrait';
-            document.querySelectorAll('.paper-orient__btn').forEach(b => b.classList.toggle('active', b === btn));
+            orientButtons.forEach(b => setPressed(b, b === btn));
             apply();
         });
     });
@@ -787,26 +662,13 @@ function initPaperDemo(): void {
 }
 
 // ============================================================================
-// Baseline Grid Demo (guide_baseline.html.jinja)
-// ============================================================================
-
-function initBaselineDemo(): void {
-    // Expose toggle function globally
-    (window as any).toggleBaseline = function (): void {
-        document.querySelectorAll('.guide--baseline, .guide--baseline_custom').forEach(el => {
-            el.classList.toggle('guide--baseline--hidden');
-        });
-    };
-}
-
-// ============================================================================
-// Hybrid Scale Demo (test_hybrid_scale.html.jinja)
+// Hybrid Scale Demo (scale.html.jinja)
 // ============================================================================
 
 function initHybridScaleDemo(): void {
     const slider = document.getElementById('scaleSlider') as HTMLInputElement | null;
     const sliderValue = document.getElementById('sliderValue');
-    const chips = document.querySelectorAll<HTMLElement>('.chip');
+    const chips = document.querySelectorAll<HTMLElement>('button[data-value]');
     const previewBox = document.getElementById('previewBox');
 
     if (!slider) return;
@@ -830,7 +692,6 @@ function initHybridScaleDemo(): void {
         const typeVal = value * 4;
         const lineVal = value * 5;
         const lcmVal = Math.ceil(Math.max(typeVal, lineVal) / 20) * 20;
-        const isAligned = typeVal % 20 === 0 && lineVal % 20 === 0;
 
         // Update slider
         slider!.value = String(value);
@@ -838,7 +699,7 @@ function initHybridScaleDemo(): void {
 
         // Update chips
         chips.forEach(chip => {
-            chip.classList.toggle('active', parseInt(chip.dataset.value || '0') === value);
+            setPressed(chip, parseInt(chip.dataset.value || '0') === value);
         });
 
         // Update metrics
@@ -856,12 +717,13 @@ function initHybridScaleDemo(): void {
         if (lcmMultiple) lcmMultiple.textContent = (lcmVal / 20) + '× LCM';
 
         if (lcmAligned) {
-            if (typeVal === lineVal && typeVal % 20 === 0) {
+            // The line value (always the larger) sits exactly on the 20Q grid
+            if (lcmVal === lineVal) {
                 lcmAligned.textContent = '✓ Perfect Alignment';
-                lcmAligned.classList.add('aligned');
+                lcmAligned.classList.add('ss-c-text-success');
             } else {
                 lcmAligned.textContent = 'Next: ' + lcmVal + 'Q';
-                lcmAligned.classList.remove('aligned');
+                lcmAligned.classList.remove('ss-c-text-success');
             }
         }
 
@@ -924,8 +786,8 @@ function initHybridScaleDemo(): void {
 
     // Initialize grid visualizations if containers exist
     function initGrids(): void {
-        createGrid('type-grid-canvas', 4, 'type-line', false);
-        createGrid('line-grid-canvas', 5, 'line-line', false);
+        createGrid('type-grid-canvas', 4, 'type', false);
+        createGrid('line-grid-canvas', 5, 'line-scale', false);
         createCombinedGrid('combined-grid-canvas');
     }
 
@@ -947,6 +809,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Core functionality (always runs)
     initThemeToggle();
     // Grid toggle handled by GridManager in unit.gl.js (avoids double-toggle)
+    initActiveNavLink();
     initMobileNav();
     initSidebarToggle();
     initNavBreakpointIndicator();
@@ -959,6 +822,5 @@ document.addEventListener('DOMContentLoaded', function () {
     initDensityDemo();
     initBreakpointsDemo();
     initPaperDemo();
-    initBaselineDemo();
     initHybridScaleDemo();
 });

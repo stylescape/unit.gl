@@ -36,25 +36,18 @@
     "xxhdpi",
     "xxxhdpi",
     "zindex",
-    "asgi",
-    "wsgi",
-    "gunicorn",
-    "healthz",
-    "procfile",
     "pyproject",
     "codegen",
-    "frontends",
-    "grotesk",
-    "specialisation",
-    "behaviour",
-    "climsim",
-    "proplan"
+    "behaviour"
   ],
   "ignorePaths": [
     "node_modules/**",
     "dist/**",
     "package-lock.json",
     "**/*.svg",
-    "**/*.dwg"
+    "**/*.dwg",
+    "src/html/**",
+    "doc/sass/**",
+    "res/**"
   ]
 }

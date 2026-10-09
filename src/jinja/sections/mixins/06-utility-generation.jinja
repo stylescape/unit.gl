@@ -1,4 +1,4 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Utility Generation</h2>
     <p>Mixins that emit utility classes from the <code>$q_steps</code> ladder. These are invoked by
         <code>src/scss/utilities.scss</code> and you only need to call them yourself when generating custom builds.</p>
@@ -6,32 +6,32 @@
     <h3>Spacing utilities</h3>
     <p>Each mixin emits a family of <code>.{prefix}_q{step}</code> classes for every value in <code>$q_steps</code>.</p>
 
-    <div class="api-signature">@include padding_utilities<br>@include padding_logical_utilities<br>@include margin_utilities<br>@include margin_logical_utilities<br>@include gap_utilities</div>
+    <pre class="ss-c-code-block">@include padding_utilities<br>@include padding_logical_utilities<br>@include margin_utilities<br>@include margin_logical_utilities<br>@include gap_utilities</pre>
 
-    <div class="code-block"><pre><code>// Generates .p_q*, .pt_q*, .pb_q*, .pl_q*, .pr_q*
+    <pre class="ss-c-code-block"><code>// Generates .p_q*, .pt_q*, .pb_q*, .pl_q*, .pr_q*
 @include padding_utilities;
 
 // Generates .m_q*, .mt_q*, .mb_q*, .ml_q*, .mr_q*
 @include margin_utilities;
 
 // Generates .gap_q*
-@include gap_utilities;</code></pre></div>
+@include gap_utilities;</code></pre>
 
     <h3>Sizing utilities</h3>
-    <div class="api-signature">@include size_utilities<br>@include width_utilities<br>@include height_utilities</div>
+    <pre class="ss-c-code-block">@include size_utilities<br>@include width_utilities<br>@include height_utilities</pre>
 
-    <div class="code-block"><pre><code>// Generates .w_q*, .h_q*, and .size_q*
-@include size_utilities;</code></pre></div>
+    <pre class="ss-c-code-block"><code>// Generates .w_q*, .h_q*, and .size_q*
+@include size_utilities;</code></pre>
 
     <h3>Border utilities</h3>
-    <div class="api-signature">@include border_width_utilities<br>@include border_radius_utilities<br>@include outline_width_utilities<br>@include outline_offset_utilities</div>
+    <pre class="ss-c-code-block">@include border_width_utilities<br>@include border_radius_utilities<br>@include outline_width_utilities<br>@include outline_offset_utilities</pre>
 
-    <div class="code-block"><pre><code>@include border_width_utilities;
-@include border_radius_utilities;</code></pre></div>
+    <pre class="ss-c-code-block"><code>@include border_width_utilities;
+@include border_radius_utilities;</code></pre>
 
     <h3>Position utilities</h3>
-    <div class="api-signature">@include inset_utilities<br>@include inset_logical_utilities<br>@include translate_utilities</div>
+    <pre class="ss-c-code-block">@include inset_utilities<br>@include inset_logical_utilities<br>@include translate_utilities</pre>
 
-    <div class="code-block"><pre><code>@include inset_utilities;
-@include translate_utilities;</code></pre></div>
+    <pre class="ss-c-code-block"><code>@include inset_utilities;
+@include translate_utilities;</code></pre>
 </section>

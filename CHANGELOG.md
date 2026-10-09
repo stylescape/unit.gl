@@ -7,6 +7,62 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+### Fixed
+
+- **Sass functions that failed on first call now work:** `line()`,
+  `type_unit()`, `snap_to_line()`, `line_height_for_size()`,
+  `scale_density()` (now also with fractional DPRs such as 2.625), `z()`,
+  `guide--color()` and `device_media_query()`.
+- **`fluid()` / `lerp()` / `fluid_type()` with mixed units.** Values are
+  interpolated in px, so `fluid(1rem, 1.5rem)` now reaches 1.5rem (it grew
+  by 0.5px before). The `fluid_type` mixin falls back to `fluid()` for
+  mixed units instead of emitting nothing.
+- **`@use "unit.gl" with (…)`** now works for `$q`, `$reference_dpi`, the
+  breakpoints, the maps (`$format_overrides`, `$layer_map`, …) and the guide
+  colours; it failed with "already loaded" or "not declared with !default".
+- **All `set_*` setter mixins** compile and emit valid property names
+  (`padding-top`, not `padding_top`).
+- **Utility cascade order.** Shorthand, axis and side classes are emitted
+  in that order, so `.p_q8.pt_q4` applies `pt_q4` (also margin, gap, border,
+  radius, inset and logical variants). `translate_x_*` and `translate_y_*`
+  now combine instead of overriding each other.
+- **Sequences and math:** `is_prime()`, `factorial(0)`,
+  `sequence_catalan(0)`, `sequence_superfactorial(0)`,
+  `sequence_geometric(0)` and `sum()`/`avg()` around zero return correct
+  values; Fibonacci and Lucas are iterative (no exponential compile time).
+- **Data:** `$format_breakpoint_map` landscape entries were one format off;
+  `bronze_ratio` (3.303), `super_golden` (1.466) and the augmented and
+  diminished intervals (12-TET) have correct values; `$scale_classic`
+  holds lengths instead of the string `q(6)`; business cards are stored
+  portrait like every other paper size; several phone/tablet entries in
+  `$device_map` are corrected.
+- **Invalid CSS:** quoted `container-name`, the `grid_baseline` gradient,
+  duplicate declarations, the disabled-button cursor, `guide--centered`
+  ignoring its height, `guide--margin` overflowing, and the centred graph
+  guide being half a column off.
+- **`unit.gl/formats`** entry compiles (it pointed at a missing file).
+- **JavaScript runtime:** importing the package outside a browser no longer
+  throws; `GridManager` and `injectDPR` are real exports with generated
+  types; overlays shrink with the page and update `aria-pressed`.
+- **Packaging:** `sass` and type entry points point at `dist/`; `hue.gl` is a
+  dependency (every Sass entry point loads it); tests run on Node 20.
+
+### Changed
+
+- **Q07 is 62.5mm everywhere**, so the `us` breakpoint is 250px (was 240px).
+- **`sl` breakpoint utilities** (`.sl_*`) are generated, as documented.
+- **Guides use the layer map's z-index** (`guides: 9998`, was 9999).
+- **`aspect-ratio`** is emitted as an exact fraction (`16/9`).
+- **`translate_*` utilities** set the individual `translate` property via
+  non-inheriting `--translate-x` / `--translate-y`, so they no longer
+  replace a `transform` set elsewhere.
+- **`body` is no longer fixed to `height: 100%`**; it keeps
+  `min-height: 100%` so it grows with its content.
+- `peptatonic` is renamed `heptatonic` in `$scale_musical`; the old key is
+  kept as a deprecated alias.
+- `lerp()` / `fluid()` with unitless values now raise an error (they
+  produced invalid CSS before).
+
 ### Added
 
 - **CSS custom-property token layer.** A new `:root { --q-0 … --q-256 }` block

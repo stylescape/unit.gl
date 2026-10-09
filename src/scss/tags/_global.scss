@@ -96,7 +96,6 @@ html {
 
     // Tab Sizing (consistent 4-space tabs)
     tab-size: 4;
-    tab-size: 4;
 
     // Full Height Document
     height: 100%;
@@ -116,18 +115,5 @@ html {
 ///
 body {
     min-height: 100%;
-    margin: 0;
-}
-
-///
-/// Document Height Setup
-/// ---------------------------------------------------------------------------
-///
-/// Ensures both html and body fill the full viewport height.
-/// This is essential for sticky footers and full-height layouts.
-///
-html,
-body {
-    height: 100%;
     margin: 0;
 }

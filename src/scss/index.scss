@@ -13,10 +13,16 @@
 @charset "utf-8";
 @use "sass:math";
 
+// Dependency-free leaves loaded first so `@use "unit.gl" with (…)` can
+// configure them (e.g. `$q`, `$reference_dpi`) before other modules pull
+// them in unconfigured.
+@forward "variables/q";
+@forward "maps/density";
 @forward "reset";
 
 @forward "functions";
 @forward "variables";
+@forward "maps";
 @forward "mixins";
 
 @forward "classes";

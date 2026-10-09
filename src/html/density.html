@@ -12,126 +12,137 @@
         
 
         
-        <link rel="stylesheet" href="/css/unit.gl.css" />
+        <style>
+            @layer unitgl, ss;
+        </style>
+        <link rel="stylesheet" href="/vendor/stylescape/stylescape.css" />
+        <style>
+            @import url("/css/unit.gl.css") layer(unitgl);
+        </style>
         <link rel="stylesheet" href="/css/unit.gl.docs.css" />
 
         
         <script type="module" src="/js/unit.gl.js"></script>
         <script src="/js/unit.gl.docs.js"></script>
 
-        
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
-
 </head>
 
-<body>
+<body class="ss-l-page-sidebar-left">
     
-    <a href="#main" class="skip-link">Skip to main content</a>
+    <a href="#main" class="ss-c-skip-link">Skip to main content</a>
 
     
 
 
-<div class="nav-wrapper">
-    <nav class="nav" aria-label="Main navigation">
-        <div class="nav__inner">
+<header class="ss-c-ribbon--top ss-u-sticky ss-u-top-0 ss-u-z-sticky">
+    <div class="ss-c-ribbon__slot--horizontal_left">
+        
+        <button type="button" class="ss-c-ribbon__button docs-ribbon__toggle" id="sidebar-toggle"
+            aria-expanded="false" aria-controls="sidebar" aria-label="Toggle navigation menu">
             
-            <a href="index.html" class="nav__logo" >
-                <span class="nav__logo-text">unit.gl</span>
-                <span class="nav__version">0.3.4</span>
-            </a>
-
-            
-            <button type="button" class="nav__mobile-toggle" id="sidebar-toggle" aria-expanded="false"
-                aria-controls="sidebar" aria-label="Toggle navigation menu">
-                
-<svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
     stroke-width="2">
     <line x1="3" y1="6" x2="21" y2="6" />
     <line x1="3" y1="12" x2="21" y2="12" />
     <line x1="3" y1="18" x2="21" y2="18" />
 </svg>
 
-                
-<svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        </button>
+
+        
+        <div class="ss-c-ribbon__title">
+            <a href="index.html" class="ss-c-ribbon__title__text" >unit.gl</a>
+            <span class="ss-c-badge ss-c-badge--sm ss-c-badge--accent">v0.3.5</span>
+        </div>
+    </div>
+
+    <div class="ss-c-ribbon__slot--horizontal_right">
+        
+        <button type="button" class="ss-c-ribbon__button docs-ribbon__toggle" id="nav-mobile-toggle"
+            aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle display settings">
+            
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
     stroke-width="2">
-    <line x1="18" y1="6" x2="6" y2="18" />
-    <line x1="6" y1="6" x2="18" y2="18" />
+    <line x1="4" y1="7" x2="20" y2="7" />
+    <circle cx="9" cy="7" r="2" fill="currentColor" />
+    <line x1="4" y1="17" x2="20" y2="17" />
+    <circle cx="15" cy="17" r="2" fill="currentColor" />
 </svg>
 
-            </button>
+        </button>
 
-            <div class="nav__right">
-                
-                <div class="nav__bp" id="nav-bp" title="Current viewport breakpoint" aria-live="polite">
-                    <span class="nav__bp-key" id="nav-bp-key">—</span>
-                    <span class="nav__bp-width" id="nav-bp-width">—px</span>
-                </div>
+        <div class="docs-ribbon__menu" id="nav-menu">
+            <nav class="ss-c-ribbon__nav" aria-label="Display options">
+                <ul class="ss-c-ribbon__nav__list">
+                    
+                    <li class="ss-c-ribbon__nav__list__item" id="nav-bp" title="Current viewport breakpoint">
+                        <span id="nav-bp-key">—</span>&nbsp;<span id="nav-bp-width">—px</span>
+                    </li>
 
-                
-                <div class="nav__bp" id="nav-q" title="Computed pixel value of q(1) at the current root font size"
-                    aria-live="polite">
-                    <span class="nav__bp-key">q(1)</span>
-                    <span class="nav__bp-width" id="nav-q-px">—px</span>
-                </div>
+                    
+                    <li class="ss-c-ribbon__nav__list__item" id="nav-q"
+                        title="Computed pixel value of q(1) at the current root font size">
+                        q(1)&nbsp;<span id="nav-q-px">—px</span>
+                    </li>
 
-                
-                <div class="grid-controls" aria-label="Grid overlay controls">
-                    <button type="button" data-toggle="baseline" title="Toggle baseline grid" aria-pressed="false">
-                        
+                    
+                    <li class="ss-c-ribbon__nav__list__item">
+                        <button type="button" class="ss-c-ribbon__button" data-toggle="baseline" title="Toggle baseline grid"
+                            aria-pressed="false">
+                            
 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
     <line x1="0" y1="3.5" x2="14" y2="3.5" />
     <line x1="0" y1="7" x2="14" y2="7" />
     <line x1="0" y1="10.5" x2="14" y2="10.5" />
 </svg>
 
-                        <span>Baseline</span>
-                    </button>
-                    <button type="button" data-toggle="graph" title="Toggle graph grid" aria-pressed="false">
-                        
+                            <span>Baseline</span>
+                        </button>
+                    </li>
+                    <li class="ss-c-ribbon__nav__list__item">
+                        <button type="button" class="ss-c-ribbon__button" data-toggle="graph" title="Toggle graph grid"
+                            aria-pressed="false">
+                            
 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
     <rect x="1" y="1" width="12" height="12" />
     <line x1="7" y1="1" x2="7" y2="13" />
     <line x1="1" y1="7" x2="13" y2="7" />
 </svg>
 
-                        <span>Graph</span>
-                    </button>
-                </div>
-
-                
-                <button type="button" class="theme-toggle" data-toggle="theme" title="Toggle dark mode"
-                    aria-label="Toggle dark mode">
-                    
-<svg class="theme-icon theme-icon--light" width="16" height="16" viewBox="0 0 16 16"
-    fill="currentColor">
-    <path
-        d="M8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zm7-5a.75.75 0 00-.75-.75h-1.5a.75.75 0 000 1.5h1.5A.75.75 0 0015 8zM3 8a.75.75 0 00-.75-.75H.75a.75.75 0 000 1.5h1.5A.75.75 0 003 8zm9.536-4.536a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 001.06 1.061l1.061-1.06a.75.75 0 000-1.061zm-9.072 9.072a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 101.06 1.061l1.061-1.06a.75.75 0 000-1.061zm9.072 0a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 101.061-1.06l-1.06-1.061zm-9.072-9.072a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 001.061-1.06l-1.06-1.061z" />
-</svg>
+                            <span>Graph</span>
+                        </button>
+                    </li>
 
                     
-<svg class="theme-icon theme-icon--dark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <li class="ss-c-ribbon__nav__list__item">
+                        <button type="button" class="ss-c-ribbon__button" data-toggle="theme" title="Toggle dark mode"
+                            aria-pressed="false">
+                            
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
     <path d="M6.2 1A6.98 6.98 0 008 7a6.98 6.98 0 00-1.8 6A7 7 0 116.2 1z" />
 </svg>
 
-                </button>
+                            <span>Dark mode</span>
+                        </button>
+                    </li>
 
-                
-                <a href="https://github.com/stylescape/unit.gl" class="nav__github" target="_blank"
-                    rel="noopener noreferrer" title="View on GitHub" aria-label="View on GitHub (opens in new tab)">
                     
+                    <li class="ss-c-ribbon__nav__list__item">
+                        <a href="https://github.com/stylescape/unit.gl" class="ss-c-ribbon__button" target="_blank"
+                            rel="noopener noreferrer" title="View on GitHub" aria-label="View on GitHub (opens in new tab)">
+                            
 <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
     <path
         d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
 </svg>
 
-                </a>
-            </div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </nav>
-</div>
+    </div>
+</header>
 
 
     
@@ -140,7 +151,7 @@
 <div class="guide--layer guide--baseline" data-grid="baseline"></div>
 
 
-    <div class="docs-layout">
+    <div class="ss-l-page__body">
         
 
 
@@ -154,221 +165,201 @@
 
 
 
-<aside class="sidebar" id="sidebar" aria-label="Documentation navigation">
-    <nav class="sidebar__nav">
+
+
+<aside class="docs-sidebar" id="sidebar" aria-label="Documentation navigation">
+    <nav>
         
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">Learn</h3>
-            <ul class="sidebar__list">
+        <section class="ss-c-sidebar__section">
+            <h2 class="ss-c-section-title">Learn</h2>
+            <ul class="ss-c-nav ss-c-nav--vertical">
                 
-                <li>
-                    <a href="getting-started.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="getting-started.html" class="ss-c-nav__link" >
                         Getting Started
                     </a>
                 </li>
                 
-                <li>
-                    <a href="core-concepts.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="core-concepts.html" class="ss-c-nav__link" >
                         Core Concepts
                     </a>
                 </li>
                 
-                <li>
-                    <a href="steps.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="steps.html" class="ss-c-nav__link" >
                         9-Step Scale
                     </a>
                 </li>
                 
-                <li>
-                    <a href="configuration.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="configuration.html" class="ss-c-nav__link" >
                         Configuration
                     </a>
                 </li>
                 
             </ul>
-        </div>
-
+        </section>
         
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">Core</h3>
-            <ul class="sidebar__list">
+        <section class="ss-c-sidebar__section">
+            <h2 class="ss-c-section-title">Core</h2>
+            <ul class="ss-c-nav ss-c-nav--vertical">
                 
-                <li>
-                    <a href="unit.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="unit.html" class="ss-c-nav__link" >
                         Unit
                     </a>
                 </li>
                 
             </ul>
-        </div>
-
-
+        </section>
         
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">Framework</h3>
-            <ul class="sidebar__list">
+        <section class="ss-c-sidebar__section">
+            <h2 class="ss-c-section-title">Framework</h2>
+            <ul class="ss-c-nav ss-c-nav--vertical">
                 
-                <li>
-                    <a href="layers.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="layers.html" class="ss-c-nav__link" >
                         Layers
                     </a>
                 </li>
                 
-                <li>
-                    <a href="scale.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="scale.html" class="ss-c-nav__link" >
                         Scale
                     </a>
                 </li>
                 
-                <li>
-                    <a href="breakpoints.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="breakpoints.html" class="ss-c-nav__link" >
                         Breakpoints
                     </a>
                 </li>
                 
-                <li>
-                    <a href="device.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="device.html" class="ss-c-nav__link" >
                         Devices
                     </a>
                 </li>
                 
-                <li>
-                    <a href="paper.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="paper.html" class="ss-c-nav__link" >
                         Formats
                     </a>
                 </li>
                 
-                <li>
-                    <a href="utilities.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="utilities.html" class="ss-c-nav__link" >
                         Utilities
                     </a>
                 </li>
                 
-                <li>
-                    <a href="ratio.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="ratio.html" class="ss-c-nav__link" >
                         Ratios
                     </a>
                 </li>
                 
-                <li>
-                    <a href="lorem.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="lorem.html" class="ss-c-nav__link" >
                         Typography
                     </a>
                 </li>
                 
             </ul>
-        </div>
-
-
+        </section>
         
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">API Reference</h3>
-            <ul class="sidebar__list">
+        <section class="ss-c-sidebar__section">
+            <h2 class="ss-c-section-title">API Reference</h2>
+            <ul class="ss-c-nav ss-c-nav--vertical">
                 
-                <li>
-                    <a href="functions.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="functions.html" class="ss-c-nav__link" >
                         Functions
                     </a>
                 </li>
                 
-                <li>
-                    <a href="mixins.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="mixins.html" class="ss-c-nav__link" >
                         Mixins
                     </a>
                 </li>
                 
-                <li>
-                    <a href="density.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="density.html" class="ss-c-nav__link" >
                         Density
                     </a>
                 </li>
                 
-                <li>
-                    <a href="/sassdoc/"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="/sassdoc/" class="ss-c-nav__link" >
                         SassDoc
                     </a>
                 </li>
                 
             </ul>
-        </div>
-
+        </section>
         
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">About</h3>
-            <ul class="sidebar__list">
+        <section class="ss-c-sidebar__section">
+            <h2 class="ss-c-section-title">About</h2>
+            <ul class="ss-c-nav ss-c-nav--vertical">
                 
-                <li>
-                    <a href="background.html"
-                        class="sidebar__link" >
+                <li class="ss-c-nav__item">
+                    <a href="background.html" class="ss-c-nav__link" >
                         Background
                     </a>
                 </li>
                 
             </ul>
-        </div>
+        </section>
+        
     </nav>
 </aside>
 
 
-        <div class="docs-content">
-            <header class="header">
-<p class="eyebrow">Documentation</p>
+        <main id="main" class="ss-u-p-8">
+            <header class="ss-c-demo__section__header ">
+<p class="ss-t-overline">Documentation</p>
 <h1>Pixel Density</h1>
-<p class="lead">A unified system for handling display density across screen and print. Convert between Q units, physical
+<p class="ss-t-lead">A unified system for handling display density across screen and print. Convert between Q units, physical
     measurements, and density-aware pixels.</p>
             </header>
 
-            <main id="main" role="main">
-                
-                <noscript>
-                    <div class="noscript-warning">
-                        <strong>JavaScript Required:</strong> Some interactive features on this page require
-                        JavaScript to function properly.
-                    </div>
-                </noscript>
+            
+            <noscript>
+                <div class="ss-c-alert ss-c-alert--warning">
+                    <p class="ss-c-alert__body"><strong>JavaScript Required:</strong> Some interactive features on
+                        this page require JavaScript to function properly.</p>
+                </div>
+            </noscript>
 
-<section>
+            <div class="ss-u-prose">
+
+<section class="ss-c-demo__section">
     <h2>Your Display</h2>
     <p>Real-time information about your current display's pixel density.</p>
 
-    <div class="density-current">
-        <div class="density-current__item">
-            <span class="density-current__label">Device Pixel Ratio</span>
-            <span class="density-current__value" id="current-dpr">—</span>
+    <div class="ss-l-grid ss-l-grid-auto">
+        <div class="ss-c-card ss-c-stat">
+            <span class="ss-c-stat__title">Device Pixel Ratio</span>
+            <span class="ss-c-stat__value" id="current-dpr">—</span>
         </div>
-        <div class="density-current__item">
-            <span class="density-current__label">Density Bucket</span>
-            <span class="density-current__value" id="current-bucket">—</span>
+        <div class="ss-c-card ss-c-stat">
+            <span class="ss-c-stat__title">Density Bucket</span>
+            <span class="ss-c-stat__value" id="current-bucket">—</span>
         </div>
-        <div class="density-current__item">
-            <span class="density-current__label">Effective DPI</span>
-            <span class="density-current__value" id="current-dpi">—</span>
+        <div class="ss-c-card ss-c-stat">
+            <span class="ss-c-stat__title">CSS resolution (96 × DPR)</span>
+            <span class="ss-c-stat__value" id="current-dpi">—</span>
         </div>
-        <div class="density-current__item">
-            <span class="density-current__label">CSS Variable</span>
-            <span class="density-current__value"><code>var(--dpr)</code></span>
+        <div class="ss-c-card ss-c-stat">
+            <span class="ss-c-stat__title">CSS Variable</span>
+            <span class="ss-c-stat__value"><code>var(--dpr)</code></span>
         </div>
     </div>
 </section>
 
-<section>
+<section class="ss-c-demo__section">
     <h2>Understanding Pixel Density</h2>
 
     <p>Modern displays pack different numbers of physical pixels into each CSS pixel. A <strong>device pixel ratio
@@ -397,13 +388,13 @@
     </p>
 </section>
 
-<section>
+<section class="ss-c-demo__section">
     <h2>Density Buckets</h2>
 
     <p>unit.gl uses Android's density bucket system for semantic targeting. Each bucket corresponds to a specific DPR
         and DPI range:</p>
 
-    <table class="table">
+    <table class="ss-c-table">
         <thead>
             <tr>
                 <th>Bucket</th>
@@ -421,7 +412,7 @@
             </tr>
             <tr>
                 <td><code>mdpi</code></td>
-                <td>1× <span class="density-baseline">(baseline)</span></td>
+                <td>1× <span class="ss-c-text-muted">(baseline)</span></td>
                 <td>160</td>
                 <td>Standard desktop monitors</td>
             </tr>
@@ -431,7 +422,7 @@
                 <td>240</td>
                 <td>Some laptops, older tablets</td>
             </tr>
-            <tr class="density-row--highlight">
+            <tr class="is-active">
                 <td><code>xhdpi</code></td>
                 <td>2×</td>
                 <td>320</td>
@@ -452,73 +443,75 @@
         </tbody>
     </table>
 
-    <div class="alert alert--tip">
-        <p class="alert__title">Tip</p>
-        <p>You can also use semantic aliases: <code>"standard"</code> (1×), <code>"retina"</code> (2×),
-            <code>"super"</code> (3×), and <code>"ultra"</code> (4×).
-        </p>
+    <div class="ss-c-alert ss-c-alert--success">
+        <div class="ss-c-alert__body">
+            <p class="ss-c-alert__title">Tip</p>
+            <p>You can also use semantic aliases: <code>"standard"</code> (1×), <code>"retina"</code> (2×),
+                <code>"super"</code> (3×), and <code>"ultra"</code> (4×).
+            </p>
+        </div>
     </div>
 </section>
 
-<section>
+<section class="ss-c-demo__section">
     <h2>Functions</h2>
 
     <h3>density($bucket)</h3>
     <p>Returns the DPR value for a density bucket name.</p>
 
-    <div class="code-block"><pre><code>@use "unit.gl" as *;
+    <pre class="ss-c-code-block"><code>@use "unit.gl" as *;
 
         $dpr: density("xhdpi"); <span class="comment">// 2</span>
         $dpr: density("retina"); <span class="comment">// 2 (alias)</span>
-        $dpr: density("xxhdpi"); <span class="comment">// 3</span></code></pre></div>
+        $dpr: density("xxhdpi"); <span class="comment">// 3</span></code></pre>
 
     <h3>density_dpi($bucket)</h3>
     <p>Returns the DPI value for a density bucket.</p>
 
-    <div class="code-block"><pre><code>$dpi: density_dpi("xhdpi"); <span class="comment">// 320</span>
-        $dpi: density_dpi("xxhdpi"); <span class="comment">// 480</span></code></pre></div>
+    <pre class="ss-c-code-block"><code>$dpi: density_dpi("xhdpi"); <span class="comment">// 320</span>
+        $dpi: density_dpi("xxhdpi"); <span class="comment">// 480</span></code></pre>
 
     <h3>q_to_mm($q_value)</h3>
     <p>Converts Q units to physical millimeters. Based on the traditional Kyū unit where 1Q = 0.25mm.</p>
 
-    <div class="code-block"><pre><code>$mm: q_to_mm(16); <span class="comment">// 4mm</span>
+    <pre class="ss-c-code-block"><code>$mm: q_to_mm(16); <span class="comment">// 4mm</span>
         $mm: q_to_mm(160); <span class="comment">// 40mm (Q1 base unit)</span>
-        $mm: q_to_mm(320); <span class="comment">// 80mm (Q2)</span></code></pre></div>
+        $mm: q_to_mm(320); <span class="comment">// 80mm (Q2)</span></code></pre>
 
     <h3>mm_to_q($mm_value)</h3>
     <p>Converts physical millimeters to Q units.</p>
 
-    <div class="code-block"><pre><code>$q: mm_to_q(4); <span class="comment">// 16</span>
-        $q: mm_to_q(40); <span class="comment">// 160 (Q1)</span></code></pre></div>
+    <pre class="ss-c-code-block"><code>$q: mm_to_q(4); <span class="comment">// 16</span>
+        $q: mm_to_q(40); <span class="comment">// 160 (Q1)</span></code></pre>
 
     <h3>q_to_px($q_value, $dpr)</h3>
     <p>Converts Q units to physical screen pixels at a given DPR.</p>
 
-    <div class="code-block"><pre><code>$px: q_to_px(16, 1); <span class="comment">// 16 physical pixels</span>
+    <pre class="ss-c-code-block"><code>$px: q_to_px(16, 1); <span class="comment">// 16 physical pixels</span>
         $px: q_to_px(16, 2); <span class="comment">// 32 physical pixels</span>
-        $px: q_to_px(16, "xhdpi"); <span class="comment">// 32 physical pixels</span></code></pre></div>
+        $px: q_to_px(16, "xhdpi"); <span class="comment">// 32 physical pixels</span></code></pre>
 
     <h3>q_to_pt($q_value)</h3>
     <p>Converts Q units to typographic points (1pt = 0.3528mm).</p>
 
-    <div class="code-block"><pre><code>$pt: q_to_pt(16); <span class="comment">// ~11.34pt</span>
-        $pt: q_to_pt(12); <span class="comment">// ~8.5pt</span></code></pre></div>
+    <pre class="ss-c-code-block"><code>$pt: q_to_pt(16); <span class="comment">// ~11.34pt</span>
+        $pt: q_to_pt(12); <span class="comment">// ~8.5pt</span></code></pre>
 
     <h3>density_suffix($bucket)</h3>
     <p>Returns the image resolution suffix for a density bucket.</p>
 
-    <div class="code-block"><pre><code>$suffix: density_suffix("mdpi"); <span class="comment">// "" (no suffix)</span>
+    <pre class="ss-c-code-block"><code>$suffix: density_suffix("mdpi"); <span class="comment">// "" (no suffix)</span>
         $suffix: density_suffix("xhdpi"); <span class="comment">// "@2x"</span>
-        $suffix: density_suffix("xxhdpi");<span class="comment">// "@3x"</span></code></pre></div>
+        $suffix: density_suffix("xxhdpi");<span class="comment">// "@3x"</span></code></pre>
 </section>
 
-<section>
+<section class="ss-c-demo__section">
     <h2>Mixins</h2>
 
     <h3>display_density($min-dpr)</h3>
     <p>Applies styles at a minimum device pixel ratio.</p>
 
-    <div class="code-block"><pre><code>@use "unit.gl" as *;
+    <pre class="ss-c-code-block"><code>@use "unit.gl" as *;
 
         <span class="comment">// Target 2× displays and higher</span>
         @include display_density(2) {
@@ -533,12 +526,12 @@
         .hero {
         background-image: url("hero@3x.jpg");
         }
-        }</code></pre></div>
+        }</code></pre>
 
     <h3>display_bucket($bucket)</h3>
     <p>Applies styles for a specific density bucket using semantic names.</p>
 
-    <div class="code-block"><pre><code><span class="comment">// Target retina (2×) displays</span>
+    <pre class="ss-c-code-block"><code><span class="comment">// Target retina (2×) displays</span>
         @include display_bucket("xhdpi") {
         font-weight: 300; <span class="comment">// Thinner fonts look better on retina</span>
         }
@@ -546,22 +539,22 @@
         <span class="comment">// Or use aliases</span>
         @include display_bucket("retina") {
         border-width: 0.5px;
-        }</code></pre></div>
+        }</code></pre>
 
     <h3>display_standard()</h3>
     <p>Targets only standard (1×) density displays.</p>
 
-    <div class="code-block"><pre><code>@include display_standard {
+    <pre class="ss-c-code-block"><code>@include display_standard {
         <span class="comment">// Fallback for non-retina displays</span>
         .icon {
         background-image: url("icon.png");
         }
-        }</code></pre></div>
+        }</code></pre>
 
     <h3>image_density($path, $ext, $densities)</h3>
     <p>Generates density-aware background images with automatic resolution switching.</p>
 
-    <div class="code-block"><pre><code>.logo {
+    <pre class="ss-c-code-block"><code>.logo {
         @include image_density("/images/logo", "png", 1 2 3);
         }
 
@@ -578,12 +571,12 @@
         url("/images/logo@2x.png") 2x,
         url("/images/logo@3x.png") 3x
         );
-        }</code></pre></div>
+        }</code></pre>
 
     <h3>display_print($min-dpi)</h3>
     <p>Targets print media with optional minimum resolution.</p>
 
-    <div class="code-block"><pre><code>@include display_print {
+    <pre class="ss-c-code-block"><code>@include display_print {
         <span class="comment">// All print styles</span>
         .no-print { display: none; }
         }
@@ -591,16 +584,16 @@
         @include display_print(300) {
         <span class="comment">// High-resolution print only (300dpi+)</span>
         .photo { image-rendering: high-quality; }
-        }</code></pre></div>
+        }</code></pre>
 </section>
 
-<section>
+<section class="ss-c-demo__section">
     <h2>Runtime DPR Access</h2>
 
     <p>unit.gl automatically injects the device pixel ratio as a CSS custom property, enabling dynamic density-aware
         calculations in CSS:</p>
 
-    <div class="code-block"><pre><code><span class="comment">/* Available CSS custom properties */</span>
+    <pre class="ss-c-code-block"><code><span class="comment">/* Available CSS custom properties */</span>
         :root {
         --dpr: 2; <span class="comment">/* Current device pixel ratio */</span>
         --dpr-inverse: 0.5; <span class="comment">/* 1 / DPR for inverse calculations */</span>
@@ -614,29 +607,31 @@
         .icon {
         <span class="comment">/* Scale based on density */</span>
         transform: scale(var(--dpr-inverse));
-        }</code></pre></div>
+        }</code></pre>
 
-    <div class="alert">
-        <p class="alert__title">Note</p>
-        <p>The <code>--dpr</code> variable updates automatically when moving windows between displays with different
-            densities.</p>
+    <div class="ss-c-alert ss-c-alert--info">
+        <div class="ss-c-alert__body">
+            <p class="ss-c-alert__title">Note</p>
+            <p>The <code>--dpr</code> variable updates automatically when moving windows between displays with different
+                densities.</p>
+        </div>
     </div>
 </section>
 
-<section>
+<section class="ss-c-demo__section">
     <h2>Unified Q Format & Breakpoints</h2>
 
     <p>unit.gl unifies <strong>physical Q paper formats</strong> with <strong>digital breakpoints</strong> using a
         consistent 4× multiplier. This creates a seamless bridge between print and screen design.</p>
 
-    <div class="api-signature">1mm (physical) = 4px (CSS at 1× DPR)</div>
+    <pre class="ss-c-code-block">1mm (physical) = 4px (CSS at 1× DPR)</pre>
 
     <h3>Physical-to-Digital Mapping</h3>
 
     <p>Q paper formats map directly to responsive breakpoints. Portrait widths serve mobile devices, landscape widths
         serve desktop:</p>
 
-    <table class="table">
+    <table class="ss-c-table">
         <thead>
             <tr>
                 <th>Breakpoint</th>
@@ -650,11 +645,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr><td><code>us</code></td><td>Ultra Small</td><td>1</td><td>Q07</td><td>Portrait</td><td>60mm</td><td>240px</td><td>Compact / Fold devices</td></tr>
+            <tr><td><code>us</code></td><td>Ultra Small</td><td>1</td><td>Q07</td><td>Portrait</td><td>62.5mm</td><td>250px</td><td>Compact / Fold devices</td></tr>
             <tr><td><code>ss</code></td><td>Super Small</td><td>2</td><td>Q06</td><td>Portrait</td><td>90mm</td><td>360px</td><td>Phones</td></tr>
             <tr><td><code>xs</code></td><td>Extra Small</td><td>3</td><td>Q05</td><td>Portrait</td><td>135mm</td><td>540px</td><td>Large phones / Small tablets</td></tr>
             <tr><td><code>sm</code></td><td>Small</td><td>4</td><td>Q04</td><td>Portrait</td><td>180mm</td><td>720px</td><td>Tablets</td></tr>
-            <tr class="density-row--highlight"><td><code>md</code></td><td>Medium</td><td>5</td><td>Q04</td><td>Landscape</td><td>270mm</td><td>1080px</td><td>Laptops</td></tr>
+            <tr class="is-active"><td><code>md</code></td><td>Medium</td><td>5</td><td>Q04</td><td>Landscape</td><td>270mm</td><td>1080px</td><td>Laptops</td></tr>
             <tr><td><code>lg</code></td><td>Large</td><td>6</td><td>Q03</td><td>Landscape</td><td>360mm</td><td>1440px</td><td>Desktops</td></tr>
             <tr><td><code>xl</code></td><td>Extra Large</td><td>7</td><td>Q02</td><td>Landscape</td><td>540mm</td><td>2160px</td><td>QHD / Ultrawide</td></tr>
             <tr><td><code>sl</code></td><td>Super Large</td><td>8</td><td>Q01</td><td>Landscape</td><td>720mm</td><td>2880px</td><td>4K displays</td></tr>
@@ -664,7 +659,7 @@
 
     <h3>Conversion Functions</h3>
 
-    <div class="code-block"><pre><code>@use "unit.gl" as *;
+    <pre class="ss-c-code-block"><code>@use "unit.gl" as *;
 
         <span class="comment">// Physical to digital</span>
         $width: mm_to_px(90); <span class="comment">// 360px (Q06 portrait → ss)</span>
@@ -674,13 +669,13 @@
         $mm: px_to_mm(1440px); <span class="comment">// 360mm</span>
 
         <span class="comment">// Density-adjusted</span>
-        $physical_px: breakpoint_for_density(md, 2); <span class="comment">// 2160 physical pixels (md = 1080px × 2)</span></code></pre></div>
+        $physical_px: breakpoint_for_density(md, 2); <span class="comment">// 2160 physical pixels (md = 1080px × 2)</span></code></pre>
 
     <h3>Combined Viewport + Density Queries</h3>
 
     <p>The <code>media_density</code> mixin targets specific breakpoints AND densities together:</p>
 
-    <div class="code-block"><pre><code><span class="comment">// Target phones (ss) with retina displays</span>
+    <pre class="ss-c-code-block"><code><span class="comment">// Target phones (ss) with retina displays</span>
         @include media_density(ss, 2) {
         font-size: 14px;
         font-weight: 300; <span class="comment">// Thinner weights on retina</span>
@@ -694,13 +689,13 @@
         <span class="comment">// Target laptops (md) with 3× displays</span>
         @include media_density(md, 3) {
         border-width: 0.333px; <span class="comment">// True 1px hairline</span>
-        }</code></pre></div>
+        }</code></pre>
 
     <h3>Q Format Semantic Targeting</h3>
 
     <p>Use <code>media_format</code> to target Q paper sizes directly:</p>
 
-    <div class="code-block"><pre><code><span class="comment">// Target Q06 portrait devices (phones)</span>
+    <pre class="ss-c-code-block"><code><span class="comment">// Target Q06 portrait devices (phones)</span>
         @include media_format(q06p) {
         padding: q(16);
         }
@@ -713,17 +708,19 @@
         <span class="comment">// Target Q01 landscape (4K) with any density</span>
         @include media_format(q01l) {
         max-width: q(1400);
-        }</code></pre></div>
+        }</code></pre>
 
-    <div class="alert alert--tip">
-        <p class="alert__title">Why 4× Multiplier?</p>
-        <p>The 4× multiplier (1mm = 4px) bridges the gap between the traditional print standard (96dpi ≈ 3.78 px/mm) and
-            our Q unit system. This creates clean, round breakpoint values that align perfectly with the Q format paper
-            dimensions.</p>
+    <div class="ss-c-alert ss-c-alert--success">
+        <div class="ss-c-alert__body">
+            <p class="ss-c-alert__title">Why 4× Multiplier?</p>
+            <p>The 4× multiplier (1mm = 4px) bridges the gap between the traditional print standard (96dpi ≈ 3.78 px/mm) and
+                our Q unit system. This creates clean, round breakpoint values that align perfectly with the Q format paper
+                dimensions.</p>
+        </div>
     </div>
 </section>
 
-<section>
+<section class="ss-c-demo__section">
     <h2>Density-Aware Typography</h2>
 
     <p>High-density displays render CSS pixels using more physical pixels. For optimal readability, typography can be
@@ -734,7 +731,7 @@
     <p>Extends fluid typography with density awareness. High-DPR screens get proportionally smaller text to maintain
         optical consistency:</p>
 
-    <div class="code-block"><pre><code>html {
+    <pre class="ss-c-code-block"><code>html {
         <span class="comment">// Base fluid type: 12px → 24px from 360px → 4320px viewport</span>
         @include fluid_type_density(360px, 4320px, 12px, 24px);
         }
@@ -742,7 +739,7 @@
         <span class="comment">// With custom density scale (default: 0.9 = 10% reduction per DPR step)</span>
         html {
         @include fluid_type_density(360px, 4320px, 12px, 24px, 0.95);
-        }</code></pre></div>
+        }</code></pre>
 
     <p>This generates:</p>
     <ul>
@@ -755,7 +752,7 @@
 
     <p>Runtime density-aware Q units using the JavaScript-injected <code>--dpr-inverse</code>:</p>
 
-    <div class="code-block"><pre><code>.element {
+    <pre class="ss-c-code-block"><code>.element {
         font-size: q_density(16); <span class="comment">// Scales with runtime DPR</span>
         padding: q_density(8);
         line-height: q_density(24);
@@ -766,28 +763,28 @@
         font-size: calc(1rem * var(--dpr-inverse, 1));
         padding: calc(0.5rem * var(--dpr-inverse, 1));
         line-height: calc(1.5rem * var(--dpr-inverse, 1));
-        }</code></pre></div>
+        }</code></pre>
 
     <h3>scale_density() Functions</h3>
 
     <p>Retrieve typographic scale values adjusted for density:</p>
 
-    <div class="code-block"><pre><code><span class="comment">// Compile-time density adjustment</span>
+    <pre class="ss-c-code-block"><code><span class="comment">// Compile-time density adjustment</span>
         font-size: scale_density(7); <span class="comment">// q(16) at 1× DPR</span>
         font-size: scale_density(7, 2); <span class="comment">// q(16) × 0.9 at 2× DPR</span>
         font-size: scale_density(7, 3); <span class="comment">// q(16) × 0.81 at 3× DPR</span>
 
         <span class="comment">// Runtime density adjustment (requires JS injection)</span>
-        font-size: scale_density_runtime(7); <span class="comment">// Scales with --dpr-inverse</span></code></pre></div>
+        font-size: scale_density_runtime(7); <span class="comment">// Scales with --dpr-inverse</span></code></pre>
 
 </section>
 
-<section>
+<section class="ss-c-demo__section">
     <h2>CSS Custom Properties</h2>
 
     <p>unit.gl provides density and breakpoint values as CSS custom properties for use in calculations:</p>
 
-    <div class="code-block"><pre><code>:root {
+    <pre class="ss-c-code-block"><code>:root {
         <span class="comment">/* Density (JavaScript-injected) */</span>
         --dpr: 1;
         --dpr-inverse: 1;
@@ -800,7 +797,7 @@
         --mm-to-px: 4;
 
         <span class="comment">/* Q-format-derived breakpoints (9-step scale) */</span>
-        --bp-us: 240px;  <span class="comment">/* Ultra Small  | Q07 Portrait  */</span>
+        --bp-us: 250px;  <span class="comment">/* Ultra Small  | Q07 Portrait  */</span>
         --bp-ss: 360px;  <span class="comment">/* Super Small  | Q06 Portrait  */</span>
         --bp-xs: 540px;  <span class="comment">/* Extra Small  | Q05 Portrait  */</span>
         --bp-sm: 720px;  <span class="comment">/* Small        | Q04 Portrait  */</span>
@@ -818,20 +815,20 @@
 
         <span class="comment">/* Container query using breakpoint */</span>
         max-width: var(--bp-md);
-        }</code></pre></div>
+        }</code></pre>
 
 </section>
 
-<section>
+<section class="ss-c-demo__section">
     <h2>Q Units & Physical Size</h2>
 
     <p>The Q unit provides a bridge between screen and print through its physical definition:</p>
 
-    <div class="api-signature">1Q = 0.25mm (physical) = 0.0625rem (CSS) ≈ 1px (at 16px base)</div>
+    <pre class="ss-c-code-block">1Q = 0.25mm (physical) = 0.0625rem (CSS) ≈ 1px (at 16px base)</pre>
 
     <h3>Screen vs Print</h3>
 
-    <table class="table">
+    <table class="ss-c-table">
         <thead>
             <tr>
                 <th>Q Value</th>
@@ -878,38 +875,38 @@
         relationships.</p>
 </section>
 
-<section>
+<section class="ss-c-demo__section">
     <h2>Best Practices</h2>
 
-    <div class="best-practices">
-        <div class="best-practice">
+    <div class="ss-l-grid ss-l-grid-auto">
+        <div class="ss-c-card">
             <h4>✓ Provide @2x assets minimum</h4>
             <p>Most modern devices are at least 2× density. Always provide @2x images; @3x is recommended for icons and
                 logos.</p>
         </div>
 
-        <div class="best-practice">
+        <div class="ss-c-card">
             <h4>✓ Use vector graphics when possible</h4>
             <p>SVG and icon fonts scale perfectly at any density. Reserve bitmap images for photos and complex graphics.
             </p>
         </div>
 
-        <div class="best-practice">
+        <div class="ss-c-card">
             <h4>✓ Test on multiple densities</h4>
             <p>Use browser DevTools to simulate different DPRs. Chrome: Device Toolbar → DPR dropdown.</p>
         </div>
 
-        <div class="best-practice">
+        <div class="ss-c-card">
             <h4>✓ Use image_density for backgrounds</h4>
             <p>The <code>image_density</code> mixin handles fallbacks and browser prefixes automatically.</p>
         </div>
 
-        <div class="best-practice">
+        <div class="ss-c-card">
             <h4>✗ Don't assume 1× baseline</h4>
             <p>Standard 1× displays are increasingly rare. Design for 2× first, then optimize for other densities.</p>
         </div>
 
-        <div class="best-practice">
+        <div class="ss-c-card">
             <h4>✗ Avoid density-dependent sizing</h4>
             <p>Let CSS pixels and Q units handle scaling. Only use physical pixel calculations for specific effects like
                 hairline borders.</p>
@@ -917,73 +914,68 @@
     </div>
 </section>
 
-<section>
+<section class="ss-c-demo__section">
     <h2>Conversion Calculator</h2>
 
-    <div class="density-calculator">
-        <div class="density-calc__input">
-            <label for="calc-q">Q Units</label>
-            <input type="number" id="calc-q" value="16" min="0">
+    <div class="ss-c-card ss-c-demo__stack">
+        <div class="ss-c-form-field">
+            <label class="ss-c-label" for="calc-q">Q Units</label>
+            <input type="number" class="ss-c-input" id="calc-q" value="16" min="0">
         </div>
 
-        <div class="density-calc__results">
-            <div class="density-calc__result">
-                <span class="density-calc__label">Millimeters</span>
-                <span class="density-calc__value" id="calc-mm">4mm</span>
+        <div class="ss-l-grid ss-l-grid-auto">
+            <div class="ss-c-card ss-c-stat">
+                <span class="ss-c-stat__title">Millimeters</span>
+                <span class="ss-c-stat__value" id="calc-mm">4mm</span>
             </div>
-            <div class="density-calc__result">
-                <span class="density-calc__label">Inches</span>
-                <span class="density-calc__value" id="calc-in">0.157in</span>
+            <div class="ss-c-card ss-c-stat">
+                <span class="ss-c-stat__title">Inches</span>
+                <span class="ss-c-stat__value" id="calc-in">0.157in</span>
             </div>
-            <div class="density-calc__result">
-                <span class="density-calc__label">Points</span>
-                <span class="density-calc__value" id="calc-pt">11.34pt</span>
+            <div class="ss-c-card ss-c-stat">
+                <span class="ss-c-stat__title">Points</span>
+                <span class="ss-c-stat__value" id="calc-pt">11.34pt</span>
             </div>
-            <div class="density-calc__result">
-                <span class="density-calc__label">CSS (rem)</span>
-                <span class="density-calc__value" id="calc-rem">1rem</span>
+            <div class="ss-c-card ss-c-stat">
+                <span class="ss-c-stat__title">CSS (rem)</span>
+                <span class="ss-c-stat__value" id="calc-rem">1rem</span>
             </div>
-            <div class="density-calc__result">
-                <span class="density-calc__label">Physical px (1×)</span>
-                <span class="density-calc__value" id="calc-px1">16px</span>
+            <div class="ss-c-card ss-c-stat">
+                <span class="ss-c-stat__title">Physical px (1×)</span>
+                <span class="ss-c-stat__value" id="calc-px1">16px</span>
             </div>
-            <div class="density-calc__result">
-                <span class="density-calc__label">Physical px (2×)</span>
-                <span class="density-calc__value" id="calc-px2">32px</span>
+            <div class="ss-c-card ss-c-stat">
+                <span class="ss-c-stat__title">Physical px (2×)</span>
+                <span class="ss-c-stat__value" id="calc-px2">32px</span>
             </div>
-            <div class="density-calc__result">
-                <span class="density-calc__label">Physical px (3×)</span>
-                <span class="density-calc__value" id="calc-px3">48px</span>
+            <div class="ss-c-card ss-c-stat">
+                <span class="ss-c-stat__title">Physical px (3×)</span>
+                <span class="ss-c-stat__value" id="calc-px3">48px</span>
             </div>
         </div>
     </div>
 </section>
 
-            </main>
-
-            
-
-<footer class="footer">
-    <div class="footer__content">
-        <div class="footer__left">
-            <span class="footer__brand">unit.gl</span>
-            <span class="footer__tagline">Dynamic Layout Engine</span>
-        </div>
-        <div class="footer__right">
-            <div class="footer__links">
-                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank"
-                    rel="noopener noreferrer">GitHub</a>
-                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank"
-                    rel="noopener noreferrer">npm</a>
-                <a href="https://www.scape.press" class="footer__link" target="_blank" rel="noopener noreferrer">Scape
-                    Press</a>
             </div>
-            <span class="footer__copyright">© 2026 Scape Press. MIT License.</span>
+        </main>
+    </div>
+
+    
+
+<footer class="ss-c-footer">
+    <div class="ss-c-footer-container ss-c-footer-bottom">
+        <div class="ss-c-footer-brand-section">
+            <span class="ss-c-footer-brand-name">unit.gl</span>
+            <span class="ss-c-footer-copyright">Dynamic Layout Engine</span>
         </div>
+        <nav class="ss-c-footer-legal" aria-label="Project links">
+            <a href="https://github.com/stylescape/unit.gl" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.npmjs.com/package/unit.gl" target="_blank" rel="noopener noreferrer">npm</a>
+            <a href="https://www.scape.press" target="_blank" rel="noopener noreferrer">Scape Press</a>
+        </nav>
+        <p class="ss-c-footer-copyright">© 2026 Scape Press. MIT License.</p>
     </div>
 </footer>
 
-        </div>
-    </div>
 </body>
 </html>

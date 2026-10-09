@@ -3,10 +3,7 @@
 /// Device Mixins Module
 /// ===========================================================================
 ///
-/// @file _device.scss
-/// @title Device Mixins Module
-/// @version 0.1.0
-/// @description Provides responsive media query mixins based on device profiles.
+/// Provides responsive media query mixins based on device profiles.
 ///              These mixins simplify writing device-specific styles using a
 ///              centralized configuration map.
 ///
@@ -23,6 +20,7 @@
 // Use
 // ============================================================================
 
+@use "sass:map";
 @use "../functions" as *;
 @use "../variables" as *;
 @use "../maps" as *;
@@ -32,11 +30,11 @@
 // ============================================================================
 
 ///
-/// Creates a media query based on device attributes defined in the `$devices`
-/// map. The media query supports min-width, max-width, and pixel-ratio.
+/// Creates a media query based on device attributes defined in the
+/// `$device_map` map. The media query supports min-width, max-width, and pixel-ratio.
 ///
 /// @name device_media_query
-/// @param {String} $device - The key name of the device in the $devices map.
+/// @param {String} $device - The key name of the device in `$device_map`.
 /// @content Styles to be applied within the media query.
 ///
 /// @example scss - Usage
@@ -45,19 +43,16 @@
 ///     }
 ///
 @mixin device_media_query($device) {
-    // Retrieve the device attributes from the $devices map
-    $attributes: map.get($devices, $device);
+    $attributes: map.get($device_map, $device);
 
-    // Validate that the device exists in the $devices map
     @if $attributes == null {
-        @warn "Device `#{$device}` not found in $devices map.";
-        // @return;
+        @error "Device `#{$device}` not found in $device_map.";
     }
 
     // Extract individual attributes with default fallbacks
     $min-width: map.get($attributes, "min-width");
     $max-width: map.get($attributes, "max-width");
-    $pixel-ratio: map.get($attributes, "pixel-ratio", 1); // Default to 1
+    $pixel-ratio: map.get($attributes, "pixel-ratio") or 1;
 
     // Construct the media query string
     $media-query: "only screen";

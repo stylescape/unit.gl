@@ -20,9 +20,9 @@
     {%- block head_extra %}{%- endblock %}
 </head>
 
-<body>
+<body class="ss-l-page-sidebar-left">
     {# Skip to content link for accessibility #}
-    <a href="#main" class="skip-link">Skip to main content</a>
+    <a href="#main" class="ss-c-skip-link">Skip to main content</a>
 
     {# Top bar #}
     {%- include "partials/nav.html.jinja" %}
@@ -30,35 +30,36 @@
     {# Grid Overlays #}
     {%- include "partials/grid-overlays.html.jinja" %}
 
-    <div class="docs-layout">
+    <div class="ss-l-page__body">
         {# Sidebar Navigation #}
         {%- include "partials/sidebar.html.jinja" %}
 
-        <div class="docs-content">
-            <header class="header {%- block header_class %}{%- endblock %}">
+        <main id="main" class="ss-u-p-8">
+            <header class="ss-c-demo__section__header {% block header_class %}{% endblock %}">
                 {%- block header %}
-                <p class="eyebrow">unit.gl</p>
+                <p class="ss-t-overline">unit.gl</p>
                 <h1>Documentation</h1>
                 {%- endblock %}
             </header>
 
-            <main id="main" role="main">
-                {# Fallback for users without JavaScript #}
-                <noscript>
-                    <div class="noscript-warning">
-                        <strong>JavaScript Required:</strong> Some interactive features on this page require
-                        JavaScript to function properly.
-                    </div>
-                </noscript>
+            {# Fallback for users without JavaScript #}
+            <noscript>
+                <div class="ss-c-alert ss-c-alert--warning">
+                    <p class="ss-c-alert__body"><strong>JavaScript Required:</strong> Some interactive features on
+                        this page require JavaScript to function properly.</p>
+                </div>
+            </noscript>
+
+            <div class="ss-u-prose">
                 {%- block content %}
                 <p>Replace this with your content.</p>
                 {%- endblock %}
-            </main>
-
-            {# Footer #}
-            {%- include "partials/footer.html.jinja" %}
-            {%- block footer_extra %}{%- endblock %}
-        </div>
+            </div>
+        </main>
     </div>
+
+    {# Footer #}
+    {%- include "partials/footer.html.jinja" %}
+    {%- block footer_extra %}{%- endblock %}
 </body>
 </html>

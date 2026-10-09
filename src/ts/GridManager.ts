@@ -16,16 +16,76 @@
 // ============================================================================
 
 /**
- * Extended HTMLElement type for grid layer elements.
- * Includes typed dataset property for the grid identifier.
+ * Configuration options for the GridManager class.
+ *
+ * @example
+ * ```typescript
+ * const options: GridManagerOptions = {
+ *   toggleSelector: '.grid-toggle',
+ *   gridSelector: '.grid-overlay',
+ *   activeClass: 'visible'
+ * };
+ * ```
  */
-type GridLayer = HTMLElement & { dataset: { grid: string } };
+export interface GridManagerOptions {
+  /**
+   * CSS selector for grid toggle buttons. Each button names the grid it
+   * controls in its `data-toggle` attribute.
+   * @default 'button[data-toggle]'
+   */
+  toggleSelector?: string;
+
+  /**
+   * CSS selector for grid overlay elements. Each overlay names itself in its
+   * `data-grid` attribute.
+   * @default '.guide--layer'
+   */
+  gridSelector?: string;
+
+  /**
+   * CSS class applied when a grid overlay is active/visible.
+   * @default 'active'
+   */
+  activeClass?: string;
+
+  /**
+   * localStorage key used to persist visibility state.
+   * @default 'unitgl:grid:visibility'
+   */
+  storageKey?: string;
+}
+
+// ============================================================================
+// Storage helpers
+// ============================================================================
 
 /**
- * Extended HTMLButtonElement type for toggle button elements.
- * Includes typed dataset property for the toggle target identifier.
+ * Reads the persisted visibility map. Storage can be unavailable (private
+ * browsing, sandboxed iframes, disabled cookies) or hold foreign data, so
+ * anything unexpected yields an empty map.
  */
-type ToggleButton = HTMLButtonElement & { dataset: { toggle: string } };
+function readVisibility(key: string): Record<string, boolean> {
+  try {
+    const parsed: unknown = JSON.parse(localStorage.getItem(key) || '{}');
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed)
+      ? (parsed as Record<string, boolean>)
+      : {};
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * Persists the visibility map. A failed write only loses persistence; the
+ * overlays themselves keep working.
+ */
+function writeVisibility(key: string, map: Record<string, boolean>): void {
+  try {
+    localStorage.setItem(key, JSON.stringify(map));
+  } catch {
+    // Storage unavailable or full: visibility simply won't survive a reload.
+  }
+}
 
 // ============================================================================
 // GridManager Class
@@ -37,13 +97,14 @@ type ToggleButton = HTMLButtonElement & { dataset: { toggle: string } };
  * @description
  * This class handles the toggling and persistence of design grid overlays.
  * It stores visibility state in localStorage so grid preferences persist
- * across page reloads. The manager automatically applies saved state on
- * initialization and updates grid heights on resize/scroll events.
+ * across page reloads. The manager applies saved state on initialization and
+ * keeps overlay heights in sync with the document height.
  *
  * @example
  * ```typescript
- * // Auto-initializes when instantiated
- * new GridManager();
+ * const grids = new GridManager();
+ * grids.toggle('baseline');
+ * grids.hideAll();
  *
  * // Grids are controlled via data attributes in HTML:
  * // <button data-toggle="baseline">Toggle Baseline</button>
@@ -51,121 +112,144 @@ type ToggleButton = HTMLButtonElement & { dataset: { toggle: string } };
  * ```
  */
 export class GridManager {
-  /** LocalStorage key for persisting grid visibility state */
-  private readonly STORAGE_KEY = 'unitgl:grid:visibility';
+  private readonly toggleSelector: string;
+  private readonly gridSelector: string;
+  private readonly activeClass: string;
+  private readonly storageKey: string;
 
   /** Map of grid identifiers to their visibility state */
-  private visibilityMap: Record<string, boolean> = {};
+  private visibilityMap: Record<string, boolean>;
+
+  /** Pending animation frame for a height update, if any */
+  private heightFrame = 0;
 
   /**
    * Creates a new GridManager instance.
-   * Automatically loads saved visibility state and sets up event listeners.
+   * Loads saved visibility state and wires up toggle buttons once the DOM is
+   * ready.
    */
-  constructor() {
-    this.loadVisibility();
-    this.applyVisibilityState();
-    this.setupEventListeners();
-  }
-
-  /**
-   * Loads visibility state from localStorage.
-   * Falls back to empty object if parsing fails or no data exists.
-   * @private
-   */
-  private loadVisibility(): void {
-    try {
-      this.visibilityMap = JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '{}');
-    } catch {
-      this.visibilityMap = {};
-    }
-  }
-
-  /**
-   * Persists current visibility state to localStorage.
-   * @private
-   */
-  private saveVisibility(): void {
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.visibilityMap));
-  }
-
-  /**
-   * Updates all grid layer heights to match document height.
-   * Ensures grid overlays cover the full scrollable content area.
-   * @private
-   */
-  private updateAllGridHeights(): void {
-    const height = Math.max(
-      document.documentElement.scrollHeight,
-      document.body.scrollHeight,
-      document.documentElement.offsetHeight,
-      document.body.offsetHeight
-    );
-
-    document.querySelectorAll<HTMLElement>('.guide--layer').forEach(layer => {
-      if (layer.offsetHeight !== height) {
-        layer.style.height = `${height}px`;
-      }
-    });
-  }
-
-  /**
-   * Applies saved visibility state to all grid layers and toggle buttons.
-   * Adds/removes 'active' class based on stored preferences.
-   * @private
-   */
-  private applyVisibilityState(): void {
-    document.querySelectorAll<GridLayer>('.guide--layer').forEach(layer => {
-      const id = layer.dataset.grid;
-      const isActive = !!this.visibilityMap[id];
-      layer.classList.toggle('active', isActive);
-    });
-
-    document.querySelectorAll<ToggleButton>('button[data-toggle]').forEach(button => {
-      const id = button.dataset.toggle;
-      const isActive = !!this.visibilityMap[id];
-      button.classList.toggle('active', isActive);
-    });
-  }
-
-  /**
-   * Sets up click handlers for all toggle buttons.
-   * Each button toggles its associated grid layer and persists state.
-   * @private
-   */
-  private setupToggleButtons(): void {
-    document.querySelectorAll<ToggleButton>('button[data-toggle]').forEach(button => {
-      const id = button.dataset.toggle;
-      const layer = document.querySelector<GridLayer>(`[data-grid="${id}"]`);
-      if (!layer) return;
-
-      button.addEventListener('click', () => {
-        const isNowActive = layer.classList.toggle('active');
-        button.classList.toggle('active', isNowActive);
-        this.visibilityMap[id] = isNowActive;
-        this.saveVisibility();
-      });
-    });
-  }
-
-  /**
-   * Sets up global event listeners for DOM ready, resize, and scroll.
-   * Ensures grid heights are updated and toggle buttons are initialized.
-   * @private
-   */
-  private setupEventListeners(): void {
-    const init = () => {
-      this.updateAllGridHeights();
-      this.setupToggleButtons();
-
-      window.addEventListener('resize', () => this.updateAllGridHeights());
-      window.addEventListener('scroll', () => this.updateAllGridHeights());
-    };
+  constructor(options: GridManagerOptions = {}) {
+    this.toggleSelector = options.toggleSelector ?? 'button[data-toggle]';
+    this.gridSelector = options.gridSelector ?? '.guide--layer';
+    this.activeClass = options.activeClass ?? 'active';
+    this.storageKey = options.storageKey ?? 'unitgl:grid:visibility';
+    this.visibilityMap = readVisibility(this.storageKey);
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
+      document.addEventListener('DOMContentLoaded', () => this.init(), { once: true });
     } else {
       // Module scripts are deferred and may execute after DOMContentLoaded.
-      init();
+      this.init();
     }
+  }
+
+  // --------------------------------------------------------------------------
+  // Public API
+  // --------------------------------------------------------------------------
+
+  /** Toggles visibility of a grid overlay. */
+  toggle(gridType: string): void {
+    this.setVisible(gridType, !this.isVisible(gridType));
+  }
+
+  /** Shows a grid overlay. */
+  show(gridType: string): void {
+    this.setVisible(gridType, true);
+  }
+
+  /** Hides a grid overlay. */
+  hide(gridType: string): void {
+    this.setVisible(gridType, false);
+  }
+
+  /** Hides every grid overlay. */
+  hideAll(): void {
+    this.visibilityMap = {};
+    writeVisibility(this.storageKey, this.visibilityMap);
+    this.render();
+  }
+
+  /** Whether a grid overlay is currently visible. */
+  isVisible(gridType: string): boolean {
+    return !!this.visibilityMap[gridType];
+  }
+
+  // --------------------------------------------------------------------------
+  // Internals
+  // --------------------------------------------------------------------------
+
+  private init(): void {
+    this.render();
+
+    document.querySelectorAll<HTMLElement>(this.toggleSelector).forEach(button => {
+      const id = button.dataset.toggle;
+      if (!id || !this.layerFor(id)) return;
+      button.addEventListener('click', () => this.toggle(id));
+    });
+
+    // Document height changes with content and viewport width; scrolling
+    // never changes it, so there is no scroll listener.
+    if (typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(() => this.scheduleHeightUpdate()).observe(document.body);
+    } else {
+      window.addEventListener('resize', () => this.scheduleHeightUpdate());
+    }
+  }
+
+  private setVisible(gridType: string, visible: boolean): void {
+    this.visibilityMap[gridType] = visible;
+    writeVisibility(this.storageKey, this.visibilityMap);
+    this.render();
+  }
+
+  /** Syncs overlay and button state with the visibility map. */
+  private render(): void {
+    this.layers().forEach(layer => {
+      layer.classList.toggle(this.activeClass, this.isVisible(layer.dataset.grid ?? ''));
+    });
+
+    document.querySelectorAll<HTMLElement>(this.toggleSelector).forEach(button => {
+      const id = button.dataset.toggle;
+      if (!id || !this.layerFor(id)) return;
+      const active = this.isVisible(id);
+      button.classList.toggle(this.activeClass, active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+
+    this.scheduleHeightUpdate();
+  }
+
+  private layers(): NodeListOf<HTMLElement> {
+    return document.querySelectorAll<HTMLElement>(this.gridSelector);
+  }
+
+  private layerFor(id: string): HTMLElement | null {
+    return document.querySelector<HTMLElement>(`[data-grid="${CSS.escape(id)}"]`);
+  }
+
+  private scheduleHeightUpdate(): void {
+    if (this.heightFrame) return;
+    this.heightFrame = requestAnimationFrame(() => {
+      this.heightFrame = 0;
+      this.updateAllGridHeights();
+    });
+  }
+
+  /**
+   * Stretches overlays over the full scrollable document. The overlays are
+   * absolutely positioned, so their own height counts towards the document
+   * height: it is cleared before measuring, otherwise overlays could only
+   * ever grow.
+   */
+  private updateAllGridHeights(): void {
+    const layers = this.layers();
+    layers.forEach(layer => (layer.style.height = ''));
+
+    const height = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
+
+    layers.forEach(layer => (layer.style.height = `${height}px`));
   }
 }

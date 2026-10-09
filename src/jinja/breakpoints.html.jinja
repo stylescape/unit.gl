@@ -3,18 +3,16 @@
 {%- block title %}Breakpoints — unit.gl{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Guides</p>
+<p class="ss-t-overline">Guides</p>
 <h1>Breakpoints</h1>
-<p class="lead">A quick, interactive view of unit.gl's <code>$breakpoints</code> map. All values are derived from Q
+<p class="ss-t-lead">A quick, interactive view of unit.gl's <code>$breakpoints</code> map. All values are derived from Q
     format paper sizes (mm × 4).</p>
 {%- endblock %}
 
 {%- block content %}
 
-<div class="page--breakpoints">
 {% include "sections/breakpoints/01-current-viewport.jinja" %}
 {% include "sections/breakpoints/02-breakpoint-map.jinja" %}
 {% include "sections/breakpoints/03-utilities-example.jinja" %}
-</div>
 
 {%- endblock %}

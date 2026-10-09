@@ -42,6 +42,7 @@
 @use "../functions" as *;
 @use "../variables" as *;
 @use "../maps" as *;
+@use "unit" as *;
 
 // ============================================================================
 // Setter Mixins
@@ -73,7 +74,7 @@
 /// @see q
 ///
 @mixin set_border_width($value) {
-    @include q($value, border_width);
+    @include q($value, border-width);
 }
 
 ///
@@ -100,7 +101,7 @@
 /// @see q
 ///
 @mixin set_border_radius($value) {
-    @include q($value, border_radius);
+    @include q($value, border-radius);
 }
 
 ///
@@ -223,10 +224,23 @@
 /// @see $q_steps
 ///
 @mixin border_width_utilities($steps: $q_steps, $prefix: "") {
+    // Emitted shorthand → axis → side so the more specific class wins at any step.
     @each $key, $value in $steps {
         .#{$prefix}border_q#{$key} {
             border-width: q($value);
         }
+    }
+    @each $key, $value in $steps {
+        .#{$prefix}border_x_q#{$key} {
+            border-left-width: q($value);
+            border-right-width: q($value);
+        }
+        .#{$prefix}border_y_q#{$key} {
+            border-top-width: q($value);
+            border-bottom-width: q($value);
+        }
+    }
+    @each $key, $value in $steps {
         .#{$prefix}border_t_q#{$key} {
             border-top-width: q($value);
         }
@@ -238,14 +252,6 @@
         }
         .#{$prefix}border_l_q#{$key} {
             border-left-width: q($value);
-        }
-        .#{$prefix}border_x_q#{$key} {
-            border-left-width: q($value);
-            border-right-width: q($value);
-        }
-        .#{$prefix}border_y_q#{$key} {
-            border-top-width: q($value);
-            border-bottom-width: q($value);
         }
     }
 }
@@ -280,10 +286,13 @@
 /// @see $q_steps
 ///
 @mixin border_radius_utilities($steps: $q_steps, $prefix: "") {
+    // Emitted all → edge → corner so the more specific class wins at any step.
     @each $key, $value in $steps {
         .#{$prefix}rounded_q#{$key} {
             border-radius: q($value);
         }
+    }
+    @each $key, $value in $steps {
         .#{$prefix}rounded_t_q#{$key} {
             border-top-left-radius: q($value);
             border-top-right-radius: q($value);
@@ -300,6 +309,8 @@
             border-top-left-radius: q($value);
             border-bottom-left-radius: q($value);
         }
+    }
+    @each $key, $value in $steps {
         .#{$prefix}rounded_tl_q#{$key} {
             border-top-left-radius: q($value);
         }

@@ -53,98 +53,98 @@ $layer_map: (
     // ========================================================================
     // Guides & Development Overlays
     // ========================================================================
-    ///
-    /// High-priority guide overlays for design and debugging.
-    /// @name guides
-    /// @type Number
-    ///
+    //
+    // High-priority guide overlays for design and debugging.
+    // @name guides
+    // @type Number
+    //
     "guides": 9998,
 
-    /// Baseline guide used for text alignment and visual rhythm.
-    /// @name guide--baseline
-    /// @type Number
+    // Baseline guide used for text alignment and visual rhythm.
+    // @name guide--baseline
+    // @type Number
     "guide--baseline": 9998,
 
-    /// Graphical guides, such as grid overlays, used in design.
-    /// @name guide--graph
-    /// @type Number
+    // Graphical guides, such as grid overlays, used in design.
+    // @name guide--graph
+    // @type Number
     "guide--graph": 9998,
 
     // ========================================================================
     // Overlays
     // ========================================================================
-    /// Z-index for modals and dialog boxes, ensuring they appear above other
-    /// content.
-    /// @name modal
-    /// @type Number
+    // Z-index for modals and dialog boxes, ensuring they appear above other
+    // content.
+    // @name modal
+    // @type Number
     "modal": 7000,
 
     // ========================================================================
     // Interface Elements
     // ========================================================================
-    ///
-    /// Z-index for top ribbons and banners that overlay other UI elements.
-    /// @name ribbon
-    /// @type Number
-    ///
+    //
+    // Z-index for top ribbons and banners that overlay other UI elements.
+    // @name ribbon
+    // @type Number
+    //
     "ribbon": 5000,
 
-    ///
-    /// General interface elements like headers, footers, and sidebars.
-    /// @name interface
-    /// @type Number
-    ///
+    //
+    // General interface elements like headers, footers, and sidebars.
+    // @name interface
+    // @type Number
+    //
     "interface": 4000,
 
-    ///
-    /// Controls like buttons, sliders, and other interactive elements.
-    /// @name control
-    /// @type Number
-    ///
+    //
+    // Controls like buttons, sliders, and other interactive elements.
+    // @name control
+    // @type Number
+    //
     "control": 3000,
 
     // ========================================================================
     // Content
     // ========================================================================
-    /// Main content area, typically stacked below UI elements.
-    /// @name content
-    /// @type Number
+    // Main content area, typically stacked below UI elements.
+    // @name content
+    // @type Number
     "content": 2000,
 
     // ========================================================================
     // Background Layers
     // ========================================================================
-    /// Background canvas or base layer, typically the lowest layer.
-    /// @name canvas
-    /// @type Number
+    // Background canvas or base layer, typically the lowest layer.
+    // @name canvas
+    // @type Number
     "canvas": -1000,
 
     // ========================================================================
     // Special Values
     // ========================================================================
-    ///
-    /// Maximum possible z-index value.
-    /// Highest layer (use sparingly)
-    ///
-    /// @name max
-    /// @type Number
-    ///
+    //
+    // Maximum possible z-index value.
+    // Highest layer (use sparingly)
+    //
+    // @name max
+    // @type Number
+    //
     "max": 9999,
 
-    ///
-    /// Default, baseline z-index value.
-    ///
-    /// @name mid
-    /// @type Number
-    ///
+    //
+    // Default, baseline z-index value.
+    //
+    // @name mid
+    // @type Number
+    //
     "mid": 0,
 
-    ///
-    /// Minimum possible z-index value.
-    /// Forcefully behind everything
-    ///
-    /// @name min
-    /// @type Number
-    ///
+    //
+    // Minimum possible z-index value.
+    // Forcefully behind everything
+    //
+    // @name min
+    // @type Number
+    //
     "min": -9999
 ) !default;

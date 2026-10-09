@@ -68,7 +68,6 @@ module.exports = {
         "scss/at-if-no-null": null,
         "scss/operator-no-newline-after": null,
         "scss/operator-no-unspaced": null,
-        "scss/no-global-function-names": true,
         "no-empty-source": null,
         "value-keyword-case": null,
         "function-no-unknown": null,

@@ -17,16 +17,21 @@ Head partial -- static
         {% if canonical_url %}
         <link rel="canonical" href="{{ canonical_url }}" />{% endif %}
 
-        {# Stylesheets #}
-        <link rel="stylesheet" href="/css/unit.gl.css" />
+        {# Stylesheets
+        stylescape (dev-only, served from node_modules by vite.config.js) styles
+        the demo chrome. The local unit.gl build loads after it, imported into
+        a cascade layer ordered beneath stylescape's: unit.gl.css ships an
+        unlayered universal reset (`* { margin: 0; padding: 0 }`) that would
+        otherwise beat every layered stylescape rule. #}
+        <style>
+            @layer unitgl, ss;
+        </style>
+        <link rel="stylesheet" href="/vendor/stylescape/stylescape.css" />
+        <style>
+            @import url("/css/unit.gl.css") layer(unitgl);
+        </style>
         <link rel="stylesheet" href="/css/unit.gl.docs.css" />
 
         {# Scripts #}
         <script type="module" src="/js/unit.gl.js"></script>
         <script src="/js/unit.gl.docs.js"></script>
-
-        {# Fonts #}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />

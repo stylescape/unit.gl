@@ -8,22 +8,23 @@ Code Block
 Usage: {{ code_block('npm install unit.gl', lang='bash') }}
 ============================================================================ #}
 {% macro code_block(code, lang='scss', title='') %}
-<div class="code-block{% if lang %} code-block--{{ lang }}{% endif %}">
-    {% if title %}<div class="code-block__title">{{ title }}</div>{% endif %}
-    {{ code | safe }}
-</div>
+{% if title %}<p class="ss-t-label">{{ title }}</p>{% endif %}
+<pre class="ss-c-code-block"{% if lang %} data-lang="{{ lang }}"{% endif %}>{{ code | safe }}</pre>
 {% endmacro %}
 
 
 {# ============================================================================
 Alert / Callout
 Usage: {{ alert('This is a tip!', type='tip', title='Pro Tip') }}
-Types: tip, warning, info, danger
+Types: tip, warning, info, danger (tip renders as stylescape's success alert)
 ============================================================================ #}
 {% macro alert(content, type='info', title='') %}
-<div class="alert alert--{{ type }}">
-    {% if title %}<p class="alert__title">{{ title }}</p>{% endif %}
-    <p>{{ content | safe }}</p>
+{%- set variants = {'tip': 'success', 'info': 'info', 'warning': 'warning', 'danger': 'danger'} -%}
+<div class="ss-c-alert ss-c-alert--{{ variants[type] or 'info' }}">
+    <div class="ss-c-alert__body">
+        {% if title %}<p class="ss-c-alert__title">{{ title }}</p>{% endif %}
+        <p>{{ content | safe }}</p>
+    </div>
 </div>
 {% endmacro %}
 
@@ -33,7 +34,7 @@ API Signature
 Usage: {{ api_signature('q($multiplier) → Length') }}
 ============================================================================ #}
 {% macro api_signature(signature) %}
-<div class="api-signature">{{ signature }}</div>
+<pre class="ss-c-code-block">{{ signature }}</pre>
 {% endmacro %}
 
 
@@ -42,12 +43,11 @@ API Parameter
 Usage: {{ api_param('$multiplier', 'Number', 'The number of Q units') }}
 ============================================================================ #}
 {% macro api_param(name, type, description, default='') %}
-<div class="api-param">
-    <span class="api-param__name">{{ name }}</span>
-    <span class="api-param__type">{{ type }}</span>
-    {% if default %}<span class="api-param__default">Default: {{ default }}</span>{% endif %}
-    <span class="api-param__desc">{{ description }}</span>
-</div>
+<tr>
+    <td><code>{{ name }}</code></td>
+    <td><span class="ss-c-badge ss-c-badge--sm">{{ type }}</span></td>
+    <td>{{ description }}{% if default %} <em>Default: {{ default }}</em>{% endif %}</td>
+</tr>
 {% endmacro %}
 
 
@@ -56,9 +56,18 @@ API Parameters Block
 Usage: {% call api_params() %}{{ api_param(...) }}{% endcall %}
 ============================================================================ #}
 {% macro api_params() %}
-<div class="api-params">
-    {{ caller() }}
-</div>
+<table class="ss-c-table">
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{ caller() }}
+    </tbody>
+</table>
 {% endmacro %}
 
 
@@ -67,10 +76,10 @@ Feature Card
 Usage: {{ feature_card('Q', 'The Q Unit', 'Atomic unit system...') }}
 ============================================================================ #}
 {% macro feature_card(icon, title, description) %}
-<div class="feature-card">
-    <div class="feature-card__icon">{{ icon }}</div>
-    <h3 class="feature-card__title">{{ title }}</h3>
-    <p class="feature-card__desc">{{ description }}</p>
+<div class="ss-c-card">
+    <div class="ss-c-card__icon" aria-hidden="true">{{ icon }}</div>
+    <h3 class="ss-c-card__title">{{ title }}</h3>
+    <p class="ss-c-card__description">{{ description }}</p>
 </div>
 {% endmacro %}
 
@@ -78,14 +87,15 @@ Usage: {{ feature_card('Q', 'The Q Unit', 'Atomic unit system...') }}
 {# ============================================================================
 Button
 Usage: {{ button('Get Started', href='/start.html', variant='primary', icon='lightning') }}
-Variants: primary, secondary, ghost
+Variants: primary, secondary, ghost (mapped to stylescape's solid, outline, ghost)
 Icons: lightning, github, arrow, external
 ============================================================================ #}
 {% macro button(text, href='#', variant='primary', icon='', target='') %}
 {%- from "partials/icons.html.jinja" import icon_lightning, icon_github, icon_arrow_right, icon_external -%}
 {%- set leading_icons = {'lightning': icon_lightning, 'github': icon_github, 'arrow': icon_arrow_right} -%}
 {%- set trailing_icons = {'external': icon_external} -%}
-<a href="{{ href }}" class="btn btn--{{ variant }}" {%- if target %} target="{{ target }}" rel="noopener noreferrer" {%
+{%- set variants = {'primary': 'solid', 'secondary': 'outline', 'ghost': 'ghost'} -%}
+<a href="{{ href }}" class="ss-c-button ss-c-button--{{ variants[variant] or 'solid' }}" {%- if target %} target="{{ target }}" rel="noopener noreferrer" {%
     endif %}>
     {%- if icon in leading_icons %}{{ leading_icons[icon]() }}{% endif %}
     {{ text }}
@@ -99,7 +109,7 @@ Demo Row
 Usage: {% call demo_row() %}...{% endcall %}
 ============================================================================ #}
 {% macro demo_row() %}
-<div class="demo-row">
+<div class="ss-c-demo__group">
     {{ caller() }}
 </div>
 {% endmacro %}
@@ -110,9 +120,9 @@ Demo Item
 Usage: {{ demo_item(content, label='.p_q16') }}
 ============================================================================ #}
 {% macro demo_item(label='') %}
-<div class="demo-item">
+<div class="ss-c-demo__stack">
     {{ caller() }}
-    {% if label %}<span class="demo-item__label">{{ label }}</span>{% endif %}
+    {% if label %}<span class="ss-t-label">{{ label }}</span>{% endif %}
 </div>
 {% endmacro %}
 
@@ -122,7 +132,7 @@ Table (simple)
 Usage: {{ table(headers=['Name', 'Value'], rows=[['item1', 'val1'], ['item2', 'val2']]) }}
 ============================================================================ #}
 {% macro table(headers, rows, class='') %}
-<table class="table{% if class %} {{ class }}{% endif %}">
+<table class="ss-c-table{% if class %} {{ class }}{% endif %}">
     <thead>
         <tr>
             {% for header in headers %}
@@ -187,8 +197,8 @@ Doc Section (for documentation index)
 Usage: {{ doc_section('Learn', [{'href': '/start.html', 'label': 'Getting Started'}]) }}
 ============================================================================ #}
 {% macro doc_section(title, links) %}
-<div class="doc-section">
-    <h3>{{ title }}</h3>
+<div class="ss-c-card">
+    <h3 class="ss-c-card__title">{{ title }}</h3>
     <ul>
         {% for link in links %}
         <li><a href="{{ link.href }}">{{ link.label }}</a></li>

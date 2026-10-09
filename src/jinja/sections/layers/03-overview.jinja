@@ -1,5 +1,5 @@
 {# Introduction #}
-<section>
+<section class="ss-c-demo__section">
     <h2>Overview</h2>
 
     <p>Managing z-index values across a large project quickly becomes chaotic. The common approach of using
@@ -12,7 +12,7 @@
         names that describe the <em>purpose</em> of each layer. The <code>z()</code> function maps these names to
         carefully structured z-index values.</p>
 
-    <div class="code-block"><pre><code>@use "unit.gl" as *;
+    <pre class="ss-c-code-block"><code>@use "unit.gl" as *;
 
 // Instead of this...
 .modal { z-index: 9999; }
@@ -22,5 +22,5 @@
 // Use semantic names
 .modal { z-index: z("modal"); } // 7000
 .header { z-index: z("interface"); } // 4000
-.dropdown { z-index: z("content"); } // 2000</code></pre></div>
+.dropdown { z-index: z("content"); } // 2000</code></pre>
 </section>

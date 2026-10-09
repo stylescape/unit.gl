@@ -1,4 +1,4 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Live Demos</h2>
 
     {% set demos = [
@@ -13,18 +13,13 @@
     {"name": "guide-baseline", "title": "Baseline Grid", "tag": "guides", "desc": "Toggle alignment guides and grids"}
     ] %}
 
-    <ul>
+    <div class="ss-l-grid ss-l-grid-auto">
         {% for page in demos %}
-        <li>
-            <div class="list-item">
-                <div>
-                    <a href="{{ page.name }}.html" class="list-item__title">{{ page.title }}</a>
-                    <span class="tag{% if page.tag == 'interactive' %} tag--red{% endif %}">{{ page.tag }}</span>
-                    <p class="list-item__meta" style="margin-top: 4px; margin-bottom: 0;">{{ page.desc }}</p>
-                </div>
-                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--swiss-gray-400);">→</span>
-            </div>
-        </li>
+        <a href="{{ page.name }}.html" class="ss-c-card ss-c-card--interactive">
+            <span class="ss-c-badge ss-c-badge--sm{% if page.tag == 'interactive' %} ss-c-badge--accent{% endif %}">{{ page.tag }}</span>
+            <h3 class="ss-c-card__title">{{ page.title }} →</h3>
+            <p class="ss-c-card__description">{{ page.desc }}</p>
+        </a>
         {% endfor %}
-    </ul>
+    </div>
 </section>

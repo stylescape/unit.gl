@@ -23,14 +23,14 @@
 /// ───────────────────────────────────────────────────────────────────────────
 /// | Format | mm (W×H)    | Line Units | Pixels (×4) | Use Case           |
 /// |--------|-------------|------------|-------------|---------------------|
-/// | Q07    | 60×90       | 12×18      | 240×360     | Compact/Watch      |
-/// | Q06    | 90×135      | 18×27      | 360×540     | Phone              |
-/// | Q05    | 135×180     | 27×36      | 540×720     | Large phone        |
-/// | Q04    | 180×270     | 36×54      | 720×1080    | Tablet (HD)        |
-/// | Q03    | 270×360     | 54×72      | 1080×1440   | Laptop             |
-/// | Q02    | 360×540     | 72×108     | 1440×2160   | Desktop (QHD)      |
-/// | Q01    | 540×720     | 108×144    | 2160×2880   | Large desktop      |
-/// | Q00    | 720×1080    | 144×216    | 2880×4320   | 5K display         |
+/// | Q07    | 62.5×90     | 50×72      | 250×360     | Compact/Watch      |
+/// | Q06    | 90×135      | 72×108     | 360×540     | Phone              |
+/// | Q05    | 135×180     | 108×144    | 540×720     | Large phone        |
+/// | Q04    | 180×270     | 144×216    | 720×1080    | Tablet (HD)        |
+/// | Q03    | 270×360     | 216×288    | 1080×1440   | Laptop             |
+/// | Q02    | 360×540     | 288×432    | 1440×2160   | Desktop (QHD)      |
+/// | Q01    | 540×720     | 432×576    | 2160×2880   | Large desktop      |
+/// | Q00    | 720×1080    | 576×864    | 2880×4320   | 5K display         |
 /// ───────────────────────────────────────────────────────────────────────────
 ///
 /// @group Scale
@@ -45,6 +45,8 @@
 // Use
 // ============================================================================
 
+@use "sass:map";
+@use "sass:math";
 @use "unit" as *;
 
 // ============================================================================
@@ -81,7 +83,7 @@ $font_size_scalar: 4 !default;
 /// ratio and font size scalar.
 ///
 /// @name $line_height_scalar
-/// @type Length
+/// @type Number
 ///
 $line_height_scalar: calc($line_height_ratio * $font_size_scalar) !default;
 
@@ -253,7 +255,7 @@ $typographic_scale: (
 /// 5Q = 5px = 1.25mm at standard density.
 ///
 /// This scale aligns perfectly with Q format paper sizes:
-/// - Q04 (180×270mm) = 36×54 line units = 720×1080px
+/// - Q04 (180×270mm) = 144×216 line units = 720×1080px
 ///
 /// @name $line_scale
 /// @type Number
@@ -270,7 +272,6 @@ $baseline_scale: $line_scale !default;
 /// Calculates a line grid value based on the line scale.
 ///
 /// @name baseline
-/// @type Function
 /// @param {Number} $value - The multiplier to apply to the line scale.
 /// @return {Length} The calculated line grid value.
 /// @deprecated Use line() function from _scale.scss instead
@@ -317,23 +318,23 @@ $line_units: (
     16: baseline(16),
     // 80px ← aligns with type(20)
     18: baseline(18),
-    // 90px (Q07 width)
+    // 90px (= Q06 width in mm)
     20: baseline(20),
     // 100px ← aligns with type(25)
     24: baseline(24),
     // 120px
     27: baseline(27),
-    // 135px (Q05 width)
+    // 135px (= Q05 width in mm)
     36: baseline(36),
-    // 180px (Q04 width)
+    // 180px (= Q04 width in mm)
     54: baseline(54),
-    // 270px (Q04 height)
+    // 270px (= Q04 height in mm)
     72: baseline(72),
-    // 360px (Q03 width)
+    // 360px (= Q02 width in mm)
     108: baseline(108),
-    // 540px (Q02 width)
+    // 540px (= Q01 width in mm)
     144: baseline(144),
-    // 720px (Q01 width)
+    // 720px (= Q00 width in mm, Q04 width in px)
     216: baseline(216) // 1080px (Q04 height in px)
 ) !default;
 
@@ -398,7 +399,7 @@ $spacing_scale: (
 ) !default;
 
 // ============================================================================
-// Q Format ↔ Line Grid Mapping
+// Q Format ⇄ Line Grid Mapping
 // ============================================================================
 
 ///
@@ -415,10 +416,10 @@ $spacing_scale: (
 ///
 $q_format_lines: (
     q07: (
-        columns: 48,
+        columns: 50,
         rows: 72
     ),
-    // 60×90mm → 48×72 lines = 240×360px
+    // 62.5×90mm → 50×72 lines = 250×360px
     q06: (
             columns: 72,
             rows: 108
@@ -549,13 +550,11 @@ $resolution_lines: (
         @return $base_size;
     }
 
-    // Calculate the scale factor: scale^(dpr-1)
+    // Scale factor is scale^(dpr-1), so fractional ratios such as 1.5 or
+    // 2.625 interpolate between the integer steps.
     // For DPR 2: 0.9^1 = 0.9
     // For DPR 3: 0.9^2 = 0.81
-    $factor: 1;
-    @for $i from 2 through $target_dpr {
-        $factor: $factor * $density_scale;
-    }
+    $factor: math.pow($density_scale, $target_dpr - 1);
 
     @return calc(#{$base_size} * #{$factor});
 }

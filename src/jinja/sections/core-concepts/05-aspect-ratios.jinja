@@ -1,4 +1,4 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Aspect Ratios</h2>
 
     <p>unit.gl includes predefined aspect ratios for images, videos, and containers:</p>
@@ -8,14 +8,14 @@
         {% for ratio in ['1x1', '4x3', '3x2', '16x9', '21x9'] %}
         {% set w, h = ratio.split('x') %}
         <div>
-            <div style="aspect-ratio: {{ w }}/{{ h }}; background: var(--swiss-black); margin-bottom: 8px;"></div>
-            <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--swiss-gray-500);">{{ ratio
+            <div style="aspect-ratio: {{ w }}/{{ h }}; background: var(--color_text_primary); margin-bottom: 8px;"></div>
+            <span style="font-family: var(--ss-font-family-mono); font-size: 0.6875rem; color: var(--color_text_tertiary);">{{ ratio
                 }}</span>
         </div>
         {% endfor %}
     </div>
 
-    <div class="code-block"><pre><code><span class="comment">// Using ratio classes</span>
+    <pre class="ss-c-code-block"><code><span class="comment">// Using ratio classes</span>
         &lt;div class="<span class="class">ratio_16x9</span>"&gt;
         &lt;img src="video-thumb.jpg" alt="Video"&gt;
         &lt;/div&gt;
@@ -23,5 +23,5 @@
         <span class="comment">// Using SCSS mixin</span>
         .hero-image {
         @include aspect_ratio(16, 9);
-        }</code></pre></div>
+        }</code></pre>
 </section>

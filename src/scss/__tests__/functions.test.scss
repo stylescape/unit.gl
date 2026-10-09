@@ -1,0 +1,99 @@
+// =============================================================================
+// Tests: functions that previously failed or returned wrong values
+// =============================================================================
+
+@use "sass:map";
+@use "true" as *;
+@use "../index" as u;
+
+@include describe("line scale") {
+    @include it("line() multiplies $q by 5 per line") {
+        @include assert-equal(u.line(4), 1.25rem);
+    }
+
+    @include it("snap_to_line() accepts px and rem") {
+        @include assert-equal(u.snap_to_line(13px), 0.9375rem);
+        @include assert-equal(u.snap_to_line(1.1rem), 1.25rem);
+    }
+}
+
+@include describe("lerp() / fluid()") {
+    @include it("reaches the max value for rem sizes") {
+        // 0.5rem (8px) over 880px of viewport
+        @include assert-equal(
+            "#{u.fluid(1rem, 1.5rem)}",
+            "clamp(1rem, calc(1rem + 0.0090909091 * (100vw - 320px)), 1.5rem)"
+        );
+    }
+
+    @include it("accepts rem viewport bounds") {
+        @include assert-equal(
+            "#{u.lerp(16px, 24px, 20rem, 75rem)}",
+            "calc(16px + 0.0090909091 * (100vw - 20rem))"
+        );
+    }
+}
+
+@include describe("sequences") {
+    @include it("is_prime() handles small and non-square inputs") {
+        @include assert-equal(
+            (u.is_prime(1), u.is_prime(2), u.is_prime(3), u.is_prime(7), u.is_prime(9), u.is_prime(29)),
+            (false, true, true, true, false, true)
+        );
+    }
+
+    @include it("fibonacci() and lucas() handle large indices") {
+        @include assert-equal(u.sequence_fibonacci(0), 0);
+        @include assert-equal(u.sequence_fibonacci(10), 55);
+        @include assert-equal(u.sequence_fibonacci(60), 1548008755920);
+        @include assert-equal(u.sequence_lucas(0), 2);
+        @include assert-equal(u.sequence_lucas(10), 123);
+    }
+
+    @include it("sequence_geometric() is 1-indexed") {
+        @include assert-equal(u.sequence_geometric(1), 1);
+        @include assert-equal(u.sequence_geometric(4), 8);
+    }
+
+    @include it("factorial(0) and friends are 1") {
+        @include assert-equal(u.factorial(0), 1);
+        @include assert-equal(u.factorial(5), 120);
+        @include assert-equal(u.sequence_catalan(0), 1);
+        @include assert-equal(u.sequence_superfactorial(0), 1);
+    }
+}
+
+@include describe("arithmetic") {
+    @include it("sum() keeps going after a running total of zero") {
+        @include assert-equal(u.sum(2px, -2px, 3px), 3px);
+        @include assert-equal(u.avg(2px, -2px, 6px), 2px);
+    }
+}
+
+@include describe("density") {
+    @include it("scale_density() accepts fractional ratios") {
+        @include assert-equal("#{u.scale_density(7, 2)}", "calc(1rem * 0.9)");
+        @include assert-equal(
+            "#{u.scale_density(7, 2.5)}",
+            "calc(1rem * 0.8538149682)"
+        );
+    }
+}
+
+@include describe("lookups") {
+    @include it("z() reads $layer_map") {
+        @include assert-equal(u.z("modal"), 7000);
+    }
+
+    @include it("guide-z-index() uses the guides layer") {
+        @include assert-equal(u.guide-z-index(), 9998);
+    }
+
+    @include it("format_to_breakpoint() maps Q03 landscape to lg") {
+        @include assert-equal(u.format_to_breakpoint(q03l), lg);
+    }
+
+    @include it("classic scale values are lengths") {
+        @include assert-equal(map.get(u.$scale_classic, 1), 0.375rem);
+    }
+}

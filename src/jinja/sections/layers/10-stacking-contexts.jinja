@@ -1,5 +1,5 @@
 {# Stacking Contexts #}
-<section>
+<section class="ss-c-demo__section">
     <h2>Understanding Stacking Contexts</h2>
 
     <p>Z-index only works within a stacking context. Several CSS properties create new stacking contexts:</p>
@@ -17,7 +17,7 @@
         <code>z-index: 2</code>.
     </p>
 
-    <div class="code-block"><pre><code>// Problem: Modal trapped in stacking context
+    <pre class="ss-c-code-block"><code>// Problem: Modal trapped in stacking context
 .sidebar {
   position: relative;
   z-index: 1; // Creates stacking context
@@ -35,12 +35,14 @@
 
 .main-content {
   isolation: isolate; // Contains its own stacking
-}</code></pre></div>
+}</code></pre>
 
-    <div class="alert">
-        <p class="alert__title">Key Insight</p>
-        <p>The layer system provides consistent z-index values, but you still need to manage stacking contexts.
-            Place
-            modals and overlays at the root level of your DOM when possible.</p>
+    <div class="ss-c-alert ss-c-alert--info">
+        <div class="ss-c-alert__body">
+            <p class="ss-c-alert__title">Key Insight</p>
+            <p>The layer system provides consistent z-index values, but you still need to manage stacking contexts.
+                Place
+                modals and overlays at the root level of your DOM when possible.</p>
+        </div>
     </div>
 </section>

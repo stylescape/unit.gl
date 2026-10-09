@@ -1,9 +1,9 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Paper Configuration</h2>
     <p>Paper sizes for print-oriented designs.</p>
 
     <h3>Default Paper Sizes</h3>
-    <div class="code-block"><pre><code>$paper_map: (
+    <pre class="ss-c-code-block"><code>$paper_map: (
         "a3": (297mm, 420mm),
         "a4": (210mm, 297mm),
         "a5": (148mm, 210mm),
@@ -11,13 +11,13 @@
         "letter": (216mm, 279mm),
         "legal": (216mm, 356mm),
         "tabloid": (279mm, 432mm),
-        ) !default;</code></pre></div>
+        ) !default;</code></pre>
 
     <h3>Customizing</h3>
-    <div class="code-block"><pre><code><span class="comment">// Add custom sizes</span>
+    <pre class="ss-c-code-block"><code><span class="comment">// Add custom sizes</span>
         $paper_map: map.merge($paper_map, (
         "business-card": (89mm, 51mm),
         "postcard": (148mm, 105mm),
         "poster-small": (420mm, 594mm), <span class="comment">// A2</span>
-        ));</code></pre></div>
+        ));</code></pre>
 </section>

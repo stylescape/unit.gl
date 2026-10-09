@@ -224,9 +224,9 @@
 /// @prop {Map} book_large [width: 7in, height: 10in] - Large book size.
 /// @prop {Map} book_collectors [width: 9in, height: 12in] - Collector’s edition book size.
 /// @prop {Map} book_coffee_table [width: 12in, height: 15in] - Coffee table book size.
-/// @prop {Map} business_card_us [width: 3.5in, height: 2in] - US standard business card size.
-/// @prop {Map} business_card_eu [width: 85mm, height: 55mm] - EU standard business card size.
-/// @prop {Map} business_card_iso [width: 90mm, height: 55mm] - ISO standard business card size.
+/// @prop {Map} business_card_us [width: 2in, height: 3.5in] - US standard business card size.
+/// @prop {Map} business_card_eu [width: 55mm, height: 85mm] - EU standard business card size.
+/// @prop {Map} business_card_iso [width: 55mm, height: 90mm] - 90×55mm business card (AU/NZ/Nordics; there is no ISO business card standard).
 /// @prop {Map} index_card_3x5 [width: 3in, height: 5in] - 3”x5” index card size.
 /// @prop {Map} index_card_4x6 [width: 4in, height: 6in] - 4”x6” index card size.
 /// @prop {Map} index_card_5x8 [width: 5in, height: 8in] - 5”x8” index card size.
@@ -1393,24 +1393,25 @@ $paper_sizes: (
     // Coffee Table Book
     // Business Card Standard Sizes
     // ------------------------------------------------------------------------
+    // Stored portrait like every other entry; use `format(…, landscape)`.
     "business_card_us":
         (
-            width: 3.5in,
-            height: 2in
+            width: 2in,
+            height: 3.5in
         ),
     // US Standard Business Card
     "business_card_eu":
         (
-            width: 85mm,
-            height: 55mm
+            width: 55mm,
+            height: 85mm
         ),
     // EU Standard Business Card
     "business_card_iso":
         (
-            width: 90mm,
-            height: 55mm
+            width: 55mm,
+            height: 90mm
         ),
-    // ISO Standard Business Card
+    // 90×55mm card (AU/NZ/Nordics); not an ISO standard
     // Index Card Sizes
     // ------------------------------------------------------------------------
     "index_card_3x5":

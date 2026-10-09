@@ -1,0 +1,44 @@
+////
+///
+/// Kyū Base Unit Module
+/// ===========================================================================
+///
+/// Defines the Kyū base unit and the `q()` helper. Kept free of dependencies
+/// so function modules can use it without creating a module loop.
+///
+/// @group Unit
+/// @author Scape Press
+/// @link https://unit.gl
+/// @since 0.3.6
+/// @access public
+///
+////
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+///
+/// The base unit in the Kyū measurement system. It represents 1/16th of a rem,
+/// which is equivalent to 1px in digital design or 0.25mm in physical design.
+///
+/// @name $q
+/// @type Length
+///
+$q: 0.0625rem !default; // 1px in digital design, or 0.25mm in physical design
+
+// ============================================================================
+// Functions
+// ============================================================================
+
+///
+/// This function returns a calculated value in Kyū units, making it easy to
+/// apply multiples of the base unit.
+///
+/// @name q
+/// @param {Number} $multiplier - The multiplier to apply to the base Kyū unit.
+/// @return {Length} The calculated value in Kyū units.
+///
+@function q($multiplier) {
+    @return calc($q * $multiplier);
+}

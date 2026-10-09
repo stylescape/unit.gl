@@ -40,88 +40,30 @@ Variables:
 {'href': 'background.html', 'label': 'Background'}
 ] %}
 
-<aside class="sidebar" id="sidebar" aria-label="Documentation navigation">
-    <nav class="sidebar__nav">
-        {# Learn Section #}
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">Learn</h3>
-            <ul class="sidebar__list">
-                {% for item in learn_items %}
-                <li>
-                    <a href="{{ item.href }}"
-                        class="sidebar__link{% if current_page == item.href %} is-active{% endif %}" {% if
-                        current_page==item.href %}aria-current="page" {% endif %}>
+{% set nav_groups = [
+{'title': 'Learn', 'items': learn_items},
+{'title': 'Core', 'items': core_items},
+{'title': 'Framework', 'items': framework_items},
+{'title': 'API Reference', 'items': api_items},
+{'title': 'About', 'items': about_items}
+] %}
+
+<aside class="docs-sidebar" id="sidebar" aria-label="Documentation navigation">
+    <nav>
+        {% for group in nav_groups %}
+        <section class="ss-c-sidebar__section">
+            <h2 class="ss-c-section-title">{{ group.title }}</h2>
+            <ul class="ss-c-nav ss-c-nav--vertical">
+                {% for item in group.items %}
+                <li class="ss-c-nav__item">
+                    <a href="{{ item.href }}" class="ss-c-nav__link" {% if current_page==item.href
+                        %}aria-current="page" {% endif %}>
                         {{ item.label }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        </div>
-
-        {# Core Section #}
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">Core</h3>
-            <ul class="sidebar__list">
-                {% for item in core_items %}
-                <li>
-                    <a href="{{ item.href }}"
-                        class="sidebar__link{% if current_page == item.href %} is-active{% endif %}" {% if
-                        current_page==item.href %}aria-current="page" {% endif %}>
-                        {{ item.label }}
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-
-
-        {# Framework Section #}
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">Framework</h3>
-            <ul class="sidebar__list">
-                {% for item in framework_items %}
-                <li>
-                    <a href="{{ item.href }}"
-                        class="sidebar__link{% if current_page == item.href %} is-active{% endif %}" {% if
-                        current_page==item.href %}aria-current="page" {% endif %}>
-                        {{ item.label }}
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-
-
-        {# API Section #}
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">API Reference</h3>
-            <ul class="sidebar__list">
-                {% for item in api_items %}
-                <li>
-                    <a href="{{ item.href }}"
-                        class="sidebar__link{% if current_page == item.href %} is-active{% endif %}" {% if
-                        current_page==item.href %}aria-current="page" {% endif %}>
-                        {{ item.label }}
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-
-        {# About Section #}
-        <div class="sidebar__section">
-            <h3 class="sidebar__heading">About</h3>
-            <ul class="sidebar__list">
-                {% for item in about_items %}
-                <li>
-                    <a href="{{ item.href }}"
-                        class="sidebar__link{% if current_page == item.href %} is-active{% endif %}" {% if
-                        current_page==item.href %}aria-current="page" {% endif %}>
-                        {{ item.label }}
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+        </section>
+        {% endfor %}
     </nav>
 </aside>

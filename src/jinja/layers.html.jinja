@@ -3,25 +3,23 @@
 {%- block title %}Layers — unit.gl{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Documentation</p>
+<p class="ss-t-overline">Documentation</p>
 <h1>Layering System</h1>
-<p class="lead">Semantic z-index management for predictable stacking contexts. Replace magic numbers with meaningful
+<p class="ss-t-lead">Semantic z-index management for predictable stacking contexts. Replace magic numbers with meaningful
     layer names.</p>
 {%- endblock %}
 
 {%- block content %}
 
-<div class="page--layers">
-    {% include "sections/layers/01-interactive-demo.jinja" %}
-    {% include "sections/layers/02-stack-order.jinja" %}
-    {% include "sections/layers/03-overview.jinja" %}
-    {% include "sections/layers/04-layer-stack.jinja" %}
-    {% include "sections/layers/05-z-function.jinja" %}
-    {% include "sections/layers/06-layer-reference.jinja" %}
-    {% include "sections/layers/07-relative-positioning.jinja" %}
-    {% include "sections/layers/08-customization.jinja" %}
-    {% include "sections/layers/09-best-practices.jinja" %}
-    {% include "sections/layers/10-stacking-contexts.jinja" %}
-</div>
+{% include "sections/layers/01-interactive-demo.jinja" %}
+{% include "sections/layers/02-stack-order.jinja" %}
+{% include "sections/layers/03-overview.jinja" %}
+{% include "sections/layers/04-layer-stack.jinja" %}
+{% include "sections/layers/05-z-function.jinja" %}
+{% include "sections/layers/06-layer-reference.jinja" %}
+{% include "sections/layers/07-relative-positioning.jinja" %}
+{% include "sections/layers/08-customization.jinja" %}
+{% include "sections/layers/09-best-practices.jinja" %}
+{% include "sections/layers/10-stacking-contexts.jinja" %}
 
 {%- endblock %}

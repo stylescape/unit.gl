@@ -1,39 +1,39 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Layout Mixins</h2>
     <p>Helpers for sizing, positioning, and viewport-relative containers.</p>
 
     <h3>container</h3>
     <p>Wraps content in a width-constrained container.</p>
 
-    <div class="api-signature">@include container</div>
+    <pre class="ss-c-code-block">@include container</pre>
 
-    <div class="code-block"><pre><code>.page {
+    <pre class="ss-c-code-block"><code>.page {
     @include container;
-}</code></pre></div>
+}</code></pre>
 
     <h3>center_x / center_y</h3>
     <p>Absolute-positioning helpers that center an element horizontally or vertically within its positioned ancestor.
     </p>
 
-    <div class="api-signature">@include center_x<br>@include center_y</div>
+    <pre class="ss-c-code-block">@include center_x<br>@include center_y</pre>
 
-    <div class="code-block"><pre><code>.modal {
+    <pre class="ss-c-code-block"><code>.modal {
     position: absolute;
     @include center_x;
     @include center_y;
-}</code></pre></div>
+}</code></pre>
 
     <h3>set_size / set_width / set_height</h3>
     <p>Apply sizing using Q units.</p>
 
-    <div class="api-signature">@include set_size($q-value)<br>@include set_width($q-value)<br>@include set_height($q-value)</div>
+    <pre class="ss-c-code-block">@include set_size($q-value)<br>@include set_width($q-value)<br>@include set_height($q-value)</pre>
 
-    <div class="code-block"><pre><code>.thumb {
+    <pre class="ss-c-code-block"><code>.thumb {
     @include set_size(64);   // 64 × q(1)
 }
 
 .divider {
     @include set_width(240);
     @include set_height(1);
-}</code></pre></div>
+}</code></pre>
 </section>

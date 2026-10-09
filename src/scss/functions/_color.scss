@@ -30,6 +30,7 @@
 // ============================================================================
 
 @use "sass:map";
+@use "../maps/color" as *;
 
 // ============================================================================
 // Guide Color Function
@@ -49,11 +50,11 @@
 ///
 /// @example scss - Usage
 ///   .baseline-guide {
-///     background-color: guide--color("baseline");
+///     background-color: guide--color("primary");
 ///   }
 ///
 ///   .grid-line {
-///     border-color: guide--color("grid-major");
+///     border-color: guide--color("secondary");
 ///   }
 ///
 /// @see $guide--color_map

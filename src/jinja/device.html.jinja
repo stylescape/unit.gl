@@ -3,19 +3,17 @@
 {%- block title %}Device Explorer — unit.gl{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Guides</p>
+<p class="ss-t-overline">Guides</p>
 <h1>Device Explorer</h1>
-<p class="lead">Inspect environment media features and match them against unit.gl's <code>$devices</code> profile map.
+<p class="ss-t-lead">Inspect environment media features and match them against unit.gl's <code>$devices</code> profile map.
 </p>
 {%- endblock %}
 
 {%- block content %}
 
-<div class="page--device">
 {% include "sections/device/01-current-environment.jinja" %}
 {% include "sections/device/02-media-features.jinja" %}
 {% include "sections/device/03-device-profiles.jinja" %}
 {% include "sections/device/04-scss-usage.jinja" %}
-</div>
 
 {%- endblock %}

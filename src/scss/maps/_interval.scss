@@ -34,7 +34,7 @@
 ///
 /// @prop {Number} minor_second [1.067] - Minor second interval.
 /// @prop {Number} minor_third [1.2] - Minor third interval.
-/// @prop {Number} minor_fourth [1.334] - Minor fourth interval (also known as diminished fifth).
+/// @prop {Number} minor_fourth [1.334] - Fourth interval (5 semitones, ≈ perfect fourth).
 /// @prop {Number} minor_fifth [1.5] - Minor fifth interval.
 /// @prop {Number} minor_sixth [1.6] - Minor sixth interval.
 /// @prop {Number} minor_seventh [1.778] - Minor seventh interval.
@@ -62,30 +62,30 @@
 /// @prop {Number} perfect_fourteenth [3.667] - Perfect fourteenth interval.
 /// @prop {Number} perfect_fifteenth [4] - Perfect fifteenth interval, double octave.
 /// @prop {Number} double_octave [4] - Twice the frequency of the perfect octave.
-/// @prop {Number} triple_octave [8] - Three times the frequency of the perfect octave.
+/// @prop {Number} triple_octave [8] - Three octaves up (eight times the frequency).
 /// @prop {Number} augmented_unison [1.059] - Slightly higher than perfect unison.
-/// @prop {Number} augmented_second [1.122] - Slightly higher than major second.
-/// @prop {Number} augmented_third [1.189] - Slightly higher than major third.
+/// @prop {Number} augmented_second [1.189] - Slightly higher than major second.
+/// @prop {Number} augmented_third [1.335] - Slightly higher than major third.
 /// @prop {Number} augmented_fourth [1.414] - Augmented fourth, also known as tritone.
 /// @prop {Number} augmented_fifth [1.587] - Slightly higher than perfect fifth.
-/// @prop {Number} augmented_sixth [1.682] - Slightly higher than major sixth.
-/// @prop {Number} augmented_seventh [1.782] - Slightly higher than major seventh.
-/// @prop {Number} augmented_octave [2.059] - Slightly higher than perfect octave.
-/// @prop {Number} diminished_unison [0.943] - Diminished unison, slightly less than perfect unison.
-/// @prop {Number} diminished_second [1.053] - Diminished second interval, slightly less than minor second.
+/// @prop {Number} augmented_sixth [1.782] - Slightly higher than major sixth.
+/// @prop {Number} augmented_seventh [2] - Slightly higher than major seventh.
+/// @prop {Number} augmented_octave [2.119] - Slightly higher than perfect octave.
+/// @prop {Number} diminished_unison [0.944] - Diminished unison, slightly less than perfect unison.
+/// @prop {Number} diminished_second [1] - Diminished second interval, slightly less than minor second.
 /// @prop {Number} diminished_third [1.122] - Diminished third interval, slightly less than minor third.
-/// @prop {Number} diminished_fourth [1.260] - Diminished fourth, slightly less than perfect fourth.
+/// @prop {Number} diminished_fourth [1.26] - Diminished fourth, slightly less than perfect fourth.
 /// @prop {Number} diminished_fifth [1.414] - Tritone, halfway between perfect fourth and fifth.
-/// @prop {Number} diminished_sixth [1.587] - Diminished sixth interval, slightly less than major sixth.
-/// @prop {Number} diminished_seventh [1.782] - Diminished seventh interval, slightly less than major seventh.
-/// @prop {Number} diminished_octave [1.961] - Diminished octave, slightly less than perfect octave.
+/// @prop {Number} diminished_sixth [1.498] - Diminished sixth interval, slightly less than major sixth.
+/// @prop {Number} diminished_seventh [1.682] - Diminished seventh interval, slightly less than major seventh.
+/// @prop {Number} diminished_octave [1.888] - Diminished octave, slightly less than perfect octave.
 /// @prop {Number} root_two [1.414] - Square root of 2.
 /// @prop {Number} root_three [1.732] - Square root of 3.
 /// @prop {Number} root_four [2] - Square root of 4.
 /// @prop {Number} root_five [2.236] - Square root of 5.
 /// @prop {Number} golden_ratio [1.618] - The golden ratio.
 /// @prop {Number} silver_ratio [2.414] - Analogous to the golden ratio.
-/// @prop {Number} bronze_ratio [1.927] - Analogous to silver and golden ratios.
+/// @prop {Number} bronze_ratio [3.303] - Analogous to silver and golden ratios: (3 + √13) / 2.
 /// @prop {Number} phi [1.618] - Another name for the golden ratio.
 /// @prop {Number} pi [3.142] - Mathematical Pi value.
 /// @prop {Number} euler [2.718] - Euler"s number.
@@ -99,7 +99,7 @@
 /// @prop {Number} egyptian_fraction [1.571] - Ancient Egyptian architecture ratio.
 /// @prop {Number} harmonic_mean [1.455] - Harmonic mean, a type of average.
 /// @prop {Number} gauss_constant [0.834] - Gauss"s constant related to the arithmetic-geometric mean.
-/// @prop {Number} super_golden [2.058] - Super golden ratio, a higher order of the golden ratio.
+/// @prop {Number} super_golden [1.466] - Super golden ratio ψ, real root of x³ = x² + 1.
 /// @prop {Number} parthenon_ratio [1.618] - Ratio used in the architecture of the Parthenon.
 /// @prop {Number} le_corbusier [1.618] - Le Corbusier’s modulor ratio, used in modernist architecture.
 /// @prop {Number} vesica_piscis [1.732] - Ratio derived from the vesica piscis shape, often used in sacred geometry.
@@ -114,7 +114,7 @@ $interval_map: (
     "minor_third": 1.2,
     // Minor third interval
     "minor_fourth": 1.334,
-    // Minor fourth interval (also known as diminished fifth)
+    // Fourth interval (5 semitones, ≈ perfect fourth)
     "minor_fifth": 1.5,
     // Minor fifth interval
     "minor_sixth": 1.6,
@@ -177,31 +177,31 @@ $interval_map: (
     // Twice the frequency of the perfect octave
     "triple_octave": 8,
 
-    // Three times the frequency of the perfect octave
+    // Three octaves up (eight times the frequency)
     // Musical Augmented Interval
     // ------------------------------------------------------------------------
     "augmented_unison": 1.059,
     // Slightly higher than perfect unison
-    "augmented_second": 1.122,
+    "augmented_second": 1.189,
     // Slightly higher than major second
-    "augmented_third": 1.189,
+    "augmented_third": 1.335,
     // Slightly higher than major third
     "augmented_fourth": 1.414,
     // Augmented fourth, also known as tritone
     "augmented_fifth": 1.587,
     // Slightly higher than perfect fifth
-    "augmented_sixth": 1.682,
+    "augmented_sixth": 1.782,
     // Slightly higher than major sixth
-    "augmented_seventh": 1.782,
+    "augmented_seventh": 2,
     // Slightly higher than major seventh
-    "augmented_octave": 2.059,
+    "augmented_octave": 2.119,
 
     // Slightly higher than perfect octave
     // Musical Diminished Interval
     // ------------------------------------------------------------------------
-    "diminished_unison": 0.943,
+    "diminished_unison": 0.944,
     // A diminished unison, slightly less than a perfect unison
-    "diminished_second": 1.053,
+    "diminished_second": 1,
     // Diminished second interval, slightly less than a minor second
     "diminished_third": 1.122,
     // Diminished third interval, slightly less than a minor third
@@ -209,11 +209,11 @@ $interval_map: (
     // Diminished fourth, slightly less than a perfect fourth
     "diminished_fifth": 1.414,
     // Tritone, halfway between a perfect fourth and perfect fifth
-    "diminished_sixth": 1.587,
+    "diminished_sixth": 1.498,
     // Diminished sixth interval, slightly less than a major sixth
-    "diminished_seventh": 1.782,
+    "diminished_seventh": 1.682,
     // Diminished seventh interval, slightly less than a major seventh
-    "diminished_octave": 1.961,
+    "diminished_octave": 1.888,
 
     // A diminished octave, slightly less than a perfect octave
     // Mathematical Constants
@@ -232,8 +232,8 @@ $interval_map: (
     "golden_ratio": 1.618,
     "silver_ratio": 2.414,
     // Analogous to the golden ratio
-    "bronze_ratio": 1.927,
-    // Analogous to silver and golden ratios
+    "bronze_ratio": 3.303,
+    // Analogous to silver and golden ratios: (3 + √13) / 2
     "phi": 1.618,
     // Another name for the golden ratio
     "pi": 3.142,
@@ -266,9 +266,9 @@ $interval_map: (
     // Harmonic mean, a type of average
     "gauss_constant": 0.834,
     // Gauss"s constant related to the arithmetic-geometric mean
-    "super_golden": 2.058,
+    "super_golden": 1.466,
 
-    // Super golden ratio, a higher order of the golden ratio
+    // Super golden ratio ψ, real root of x³ = x² + 1
     // Design & Architecture Ratios
     // ------------------------------------------------------------------------
     "parthenon_ratio": 1.618,

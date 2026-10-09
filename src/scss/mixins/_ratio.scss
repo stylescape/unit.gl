@@ -10,10 +10,7 @@
 /// Built from a shared `$ratio-map`, this module auto-generates both semantic
 /// mixins (e.g. `aspect_ratio--16x9`) and utility classes (e.g. `.ratio_16x9`).
 ///
-/// @file _ratio.scss
-/// @title Ratio Mixins Module
-/// @version 0.1.0
-/// @description Provides utility mixins for maintaining consistent aspect ratios
+/// Provides utility mixins for maintaining consistent aspect ratios
 ///              across devices. Supports modern `aspect-ratio` CSS as well as
 ///              padding-based fallbacks for broader browser compatibility.
 ///
@@ -33,7 +30,6 @@
 // Use
 // ============================================================================
 
-@use "sass:math";
 
 @use "../functions" as *;
 @use "../variables" as *;
@@ -44,10 +40,9 @@
 // ============================================================================
 
 ///
-/// @mixin aspect_ratio
+/// @name aspect_ratio
 /// Creates a responsive container that maintains a specific aspect ratio.
-/// Uses the native `aspect-ratio` property where supported,
-/// with a `padding-top` fallback for broader browser compatibility.
+/// Uses the native `aspect-ratio` property.
 ///
 /// @param {Number} $width - The horizontal component of the aspect ratio.
 /// @param {Number} $height - The vertical component of the aspect ratio.
@@ -60,14 +55,7 @@
 @mixin aspect_ratio($width, $height) {
     position: relative;
     width: 100%;
-    aspect-ratio: math.div($width, $height); // Native CSS support
-
-    // Fallback for legacy browsers
-    // &::before {
-    //     content: "";
-    //     display: block;
-    //     padding-top: calc((#{$height} / #{$width}) * 100%);
-    // }
+    aspect-ratio: #{$width} / #{$height};
 
     > * {
         position: absolute;

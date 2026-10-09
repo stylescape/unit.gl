@@ -44,19 +44,19 @@
 /// @example scss - Usage Example
 ///   // Increase size using the golden ratio
 ///   .element {
-///     width: golden_ratio(16px, 1); // Output: 25.888px
+///     width: ratio_golden(16px, 1); // Output: 25.888px
 ///   }
 ///
 ///   // Decrease size using the golden ratio
 ///   .small-element {
-///     width: golden_ratio(16px, -1); // Output: 9.888px
+///     width: ratio_golden(16px, -1); // Output: 9.888px
 ///   }
 ///
 @function ratio_golden($size, $increment: 1) {
     $golden-ratio: 1.618;
 
     // Validate the input size
-    @if not math.is-unitless($size) and meta.type-of($size) != "number" {
+    @if meta.type-of($size) != "number" {
         @error "The size parameter must be a valid number or unitless value.";
     }
 

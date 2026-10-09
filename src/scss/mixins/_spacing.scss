@@ -49,6 +49,7 @@
 @use "../functions" as *;
 @use "../variables" as *;
 @use "../maps" as *;
+@use "unit" as *;
 
 // ============================================================================
 // Padding Setter Mixins
@@ -93,7 +94,7 @@
 /// @see q
 ///
 @mixin set_padding_top($value) {
-    @include q($value, padding_top);
+    @include q($value, padding-top);
 }
 
 ///
@@ -114,7 +115,7 @@
 /// @see q
 ///
 @mixin set_padding_right($value) {
-    @include q($value, padding_right);
+    @include q($value, padding-right);
 }
 
 ///
@@ -135,7 +136,7 @@
 /// @see q
 ///
 @mixin set_padding_bottom($value) {
-    @include q($value, padding_bottom);
+    @include q($value, padding-bottom);
 }
 
 ///
@@ -156,7 +157,7 @@
 /// @see q
 ///
 @mixin set_padding_left($value) {
-    @include q($value, padding_left);
+    @include q($value, padding-left);
 }
 
 ///
@@ -179,8 +180,8 @@
 /// @see q
 ///
 @mixin set_padding_x($value) {
-    @include q($value, padding_left);
-    @include q($value, padding_right);
+    @include q($value, padding-left);
+    @include q($value, padding-right);
 }
 
 ///
@@ -203,8 +204,8 @@
 /// @see q
 ///
 @mixin set_padding_y($value) {
-    @include q($value, padding_top);
-    @include q($value, padding_bottom);
+    @include q($value, padding-top);
+    @include q($value, padding-bottom);
 }
 
 // ============================================================================
@@ -250,7 +251,7 @@
 /// @see q
 ///
 @mixin set_margin_top($value) {
-    @include q($value, margin_top);
+    @include q($value, margin-top);
 }
 
 ///
@@ -271,7 +272,7 @@
 /// @see q
 ///
 @mixin set_margin_right($value) {
-    @include q($value, margin_right);
+    @include q($value, margin-right);
 }
 
 ///
@@ -292,7 +293,7 @@
 /// @see q
 ///
 @mixin set_margin_bottom($value) {
-    @include q($value, margin_bottom);
+    @include q($value, margin-bottom);
 }
 
 ///
@@ -313,7 +314,7 @@
 /// @see q
 ///
 @mixin set_margin_left($value) {
-    @include q($value, margin_left);
+    @include q($value, margin-left);
 }
 
 ///
@@ -336,8 +337,8 @@
 /// @see q
 ///
 @mixin set_margin_x($value) {
-    @include q($value, margin_left);
-    @include q($value, margin_right);
+    @include q($value, margin-left);
+    @include q($value, margin-right);
 }
 
 ///
@@ -360,8 +361,8 @@
 /// @see q
 ///
 @mixin set_margin_y($value) {
-    @include q($value, margin_top);
-    @include q($value, margin_bottom);
+    @include q($value, margin-top);
+    @include q($value, margin-bottom);
 }
 
 ///
@@ -404,7 +405,7 @@
 ///
 /// @name padding_utilities
 /// @param {Map} $steps [$q_steps] - Map of step names to Q-unit multipliers
-/// @param {List} $breakpoints [null] - Optional breakpoints for responsive variants
+/// @param {String} $prefix [""] - Class name prefix (e.g. a breakpoint key)
 /// @output CSS classes:
 ///   - `.p_q{key}` - All sides
 ///   - `.pt_q{key}` - Top only
@@ -418,17 +419,31 @@
 ///   @include padding_utilities();
 ///
 /// @example css - Generated output
-///   .p_q16 { padding: 16q; }
-///   .px_q8 { padding-left: 8q; padding-right: 8q; }
-///   .py_q24 { padding-top: 24q; padding-bottom: 24q; }
+///   .p_q16 { padding: 1rem; }
+///   .px_q8 { padding-left: 0.5rem; padding-right: 0.5rem; }
+///   .py_q24 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
 ///
 /// @see $q_steps
 ///
 @mixin padding_utilities($steps: $q_steps, $prefix: "") {
+    // Emitted shorthand → axis → side so that, at equal specificity, the more
+    // specific class wins regardless of step (`.p_q8.pt_q4` gets pt_q4).
     @each $key, $value in $steps {
         .#{$prefix}p_q#{$key} {
             padding: q($value);
         }
+    }
+    @each $key, $value in $steps {
+        .#{$prefix}px_q#{$key} {
+            padding-left: q($value);
+            padding-right: q($value);
+        }
+        .#{$prefix}py_q#{$key} {
+            padding-top: q($value);
+            padding-bottom: q($value);
+        }
+    }
+    @each $key, $value in $steps {
         .#{$prefix}pt_q#{$key} {
             padding-top: q($value);
         }
@@ -440,14 +455,6 @@
         }
         .#{$prefix}pl_q#{$key} {
             padding-left: q($value);
-        }
-        .#{$prefix}px_q#{$key} {
-            padding-left: q($value);
-            padding-right: q($value);
-        }
-        .#{$prefix}py_q#{$key} {
-            padding-top: q($value);
-            padding-bottom: q($value);
         }
     }
 }
@@ -461,7 +468,7 @@
 ///
 /// @name margin_utilities
 /// @param {Map} $steps [$q_steps] - Map of step names to Q-unit multipliers
-/// @param {List} $breakpoints [null] - Optional breakpoints for responsive variants
+/// @param {String} $prefix [""] - Class name prefix (e.g. a breakpoint key)
 /// @output CSS classes:
 ///   - `.m_q{key}` - All sides
 ///   - `.mt_q{key}` - Top only
@@ -475,17 +482,31 @@
 ///   @include margin_utilities();
 ///
 /// @example css - Generated output
-///   .m_q16 { margin: 16q; }
-///   .mx_q8 { margin-left: 8q; margin-right: 8q; }
-///   .my_q24 { margin-top: 24q; margin-bottom: 24q; }
+///   .m_q16 { margin: 1rem; }
+///   .mx_q8 { margin-left: 0.5rem; margin-right: 0.5rem; }
+///   .my_q24 { margin-top: 1.5rem; margin-bottom: 1.5rem; }
 ///
 /// @see $q_steps
 ///
 @mixin margin_utilities($steps: $q_steps, $prefix: "") {
+    // Emitted shorthand → axis → side so that, at equal specificity, the more
+    // specific class wins regardless of step (`.m_q8.mt_q4` gets mt_q4).
     @each $key, $value in $steps {
         .#{$prefix}m_q#{$key} {
             margin: q($value);
         }
+    }
+    @each $key, $value in $steps {
+        .#{$prefix}mx_q#{$key} {
+            margin-left: q($value);
+            margin-right: q($value);
+        }
+        .#{$prefix}my_q#{$key} {
+            margin-top: q($value);
+            margin-bottom: q($value);
+        }
+    }
+    @each $key, $value in $steps {
         .#{$prefix}mt_q#{$key} {
             margin-top: q($value);
         }
@@ -497,14 +518,6 @@
         }
         .#{$prefix}ml_q#{$key} {
             margin-left: q($value);
-        }
-        .#{$prefix}mx_q#{$key} {
-            margin-left: q($value);
-            margin-right: q($value);
-        }
-        .#{$prefix}my_q#{$key} {
-            margin-top: q($value);
-            margin-bottom: q($value);
         }
     }
 }
@@ -538,10 +551,13 @@
 /// @see $q_steps
 ///
 @mixin gap_utilities($steps: $q_steps, $prefix: "") {
+    // Shorthand first so column/row classes override it at any step.
     @each $key, $value in $steps {
         .#{$prefix}gap_q#{$key} {
             gap: q($value);
         }
+    }
+    @each $key, $value in $steps {
         .#{$prefix}gap_col_q#{$key} {
             column-gap: q($value);
         }
@@ -569,18 +585,21 @@
 ///         `.p_block_q*`, `.p_block_start_q*`, `.p_block_end_q*`
 ///
 @mixin padding_logical_utilities($steps: $q_steps, $prefix: "") {
+    // Emitted axis → side so the more specific class wins at any step.
     @each $key, $value in $steps {
         .#{$prefix}p_inline_q#{$key} {
             padding-inline: q($value);
         }
+        .#{$prefix}p_block_q#{$key} {
+            padding-block: q($value);
+        }
+    }
+    @each $key, $value in $steps {
         .#{$prefix}p_inline_start_q#{$key} {
             padding-inline-start: q($value);
         }
         .#{$prefix}p_inline_end_q#{$key} {
             padding-inline-end: q($value);
-        }
-        .#{$prefix}p_block_q#{$key} {
-            padding-block: q($value);
         }
         .#{$prefix}p_block_start_q#{$key} {
             padding-block-start: q($value);
@@ -601,18 +620,21 @@
 ///         `.m_block_q*`, `.m_block_start_q*`, `.m_block_end_q*`
 ///
 @mixin margin_logical_utilities($steps: $q_steps, $prefix: "") {
+    // Emitted axis → side so the more specific class wins at any step.
     @each $key, $value in $steps {
         .#{$prefix}m_inline_q#{$key} {
             margin-inline: q($value);
         }
+        .#{$prefix}m_block_q#{$key} {
+            margin-block: q($value);
+        }
+    }
+    @each $key, $value in $steps {
         .#{$prefix}m_inline_start_q#{$key} {
             margin-inline-start: q($value);
         }
         .#{$prefix}m_inline_end_q#{$key} {
             margin-inline-end: q($value);
-        }
-        .#{$prefix}m_block_q#{$key} {
-            margin-block: q($value);
         }
         .#{$prefix}m_block_start_q#{$key} {
             margin-block-start: q($value);

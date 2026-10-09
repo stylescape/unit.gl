@@ -4,16 +4,17 @@
 node_modules/
 
 # Build directories - Exclude build and public output directories
+# (dist/ is published via package.json "files", which takes precedence)
 public/
-dist/
 
 # Build configuration files - Exclude build config files
 webpack.config.js
 webpack.config.ts
 
 # OS-specific files - Exclude system-specific files
-.DS_Store           # macOS Finder metadata
-*/.DS_Store         # .DS_Store in any subdirectory
+# macOS Finder metadata, at any depth (inline comments are not supported)
+.DS_Store
+*/.DS_Store
 
 # Package metadata - Exclude unnecessary package metadata files
 dist/package.json

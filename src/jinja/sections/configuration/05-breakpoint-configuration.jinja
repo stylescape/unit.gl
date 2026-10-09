@@ -1,22 +1,23 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Breakpoint Configuration</h2>
     <p>Customize responsive breakpoints by overriding the <code>$breakpoints</code> map. Default values are derived from
         Q format paper sizes (mm × 4).</p>
 
     <h3>Default Breakpoints</h3>
-    <div class="code-block"><pre><code>$breakpoints: (
-        us: 240px, <span class="comment">// Q07 Portrait (60mm)</span>
+    <pre class="ss-c-code-block"><code>$breakpoints: (
+        us: 250px, <span class="comment">// Q07 Portrait (62.5mm)</span>
         ss: 360px, <span class="comment">// Q06 Portrait (90mm)</span>
         xs: 540px, <span class="comment">// Q05 Portrait (135mm)</span>
         sm: 720px, <span class="comment">// Q04 Portrait (180mm)</span>
-        md: 1440px, <span class="comment">// Q03 Landscape (360mm)</span>
-        lg: 2160px, <span class="comment">// Q02 Landscape (540mm)</span>
-        xl: 2880px, <span class="comment">// Q01 Landscape (720mm)</span>
+        md: 1080px, <span class="comment">// Q04 Landscape (270mm)</span>
+        lg: 1440px, <span class="comment">// Q03 Landscape (360mm)</span>
+        xl: 2160px, <span class="comment">// Q02 Landscape (540mm)</span>
+        sl: 2880px, <span class="comment">// Q01 Landscape (720mm)</span>
         ul: 4320px, <span class="comment">// Q00 Landscape (1080mm)</span>
-        ) !default;</code></pre></div>
+        ) !default;</code></pre>
 
     <h3>Customizing</h3>
-    <div class="code-block"><pre><code><span class="comment">// Tailwind-style breakpoints</span>
+    <pre class="ss-c-code-block"><code><span class="comment">// Tailwind-style breakpoints</span>
         $breakpoints: (
         sm: 640px,
         md: 768px,
@@ -32,5 +33,5 @@
         lg: 992px,
         xl: 1200px,
         xxl: 1400px,
-        );</code></pre></div>
+        );</code></pre>
 </section>

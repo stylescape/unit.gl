@@ -1,4 +1,4 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>ratio_golden()</h2>
     <p>Calculates a size based on the golden ratio (φ ≈ 1.618).</p>
 
@@ -10,7 +10,7 @@
     {% endcall %}
 
     <h3>Examples</h3>
-    <div class="code-block"><pre><code>.sidebar {
+    <pre class="ss-c-code-block"><code>.sidebar {
         width: ratio_golden(300px, 1); <span class="comment">// 485.4px (larger)</span>
         }
 
@@ -23,5 +23,5 @@
         display: grid;
         grid-template-columns: ratio_golden(1fr, -1) 1fr;
         <span class="comment">// Creates ~38% / 62% split</span>
-        }</code></pre></div>
+        }</code></pre>
 </section>

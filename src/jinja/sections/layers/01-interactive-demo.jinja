@@ -1,11 +1,11 @@
 {# Interactive Demo #}
-<section>
+<section class="ss-c-demo__section">
     <h2>Interactive Demo</h2>
     <p>Click the buttons to toggle layers and visualize the stacking order. Layers higher in the stack appear in
         front
         of lower layers.</p>
 
-    <div class="layer-controls">
+    <div class="ss-c-demo__group">
         {% set layers = [
         {"name": "guides", "z": "9998"},
         {"name": "modal", "z": "7000"},
@@ -14,12 +14,11 @@
         {"name": "canvas", "z": "-1000"}
         ] %}
         {% for layer in layers %}
-        <button class="layer-btn layer-btn--active" id="btn-{{ layer.name }}"
-            onclick="toggleLayer('{{ layer.name }}')">{{
-            layer.name }}</button>
+        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--solid" id="btn-{{ layer.name }}"
+            data-layer="{{ layer.name }}" aria-pressed="true">{{ layer.name }}</button>
         {% endfor %}
-        <button class="layer-btn" onclick="showAll()">Show All</button>
-        <button class="layer-btn" onclick="hideAll()">Hide All</button>
+        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--outline" data-layers="show">Show All</button>
+        <button type="button" class="ss-c-button ss-c-button--sm ss-c-button--outline" data-layers="hide">Hide All</button>
     </div>
 
     <div class="layer-demo">

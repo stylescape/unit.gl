@@ -33,6 +33,7 @@
 
 @use "sass:math";
 @use "sass:meta";
+@use "../variables/q" as *;
 @use "unit" as *;
 
 // ============================================================================
@@ -62,7 +63,7 @@ $_type_scale: 4;
 /// @param {Number} $base - The base value to scale from, defaults to 1em
 /// (typographic base size).
 /// @param {Number} $ratio - The ratio to use for scaling, defaults to the
-/// olden Ratio (1.618).
+/// Golden Ratio (1.618).
 /// @return {Number} - The calculated value based on the modular scale.
 ///
 /// @example scss - Usage
@@ -77,7 +78,7 @@ $_type_scale: 4;
         @error "Step must be a number.";
     }
 
-    @if meta.type-of($base) != "number" and not math.is-unitless($base) {
+    @if meta.type-of($base) != "number" {
         @error "Base must be a number with or without units.";
     }
 
@@ -101,9 +102,9 @@ $_type_scale: 4;
 /// (5px) increments, which perfectly align with Q format paper dimensions.
 ///
 /// Key relationships:
-/// - Q04 (180×270mm) = 36×54 line units = 720×1080px
-/// - Q03 (270×360mm) = 54×72 line units = 1080×1440px
-/// - Q02 (360×540mm) = 72×108 line units = 1440×2160px
+/// - Q04 (180×270mm) = 144×216 line units = 720×1080px
+/// - Q03 (270×360mm) = 216×288 line units = 1080×1440px
+/// - Q02 (360×540mm) = 288×432 line units = 1440×2160px
 ///
 /// @name line
 /// @param {Number} $lines - Number of line units
@@ -123,19 +124,19 @@ $_type_scale: 4;
 /// ---------------------------------------------------------------------------
 ///
 /// Rounds a value to the nearest line grid increment (5Q).
-/// Useful for maintaining vertical rhythm alignment.
+/// Useful for maintaining vertical rhythm alignment. Accepts any absolute
+/// or font-relative length; the result is expressed in `$q`.
 ///
 /// @name snap_to_line
 /// @param {Length} $value - Value to snap
 /// @return {Length} Value snapped to the nearest line grid
 ///
 /// @example scss - Usage
-///   padding: snap_to_line(13px);  // Returns 15px (3 line units)
-///   margin: snap_to_line(17px);   // Returns 15px or 20px based on rounding
+///   padding: snap_to_line(13px);  // 15Q (15px, 3 line units)
+///   margin: snap_to_line(1.1rem); // 20Q (20px, 4 line units)
 ///
 @function snap_to_line($value) {
-    // Convert to unitless for calculation
-    $px_value: math.div($value, 1px);
+    $px_value: math.div(to_px($value), 1px);
     @return math.round(math.div($px_value, 5)) * 5 * $q;
 }
 
@@ -207,7 +208,7 @@ $_type_scale: 4;
 ///
 /// @name lines_to_px
 /// @param {Number} $lines - Value in line units
-/// @return {Number} Value in pixels
+/// @return {Number} Unitless pixel count
 ///
 /// @example scss - Usage
 ///   $px: lines_to_px(36);   // 180px
@@ -226,7 +227,7 @@ $_type_scale: 4;
 /// 1 line unit = 5px
 ///
 /// @name px_to_lines
-/// @param {Number} $px - Value in pixels
+/// @param {Number} $px - Unitless pixel count
 /// @return {Number} Value in line units
 ///
 /// @example scss - Usage
@@ -265,14 +266,14 @@ $_type_scale: 4;
 }
 
 ///
-/// Convert Millimeters to Type Units
+/// Convert Type Units to Pixels
 /// ---------------------------------------------------------------------------
 ///
 /// 1 type unit = 4px
 ///
 /// @name type_to_px
 /// @param {Number} $units - Value in type units
-/// @return {Number} Value in pixels
+/// @return {Number} Unitless pixel count
 ///
 @function type_to_px($units) {
     @return $units * $_type_scale;

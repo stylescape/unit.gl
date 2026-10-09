@@ -11,7 +11,7 @@
 /// ───────────────────────────────────────────────────────────────────────────
 /// | Breakpoint | Full Name    | Step | Format | Orientation | Width  | px     |
 /// |------------|--------------|------|--------|-------------|--------|--------|
-/// | us         | Ultra Small  | 1    | Q07    | Portrait    | 60mm   | 240px  |
+/// | us         | Ultra Small  | 1    | Q07    | Portrait    | 62.5mm | 250px  |
 /// | ss         | Super Small  | 2    | Q06    | Portrait    | 90mm   | 360px  |
 /// | xs         | Extra Small  | 3    | Q05    | Portrait    | 135mm  | 540px  |
 /// | sm         | Small        | 4    | Q04    | Portrait    | 180mm  | 720px  |
@@ -42,6 +42,9 @@
 // Use
 // ============================================================================
 
+// `$reference_dpi` lives in the density map; re-exported so both modules
+// share one configurable value.
+@forward "../maps/density" show $reference_dpi;
 @use "sass:map";
 @use "sass:math";
 
@@ -58,15 +61,6 @@
 /// @type Number
 ///
 $mm_to_px_multiplier: 4 !default;
-
-///
-/// Reference DPI for the base multiplier calculation.
-/// Standard screen density is 96dpi.
-///
-/// @name $reference_dpi
-/// @type Number
-///
-$reference_dpi: 96 !default;
 
 ///
 /// Convert millimeters to CSS pixels using the base multiplier.
@@ -139,7 +133,7 @@ $q_formats: (
         height: 135mm
     ),
     q07: (
-        width: 60mm,
+        width: 62.5mm,
         height: 90mm
     ) // Ultrasmall format
 ) !default;
@@ -158,8 +152,8 @@ $q_formats: (
 ///
 $breakpoints: (
     // Portrait Q formats → Mobile/Tablet devices (held vertically)
-    us: mm_to_px(60),
-    // Q07P Portrait width →  240px - Compact/Fold phones
+    us: mm_to_px(62.5),
+    // Q07P Portrait width →  250px - Compact/Fold phones
     ss: mm_to_px(90),
     // Q06P Portrait width →  360px - Phones
     xs: mm_to_px(135),
@@ -187,19 +181,21 @@ $breakpoints: (
 ///
 $format_breakpoint_map: (
     q07p: us,
-    // Q07 Portrait → us (240px)
+    // Q07 Portrait → us (250px)
     q06p: ss,
     // Q06 Portrait → ss (360px)
     q05p: xs,
     // Q05 Portrait → xs (540px)
     q04p: sm,
     // Q04 Portrait → sm (720px)
-    q03l: md,
-    // Q03 Landscape → md (1440px)
-    q02l: lg,
-    // Q02 Landscape → lg (2160px)
-    q01l: xl,
-    // Q01 Landscape → xl (2880px)
+    q04l: md,
+    // Q04 Landscape → md (1080px)
+    q03l: lg,
+    // Q03 Landscape → lg (1440px)
+    q02l: xl,
+    // Q02 Landscape → xl (2160px)
+    q01l: sl,
+    // Q01 Landscape → sl (2880px)
     q00l: ul // Q00 Landscape → ul (4320px)
 ) !default;
 
@@ -208,7 +204,7 @@ $format_breakpoint_map: (
 ///
 /// @name format_to_breakpoint
 /// @param {String} $format - Format name (e.g., "q07p", "q06p", "q03l")
-/// @return {String} Breakpoint name (us, ss, xs, sm, md, lg, xl, ul)
+/// @return {String} Breakpoint name (us, ss, xs, sm, md, lg, xl, sl, ul)
 ///
 @function format_to_breakpoint($format) {
     @if map.has-key($format_breakpoint_map, $format) {
@@ -316,7 +312,7 @@ $media_ul: map.get($breakpoints, ul) !default;
 /// @name $media_dif
 /// @type Length
 ///
-$media_dif: calc($media_ul - $media_xs);
+$media_dif: calc($media_ul - $media_xs) !default;
 
 // Uncomment below if you want to use the following predefined breakpoints
 // for various devices:

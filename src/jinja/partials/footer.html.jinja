@@ -7,22 +7,17 @@ Variables (provided by kist context, overridable per-page):
 - year Copyright year (default: 2026)
 #}
 
-<footer class="footer">
-    <div class="footer__content">
-        <div class="footer__left">
-            <span class="footer__brand">{{ brand | default('unit.gl') }}</span>
-            <span class="footer__tagline">{{ tagline | default('Dynamic Layout Engine') }}</span>
+<footer class="ss-c-footer">
+    <div class="ss-c-footer-container ss-c-footer-bottom">
+        <div class="ss-c-footer-brand-section">
+            <span class="ss-c-footer-brand-name">{{ brand | default('unit.gl') }}</span>
+            <span class="ss-c-footer-copyright">{{ tagline | default('Dynamic Layout Engine') }}</span>
         </div>
-        <div class="footer__right">
-            <div class="footer__links">
-                <a href="https://github.com/stylescape/unit.gl" class="footer__link" target="_blank"
-                    rel="noopener noreferrer">GitHub</a>
-                <a href="https://www.npmjs.com/package/unit.gl" class="footer__link" target="_blank"
-                    rel="noopener noreferrer">npm</a>
-                <a href="https://www.scape.press" class="footer__link" target="_blank" rel="noopener noreferrer">Scape
-                    Press</a>
-            </div>
-            <span class="footer__copyright">© {{ year | default('2026') }} Scape Press. MIT License.</span>
-        </div>
+        <nav class="ss-c-footer-legal" aria-label="Project links">
+            <a href="https://github.com/stylescape/unit.gl" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.npmjs.com/package/unit.gl" target="_blank" rel="noopener noreferrer">npm</a>
+            <a href="https://www.scape.press" target="_blank" rel="noopener noreferrer">Scape Press</a>
+        </nav>
+        <p class="ss-c-footer-copyright">© {{ year | default('2026') }} Scape Press. MIT License.</p>
     </div>
 </footer>

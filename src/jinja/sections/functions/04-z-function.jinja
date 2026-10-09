@@ -1,19 +1,21 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>z()</h2>
     <p>Returns a z-index value from the semantic layer map.</p>
 
     {{ api_signature('z($layer) → Number') }}
 
-    <div class="api-params">
-        <div class="api-param">
-            <span class="api-param__name">$layer</span>
-            <span class="api-param__type">String</span>
-            <span class="api-param__desc">Layer name from $layer_map</span>
-        </div>
-    </div>
+    <table class="ss-c-table">
+        <tbody>
+            <tr>
+                <td><code>$layer</code></td>
+                <td><span class="ss-c-badge ss-c-badge--sm">String</span></td>
+                <td>Layer name from $layer_map</td>
+            </tr>
+        </tbody>
+    </table>
 
     <h3>Available Layers</h3>
-    <table class="table">
+    <table class="ss-c-table">
         <thead>
             <tr>
                 <th>Layer</th>
@@ -51,7 +53,7 @@
     </table>
 
     <h3>Examples</h3>
-    <div class="code-block"><pre><code>.modal {
+    <pre class="ss-c-code-block"><code>.modal {
         position: fixed;
         z-index: z("modal"); <span class="comment">// 7000</span>
         }
@@ -67,5 +69,5 @@
 
         .dropdown {
         z-index: z("interface") + 10; <span class="comment">// 4010</span>
-        }</code></pre></div>
+        }</code></pre>
 </section>

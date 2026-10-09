@@ -1,34 +1,34 @@
-<section>
+<section class="ss-c-demo__section">
     <h2>Unit Conversion</h2>
 
     <h3>unit_strip()</h3>
     <p>Removes the unit from a value, returning a unitless number.</p>
 
-    <div class="api-signature">unit_strip($value) → Number</div>
+    <pre class="ss-c-code-block">unit_strip($value) → Number</pre>
 
-    <div class="code-block"><pre><code>$pixels: 16px;
+    <pre class="ss-c-code-block"><code>$pixels: 16px;
         $unitless: unit_strip($pixels); <span class="comment">// 16</span>
 
         <span class="comment">// Useful for calculations</span>
-        $ratio: unit_strip($width) / unit_strip($height);</code></pre></div>
+        $ratio: unit_strip($width) / unit_strip($height);</code></pre>
 
     <h3>px_to_rem()</h3>
     <p>Converts pixels to rem units.</p>
 
-    <div class="api-signature">px_to_rem($px, $base: 16px) → Length</div>
+    <pre class="ss-c-code-block">px_to_rem($px, $base: 16px) → Length</pre>
 
-    <div class="code-block"><pre><code>.element {
+    <pre class="ss-c-code-block"><code>.element {
         padding: px_to_rem(24px); <span class="comment">// 1.5rem</span>
         margin: px_to_rem(8px); <span class="comment">// 0.5rem</span>
 
         <span class="comment">// With custom base</span>
         font-size: px_to_rem(18px, 18px); <span class="comment">// 1rem</span>
-        }</code></pre></div>
+        }</code></pre>
 
     <h3>rem_to_px()</h3>
     <p>Converts rem to pixel units.</p>
 
-    <div class="api-signature">rem_to_px($rem, $base: 16px) → Length</div>
+    <pre class="ss-c-code-block">rem_to_px($rem, $base: 16px) → Length</pre>
 
-    <div class="code-block"><pre><code>$px-value: rem_to_px(1.5rem); <span class="comment">// 24px</span></code></pre></div>
+    <pre class="ss-c-code-block"><code>$px-value: rem_to_px(1.5rem); <span class="comment">// 24px</span></code></pre>
 </section>
