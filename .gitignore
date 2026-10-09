@@ -891,11 +891,11 @@ cython_debug/
 [Ll]ib64
 [Ll]ocal
 [Ss]cripts
-# The root scripts/ holds local helpers; only the sassdoc shim is tracked
+# The root bin/ holds local helpers; only the sassdoc shim is tracked
 # (npm run docs:scss preloads it).
-!/scripts/
-/scripts/*
-!/scripts/sassdoc-marked-shim.cjs
+!/bin/
+/bin/*
+!/bin/sassdoc-marked-shim.cjs
 pyvenv.cfg
 .venv
 pip-selfcheck.json

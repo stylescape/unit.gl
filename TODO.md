@@ -4,24 +4,17 @@ Open work left after the bug sweep of 2026-10-07/08. What was fixed is in `CHANG
 
 ## Release
 
-- [ ] Commit the sweep. All of it is uncommitted on `dev` (about 130 files, including the regenerated `src/html` pages). Build, typecheck, lint, the 33 Sass tests, sassdoc and `mkdocs build` passed on 2026-10-08.
 - [ ] Release 0.3.6 (push tag `v0.3.6`). Bump the version in `package.json`. `npm run build` syncs `CITATION.cff` and `VERSION`; the template context version in `kist.yml` (`v0.3.5`) and `src/jinja/index.json` still need a manual bump.
 - [ ] After the release, unpin `unit.gl` 0.3.3 in `kodw-buurtbasis` (see its `TODO.md`). This also needs a stylescape release (see `stylescape/TODO.md`). A scratch compile on 2026-10-08 showed that stylescape's current `src/scss` compiles cleanly against both unit.gl 0.3.5 and this sweep.
-- [ ] `CHANGELOG.md`: everything under `[Unreleased]` from "### Added" down was already shipped in 0.3.4/0.3.5 (it is in the `v0.3.5` tag). Move those entries into versioned sections.
-- [ ] `CHANGELOG.md` → Migration documents `@use "unit.gl" with ($enable-reset: false)`, but no `$enable-reset` variable exists, so that line errors. Implement the switch or remove the line.
 
 ## Check in a browser
 
-The docs-site fixes were checked in the rendered HTML only; nothing has been looked at in a browser (`npm run dev`).
+The other docs-site checks passed in headless Chromium on 2026-10-09 (mobile display-settings menu, 768-899px sidebar, overlays covering and scrolling with the page, dark mode without a light flash and with `aria-pressed`, paper select/scale/code sample, guide-baseline demos, layers buttons); see `CHANGELOG.md` for the fixes they led to.
 
-- [ ] Below 768px: the new display-settings button (`#nav-mobile-toggle`) opens `.nav__right` (theme toggle, grid toggles, indicators, GitHub link).
-- [ ] 768–899px: the sidebar hamburger is visible and opens the sidebar.
-- [ ] Baseline and graph overlays scroll with the content and cover the whole page. The docs CSS no longer forces `position: fixed`; `GridManager` sizes them.
-- [ ] Dark mode: no flash of the light theme on load. The theme toggle sets `aria-pressed`.
-- [ ] Paper page: the format select is populated, the preview size and the "Scale 1:x" label make sense, and the code sample updates.
-- [ ] Guide-baseline page: the custom (2×) baseline demo renders, and both demos keep their normal height.
-- [ ] Layers page: the toggle, Show All and Hide All buttons work (they no longer use inline `onclick`).
-- [ ] `injectDPR`: `--dpr` updates when a window moves between displays, including fractional DPRs such as 1.25 or 2.625.
+- [ ] `injectDPR` when a window moves between displays of different DPR at the same CSS size. With a viewport change, `--dpr` follows every DPR tried (1.25, 2.625, 2, 1.5, 3, 1.75, 1). A same-size DPR change cannot be checked in Chromium emulation: `Emulation.setDeviceMetricsOverride` does not fire `matchMedia` change events, so it needs a real second display.
+- [ ] The docs pages use the vendored stylescape 0.4.1, whose accent (`#3696c1`) carries white text at 3.3:1 (badges, `.is-active` buttons; axe `color-contrast` on every page). stylescape 0.5.1 (on npm) darkens it; update the docs' stylescape and re-run axe.
+- [ ] axe on `scale.html` and `breakpoints.html` (2026-10-09): `heading-order` (card `h4` after `h2`), `scrollable-region-focusable` (code blocks without a tab stop) and `color-contrast` on `.modular-item__ratio` and the stat title. The other pages were not audited.
+- [ ] Paper page: every format is drawn at one shared scale (the largest format fills the preview), so q12 is about 2 px wide. That keeps sizes comparable; decide whether small formats need a zoomed view.
 
 ## Needs a decision
 

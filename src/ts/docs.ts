@@ -587,14 +587,20 @@ function initPaperDemo(): void {
 
     let orientation = 'portrait';
 
-    // One fixed drawing scale for every format, so sizes stay comparable:
-    // the largest format on offer fills the preview.
+    // One drawing scale for every format, so sizes stay comparable: the
+    // largest format on offer fills the preview area.
     const maxRefSize = Math.max(
         ...Array.from(select.options, opt => Math.max(Number(opt.dataset.w) || 0, Number(opt.dataset.h) || 0)),
         1
     );
-    const containerMaxPx = 400; // Max pixel size for preview
+    const maxPreviewPx = 400;
     const mmPerCssPx = 25.4 / 96;
+
+    // Largest sheet size that fits the preview area (narrower on phones)
+    function previewPx(): number {
+        const fit = container ? Math.min(container.clientWidth, container.clientHeight) : 0;
+        return fit > 0 ? Math.min(fit, maxPreviewPx) : maxPreviewPx;
+    }
 
     function currentDims(): { key: string; w: number; h: number } {
         const opt = select?.selectedOptions?.[0];
@@ -613,7 +619,7 @@ function initPaperDemo(): void {
         const pw = orientation === 'landscape' ? h : w;
         const ph = orientation === 'landscape' ? w : h;
 
-        const scale = containerMaxPx / maxRefSize; // px per mm
+        const scale = previewPx() / maxRefSize; // px per mm
         const scaledW = pw * scale;
         const scaledH = ph * scale;
 
@@ -644,6 +650,7 @@ function initPaperDemo(): void {
     });
 
     select.addEventListener('change', apply);
+    window.addEventListener('resize', apply);
     apply();
 
     // Comparison stacks - render sheets at relative scale

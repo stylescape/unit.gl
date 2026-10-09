@@ -141,5 +141,4 @@ stages:
                       - path: "./CITATION.cff"
                         key: "version: "
                       - path: "./VERSION"
-                        # Used as a regex prefix; VERSION holds a bare 0.0.0.
-                        key: "v?"
+                        key: ""  # VERSION holds a bare version

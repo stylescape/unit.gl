@@ -46,6 +46,15 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   types; overlays shrink with the page and update `aria-pressed`.
 - **Packaging:** `sass` and type entry points point at `dist/`; `hue.gl` is a
   dependency (every Sass entry point loads it); tests run on Node 20.
+- **Docs site** (checked in headless Chromium on 2026-10-09, light and dark,
+  at 600, 768-899 and 1280px): the slide-in sidebar at 768-899px was placed
+  by its content instead of filling the height below the header; the paper
+  preview put the format name inside the sheet, where small formats are a
+  few px wide (it now sits below), and the preview shrinks to fit narrow
+  screens and follows window resizes; the guide-baseline rhythm examples
+  reused the scale page's `.rhythm-block` bar class; best-practice cards and
+  rhythm examples skipped a heading level (`h4` after `h2`); links in prose,
+  sidebar section titles and the paper comparison labels were below 4.5:1.
 
 ### Changed
 
@@ -62,6 +71,16 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   kept as a deprecated alias.
 - `lerp()` / `fluid()` with unitless values now raise an error (they
   produced invalid CSS before).
+
+## [0.3.5] - 2026-08-18
+
+### Fixed
+
+- **Packaging:** 0.3.4 was published from `dist/`, so its `exports`
+  (`./dist/…`) pointed at paths missing from the tarball. 0.3.5 is published
+  from the repository root, so the tarball layout matches the repository.
+
+## [0.3.4] - 2026-08-18
 
 ### Added
 
@@ -85,6 +104,8 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   `stylelint-config-standard-scss`, bans legacy global Sass functions, and
   enforces the project's modular conventions.
 - `npm run lint:scss` and `lint:scss:fix` scripts.
+- **Sass sub-entries** `unit.gl/functions`, `unit.gl/variables`,
+  `unit.gl/mixins` and `unit.gl/scss/*`.
 
 ### Changed
 
@@ -130,16 +151,14 @@ If you were importing the deleted module:
 .card { @include breakpoint(md) { ... } }
 ```
 
-Reset opting out (only relevant if you depended on the old verbose reset
-zeroing every legacy element):
+To leave out the reset (only relevant if you depended on the old verbose
+reset zeroing every legacy element), load the parts you need instead of the
+main entry:
 
 ```scss
-// Suppress the new modern reset entirely
-@use "unit.gl" with ($enable-reset: false);  // see roadmap
-// Or scope the import yourself
-@use "unit.gl/scss/functions";
-@use "unit.gl/scss/variables";
-@use "unit.gl/scss/mixins";
+@use "unit.gl/functions";
+@use "unit.gl/variables";
+@use "unit.gl/mixins";
 @use "unit.gl/scss/classes";
 ```
 
@@ -158,3 +177,7 @@ For runtime token access only:
 @use "unit.gl/tokens";
 // :root now exposes --q-0 … --q-256
 ```
+
+[Unreleased]: https://github.com/stylescape/unit.gl/compare/v0.3.5...HEAD
+[0.3.5]: https://github.com/stylescape/unit.gl/compare/v0.3.4...v0.3.5
+[0.3.4]: https://github.com/stylescape/unit.gl/compare/v0.3.3...v0.3.4

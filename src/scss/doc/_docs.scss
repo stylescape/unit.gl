@@ -115,6 +115,9 @@ body {
         inset: 2.5rem auto 0 0;
         z-index: 1000;
         max-height: none;
+        // The desktop `align-self: flex-start` would size and place the
+        // fixed box by its content (top 0, taller than the viewport)
+        align-self: auto;
         transform: translateX(-100%);
         transition: transform var(--transition-duration-base) ease;
 
@@ -186,6 +189,16 @@ body {
     .ss-c-stat__value {
         color: inherit;
     }
+
+    // `.ss-u-prose a` uses `--ss-color-primary`, which stays black
+    .ss-u-prose a {
+        color: var(--color_text_primary);
+    }
+}
+
+// stylescape's `--ss-color-muted` (#a0a0a0) is below 4.5:1 on white
+.docs-sidebar .ss-c-section-title {
+    color: var(--color_text_tertiary);
 }
 
 // `.ss-c-alert` is redeclared later in stylescape with undefined
@@ -281,21 +294,17 @@ body {
         linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
         linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
     background-size: q(20) q(20);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
     transition:
         width 0.3s ease,
         height 0.3s ease;
     box-shadow: var(--ss-a-shadow-md, 0 #{q(4)} #{q(12)} rgb(0 0 0 / 0.1));
 }
 
+// Below the sheet, not inside it: small formats are only a few px wide
 .paper-preview__meta {
     display: grid;
     gap: q(4);
-    padding: calc(var(--grid-unit) * 1.5);
-    background: rgba(255, 255, 255, 0.95);
-    border-top: 1px solid var(--docs-line);
+    text-align: center;
 }
 
 .paper-preview__title {
@@ -364,16 +373,10 @@ body {
     white-space: nowrap;
 }
 
-.comparison-sheet--q .comparison-sheet__label {
-    color: var(--color_accent_primary);
-}
-
-.comparison-sheet--a .comparison-sheet__label {
-    color: #2563eb;
-}
-
-.comparison-sheet--us .comparison-sheet__label {
-    color: #16a34a;
+// The labels use the text color: the series colors on their own tint fall
+// below 4.5:1 at this size. The border and tint still tell the series apart.
+.comparison-sheet__label {
+    color: var(--color_text_primary);
 }
 
 // `.guide--layer` positioning comes from the library: absolutely positioned
@@ -1271,6 +1274,21 @@ body {
 
 .rhythm-example {
     margin: calc(var(--grid-unit) * 3) 0;
+
+    // Not `.rhythm-block`: that is the bar of the scale page's rhythm row
+    &__block {
+        padding-block: calc(var(--grid-unit) * 2);
+        border-bottom: 1px solid var(--docs-line);
+
+        h3,
+        p {
+            margin: 0;
+        }
+
+        p {
+            margin-top: calc(var(--grid-unit) * 1);
+        }
+    }
 }
 
 .rhythm-spec {
