@@ -1,7 +1,7 @@
 {
     "name": "unit.gl",
     "description": "Dynamic Layout Engine.",
-    "version": "0.3.5",
+    "version": "0.3.6",
     "config": {
         "version_short": "0.1"
     },
@@ -50,6 +50,7 @@
         "build:ts": "tsup",
         "typecheck": "tsc --noEmit -p .",
         "docs:scss": "node -r ./bin/sassdoc-marked-shim.cjs node_modules/sassdoc/bin/sassdoc src/scss --config .sassdocrc",
+        "docs:scss:release": "node -r ./bin/sassdoc-marked-shim.cjs node_modules/sassdoc/bin/sassdoc src/scss --config .sassdocrc --dest doc/sass",
         "lint:scss": "stylelint \"src/scss/**/*.scss\"",
         "lint:scss:fix": "stylelint \"src/scss/**/*.scss\" --fix",
         "test": "npm run test:scss",
@@ -77,7 +78,7 @@
         "stylelint": "^17.11.1",
         "stylelint-config-standard-scss": "^17.0.0",
         "stylelint-order": "^8.1.1",
-        "stylescape": "^0.4.1",
+        "stylescape": "^0.5.1",
         "ts-node": "^10.9.2",
         "tsup": "^8.5.1",
         "typescript": "~6.0.3",

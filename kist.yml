@@ -84,7 +84,7 @@ stages:
                   context:
                       name: "unit.gl"
                       # Not covered by SyncVersion: bump with package.json.
-                      version: "v0.3.5"
+                      version: "v0.3.6"
                       author: "Lars van Vianen"
                       year: 2026
                       tagline: "Dynamic Layout Engine"
