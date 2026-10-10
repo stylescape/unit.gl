@@ -1,0 +1,8 @@
+# Canonical
+Canonical: https://www.unit.gl/security.txt
+
+# Contact
+Contact: mailto:info@scape.press
+
+# Preferred-Languages
+Preferred-Languages: en
