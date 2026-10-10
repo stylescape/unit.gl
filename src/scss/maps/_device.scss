@@ -39,6 +39,12 @@
 /// The map is divided into categories for smartphones, tablets, and
 /// desktops/laptops.
 ///
+/// All widths are CSS pixels (what `min-width` / `max-width` media queries
+/// measure), not physical pixels. Phones and tablets give the portrait width
+/// as `min-width` and the landscape width as `max-width`. Desktops and
+/// laptops have no orientation range: `min-width` equals `max-width`, so
+/// `device_media_query()` matches that exact viewport width.
+///
 /// This map contains attributes for various devices, including screen
 /// dimensions and pixel ratios. It is structured for easy access and
 /// modification, ensuring responsive designs that cater to a wide range
@@ -102,13 +108,8 @@ $device_map: (
     ),
     // Samsung Galaxy
     // ------------------------------------------------------------------------
-    /// iPhones
-    /// iPhones with varying screen sizes and pixel densities.
-    "samsung_s10": (
-            "min-width": 360px,
-            "max-width": 760px,
-            "pixel-ratio": 3
-        ),
+    /// Samsung Galaxy
+    /// Samsung Galaxy phones with varying screen sizes and pixel densities.
     "samsung_s20": (
         "min-width": 360px,
         "max-width": 800px,
@@ -153,11 +154,6 @@ $device_map: (
         "min-width": 412px,
         "max-width": 914px,
         "pixel-ratio": 2.625
-    ),
-    "sony_xperia_1": (
-        "min-width": 384px,
-        "max-width": 643px,
-        "pixel-ratio": 3
     ),
     "huawei_p30": (
         "min-width": 360px,
@@ -222,7 +218,7 @@ $device_map: (
         ),
     "microsoft_laptop": (
         "min-width": 1504px,
-        "max-width": 2256px,
+        "max-width": 1504px,
         "pixel-ratio": 1.5
     ),
     // Mac Devices
@@ -231,17 +227,17 @@ $device_map: (
     /// Various Apple Mac devices, including MacBook Air, MacBook Pro, and iMac.
     "macbook_air": (
             "min-width": 1440px,
-            "max-width": 2560px,
+            "max-width": 1440px,
             "pixel-ratio": 2
         ),
     "macbook_pro": (
         "min-width": 1680px,
-        "max-width": 3072px,
+        "max-width": 1680px,
         "pixel-ratio": 2
     ),
     "imac": (
         "min-width": 1920px,
-        "max-width": 5120px,
+        "max-width": 1920px,
         "pixel-ratio": 2
     ),
 
@@ -252,17 +248,17 @@ $device_map: (
     /// and Lenovo ThinkPad.
     "surface_book": (
             "min-width": 1500px,
-            "max-width": 2000px,
+            "max-width": 1500px,
             "pixel-ratio": 2
         ),
     "dell_xps": (
         "min-width": 1920px,
-        "max-width": 3840px,
+        "max-width": 1920px,
         "pixel-ratio": 2
     ),
     "lenovo_thinkpad": (
         "min-width": 1440px,
-        "max-width": 2560px,
+        "max-width": 1440px,
         "pixel-ratio": 2
     )
 ) !default;

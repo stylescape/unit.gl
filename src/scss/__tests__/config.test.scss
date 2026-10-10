@@ -6,13 +6,20 @@
 @use "../index" as u with (
     $q: 0.125rem,
     $reference_dpi: 120,
+    $line_scale: 10,
     $format_overrides: ("custom": (100mm, 200mm))
 );
 
 @include describe("@use with (...)") {
     @include it("configures $q for q() and the line scale") {
         @include assert-equal(u.q(2), 0.25rem);
-        @include assert-equal(u.line(1), 0.625rem);
+        @include assert-equal(u.line(1), 1.25rem);
+    }
+
+    @include it("makes line(), baseline() and snap_to_line() follow $line_scale") {
+        @include assert-equal(u.line(2), 2.5rem);
+        @include assert-equal(u.baseline(2), u.line(2));
+        @include assert-equal(u.snap_to_line(13px), 1.25rem);
     }
 
     @include it("configures $reference_dpi") {

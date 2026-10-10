@@ -51,7 +51,7 @@
 /// @prop {Map} q9 [width: 31.25mm, height: 45.00mm] - Q9 paper size.
 /// @prop {Map} q10 [width: 22.50mm, height: 31.25mm] - Q10 paper size.
 /// @prop {Map} ansi_a [width: 8.50in, height: 11.00in] - ANSI A (Letter) paper size.
-/// @prop {Map} ansi_b [width: 11.00in, height: 17.00in] - ANSI B (Ledger) paper size.
+/// @prop {Map} ansi_b [width: 11.00in, height: 17.00in] - ANSI B, portrait: 11x17in, i.e. Tabloid (Ledger is the same sheet in landscape, 17x11in). Alias of `us_ledger`.
 /// @prop {Map} ansi_c [width: 17.00in, height: 22.00in] - ANSI C paper size.
 /// @prop {Map} ansi_d [width: 22.00in, height: 34.00in] - ANSI D paper size.
 /// @prop {Map} ansi_e [width: 34.00in, height: 44.00in] - ANSI E paper size.
@@ -136,7 +136,7 @@
 /// @prop {Map} jis_b8 [width: 64.00mm, height: 91.00mm] - JIS B8 paper size.
 /// @prop {Map} jis_b9 [width: 45.00mm, height: 64.00mm] - JIS B9 paper size.
 /// @prop {Map} jis_b10 [width: 32.00mm, height: 45.00mm] - JIS B10 paper size.
-/// @prop {Map} jis_c0 [width: 917.00mm, height: 1297.00mm] - JIS C0 paper size.
+/// @prop {Map} jis_c0 [width: 917.00mm, height: 1297.00mm] - JIS C0 paper size (alias of ISO C0; JIS P 0138 has no C series).
 /// @prop {Map} jis_c1 [width: 648.00mm, height: 917.00mm] - JIS C1 paper size.
 /// @prop {Map} jis_c2 [width: 458.00mm, height: 648.00mm] - JIS C2 paper size.
 /// @prop {Map} jis_c3 [width: 324.00mm, height: 458.00mm] - JIS C3 paper size.
@@ -181,14 +181,14 @@
 /// @prop {Map} photo_16r [width: 16.00in, height: 20.00in] - 16R photographic paper size.
 /// @prop {Map} photo_16r_plus [width: 16.00in, height: 24.00in] - 16R+ photographic paper size.
 /// @prop {Map} photo_20r [width: 20.00in, height: 24.00in] - 20R photographic paper size.
-/// @prop {Map} photo_20r_plus [width: 20.00in, height: 28.00in] - 20R+ photographic paper size.
+/// @prop {Map} photo_20r_plus [width: 20.00in, height: 28.00in] - 20R+ photographic paper size. Sources disagree (some list 20x30in); kept as is.
 /// @prop {Map} photo_22r [width: 20.00in, height: 29.50in] - 22R photographic paper size.
 /// @prop {Map} photo_24r [width: 24.00in, height: 31.50in] - 24R photographic paper size.
 /// @prop {Map} photo_24r_plus [width: 24.00in, height: 35.50in] - 24R+ photographic paper size.
 /// @prop {Map} photo_30r [width: 30.00in, height: 40.00in] - 30R photographic paper size.
 /// @prop {Map} us_letter [width: 8.50in, height: 11.00in] - US Letter paper size.
 /// @prop {Map} us_legal [width: 8.50in, height: 14.00in] - US Legal paper size.
-/// @prop {Map} us_ledger [width: 11.00in, height: 17.00in] - US Ledger/Tabloid paper size.
+/// @prop {Map} us_ledger [width: 11.00in, height: 17.00in] - US Ledger/Tabloid sheet, stored portrait (11x17in; Ledger proper is 17x11in landscape). Alias of `ansi_b`.
 /// @prop {Map} us_junior [width: 5.00in, height: 8.00in] - US Junior Legal paper size.
 /// @prop {Map} us_half_letter [width: 5.50in, height: 8.50in] - US Half Letter paper size.
 /// @prop {Map} us_government_letter [width: 8.00in, height: 10.50in] - US Government Letter paper size.
@@ -324,7 +324,7 @@ $paper_sizes: (
             width: 11in,
             height: 17in
         ),
-    // ANSI B (Ledger)
+    // ANSI B portrait (Tabloid; Ledger is 17x11 landscape). Alias of us_ledger.
     "ansi_c":
         (
             width: 17in,
@@ -849,6 +849,9 @@ $paper_sizes: (
     // JIS B10
     // JIS C Series
     // ------------------------------------------------------------------------
+    // Aliases: JIS P 0138 defines only the A and B series. These sizes are the
+    // ISO 269 C series (C0-C10), kept under the jis_ names
+    // for compatibility.
     "jis_c0":
         (
             width: 917mm,
@@ -1174,7 +1177,7 @@ $paper_sizes: (
             width: 11in,
             height: 17in
         ),
-    // US Ledger/Tabloid
+    // US Ledger/Tabloid, portrait. Alias of ansi_b.
     "us_junior":
         (
             width: 5in,

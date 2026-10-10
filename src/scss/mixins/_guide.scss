@@ -153,8 +153,8 @@
 ///     }
 ///
 @mixin guide--graph(
-    $column_width: baseline(4),
-    $row_height: baseline(4),
+    $column_width: line(4),
+    $row_height: line(4),
     $column_color: $guide--graph_primary,
     $baseline_color: $guide--graph_primary
 ) {
@@ -201,8 +201,8 @@
 ///
 @mixin guide--graph_centered(
     $columns: 12,
-    $column_width: baseline(4),
-    $row_height: baseline(4),
+    $column_width: line(4),
+    $row_height: line(4),
     $column_color: $guide--graph_primary,
     $baseline_color: $guide--graph_primary
 ) {
@@ -251,7 +251,7 @@
 ///     @include guide--baseline(20px, cyan);
 ///   }
 ///
-@mixin guide--baseline($size: baseline(4), $color: $guide--baseline_primary) {
+@mixin guide--baseline($size: line(4), $color: $guide--baseline_primary) {
     @include guide;
     background-repeat: repeat;
     background-size: 100% $size;

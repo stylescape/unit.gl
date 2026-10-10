@@ -40,9 +40,6 @@
 // Local Scale Constants
 // ============================================================================
 
-/// Line scale multiplier (5Q per line unit)
-$_line_scale: 5;
-
 /// Type scale multiplier (4Q per type unit)
 $_type_scale: 4;
 
@@ -108,7 +105,7 @@ $_type_scale: 4;
 ///
 /// @name line
 /// @param {Number} $lines - Number of line units
-/// @return {Length} Value in line units (5Q per unit)
+/// @return {Length} Value in line units (`$line_scale` Q per unit, 5Q by default)
 ///
 /// @example scss - Usage
 ///   line-height: line(4);    // 20px - 4 line units
@@ -116,7 +113,7 @@ $_type_scale: 4;
 ///   padding: line(3);        // 15px - 3 line units
 ///
 @function line($lines) {
-    @return calc($q * $lines * $_line_scale);
+    @return calc($q * $lines * $line_scale);
 }
 
 ///
@@ -137,7 +134,7 @@ $_type_scale: 4;
 ///
 @function snap_to_line($value) {
     $px_value: math.div(to_px($value), 1px);
-    @return math.round(math.div($px_value, 5)) * 5 * $q;
+    @return math.round(math.div($px_value, $line_scale)) * $line_scale * $q;
 }
 
 ///

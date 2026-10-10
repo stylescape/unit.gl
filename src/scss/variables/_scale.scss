@@ -247,20 +247,8 @@ $typographic_scale: (
 // Line Scale (5Q = 1.25mm = 5px)
 // ============================================================================
 
-///
-/// Line Scale Multiplier
-/// ---------------------------------------------------------------------------
-///
-/// The base scaling factor for the line grid.
-/// 5Q = 5px = 1.25mm at standard density.
-///
-/// This scale aligns perfectly with Q format paper sizes:
-/// - Q04 (180×270mm) = 144×216 line units = 720×1080px
-///
-/// @name $line_scale
-/// @type Number
-///
-$line_scale: 5 !default;
+// `$line_scale` lives in `variables/_q.scss` so `line()` can read it without
+// a circular import and `@use "unit.gl" with ($line_scale: ...)` works.
 
 ///
 /// Legacy Baseline Scale Alias
