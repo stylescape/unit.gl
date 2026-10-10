@@ -23,6 +23,18 @@ jobs:
         uses: actions/checkout@v7
 
       - 
+        name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 20.x
+
+      - 
+        name: Regenerate the Sass API reference (doc/sass)
+        run: |
+          npm ci --ignore-scripts
+          npm run docs:scss:release
+
+      - 
         name: Setup Python
         uses: actions/setup-python@v7
         with:
