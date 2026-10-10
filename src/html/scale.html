@@ -52,7 +52,7 @@
         
         <div class="ss-c-ribbon__title">
             <a href="index.html" class="ss-c-ribbon__title__text" >unit.gl</a>
-            <span class="ss-c-badge ss-c-badge--sm ss-c-badge--accent">v0.3.5</span>
+            <span class="ss-c-badge ss-c-badge--sm ss-c-badge--accent">v0.3.6</span>
         </div>
     </div>
 
@@ -367,7 +367,7 @@
                 <div class="ss-c-demo__stack">
                     <div class="ss-l-grid ss-l-grid-auto">
                         <div class="ss-c-card ss-c-stat">
-                            <h4 class="ss-c-stat__title">Type Scale</h4>
+                            <h3 class="ss-c-stat__title">Type Scale</h3>
                             <div class="ss-c-stat__value" id="typeQ">16Q</div>
                             <div class="ss-c-stat__desc">
                                 <span id="typePx">16px</span>
@@ -377,7 +377,7 @@
                         </div>
 
                         <div class="ss-c-card ss-c-stat">
-                            <h4 class="ss-c-stat__title">Line Scale</h4>
+                            <h3 class="ss-c-stat__title">Line Scale</h3>
                             <div class="ss-c-stat__value" id="lineQ">20Q</div>
                             <div class="ss-c-stat__desc">
                                 <span id="linePx">20px</span>
@@ -387,7 +387,7 @@
                         </div>
 
                         <div class="ss-c-card ss-c-stat">
-                            <h4 class="ss-c-stat__title">LCM Alignment</h4>
+                            <h3 class="ss-c-stat__title">LCM Alignment</h3>
                             <div class="ss-c-stat__value" id="lcmValue">20Q</div>
                             <div class="ss-c-stat__desc">
                                 <span id="lcmMultiple">1× LCM</span>
@@ -1088,7 +1088,7 @@ font-size: scale(16px, $ratio-fourth); // 21.33px</code></pre>
 
             <div class="ss-l-grid ss-l-grid-auto">
                 <div class="ss-c-card">
-                    <h4><code>q($n)</code></h4>
+                    <h3 class="ss-t-h4"><code>q($n)</code></h3>
                     <p>Returns Q-unit value: $n × 0.0625rem</p>
                     <pre class="ss-c-code-block"><code>padding: q(8);              // 8px
 margin: q(16);              // 16px
@@ -1096,7 +1096,7 @@ gap: q(24);                 // 24px</code></pre>
                 </div>
 
                 <div class="ss-c-card">
-                    <h4><code>type_unit($n)</code></h4>
+                    <h3 class="ss-t-h4"><code>type_unit($n)</code></h3>
                     <p>Returns type-based value: $n × 4Q</p>
                     <pre class="ss-c-code-block"><code>font-size: type_unit(4);    // 16Q = 16px
 font-size: type_unit(5);    // 20Q = 20px
@@ -1104,7 +1104,7 @@ font-size: type_unit(6);    // 24Q = 24px</code></pre>
                 </div>
 
                 <div class="ss-c-card">
-                    <h4><code>line($n)</code></h4>
+                    <h3 class="ss-t-h4"><code>line($n)</code></h3>
                     <p>Returns line-based value: $n × 5Q</p>
                     <pre class="ss-c-code-block"><code>line-height: line(4);       // 20Q = 20px
 margin-bottom: line(2);     // 10Q = 10px
@@ -1112,21 +1112,21 @@ padding: line(3);           // 15Q = 15px</code></pre>
                 </div>
 
                 <div class="ss-c-card">
-                    <h4><code>snap_to_line($value)</code></h4>
+                    <h3 class="ss-t-h4"><code>snap_to_line($value)</code></h3>
                     <p>Snaps any value to nearest line unit</p>
                     <pre class="ss-c-code-block"><code>height: snap_to_line(17px);  // 15px (3 lines)
 height: snap_to_line(23px);  // 25px (5 lines)</code></pre>
                 </div>
 
                 <div class="ss-c-card">
-                    <h4><code>line_height_for_size($size)</code></h4>
+                    <h3 class="ss-t-h4"><code>line_height_for_size($size)</code></h3>
                     <p>Calculates optimal line-height for font size</p>
                     <pre class="ss-c-code-block"><code>// For 16px font
 line-height: line_height_for_size(16px);  // 20px</code></pre>
                 </div>
 
                 <div class="ss-c-card">
-                    <h4><code>baseline($n)</code></h4>
+                    <h3 class="ss-t-h4"><code>baseline($n)</code></h3>
                     <p>Alias for line-based spacing</p>
                     <pre class="ss-c-code-block"><code>margin-top: baseline(2);    // 10Q = 10px
 padding: baseline(4);       // 20Q = 20px</code></pre>
@@ -1180,26 +1180,26 @@ padding: baseline(4);       // 20Q = 20px</code></pre>
             <div class="ss-l-grid ss-l-grid-auto">
                 <div class="ss-c-card">
                     <div class="ss-c-card__icon">4Q</div>
-                    <h4>Precision Typography</h4>
+                    <h3 class="ss-t-h4">Precision Typography</h3>
                     <p>The 4Q type scale aligns with print standards (1mm = 4px at 96dpi), enabling pixel-perfect font
                         sizing.</p>
                 </div>
 
                 <div class="ss-c-card">
                     <div class="ss-c-card__icon">5Q</div>
-                    <h4>Natural Rhythm</h4>
+                    <h3 class="ss-t-h4">Natural Rhythm</h3>
                     <p>The 5Q line scale creates comfortable reading rhythm with line-heights that feel natural.</p>
                 </div>
 
                 <div class="ss-c-card">
                     <div class="ss-c-card__icon">20Q</div>
-                    <h4>LCM Harmony</h4>
+                    <h3 class="ss-t-h4">LCM Harmony</h3>
                     <p>Every 20Q (20px), both scales align perfectly—creating predictable, harmonious layouts.</p>
                 </div>
 
                 <div class="ss-c-card">
                     <div class="ss-c-card__icon">720</div>
-                    <h4>HCN Flexibility</h4>
+                    <h3 class="ss-t-h4">HCN Flexibility</h3>
                     <p>Highly Composite Numbers enable maximum grid subdivisions—720 divides evenly 30 ways.</p>
                 </div>
             </div>

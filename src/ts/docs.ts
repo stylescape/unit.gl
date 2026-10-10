@@ -809,6 +809,36 @@ function initHybridScaleDemo(): void {
 }
 
 // ============================================================================
+// Keyboard access to scrollable code samples
+// ============================================================================
+
+/**
+ * Code blocks that scroll horizontally need a tab stop, so keyboard users can
+ * scroll them (axe `scrollable-region-focusable`). Whether a block scrolls
+ * depends on the viewport, so this runs on load and on resize.
+ */
+function initScrollableCodeBlocks(): void {
+    const update = (): void => {
+        document.querySelectorAll<HTMLElement>('pre, .ss-c-code-block').forEach((el) => {
+            const scrolls = el.scrollWidth > el.clientWidth || el.scrollHeight > el.clientHeight;
+            if (scrolls && !el.hasAttribute('tabindex')) {
+                el.setAttribute('tabindex', '0');
+                el.dataset.autoTabindex = '';
+            } else if (!scrolls && 'autoTabindex' in el.dataset) {
+                el.removeAttribute('tabindex');
+                delete el.dataset.autoTabindex;
+            }
+        });
+    };
+    update();
+    let timer: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+        clearTimeout(timer);
+        timer = setTimeout(update, 150);
+    });
+}
+
+// ============================================================================
 // Initialize All Demos
 // ============================================================================
 
@@ -821,6 +851,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initSidebarToggle();
     initNavBreakpointIndicator();
     initNavQIndicator();
+    initScrollableCodeBlocks();
 
     // Page-specific demos (only run if relevant elements exist)
     initLayersDemo();

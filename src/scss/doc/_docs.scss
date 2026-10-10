@@ -217,6 +217,22 @@ body {
     overflow-wrap: anywhere;
 }
 
+// stylescape 0.5.1 hardcodes white footer text (`.ss-c-footer { color: #fff }`)
+// but themes the footer background (light grey in light mode), which drops
+// contrast to 1.2:1. Use the themed text tokens until stylescape fixes it.
+.ss-c-footer {
+    color: var(--ss-color-text-primary);
+
+    .ss-c-footer-brand-name,
+    .ss-c-footer-legal a {
+        color: var(--ss-color-text-primary);
+    }
+
+    .ss-c-footer-copyright {
+        color: var(--ss-color-text-secondary);
+    }
+}
+
 // Code-sample highlighting (stylescape ships no syntax token classes)
 .ss-c-code-block {
     .comment {
@@ -1030,6 +1046,7 @@ body {
 }
 
 .type-column {
+    h3,
     h4 {
         font-size: 0.6875rem;
         font-weight: 600;
@@ -1110,7 +1127,7 @@ body {
     &__ratio {
         font-family: var(--ss-font-family-mono);
         font-size: 0.625rem;
-        color: var(--color_accent_primary);
+        color: var(--color_text_secondary);
         min-width: 120px;
         flex-shrink: 0;
     }
