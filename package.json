@@ -78,7 +78,7 @@
         "stylelint": "^17.11.1",
         "stylelint-config-standard-scss": "^17.0.0",
         "stylelint-order": "^8.1.1",
-        "stylescape": "^0.5.1",
+        "stylescape": "^0.5.2",
         "ts-node": "^10.9.2",
         "tsup": "^8.5.1",
         "typescript": "~6.0.3",

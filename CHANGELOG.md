@@ -7,6 +7,12 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+### Changed
+
+- **Docs site on stylescape 0.5.2** (dev dependency `^0.5.2`). stylescape
+  0.5.2 themes the footer text, so the footer colour override in
+  `src/scss/doc/_docs.scss` is gone.
+
 ## [0.3.6] - 2026-10-10
 
 ### Fixed
