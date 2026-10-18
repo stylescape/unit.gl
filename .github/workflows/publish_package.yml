@@ -123,6 +123,10 @@ jobs:
 # Publish to NPM
 # =============================================================================
 
+  # npm trusted publishing (OIDC, with provenance): no token secret.
+  # One-time setup on npmjs.com: package unit.gl > Settings > Trusted
+  # publishing > GitHub Actions: organization `stylescape`, repository
+  # `unit.gl`, workflow filename `publish_package.yml`, no environment.
   publish-npm:
 
     name: Publish NPM
@@ -130,6 +134,10 @@ jobs:
     needs: build
 
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
 
@@ -141,12 +149,12 @@ jobs:
         name: Setup Node
         uses: actions/setup-node@v7
         with:
-          node-version: 20.x
+          node-version: 22.x
           registry-url: https://registry.npmjs.org/
 
       -
-        name: Upgrade npm CLI to >=11.5.1 (trusted publishing)
-        run: npm i -g npm@^11.5.1
+        name: Upgrade npm CLI (trusted publishing needs >= 11.5.1)
+        run: npm install --global npm@^11.5.1
 
       -
         name: Download build.zip
@@ -162,4 +170,4 @@ jobs:
         name: Publish NPM
         # Publish from the repo root: package.json `files` ships dist/** and the
         # exports map points at ./dist/…, so the tarball layout matches the repo.
-        run: npm publish --access public
+        run: npm publish --provenance --access public

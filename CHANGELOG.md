@@ -9,6 +9,11 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
+- The npm publish job completes the switch to npm trusted publishing (OIDC):
+  job-level `id-token: write`, npm >= 11.5.1, Node 22.x instead of 20.x, and
+  `npm publish --provenance`. One-time setup on npmjs.com: unit.gl > Settings >
+  Trusted publishing > GitHub Actions, organization `stylescape`, repository
+  `unit.gl`, workflow `publish_package.yml`.
 - **Docs site on stylescape 0.5.2** (dev dependency `^0.5.2`). stylescape
   0.5.2 themes the footer text, so the footer colour override in
   `src/scss/doc/_docs.scss` is gone.
