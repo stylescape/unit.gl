@@ -7,6 +7,8 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [0.3.7] - 2026-10-24
+
 ### Changed
 
 - The npm publish job completes the switch to npm trusted publishing (OIDC):

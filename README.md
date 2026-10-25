@@ -8,8 +8,7 @@
 
 <div align="center">
 
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.unit.gl&up_message=Up&up_color=%23000000&down_message=Down&down_color=%23000000&style=flat-square&logo=Firefox&logoColor=FFFFFF&label=Website&labelColor=%23000000&color=%23000000)
-](https://www.unit.gl)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.unit.gl&up_message=Up&up_color=%23000000&down_message=Down&down_color=%23000000&style=flat-square&logo=Firefox&logoColor=FFFFFF&label=Website&labelColor=%23000000&color=%23000000)](https://www.unit.gl)
 [![NPM Version](https://img.shields.io/npm/v/unit.gl?style=flat-square&logo=npm&logoColor=FFFFFF&label=NPM&labelColor=%23000000&color=%23000000&link=https%3A%2F%2Fwww.npmjs.com%2Funitage%2Funit.gl)](https://www.npmjs.com/unit.gl)
 [![devContainer](https://img.shields.io/badge/devContainer-23354351?style=flat-square&logo=Docker&logoColor=%23FFFFFF&labelColor=%23000000&color=%23000000)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/stylescape/unit.gl)
 [![StackBlitz](https://img.shields.io/badge/StackBlitz-23354351?style=flat-square&logo=StackBlitz&logoColor=%23FFFFFF&labelColor=%23000000&color=%23000000)](https://stackblitz.com/github/stylescape/unit.gl/tree/main?file=src%2Findex.html)
@@ -281,6 +280,7 @@ grids.hideAll();
 
 2. **Leverage Sass Variables**
    - Override defaults at the top of your main stylesheet:
+
      ```scss
      @use "unit.gl" with (
        $q: 0.0625rem  // Customize base unit if needed
@@ -289,6 +289,7 @@ grids.hideAll();
 
 3. **Selective Imports**
    - Import only the modules you need to reduce compilation time:
+
      ```scss
      @use "unit.gl/scss/functions" as fn;
      @use "unit.gl/scss/mixins/view" as view;
@@ -309,7 +310,8 @@ grids.hideAll();
 
 ### Common Pitfalls to Avoid
 
-**Don't mix unit systems**
+#### Don't mix unit systems
+
 ```scss
 .bad {
   padding: 10px;      // Hardcoded px
@@ -317,7 +319,8 @@ grids.hideAll();
 }
 ```
 
-**Use consistent units**
+#### Use consistent units
+
 ```scss
 .good {
   padding: q(10);     // All Kyū
@@ -325,7 +328,8 @@ grids.hideAll();
 }
 ```
 
-**Don't nest too many breakpoints**
+#### Don't nest too many breakpoints
+
 ```scss
 .bad {
   @include breakpoint(md) {
@@ -336,7 +340,8 @@ grids.hideAll();
 }
 ```
 
-**Keep breakpoints flat**
+#### Keep breakpoints flat
+
 ```scss
 .good {
   @include breakpoint(md) { /* md styles */ }
@@ -350,7 +355,7 @@ grids.hideAll();
 
 ### Kyū Unit System Diagram
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │  1rem = 16q = 16px (default browser font size)          │
 ├─────────────────────────────────────────────────────────┤
@@ -364,7 +369,7 @@ grids.hideAll();
 
 ### Modular Scale Visualization (Golden Ratio 1.618)
 
-```
+```text
 h1 ████████████████ (6.854rem) ← modular_scale(4)
 h2 ██████████       (4.236rem) ← modular_scale(3)
 h3 ██████           (2.618rem) ← modular_scale(2)

@@ -20,3 +20,7 @@ The docs-site checks passed in headless Chromium on 2026-10-09 (mobile display-s
 
 - [ ] `hue.gl` 0.1.2 on npm lists its build tools (`@getkist/action-nunjucks`, `@getkist/action-sass`) as runtime dependencies. Since unit.gl now depends on `hue.gl`, every unit.gl install pulls them in. Fixed in hue.gl 0.2.0. **2026-10-10:** hue.gl `v0.2.0` is tagged, but its npm publish failed (CI token not accepted, see `hue.gl/TODO.md`), so unit.gl 0.3.6 still depends on `hue.gl ^0.1.2`. Bump to `^0.2.0` once it is on npm.
 - [ ] `npm run docs:scss` preloads `scripts/sassdoc-marked-shim.cjs` because `sassdoc-extras` 3.0.0 calls `marked()` as a function, which marked ≥ 4 no longer is. Drop the shim and the `marked` override once sassdoc-extras supports a current marked. **2026-10-10:** still needed; sassdoc-extras is still 3.0.0 (last published 2022).
+
+## Open after sweep (2026-10-24)
+
+- [ ] The mocha / sass-true suite cannot run: neither `mocha` nor `sass-true` is installed anywhere in the workspace (`tsc` and SCSS compile were checked instead).
